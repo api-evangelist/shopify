@@ -23,17 +23,30 @@ Shopify is an e-commerce platform that enables businesses to create and operate 
 ### Shopify REST API
 Explore Shopify's API reference and templating documentation. Shopify provides a range of software tools, app templates, example apps, and libraries to accelerate your development process. The Admin API lets you build apps and integrations that extend and enhance the Shopify admin.
 
+**Human URL:** [https://shopify.dev/docs/api/admin-rest](https://shopify.dev/docs/api/admin-rest)
+
 
 #### Tags:
 
- - No Tags
+ - Commerce
+
+#### Properties
+
+- [Documentation](https://shopify.dev/docs/api/admin-rest)
+- [OpenAPI](openapi/shopify-openapi-original.yml)
 ### Shopify GraphQL API
 The Admin API lets you build apps and integrations that extend and enhance the Shopify admin.
 
+**Human URL:** [https://shopify.dev/docs/api/admin-graphql](https://shopify.dev/docs/api/admin-graphql)
+
 
 #### Tags:
 
- - No Tags
+ - Commerce
+
+#### Properties
+
+- [Documentation](https://shopify.dev/docs/api/admin-graphql)
 
 ## Maintainers
 
