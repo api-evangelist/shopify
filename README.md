@@ -16,7 +16,7 @@ Shopify is an e-commerce platform that enables businesses to create and operate 
 ## Timestamps
 
 - **Created:** 2024/04/14 
-- **Modified:** 2025-01-03 
+- **Modified:** 2025-08-04 
 
 ## APIs
 
@@ -605,6 +605,14 @@ Explore Shopify's API reference and templating documentation. Shopify provides a
 #### Properties
 
 - [OpenAPI](openapi/shopify-rest-tender-transactions-json-api-openapi.yml)
+
+## Common Properties
+
+- [Documentation](https://shopify.dev/docs)
+- [Versioning](https://shopify.dev/docs/api/usage/versioning)
+- [Authentication](https://shopify.dev/docs/api/usage/authentication)
+- [CLI](https://shopify.dev/docs/api/shopify-cli)
+- [Documentation](https://shopify.dev/docs/api)
 
 ## Maintainers
 
