@@ -1,0 +1,114 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://shopify.dev/schemas/collection.json",
+  "title": "Shopify Collection",
+  "description": "A product collection in a Shopify store. Collections group products together for merchandising and navigation. Custom collections have manually curated products while smart collections use rules to automatically include products.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "Unique numeric identifier for the collection"
+    },
+    "title": {
+      "type": "string",
+      "description": "The name of the collection"
+    },
+    "handle": {
+      "type": "string",
+      "description": "A URL-friendly unique string automatically generated from the title"
+    },
+    "body_html": {
+      "type": ["string", "null"],
+      "description": "The description of the collection in HTML format"
+    },
+    "published_at": {
+      "type": ["string", "null"],
+      "format": "date-time",
+      "description": "When the collection was published"
+    },
+    "sort_order": {
+      "type": "string",
+      "description": "The sort order for products in the collection",
+      "enum": [
+        "alpha-asc",
+        "alpha-desc",
+        "best-selling",
+        "created",
+        "created-desc",
+        "manual",
+        "price-asc",
+        "price-desc"
+      ]
+    },
+    "template_suffix": {
+      "type": ["string", "null"],
+      "description": "The Liquid template suffix for the collection page"
+    },
+    "published_scope": {
+      "type": "string",
+      "description": "Whether the collection is published to the POS channel"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the collection was last modified"
+    },
+    "image": {
+      "type": ["object", "null"],
+      "description": "The collection image",
+      "properties": {
+        "src": {
+          "type": "string",
+          "format": "uri",
+          "description": "The image URL"
+        },
+        "alt": {
+          "type": ["string", "null"],
+          "description": "Alt text for the image"
+        },
+        "width": {
+          "type": "integer"
+        },
+        "height": {
+          "type": "integer"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "rules": {
+      "type": "array",
+      "description": "The rules for smart collections that automatically include products",
+      "items": {
+        "type": "object",
+        "properties": {
+          "column": {
+            "type": "string",
+            "description": "The property to match against",
+            "enum": ["title", "type", "vendor", "variant_price", "tag", "variant_compare_at_price", "variant_weight", "variant_inventory", "variant_title"]
+          },
+          "relation": {
+            "type": "string",
+            "description": "The comparison operator",
+            "enum": ["equals", "not_equals", "starts_with", "ends_with", "contains", "not_contains", "greater_than", "less_than"]
+          },
+          "condition": {
+            "type": "string",
+            "description": "The value to compare against"
+          }
+        }
+      }
+    },
+    "disjunctive": {
+      "type": "boolean",
+      "description": "Whether products need to match all rules (false) or any rule (true)"
+    },
+    "admin_graphql_api_id": {
+      "type": "string",
+      "description": "The GraphQL Admin API identifier"
+    }
+  },
+  "required": ["id", "title"]
+}

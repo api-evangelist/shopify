@@ -1,0 +1,416 @@
+openapi: 3.1.0
+info:
+  title: Shopify Webhooks API
+  description: >-
+    Shopify webhooks enable apps to receive real-time HTTP notifications when
+    events occur in a shop. Apps subscribe to webhook topics and Shopify
+    delivers POST requests with event payloads to the registered callback URL.
+    This specification documents the webhook subscription management endpoints
+    and the standard webhook event payload structures.
+  version: '2025-01'
+  contact:
+    name: Shopify
+    url: https://shopify.dev/docs/api/webhooks
+    email: api@shopify.com
+  license:
+    name: Shopify API Terms
+    url: https://www.shopify.com/legal/api-terms
+  x-date: '2026-03-04'
+servers:
+  - url: https://{store}.myshopify.com/admin/api/2025-01
+    description: Shopify Admin REST API
+    variables:
+      store:
+        default: my-store
+        description: The Shopify store subdomain
+security:
+  - AccessToken: []
+tags:
+  - name: Webhook Subscriptions
+    description: Create and manage webhook subscriptions
+  - name: Webhook Events
+    description: Webhook event topic definitions and payload structures
+paths:
+  /webhooks.json:
+    get:
+      operationId: listWebhookSubscriptions
+      summary: Retrieve a list of webhook subscriptions
+      description: >-
+        Retrieves a list of webhooks for the authenticated app. Filter by
+        topic, creation date, or other criteria.
+      tags:
+        - Webhook Subscriptions
+      parameters:
+        - name: topic
+          in: query
+          description: Filter by webhook topic (e.g. orders/create)
+          schema:
+            type: string
+        - name: address
+          in: query
+          description: Filter by callback address
+          schema:
+            type: string
+        - name: created_at_min
+          in: query
+          description: Show webhooks created after this date
+          schema:
+            type: string
+            format: date-time
+        - name: created_at_max
+          in: query
+          description: Show webhooks created before this date
+          schema:
+            type: string
+            format: date-time
+        - name: updated_at_min
+          in: query
+          description: Show webhooks updated after this date
+          schema:
+            type: string
+            format: date-time
+        - name: updated_at_max
+          in: query
+          description: Show webhooks updated before this date
+          schema:
+            type: string
+            format: date-time
+        - name: limit
+          in: query
+          description: Maximum number of results (max 250, default 50)
+          schema:
+            type: integer
+            default: 50
+            maximum: 250
+        - name: since_id
+          in: query
+          description: Return webhooks after the specified ID
+          schema:
+            type: integer
+        - name: fields
+          in: query
+          description: Comma-separated list of fields to include
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A list of webhook subscriptions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  webhooks:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/WebhookSubscription'
+    post:
+      operationId: createWebhookSubscription
+      summary: Create a webhook subscription
+      description: >-
+        Creates a new webhook subscription. When the specified event occurs
+        Shopify sends an HTTP POST to the provided callback address with the
+        event payload in JSON or XML format.
+      tags:
+        - Webhook Subscriptions
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - webhook
+              properties:
+                webhook:
+                  $ref: '#/components/schemas/WebhookSubscriptionInput'
+      responses:
+        '201':
+          description: The created webhook subscription
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  webhook:
+                    $ref: '#/components/schemas/WebhookSubscription'
+        '422':
+          description: Validation error (invalid topic or address)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /webhooks/count.json:
+    get:
+      operationId: getWebhookSubscriptionCount
+      summary: Retrieve a count of webhook subscriptions
+      description: >-
+        Retrieves a count of webhook subscriptions for the authenticated app.
+      tags:
+        - Webhook Subscriptions
+      parameters:
+        - name: topic
+          in: query
+          description: Count webhooks for a specific topic
+          schema:
+            type: string
+        - name: address
+          in: query
+          description: Count webhooks for a specific address
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The webhook count
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+  /webhooks/{webhook_id}.json:
+    get:
+      operationId: getWebhookSubscription
+      summary: Retrieve a single webhook subscription
+      description: Retrieves a webhook subscription by its ID.
+      tags:
+        - Webhook Subscriptions
+      parameters:
+        - $ref: '#/components/parameters/WebhookId'
+        - name: fields
+          in: query
+          description: Comma-separated list of fields to include
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The webhook subscription
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  webhook:
+                    $ref: '#/components/schemas/WebhookSubscription'
+        '404':
+          description: Webhook not found
+    put:
+      operationId: updateWebhookSubscription
+      summary: Update a webhook subscription
+      description: >-
+        Updates an existing webhook subscription. The address and fields can
+        be modified but the topic cannot be changed.
+      tags:
+        - Webhook Subscriptions
+      parameters:
+        - $ref: '#/components/parameters/WebhookId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - webhook
+              properties:
+                webhook:
+                  $ref: '#/components/schemas/WebhookSubscriptionInput'
+      responses:
+        '200':
+          description: The updated webhook subscription
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  webhook:
+                    $ref: '#/components/schemas/WebhookSubscription'
+        '422':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      operationId: deleteWebhookSubscription
+      summary: Delete a webhook subscription
+      description: Deletes a webhook subscription by its ID.
+      tags:
+        - Webhook Subscriptions
+      parameters:
+        - $ref: '#/components/parameters/WebhookId'
+      responses:
+        '200':
+          description: Webhook deleted successfully
+        '404':
+          description: Webhook not found
+components:
+  securitySchemes:
+    AccessToken:
+      type: apiKey
+      name: X-Shopify-Access-Token
+      in: header
+      description: Access token obtained via OAuth
+  parameters:
+    WebhookId:
+      name: webhook_id
+      in: path
+      required: true
+      description: The ID of the webhook subscription
+      schema:
+        type: integer
+  schemas:
+    WebhookSubscription:
+      type: object
+      description: A webhook subscription
+      properties:
+        id:
+          type: integer
+          description: Unique numeric identifier
+        address:
+          type: string
+          format: uri
+          description: The callback URL where Shopify sends webhook payloads
+        topic:
+          type: string
+          description: >-
+            The event topic. Common topics include orders/create,
+            orders/updated, orders/cancelled, orders/fulfilled,
+            products/create, products/update, products/delete,
+            customers/create, customers/update, customers/delete,
+            carts/create, carts/update, checkouts/create,
+            checkouts/update, inventory_levels/update,
+            fulfillments/create, fulfillments/update,
+            app/uninstalled, and shop/update.
+          enum:
+            - orders/create
+            - orders/updated
+            - orders/cancelled
+            - orders/fulfilled
+            - orders/paid
+            - orders/partially_fulfilled
+            - orders/delete
+            - products/create
+            - products/update
+            - products/delete
+            - customers/create
+            - customers/update
+            - customers/delete
+            - customers/enable
+            - customers/disable
+            - carts/create
+            - carts/update
+            - checkouts/create
+            - checkouts/update
+            - checkouts/delete
+            - collections/create
+            - collections/update
+            - collections/delete
+            - inventory_items/create
+            - inventory_items/update
+            - inventory_items/delete
+            - inventory_levels/connect
+            - inventory_levels/update
+            - inventory_levels/disconnect
+            - fulfillments/create
+            - fulfillments/update
+            - fulfillment_events/create
+            - fulfillment_events/delete
+            - refunds/create
+            - shop/update
+            - app/uninstalled
+            - app/scopes_update
+            - themes/create
+            - themes/publish
+            - themes/update
+            - themes/delete
+        format:
+          type: string
+          description: The data format for the webhook payload
+          enum:
+            - json
+            - xml
+        fields:
+          type: array
+          description: Optional list of top-level fields to include
+          items:
+            type: string
+        metafield_namespaces:
+          type: array
+          description: Optional metafield namespaces to include
+          items:
+            type: string
+        api_version:
+          type: string
+          description: The API version for the webhook payload
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        admin_graphql_api_id:
+          type: string
+    WebhookSubscriptionInput:
+      type: object
+      description: Input for creating or updating a webhook subscription
+      properties:
+        topic:
+          type: string
+          description: The event topic to subscribe to
+        address:
+          type: string
+          format: uri
+          description: The callback URL
+        format:
+          type: string
+          description: Payload format
+          enum:
+            - json
+            - xml
+        fields:
+          type: array
+          description: Fields to include in the payload
+          items:
+            type: string
+        metafield_namespaces:
+          type: array
+          description: Metafield namespaces to include
+          items:
+            type: string
+    WebhookHeaders:
+      type: object
+      description: >-
+        Standard HTTP headers included with every webhook delivery.
+        Apps should verify the X-Shopify-Hmac-SHA256 header to
+        authenticate that the webhook was sent by Shopify.
+      properties:
+        X-Shopify-Topic:
+          type: string
+          description: The webhook topic
+        X-Shopify-Hmac-Sha256:
+          type: string
+          description: Base64-encoded HMAC-SHA256 hash for verification
+        X-Shopify-Shop-Domain:
+          type: string
+          description: The shop domain
+        X-Shopify-API-Version:
+          type: string
+          description: The API version of the payload
+        X-Shopify-Webhook-Id:
+          type: string
+          description: Unique ID for this webhook delivery
+    Error:
+      type: object
+      description: Error response
+      properties:
+        errors:
+          description: Error details
+          oneOf:
+            - type: string
+            - type: object
+              additionalProperties:
+                type: array
+                items:
+                  type: string

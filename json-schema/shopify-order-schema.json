@@ -1,0 +1,346 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://shopify.dev/schemas/order.json",
+  "title": "Shopify Order",
+  "description": "An order placed in a Shopify store. Orders are records of purchases made by customers, including line items, payment status, fulfillment status, shipping, and billing information.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "Unique numeric identifier for the order"
+    },
+    "name": {
+      "type": "string",
+      "description": "The order name as displayed to the merchant (e.g. #1001)"
+    },
+    "order_number": {
+      "type": "integer",
+      "description": "The order sequential number without the prefix"
+    },
+    "email": {
+      "type": ["string", "null"],
+      "format": "email",
+      "description": "The customer email address"
+    },
+    "phone": {
+      "type": ["string", "null"],
+      "description": "The customer phone number"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the order was created"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the order was last updated"
+    },
+    "closed_at": {
+      "type": ["string", "null"],
+      "format": "date-time",
+      "description": "When the order was closed"
+    },
+    "cancelled_at": {
+      "type": ["string", "null"],
+      "format": "date-time",
+      "description": "When the order was cancelled"
+    },
+    "cancel_reason": {
+      "type": ["string", "null"],
+      "description": "The reason for cancellation",
+      "enum": ["customer", "fraud", "inventory", "declined", "other", null]
+    },
+    "note": {
+      "type": ["string", "null"],
+      "description": "Notes about the order"
+    },
+    "tags": {
+      "type": "string",
+      "description": "Comma-separated tags"
+    },
+    "token": {
+      "type": "string",
+      "description": "Unique token for the order"
+    },
+    "total_price": {
+      "type": "string",
+      "description": "The total price of the order including tax and shipping"
+    },
+    "subtotal_price": {
+      "type": "string",
+      "description": "The subtotal price before shipping and taxes"
+    },
+    "total_tax": {
+      "type": "string",
+      "description": "The total tax amount"
+    },
+    "total_discounts": {
+      "type": "string",
+      "description": "The total discount amount applied"
+    },
+    "total_weight": {
+      "type": "integer",
+      "description": "The total weight of all line items in grams"
+    },
+    "currency": {
+      "type": "string",
+      "description": "The three-letter ISO 4217 currency code"
+    },
+    "financial_status": {
+      "type": "string",
+      "description": "The payment status of the order",
+      "enum": ["pending", "authorized", "partially_paid", "paid", "partially_refunded", "refunded", "voided"]
+    },
+    "fulfillment_status": {
+      "type": ["string", "null"],
+      "description": "The fulfillment status of the order",
+      "enum": ["fulfilled", "partial", "restocked", null]
+    },
+    "confirmed": {
+      "type": "boolean",
+      "description": "Whether the order has been confirmed"
+    },
+    "test": {
+      "type": "boolean",
+      "description": "Whether this is a test order"
+    },
+    "taxes_included": {
+      "type": "boolean",
+      "description": "Whether taxes are included in the order total"
+    },
+    "buyer_accepts_marketing": {
+      "type": "boolean",
+      "description": "Whether the buyer accepted marketing"
+    },
+    "total_shipping_price_set": {
+      "type": "object",
+      "description": "The total shipping price in shop and presentment currencies",
+      "properties": {
+        "shop_money": {
+          "$ref": "#/$defs/Money"
+        },
+        "presentment_money": {
+          "$ref": "#/$defs/Money"
+        }
+      }
+    },
+    "customer": {
+      "type": "object",
+      "description": "The customer who placed the order",
+      "properties": {
+        "id": { "type": "integer" },
+        "email": { "type": ["string", "null"] },
+        "first_name": { "type": ["string", "null"] },
+        "last_name": { "type": ["string", "null"] }
+      }
+    },
+    "billing_address": {
+      "$ref": "#/$defs/Address"
+    },
+    "shipping_address": {
+      "$ref": "#/$defs/Address"
+    },
+    "line_items": {
+      "type": "array",
+      "description": "The line items in the order",
+      "items": {
+        "$ref": "#/$defs/LineItem"
+      }
+    },
+    "shipping_lines": {
+      "type": "array",
+      "description": "The shipping methods applied to the order",
+      "items": {
+        "$ref": "#/$defs/ShippingLine"
+      }
+    },
+    "tax_lines": {
+      "type": "array",
+      "description": "Tax lines applied to the order",
+      "items": {
+        "$ref": "#/$defs/TaxLine"
+      }
+    },
+    "discount_codes": {
+      "type": "array",
+      "description": "Discount codes applied to the order",
+      "items": {
+        "type": "object",
+        "properties": {
+          "code": { "type": "string" },
+          "amount": { "type": "string" },
+          "type": { "type": "string", "enum": ["fixed_amount", "percentage", "shipping"] }
+        }
+      }
+    },
+    "fulfillments": {
+      "type": "array",
+      "description": "Fulfillments associated with the order",
+      "items": {
+        "$ref": "#/$defs/Fulfillment"
+      }
+    },
+    "refunds": {
+      "type": "array",
+      "description": "Refunds associated with the order",
+      "items": {
+        "$ref": "#/$defs/Refund"
+      }
+    },
+    "admin_graphql_api_id": {
+      "type": "string",
+      "description": "The GraphQL Admin API identifier"
+    }
+  },
+  "required": ["id", "name"],
+  "$defs": {
+    "LineItem": {
+      "type": "object",
+      "description": "An individual line item in an order",
+      "properties": {
+        "id": { "type": "integer" },
+        "variant_id": { "type": ["integer", "null"] },
+        "product_id": { "type": ["integer", "null"] },
+        "title": { "type": "string" },
+        "variant_title": { "type": ["string", "null"] },
+        "name": { "type": "string", "description": "Product title and variant title" },
+        "quantity": { "type": "integer" },
+        "price": { "type": "string" },
+        "total_discount": { "type": "string" },
+        "sku": { "type": ["string", "null"] },
+        "vendor": { "type": ["string", "null"] },
+        "fulfillment_service": { "type": "string" },
+        "fulfillment_status": { "type": ["string", "null"] },
+        "taxable": { "type": "boolean" },
+        "requires_shipping": { "type": "boolean" },
+        "gift_card": { "type": "boolean" },
+        "grams": { "type": "integer" },
+        "tax_lines": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/TaxLine" }
+        },
+        "properties": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "value": { "type": "string" }
+            }
+          }
+        },
+        "admin_graphql_api_id": { "type": "string" }
+      },
+      "required": ["id", "title", "quantity", "price"]
+    },
+    "ShippingLine": {
+      "type": "object",
+      "description": "A shipping method applied to the order",
+      "properties": {
+        "id": { "type": "integer" },
+        "title": { "type": "string" },
+        "price": { "type": "string" },
+        "code": { "type": ["string", "null"] },
+        "source": { "type": "string" },
+        "discounted_price": { "type": "string" },
+        "tax_lines": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/TaxLine" }
+        }
+      }
+    },
+    "TaxLine": {
+      "type": "object",
+      "description": "A tax line",
+      "properties": {
+        "title": { "type": "string" },
+        "price": { "type": "string" },
+        "rate": { "type": "number" }
+      }
+    },
+    "Money": {
+      "type": "object",
+      "description": "A monetary amount with currency",
+      "properties": {
+        "amount": { "type": "string" },
+        "currency_code": { "type": "string" }
+      }
+    },
+    "Address": {
+      "type": "object",
+      "description": "A mailing address",
+      "properties": {
+        "first_name": { "type": ["string", "null"] },
+        "last_name": { "type": ["string", "null"] },
+        "company": { "type": ["string", "null"] },
+        "address1": { "type": ["string", "null"] },
+        "address2": { "type": ["string", "null"] },
+        "city": { "type": ["string", "null"] },
+        "province": { "type": ["string", "null"] },
+        "country": { "type": ["string", "null"] },
+        "zip": { "type": ["string", "null"] },
+        "phone": { "type": ["string", "null"] },
+        "province_code": { "type": ["string", "null"] },
+        "country_code": { "type": ["string", "null"] },
+        "latitude": { "type": ["number", "null"] },
+        "longitude": { "type": ["number", "null"] }
+      }
+    },
+    "Fulfillment": {
+      "type": "object",
+      "description": "A fulfillment of an order",
+      "properties": {
+        "id": { "type": "integer" },
+        "order_id": { "type": "integer" },
+        "status": {
+          "type": "string",
+          "enum": ["pending", "open", "success", "cancelled", "error", "failure"]
+        },
+        "tracking_company": { "type": ["string", "null"] },
+        "tracking_number": { "type": ["string", "null"] },
+        "tracking_numbers": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "tracking_url": { "type": ["string", "null"] },
+        "tracking_urls": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "created_at": { "type": "string", "format": "date-time" },
+        "updated_at": { "type": "string", "format": "date-time" },
+        "line_items": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/LineItem" }
+        },
+        "admin_graphql_api_id": { "type": "string" }
+      }
+    },
+    "Refund": {
+      "type": "object",
+      "description": "A refund on an order",
+      "properties": {
+        "id": { "type": "integer" },
+        "order_id": { "type": "integer" },
+        "created_at": { "type": "string", "format": "date-time" },
+        "note": { "type": ["string", "null"] },
+        "restock": { "type": "boolean" },
+        "refund_line_items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": { "type": "integer" },
+              "quantity": { "type": "integer" },
+              "line_item_id": { "type": "integer" },
+              "subtotal": { "type": "number" },
+              "total_tax": { "type": "number" }
+            }
+          }
+        },
+        "admin_graphql_api_id": { "type": "string" }
+      }
+    }
+  }
+}

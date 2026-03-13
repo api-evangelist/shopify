@@ -1,0 +1,174 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://shopify.dev/schemas/customer.json",
+  "title": "Shopify Customer",
+  "description": "A customer of a Shopify store. Customers represent people who have purchased from the store or who have created an account.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "Unique numeric identifier for the customer"
+    },
+    "email": {
+      "type": ["string", "null"],
+      "format": "email",
+      "description": "The customer email address"
+    },
+    "first_name": {
+      "type": ["string", "null"],
+      "description": "The customer first name"
+    },
+    "last_name": {
+      "type": ["string", "null"],
+      "description": "The customer last name"
+    },
+    "phone": {
+      "type": ["string", "null"],
+      "description": "The customer phone number in E.164 format"
+    },
+    "orders_count": {
+      "type": "integer",
+      "description": "The number of orders placed by the customer"
+    },
+    "total_spent": {
+      "type": "string",
+      "description": "The total amount spent by the customer as a decimal string"
+    },
+    "state": {
+      "type": "string",
+      "description": "The state of the customer account",
+      "enum": ["disabled", "invited", "enabled", "declined"]
+    },
+    "note": {
+      "type": ["string", "null"],
+      "description": "A note about the customer visible to store staff"
+    },
+    "verified_email": {
+      "type": "boolean",
+      "description": "Whether the customer has verified their email address"
+    },
+    "tax_exempt": {
+      "type": "boolean",
+      "description": "Whether the customer is exempt from paying taxes"
+    },
+    "tags": {
+      "type": "string",
+      "description": "Comma-separated list of tags associated with the customer"
+    },
+    "currency": {
+      "type": "string",
+      "description": "The three-letter ISO 4217 currency code for the customer"
+    },
+    "accepts_marketing": {
+      "type": "boolean",
+      "description": "Whether the customer has consented to receive marketing emails"
+    },
+    "accepts_marketing_updated_at": {
+      "type": ["string", "null"],
+      "format": "date-time",
+      "description": "When the marketing consent was last updated"
+    },
+    "marketing_opt_in_level": {
+      "type": ["string", "null"],
+      "description": "The marketing subscription opt-in level",
+      "enum": ["single_opt_in", "confirmed_opt_in", "unknown", null]
+    },
+    "tax_exemptions": {
+      "type": "array",
+      "description": "Tax exemptions that apply to the customer",
+      "items": {
+        "type": "string"
+      }
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the customer record was created"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the customer record was last updated"
+    },
+    "default_address": {
+      "$ref": "#/$defs/Address",
+      "description": "The customer default mailing address"
+    },
+    "addresses": {
+      "type": "array",
+      "description": "All addresses associated with the customer",
+      "items": {
+        "$ref": "#/$defs/Address"
+      }
+    },
+    "admin_graphql_api_id": {
+      "type": "string",
+      "description": "The GraphQL Admin API identifier"
+    }
+  },
+  "required": ["id"],
+  "$defs": {
+    "Address": {
+      "type": "object",
+      "description": "A customer mailing address",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Unique numeric identifier for the address"
+        },
+        "customer_id": {
+          "type": "integer"
+        },
+        "first_name": {
+          "type": ["string", "null"]
+        },
+        "last_name": {
+          "type": ["string", "null"]
+        },
+        "company": {
+          "type": ["string", "null"]
+        },
+        "address1": {
+          "type": ["string", "null"],
+          "description": "Street address line 1"
+        },
+        "address2": {
+          "type": ["string", "null"],
+          "description": "Street address line 2"
+        },
+        "city": {
+          "type": ["string", "null"]
+        },
+        "province": {
+          "type": ["string", "null"],
+          "description": "Province, state, or region"
+        },
+        "country": {
+          "type": ["string", "null"]
+        },
+        "zip": {
+          "type": ["string", "null"],
+          "description": "Postal or zip code"
+        },
+        "phone": {
+          "type": ["string", "null"]
+        },
+        "province_code": {
+          "type": ["string", "null"],
+          "description": "The two-letter province or state code"
+        },
+        "country_code": {
+          "type": ["string", "null"],
+          "description": "The two-letter ISO 3166-1 country code"
+        },
+        "country_name": {
+          "type": ["string", "null"]
+        },
+        "default": {
+          "type": "boolean",
+          "description": "Whether this is the customer default address"
+        }
+      }
+    }
+  }
+}

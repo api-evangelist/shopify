@@ -1,0 +1,284 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://shopify.dev/schemas/product.json",
+  "title": "Shopify Product",
+  "description": "A product in a Shopify store. Products are the goods and services that merchants sell. They include information such as title, description, price, images, and variants.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "Unique numeric identifier for the product"
+    },
+    "title": {
+      "type": "string",
+      "description": "The name of the product"
+    },
+    "body_html": {
+      "type": ["string", "null"],
+      "description": "The description of the product in HTML format"
+    },
+    "vendor": {
+      "type": "string",
+      "description": "The name of the product vendor"
+    },
+    "product_type": {
+      "type": "string",
+      "description": "A categorization for the product used for filtering and searching"
+    },
+    "handle": {
+      "type": "string",
+      "description": "A URL-friendly unique string for the product automatically generated from the title"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time when the product was created in ISO 8601 format"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time when the product was last modified in ISO 8601 format"
+    },
+    "published_at": {
+      "type": ["string", "null"],
+      "format": "date-time",
+      "description": "The date and time when the product was published. Null if the product is not published."
+    },
+    "template_suffix": {
+      "type": ["string", "null"],
+      "description": "The suffix of the Liquid template used for the product page"
+    },
+    "published_scope": {
+      "type": "string",
+      "description": "Whether the product is published to the Point of Sale channel",
+      "enum": ["web", "global"]
+    },
+    "tags": {
+      "type": "string",
+      "description": "A comma-separated list of searchable keywords associated with the product"
+    },
+    "status": {
+      "type": "string",
+      "description": "The status of the product",
+      "enum": ["active", "archived", "draft"]
+    },
+    "admin_graphql_api_id": {
+      "type": "string",
+      "description": "The GraphQL Admin API identifier in the format gid://shopify/Product/{id}"
+    },
+    "variants": {
+      "type": "array",
+      "description": "The product variants. Each product can have up to 100 variants.",
+      "items": {
+        "$ref": "#/$defs/Variant"
+      }
+    },
+    "options": {
+      "type": "array",
+      "description": "The custom product options. A product can have up to 3 options.",
+      "items": {
+        "$ref": "#/$defs/ProductOption"
+      }
+    },
+    "images": {
+      "type": "array",
+      "description": "The product images. A product can have up to 250 images.",
+      "items": {
+        "$ref": "#/$defs/Image"
+      }
+    },
+    "image": {
+      "description": "The primary product image",
+      "$ref": "#/$defs/Image"
+    }
+  },
+  "required": ["id", "title"],
+  "$defs": {
+    "Variant": {
+      "type": "object",
+      "description": "A product variant representing a specific version of a product defined by its option values",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Unique numeric identifier"
+        },
+        "product_id": {
+          "type": "integer",
+          "description": "The ID of the parent product"
+        },
+        "title": {
+          "type": "string",
+          "description": "The variant title composed of option values"
+        },
+        "price": {
+          "type": "string",
+          "description": "The price of the variant as a decimal string"
+        },
+        "sku": {
+          "type": ["string", "null"],
+          "description": "Stock keeping unit for tracking inventory"
+        },
+        "position": {
+          "type": "integer",
+          "description": "The position of the variant in the product variant list"
+        },
+        "inventory_policy": {
+          "type": "string",
+          "description": "Whether to continue selling when out of stock",
+          "enum": ["deny", "continue"]
+        },
+        "compare_at_price": {
+          "type": ["string", "null"],
+          "description": "The original price for comparison or sale display"
+        },
+        "fulfillment_service": {
+          "type": "string",
+          "description": "The fulfillment service associated with the variant"
+        },
+        "inventory_management": {
+          "type": ["string", "null"],
+          "description": "The fulfillment service that tracks inventory for the variant"
+        },
+        "option1": {
+          "type": ["string", "null"],
+          "description": "The value of the first product option"
+        },
+        "option2": {
+          "type": ["string", "null"],
+          "description": "The value of the second product option"
+        },
+        "option3": {
+          "type": ["string", "null"],
+          "description": "The value of the third product option"
+        },
+        "taxable": {
+          "type": "boolean",
+          "description": "Whether tax is charged on the variant"
+        },
+        "barcode": {
+          "type": ["string", "null"],
+          "description": "The barcode, UPC, or ISBN for the variant"
+        },
+        "grams": {
+          "type": "integer",
+          "description": "The weight of the variant in grams"
+        },
+        "weight": {
+          "type": "number",
+          "description": "The weight of the variant in the unit specified by weight_unit"
+        },
+        "weight_unit": {
+          "type": "string",
+          "description": "The unit of weight measurement",
+          "enum": ["g", "kg", "oz", "lb"]
+        },
+        "inventory_item_id": {
+          "type": "integer",
+          "description": "The ID of the corresponding inventory item"
+        },
+        "inventory_quantity": {
+          "type": "integer",
+          "description": "The total tracked inventory quantity"
+        },
+        "requires_shipping": {
+          "type": "boolean",
+          "description": "Whether the variant requires shipping"
+        },
+        "image_id": {
+          "type": ["integer", "null"],
+          "description": "The ID of the image associated with the variant"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "admin_graphql_api_id": {
+          "type": "string"
+        }
+      },
+      "required": ["id", "product_id", "title", "price"]
+    },
+    "ProductOption": {
+      "type": "object",
+      "description": "A product option such as Size or Color",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "product_id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string",
+          "description": "The option name"
+        },
+        "position": {
+          "type": "integer",
+          "description": "The position of the option in the list"
+        },
+        "values": {
+          "type": "array",
+          "description": "The available values for this option",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": ["id", "name"]
+    },
+    "Image": {
+      "type": "object",
+      "description": "A product image",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "product_id": {
+          "type": "integer"
+        },
+        "position": {
+          "type": "integer",
+          "description": "The position of the image in the list"
+        },
+        "alt": {
+          "type": ["string", "null"],
+          "description": "Alternative text for accessibility"
+        },
+        "width": {
+          "type": "integer"
+        },
+        "height": {
+          "type": "integer"
+        },
+        "src": {
+          "type": "string",
+          "format": "uri",
+          "description": "The URL of the image"
+        },
+        "variant_ids": {
+          "type": "array",
+          "description": "Variant IDs associated with this image",
+          "items": {
+            "type": "integer"
+          }
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "admin_graphql_api_id": {
+          "type": "string"
+        }
+      },
+      "required": ["id", "src"]
+    }
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://shopify.dev/schemas/inventory-item.json",
+  "title": "Shopify Inventory Item",
+  "description": "An inventory item represents the physical goods for a product variant. Inventory items track quantities across locations and contain cost and customs information. Each product variant has a one-to-one relationship with an inventory item.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "Unique numeric identifier for the inventory item"
+    },
+    "sku": {
+      "type": ["string", "null"],
+      "description": "The stock keeping unit"
+    },
+    "cost": {
+      "type": ["string", "null"],
+      "description": "The unit cost of the inventory item as a decimal string"
+    },
+    "tracked": {
+      "type": "boolean",
+      "description": "Whether Shopify tracks inventory quantities for this item"
+    },
+    "requires_shipping": {
+      "type": "boolean",
+      "description": "Whether the item requires shipping"
+    },
+    "country_code_of_origin": {
+      "type": ["string", "null"],
+      "description": "The two-letter ISO 3166-1 country code where the item was manufactured"
+    },
+    "province_code_of_origin": {
+      "type": ["string", "null"],
+      "description": "The province or state code where the item was manufactured"
+    },
+    "harmonized_system_code": {
+      "type": ["string", "null"],
+      "description": "The Harmonized System code for customs classification"
+    },
+    "country_harmonized_system_codes": {
+      "type": "array",
+      "description": "Country-specific HS codes for customs",
+      "items": {
+        "type": "object",
+        "properties": {
+          "harmonized_system_code": {
+            "type": "string",
+            "description": "The country-specific HS code"
+          },
+          "country_code": {
+            "type": "string",
+            "description": "The two-letter ISO country code"
+          }
+        }
+      }
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the inventory item was created"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the inventory item was last updated"
+    },
+    "admin_graphql_api_id": {
+      "type": "string",
+      "description": "The GraphQL Admin API identifier"
+    }
+  },
+  "required": ["id"]
+}

@@ -1,0 +1,3273 @@
+openapi: 3.1.0
+info:
+  title: Shopify Admin REST API
+  description: >-
+    The Shopify Admin REST API lets you build apps and integrations that extend
+    and enhance the Shopify admin. Access products, customers, orders, inventory,
+    fulfillment, and more. Endpoints are organized by resource type and versioned
+    by release date.
+  version: '2025-01'
+  contact:
+    name: Shopify
+    url: https://shopify.dev/docs/api/admin-rest
+    email: api@shopify.com
+  license:
+    name: Shopify API Terms
+    url: https://www.shopify.com/legal/api-terms
+  x-date: '2026-03-04'
+servers:
+  - url: https://{store}.myshopify.com/admin/api/2025-01
+    description: Shopify Admin REST API
+    variables:
+      store:
+        default: my-store
+        description: The Shopify store subdomain
+security:
+  - AccessToken: []
+tags:
+  - name: Products
+    description: Manage products in a Shopify store
+  - name: Product Images
+    description: Manage images associated with products
+  - name: Product Variants
+    description: Manage product variants
+  - name: Collections
+    description: Retrieve collection data
+  - name: Custom Collections
+    description: Manage manual collections
+  - name: Smart Collections
+    description: Manage automated collections
+  - name: Customers
+    description: Manage customer records
+  - name: Customer Addresses
+    description: Manage customer addresses
+  - name: Orders
+    description: Manage orders
+  - name: Fulfillment Orders
+    description: Manage fulfillment workflows
+  - name: Fulfillments
+    description: Manage order fulfillments
+  - name: Inventory Items
+    description: Manage inventory item records
+  - name: Inventory Levels
+    description: Manage inventory quantities at locations
+  - name: Locations
+    description: Retrieve store locations
+  - name: Webhooks
+    description: Manage webhook subscriptions
+  - name: Shop
+    description: Retrieve shop configuration
+  - name: Access
+    description: Manage access scopes and tokens
+paths:
+  /products.json:
+    get:
+      operationId: listProducts
+      summary: Retrieve a list of products
+      description: >-
+        Retrieves a list of products. Results can be filtered by collection,
+        product type, vendor, creation date, update date, publication status,
+        and other criteria. Returns up to 250 products per page.
+      tags:
+        - Products
+      parameters:
+        - name: ids
+          in: query
+          description: Comma-separated list of product IDs to retrieve
+          schema:
+            type: string
+        - name: limit
+          in: query
+          description: Maximum number of results to return (max 250, default 50)
+          schema:
+            type: integer
+            default: 50
+            maximum: 250
+        - name: since_id
+          in: query
+          description: Return products after the specified ID
+          schema:
+            type: integer
+        - name: title
+          in: query
+          description: Filter by product title
+          schema:
+            type: string
+        - name: vendor
+          in: query
+          description: Filter by product vendor
+          schema:
+            type: string
+        - name: product_type
+          in: query
+          description: Filter by product type
+          schema:
+            type: string
+        - name: collection_id
+          in: query
+          description: Filter by collection ID
+          schema:
+            type: integer
+        - name: status
+          in: query
+          description: Filter by product status
+          schema:
+            type: string
+            enum:
+              - active
+              - archived
+              - draft
+        - name: fields
+          in: query
+          description: Comma-separated list of fields to include in the response
+          schema:
+            type: string
+        - name: created_at_min
+          in: query
+          description: Show products created after this date (ISO 8601)
+          schema:
+            type: string
+            format: date-time
+        - name: created_at_max
+          in: query
+          description: Show products created before this date (ISO 8601)
+          schema:
+            type: string
+            format: date-time
+        - name: updated_at_min
+          in: query
+          description: Show products updated after this date (ISO 8601)
+          schema:
+            type: string
+            format: date-time
+        - name: updated_at_max
+          in: query
+          description: Show products updated before this date (ISO 8601)
+          schema:
+            type: string
+            format: date-time
+      responses:
+        '200':
+          description: A list of products
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  products:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Product'
+    post:
+      operationId: createProduct
+      summary: Create a new product
+      description: >-
+        Creates a new product. You can include product variants and images in
+        the same request. If no variants are specified a default variant is
+        created automatically.
+      tags:
+        - Products
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - product
+              properties:
+                product:
+                  $ref: '#/components/schemas/ProductInput'
+      responses:
+        '201':
+          description: The created product
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  product:
+                    $ref: '#/components/schemas/Product'
+        '422':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /products/count.json:
+    get:
+      operationId: getProductCount
+      summary: Retrieve a count of products
+      description: >-
+        Retrieves a count of products matching the specified criteria.
+      tags:
+        - Products
+      parameters:
+        - name: vendor
+          in: query
+          description: Filter by product vendor
+          schema:
+            type: string
+        - name: product_type
+          in: query
+          description: Filter by product type
+          schema:
+            type: string
+        - name: collection_id
+          in: query
+          description: Filter by collection ID
+          schema:
+            type: integer
+        - name: created_at_min
+          in: query
+          description: Count products created after this date
+          schema:
+            type: string
+            format: date-time
+        - name: updated_at_min
+          in: query
+          description: Count products updated after this date
+          schema:
+            type: string
+            format: date-time
+      responses:
+        '200':
+          description: The product count
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+  /products/{product_id}.json:
+    get:
+      operationId: getProduct
+      summary: Retrieve a single product
+      description: >-
+        Retrieves a single product by its ID, including variants, images,
+        and options.
+      tags:
+        - Products
+      parameters:
+        - $ref: '#/components/parameters/ProductId'
+        - name: fields
+          in: query
+          description: Comma-separated list of fields to include
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The requested product
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  product:
+                    $ref: '#/components/schemas/Product'
+        '404':
+          description: Product not found
+    put:
+      operationId: updateProduct
+      summary: Update a product
+      description: >-
+        Updates an existing product and any of its variants and images.
+      tags:
+        - Products
+      parameters:
+        - $ref: '#/components/parameters/ProductId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - product
+              properties:
+                product:
+                  $ref: '#/components/schemas/ProductInput'
+      responses:
+        '200':
+          description: The updated product
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  product:
+                    $ref: '#/components/schemas/Product'
+        '422':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      operationId: deleteProduct
+      summary: Delete a product
+      description: >-
+        Deletes a product and all associated variants and images.
+      tags:
+        - Products
+      parameters:
+        - $ref: '#/components/parameters/ProductId'
+      responses:
+        '200':
+          description: Product deleted successfully
+        '404':
+          description: Product not found
+  /products/{product_id}/images.json:
+    get:
+      operationId: listProductImages
+      summary: Retrieve a list of product images
+      description: >-
+        Retrieves all images for a given product.
+      tags:
+        - Product Images
+      parameters:
+        - $ref: '#/components/parameters/ProductId'
+        - name: since_id
+          in: query
+          description: Return images after the specified ID
+          schema:
+            type: integer
+        - name: fields
+          in: query
+          description: Comma-separated list of fields to include
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A list of product images
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  images:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Image'
+    post:
+      operationId: createProductImage
+      summary: Create a product image
+      description: >-
+        Creates a new image for a product. Images can be provided as a URL
+        or a base64-encoded attachment.
+      tags:
+        - Product Images
+      parameters:
+        - $ref: '#/components/parameters/ProductId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - image
+              properties:
+                image:
+                  $ref: '#/components/schemas/ImageInput'
+      responses:
+        '201':
+          description: The created image
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  image:
+                    $ref: '#/components/schemas/Image'
+  /products/{product_id}/images/count.json:
+    get:
+      operationId: getProductImageCount
+      summary: Retrieve a count of product images
+      description: >-
+        Retrieves a count of images for a given product.
+      tags:
+        - Product Images
+      parameters:
+        - $ref: '#/components/parameters/ProductId'
+      responses:
+        '200':
+          description: The image count
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+  /products/{product_id}/images/{image_id}.json:
+    get:
+      operationId: getProductImage
+      summary: Retrieve a single product image
+      description: >-
+        Retrieves a single image for a product by its ID.
+      tags:
+        - Product Images
+      parameters:
+        - $ref: '#/components/parameters/ProductId'
+        - $ref: '#/components/parameters/ImageId'
+      responses:
+        '200':
+          description: The requested image
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  image:
+                    $ref: '#/components/schemas/Image'
+    put:
+      operationId: updateProductImage
+      summary: Update a product image
+      description: >-
+        Updates an existing product image. Can update position, alt text,
+        and variant associations.
+      tags:
+        - Product Images
+      parameters:
+        - $ref: '#/components/parameters/ProductId'
+        - $ref: '#/components/parameters/ImageId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - image
+              properties:
+                image:
+                  $ref: '#/components/schemas/ImageInput'
+      responses:
+        '200':
+          description: The updated image
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  image:
+                    $ref: '#/components/schemas/Image'
+    delete:
+      operationId: deleteProductImage
+      summary: Delete a product image
+      description: >-
+        Deletes an image from a product.
+      tags:
+        - Product Images
+      parameters:
+        - $ref: '#/components/parameters/ProductId'
+        - $ref: '#/components/parameters/ImageId'
+      responses:
+        '200':
+          description: Image deleted successfully
+  /products/{product_id}/variants.json:
+    get:
+      operationId: listProductVariants
+      summary: Retrieve a list of product variants
+      description: >-
+        Retrieves all variants for a given product.
+      tags:
+        - Product Variants
+      parameters:
+        - $ref: '#/components/parameters/ProductId'
+        - name: limit
+          in: query
+          description: Maximum number of results (max 250, default 50)
+          schema:
+            type: integer
+            default: 50
+            maximum: 250
+        - name: since_id
+          in: query
+          description: Return variants after the specified ID
+          schema:
+            type: integer
+        - name: fields
+          in: query
+          description: Comma-separated list of fields to include
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A list of product variants
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  variants:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Variant'
+    post:
+      operationId: createProductVariant
+      summary: Create a product variant
+      description: >-
+        Creates a new variant for a product.
+      tags:
+        - Product Variants
+      parameters:
+        - $ref: '#/components/parameters/ProductId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - variant
+              properties:
+                variant:
+                  $ref: '#/components/schemas/VariantInput'
+      responses:
+        '201':
+          description: The created variant
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  variant:
+                    $ref: '#/components/schemas/Variant'
+  /customers.json:
+    get:
+      operationId: listCustomers
+      summary: Retrieve a list of customers
+      description: >-
+        Retrieves a list of customers. Results can be filtered by creation
+        date, update date, and other criteria. Returns up to 250 customers.
+      tags:
+        - Customers
+      parameters:
+        - name: ids
+          in: query
+          description: Comma-separated list of customer IDs
+          schema:
+            type: string
+        - name: limit
+          in: query
+          description: Maximum number of results (max 250, default 50)
+          schema:
+            type: integer
+            default: 50
+            maximum: 250
+        - name: since_id
+          in: query
+          description: Return customers after the specified ID
+          schema:
+            type: integer
+        - name: created_at_min
+          in: query
+          description: Show customers created after this date
+          schema:
+            type: string
+            format: date-time
+        - name: created_at_max
+          in: query
+          description: Show customers created before this date
+          schema:
+            type: string
+            format: date-time
+        - name: updated_at_min
+          in: query
+          description: Show customers updated after this date
+          schema:
+            type: string
+            format: date-time
+        - name: updated_at_max
+          in: query
+          description: Show customers updated before this date
+          schema:
+            type: string
+            format: date-time
+        - name: fields
+          in: query
+          description: Comma-separated list of fields to include
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A list of customers
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  customers:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Customer'
+    post:
+      operationId: createCustomer
+      summary: Create a customer
+      description: >-
+        Creates a new customer record. Sends a welcome email if
+        send_email_welcome is true.
+      tags:
+        - Customers
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - customer
+              properties:
+                customer:
+                  $ref: '#/components/schemas/CustomerInput'
+      responses:
+        '201':
+          description: The created customer
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  customer:
+                    $ref: '#/components/schemas/Customer'
+        '422':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /customers/count.json:
+    get:
+      operationId: getCustomerCount
+      summary: Retrieve a count of customers
+      description: Retrieves a count of all customers.
+      tags:
+        - Customers
+      responses:
+        '200':
+          description: The customer count
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+  /customers/search.json:
+    get:
+      operationId: searchCustomers
+      summary: Search for customers
+      description: >-
+        Searches for customers matching a supplied query. Supports searching
+        by name, email, phone, and other fields.
+      tags:
+        - Customers
+      parameters:
+        - name: query
+          in: query
+          required: true
+          description: Search query (e.g. email:user@example.com)
+          schema:
+            type: string
+        - name: limit
+          in: query
+          description: Maximum number of results (max 250, default 50)
+          schema:
+            type: integer
+            default: 50
+            maximum: 250
+        - name: fields
+          in: query
+          description: Comma-separated list of fields to include
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Matching customers
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  customers:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Customer'
+  /customers/{customer_id}.json:
+    get:
+      operationId: getCustomer
+      summary: Retrieve a single customer
+      description: Retrieves a single customer by ID.
+      tags:
+        - Customers
+      parameters:
+        - $ref: '#/components/parameters/CustomerId'
+        - name: fields
+          in: query
+          description: Comma-separated list of fields to include
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The requested customer
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  customer:
+                    $ref: '#/components/schemas/Customer'
+        '404':
+          description: Customer not found
+    put:
+      operationId: updateCustomer
+      summary: Update a customer
+      description: Updates an existing customer record.
+      tags:
+        - Customers
+      parameters:
+        - $ref: '#/components/parameters/CustomerId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - customer
+              properties:
+                customer:
+                  $ref: '#/components/schemas/CustomerInput'
+      responses:
+        '200':
+          description: The updated customer
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  customer:
+                    $ref: '#/components/schemas/Customer'
+        '422':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /customers/{customer_id}/orders.json:
+    get:
+      operationId: listCustomerOrders
+      summary: Retrieve orders for a customer
+      description: Retrieves all orders belonging to a specific customer.
+      tags:
+        - Customers
+      parameters:
+        - $ref: '#/components/parameters/CustomerId'
+        - name: status
+          in: query
+          description: Filter by order status
+          schema:
+            type: string
+            enum:
+              - open
+              - closed
+              - cancelled
+              - any
+      responses:
+        '200':
+          description: A list of orders for the customer
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  orders:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Order'
+  /customers/{customer_id}/addresses.json:
+    get:
+      operationId: listCustomerAddresses
+      summary: Retrieve addresses for a customer
+      description: Retrieves all addresses for a customer.
+      tags:
+        - Customer Addresses
+      parameters:
+        - $ref: '#/components/parameters/CustomerId'
+        - name: limit
+          in: query
+          description: Maximum number of results (max 250, default 50)
+          schema:
+            type: integer
+            default: 50
+            maximum: 250
+      responses:
+        '200':
+          description: A list of customer addresses
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  addresses:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Address'
+    post:
+      operationId: createCustomerAddress
+      summary: Create a customer address
+      description: Creates a new address for a customer.
+      tags:
+        - Customer Addresses
+      parameters:
+        - $ref: '#/components/parameters/CustomerId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - address
+              properties:
+                address:
+                  $ref: '#/components/schemas/Address'
+      responses:
+        '201':
+          description: The created address
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  customer_address:
+                    $ref: '#/components/schemas/Address'
+  /orders.json:
+    get:
+      operationId: listOrders
+      summary: Retrieve a list of orders
+      description: >-
+        Retrieves a list of orders. By default only orders from the last 60
+        days are returned. Use status=any to include all statuses.
+      tags:
+        - Orders
+      parameters:
+        - name: ids
+          in: query
+          description: Comma-separated list of order IDs
+          schema:
+            type: string
+        - name: limit
+          in: query
+          description: Maximum number of results (max 250, default 50)
+          schema:
+            type: integer
+            default: 50
+            maximum: 250
+        - name: since_id
+          in: query
+          description: Return orders after the specified ID
+          schema:
+            type: integer
+        - name: status
+          in: query
+          description: Filter by order status
+          schema:
+            type: string
+            enum:
+              - open
+              - closed
+              - cancelled
+              - any
+            default: open
+        - name: financial_status
+          in: query
+          description: Filter by financial status
+          schema:
+            type: string
+            enum:
+              - authorized
+              - pending
+              - paid
+              - partially_paid
+              - refunded
+              - voided
+              - partially_refunded
+              - any
+              - unpaid
+        - name: fulfillment_status
+          in: query
+          description: Filter by fulfillment status
+          schema:
+            type: string
+            enum:
+              - shipped
+              - partial
+              - unshipped
+              - any
+              - unfulfilled
+        - name: created_at_min
+          in: query
+          description: Show orders created after this date
+          schema:
+            type: string
+            format: date-time
+        - name: created_at_max
+          in: query
+          description: Show orders created before this date
+          schema:
+            type: string
+            format: date-time
+        - name: updated_at_min
+          in: query
+          description: Show orders updated after this date
+          schema:
+            type: string
+            format: date-time
+        - name: updated_at_max
+          in: query
+          description: Show orders updated before this date
+          schema:
+            type: string
+            format: date-time
+        - name: fields
+          in: query
+          description: Comma-separated list of fields to include
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A list of orders
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  orders:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Order'
+    post:
+      operationId: createOrder
+      summary: Create an order
+      description: >-
+        Creates an order. Orders created via the API do not trigger payment
+        processing. Use the order to represent sales from external channels.
+      tags:
+        - Orders
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - order
+              properties:
+                order:
+                  $ref: '#/components/schemas/OrderInput'
+      responses:
+        '201':
+          description: The created order
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  order:
+                    $ref: '#/components/schemas/Order'
+        '422':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /orders/count.json:
+    get:
+      operationId: getOrderCount
+      summary: Retrieve a count of orders
+      description: Retrieves a count of orders matching the given criteria.
+      tags:
+        - Orders
+      parameters:
+        - name: status
+          in: query
+          description: Filter by order status
+          schema:
+            type: string
+            enum:
+              - open
+              - closed
+              - cancelled
+              - any
+        - name: financial_status
+          in: query
+          description: Filter by financial status
+          schema:
+            type: string
+        - name: fulfillment_status
+          in: query
+          description: Filter by fulfillment status
+          schema:
+            type: string
+        - name: created_at_min
+          in: query
+          description: Count orders created after this date
+          schema:
+            type: string
+            format: date-time
+        - name: updated_at_min
+          in: query
+          description: Count orders updated after this date
+          schema:
+            type: string
+            format: date-time
+      responses:
+        '200':
+          description: The order count
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+  /orders/{order_id}.json:
+    get:
+      operationId: getOrder
+      summary: Retrieve a single order
+      description: Retrieves a single order by ID including line items and details.
+      tags:
+        - Orders
+      parameters:
+        - $ref: '#/components/parameters/OrderId'
+        - name: fields
+          in: query
+          description: Comma-separated list of fields to include
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The requested order
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  order:
+                    $ref: '#/components/schemas/Order'
+        '404':
+          description: Order not found
+    put:
+      operationId: updateOrder
+      summary: Update an order
+      description: >-
+        Updates an existing order. Note, tags, email, phone, shipping address,
+        and metafields can be updated.
+      tags:
+        - Orders
+      parameters:
+        - $ref: '#/components/parameters/OrderId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - order
+              properties:
+                order:
+                  $ref: '#/components/schemas/OrderInput'
+      responses:
+        '200':
+          description: The updated order
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  order:
+                    $ref: '#/components/schemas/Order'
+    delete:
+      operationId: deleteOrder
+      summary: Delete an order
+      description: Deletes an order. Orders that interact with an online gateway cannot be deleted.
+      tags:
+        - Orders
+      parameters:
+        - $ref: '#/components/parameters/OrderId'
+      responses:
+        '200':
+          description: Order deleted successfully
+        '404':
+          description: Order not found
+  /orders/{order_id}/cancel.json:
+    post:
+      operationId: cancelOrder
+      summary: Cancel an order
+      description: >-
+        Cancels an order. Optionally refunds payment and restocks items.
+      tags:
+        - Orders
+      parameters:
+        - $ref: '#/components/parameters/OrderId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                reason:
+                  type: string
+                  description: Cancellation reason
+                  enum:
+                    - customer
+                    - fraud
+                    - inventory
+                    - declined
+                    - other
+                email:
+                  type: boolean
+                  description: Whether to send a cancellation email
+                restock:
+                  type: boolean
+                  description: Whether to restock items
+      responses:
+        '200':
+          description: The cancelled order
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  order:
+                    $ref: '#/components/schemas/Order'
+  /orders/{order_id}/close.json:
+    post:
+      operationId: closeOrder
+      summary: Close an order
+      description: Closes an order, marking it as completed.
+      tags:
+        - Orders
+      parameters:
+        - $ref: '#/components/parameters/OrderId'
+      responses:
+        '200':
+          description: The closed order
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  order:
+                    $ref: '#/components/schemas/Order'
+  /orders/{order_id}/open.json:
+    post:
+      operationId: reopenOrder
+      summary: Re-open a closed order
+      description: Re-opens a previously closed order.
+      tags:
+        - Orders
+      parameters:
+        - $ref: '#/components/parameters/OrderId'
+      responses:
+        '200':
+          description: The re-opened order
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  order:
+                    $ref: '#/components/schemas/Order'
+  /orders/{order_id}/fulfillment_orders.json:
+    get:
+      operationId: listOrderFulfillmentOrders
+      summary: Retrieve fulfillment orders for an order
+      description: >-
+        Retrieves all fulfillment orders associated with a given order.
+      tags:
+        - Fulfillment Orders
+      parameters:
+        - $ref: '#/components/parameters/OrderId'
+      responses:
+        '200':
+          description: A list of fulfillment orders
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  fulfillment_orders:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/FulfillmentOrder'
+  /fulfillments.json:
+    post:
+      operationId: createFulfillment
+      summary: Create a fulfillment
+      description: >-
+        Creates a fulfillment for one or more fulfillment orders.
+      tags:
+        - Fulfillments
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - fulfillment
+              properties:
+                fulfillment:
+                  $ref: '#/components/schemas/FulfillmentInput'
+      responses:
+        '201':
+          description: The created fulfillment
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  fulfillment:
+                    $ref: '#/components/schemas/Fulfillment'
+  /fulfillments/{fulfillment_id}/update_tracking.json:
+    post:
+      operationId: updateFulfillmentTracking
+      summary: Update tracking information for a fulfillment
+      description: >-
+        Updates the tracking information for a fulfillment.
+      tags:
+        - Fulfillments
+      parameters:
+        - name: fulfillment_id
+          in: path
+          required: true
+          description: The ID of the fulfillment
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - fulfillment
+              properties:
+                fulfillment:
+                  type: object
+                  properties:
+                    tracking_info:
+                      type: object
+                      properties:
+                        number:
+                          type: string
+                          description: Tracking number
+                        url:
+                          type: string
+                          description: Tracking URL
+                        company:
+                          type: string
+                          description: Shipping company
+      responses:
+        '200':
+          description: The updated fulfillment
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  fulfillment:
+                    $ref: '#/components/schemas/Fulfillment'
+  /fulfillments/{fulfillment_id}/cancel.json:
+    post:
+      operationId: cancelFulfillment
+      summary: Cancel a fulfillment
+      description: Cancels a fulfillment.
+      tags:
+        - Fulfillments
+      parameters:
+        - name: fulfillment_id
+          in: path
+          required: true
+          description: The ID of the fulfillment
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: The cancelled fulfillment
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  fulfillment:
+                    $ref: '#/components/schemas/Fulfillment'
+  /inventory_items.json:
+    get:
+      operationId: listInventoryItems
+      summary: Retrieve a list of inventory items
+      description: >-
+        Retrieves a list of inventory items. Items must be fetched by IDs.
+      tags:
+        - Inventory Items
+      parameters:
+        - name: ids
+          in: query
+          required: true
+          description: Comma-separated list of inventory item IDs
+          schema:
+            type: string
+        - name: limit
+          in: query
+          description: Maximum number of results (max 250, default 50)
+          schema:
+            type: integer
+            default: 50
+            maximum: 250
+      responses:
+        '200':
+          description: A list of inventory items
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  inventory_items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/InventoryItem'
+  /inventory_items/{inventory_item_id}.json:
+    get:
+      operationId: getInventoryItem
+      summary: Retrieve a single inventory item
+      description: Retrieves a single inventory item by ID.
+      tags:
+        - Inventory Items
+      parameters:
+        - name: inventory_item_id
+          in: path
+          required: true
+          description: The ID of the inventory item
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: The requested inventory item
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  inventory_item:
+                    $ref: '#/components/schemas/InventoryItem'
+    put:
+      operationId: updateInventoryItem
+      summary: Update an inventory item
+      description: Updates an existing inventory item.
+      tags:
+        - Inventory Items
+      parameters:
+        - name: inventory_item_id
+          in: path
+          required: true
+          description: The ID of the inventory item
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - inventory_item
+              properties:
+                inventory_item:
+                  type: object
+                  properties:
+                    cost:
+                      type: string
+                      description: Unit cost of the item
+                    tracked:
+                      type: boolean
+                      description: Whether inventory is tracked
+      responses:
+        '200':
+          description: The updated inventory item
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  inventory_item:
+                    $ref: '#/components/schemas/InventoryItem'
+  /inventory_levels.json:
+    get:
+      operationId: listInventoryLevels
+      summary: Retrieve inventory levels
+      description: >-
+        Retrieves inventory levels for items at locations. Filter by
+        inventory_item_ids or location_ids.
+      tags:
+        - Inventory Levels
+      parameters:
+        - name: inventory_item_ids
+          in: query
+          description: Comma-separated inventory item IDs
+          schema:
+            type: string
+        - name: location_ids
+          in: query
+          description: Comma-separated location IDs
+          schema:
+            type: string
+        - name: limit
+          in: query
+          description: Maximum number of results (max 250, default 50)
+          schema:
+            type: integer
+            default: 50
+            maximum: 250
+      responses:
+        '200':
+          description: A list of inventory levels
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  inventory_levels:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/InventoryLevel'
+  /inventory_levels/set.json:
+    post:
+      operationId: setInventoryLevel
+      summary: Set inventory level for an item at a location
+      description: >-
+        Sets the inventory level for an inventory item at a location.
+      tags:
+        - Inventory Levels
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - inventory_item_id
+                - location_id
+                - available
+              properties:
+                inventory_item_id:
+                  type: integer
+                  description: The inventory item ID
+                location_id:
+                  type: integer
+                  description: The location ID
+                available:
+                  type: integer
+                  description: The available quantity
+      responses:
+        '200':
+          description: The updated inventory level
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  inventory_level:
+                    $ref: '#/components/schemas/InventoryLevel'
+  /locations.json:
+    get:
+      operationId: listLocations
+      summary: Retrieve a list of locations
+      description: Retrieves a list of all locations for a shop.
+      tags:
+        - Locations
+      responses:
+        '200':
+          description: A list of locations
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  locations:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Location'
+  /locations/count.json:
+    get:
+      operationId: getLocationCount
+      summary: Retrieve a count of locations
+      description: Retrieves a count of locations for a shop.
+      tags:
+        - Locations
+      responses:
+        '200':
+          description: The location count
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+  /locations/{location_id}.json:
+    get:
+      operationId: getLocation
+      summary: Retrieve a single location
+      description: Retrieves a single location by ID.
+      tags:
+        - Locations
+      parameters:
+        - name: location_id
+          in: path
+          required: true
+          description: The ID of the location
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: The requested location
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  location:
+                    $ref: '#/components/schemas/Location'
+  /locations/{location_id}/inventory_levels.json:
+    get:
+      operationId: listLocationInventoryLevels
+      summary: Retrieve inventory levels for a location
+      description: Retrieves all inventory levels at a specific location.
+      tags:
+        - Inventory Levels
+      parameters:
+        - name: location_id
+          in: path
+          required: true
+          description: The ID of the location
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Inventory levels at this location
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  inventory_levels:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/InventoryLevel'
+  /collections/{collection_id}.json:
+    get:
+      operationId: getCollection
+      summary: Retrieve a single collection
+      description: Retrieves a single collection by ID including its metadata.
+      tags:
+        - Collections
+      parameters:
+        - name: collection_id
+          in: path
+          required: true
+          description: The ID of the collection
+          schema:
+            type: integer
+        - name: fields
+          in: query
+          description: Comma-separated list of fields to include
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The requested collection
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  collection:
+                    $ref: '#/components/schemas/Collection'
+  /collections/{collection_id}/products.json:
+    get:
+      operationId: listCollectionProducts
+      summary: Retrieve products in a collection
+      description: Retrieves a list of products belonging to a collection.
+      tags:
+        - Collections
+      parameters:
+        - name: collection_id
+          in: path
+          required: true
+          description: The ID of the collection
+          schema:
+            type: integer
+        - name: limit
+          in: query
+          description: Maximum number of results (max 250, default 50)
+          schema:
+            type: integer
+            default: 50
+            maximum: 250
+      responses:
+        '200':
+          description: Products in the collection
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  products:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Product'
+  /custom_collections.json:
+    get:
+      operationId: listCustomCollections
+      summary: Retrieve a list of custom collections
+      description: Retrieves a list of custom (manual) collections.
+      tags:
+        - Custom Collections
+      parameters:
+        - name: limit
+          in: query
+          description: Maximum number of results (max 250, default 50)
+          schema:
+            type: integer
+            default: 50
+            maximum: 250
+        - name: since_id
+          in: query
+          description: Return collections after the specified ID
+          schema:
+            type: integer
+        - name: title
+          in: query
+          description: Filter by collection title
+          schema:
+            type: string
+        - name: product_id
+          in: query
+          description: Show collections containing this product
+          schema:
+            type: integer
+        - name: fields
+          in: query
+          description: Comma-separated list of fields to include
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A list of custom collections
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  custom_collections:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Collection'
+    post:
+      operationId: createCustomCollection
+      summary: Create a custom collection
+      description: Creates a new custom (manual) collection.
+      tags:
+        - Custom Collections
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - custom_collection
+              properties:
+                custom_collection:
+                  $ref: '#/components/schemas/CollectionInput'
+      responses:
+        '201':
+          description: The created collection
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  custom_collection:
+                    $ref: '#/components/schemas/Collection'
+  /smart_collections.json:
+    get:
+      operationId: listSmartCollections
+      summary: Retrieve a list of smart collections
+      description: Retrieves a list of smart (automated) collections.
+      tags:
+        - Smart Collections
+      parameters:
+        - name: limit
+          in: query
+          description: Maximum number of results (max 250, default 50)
+          schema:
+            type: integer
+            default: 50
+            maximum: 250
+        - name: since_id
+          in: query
+          description: Return collections after the specified ID
+          schema:
+            type: integer
+        - name: title
+          in: query
+          description: Filter by collection title
+          schema:
+            type: string
+        - name: product_id
+          in: query
+          description: Show collections containing this product
+          schema:
+            type: integer
+        - name: fields
+          in: query
+          description: Comma-separated list of fields to include
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A list of smart collections
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  smart_collections:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Collection'
+  /webhooks.json:
+    get:
+      operationId: listWebhooks
+      summary: Retrieve a list of webhooks
+      description: Retrieves a list of webhook subscriptions for the app.
+      tags:
+        - Webhooks
+      parameters:
+        - name: topic
+          in: query
+          description: Filter by webhook topic
+          schema:
+            type: string
+        - name: limit
+          in: query
+          description: Maximum number of results (max 250, default 50)
+          schema:
+            type: integer
+            default: 50
+            maximum: 250
+        - name: since_id
+          in: query
+          description: Return webhooks after the specified ID
+          schema:
+            type: integer
+        - name: fields
+          in: query
+          description: Comma-separated list of fields to include
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A list of webhooks
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  webhooks:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Webhook'
+    post:
+      operationId: createWebhook
+      summary: Create a webhook subscription
+      description: >-
+        Creates a new webhook subscription. When the specified event occurs
+        Shopify sends an HTTP POST to the provided address.
+      tags:
+        - Webhooks
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - webhook
+              properties:
+                webhook:
+                  $ref: '#/components/schemas/WebhookInput'
+      responses:
+        '201':
+          description: The created webhook
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  webhook:
+                    $ref: '#/components/schemas/Webhook'
+        '422':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /webhooks/count.json:
+    get:
+      operationId: getWebhookCount
+      summary: Retrieve a count of webhooks
+      description: Retrieves a count of existing webhook subscriptions.
+      tags:
+        - Webhooks
+      parameters:
+        - name: topic
+          in: query
+          description: Count webhooks for a specific topic
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The webhook count
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+  /webhooks/{webhook_id}.json:
+    get:
+      operationId: getWebhook
+      summary: Retrieve a single webhook
+      description: Retrieves a single webhook subscription by ID.
+      tags:
+        - Webhooks
+      parameters:
+        - name: webhook_id
+          in: path
+          required: true
+          description: The ID of the webhook
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: The requested webhook
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  webhook:
+                    $ref: '#/components/schemas/Webhook'
+    put:
+      operationId: updateWebhook
+      summary: Update a webhook subscription
+      description: Updates an existing webhook subscription.
+      tags:
+        - Webhooks
+      parameters:
+        - name: webhook_id
+          in: path
+          required: true
+          description: The ID of the webhook
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - webhook
+              properties:
+                webhook:
+                  $ref: '#/components/schemas/WebhookInput'
+      responses:
+        '200':
+          description: The updated webhook
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  webhook:
+                    $ref: '#/components/schemas/Webhook'
+    delete:
+      operationId: deleteWebhook
+      summary: Delete a webhook subscription
+      description: Deletes a webhook subscription.
+      tags:
+        - Webhooks
+      parameters:
+        - name: webhook_id
+          in: path
+          required: true
+          description: The ID of the webhook
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Webhook deleted successfully
+  /shop.json:
+    get:
+      operationId: getShop
+      summary: Retrieve shop configuration
+      description: >-
+        Retrieves the shop's configuration including name, domain, currency,
+        timezone, plan, and address information.
+      tags:
+        - Shop
+      parameters:
+        - name: fields
+          in: query
+          description: Comma-separated list of fields to include
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The shop configuration
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  shop:
+                    $ref: '#/components/schemas/Shop'
+  /admin/oauth/access_scopes.json:
+    get:
+      operationId: listAccessScopes
+      summary: Retrieve access scopes for the access token
+      description: >-
+        Retrieves a list of access scopes associated with the current access token.
+      tags:
+        - Access
+      responses:
+        '200':
+          description: A list of access scopes
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  access_scopes:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        handle:
+                          type: string
+                          description: The scope handle
+components:
+  securitySchemes:
+    AccessToken:
+      type: apiKey
+      name: X-Shopify-Access-Token
+      in: header
+      description: Access token obtained via OAuth
+  parameters:
+    ProductId:
+      name: product_id
+      in: path
+      required: true
+      description: The ID of the product
+      schema:
+        type: integer
+    ImageId:
+      name: image_id
+      in: path
+      required: true
+      description: The ID of the image
+      schema:
+        type: integer
+    CustomerId:
+      name: customer_id
+      in: path
+      required: true
+      description: The ID of the customer
+      schema:
+        type: integer
+    OrderId:
+      name: order_id
+      in: path
+      required: true
+      description: The ID of the order
+      schema:
+        type: integer
+  schemas:
+    Product:
+      type: object
+      description: A Shopify product
+      properties:
+        id:
+          type: integer
+          description: Unique numeric identifier for the product
+        title:
+          type: string
+          description: The name of the product
+        body_html:
+          type: string
+          description: Product description in HTML
+        vendor:
+          type: string
+          description: The name of the product vendor
+        product_type:
+          type: string
+          description: A categorization for the product
+        handle:
+          type: string
+          description: URL-friendly version of the product title
+        created_at:
+          type: string
+          format: date-time
+          description: When the product was created
+        updated_at:
+          type: string
+          format: date-time
+          description: When the product was last updated
+        published_at:
+          type:
+            - string
+            - 'null'
+          format: date-time
+          description: When the product was published (null if unpublished)
+        template_suffix:
+          type:
+            - string
+            - 'null'
+          description: Liquid template suffix for the product page
+        published_scope:
+          type: string
+          description: Whether the product is published to the POS channel and online store
+        tags:
+          type: string
+          description: Comma-separated list of tags
+        status:
+          type: string
+          description: Product status
+          enum:
+            - active
+            - archived
+            - draft
+        admin_graphql_api_id:
+          type: string
+          description: The GraphQL Admin API ID
+        variants:
+          type: array
+          description: Product variants
+          items:
+            $ref: '#/components/schemas/Variant'
+        options:
+          type: array
+          description: Product options (e.g. Size, Color)
+          items:
+            $ref: '#/components/schemas/ProductOption'
+        images:
+          type: array
+          description: Product images
+          items:
+            $ref: '#/components/schemas/Image'
+        image:
+          description: The primary product image
+          $ref: '#/components/schemas/Image'
+    ProductInput:
+      type: object
+      description: Input for creating or updating a product
+      properties:
+        title:
+          type: string
+          description: The name of the product
+        body_html:
+          type: string
+          description: Product description in HTML
+        vendor:
+          type: string
+          description: The product vendor
+        product_type:
+          type: string
+          description: A categorization for the product
+        tags:
+          type: string
+          description: Comma-separated list of tags
+        status:
+          type: string
+          enum:
+            - active
+            - archived
+            - draft
+        variants:
+          type: array
+          items:
+            $ref: '#/components/schemas/VariantInput'
+        images:
+          type: array
+          items:
+            $ref: '#/components/schemas/ImageInput'
+    Variant:
+      type: object
+      description: A product variant
+      properties:
+        id:
+          type: integer
+          description: Unique numeric identifier
+        product_id:
+          type: integer
+          description: The ID of the parent product
+        title:
+          type: string
+          description: The variant title
+        price:
+          type: string
+          description: The price of the variant
+        sku:
+          type:
+            - string
+            - 'null'
+          description: Stock keeping unit
+        position:
+          type: integer
+          description: Position of the variant in the list
+        inventory_policy:
+          type: string
+          description: Whether to allow selling when out of stock
+          enum:
+            - deny
+            - continue
+        compare_at_price:
+          type:
+            - string
+            - 'null'
+          description: Original price for comparison
+        fulfillment_service:
+          type: string
+          description: The fulfillment service for the variant
+        inventory_management:
+          type:
+            - string
+            - 'null'
+          description: The inventory tracking service
+        option1:
+          type:
+            - string
+            - 'null'
+          description: Option 1 value
+        option2:
+          type:
+            - string
+            - 'null'
+          description: Option 2 value
+        option3:
+          type:
+            - string
+            - 'null'
+          description: Option 3 value
+        taxable:
+          type: boolean
+          description: Whether the variant is taxable
+        barcode:
+          type:
+            - string
+            - 'null'
+          description: Barcode, UPC, or ISBN
+        grams:
+          type: integer
+          description: Weight in grams
+        weight:
+          type: number
+          description: Weight in the specified unit
+        weight_unit:
+          type: string
+          description: Weight unit
+          enum:
+            - g
+            - kg
+            - oz
+            - lb
+        inventory_item_id:
+          type: integer
+          description: The inventory item ID
+        inventory_quantity:
+          type: integer
+          description: Tracked inventory quantity
+        requires_shipping:
+          type: boolean
+          description: Whether the variant requires shipping
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        image_id:
+          type:
+            - integer
+            - 'null'
+          description: The ID of the associated image
+        admin_graphql_api_id:
+          type: string
+    VariantInput:
+      type: object
+      description: Input for creating or updating a variant
+      properties:
+        title:
+          type: string
+        price:
+          type: string
+        sku:
+          type: string
+        position:
+          type: integer
+        inventory_policy:
+          type: string
+          enum:
+            - deny
+            - continue
+        compare_at_price:
+          type: string
+        option1:
+          type: string
+        option2:
+          type: string
+        option3:
+          type: string
+        taxable:
+          type: boolean
+        barcode:
+          type: string
+        grams:
+          type: integer
+        weight:
+          type: number
+        weight_unit:
+          type: string
+          enum:
+            - g
+            - kg
+            - oz
+            - lb
+        inventory_quantity:
+          type: integer
+        requires_shipping:
+          type: boolean
+    ProductOption:
+      type: object
+      description: A product option (e.g. Size, Color)
+      properties:
+        id:
+          type: integer
+        product_id:
+          type: integer
+        name:
+          type: string
+          description: The option name
+        position:
+          type: integer
+          description: Position in the options list
+        values:
+          type: array
+          description: Available values for this option
+          items:
+            type: string
+    Image:
+      type: object
+      description: A product image
+      properties:
+        id:
+          type: integer
+        product_id:
+          type: integer
+        position:
+          type: integer
+          description: Position in the image list
+        alt:
+          type:
+            - string
+            - 'null'
+          description: Alt text for the image
+        width:
+          type: integer
+        height:
+          type: integer
+        src:
+          type: string
+          format: uri
+          description: The image URL
+        variant_ids:
+          type: array
+          description: Variant IDs associated with this image
+          items:
+            type: integer
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        admin_graphql_api_id:
+          type: string
+    ImageInput:
+      type: object
+      description: Input for creating or updating a product image
+      properties:
+        src:
+          type: string
+          format: uri
+          description: URL of the image
+        attachment:
+          type: string
+          description: Base64-encoded image data
+        alt:
+          type: string
+          description: Alt text
+        position:
+          type: integer
+        variant_ids:
+          type: array
+          items:
+            type: integer
+    Customer:
+      type: object
+      description: A Shopify customer
+      properties:
+        id:
+          type: integer
+          description: Unique numeric identifier
+        email:
+          type:
+            - string
+            - 'null'
+          format: email
+          description: Customer email address
+        first_name:
+          type:
+            - string
+            - 'null'
+          description: First name
+        last_name:
+          type:
+            - string
+            - 'null'
+          description: Last name
+        phone:
+          type:
+            - string
+            - 'null'
+          description: Phone number in E.164 format
+        orders_count:
+          type: integer
+          description: Number of orders placed
+        total_spent:
+          type: string
+          description: Total amount spent
+        state:
+          type: string
+          description: Account state
+          enum:
+            - disabled
+            - invited
+            - enabled
+            - declined
+        note:
+          type:
+            - string
+            - 'null'
+          description: A note about the customer
+        verified_email:
+          type: boolean
+          description: Whether the email has been verified
+        tax_exempt:
+          type: boolean
+          description: Whether the customer is tax exempt
+        tags:
+          type: string
+          description: Comma-separated list of tags
+        currency:
+          type: string
+          description: Three-letter ISO 4217 currency code
+        accepts_marketing:
+          type: boolean
+          description: Whether the customer has consented to marketing
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        default_address:
+          $ref: '#/components/schemas/Address'
+        addresses:
+          type: array
+          items:
+            $ref: '#/components/schemas/Address'
+        admin_graphql_api_id:
+          type: string
+    CustomerInput:
+      type: object
+      description: Input for creating or updating a customer
+      properties:
+        first_name:
+          type: string
+        last_name:
+          type: string
+        email:
+          type: string
+          format: email
+        phone:
+          type: string
+        note:
+          type: string
+        tags:
+          type: string
+        tax_exempt:
+          type: boolean
+        accepts_marketing:
+          type: boolean
+        send_email_welcome:
+          type: boolean
+          description: Whether to send a welcome email
+        addresses:
+          type: array
+          items:
+            $ref: '#/components/schemas/Address'
+    Address:
+      type: object
+      description: A customer mailing address
+      properties:
+        id:
+          type: integer
+        customer_id:
+          type: integer
+        first_name:
+          type: string
+        last_name:
+          type: string
+        company:
+          type:
+            - string
+            - 'null'
+        address1:
+          type: string
+        address2:
+          type:
+            - string
+            - 'null'
+        city:
+          type: string
+        province:
+          type:
+            - string
+            - 'null'
+        country:
+          type: string
+        zip:
+          type: string
+        phone:
+          type:
+            - string
+            - 'null'
+        province_code:
+          type:
+            - string
+            - 'null'
+        country_code:
+          type: string
+        country_name:
+          type: string
+        default:
+          type: boolean
+          description: Whether this is the default address
+    Order:
+      type: object
+      description: A Shopify order
+      properties:
+        id:
+          type: integer
+          description: Unique numeric identifier
+        name:
+          type: string
+          description: The order name (e.g. #1001)
+        order_number:
+          type: integer
+          description: The order number without prefix
+        email:
+          type:
+            - string
+            - 'null'
+          format: email
+        phone:
+          type:
+            - string
+            - 'null'
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        closed_at:
+          type:
+            - string
+            - 'null'
+          format: date-time
+        cancelled_at:
+          type:
+            - string
+            - 'null'
+          format: date-time
+        cancel_reason:
+          type:
+            - string
+            - 'null'
+          enum:
+            - customer
+            - fraud
+            - inventory
+            - declined
+            - other
+            - null
+        note:
+          type:
+            - string
+            - 'null'
+          description: Notes about the order
+        tags:
+          type: string
+          description: Comma-separated tags
+        token:
+          type: string
+        total_price:
+          type: string
+          description: Total price of the order
+        subtotal_price:
+          type: string
+          description: Subtotal before shipping and taxes
+        total_tax:
+          type: string
+          description: Total tax amount
+        total_discounts:
+          type: string
+          description: Total discount amount
+        total_shipping_price_set:
+          type: object
+          description: Total shipping price in shop and presentment currencies
+          properties:
+            shop_money:
+              $ref: '#/components/schemas/Money'
+            presentment_money:
+              $ref: '#/components/schemas/Money'
+        currency:
+          type: string
+          description: Three-letter ISO 4217 currency code
+        financial_status:
+          type: string
+          enum:
+            - pending
+            - authorized
+            - partially_paid
+            - paid
+            - partially_refunded
+            - refunded
+            - voided
+        fulfillment_status:
+          type:
+            - string
+            - 'null'
+          enum:
+            - fulfilled
+            - partial
+            - restocked
+            - null
+        confirmed:
+          type: boolean
+        test:
+          type: boolean
+          description: Whether this is a test order
+        taxes_included:
+          type: boolean
+        buyer_accepts_marketing:
+          type: boolean
+        customer:
+          $ref: '#/components/schemas/Customer'
+        billing_address:
+          $ref: '#/components/schemas/Address'
+        shipping_address:
+          $ref: '#/components/schemas/Address'
+        line_items:
+          type: array
+          items:
+            $ref: '#/components/schemas/LineItem'
+        shipping_lines:
+          type: array
+          items:
+            $ref: '#/components/schemas/ShippingLine'
+        fulfillments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Fulfillment'
+        refunds:
+          type: array
+          items:
+            $ref: '#/components/schemas/Refund'
+        discount_codes:
+          type: array
+          items:
+            type: object
+            properties:
+              code:
+                type: string
+              amount:
+                type: string
+              type:
+                type: string
+        admin_graphql_api_id:
+          type: string
+    OrderInput:
+      type: object
+      description: Input for creating or updating an order
+      properties:
+        email:
+          type: string
+          format: email
+        phone:
+          type: string
+        note:
+          type: string
+        tags:
+          type: string
+        line_items:
+          type: array
+          items:
+            type: object
+            properties:
+              variant_id:
+                type: integer
+              quantity:
+                type: integer
+              price:
+                type: string
+              title:
+                type: string
+        billing_address:
+          $ref: '#/components/schemas/Address'
+        shipping_address:
+          $ref: '#/components/schemas/Address'
+        financial_status:
+          type: string
+        send_receipt:
+          type: boolean
+        send_fulfillment_receipt:
+          type: boolean
+        transactions:
+          type: array
+          items:
+            type: object
+            properties:
+              kind:
+                type: string
+              status:
+                type: string
+              amount:
+                type: string
+    LineItem:
+      type: object
+      description: An individual line item in an order
+      properties:
+        id:
+          type: integer
+        variant_id:
+          type:
+            - integer
+            - 'null'
+        product_id:
+          type:
+            - integer
+            - 'null'
+        title:
+          type: string
+        variant_title:
+          type:
+            - string
+            - 'null'
+        name:
+          type: string
+          description: Product title and variant title combined
+        quantity:
+          type: integer
+        price:
+          type: string
+        total_discount:
+          type: string
+        sku:
+          type:
+            - string
+            - 'null'
+        vendor:
+          type:
+            - string
+            - 'null'
+        fulfillment_service:
+          type: string
+        fulfillment_status:
+          type:
+            - string
+            - 'null'
+        taxable:
+          type: boolean
+        requires_shipping:
+          type: boolean
+        gift_card:
+          type: boolean
+        grams:
+          type: integer
+        tax_lines:
+          type: array
+          items:
+            $ref: '#/components/schemas/TaxLine'
+        properties:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              value:
+                type: string
+        admin_graphql_api_id:
+          type: string
+    ShippingLine:
+      type: object
+      description: A shipping method applied to an order
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        price:
+          type: string
+        code:
+          type:
+            - string
+            - 'null'
+        source:
+          type: string
+        discounted_price:
+          type: string
+        tax_lines:
+          type: array
+          items:
+            $ref: '#/components/schemas/TaxLine'
+    TaxLine:
+      type: object
+      description: A tax line applied to an item
+      properties:
+        title:
+          type: string
+        price:
+          type: string
+        rate:
+          type: number
+    Money:
+      type: object
+      description: A monetary amount with currency
+      properties:
+        amount:
+          type: string
+        currency_code:
+          type: string
+    Fulfillment:
+      type: object
+      description: A fulfillment of an order
+      properties:
+        id:
+          type: integer
+        order_id:
+          type: integer
+        status:
+          type: string
+          enum:
+            - pending
+            - open
+            - success
+            - cancelled
+            - error
+            - failure
+        tracking_company:
+          type:
+            - string
+            - 'null'
+        tracking_number:
+          type:
+            - string
+            - 'null'
+        tracking_numbers:
+          type: array
+          items:
+            type: string
+        tracking_url:
+          type:
+            - string
+            - 'null'
+        tracking_urls:
+          type: array
+          items:
+            type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        line_items:
+          type: array
+          items:
+            $ref: '#/components/schemas/LineItem'
+        admin_graphql_api_id:
+          type: string
+    FulfillmentInput:
+      type: object
+      description: Input for creating a fulfillment
+      properties:
+        line_items_by_fulfillment_order:
+          type: array
+          items:
+            type: object
+            properties:
+              fulfillment_order_id:
+                type: integer
+              fulfillment_order_line_items:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    quantity:
+                      type: integer
+        tracking_info:
+          type: object
+          properties:
+            number:
+              type: string
+            url:
+              type: string
+            company:
+              type: string
+        notify_customer:
+          type: boolean
+    FulfillmentOrder:
+      type: object
+      description: A fulfillment order representing items to be fulfilled together
+      properties:
+        id:
+          type: integer
+        order_id:
+          type: integer
+        status:
+          type: string
+          enum:
+            - open
+            - in_progress
+            - cancelled
+            - incomplete
+            - closed
+            - scheduled
+            - on_hold
+        assigned_location_id:
+          type: integer
+        request_status:
+          type: string
+        line_items:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+              shop_id:
+                type: integer
+              fulfillment_order_id:
+                type: integer
+              quantity:
+                type: integer
+              line_item_id:
+                type: integer
+              inventory_item_id:
+                type: integer
+              fulfillable_quantity:
+                type: integer
+              variant_id:
+                type: integer
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+    InventoryItem:
+      type: object
+      description: An inventory item representing a physical product
+      properties:
+        id:
+          type: integer
+        sku:
+          type:
+            - string
+            - 'null'
+        cost:
+          type:
+            - string
+            - 'null'
+          description: Unit cost of the item
+        tracked:
+          type: boolean
+          description: Whether inventory is tracked
+        requires_shipping:
+          type: boolean
+        country_code_of_origin:
+          type:
+            - string
+            - 'null'
+          description: Two-letter ISO country code
+        province_code_of_origin:
+          type:
+            - string
+            - 'null'
+        harmonized_system_code:
+          type:
+            - string
+            - 'null'
+          description: Harmonized System code for customs
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        admin_graphql_api_id:
+          type: string
+    InventoryLevel:
+      type: object
+      description: Inventory level for an item at a location
+      properties:
+        inventory_item_id:
+          type: integer
+        location_id:
+          type: integer
+        available:
+          type:
+            - integer
+            - 'null'
+          description: Available inventory quantity
+        updated_at:
+          type: string
+          format: date-time
+        admin_graphql_api_id:
+          type: string
+    Location:
+      type: object
+      description: A physical location for inventory and fulfillment
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        address1:
+          type:
+            - string
+            - 'null'
+        address2:
+          type:
+            - string
+            - 'null'
+        city:
+          type:
+            - string
+            - 'null'
+        province:
+          type:
+            - string
+            - 'null'
+        province_code:
+          type:
+            - string
+            - 'null'
+        country:
+          type:
+            - string
+            - 'null'
+        country_code:
+          type: string
+        zip:
+          type:
+            - string
+            - 'null'
+        phone:
+          type:
+            - string
+            - 'null'
+        active:
+          type: boolean
+        legacy:
+          type: boolean
+        localized_country_name:
+          type: string
+        localized_province_name:
+          type:
+            - string
+            - 'null'
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        admin_graphql_api_id:
+          type: string
+    Collection:
+      type: object
+      description: A product collection
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+          description: The collection title
+        handle:
+          type: string
+          description: URL-friendly title
+        body_html:
+          type:
+            - string
+            - 'null'
+          description: Description in HTML
+        published_at:
+          type:
+            - string
+            - 'null'
+          format: date-time
+        sort_order:
+          type: string
+          description: Sort order for products
+        template_suffix:
+          type:
+            - string
+            - 'null'
+        published_scope:
+          type: string
+        updated_at:
+          type: string
+          format: date-time
+        image:
+          $ref: '#/components/schemas/Image'
+        admin_graphql_api_id:
+          type: string
+    CollectionInput:
+      type: object
+      description: Input for creating or updating a collection
+      properties:
+        title:
+          type: string
+        body_html:
+          type: string
+        sort_order:
+          type: string
+        template_suffix:
+          type: string
+        published:
+          type: boolean
+        image:
+          $ref: '#/components/schemas/ImageInput'
+    Webhook:
+      type: object
+      description: A webhook subscription
+      properties:
+        id:
+          type: integer
+        address:
+          type: string
+          format: uri
+          description: The URL where the webhook delivers data
+        topic:
+          type: string
+          description: The event that triggers the webhook
+        format:
+          type: string
+          description: The data format
+          enum:
+            - json
+            - xml
+        fields:
+          type: array
+          description: Optional list of fields to include in the payload
+          items:
+            type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        api_version:
+          type: string
+          description: The API version for the webhook payload
+        admin_graphql_api_id:
+          type: string
+    WebhookInput:
+      type: object
+      description: Input for creating or updating a webhook
+      required:
+        - topic
+        - address
+      properties:
+        topic:
+          type: string
+          description: The event topic (e.g. orders/create)
+        address:
+          type: string
+          format: uri
+          description: The callback URL
+        format:
+          type: string
+          enum:
+            - json
+            - xml
+        fields:
+          type: array
+          items:
+            type: string
+    Shop:
+      type: object
+      description: Shop configuration and metadata
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+          description: The name of the shop
+        email:
+          type: string
+          format: email
+        domain:
+          type: string
+          description: Primary domain
+        myshopify_domain:
+          type: string
+          description: The .myshopify.com domain
+        shop_owner:
+          type: string
+        phone:
+          type:
+            - string
+            - 'null'
+        address1:
+          type: string
+        address2:
+          type:
+            - string
+            - 'null'
+        city:
+          type: string
+        province:
+          type: string
+        province_code:
+          type: string
+        country:
+          type: string
+        country_code:
+          type: string
+        country_name:
+          type: string
+        zip:
+          type: string
+        currency:
+          type: string
+          description: Three-letter ISO 4217 currency code
+        money_format:
+          type: string
+        timezone:
+          type: string
+        iana_timezone:
+          type: string
+        plan_name:
+          type: string
+        plan_display_name:
+          type: string
+        weight_unit:
+          type: string
+        primary_locale:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        admin_graphql_api_id:
+          type: string
+    Refund:
+      type: object
+      description: A refund on an order
+      properties:
+        id:
+          type: integer
+        order_id:
+          type: integer
+        created_at:
+          type: string
+          format: date-time
+        note:
+          type:
+            - string
+            - 'null'
+        restock:
+          type: boolean
+        refund_line_items:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+              quantity:
+                type: integer
+              line_item_id:
+                type: integer
+              subtotal:
+                type: number
+              total_tax:
+                type: number
+              line_item:
+                $ref: '#/components/schemas/LineItem'
+        admin_graphql_api_id:
+          type: string
+    Error:
+      type: object
+      description: Error response
+      properties:
+        errors:
+          description: Error details
+          oneOf:
+            - type: string
+            - type: object
+              additionalProperties:
+                type: array
+                items:
+                  type: string

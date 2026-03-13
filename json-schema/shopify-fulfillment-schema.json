@@ -1,0 +1,127 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://shopify.dev/schemas/fulfillment.json",
+  "title": "Shopify Fulfillment",
+  "description": "A fulfillment represents the shipment of one or more items from an order. Fulfillments track the status of delivery and include tracking information from the shipping carrier.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "Unique numeric identifier for the fulfillment"
+    },
+    "order_id": {
+      "type": "integer",
+      "description": "The ID of the order this fulfillment belongs to"
+    },
+    "status": {
+      "type": "string",
+      "description": "The status of the fulfillment",
+      "enum": ["pending", "open", "success", "cancelled", "error", "failure"]
+    },
+    "tracking_company": {
+      "type": ["string", "null"],
+      "description": "The name of the shipping carrier"
+    },
+    "tracking_number": {
+      "type": ["string", "null"],
+      "description": "The tracking number provided by the shipping carrier"
+    },
+    "tracking_numbers": {
+      "type": "array",
+      "description": "All tracking numbers for the fulfillment",
+      "items": {
+        "type": "string"
+      }
+    },
+    "tracking_url": {
+      "type": ["string", "null"],
+      "format": "uri",
+      "description": "The URL to track the shipment"
+    },
+    "tracking_urls": {
+      "type": "array",
+      "description": "All tracking URLs for the fulfillment",
+      "items": {
+        "type": "string",
+        "format": "uri"
+      }
+    },
+    "receipt": {
+      "type": "object",
+      "description": "Receipt information if applicable",
+      "properties": {
+        "testcase": {
+          "type": "boolean"
+        },
+        "authorization": {
+          "type": ["string", "null"]
+        }
+      }
+    },
+    "service": {
+      "type": "string",
+      "description": "The fulfillment service identifier"
+    },
+    "shipment_status": {
+      "type": ["string", "null"],
+      "description": "The delivery status from the carrier",
+      "enum": [
+        "label_printed",
+        "label_purchased",
+        "attempted_delivery",
+        "ready_for_pickup",
+        "picked_up",
+        "confirmed",
+        "in_transit",
+        "out_for_delivery",
+        "delivered",
+        "failure",
+        null
+      ]
+    },
+    "location_id": {
+      "type": "integer",
+      "description": "The ID of the location where items were fulfilled from"
+    },
+    "origin_address": {
+      "type": ["object", "null"],
+      "description": "The origin address of the fulfillment"
+    },
+    "line_items": {
+      "type": "array",
+      "description": "The line items included in this fulfillment",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer" },
+          "variant_id": { "type": ["integer", "null"] },
+          "product_id": { "type": ["integer", "null"] },
+          "title": { "type": "string" },
+          "quantity": { "type": "integer" },
+          "sku": { "type": ["string", "null"] },
+          "price": { "type": "string" },
+          "name": { "type": "string" }
+        }
+      }
+    },
+    "notify_customer": {
+      "type": "boolean",
+      "description": "Whether the customer was notified about this fulfillment"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the fulfillment was created"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the fulfillment was last updated"
+    },
+    "admin_graphql_api_id": {
+      "type": "string",
+      "description": "The GraphQL Admin API identifier"
+    }
+  },
+  "required": ["id", "order_id", "status"]
+}

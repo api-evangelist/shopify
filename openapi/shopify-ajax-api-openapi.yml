@@ -1,0 +1,813 @@
+openapi: 3.1.0
+info:
+  title: Shopify Ajax API
+  description: >-
+    The Shopify Ajax API provides lightweight REST endpoints for Shopify theme
+    development. It is an unauthenticated API used to manage the shopping cart,
+    retrieve product data, get product recommendations, and provide predictive
+    search within Shopify-hosted storefronts. All responses return JSON.
+  version: '2025-01'
+  contact:
+    name: Shopify
+    url: https://shopify.dev/docs/api/ajax
+    email: api@shopify.com
+  license:
+    name: Shopify API Terms
+    url: https://www.shopify.com/legal/api-terms
+  x-date: '2026-03-04'
+servers:
+  - url: https://{store}.myshopify.com
+    description: Shopify storefront
+    variables:
+      store:
+        default: my-store
+        description: The Shopify store subdomain
+tags:
+  - name: Cart
+    description: Manage the shopping cart
+  - name: Products
+    description: Retrieve product information
+  - name: Product Recommendations
+    description: Get product recommendations
+  - name: Predictive Search
+    description: Search suggestions for products, collections, pages, and articles
+paths:
+  /cart.js:
+    get:
+      operationId: getCart
+      summary: Retrieve the current cart
+      description: >-
+        Retrieves the current cart contents as JSON, including all line items,
+        totals, attributes, notes, and currency information.
+      tags:
+        - Cart
+      responses:
+        '200':
+          description: The current cart
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+  /cart/add.js:
+    post:
+      operationId: addToCart
+      summary: Add items to the cart
+      description: >-
+        Adds one or more product variants to the cart. Each item requires a
+        variant ID and quantity. Optional properties and selling plans can
+        be attached to line items.
+      tags:
+        - Cart
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - items
+              properties:
+                items:
+                  type: array
+                  description: Items to add to the cart
+                  items:
+                    type: object
+                    required:
+                      - id
+                      - quantity
+                    properties:
+                      id:
+                        type: integer
+                        description: The variant ID
+                      quantity:
+                        type: integer
+                        description: The quantity to add
+                      properties:
+                        type: object
+                        description: Custom line item properties
+                        additionalProperties:
+                          type: string
+                      selling_plan:
+                        type: integer
+                        description: The selling plan ID for subscriptions
+                sections:
+                  type: string
+                  description: Comma-separated section IDs to render in the response
+      responses:
+        '200':
+          description: The items added to the cart
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/CartItem'
+        '422':
+          description: Invalid variant or quantity
+  /cart/update.js:
+    post:
+      operationId: updateCart
+      summary: Update the cart
+      description: >-
+        Updates cart line item quantities, cart note, cart attributes, or
+        applies a discount code. Quantities can be updated using a map of
+        variant ID to quantity or line number to quantity.
+      tags:
+        - Cart
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                updates:
+                  type: object
+                  description: Map of variant ID or line key to new quantity
+                  additionalProperties:
+                    type: integer
+                note:
+                  type: string
+                  description: A note for the cart
+                attributes:
+                  type: object
+                  description: Custom cart attributes
+                  additionalProperties:
+                    type: string
+                discount:
+                  type: string
+                  description: A discount code to apply
+      responses:
+        '200':
+          description: The updated cart
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+  /cart/change.js:
+    post:
+      operationId: changeCartItem
+      summary: Change a cart line item
+      description: >-
+        Changes the quantity, properties, or selling plan of a single cart
+        line item. Identify the item by line number (1-indexed) or by its key.
+      tags:
+        - Cart
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                line:
+                  type: integer
+                  description: The 1-indexed line number
+                id:
+                  type: string
+                  description: The line item key (variant_id:hash)
+                quantity:
+                  type: integer
+                  description: The new quantity
+                properties:
+                  type: object
+                  description: Updated line item properties
+                  additionalProperties:
+                    type: string
+                selling_plan:
+                  type: integer
+                  description: A selling plan ID
+      responses:
+        '200':
+          description: The updated cart
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+  /cart/clear.js:
+    post:
+      operationId: clearCart
+      summary: Clear all items from the cart
+      description: >-
+        Removes all line items from the cart, returning an empty cart object.
+      tags:
+        - Cart
+      responses:
+        '200':
+          description: The empty cart
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+  /cart/shipping_rates.json:
+    get:
+      operationId: getCartShippingRates
+      summary: Get estimated shipping rates
+      description: >-
+        Retrieves estimated shipping rates for the current cart based on the
+        provided shipping address. May be throttled for repeated requests.
+      tags:
+        - Cart
+      parameters:
+        - name: shipping_address[zip]
+          in: query
+          required: true
+          description: Postal or zip code
+          schema:
+            type: string
+        - name: shipping_address[country]
+          in: query
+          required: true
+          description: Country name or ISO code
+          schema:
+            type: string
+        - name: shipping_address[province]
+          in: query
+          description: Province, state, or region
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Estimated shipping rates
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  shipping_rates:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ShippingRate'
+  /products/{handle}.js:
+    get:
+      operationId: getProductByHandle
+      summary: Retrieve a product by its handle
+      description: >-
+        Retrieves product information in JSON format using the product handle.
+        Returns product metadata, pricing, variants (up to 250), images,
+        options, and availability. Monetary values reflect the customer
+        presentment currency.
+      tags:
+        - Products
+      parameters:
+        - name: handle
+          in: path
+          required: true
+          description: The URL-friendly product handle
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The product data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StorefrontProduct'
+        '404':
+          description: Product not found
+  /recommendations/products.json:
+    get:
+      operationId: getProductRecommendations
+      summary: Get product recommendations
+      description: >-
+        Retrieves product recommendations for a given product. Returns related
+        or complementary products based on purchase history, product
+        descriptions, and related collections.
+      tags:
+        - Product Recommendations
+      parameters:
+        - name: product_id
+          in: query
+          required: true
+          description: The product ID to get recommendations for
+          schema:
+            type: integer
+        - name: limit
+          in: query
+          description: Number of recommendations (1-10, default 10)
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 10
+            default: 10
+        - name: intent
+          in: query
+          description: The recommendation intent
+          schema:
+            type: string
+            enum:
+              - related
+              - complementary
+            default: related
+      responses:
+        '200':
+          description: Product recommendations
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  intent:
+                    type: string
+                  products:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/StorefrontProduct'
+        '404':
+          description: Product not found
+        '422':
+          description: Invalid parameter
+  /search/suggest.json:
+    get:
+      operationId: getPredictiveSearchResults
+      summary: Get predictive search results
+      description: >-
+        Retrieves predictive search results for a query string. Returns
+        matching products, collections, pages, articles, and query
+        suggestions. Used for search-as-you-type experiences.
+      tags:
+        - Predictive Search
+      parameters:
+        - name: q
+          in: query
+          required: true
+          description: The search query
+          schema:
+            type: string
+        - name: resources[type]
+          in: query
+          description: >-
+            Comma-separated resource types to search
+            (product, page, article, collection, query)
+          schema:
+            type: string
+            default: query,product,collection,page
+        - name: resources[limit]
+          in: query
+          description: Number of results per type (1-10, default 10)
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 10
+            default: 10
+        - name: resources[limit_scope]
+          in: query
+          description: >-
+            How the limit is distributed: all (shared across types)
+            or each (per type)
+          schema:
+            type: string
+            enum:
+              - all
+              - each
+            default: all
+        - name: resources[options][unavailable_products]
+          in: query
+          description: How to handle unavailable products
+          schema:
+            type: string
+            enum:
+              - show
+              - hide
+              - last
+            default: last
+        - name: resources[options][fields]
+          in: query
+          description: >-
+            Comma-separated fields to search within
+            (title, product_type, vendor, tag, variants.title,
+            variants.sku, body)
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Predictive search results
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  resources:
+                    type: object
+                    properties:
+                      results:
+                        type: object
+                        properties:
+                          queries:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                text:
+                                  type: string
+                                styled_text:
+                                  type: string
+                          products:
+                            type: array
+                            items:
+                              $ref: '#/components/schemas/StorefrontProduct'
+                          collections:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                id:
+                                  type: integer
+                                title:
+                                  type: string
+                                handle:
+                                  type: string
+                                url:
+                                  type: string
+                                published_at:
+                                  type: string
+                                  format: date-time
+                                body:
+                                  type: string
+                                image:
+                                  type: object
+                                  properties:
+                                    url:
+                                      type: string
+                                      format: uri
+                                    alt:
+                                      type: string
+                                    width:
+                                      type: integer
+                                    height:
+                                      type: integer
+                          pages:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                id:
+                                  type: integer
+                                title:
+                                  type: string
+                                handle:
+                                  type: string
+                                url:
+                                  type: string
+                                body:
+                                  type: string
+                          articles:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                id:
+                                  type: integer
+                                title:
+                                  type: string
+                                handle:
+                                  type: string
+                                url:
+                                  type: string
+                                body:
+                                  type: string
+                                published_at:
+                                  type: string
+                                  format: date-time
+                                image:
+                                  type: object
+                                  properties:
+                                    url:
+                                      type: string
+                                      format: uri
+                                    alt:
+                                      type: string
+                                    width:
+                                      type: integer
+                                    height:
+                                      type: integer
+        '422':
+          description: Invalid parameter
+        '429':
+          description: Rate limited
+components:
+  schemas:
+    Cart:
+      type: object
+      description: The shopping cart
+      properties:
+        token:
+          type: string
+          description: Unique cart token
+        note:
+          type:
+            - string
+            - 'null'
+          description: Cart note
+        attributes:
+          type: object
+          description: Custom cart attributes
+          additionalProperties:
+            type: string
+        total_price:
+          type: integer
+          description: Total price in cents
+        total_weight:
+          type: number
+          description: Total weight in grams
+        item_count:
+          type: integer
+          description: Total number of items
+        items:
+          type: array
+          description: Cart line items
+          items:
+            $ref: '#/components/schemas/CartItem'
+        requires_shipping:
+          type: boolean
+        currency:
+          type: string
+          description: Three-letter ISO 4217 currency code
+        total_discount:
+          type: integer
+          description: Total discount in cents
+        cart_level_discount_applications:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+              title:
+                type: string
+              total_allocated_amount:
+                type: integer
+              value:
+                type: string
+              value_type:
+                type: string
+    CartItem:
+      type: object
+      description: A line item in the cart
+      properties:
+        id:
+          type: integer
+          description: The variant ID
+        quantity:
+          type: integer
+        title:
+          type: string
+          description: Product title
+        price:
+          type: integer
+          description: Price in cents
+        original_price:
+          type: integer
+          description: Original price before discounts in cents
+        discounted_price:
+          type: integer
+          description: Discounted price in cents
+        line_price:
+          type: integer
+          description: Total line price in cents
+        original_line_price:
+          type: integer
+          description: Original total before discounts in cents
+        total_discount:
+          type: integer
+          description: Total line discount in cents
+        sku:
+          type:
+            - string
+            - 'null'
+        grams:
+          type: integer
+        vendor:
+          type: string
+        taxable:
+          type: boolean
+        product_id:
+          type: integer
+        product_has_only_default_variant:
+          type: boolean
+        gift_card:
+          type: boolean
+        url:
+          type: string
+          description: URL to the product page
+        featured_image:
+          type: object
+          properties:
+            url:
+              type: string
+              format: uri
+            alt:
+              type: string
+            aspect_ratio:
+              type: number
+        image:
+          type: string
+          format: uri
+        handle:
+          type: string
+        requires_shipping:
+          type: boolean
+        product_type:
+          type: string
+        product_title:
+          type: string
+        variant_title:
+          type:
+            - string
+            - 'null'
+        variant_options:
+          type: array
+          items:
+            type: string
+        properties:
+          type: object
+          additionalProperties:
+            type: string
+        key:
+          type: string
+          description: Unique line item key
+        line_level_discount_allocations:
+          type: array
+          items:
+            type: object
+            properties:
+              amount:
+                type: integer
+              discount_application:
+                type: object
+                properties:
+                  type:
+                    type: string
+                  title:
+                    type: string
+                  value:
+                    type: string
+                  value_type:
+                    type: string
+        line_level_total_discount:
+          type: integer
+    StorefrontProduct:
+      type: object
+      description: A product as returned by the storefront Ajax API
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        handle:
+          type: string
+        description:
+          type: string
+        published_at:
+          type: string
+          format: date-time
+        created_at:
+          type: string
+          format: date-time
+        vendor:
+          type: string
+        type:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string
+        price:
+          type: integer
+          description: Price in cents
+        price_min:
+          type: integer
+        price_max:
+          type: integer
+        available:
+          type: boolean
+        price_varies:
+          type: boolean
+        compare_at_price:
+          type:
+            - integer
+            - 'null'
+        compare_at_price_min:
+          type: integer
+        compare_at_price_max:
+          type: integer
+        compare_at_price_varies:
+          type: boolean
+        variants:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+              title:
+                type: string
+              option1:
+                type:
+                  - string
+                  - 'null'
+              option2:
+                type:
+                  - string
+                  - 'null'
+              option3:
+                type:
+                  - string
+                  - 'null'
+              sku:
+                type:
+                  - string
+                  - 'null'
+              requires_shipping:
+                type: boolean
+              taxable:
+                type: boolean
+              featured_image:
+                type:
+                  - object
+                  - 'null'
+              available:
+                type: boolean
+              name:
+                type: string
+              public_title:
+                type:
+                  - string
+                  - 'null'
+              price:
+                type: integer
+              weight:
+                type: integer
+              compare_at_price:
+                type:
+                  - integer
+                  - 'null'
+              barcode:
+                type:
+                  - string
+                  - 'null'
+        images:
+          type: array
+          items:
+            type: string
+            format: uri
+        featured_image:
+          type: string
+          format: uri
+        options:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              position:
+                type: integer
+              values:
+                type: array
+                items:
+                  type: string
+        url:
+          type: string
+        media:
+          type: array
+          items:
+            type: object
+            properties:
+              alt:
+                type:
+                  - string
+                  - 'null'
+              id:
+                type: integer
+              position:
+                type: integer
+              media_type:
+                type: string
+              src:
+                type: string
+                format: uri
+              width:
+                type: integer
+              height:
+                type: integer
+    ShippingRate:
+      type: object
+      description: An estimated shipping rate
+      properties:
+        name:
+          type: string
+          description: Rate name
+        price:
+          type: string
+          description: Rate price
+        delivery_days:
+          type: array
+          items:
+            type: integer
+        source:
+          type: string
+          description: The rate provider
