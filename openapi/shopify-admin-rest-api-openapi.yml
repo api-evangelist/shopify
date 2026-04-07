@@ -63,7 +63,7 @@ paths:
   /products.json:
     get:
       operationId: listProducts
-      summary: Retrieve a list of products
+      summary: Shopify Retrieve a list of products
       description: >-
         Retrieves a list of products. Results can be filtered by collection,
         product type, vendor, creation date, update date, publication status,
@@ -160,7 +160,7 @@ paths:
                       $ref: '#/components/schemas/Product'
     post:
       operationId: createProduct
-      summary: Create a new product
+      summary: Shopify Create a new product
       description: >-
         Creates a new product. You can include product variants and images in
         the same request. If no variants are specified a default variant is
@@ -197,7 +197,7 @@ paths:
   /products/count.json:
     get:
       operationId: getProductCount
-      summary: Retrieve a count of products
+      summary: Shopify Retrieve a count of products
       description: >-
         Retrieves a count of products matching the specified criteria.
       tags:
@@ -243,7 +243,7 @@ paths:
   /products/{product_id}.json:
     get:
       operationId: getProduct
-      summary: Retrieve a single product
+      summary: Shopify Retrieve a single product
       description: >-
         Retrieves a single product by its ID, including variants, images,
         and options.
@@ -270,7 +270,7 @@ paths:
           description: Product not found
     put:
       operationId: updateProduct
-      summary: Update a product
+      summary: Shopify Update a product
       description: >-
         Updates an existing product and any of its variants and images.
       tags:
@@ -306,7 +306,7 @@ paths:
                 $ref: '#/components/schemas/Error'
     delete:
       operationId: deleteProduct
-      summary: Delete a product
+      summary: Shopify Delete a product
       description: >-
         Deletes a product and all associated variants and images.
       tags:
@@ -321,7 +321,7 @@ paths:
   /products/{product_id}/images.json:
     get:
       operationId: listProductImages
-      summary: Retrieve a list of product images
+      summary: Shopify Retrieve a list of product images
       description: >-
         Retrieves all images for a given product.
       tags:
@@ -352,7 +352,7 @@ paths:
                       $ref: '#/components/schemas/Image'
     post:
       operationId: createProductImage
-      summary: Create a product image
+      summary: Shopify Create a product image
       description: >-
         Creates a new image for a product. Images can be provided as a URL
         or a base64-encoded attachment.
@@ -384,7 +384,7 @@ paths:
   /products/{product_id}/images/count.json:
     get:
       operationId: getProductImageCount
-      summary: Retrieve a count of product images
+      summary: Shopify Retrieve a count of product images
       description: >-
         Retrieves a count of images for a given product.
       tags:
@@ -404,7 +404,7 @@ paths:
   /products/{product_id}/images/{image_id}.json:
     get:
       operationId: getProductImage
-      summary: Retrieve a single product image
+      summary: Shopify Retrieve a single product image
       description: >-
         Retrieves a single image for a product by its ID.
       tags:
@@ -424,7 +424,7 @@ paths:
                     $ref: '#/components/schemas/Image'
     put:
       operationId: updateProductImage
-      summary: Update a product image
+      summary: Shopify Update a product image
       description: >-
         Updates an existing product image. Can update position, alt text,
         and variant associations.
@@ -456,7 +456,7 @@ paths:
                     $ref: '#/components/schemas/Image'
     delete:
       operationId: deleteProductImage
-      summary: Delete a product image
+      summary: Shopify Delete a product image
       description: >-
         Deletes an image from a product.
       tags:
@@ -470,7 +470,7 @@ paths:
   /products/{product_id}/variants.json:
     get:
       operationId: listProductVariants
-      summary: Retrieve a list of product variants
+      summary: Shopify Retrieve a list of product variants
       description: >-
         Retrieves all variants for a given product.
       tags:
@@ -508,7 +508,7 @@ paths:
                       $ref: '#/components/schemas/Variant'
     post:
       operationId: createProductVariant
-      summary: Create a product variant
+      summary: Shopify Create a product variant
       description: >-
         Creates a new variant for a product.
       tags:
@@ -539,7 +539,7 @@ paths:
   /customers.json:
     get:
       operationId: listCustomers
-      summary: Retrieve a list of customers
+      summary: Shopify Retrieve a list of customers
       description: >-
         Retrieves a list of customers. Results can be filtered by creation
         date, update date, and other criteria. Returns up to 250 customers.
@@ -606,7 +606,7 @@ paths:
                       $ref: '#/components/schemas/Customer'
     post:
       operationId: createCustomer
-      summary: Create a customer
+      summary: Shopify Create a customer
       description: >-
         Creates a new customer record. Sends a welcome email if
         send_email_welcome is true.
@@ -642,7 +642,7 @@ paths:
   /customers/count.json:
     get:
       operationId: getCustomerCount
-      summary: Retrieve a count of customers
+      summary: Shopify Retrieve a count of customers
       description: Retrieves a count of all customers.
       tags:
         - Customers
@@ -659,7 +659,7 @@ paths:
   /customers/search.json:
     get:
       operationId: searchCustomers
-      summary: Search for customers
+      summary: Shopify Search for customers
       description: >-
         Searches for customers matching a supplied query. Supports searching
         by name, email, phone, and other fields.
@@ -699,7 +699,7 @@ paths:
   /customers/{customer_id}.json:
     get:
       operationId: getCustomer
-      summary: Retrieve a single customer
+      summary: Shopify Retrieve a single customer
       description: Retrieves a single customer by ID.
       tags:
         - Customers
@@ -724,7 +724,7 @@ paths:
           description: Customer not found
     put:
       operationId: updateCustomer
-      summary: Update a customer
+      summary: Shopify Update a customer
       description: Updates an existing customer record.
       tags:
         - Customers
@@ -760,7 +760,7 @@ paths:
   /customers/{customer_id}/orders.json:
     get:
       operationId: listCustomerOrders
-      summary: Retrieve orders for a customer
+      summary: Shopify Retrieve orders for a customer
       description: Retrieves all orders belonging to a specific customer.
       tags:
         - Customers
@@ -791,7 +791,7 @@ paths:
   /customers/{customer_id}/addresses.json:
     get:
       operationId: listCustomerAddresses
-      summary: Retrieve addresses for a customer
+      summary: Shopify Retrieve addresses for a customer
       description: Retrieves all addresses for a customer.
       tags:
         - Customer Addresses
@@ -818,7 +818,7 @@ paths:
                       $ref: '#/components/schemas/Address'
     post:
       operationId: createCustomerAddress
-      summary: Create a customer address
+      summary: Shopify Create a customer address
       description: Creates a new address for a customer.
       tags:
         - Customer Addresses
@@ -848,7 +848,7 @@ paths:
   /orders.json:
     get:
       operationId: listOrders
-      summary: Retrieve a list of orders
+      summary: Shopify Retrieve a list of orders
       description: >-
         Retrieves a list of orders. By default only orders from the last 60
         days are returned. Use status=any to include all statuses.
@@ -952,7 +952,7 @@ paths:
                       $ref: '#/components/schemas/Order'
     post:
       operationId: createOrder
-      summary: Create an order
+      summary: Shopify Create an order
       description: >-
         Creates an order. Orders created via the API do not trigger payment
         processing. Use the order to represent sales from external channels.
@@ -988,7 +988,7 @@ paths:
   /orders/count.json:
     get:
       operationId: getOrderCount
-      summary: Retrieve a count of orders
+      summary: Shopify Retrieve a count of orders
       description: Retrieves a count of orders matching the given criteria.
       tags:
         - Orders
@@ -1038,7 +1038,7 @@ paths:
   /orders/{order_id}.json:
     get:
       operationId: getOrder
-      summary: Retrieve a single order
+      summary: Shopify Retrieve a single order
       description: Retrieves a single order by ID including line items and details.
       tags:
         - Orders
@@ -1063,7 +1063,7 @@ paths:
           description: Order not found
     put:
       operationId: updateOrder
-      summary: Update an order
+      summary: Shopify Update an order
       description: >-
         Updates an existing order. Note, tags, email, phone, shipping address,
         and metafields can be updated.
@@ -1094,7 +1094,7 @@ paths:
                     $ref: '#/components/schemas/Order'
     delete:
       operationId: deleteOrder
-      summary: Delete an order
+      summary: Shopify Delete an order
       description: Deletes an order. Orders that interact with an online gateway cannot be deleted.
       tags:
         - Orders
@@ -1108,7 +1108,7 @@ paths:
   /orders/{order_id}/cancel.json:
     post:
       operationId: cancelOrder
-      summary: Cancel an order
+      summary: Shopify Cancel an order
       description: >-
         Cancels an order. Optionally refunds payment and restocks items.
       tags:
@@ -1149,7 +1149,7 @@ paths:
   /orders/{order_id}/close.json:
     post:
       operationId: closeOrder
-      summary: Close an order
+      summary: Shopify Close an order
       description: Closes an order, marking it as completed.
       tags:
         - Orders
@@ -1168,7 +1168,7 @@ paths:
   /orders/{order_id}/open.json:
     post:
       operationId: reopenOrder
-      summary: Re-open a closed order
+      summary: Shopify Re-open a closed order
       description: Re-opens a previously closed order.
       tags:
         - Orders
@@ -1187,7 +1187,7 @@ paths:
   /orders/{order_id}/fulfillment_orders.json:
     get:
       operationId: listOrderFulfillmentOrders
-      summary: Retrieve fulfillment orders for an order
+      summary: Shopify Retrieve fulfillment orders for an order
       description: >-
         Retrieves all fulfillment orders associated with a given order.
       tags:
@@ -1209,7 +1209,7 @@ paths:
   /fulfillments.json:
     post:
       operationId: createFulfillment
-      summary: Create a fulfillment
+      summary: Shopify Create a fulfillment
       description: >-
         Creates a fulfillment for one or more fulfillment orders.
       tags:
@@ -1238,7 +1238,7 @@ paths:
   /fulfillments/{fulfillment_id}/update_tracking.json:
     post:
       operationId: updateFulfillmentTracking
-      summary: Update tracking information for a fulfillment
+      summary: Shopify Update tracking information for a fulfillment
       description: >-
         Updates the tracking information for a fulfillment.
       tags:
@@ -1287,7 +1287,7 @@ paths:
   /fulfillments/{fulfillment_id}/cancel.json:
     post:
       operationId: cancelFulfillment
-      summary: Cancel a fulfillment
+      summary: Shopify Cancel a fulfillment
       description: Cancels a fulfillment.
       tags:
         - Fulfillments
@@ -1311,7 +1311,7 @@ paths:
   /inventory_items.json:
     get:
       operationId: listInventoryItems
-      summary: Retrieve a list of inventory items
+      summary: Shopify Retrieve a list of inventory items
       description: >-
         Retrieves a list of inventory items. Items must be fetched by IDs.
       tags:
@@ -1345,7 +1345,7 @@ paths:
   /inventory_items/{inventory_item_id}.json:
     get:
       operationId: getInventoryItem
-      summary: Retrieve a single inventory item
+      summary: Shopify Retrieve a single inventory item
       description: Retrieves a single inventory item by ID.
       tags:
         - Inventory Items
@@ -1368,7 +1368,7 @@ paths:
                     $ref: '#/components/schemas/InventoryItem'
     put:
       operationId: updateInventoryItem
-      summary: Update an inventory item
+      summary: Shopify Update an inventory item
       description: Updates an existing inventory item.
       tags:
         - Inventory Items
@@ -1410,7 +1410,7 @@ paths:
   /inventory_levels.json:
     get:
       operationId: listInventoryLevels
-      summary: Retrieve inventory levels
+      summary: Shopify Retrieve inventory levels
       description: >-
         Retrieves inventory levels for items at locations. Filter by
         inventory_item_ids or location_ids.
@@ -1449,7 +1449,7 @@ paths:
   /inventory_levels/set.json:
     post:
       operationId: setInventoryLevel
-      summary: Set inventory level for an item at a location
+      summary: Shopify Set inventory level for an item at a location
       description: >-
         Sets the inventory level for an inventory item at a location.
       tags:
@@ -1487,7 +1487,7 @@ paths:
   /locations.json:
     get:
       operationId: listLocations
-      summary: Retrieve a list of locations
+      summary: Shopify Retrieve a list of locations
       description: Retrieves a list of all locations for a shop.
       tags:
         - Locations
@@ -1506,7 +1506,7 @@ paths:
   /locations/count.json:
     get:
       operationId: getLocationCount
-      summary: Retrieve a count of locations
+      summary: Shopify Retrieve a count of locations
       description: Retrieves a count of locations for a shop.
       tags:
         - Locations
@@ -1523,7 +1523,7 @@ paths:
   /locations/{location_id}.json:
     get:
       operationId: getLocation
-      summary: Retrieve a single location
+      summary: Shopify Retrieve a single location
       description: Retrieves a single location by ID.
       tags:
         - Locations
@@ -1547,7 +1547,7 @@ paths:
   /locations/{location_id}/inventory_levels.json:
     get:
       operationId: listLocationInventoryLevels
-      summary: Retrieve inventory levels for a location
+      summary: Shopify Retrieve inventory levels for a location
       description: Retrieves all inventory levels at a specific location.
       tags:
         - Inventory Levels
@@ -1573,7 +1573,7 @@ paths:
   /collections/{collection_id}.json:
     get:
       operationId: getCollection
-      summary: Retrieve a single collection
+      summary: Shopify Retrieve a single collection
       description: Retrieves a single collection by ID including its metadata.
       tags:
         - Collections
@@ -1602,7 +1602,7 @@ paths:
   /collections/{collection_id}/products.json:
     get:
       operationId: listCollectionProducts
-      summary: Retrieve products in a collection
+      summary: Shopify Retrieve products in a collection
       description: Retrieves a list of products belonging to a collection.
       tags:
         - Collections
@@ -1635,7 +1635,7 @@ paths:
   /custom_collections.json:
     get:
       operationId: listCustomCollections
-      summary: Retrieve a list of custom collections
+      summary: Shopify Retrieve a list of custom collections
       description: Retrieves a list of custom (manual) collections.
       tags:
         - Custom Collections
@@ -1681,7 +1681,7 @@ paths:
                       $ref: '#/components/schemas/Collection'
     post:
       operationId: createCustomCollection
-      summary: Create a custom collection
+      summary: Shopify Create a custom collection
       description: Creates a new custom (manual) collection.
       tags:
         - Custom Collections
@@ -1709,7 +1709,7 @@ paths:
   /smart_collections.json:
     get:
       operationId: listSmartCollections
-      summary: Retrieve a list of smart collections
+      summary: Shopify Retrieve a list of smart collections
       description: Retrieves a list of smart (automated) collections.
       tags:
         - Smart Collections
@@ -1756,7 +1756,7 @@ paths:
   /webhooks.json:
     get:
       operationId: listWebhooks
-      summary: Retrieve a list of webhooks
+      summary: Shopify Retrieve a list of webhooks
       description: Retrieves a list of webhook subscriptions for the app.
       tags:
         - Webhooks
@@ -1797,7 +1797,7 @@ paths:
                       $ref: '#/components/schemas/Webhook'
     post:
       operationId: createWebhook
-      summary: Create a webhook subscription
+      summary: Shopify Create a webhook subscription
       description: >-
         Creates a new webhook subscription. When the specified event occurs
         Shopify sends an HTTP POST to the provided address.
@@ -1833,7 +1833,7 @@ paths:
   /webhooks/count.json:
     get:
       operationId: getWebhookCount
-      summary: Retrieve a count of webhooks
+      summary: Shopify Retrieve a count of webhooks
       description: Retrieves a count of existing webhook subscriptions.
       tags:
         - Webhooks
@@ -1856,7 +1856,7 @@ paths:
   /webhooks/{webhook_id}.json:
     get:
       operationId: getWebhook
-      summary: Retrieve a single webhook
+      summary: Shopify Retrieve a single webhook
       description: Retrieves a single webhook subscription by ID.
       tags:
         - Webhooks
@@ -1879,7 +1879,7 @@ paths:
                     $ref: '#/components/schemas/Webhook'
     put:
       operationId: updateWebhook
-      summary: Update a webhook subscription
+      summary: Shopify Update a webhook subscription
       description: Updates an existing webhook subscription.
       tags:
         - Webhooks
@@ -1913,7 +1913,7 @@ paths:
                     $ref: '#/components/schemas/Webhook'
     delete:
       operationId: deleteWebhook
-      summary: Delete a webhook subscription
+      summary: Shopify Delete a webhook subscription
       description: Deletes a webhook subscription.
       tags:
         - Webhooks
@@ -1930,7 +1930,7 @@ paths:
   /shop.json:
     get:
       operationId: getShop
-      summary: Retrieve shop configuration
+      summary: Shopify Retrieve shop configuration
       description: >-
         Retrieves the shop's configuration including name, domain, currency,
         timezone, plan, and address information.
@@ -1955,7 +1955,7 @@ paths:
   /admin/oauth/access_scopes.json:
     get:
       operationId: listAccessScopes
-      summary: Retrieve access scopes for the access token
+      summary: Shopify Retrieve access scopes for the access token
       description: >-
         Retrieves a list of access scopes associated with the current access token.
       tags:
@@ -2542,7 +2542,7 @@ components:
             - inventory
             - declined
             - other
-            - null
+            - 
         note:
           type:
             - string
@@ -2594,7 +2594,7 @@ components:
             - fulfilled
             - partial
             - restocked
-            - null
+            - 
         confirmed:
           type: boolean
         test:

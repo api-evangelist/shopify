@@ -35,7 +35,7 @@ paths:
   /cart.js:
     get:
       operationId: getCart
-      summary: Retrieve the current cart
+      summary: Shopify Retrieve the current cart
       description: >-
         Retrieves the current cart contents as JSON, including all line items,
         totals, attributes, notes, and currency information.
@@ -51,7 +51,7 @@ paths:
   /cart/add.js:
     post:
       operationId: addToCart
-      summary: Add items to the cart
+      summary: Shopify Add items to the cart
       description: >-
         Adds one or more product variants to the cart. Each item requires a
         variant ID and quantity. Optional properties and selling plans can
@@ -110,7 +110,7 @@ paths:
   /cart/update.js:
     post:
       operationId: updateCart
-      summary: Update the cart
+      summary: Shopify Update the cart
       description: >-
         Updates cart line item quantities, cart note, cart attributes, or
         applies a discount code. Quantities can be updated using a map of
@@ -150,7 +150,7 @@ paths:
   /cart/change.js:
     post:
       operationId: changeCartItem
-      summary: Change a cart line item
+      summary: Shopify Change a cart line item
       description: >-
         Changes the quantity, properties, or selling plan of a single cart
         line item. Identify the item by line number (1-indexed) or by its key.
@@ -190,7 +190,7 @@ paths:
   /cart/clear.js:
     post:
       operationId: clearCart
-      summary: Clear all items from the cart
+      summary: Shopify Clear all items from the cart
       description: >-
         Removes all line items from the cart, returning an empty cart object.
       tags:
@@ -205,7 +205,7 @@ paths:
   /cart/shipping_rates.json:
     get:
       operationId: getCartShippingRates
-      summary: Get estimated shipping rates
+      summary: Shopify Get estimated shipping rates
       description: >-
         Retrieves estimated shipping rates for the current cart based on the
         provided shipping address. May be throttled for repeated requests.
@@ -244,7 +244,7 @@ paths:
   /products/{handle}.js:
     get:
       operationId: getProductByHandle
-      summary: Retrieve a product by its handle
+      summary: Shopify Retrieve a product by its handle
       description: >-
         Retrieves product information in JSON format using the product handle.
         Returns product metadata, pricing, variants (up to 250), images,
@@ -271,7 +271,7 @@ paths:
   /recommendations/products.json:
     get:
       operationId: getProductRecommendations
-      summary: Get product recommendations
+      summary: Shopify Get product recommendations
       description: >-
         Retrieves product recommendations for a given product. Returns related
         or complementary products based on purchase history, product
@@ -323,7 +323,7 @@ paths:
   /search/suggest.json:
     get:
       operationId: getPredictiveSearchResults
-      summary: Get predictive search results
+      summary: Shopify Get predictive search results
       description: >-
         Retrieves predictive search results for a query string. Returns
         matching products, collections, pages, articles, and query

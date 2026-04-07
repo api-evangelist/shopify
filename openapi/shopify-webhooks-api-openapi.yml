@@ -34,7 +34,7 @@ paths:
   /webhooks.json:
     get:
       operationId: listWebhookSubscriptions
-      summary: Retrieve a list of webhook subscriptions
+      summary: Shopify Retrieve a list of webhook subscriptions
       description: >-
         Retrieves a list of webhooks for the authenticated app. Filter by
         topic, creation date, or other criteria.
@@ -106,7 +106,7 @@ paths:
                       $ref: '#/components/schemas/WebhookSubscription'
     post:
       operationId: createWebhookSubscription
-      summary: Create a webhook subscription
+      summary: Shopify Create a webhook subscription
       description: >-
         Creates a new webhook subscription. When the specified event occurs
         Shopify sends an HTTP POST to the provided callback address with the
@@ -143,7 +143,7 @@ paths:
   /webhooks/count.json:
     get:
       operationId: getWebhookSubscriptionCount
-      summary: Retrieve a count of webhook subscriptions
+      summary: Shopify Retrieve a count of webhook subscriptions
       description: >-
         Retrieves a count of webhook subscriptions for the authenticated app.
       tags:
@@ -172,7 +172,7 @@ paths:
   /webhooks/{webhook_id}.json:
     get:
       operationId: getWebhookSubscription
-      summary: Retrieve a single webhook subscription
+      summary: Shopify Retrieve a single webhook subscription
       description: Retrieves a webhook subscription by its ID.
       tags:
         - Webhook Subscriptions
@@ -197,7 +197,7 @@ paths:
           description: Webhook not found
     put:
       operationId: updateWebhookSubscription
-      summary: Update a webhook subscription
+      summary: Shopify Update a webhook subscription
       description: >-
         Updates an existing webhook subscription. The address and fields can
         be modified but the topic cannot be changed.
@@ -234,7 +234,7 @@ paths:
                 $ref: '#/components/schemas/Error'
     delete:
       operationId: deleteWebhookSubscription
-      summary: Delete a webhook subscription
+      summary: Shopify Delete a webhook subscription
       description: Deletes a webhook subscription by its ID.
       tags:
         - Webhook Subscriptions
