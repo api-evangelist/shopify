@@ -1,0 +1,79 @@
+{
+  "example": "Create Product",
+  "description": "Create a new product in a Shopify store with variants",
+  "request": {
+    "method": "POST",
+    "url": "https://my-store.myshopify.com/admin/api/2025-01/products.json",
+    "headers": {
+      "X-Shopify-Access-Token": "shpat_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "product": {
+        "title": "Organic Cotton T-Shirt",
+        "body_html": "<p>A comfortable, sustainable organic cotton t-shirt available in multiple sizes and colors.</p>",
+        "vendor": "Eco Apparel Co",
+        "product_type": "Clothing",
+        "status": "active",
+        "tags": "organic, sustainable, t-shirt, cotton",
+        "options": [
+          {
+            "name": "Size",
+            "values": ["Small", "Medium", "Large", "X-Large"]
+          },
+          {
+            "name": "Color",
+            "values": ["White", "Navy", "Forest Green"]
+          }
+        ],
+        "variants": [
+          {
+            "option1": "Small",
+            "option2": "White",
+            "price": "29.99",
+            "sku": "ECO-TSHIRT-S-WHT",
+            "inventory_quantity": 50,
+            "inventory_management": "shopify",
+            "weight": 0.2,
+            "weight_unit": "kg"
+          },
+          {
+            "option1": "Medium",
+            "option2": "Navy",
+            "price": "29.99",
+            "sku": "ECO-TSHIRT-M-NAV",
+            "inventory_quantity": 75,
+            "inventory_management": "shopify",
+            "weight": 0.22,
+            "weight_unit": "kg"
+          }
+        ]
+      }
+    }
+  },
+  "response": {
+    "status": 201,
+    "body": {
+      "product": {
+        "id": 987654321,
+        "title": "Organic Cotton T-Shirt",
+        "vendor": "Eco Apparel Co",
+        "product_type": "Clothing",
+        "status": "active",
+        "handle": "organic-cotton-t-shirt",
+        "variants": [
+          {
+            "id": 111111111,
+            "product_id": 987654321,
+            "title": "Small / White",
+            "price": "29.99",
+            "sku": "ECO-TSHIRT-S-WHT",
+            "inventory_quantity": 50
+          }
+        ],
+        "created_at": "2026-05-02T10:00:00-05:00",
+        "updated_at": "2026-05-02T10:00:00-05:00"
+      }
+    }
+  }
+}

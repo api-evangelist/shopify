@@ -2,12 +2,13 @@ aid: shopify
 url: https://raw.githubusercontent.com/api-search/commerce/main/_apis/shopify/apis.md
 apis:
   - aid: shopify:shopify-api
-    name: Shopify  API
+    name: Shopify Admin REST API
     tags:
       - Admin
       - Commerce
+      - Ecommerce
       - REST
-      - Storefronts
+      - Retail
     humanURL: https://shopify.dev/docs/api/admin-rest
     properties:
       - url: openapi/shopify-api-openapi.yml
@@ -26,11 +27,27 @@ apis:
         type: JSONSchema
       - url: json-schema/shopify-fulfillment-schema.json
         type: JSONSchema
+      - url: json-structure/shopify-product-structure.json
+        type: JSONStructure
+      - url: json-structure/shopify-order-structure.json
+        type: JSONStructure
       - url: json-ld/shopify-context.jsonld
         type: JSONLD
+      - url: examples/shopify-create-product-example.json
+        type: Example
+      - url: examples/shopify-list-orders-example.json
+        type: Example
+      - url: vocabulary/shopify-vocabulary.yml
+        type: Vocabulary
+      - url: rules/shopify-rules.yml
+        type: SpectralRules
+      - url: capabilities/shared/admin-rest.yaml
+        type: NaftikoCapability
+      - url: capabilities/commerce-management.yaml
+        type: NaftikoCapability
       - url: https://shopify.dev/docs/api/admin-rest
         type: Documentation
-    description: Explore Shopify's API reference and templating documentation. Shopify provides a range of software tools, app templates, example apps, and libraries to accelerate your development process. The Admin API lets you build apps and integrations that extend and enhance the Shopify admin.
+    description: The Shopify Admin REST API lets you build apps and integrations that extend and enhance the Shopify admin. It provides access to products, customers, orders, inventory, fulfillments, and webhooks for managing all aspects of a Shopify store.
   - aid: shopify:graphql-admin-api
     name: Shopify GraphQL Admin API
     tags:
@@ -386,7 +403,7 @@ common:
   - url: https://shopify.dev/docs/storefronts/headless/additional-sdks
     type: SDKs
 created: '2024-04-14'
-modified: '2026-03-04'
+modified: '2026-05-02'
 position: Consuming
 description: Shopify is a complete commerce platform that lets you start, grow, and manage a business. The Shopify API lets you build apps and integrations that extend Shopify functionality for merchants.
 maintainers:

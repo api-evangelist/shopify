@@ -1,0 +1,114 @@
+extends: spectral:oas
+rules:
+  # Shopify API Naming Conventions
+  shopify-operation-id-camel-case:
+    description: Operation IDs must use camelCase
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete].operationId"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]+$"
+
+  shopify-path-kebab-case:
+    description: Path segments must use kebab-case or curly-brace parameters (Shopify uses .json suffix)
+    severity: info
+    given: "$.paths"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^(/[a-z0-9{}_.-]+)+$"
+
+  shopify-path-json-suffix:
+    description: Shopify Admin REST API paths use .json suffix for resource endpoints
+    severity: info
+    given: "$.paths"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+
+  shopify-must-have-summary:
+    description: All operations must have a summary
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: summary
+      function: defined
+
+  shopify-must-have-tags:
+    description: All operations must have at least one tag
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: tags
+      function: defined
+
+  shopify-must-have-operation-id:
+    description: All operations must have an operationId
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: operationId
+      function: defined
+
+  shopify-get-must-return-200:
+    description: GET operations must return 200 response
+    severity: error
+    given: "$.paths[*].get"
+    then:
+      field: responses.200
+      function: defined
+
+  shopify-access-token-auth:
+    description: Shopify Admin REST API uses X-Shopify-Access-Token header authentication
+    severity: info
+    given: "$.components.securitySchemes[*]"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+
+  shopify-no-trailing-slash:
+    description: Paths must not have trailing slashes
+    severity: error
+    given: "$.paths"
+    then:
+      function: pattern
+      functionOptions:
+        notMatch: ".*/$"
+
+  shopify-versioned-api-url:
+    description: Shopify Admin API servers must include version date in URL
+    severity: warn
+    given: "$.servers[*].url"
+    then:
+      function: pattern
+      functionOptions:
+        match: ".*(admin/api/[0-9]{4}-[0-9]{2}|myshopify.com).*"
+
+  shopify-response-200-must-have-content:
+    description: 200 responses must have content defined
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete].responses[200]"
+    then:
+      field: content
+      function: defined
+
+  shopify-tags-title-case:
+    description: All tags must use Title Case
+    severity: warn
+    given: "$.tags[*].name"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z][a-zA-Z ]+$"
+
+  shopify-rate-limit-awareness:
+    description: Shopify API has rate limits (40 req/min REST, 2 req/sec Burst) - document in description
+    severity: info
+    given: "$.info.description"
+    then:
+      function: defined

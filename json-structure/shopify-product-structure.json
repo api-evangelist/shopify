@@ -1,0 +1,65 @@
+{
+  "title": "Shopify Product Structure",
+  "description": "Structural documentation for the Shopify Product resource",
+  "type": "object",
+  "fields": {
+    "id": { "type": "integer", "description": "Unique product identifier" },
+    "title": { "type": "string", "description": "Product name", "example": "Blue Organic Cotton T-Shirt" },
+    "body_html": { "type": "string", "description": "Product description in HTML" },
+    "vendor": { "type": "string", "description": "Product vendor/brand" },
+    "product_type": { "type": "string", "description": "Category classification" },
+    "status": { "type": "enum", "values": ["active", "archived", "draft"] },
+    "handle": { "type": "string", "description": "URL-friendly product identifier", "example": "blue-organic-cotton-t-shirt" },
+    "tags": { "type": "string", "description": "Comma-separated list of tags" },
+    "variants": { "type": "array[Variant]", "description": "Product size/color/style variants" },
+    "options": { "type": "array[Option]", "description": "Product options (Size, Color, etc.)" },
+    "images": { "type": "array[Image]", "description": "Product images" },
+    "image": { "type": "Image", "description": "Main product image" },
+    "created_at": { "type": "datetime", "description": "Creation timestamp" },
+    "updated_at": { "type": "datetime", "description": "Last update timestamp" },
+    "published_at": { "type": "datetime", "description": "Publication timestamp (null if draft)" }
+  },
+  "nested": {
+    "Variant": {
+      "id": "integer - Variant ID",
+      "product_id": "integer - Parent product ID",
+      "title": "string - Variant title (e.g., Large / Blue)",
+      "price": "string - Variant price as decimal string",
+      "sku": "string - Stock keeping unit",
+      "position": "integer - Display order",
+      "inventory_quantity": "integer - Current stock level",
+      "inventory_management": "string - Who manages inventory (shopify, null)",
+      "inventory_policy": "string - oversell policy (deny, continue)",
+      "weight": "float - Weight value",
+      "weight_unit": "string - Unit (g, kg, lb, oz)",
+      "option1": "string - First option value",
+      "option2": "string - Second option value",
+      "option3": "string - Third option value"
+    },
+    "Option": {
+      "id": "integer - Option ID",
+      "product_id": "integer - Parent product ID",
+      "name": "string - Option name (e.g., Size, Color)",
+      "position": "integer - Display order",
+      "values": "array[string] - Available option values"
+    },
+    "Image": {
+      "id": "integer - Image ID",
+      "product_id": "integer - Parent product ID",
+      "position": "integer - Display order",
+      "src": "string - Image URL",
+      "width": "integer - Image width in pixels",
+      "height": "integer - Image height in pixels",
+      "variant_ids": "array[integer] - Associated variant IDs",
+      "alt": "string - Alt text for accessibility"
+    }
+  },
+  "api": {
+    "base_url": "https://{store}.myshopify.com/admin/api/2025-01",
+    "list": "GET /products.json",
+    "get": "GET /products/{product_id}.json",
+    "create": "POST /products.json",
+    "update": "PUT /products/{product_id}.json",
+    "delete": "DELETE /products/{product_id}.json"
+  }
+}

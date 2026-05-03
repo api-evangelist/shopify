@@ -1,0 +1,69 @@
+{
+  "title": "Shopify Order Structure",
+  "description": "Structural documentation for the Shopify Order resource",
+  "type": "object",
+  "fields": {
+    "id": { "type": "integer", "description": "Unique order identifier" },
+    "name": { "type": "string", "description": "Order name (e.g., #1234)", "example": "#1234" },
+    "order_number": { "type": "integer", "description": "Sequential order number" },
+    "email": { "type": "string", "description": "Customer email address" },
+    "phone": { "type": "string", "description": "Customer phone number" },
+    "financial_status": { "type": "enum", "values": ["pending", "authorized", "partially_paid", "paid", "partially_refunded", "refunded", "voided"] },
+    "fulfillment_status": { "type": "enum", "values": [null, "fulfilled", "partial", "restocked"] },
+    "currency": { "type": "string", "description": "ISO 3-letter currency code" },
+    "total_price": { "type": "string", "description": "Total order price as decimal string" },
+    "subtotal_price": { "type": "string", "description": "Subtotal before tax and shipping" },
+    "total_tax": { "type": "string", "description": "Total tax amount" },
+    "total_shipping_price_set": { "type": "object", "description": "Shipping price in shop and presentment currencies" },
+    "billing_address": { "type": "Address", "description": "Billing address" },
+    "shipping_address": { "type": "Address", "description": "Shipping address" },
+    "customer": { "type": "Customer", "description": "Associated customer" },
+    "line_items": { "type": "array[LineItem]", "description": "Ordered products" },
+    "fulfillments": { "type": "array[Fulfillment]", "description": "Fulfillment records" },
+    "shipping_lines": { "type": "array[ShippingLine]", "description": "Shipping options selected" },
+    "discount_codes": { "type": "array[DiscountCode]", "description": "Applied discount codes" },
+    "tags": { "type": "string", "description": "Comma-separated order tags" },
+    "note": { "type": "string", "description": "Order notes" },
+    "note_attributes": { "type": "array[object]", "description": "Custom order attributes" },
+    "created_at": { "type": "datetime" },
+    "updated_at": { "type": "datetime" },
+    "processed_at": { "type": "datetime", "description": "When order was placed" }
+  },
+  "nested": {
+    "Address": {
+      "first_name": "string",
+      "last_name": "string",
+      "company": "string",
+      "address1": "string",
+      "address2": "string",
+      "city": "string",
+      "province": "string",
+      "province_code": "string",
+      "country": "string",
+      "country_code": "string",
+      "zip": "string",
+      "phone": "string"
+    },
+    "LineItem": {
+      "id": "integer",
+      "variant_id": "integer",
+      "product_id": "integer",
+      "title": "string",
+      "variant_title": "string",
+      "sku": "string",
+      "quantity": "integer",
+      "price": "string - decimal",
+      "total_discount": "string",
+      "fulfillment_status": "string",
+      "vendor": "string"
+    }
+  },
+  "api": {
+    "list": "GET /orders.json",
+    "get": "GET /orders/{order_id}.json",
+    "create": "POST /orders.json",
+    "update": "PUT /orders/{order_id}.json",
+    "cancel": "POST /orders/{order_id}/cancel.json",
+    "close": "POST /orders/{order_id}/close.json"
+  }
+}

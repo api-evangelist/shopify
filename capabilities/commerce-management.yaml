@@ -1,0 +1,369 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Shopify Commerce Management"
+  description: "Unified commerce management capability for Shopify stores covering products, orders, customers, and inventory"
+  tags:
+    - Commerce
+    - Shopify
+    - Ecommerce
+    - Retail
+    - Inventory
+  created: "2026-05-02"
+  modified: "2026-05-02"
+
+imports:
+  - ./shared/admin-rest.yaml
+
+binds:
+  - namespace: env
+    keys:
+      SHOPIFY_ACCESS_TOKEN: SHOPIFY_ACCESS_TOKEN
+      SHOPIFY_STORE: SHOPIFY_STORE
+
+capability:
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: shopify-commerce-rest
+      resources:
+        - path: /v1/products
+          name: products
+          description: "Manage store products"
+          operations:
+            - method: GET
+              name: list-products
+              description: "List products with optional filters"
+              call: "shopify-admin.list-products"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-product
+              description: "Create a new product"
+              call: "shopify-admin.create-product"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/orders
+          name: orders
+          description: "Manage customer orders"
+          operations:
+            - method: GET
+              name: list-orders
+              description: "List orders with filters"
+              call: "shopify-admin.list-orders"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-order
+              description: "Create a new order"
+              call: "shopify-admin.create-order"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/customers
+          name: customers
+          description: "Manage customer records"
+          operations:
+            - method: GET
+              name: list-customers
+              description: "List customers"
+              call: "shopify-admin.list-customers"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-customer
+              description: "Create a new customer"
+              call: "shopify-admin.create-customer"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/collections
+          name: collections
+          description: "Manage product collections"
+          operations:
+            - method: GET
+              name: list-collections
+              description: "List product collections"
+              call: "shopify-admin.list-collections"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/inventory
+          name: inventory
+          description: "Manage inventory levels"
+          operations:
+            - method: GET
+              name: list-inventory-levels
+              description: "List inventory levels across locations"
+              call: "shopify-admin.list-inventory-levels"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: adjust-inventory
+              description: "Adjust inventory at a location"
+              call: "shopify-admin.adjust-inventory"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/fulfillments
+          name: fulfillments
+          description: "Manage order fulfillments"
+          operations:
+            - method: GET
+              name: list-fulfillments
+              description: "List fulfillments for an order"
+              call: "shopify-admin.list-fulfillments"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-fulfillment
+              description: "Fulfill an order"
+              call: "shopify-admin.create-fulfillment"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/webhooks
+          name: webhooks
+          description: "Manage webhook subscriptions"
+          operations:
+            - method: GET
+              name: list-webhooks
+              description: "List webhook subscriptions"
+              call: "shopify-admin.list-webhooks"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-webhook
+              description: "Create a webhook subscription"
+              call: "shopify-admin.create-webhook"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9090
+      namespace: shopify-commerce-mcp
+      transport: http
+      tools:
+        - name: list-products
+          description: "List Shopify store products with optional filters for status, vendor, and product type"
+          hints:
+            readOnly: true
+          call: "shopify-admin.list-products"
+          inputParameters:
+            - name: limit
+              type: integer
+              description: "Maximum number of products to return (max 250)"
+            - name: status
+              type: string
+              description: "Filter by status: active, draft, or archived"
+            - name: vendor
+              type: string
+              description: "Filter products by vendor name"
+            - name: product_type
+              type: string
+              description: "Filter products by product type"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-product
+          description: "Create a new product listing in the Shopify store"
+          hints:
+            readOnly: false
+          call: "shopify-admin.create-product"
+          inputParameters:
+            - name: title
+              type: string
+              description: "Product title"
+            - name: vendor
+              type: string
+              description: "Product vendor or brand"
+            - name: product_type
+              type: string
+              description: "Product category or type"
+            - name: status
+              type: string
+              description: "Product status: active, draft, or archived"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-orders
+          description: "List Shopify orders with filters for status, financial status, and fulfillment status"
+          hints:
+            readOnly: true
+          call: "shopify-admin.list-orders"
+          inputParameters:
+            - name: status
+              type: string
+              description: "Order status: open, closed, cancelled, or any"
+            - name: financial_status
+              type: string
+              description: "Payment status: pending, authorized, paid, refunded, etc."
+            - name: fulfillment_status
+              type: string
+              description: "Fulfillment status: fulfilled, partial, or null for unfulfilled"
+            - name: limit
+              type: integer
+              description: "Maximum number of orders to return"
+            - name: created_at_min
+              type: string
+              description: "Return orders created after this date (ISO 8601)"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-order
+          description: "Create a new order in the Shopify store"
+          hints:
+            readOnly: false
+          call: "shopify-admin.create-order"
+          inputParameters:
+            - name: email
+              type: string
+              description: "Customer email address"
+            - name: line_items
+              type: array
+              description: "Array of line items with variant_id and quantity"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-customers
+          description: "List Shopify customers with optional email filter"
+          hints:
+            readOnly: true
+          call: "shopify-admin.list-customers"
+          inputParameters:
+            - name: limit
+              type: integer
+              description: "Maximum number of customers to return"
+            - name: email
+              type: string
+              description: "Filter customers by email address"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-customer
+          description: "Create a new customer record in the Shopify store"
+          hints:
+            readOnly: false
+          call: "shopify-admin.create-customer"
+          inputParameters:
+            - name: first_name
+              type: string
+              description: "Customer first name"
+            - name: last_name
+              type: string
+              description: "Customer last name"
+            - name: email
+              type: string
+              description: "Customer email address"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-collections
+          description: "List custom product collections in the Shopify store"
+          hints:
+            readOnly: true
+          call: "shopify-admin.list-collections"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-inventory-levels
+          description: "List inventory levels for products across store locations"
+          hints:
+            readOnly: true
+          call: "shopify-admin.list-inventory-levels"
+          inputParameters:
+            - name: inventory_item_ids
+              type: string
+              description: "Comma-separated list of inventory item IDs"
+            - name: location_ids
+              type: string
+              description: "Comma-separated list of location IDs"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: adjust-inventory
+          description: "Adjust inventory quantity for a product variant at a specific location"
+          hints:
+            readOnly: false
+          call: "shopify-admin.adjust-inventory"
+          inputParameters:
+            - name: location_id
+              type: integer
+              description: "ID of the location to adjust inventory at"
+            - name: inventory_item_id
+              type: integer
+              description: "ID of the inventory item to adjust"
+            - name: adjustment
+              type: integer
+              description: "Quantity to add (positive) or remove (negative)"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-fulfillments
+          description: "List fulfillment records for a specific order"
+          hints:
+            readOnly: true
+          call: "shopify-admin.list-fulfillments"
+          inputParameters:
+            - name: order_id
+              type: integer
+              description: "ID of the order to list fulfillments for"
+              required: true
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-fulfillment
+          description: "Create a fulfillment record to mark order items as shipped"
+          hints:
+            readOnly: false
+          call: "shopify-admin.create-fulfillment"
+          inputParameters:
+            - name: location_id
+              type: integer
+              description: "ID of the fulfillment location"
+            - name: tracking_number
+              type: string
+              description: "Shipment tracking number"
+            - name: tracking_company
+              type: string
+              description: "Shipping carrier name"
+            - name: notify_customer
+              type: boolean
+              description: "Whether to send tracking notification to customer"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-webhooks
+          description: "List all webhook subscriptions configured for the store"
+          hints:
+            readOnly: true
+          call: "shopify-admin.list-webhooks"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-webhook
+          description: "Create a webhook subscription to receive real-time store event notifications"
+          hints:
+            readOnly: false
+          call: "shopify-admin.create-webhook"
+          inputParameters:
+            - name: topic
+              type: string
+              description: "Event topic to subscribe to (e.g., orders/create, products/update)"
+            - name: address
+              type: string
+              description: "HTTPS URL to receive webhook POST requests"
+            - name: format
+              type: string
+              description: "Payload format: json or xml"
+          outputParameters:
+            - type: object
+              mapping: "$."

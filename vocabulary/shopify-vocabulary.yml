@@ -1,0 +1,184 @@
+title: Shopify API Vocabulary
+description: Operational and domain vocabulary for the Shopify commerce platform APIs
+provider: Shopify
+version: '2026-05-02'
+source: https://shopify.dev/docs/api
+
+terms:
+  - term: Admin API
+    definition: >-
+      The Shopify Admin API lets you build apps and integrations that extend the
+      Shopify admin. It provides REST and GraphQL interfaces for managing products,
+      customers, orders, inventory, and other store data. Available to apps with
+      appropriate OAuth scopes.
+    type: concept
+    related: [REST Admin API, GraphQL Admin API]
+
+  - term: Store
+    definition: >-
+      A Shopify merchant's online shop instance. Each store has a unique myshopify.com
+      subdomain (e.g., my-store.myshopify.com). The store is the top-level container
+      for all products, customers, orders, and configuration.
+    type: resource
+
+  - term: Product
+    definition: >-
+      The goods and services that merchants sell in their Shopify store. Products
+      can have multiple variants (different sizes, colors) and images. Each product
+      has a unique handle (URL slug) and can be organized into collections.
+    type: resource
+    related: [Variant, Collection, Inventory]
+
+  - term: Variant
+    definition: >-
+      A specific version of a product with unique attributes (e.g., Blue T-Shirt in
+      size Large). Each variant has its own price, SKU, and inventory quantity.
+      Products can have up to 3 options generating up to 100 variants.
+    type: resource
+    related: [Product, Inventory Item]
+
+  - term: Order
+    definition: >-
+      A customer's completed purchase from a Shopify store. Orders contain line items,
+      customer information, shipping and billing addresses, payment and fulfillment status,
+      and financial totals.
+    type: resource
+    related: [LineItem, Customer, Fulfillment]
+
+  - term: Customer
+    definition: >-
+      A person who has placed an order or created an account in a Shopify store.
+      Customer records include contact information, order history, and can have
+      multiple addresses saved.
+    type: resource
+    related: [Order]
+
+  - term: Collection
+    definition: >-
+      A grouping of products in a Shopify store. Smart Collections automatically
+      include products based on conditions (tags, price, vendor). Custom Collections
+      include manually curated products.
+    type: resource
+    related: [Product]
+
+  - term: Fulfillment
+    definition: >-
+      The process of shipping an order to a customer. A fulfillment record contains
+      tracking information, line items being fulfilled, and fulfillment service details.
+      An order can have multiple partial fulfillments.
+    type: resource
+    related: [Order]
+
+  - term: Inventory Item
+    definition: >-
+      The physical item represented by a product variant. Inventory items track
+      stock across locations, cost, SKU, and whether inventory is tracked.
+    type: resource
+    related: [Variant, Location]
+
+  - term: Webhook
+    definition: >-
+      An HTTP callback that Shopify sends to your application when specific events
+      occur (e.g., orders/create, products/update). Webhooks enable real-time
+      integrations without polling.
+    type: resource
+
+  - term: Access Token
+    definition: >-
+      The authentication credential for the Shopify Admin REST API. Sent in the
+      X-Shopify-Access-Token header. Obtained through the OAuth flow when a merchant
+      installs your app.
+    type: concept
+    related: [OAuth]
+
+  - term: API Version
+    definition: >-
+      Shopify releases new API versions quarterly (e.g., 2025-01, 2025-04). Versions
+      are stable for at least 12 months. Apps should upgrade before a version is retired.
+    type: concept
+
+  - term: Financial Status
+    definition: The payment state of an order.
+    type: enum
+    values:
+      pending: Payment is pending
+      authorized: Payment authorized but not captured
+      partially_paid: Partial payment received
+      paid: Fully paid
+      partially_refunded: Partially refunded
+      refunded: Fully refunded
+      voided: Payment void
+
+  - term: Fulfillment Status
+    definition: The shipping state of an order.
+    type: enum
+    values:
+      null: Not yet fulfilled
+      fulfilled: All items shipped
+      partial: Some items shipped
+      restocked: Returned and restocked
+
+  - term: Product Status
+    definition: The publishing state of a product.
+    type: enum
+    values:
+      active: Published and available for sale
+      draft: Unpublished, not available in storefront
+      archived: Archived, no longer sold
+
+  - term: Multipass
+    definition: >-
+      A Shopify Plus feature that enables single sign-on (SSO) by redirecting
+      customers from your website and automatically logging them into the Shopify store.
+      Requires a Shopify Plus plan.
+    type: concept
+
+  - term: Storefront API
+    definition: >-
+      A GraphQL API that provides commerce primitives for building custom storefronts.
+      Unlike the Admin API, the Storefront API is customer-facing and allows
+      building headless commerce experiences on any platform.
+    type: concept
+
+  - term: Hydrogen
+    definition: >-
+      Shopify's React-based framework for building custom storefronts with the
+      Storefront API. Provides optimized components, hooks, and utilities for
+      headless commerce.
+    type: concept
+
+  - term: Rate Limiting
+    definition: >-
+      Shopify Admin REST API allows 40 requests per minute (leaky bucket: 2 req/sec
+      drain rate, 40 capacity). GraphQL uses a cost-based limit of 1000 points per
+      minute. Exceeded limits return 429 Too Many Requests.
+    type: concept
+
+capabilities:
+  - name: Product Management
+    description: Manage products, variants, and collections in a Shopify store
+    apis: [Admin REST API]
+
+  - name: Order Management
+    description: Process and manage customer orders through the fulfillment lifecycle
+    apis: [Admin REST API]
+
+  - name: Customer Management
+    description: Manage customer profiles, addresses, and purchase history
+    apis: [Admin REST API]
+
+  - name: Inventory Management
+    description: Track and update inventory levels across locations
+    apis: [Admin REST API]
+
+  - name: Webhook Integration
+    description: Receive real-time event notifications for store activity
+    apis: [Webhooks API]
+
+  - name: Storefront Experience
+    description: Build custom shopping cart and product browsing experiences
+    apis: [Ajax API, Storefront API]
+
+  - name: Headless Commerce
+    description: Build fully custom storefronts powered by Shopify
+    apis: [Storefront API, Hydrogen]
