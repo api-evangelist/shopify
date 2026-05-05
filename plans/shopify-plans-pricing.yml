@@ -1,0 +1,195 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Shopify
+providerId: shopify
+created: '2026-05-04'
+modified: '2026-05-04'
+reconciled: true
+tags:
+  - Commerce
+  - E-Commerce
+  - Payments
+description: Shopify plans for online store and POS. All include the Admin API; Plus adds higher GraphQL
+  limits and B2B.
+sources:
+  - https://www.shopify.com/pricing
+plans:
+  - id: shopify-basic
+    name: Basic
+    type: subscription
+    description: $29/month annual or $1/month for first 3 months. Online card 2.9%+30¢.
+    entries:
+      - label: Monthly
+        name: subscription
+        type: subscription
+        metric: month
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '29.00'
+        userMultiplied: false
+      - label: Online card transaction fee
+        name: card_online
+        type: metered
+        metric: transaction
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: 2.9% + $0.30
+        userMultiplied: false
+      - label: In-person transaction fee
+        name: card_in_person
+        type: metered
+        metric: transaction
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: 2.6% + $0.10
+        userMultiplied: false
+      - label: Third-party gateway fee
+        name: third_party
+        type: metered
+        metric: transaction
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: 2%
+        userMultiplied: false
+    elements:
+      - name: Sell online and in person
+      - name: AI assistant for commerce
+      - name: REST and GraphQL Admin API
+  - id: shopify-grow
+    name: Grow
+    type: subscription
+    description: $79/month annual. Lower per-transaction fees, more staff accounts.
+    entries:
+      - label: Monthly
+        name: subscription
+        type: subscription
+        metric: month
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '79.00'
+        userMultiplied: false
+      - label: Online card transaction fee
+        name: card_online
+        type: metered
+        metric: transaction
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: 2.7% + $0.30
+        userMultiplied: false
+      - label: Third-party gateway fee
+        name: third_party
+        type: metered
+        metric: transaction
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: 1%
+        userMultiplied: false
+      - label: Staff accounts
+        name: staff
+        type: quota
+        metric: user
+        limit: 5
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+    elements:
+      - name: Up to 5 staff accounts
+      - name: Up to 87% off shipping
+  - id: shopify-advanced
+    name: Advanced
+    type: subscription
+    description: $299/month annual. Best per-transaction rates, regional storefront tailoring.
+    entries:
+      - label: Monthly
+        name: subscription
+        type: subscription
+        metric: month
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '299.00'
+        userMultiplied: false
+      - label: Online card transaction fee
+        name: card_online
+        type: metered
+        metric: transaction
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: 2.5% + $0.30
+        userMultiplied: false
+      - label: Third-party gateway fee
+        name: third_party
+        type: metered
+        metric: transaction
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: 0.6%
+        userMultiplied: false
+      - label: Staff accounts
+        name: staff
+        type: quota
+        metric: user
+        limit: 15
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+    elements:
+      - name: Up to 15 staff accounts
+      - name: Live 3rd-party shipping rates
+      - name: Regional store tailoring
+  - id: shopify-plus
+    name: Plus
+    type: enterprise
+    description: $2,300/month on a 3-year term. Unlimited staff, B2B, customizable checkout.
+    entries:
+      - label: Monthly (3-year term)
+        name: subscription
+        type: subscription
+        metric: month
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '2300.00'
+        userMultiplied: false
+      - label: Online card transaction fee
+        name: card_online
+        type: metered
+        metric: transaction
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: 2.25% + $0.30
+        userMultiplied: false
+    elements:
+      - name: Unlimited staff
+      - name: Fully customizable checkout
+      - name: Up to 200 POS Pro locations
+      - name: B2B / wholesale
+      - name: Higher GraphQL Admin API rate limit
+      - name: Priority 24/7 phone support

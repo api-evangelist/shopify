@@ -1,0 +1,53 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Shopify
+providerId: shopify
+created: '2026-05-04'
+modified: '2026-05-04'
+reconciled: true
+tags:
+  - Rate Limiting
+  - Commerce
+description: Shopify uses leaky-bucket throttling on REST (40 req/app/store) and calculated query cost
+  on GraphQL (1000 points/store, 50/sec restore).
+sources:
+  - https://www.shopify.com/pricing
+  - https://shopify.dev/docs/api/usage/rate-limits
+headers:
+  callLimit: X-Shopify-Shop-Api-Call-Limit
+responseCodes:
+  throttled: 429
+  graphqlThrottled: 200
+  graphqlBudget: 200
+limits:
+  - name: REST Admin (Standard)
+    scope: app/store
+    metric: requests
+    limit: 40
+    timeFrame: leaky bucket; 2/sec restore
+  - name: REST Admin (Plus)
+    scope: app/store
+    metric: requests
+    limit: 80
+    timeFrame: leaky bucket; 4/sec restore
+  - name: GraphQL Admin (Standard)
+    scope: app/store
+    metric: cost_points
+    limit: 1000
+    timeFrame: 50/sec restore
+  - name: GraphQL Admin (Plus)
+    scope: app/store
+    metric: cost_points
+    limit: 2000
+    timeFrame: 100/sec restore
+  - name: Storefront API (Public)
+    scope: ip
+    metric: requests_per_minute
+    limit: 60
+    timeFrame: minute
+policies:
+  - name: Per-app per-shop
+    description: Limits scope to the (app_id, shop_id) tuple, not your account.
+  - name: Bulk operations
+    description: Use bulk operations for large queries to avoid throttling.
