@@ -1,0 +1,126 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Shopify  API — Blogs
+  description: 'Shopify  API — Blogs. 2 operations. Lead operation: Shopify Retrieve A List Of All Blogs. Self-contained Naftiko
+    capability covering one Shopify business surface.'
+  tags:
+  - Shopify
+  - Blogs
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SHOPIFY_API_KEY: SHOPIFY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: shopify-blogs
+    baseUri: ''
+    description: Shopify  API — Blogs business capability. Self-contained, no shared references.
+    resources:
+    - name: admin-api-2020-01-blogs.json
+      path: /admin/api/2020-01/blogs.json
+      operations:
+      - name: deprecated202001getblogs
+        method: GET
+        description: Shopify Retrieve A List Of All Blogs
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: string
+          description: The maximum number of results to retrieve.
+        - name: since_id
+          in: query
+          type: string
+          description: Restrict results to after the specified ID
+        - name: handle
+          in: query
+          type: string
+          description: Filter by blog handle
+        - name: fields
+          in: query
+          type: string
+          description: comma-separated list of fields to include in the response
+    - name: admin-api-2020-01-blogs-count.json
+      path: /admin/api/2020-01/blogs/count.json
+      operations:
+      - name: deprecated202001getblogscount
+        method: GET
+        description: Shopify Get A Count Of All Blogs
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    namespace: shopify-blogs-rest
+    port: 8080
+    description: REST adapter for Shopify  API — Blogs. One Spectral-compliant resource per consumed operation, prefixed with
+      /v1.
+    resources:
+    - path: /v1/admin/api/2020-01/blogs-json
+      name: admin-api-2020-01-blogs-json
+      description: REST surface for admin-api-2020-01-blogs.json.
+      operations:
+      - method: GET
+        name: deprecated202001getblogs
+        description: Shopify Retrieve A List Of All Blogs
+        call: shopify-blogs.deprecated202001getblogs
+        with:
+          limit: rest.limit
+          since_id: rest.since_id
+          handle: rest.handle
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-01/blogs/count-json
+      name: admin-api-2020-01-blogs-count-json
+      description: REST surface for admin-api-2020-01-blogs-count.json.
+      operations:
+      - method: GET
+        name: deprecated202001getblogscount
+        description: Shopify Get A Count Of All Blogs
+        call: shopify-blogs.deprecated202001getblogscount
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: shopify-blogs-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Shopify  API — Blogs. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: shopify-retrieve-list-all-blogs
+      description: Shopify Retrieve A List Of All Blogs
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-blogs.deprecated202001getblogs
+      with:
+        limit: tools.limit
+        since_id: tools.since_id
+        handle: tools.handle
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-get-count-all-blogs
+      description: Shopify Get A Count Of All Blogs
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-blogs.deprecated202001getblogscount
+      outputParameters:
+      - type: object
+        mapping: $.

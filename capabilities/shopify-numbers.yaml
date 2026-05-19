@@ -1,0 +1,82 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Shopify  API — Numbers
+  description: 'Shopify  API — Numbers. 1 operations. Lead operation: Shopify Get Tracking Numbers For Orders. Self-contained
+    Naftiko capability covering one Shopify business surface.'
+  tags:
+  - Shopify
+  - Numbers
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SHOPIFY_API_KEY: SHOPIFY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: shopify-numbers
+    baseUri: ''
+    description: Shopify  API — Numbers business capability. Self-contained, no shared references.
+    resources:
+    - name: fetch_tracking_numbers
+      path: /fetch_tracking_numbers
+      operations:
+      - name: deprecatedunknownversiongetfetchtrackingnumbers
+        method: GET
+        description: Shopify Get Tracking Numbers For Orders
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: order_names
+          in: query
+          type: string
+          description: 'The fulfillment names we require tracking numbers for (i.e. #1001.1)'
+        - name: shop
+          in: query
+          type: string
+          description: The shop's myshopify url
+  exposes:
+  - type: rest
+    namespace: shopify-numbers-rest
+    port: 8080
+    description: REST adapter for Shopify  API — Numbers. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/fetch-tracking-numbers
+      name: fetch-tracking-numbers
+      description: REST surface for fetch_tracking_numbers.
+      operations:
+      - method: GET
+        name: deprecatedunknownversiongetfetchtrackingnumbers
+        description: Shopify Get Tracking Numbers For Orders
+        call: shopify-numbers.deprecatedunknownversiongetfetchtrackingnumbers
+        with:
+          order_names: rest.order_names
+          shop: rest.shop
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: shopify-numbers-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Shopify  API — Numbers. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: shopify-get-tracking-numbers-orders
+      description: Shopify Get Tracking Numbers For Orders
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-numbers.deprecatedunknownversiongetfetchtrackingnumbers
+      with:
+        order_names: tools.order_names
+        shop: tools.shop
+      outputParameters:
+      - type: object
+        mapping: $.

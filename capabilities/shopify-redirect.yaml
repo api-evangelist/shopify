@@ -1,0 +1,1037 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Shopify  API — Redirect
+  description: 'Shopify  API — Redirect. 24 operations. Lead operation: Shopify Creates A Redirect. Self-contained Naftiko
+    capability covering one Shopify business surface.'
+  tags:
+  - Shopify
+  - Redirect
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SHOPIFY_API_KEY: SHOPIFY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: shopify-redirect
+    baseUri: ''
+    description: Shopify  API — Redirect business capability. Self-contained, no shared references.
+    resources:
+    - name: admin-api-2020-01-redirects.json
+      path: /admin/api/2020-01/redirects.json
+      operations:
+      - name: deprecated202001createredirects
+        method: POST
+        description: Shopify Creates A Redirect
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-01-redirects-redirect_id}.json
+      path: /admin/api/2020-01/redirects/{redirect_id}.json
+      operations:
+      - name: deprecated202001getredirectsparamredirectid
+        method: GET
+        description: Shopify Retrieves A Single Redirect
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: redirect_id
+          in: path
+          type: string
+          description: redirect_id
+          required: true
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+      - name: deprecated202001updateredirectsparamredirectid
+        method: PUT
+        description: Shopify Updates An Existing Redirect
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: redirect_id
+          in: path
+          type: string
+          description: redirect_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deprecated202001deleteredirectsparamredirectid
+        method: DELETE
+        description: Shopify Deletes A Redirect
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: redirect_id
+          in: path
+          type: string
+          description: redirect_id
+          required: true
+    - name: admin-api-2020-04-redirects.json
+      path: /admin/api/2020-04/redirects.json
+      operations:
+      - name: deprecated202004createredirects
+        method: POST
+        description: Shopify Creates A Redirect
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-04-redirects-redirect_id}.json
+      path: /admin/api/2020-04/redirects/{redirect_id}.json
+      operations:
+      - name: deprecated202004getredirectsparamredirectid
+        method: GET
+        description: Shopify Retrieves A Single Redirect
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: redirect_id
+          in: path
+          type: string
+          description: redirect_id
+          required: true
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+      - name: deprecated202004updateredirectsparamredirectid
+        method: PUT
+        description: Shopify Updates An Existing Redirect
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: redirect_id
+          in: path
+          type: string
+          description: redirect_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deprecated202004deleteredirectsparamredirectid
+        method: DELETE
+        description: Shopify Deletes A Redirect
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: redirect_id
+          in: path
+          type: string
+          description: redirect_id
+          required: true
+    - name: admin-api-2020-07-redirects.json
+      path: /admin/api/2020-07/redirects.json
+      operations:
+      - name: deprecated202007createredirects
+        method: POST
+        description: Shopify Creates A Redirect
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-07-redirects-redirect_id}.json
+      path: /admin/api/2020-07/redirects/{redirect_id}.json
+      operations:
+      - name: deprecated202007getredirectsparamredirectid
+        method: GET
+        description: Shopify Retrieves A Single Redirect
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: redirect_id
+          in: path
+          type: string
+          description: redirect_id
+          required: true
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+      - name: deprecated202007updateredirectsparamredirectid
+        method: PUT
+        description: Shopify Updates An Existing Redirect
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: redirect_id
+          in: path
+          type: string
+          description: redirect_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deprecated202007deleteredirectsparamredirectid
+        method: DELETE
+        description: Shopify Deletes A Redirect
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: redirect_id
+          in: path
+          type: string
+          description: redirect_id
+          required: true
+    - name: admin-api-2020-10-redirects.json
+      path: /admin/api/2020-10/redirects.json
+      operations:
+      - name: createredirects
+        method: POST
+        description: Shopify Creates A Redirect
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-10-redirects-redirect_id}.json
+      path: /admin/api/2020-10/redirects/{redirect_id}.json
+      operations:
+      - name: getredirectsparamredirectid
+        method: GET
+        description: Shopify Retrieves A Single Redirect
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: redirect_id
+          in: path
+          type: string
+          description: redirect_id
+          required: true
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+      - name: updateredirectsparamredirectid
+        method: PUT
+        description: Shopify Updates An Existing Redirect
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: redirect_id
+          in: path
+          type: string
+          description: redirect_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deleteredirectsparamredirectid
+        method: DELETE
+        description: Shopify Deletes A Redirect
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: redirect_id
+          in: path
+          type: string
+          description: redirect_id
+          required: true
+    - name: admin-api-2021-01-redirects.json
+      path: /admin/api/2021-01/redirects.json
+      operations:
+      - name: deprecated202101createredirects
+        method: POST
+        description: Shopify Creates A Redirect
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2021-01-redirects-redirect_id}.json
+      path: /admin/api/2021-01/redirects/{redirect_id}.json
+      operations:
+      - name: deprecated202101getredirectsparamredirectid
+        method: GET
+        description: Shopify Retrieves A Single Redirect
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: redirect_id
+          in: path
+          type: string
+          description: redirect_id
+          required: true
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+      - name: deprecated202101updateredirectsparamredirectid
+        method: PUT
+        description: Shopify Updates An Existing Redirect
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: redirect_id
+          in: path
+          type: string
+          description: redirect_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deprecated202101deleteredirectsparamredirectid
+        method: DELETE
+        description: Shopify Deletes A Redirect
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: redirect_id
+          in: path
+          type: string
+          description: redirect_id
+          required: true
+    - name: admin-api-unstable-redirects.json
+      path: /admin/api/unstable/redirects.json
+      operations:
+      - name: deprecatedunstablecreateredirects
+        method: POST
+        description: Shopify Creates A Redirect
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-unstable-redirects-redirect_id}.json
+      path: /admin/api/unstable/redirects/{redirect_id}.json
+      operations:
+      - name: deprecatedunstablegetredirectsparamredirectid
+        method: GET
+        description: Shopify Retrieves A Single Redirect
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: redirect_id
+          in: path
+          type: string
+          description: redirect_id
+          required: true
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+      - name: deprecatedunstableupdateredirectsparamredirectid
+        method: PUT
+        description: Shopify Updates An Existing Redirect
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: redirect_id
+          in: path
+          type: string
+          description: redirect_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deprecatedunstabledeleteredirectsparamredirectid
+        method: DELETE
+        description: Shopify Deletes A Redirect
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: redirect_id
+          in: path
+          type: string
+          description: redirect_id
+          required: true
+  exposes:
+  - type: rest
+    namespace: shopify-redirect-rest
+    port: 8080
+    description: REST adapter for Shopify  API — Redirect. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/admin/api/2020-01/redirects-json
+      name: admin-api-2020-01-redirects-json
+      description: REST surface for admin-api-2020-01-redirects.json.
+      operations:
+      - method: POST
+        name: deprecated202001createredirects
+        description: Shopify Creates A Redirect
+        call: shopify-redirect.deprecated202001createredirects
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-01/redirects/redirect-id-json
+      name: admin-api-2020-01-redirects-redirect-id-json
+      description: REST surface for admin-api-2020-01-redirects-redirect_id}.json.
+      operations:
+      - method: GET
+        name: deprecated202001getredirectsparamredirectid
+        description: Shopify Retrieves A Single Redirect
+        call: shopify-redirect.deprecated202001getredirectsparamredirectid
+        with:
+          redirect_id: rest.redirect_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: deprecated202001updateredirectsparamredirectid
+        description: Shopify Updates An Existing Redirect
+        call: shopify-redirect.deprecated202001updateredirectsparamredirectid
+        with:
+          redirect_id: rest.redirect_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deprecated202001deleteredirectsparamredirectid
+        description: Shopify Deletes A Redirect
+        call: shopify-redirect.deprecated202001deleteredirectsparamredirectid
+        with:
+          redirect_id: rest.redirect_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/redirects-json
+      name: admin-api-2020-04-redirects-json
+      description: REST surface for admin-api-2020-04-redirects.json.
+      operations:
+      - method: POST
+        name: deprecated202004createredirects
+        description: Shopify Creates A Redirect
+        call: shopify-redirect.deprecated202004createredirects
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/redirects/redirect-id-json
+      name: admin-api-2020-04-redirects-redirect-id-json
+      description: REST surface for admin-api-2020-04-redirects-redirect_id}.json.
+      operations:
+      - method: GET
+        name: deprecated202004getredirectsparamredirectid
+        description: Shopify Retrieves A Single Redirect
+        call: shopify-redirect.deprecated202004getredirectsparamredirectid
+        with:
+          redirect_id: rest.redirect_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: deprecated202004updateredirectsparamredirectid
+        description: Shopify Updates An Existing Redirect
+        call: shopify-redirect.deprecated202004updateredirectsparamredirectid
+        with:
+          redirect_id: rest.redirect_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deprecated202004deleteredirectsparamredirectid
+        description: Shopify Deletes A Redirect
+        call: shopify-redirect.deprecated202004deleteredirectsparamredirectid
+        with:
+          redirect_id: rest.redirect_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/redirects-json
+      name: admin-api-2020-07-redirects-json
+      description: REST surface for admin-api-2020-07-redirects.json.
+      operations:
+      - method: POST
+        name: deprecated202007createredirects
+        description: Shopify Creates A Redirect
+        call: shopify-redirect.deprecated202007createredirects
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/redirects/redirect-id-json
+      name: admin-api-2020-07-redirects-redirect-id-json
+      description: REST surface for admin-api-2020-07-redirects-redirect_id}.json.
+      operations:
+      - method: GET
+        name: deprecated202007getredirectsparamredirectid
+        description: Shopify Retrieves A Single Redirect
+        call: shopify-redirect.deprecated202007getredirectsparamredirectid
+        with:
+          redirect_id: rest.redirect_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: deprecated202007updateredirectsparamredirectid
+        description: Shopify Updates An Existing Redirect
+        call: shopify-redirect.deprecated202007updateredirectsparamredirectid
+        with:
+          redirect_id: rest.redirect_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deprecated202007deleteredirectsparamredirectid
+        description: Shopify Deletes A Redirect
+        call: shopify-redirect.deprecated202007deleteredirectsparamredirectid
+        with:
+          redirect_id: rest.redirect_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/redirects-json
+      name: admin-api-2020-10-redirects-json
+      description: REST surface for admin-api-2020-10-redirects.json.
+      operations:
+      - method: POST
+        name: createredirects
+        description: Shopify Creates A Redirect
+        call: shopify-redirect.createredirects
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/redirects/redirect-id-json
+      name: admin-api-2020-10-redirects-redirect-id-json
+      description: REST surface for admin-api-2020-10-redirects-redirect_id}.json.
+      operations:
+      - method: GET
+        name: getredirectsparamredirectid
+        description: Shopify Retrieves A Single Redirect
+        call: shopify-redirect.getredirectsparamredirectid
+        with:
+          redirect_id: rest.redirect_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updateredirectsparamredirectid
+        description: Shopify Updates An Existing Redirect
+        call: shopify-redirect.updateredirectsparamredirectid
+        with:
+          redirect_id: rest.redirect_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteredirectsparamredirectid
+        description: Shopify Deletes A Redirect
+        call: shopify-redirect.deleteredirectsparamredirectid
+        with:
+          redirect_id: rest.redirect_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/redirects-json
+      name: admin-api-2021-01-redirects-json
+      description: REST surface for admin-api-2021-01-redirects.json.
+      operations:
+      - method: POST
+        name: deprecated202101createredirects
+        description: Shopify Creates A Redirect
+        call: shopify-redirect.deprecated202101createredirects
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/redirects/redirect-id-json
+      name: admin-api-2021-01-redirects-redirect-id-json
+      description: REST surface for admin-api-2021-01-redirects-redirect_id}.json.
+      operations:
+      - method: GET
+        name: deprecated202101getredirectsparamredirectid
+        description: Shopify Retrieves A Single Redirect
+        call: shopify-redirect.deprecated202101getredirectsparamredirectid
+        with:
+          redirect_id: rest.redirect_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: deprecated202101updateredirectsparamredirectid
+        description: Shopify Updates An Existing Redirect
+        call: shopify-redirect.deprecated202101updateredirectsparamredirectid
+        with:
+          redirect_id: rest.redirect_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deprecated202101deleteredirectsparamredirectid
+        description: Shopify Deletes A Redirect
+        call: shopify-redirect.deprecated202101deleteredirectsparamredirectid
+        with:
+          redirect_id: rest.redirect_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/redirects-json
+      name: admin-api-unstable-redirects-json
+      description: REST surface for admin-api-unstable-redirects.json.
+      operations:
+      - method: POST
+        name: deprecatedunstablecreateredirects
+        description: Shopify Creates A Redirect
+        call: shopify-redirect.deprecatedunstablecreateredirects
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/redirects/redirect-id-json
+      name: admin-api-unstable-redirects-redirect-id-json
+      description: REST surface for admin-api-unstable-redirects-redirect_id}.json.
+      operations:
+      - method: GET
+        name: deprecatedunstablegetredirectsparamredirectid
+        description: Shopify Retrieves A Single Redirect
+        call: shopify-redirect.deprecatedunstablegetredirectsparamredirectid
+        with:
+          redirect_id: rest.redirect_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: deprecatedunstableupdateredirectsparamredirectid
+        description: Shopify Updates An Existing Redirect
+        call: shopify-redirect.deprecatedunstableupdateredirectsparamredirectid
+        with:
+          redirect_id: rest.redirect_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deprecatedunstabledeleteredirectsparamredirectid
+        description: Shopify Deletes A Redirect
+        call: shopify-redirect.deprecatedunstabledeleteredirectsparamredirectid
+        with:
+          redirect_id: rest.redirect_id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: shopify-redirect-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Shopify  API — Redirect. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: shopify-creates-redirect
+      description: Shopify Creates A Redirect
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-redirect.deprecated202001createredirects
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-single-redirect
+      description: Shopify Retrieves A Single Redirect
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-redirect.deprecated202001getredirectsparamredirectid
+      with:
+        redirect_id: tools.redirect_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-updates-existing-redirect
+      description: Shopify Updates An Existing Redirect
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-redirect.deprecated202001updateredirectsparamredirectid
+      with:
+        redirect_id: tools.redirect_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-deletes-redirect
+      description: Shopify Deletes A Redirect
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-redirect.deprecated202001deleteredirectsparamredirectid
+      with:
+        redirect_id: tools.redirect_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-creates-redirect-2
+      description: Shopify Creates A Redirect
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-redirect.deprecated202004createredirects
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-single-redirect-2
+      description: Shopify Retrieves A Single Redirect
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-redirect.deprecated202004getredirectsparamredirectid
+      with:
+        redirect_id: tools.redirect_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-updates-existing-redirect-2
+      description: Shopify Updates An Existing Redirect
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-redirect.deprecated202004updateredirectsparamredirectid
+      with:
+        redirect_id: tools.redirect_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-deletes-redirect-2
+      description: Shopify Deletes A Redirect
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-redirect.deprecated202004deleteredirectsparamredirectid
+      with:
+        redirect_id: tools.redirect_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-creates-redirect-3
+      description: Shopify Creates A Redirect
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-redirect.deprecated202007createredirects
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-single-redirect-3
+      description: Shopify Retrieves A Single Redirect
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-redirect.deprecated202007getredirectsparamredirectid
+      with:
+        redirect_id: tools.redirect_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-updates-existing-redirect-3
+      description: Shopify Updates An Existing Redirect
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-redirect.deprecated202007updateredirectsparamredirectid
+      with:
+        redirect_id: tools.redirect_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-deletes-redirect-3
+      description: Shopify Deletes A Redirect
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-redirect.deprecated202007deleteredirectsparamredirectid
+      with:
+        redirect_id: tools.redirect_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-creates-redirect-4
+      description: Shopify Creates A Redirect
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-redirect.createredirects
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-single-redirect-4
+      description: Shopify Retrieves A Single Redirect
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-redirect.getredirectsparamredirectid
+      with:
+        redirect_id: tools.redirect_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-updates-existing-redirect-4
+      description: Shopify Updates An Existing Redirect
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-redirect.updateredirectsparamredirectid
+      with:
+        redirect_id: tools.redirect_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-deletes-redirect-4
+      description: Shopify Deletes A Redirect
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-redirect.deleteredirectsparamredirectid
+      with:
+        redirect_id: tools.redirect_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-creates-redirect-5
+      description: Shopify Creates A Redirect
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-redirect.deprecated202101createredirects
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-single-redirect-5
+      description: Shopify Retrieves A Single Redirect
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-redirect.deprecated202101getredirectsparamredirectid
+      with:
+        redirect_id: tools.redirect_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-updates-existing-redirect-5
+      description: Shopify Updates An Existing Redirect
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-redirect.deprecated202101updateredirectsparamredirectid
+      with:
+        redirect_id: tools.redirect_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-deletes-redirect-5
+      description: Shopify Deletes A Redirect
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-redirect.deprecated202101deleteredirectsparamredirectid
+      with:
+        redirect_id: tools.redirect_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-creates-redirect-6
+      description: Shopify Creates A Redirect
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-redirect.deprecatedunstablecreateredirects
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-single-redirect-6
+      description: Shopify Retrieves A Single Redirect
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-redirect.deprecatedunstablegetredirectsparamredirectid
+      with:
+        redirect_id: tools.redirect_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-updates-existing-redirect-6
+      description: Shopify Updates An Existing Redirect
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-redirect.deprecatedunstableupdateredirectsparamredirectid
+      with:
+        redirect_id: tools.redirect_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-deletes-redirect-6
+      description: Shopify Deletes A Redirect
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-redirect.deprecatedunstabledeleteredirectsparamredirectid
+      with:
+        redirect_id: tools.redirect_id
+      outputParameters:
+      - type: object
+        mapping: $.

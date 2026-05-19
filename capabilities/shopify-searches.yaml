@@ -1,0 +1,1307 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Shopify  API — Searches
+  description: 'Shopify  API — Searches. 24 operations. Lead operation: Shopify Retrieves A List Of Customer Saved Searches.
+    Self-contained Naftiko capability covering one Shopify business surface.'
+  tags:
+  - Shopify
+  - Searches
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SHOPIFY_API_KEY: SHOPIFY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: shopify-searches
+    baseUri: ''
+    description: Shopify  API — Searches business capability. Self-contained, no shared references.
+    resources:
+    - name: admin-api-2020-01-customer_saved_searches.json
+      path: /admin/api/2020-01/customer_saved_searches.json
+      operations:
+      - name: deprecated202001getcustomersavedsearches
+        method: GET
+        description: Shopify Retrieves A List Of Customer Saved Searches
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: string
+          description: The maximum number of results to show.
+        - name: since_id
+          in: query
+          type: string
+          description: Restrict results to after the specified ID.
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+    - name: admin-api-2020-01-customer_saved_searches-count.json
+      path: /admin/api/2020-01/customer_saved_searches/count.json
+      operations:
+      - name: deprecated202001getcustomersavedsearchescount
+        method: GET
+        description: Shopify Retrieves A Count Of All Customer Saved Searches
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: since_id
+          in: query
+          type: string
+          description: Restrict results to after the specified ID
+    - name: admin-api-2020-01-customers-search.json
+      path: /admin/api/2020-01/customers/search.json
+      operations:
+      - name: deprecated202001getcustomerssearch
+        method: GET
+        description: Shopify Searches For Customers That Match A Supplied Query
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: order
+          in: query
+          type: string
+          description: Set the field and direction by which to order results.
+        - name: query
+          in: query
+          type: string
+          description: Text to search for in the shop's customer data.
+        - name: limit
+          in: query
+          type: string
+          description: The maximum number of results to show.
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+    - name: admin-api-2020-01-gift_cards-search.json
+      path: /admin/api/2020-01/gift_cards/search.json
+      operations:
+      - name: deprecated202001getgiftcardssearch
+        method: GET
+        description: Shopify Searches For Gift Cards That Match A Supplied Query
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: order
+          in: query
+          type: string
+          description: The field and direction to order results by.
+        - name: query
+          in: query
+          type: string
+          description: The text to search for.
+        - name: limit
+          in: query
+          type: string
+          description: The maximum number of results to retrieve.
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+    - name: admin-api-2020-04-customer_saved_searches.json
+      path: /admin/api/2020-04/customer_saved_searches.json
+      operations:
+      - name: deprecated202004getcustomersavedsearches
+        method: GET
+        description: Shopify Retrieves A List Of Customer Saved Searches
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: string
+          description: The maximum number of results to show.
+        - name: since_id
+          in: query
+          type: string
+          description: Restrict results to after the specified ID.
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+    - name: admin-api-2020-04-customer_saved_searches-count.json
+      path: /admin/api/2020-04/customer_saved_searches/count.json
+      operations:
+      - name: deprecated202004getcustomersavedsearchescount
+        method: GET
+        description: Shopify Retrieves A Count Of All Customer Saved Searches
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: since_id
+          in: query
+          type: string
+          description: Restrict results to after the specified ID
+    - name: admin-api-2020-04-customers-search.json
+      path: /admin/api/2020-04/customers/search.json
+      operations:
+      - name: deprecated202004getcustomerssearch
+        method: GET
+        description: Shopify Searches For Customers That Match A Supplied Query
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: order
+          in: query
+          type: string
+          description: Set the field and direction by which to order results.
+        - name: query
+          in: query
+          type: string
+          description: Text to search for in the shop's customer data.
+        - name: limit
+          in: query
+          type: string
+          description: The maximum number of results to show.
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+    - name: admin-api-2020-04-gift_cards-search.json
+      path: /admin/api/2020-04/gift_cards/search.json
+      operations:
+      - name: deprecated202004getgiftcardssearch
+        method: GET
+        description: Shopify Searches For Gift Cards That Match A Supplied Query
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: order
+          in: query
+          type: string
+          description: The field and direction to order results by.
+        - name: query
+          in: query
+          type: string
+          description: The text to search for.
+        - name: limit
+          in: query
+          type: string
+          description: The maximum number of results to retrieve.
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+    - name: admin-api-2020-07-customer_saved_searches.json
+      path: /admin/api/2020-07/customer_saved_searches.json
+      operations:
+      - name: deprecated202007getcustomersavedsearches
+        method: GET
+        description: Shopify Retrieves A List Of Customer Saved Searches
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: string
+          description: The maximum number of results to show.
+        - name: since_id
+          in: query
+          type: string
+          description: Restrict results to after the specified ID.
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+    - name: admin-api-2020-07-customer_saved_searches-count.json
+      path: /admin/api/2020-07/customer_saved_searches/count.json
+      operations:
+      - name: deprecated202007getcustomersavedsearchescount
+        method: GET
+        description: Shopify Retrieves A Count Of All Customer Saved Searches
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: since_id
+          in: query
+          type: string
+          description: Restrict results to after the specified ID
+    - name: admin-api-2020-07-customers-search.json
+      path: /admin/api/2020-07/customers/search.json
+      operations:
+      - name: deprecated202007getcustomerssearch
+        method: GET
+        description: Shopify Searches For Customers That Match A Supplied Query
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: order
+          in: query
+          type: string
+          description: Set the field and direction by which to order results.
+        - name: query
+          in: query
+          type: string
+          description: Text to search for in the shop's customer data.
+        - name: limit
+          in: query
+          type: string
+          description: The maximum number of results to show.
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+    - name: admin-api-2020-07-gift_cards-search.json
+      path: /admin/api/2020-07/gift_cards/search.json
+      operations:
+      - name: deprecated202007getgiftcardssearch
+        method: GET
+        description: Shopify Searches For Gift Cards That Match A Supplied Query
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: order
+          in: query
+          type: string
+          description: The field and direction to order results by.
+        - name: query
+          in: query
+          type: string
+          description: The text to search for.
+        - name: limit
+          in: query
+          type: string
+          description: The maximum number of results to retrieve.
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+    - name: admin-api-2020-10-customer_saved_searches.json
+      path: /admin/api/2020-10/customer_saved_searches.json
+      operations:
+      - name: getcustomersavedsearches
+        method: GET
+        description: Shopify Retrieves A List Of Customer Saved Searches
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: string
+          description: The maximum number of results to show.
+        - name: since_id
+          in: query
+          type: string
+          description: Restrict results to after the specified ID.
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+    - name: admin-api-2020-10-customer_saved_searches-count.json
+      path: /admin/api/2020-10/customer_saved_searches/count.json
+      operations:
+      - name: getcustomersavedsearchescount
+        method: GET
+        description: Shopify Retrieves A Count Of All Customer Saved Searches
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: since_id
+          in: query
+          type: string
+          description: Restrict results to after the specified ID
+    - name: admin-api-2020-10-customers-search.json
+      path: /admin/api/2020-10/customers/search.json
+      operations:
+      - name: getcustomerssearch
+        method: GET
+        description: Shopify Searches For Customers That Match A Supplied Query
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: order
+          in: query
+          type: string
+          description: Set the field and direction by which to order results.
+        - name: query
+          in: query
+          type: string
+          description: Text to search for in the shop's customer data.
+        - name: limit
+          in: query
+          type: string
+          description: The maximum number of results to show.
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+    - name: admin-api-2020-10-gift_cards-search.json
+      path: /admin/api/2020-10/gift_cards/search.json
+      operations:
+      - name: getgiftcardssearch
+        method: GET
+        description: Shopify Searches For Gift Cards That Match A Supplied Query
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: order
+          in: query
+          type: string
+          description: The field and direction to order results by.
+        - name: query
+          in: query
+          type: string
+          description: The text to search for.
+        - name: limit
+          in: query
+          type: string
+          description: The maximum number of results to retrieve.
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+    - name: admin-api-2021-01-customer_saved_searches.json
+      path: /admin/api/2021-01/customer_saved_searches.json
+      operations:
+      - name: deprecated202101getcustomersavedsearches
+        method: GET
+        description: Shopify Retrieves A List Of Customer Saved Searches
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: string
+          description: The maximum number of results to show.
+        - name: since_id
+          in: query
+          type: string
+          description: Restrict results to after the specified ID.
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+    - name: admin-api-2021-01-customer_saved_searches-count.json
+      path: /admin/api/2021-01/customer_saved_searches/count.json
+      operations:
+      - name: deprecated202101getcustomersavedsearchescount
+        method: GET
+        description: Shopify Retrieves A Count Of All Customer Saved Searches
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: since_id
+          in: query
+          type: string
+          description: Restrict results to after the specified ID
+    - name: admin-api-2021-01-customers-search.json
+      path: /admin/api/2021-01/customers/search.json
+      operations:
+      - name: deprecated202101getcustomerssearch
+        method: GET
+        description: Shopify Searches For Customers That Match A Supplied Query
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: order
+          in: query
+          type: string
+          description: Set the field and direction by which to order results.
+        - name: query
+          in: query
+          type: string
+          description: Text to search for in the shop's customer data.
+        - name: limit
+          in: query
+          type: string
+          description: The maximum number of results to show.
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+    - name: admin-api-2021-01-gift_cards-search.json
+      path: /admin/api/2021-01/gift_cards/search.json
+      operations:
+      - name: deprecated202101getgiftcardssearch
+        method: GET
+        description: Shopify Searches For Gift Cards That Match A Supplied Query
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: order
+          in: query
+          type: string
+          description: The field and direction to order results by.
+        - name: query
+          in: query
+          type: string
+          description: The text to search for.
+        - name: limit
+          in: query
+          type: string
+          description: The maximum number of results to retrieve.
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+    - name: admin-api-unstable-customer_saved_searches.json
+      path: /admin/api/unstable/customer_saved_searches.json
+      operations:
+      - name: deprecatedunstablegetcustomersavedsearches
+        method: GET
+        description: Shopify Retrieves A List Of Customer Saved Searches
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: string
+          description: The maximum number of results to show.
+        - name: since_id
+          in: query
+          type: string
+          description: Restrict results to after the specified ID.
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+    - name: admin-api-unstable-customer_saved_searches-count.json
+      path: /admin/api/unstable/customer_saved_searches/count.json
+      operations:
+      - name: deprecatedunstablegetcustomersavedsearchescount
+        method: GET
+        description: Shopify Retrieves A Count Of All Customer Saved Searches
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: since_id
+          in: query
+          type: string
+          description: Restrict results to after the specified ID
+    - name: admin-api-unstable-customers-search.json
+      path: /admin/api/unstable/customers/search.json
+      operations:
+      - name: deprecatedunstablegetcustomerssearch
+        method: GET
+        description: Shopify Searches For Customers That Match A Supplied Query
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: order
+          in: query
+          type: string
+          description: Set the field and direction by which to order results.
+        - name: query
+          in: query
+          type: string
+          description: Text to search for in the shop's customer data.
+        - name: limit
+          in: query
+          type: string
+          description: The maximum number of results to show.
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+    - name: admin-api-unstable-gift_cards-search.json
+      path: /admin/api/unstable/gift_cards/search.json
+      operations:
+      - name: deprecatedunstablegetgiftcardssearch
+        method: GET
+        description: Shopify Searches For Gift Cards That Match A Supplied Query
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: order
+          in: query
+          type: string
+          description: The field and direction to order results by.
+        - name: query
+          in: query
+          type: string
+          description: The text to search for.
+        - name: limit
+          in: query
+          type: string
+          description: The maximum number of results to retrieve.
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+  exposes:
+  - type: rest
+    namespace: shopify-searches-rest
+    port: 8080
+    description: REST adapter for Shopify  API — Searches. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/admin/api/2020-01/customer-saved-searches-json
+      name: admin-api-2020-01-customer-saved-searches-json
+      description: REST surface for admin-api-2020-01-customer_saved_searches.json.
+      operations:
+      - method: GET
+        name: deprecated202001getcustomersavedsearches
+        description: Shopify Retrieves A List Of Customer Saved Searches
+        call: shopify-searches.deprecated202001getcustomersavedsearches
+        with:
+          limit: rest.limit
+          since_id: rest.since_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-01/customer-saved-searches/count-json
+      name: admin-api-2020-01-customer-saved-searches-count-json
+      description: REST surface for admin-api-2020-01-customer_saved_searches-count.json.
+      operations:
+      - method: GET
+        name: deprecated202001getcustomersavedsearchescount
+        description: Shopify Retrieves A Count Of All Customer Saved Searches
+        call: shopify-searches.deprecated202001getcustomersavedsearchescount
+        with:
+          since_id: rest.since_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-01/customers/search-json
+      name: admin-api-2020-01-customers-search-json
+      description: REST surface for admin-api-2020-01-customers-search.json.
+      operations:
+      - method: GET
+        name: deprecated202001getcustomerssearch
+        description: Shopify Searches For Customers That Match A Supplied Query
+        call: shopify-searches.deprecated202001getcustomerssearch
+        with:
+          order: rest.order
+          query: rest.query
+          limit: rest.limit
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-01/gift-cards/search-json
+      name: admin-api-2020-01-gift-cards-search-json
+      description: REST surface for admin-api-2020-01-gift_cards-search.json.
+      operations:
+      - method: GET
+        name: deprecated202001getgiftcardssearch
+        description: Shopify Searches For Gift Cards That Match A Supplied Query
+        call: shopify-searches.deprecated202001getgiftcardssearch
+        with:
+          order: rest.order
+          query: rest.query
+          limit: rest.limit
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/customer-saved-searches-json
+      name: admin-api-2020-04-customer-saved-searches-json
+      description: REST surface for admin-api-2020-04-customer_saved_searches.json.
+      operations:
+      - method: GET
+        name: deprecated202004getcustomersavedsearches
+        description: Shopify Retrieves A List Of Customer Saved Searches
+        call: shopify-searches.deprecated202004getcustomersavedsearches
+        with:
+          limit: rest.limit
+          since_id: rest.since_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/customer-saved-searches/count-json
+      name: admin-api-2020-04-customer-saved-searches-count-json
+      description: REST surface for admin-api-2020-04-customer_saved_searches-count.json.
+      operations:
+      - method: GET
+        name: deprecated202004getcustomersavedsearchescount
+        description: Shopify Retrieves A Count Of All Customer Saved Searches
+        call: shopify-searches.deprecated202004getcustomersavedsearchescount
+        with:
+          since_id: rest.since_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/customers/search-json
+      name: admin-api-2020-04-customers-search-json
+      description: REST surface for admin-api-2020-04-customers-search.json.
+      operations:
+      - method: GET
+        name: deprecated202004getcustomerssearch
+        description: Shopify Searches For Customers That Match A Supplied Query
+        call: shopify-searches.deprecated202004getcustomerssearch
+        with:
+          order: rest.order
+          query: rest.query
+          limit: rest.limit
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/gift-cards/search-json
+      name: admin-api-2020-04-gift-cards-search-json
+      description: REST surface for admin-api-2020-04-gift_cards-search.json.
+      operations:
+      - method: GET
+        name: deprecated202004getgiftcardssearch
+        description: Shopify Searches For Gift Cards That Match A Supplied Query
+        call: shopify-searches.deprecated202004getgiftcardssearch
+        with:
+          order: rest.order
+          query: rest.query
+          limit: rest.limit
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/customer-saved-searches-json
+      name: admin-api-2020-07-customer-saved-searches-json
+      description: REST surface for admin-api-2020-07-customer_saved_searches.json.
+      operations:
+      - method: GET
+        name: deprecated202007getcustomersavedsearches
+        description: Shopify Retrieves A List Of Customer Saved Searches
+        call: shopify-searches.deprecated202007getcustomersavedsearches
+        with:
+          limit: rest.limit
+          since_id: rest.since_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/customer-saved-searches/count-json
+      name: admin-api-2020-07-customer-saved-searches-count-json
+      description: REST surface for admin-api-2020-07-customer_saved_searches-count.json.
+      operations:
+      - method: GET
+        name: deprecated202007getcustomersavedsearchescount
+        description: Shopify Retrieves A Count Of All Customer Saved Searches
+        call: shopify-searches.deprecated202007getcustomersavedsearchescount
+        with:
+          since_id: rest.since_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/customers/search-json
+      name: admin-api-2020-07-customers-search-json
+      description: REST surface for admin-api-2020-07-customers-search.json.
+      operations:
+      - method: GET
+        name: deprecated202007getcustomerssearch
+        description: Shopify Searches For Customers That Match A Supplied Query
+        call: shopify-searches.deprecated202007getcustomerssearch
+        with:
+          order: rest.order
+          query: rest.query
+          limit: rest.limit
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/gift-cards/search-json
+      name: admin-api-2020-07-gift-cards-search-json
+      description: REST surface for admin-api-2020-07-gift_cards-search.json.
+      operations:
+      - method: GET
+        name: deprecated202007getgiftcardssearch
+        description: Shopify Searches For Gift Cards That Match A Supplied Query
+        call: shopify-searches.deprecated202007getgiftcardssearch
+        with:
+          order: rest.order
+          query: rest.query
+          limit: rest.limit
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/customer-saved-searches-json
+      name: admin-api-2020-10-customer-saved-searches-json
+      description: REST surface for admin-api-2020-10-customer_saved_searches.json.
+      operations:
+      - method: GET
+        name: getcustomersavedsearches
+        description: Shopify Retrieves A List Of Customer Saved Searches
+        call: shopify-searches.getcustomersavedsearches
+        with:
+          limit: rest.limit
+          since_id: rest.since_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/customer-saved-searches/count-json
+      name: admin-api-2020-10-customer-saved-searches-count-json
+      description: REST surface for admin-api-2020-10-customer_saved_searches-count.json.
+      operations:
+      - method: GET
+        name: getcustomersavedsearchescount
+        description: Shopify Retrieves A Count Of All Customer Saved Searches
+        call: shopify-searches.getcustomersavedsearchescount
+        with:
+          since_id: rest.since_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/customers/search-json
+      name: admin-api-2020-10-customers-search-json
+      description: REST surface for admin-api-2020-10-customers-search.json.
+      operations:
+      - method: GET
+        name: getcustomerssearch
+        description: Shopify Searches For Customers That Match A Supplied Query
+        call: shopify-searches.getcustomerssearch
+        with:
+          order: rest.order
+          query: rest.query
+          limit: rest.limit
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/gift-cards/search-json
+      name: admin-api-2020-10-gift-cards-search-json
+      description: REST surface for admin-api-2020-10-gift_cards-search.json.
+      operations:
+      - method: GET
+        name: getgiftcardssearch
+        description: Shopify Searches For Gift Cards That Match A Supplied Query
+        call: shopify-searches.getgiftcardssearch
+        with:
+          order: rest.order
+          query: rest.query
+          limit: rest.limit
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/customer-saved-searches-json
+      name: admin-api-2021-01-customer-saved-searches-json
+      description: REST surface for admin-api-2021-01-customer_saved_searches.json.
+      operations:
+      - method: GET
+        name: deprecated202101getcustomersavedsearches
+        description: Shopify Retrieves A List Of Customer Saved Searches
+        call: shopify-searches.deprecated202101getcustomersavedsearches
+        with:
+          limit: rest.limit
+          since_id: rest.since_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/customer-saved-searches/count-json
+      name: admin-api-2021-01-customer-saved-searches-count-json
+      description: REST surface for admin-api-2021-01-customer_saved_searches-count.json.
+      operations:
+      - method: GET
+        name: deprecated202101getcustomersavedsearchescount
+        description: Shopify Retrieves A Count Of All Customer Saved Searches
+        call: shopify-searches.deprecated202101getcustomersavedsearchescount
+        with:
+          since_id: rest.since_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/customers/search-json
+      name: admin-api-2021-01-customers-search-json
+      description: REST surface for admin-api-2021-01-customers-search.json.
+      operations:
+      - method: GET
+        name: deprecated202101getcustomerssearch
+        description: Shopify Searches For Customers That Match A Supplied Query
+        call: shopify-searches.deprecated202101getcustomerssearch
+        with:
+          order: rest.order
+          query: rest.query
+          limit: rest.limit
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/gift-cards/search-json
+      name: admin-api-2021-01-gift-cards-search-json
+      description: REST surface for admin-api-2021-01-gift_cards-search.json.
+      operations:
+      - method: GET
+        name: deprecated202101getgiftcardssearch
+        description: Shopify Searches For Gift Cards That Match A Supplied Query
+        call: shopify-searches.deprecated202101getgiftcardssearch
+        with:
+          order: rest.order
+          query: rest.query
+          limit: rest.limit
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/customer-saved-searches-json
+      name: admin-api-unstable-customer-saved-searches-json
+      description: REST surface for admin-api-unstable-customer_saved_searches.json.
+      operations:
+      - method: GET
+        name: deprecatedunstablegetcustomersavedsearches
+        description: Shopify Retrieves A List Of Customer Saved Searches
+        call: shopify-searches.deprecatedunstablegetcustomersavedsearches
+        with:
+          limit: rest.limit
+          since_id: rest.since_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/customer-saved-searches/count-json
+      name: admin-api-unstable-customer-saved-searches-count-json
+      description: REST surface for admin-api-unstable-customer_saved_searches-count.json.
+      operations:
+      - method: GET
+        name: deprecatedunstablegetcustomersavedsearchescount
+        description: Shopify Retrieves A Count Of All Customer Saved Searches
+        call: shopify-searches.deprecatedunstablegetcustomersavedsearchescount
+        with:
+          since_id: rest.since_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/customers/search-json
+      name: admin-api-unstable-customers-search-json
+      description: REST surface for admin-api-unstable-customers-search.json.
+      operations:
+      - method: GET
+        name: deprecatedunstablegetcustomerssearch
+        description: Shopify Searches For Customers That Match A Supplied Query
+        call: shopify-searches.deprecatedunstablegetcustomerssearch
+        with:
+          order: rest.order
+          query: rest.query
+          limit: rest.limit
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/gift-cards/search-json
+      name: admin-api-unstable-gift-cards-search-json
+      description: REST surface for admin-api-unstable-gift_cards-search.json.
+      operations:
+      - method: GET
+        name: deprecatedunstablegetgiftcardssearch
+        description: Shopify Searches For Gift Cards That Match A Supplied Query
+        call: shopify-searches.deprecatedunstablegetgiftcardssearch
+        with:
+          order: rest.order
+          query: rest.query
+          limit: rest.limit
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: shopify-searches-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Shopify  API — Searches. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: shopify-retrieves-list-customer-saved
+      description: Shopify Retrieves A List Of Customer Saved Searches
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-searches.deprecated202001getcustomersavedsearches
+      with:
+        limit: tools.limit
+        since_id: tools.since_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-count-all-customer
+      description: Shopify Retrieves A Count Of All Customer Saved Searches
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-searches.deprecated202001getcustomersavedsearchescount
+      with:
+        since_id: tools.since_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-searches-customers-that-match
+      description: Shopify Searches For Customers That Match A Supplied Query
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-searches.deprecated202001getcustomerssearch
+      with:
+        order: tools.order
+        query: tools.query
+        limit: tools.limit
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-searches-gift-cards-that
+      description: Shopify Searches For Gift Cards That Match A Supplied Query
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-searches.deprecated202001getgiftcardssearch
+      with:
+        order: tools.order
+        query: tools.query
+        limit: tools.limit
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-customer-saved-2
+      description: Shopify Retrieves A List Of Customer Saved Searches
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-searches.deprecated202004getcustomersavedsearches
+      with:
+        limit: tools.limit
+        since_id: tools.since_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-count-all-customer-2
+      description: Shopify Retrieves A Count Of All Customer Saved Searches
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-searches.deprecated202004getcustomersavedsearchescount
+      with:
+        since_id: tools.since_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-searches-customers-that-match-2
+      description: Shopify Searches For Customers That Match A Supplied Query
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-searches.deprecated202004getcustomerssearch
+      with:
+        order: tools.order
+        query: tools.query
+        limit: tools.limit
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-searches-gift-cards-that-2
+      description: Shopify Searches For Gift Cards That Match A Supplied Query
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-searches.deprecated202004getgiftcardssearch
+      with:
+        order: tools.order
+        query: tools.query
+        limit: tools.limit
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-customer-saved-3
+      description: Shopify Retrieves A List Of Customer Saved Searches
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-searches.deprecated202007getcustomersavedsearches
+      with:
+        limit: tools.limit
+        since_id: tools.since_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-count-all-customer-3
+      description: Shopify Retrieves A Count Of All Customer Saved Searches
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-searches.deprecated202007getcustomersavedsearchescount
+      with:
+        since_id: tools.since_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-searches-customers-that-match-3
+      description: Shopify Searches For Customers That Match A Supplied Query
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-searches.deprecated202007getcustomerssearch
+      with:
+        order: tools.order
+        query: tools.query
+        limit: tools.limit
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-searches-gift-cards-that-3
+      description: Shopify Searches For Gift Cards That Match A Supplied Query
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-searches.deprecated202007getgiftcardssearch
+      with:
+        order: tools.order
+        query: tools.query
+        limit: tools.limit
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-customer-saved-4
+      description: Shopify Retrieves A List Of Customer Saved Searches
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-searches.getcustomersavedsearches
+      with:
+        limit: tools.limit
+        since_id: tools.since_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-count-all-customer-4
+      description: Shopify Retrieves A Count Of All Customer Saved Searches
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-searches.getcustomersavedsearchescount
+      with:
+        since_id: tools.since_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-searches-customers-that-match-4
+      description: Shopify Searches For Customers That Match A Supplied Query
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-searches.getcustomerssearch
+      with:
+        order: tools.order
+        query: tools.query
+        limit: tools.limit
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-searches-gift-cards-that-4
+      description: Shopify Searches For Gift Cards That Match A Supplied Query
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-searches.getgiftcardssearch
+      with:
+        order: tools.order
+        query: tools.query
+        limit: tools.limit
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-customer-saved-5
+      description: Shopify Retrieves A List Of Customer Saved Searches
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-searches.deprecated202101getcustomersavedsearches
+      with:
+        limit: tools.limit
+        since_id: tools.since_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-count-all-customer-5
+      description: Shopify Retrieves A Count Of All Customer Saved Searches
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-searches.deprecated202101getcustomersavedsearchescount
+      with:
+        since_id: tools.since_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-searches-customers-that-match-5
+      description: Shopify Searches For Customers That Match A Supplied Query
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-searches.deprecated202101getcustomerssearch
+      with:
+        order: tools.order
+        query: tools.query
+        limit: tools.limit
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-searches-gift-cards-that-5
+      description: Shopify Searches For Gift Cards That Match A Supplied Query
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-searches.deprecated202101getgiftcardssearch
+      with:
+        order: tools.order
+        query: tools.query
+        limit: tools.limit
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-customer-saved-6
+      description: Shopify Retrieves A List Of Customer Saved Searches
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-searches.deprecatedunstablegetcustomersavedsearches
+      with:
+        limit: tools.limit
+        since_id: tools.since_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-count-all-customer-6
+      description: Shopify Retrieves A Count Of All Customer Saved Searches
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-searches.deprecatedunstablegetcustomersavedsearchescount
+      with:
+        since_id: tools.since_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-searches-customers-that-match-6
+      description: Shopify Searches For Customers That Match A Supplied Query
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-searches.deprecatedunstablegetcustomerssearch
+      with:
+        order: tools.order
+        query: tools.query
+        limit: tools.limit
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-searches-gift-cards-that-6
+      description: Shopify Searches For Gift Cards That Match A Supplied Query
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-searches.deprecatedunstablegetgiftcardssearch
+      with:
+        order: tools.order
+        query: tools.query
+        limit: tools.limit
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.

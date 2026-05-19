@@ -1,0 +1,4673 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Shopify  API — Customers
+  description: 'Shopify  API — Customers. 96 operations. Lead operation: Shopify Retrieves A List Of Customer Saved Searches.
+    Self-contained Naftiko capability covering one Shopify business surface.'
+  tags:
+  - Shopify
+  - Customers
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SHOPIFY_API_KEY: SHOPIFY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: shopify-customers
+    baseUri: ''
+    description: Shopify  API — Customers business capability. Self-contained, no shared references.
+    resources:
+    - name: admin-api-2020-01-customer_saved_searches.json
+      path: /admin/api/2020-01/customer_saved_searches.json
+      operations:
+      - name: deprecated202001getcustomersavedsearches
+        method: GET
+        description: Shopify Retrieves A List Of Customer Saved Searches
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: string
+          description: The maximum number of results to show.
+        - name: since_id
+          in: query
+          type: string
+          description: Restrict results to after the specified ID.
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+      - name: deprecated202001createcustomersavedsearches
+        method: POST
+        description: Shopify Creates A Customer Saved Search
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-01-customer_saved_searches-count.json
+      path: /admin/api/2020-01/customer_saved_searches/count.json
+      operations:
+      - name: deprecated202001getcustomersavedsearchescount
+        method: GET
+        description: Shopify Retrieves A Count Of All Customer Saved Searches
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: since_id
+          in: query
+          type: string
+          description: Restrict results to after the specified ID
+    - name: admin-api-2020-01-customer_saved_searches-customer_saved_search_id}.json
+      path: /admin/api/2020-01/customer_saved_searches/{customer_saved_search_id}.json
+      operations:
+      - name: deprecated202001getcustomersavedsearchesparamcustomersavedsearchid
+        method: GET
+        description: Shopify Retrieves A Single Customer Saved Search
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_saved_search_id
+          in: path
+          type: string
+          description: customer_saved_search_id
+          required: true
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+      - name: deprecated202001updatecustomersavedsearchesparamcustomersavedsearchid
+        method: PUT
+        description: Shopify Updates A Customer Saved Search
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_saved_search_id
+          in: path
+          type: string
+          description: customer_saved_search_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deprecated202001deletecustomersavedsearchesparamcustomersavedsearchid
+        method: DELETE
+        description: Shopify Deletes A Customer Saved Search
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_saved_search_id
+          in: path
+          type: string
+          description: customer_saved_search_id
+          required: true
+    - name: admin-api-2020-01-customer_saved_searches-customer_saved_search_id-customers.jso
+      path: /admin/api/2020-01/customer_saved_searches/{customer_saved_search_id}/customers.json
+      operations:
+      - name: deprecated202001getcustomersavedsearchesparamcustomersavedsearchidcustomers
+        method: GET
+        description: Shopify Retrieves All Customers Returned By A Customer Saved Search
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_saved_search_id
+          in: path
+          type: string
+          description: customer_saved_search_id
+          required: true
+        - name: order
+          in: query
+          type: string
+          description: Set the field and direction by which to order results.
+        - name: limit
+          in: query
+          type: string
+          description: The maximum number of results to show.
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+    - name: admin-api-2020-01-customers.json
+      path: /admin/api/2020-01/customers.json
+      operations:
+      - name: deprecated202001getcustomers
+        method: GET
+        description: Shopify Retrieves A List Of Customers
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: ids
+          in: query
+          type: string
+          description: Restrict results to customers specified by a comma-separated list of IDs.
+        - name: since_id
+          in: query
+          type: string
+          description: Restrict results to those after the specified ID.
+        - name: created_at_min
+          in: query
+          type: string
+          description: 'Show customers created after a specified date.(format: 2014-04-25T16:15:47-04:00)'
+        - name: created_at_max
+          in: query
+          type: string
+          description: 'Show customers created before a specified date.(format: 2014-04-25T16:15:47-04:00)'
+        - name: updated_at_min
+          in: query
+          type: string
+          description: 'Show customers last updated after a specified date.(format: 2014-04-25T16:15:47-04:00)'
+        - name: updated_at_max
+          in: query
+          type: string
+          description: 'Show customers last updated before a specified date.(format: 2014-04-25T16:15:47-04:00)'
+        - name: limit
+          in: query
+          type: string
+          description: The maximum number of results to show.
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+    - name: admin-api-2020-01-customers-count.json
+      path: /admin/api/2020-01/customers/count.json
+      operations:
+      - name: deprecated202001getcustomerscount
+        method: GET
+        description: Shopify Retrieves A Count Of All Customers
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: admin-api-2020-01-customers-search.json
+      path: /admin/api/2020-01/customers/search.json
+      operations:
+      - name: deprecated202001getcustomerssearch
+        method: GET
+        description: Shopify Searches For Customers That Match A Supplied Query
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: order
+          in: query
+          type: string
+          description: Set the field and direction by which to order results.
+        - name: query
+          in: query
+          type: string
+          description: Text to search for in the shop's customer data.
+        - name: limit
+          in: query
+          type: string
+          description: The maximum number of results to show.
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+    - name: admin-api-2020-01-customers-customer_id-addresses.json
+      path: /admin/api/2020-01/customers/{customer_id}/addresses.json
+      operations:
+      - name: deprecated202001getcustomersparamcustomeridaddresses
+        method: GET
+        description: Shopify Retrieves A List Of Addresses For A Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+      - name: deprecated202001createcustomersparamcustomeridaddresses
+        method: POST
+        description: Shopify Creates A New Address For A Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-01-customers-customer_id-addresses-set.json
+      path: /admin/api/2020-01/customers/{customer_id}/addresses/set.json
+      operations:
+      - name: deprecated202001updatecustomersparamcustomeridaddressesset
+        method: PUT
+        description: Shopify Performs Bulk Operations For Multiple Customer Addresses
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: address_ids[]
+          in: query
+          type: integer
+          description: address_ids[]
+        - name: operation
+          in: query
+          type: string
+          description: operation
+    - name: admin-api-2020-01-customers-customer_id-addresses-address_id}.json
+      path: /admin/api/2020-01/customers/{customer_id}/addresses/{address_id}.json
+      operations:
+      - name: deprecated202001getcustomersparamcustomeridaddressesparamaddressid
+        method: GET
+        description: Shopify Retrieves Details A Single Customer Address
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: address_id
+          in: path
+          type: string
+          description: address_id
+          required: true
+      - name: deprecated202001updatecustomersparamcustomeridaddressesparamaddressid
+        method: PUT
+        description: Shopify Updates An Existing Customer Address
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: address_id
+          in: path
+          type: string
+          description: address_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-01-customers-customer_id-addresses-address_id-default.json
+      path: /admin/api/2020-01/customers/{customer_id}/addresses/{address_id}/default.json
+      operations:
+      - name: deprecated202001updatecustomersparamcustomeridaddressesparamaddressiddefault
+        method: PUT
+        description: Shopify Sets The Default Address For A Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: address_id
+          in: path
+          type: string
+          description: address_id
+          required: true
+    - name: admin-api-2020-04-customer_saved_searches.json
+      path: /admin/api/2020-04/customer_saved_searches.json
+      operations:
+      - name: deprecated202004getcustomersavedsearches
+        method: GET
+        description: Shopify Retrieves A List Of Customer Saved Searches
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: string
+          description: The maximum number of results to show.
+        - name: since_id
+          in: query
+          type: string
+          description: Restrict results to after the specified ID.
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+      - name: deprecated202004createcustomersavedsearches
+        method: POST
+        description: Shopify Creates A Customer Saved Search
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-04-customer_saved_searches-count.json
+      path: /admin/api/2020-04/customer_saved_searches/count.json
+      operations:
+      - name: deprecated202004getcustomersavedsearchescount
+        method: GET
+        description: Shopify Retrieves A Count Of All Customer Saved Searches
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: since_id
+          in: query
+          type: string
+          description: Restrict results to after the specified ID
+    - name: admin-api-2020-04-customer_saved_searches-customer_saved_search_id}.json
+      path: /admin/api/2020-04/customer_saved_searches/{customer_saved_search_id}.json
+      operations:
+      - name: deprecated202004getcustomersavedsearchesparamcustomersavedsearchid
+        method: GET
+        description: Shopify Retrieves A Single Customer Saved Search
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_saved_search_id
+          in: path
+          type: string
+          description: customer_saved_search_id
+          required: true
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+      - name: deprecated202004updatecustomersavedsearchesparamcustomersavedsearchid
+        method: PUT
+        description: Shopify Updates A Customer Saved Search
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_saved_search_id
+          in: path
+          type: string
+          description: customer_saved_search_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deprecated202004deletecustomersavedsearchesparamcustomersavedsearchid
+        method: DELETE
+        description: Shopify Deletes A Customer Saved Search
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_saved_search_id
+          in: path
+          type: string
+          description: customer_saved_search_id
+          required: true
+    - name: admin-api-2020-04-customer_saved_searches-customer_saved_search_id-customers.jso
+      path: /admin/api/2020-04/customer_saved_searches/{customer_saved_search_id}/customers.json
+      operations:
+      - name: deprecated202004getcustomersavedsearchesparamcustomersavedsearchidcustomers
+        method: GET
+        description: Shopify Retrieves All Customers Returned By A Customer Saved Search
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_saved_search_id
+          in: path
+          type: string
+          description: customer_saved_search_id
+          required: true
+        - name: order
+          in: query
+          type: string
+          description: Set the field and direction by which to order results.
+        - name: limit
+          in: query
+          type: string
+          description: The maximum number of results to show.
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+    - name: admin-api-2020-04-customers.json
+      path: /admin/api/2020-04/customers.json
+      operations:
+      - name: deprecated202004getcustomers
+        method: GET
+        description: Shopify Retrieves A List Of Customers
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: ids
+          in: query
+          type: string
+          description: Restrict results to customers specified by a comma-separated list of IDs.
+        - name: since_id
+          in: query
+          type: string
+          description: Restrict results to those after the specified ID.
+        - name: created_at_min
+          in: query
+          type: string
+          description: 'Show customers created after a specified date.(format: 2014-04-25T16:15:47-04:00)'
+        - name: created_at_max
+          in: query
+          type: string
+          description: 'Show customers created before a specified date.(format: 2014-04-25T16:15:47-04:00)'
+        - name: updated_at_min
+          in: query
+          type: string
+          description: 'Show customers last updated after a specified date.(format: 2014-04-25T16:15:47-04:00)'
+        - name: updated_at_max
+          in: query
+          type: string
+          description: 'Show customers last updated before a specified date.(format: 2014-04-25T16:15:47-04:00)'
+        - name: limit
+          in: query
+          type: string
+          description: The maximum number of results to show.
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+    - name: admin-api-2020-04-customers-count.json
+      path: /admin/api/2020-04/customers/count.json
+      operations:
+      - name: deprecated202004getcustomerscount
+        method: GET
+        description: Shopify Retrieves A Count Of All Customers
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: admin-api-2020-04-customers-search.json
+      path: /admin/api/2020-04/customers/search.json
+      operations:
+      - name: deprecated202004getcustomerssearch
+        method: GET
+        description: Shopify Searches For Customers That Match A Supplied Query
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: order
+          in: query
+          type: string
+          description: Set the field and direction by which to order results.
+        - name: query
+          in: query
+          type: string
+          description: Text to search for in the shop's customer data.
+        - name: limit
+          in: query
+          type: string
+          description: The maximum number of results to show.
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+    - name: admin-api-2020-04-customers-customer_id-addresses.json
+      path: /admin/api/2020-04/customers/{customer_id}/addresses.json
+      operations:
+      - name: deprecated202004getcustomersparamcustomeridaddresses
+        method: GET
+        description: Shopify Retrieves A List Of Addresses For A Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+      - name: deprecated202004createcustomersparamcustomeridaddresses
+        method: POST
+        description: Shopify Creates A New Address For A Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-04-customers-customer_id-addresses-set.json
+      path: /admin/api/2020-04/customers/{customer_id}/addresses/set.json
+      operations:
+      - name: deprecated202004updatecustomersparamcustomeridaddressesset
+        method: PUT
+        description: Shopify Performs Bulk Operations For Multiple Customer Addresses
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: address_ids[]
+          in: query
+          type: integer
+          description: address_ids[]
+        - name: operation
+          in: query
+          type: string
+          description: operation
+    - name: admin-api-2020-04-customers-customer_id-addresses-address_id}.json
+      path: /admin/api/2020-04/customers/{customer_id}/addresses/{address_id}.json
+      operations:
+      - name: deprecated202004getcustomersparamcustomeridaddressesparamaddressid
+        method: GET
+        description: Shopify Retrieves Details A Single Customer Address
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: address_id
+          in: path
+          type: string
+          description: address_id
+          required: true
+      - name: deprecated202004updatecustomersparamcustomeridaddressesparamaddressid
+        method: PUT
+        description: Shopify Updates An Existing Customer Address
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: address_id
+          in: path
+          type: string
+          description: address_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-04-customers-customer_id-addresses-address_id-default.json
+      path: /admin/api/2020-04/customers/{customer_id}/addresses/{address_id}/default.json
+      operations:
+      - name: deprecated202004updatecustomersparamcustomeridaddressesparamaddressiddefault
+        method: PUT
+        description: Shopify Sets The Default Address For A Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: address_id
+          in: path
+          type: string
+          description: address_id
+          required: true
+    - name: admin-api-2020-07-customer_saved_searches.json
+      path: /admin/api/2020-07/customer_saved_searches.json
+      operations:
+      - name: deprecated202007getcustomersavedsearches
+        method: GET
+        description: Shopify Retrieves A List Of Customer Saved Searches
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: string
+          description: The maximum number of results to show.
+        - name: since_id
+          in: query
+          type: string
+          description: Restrict results to after the specified ID.
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+      - name: deprecated202007createcustomersavedsearches
+        method: POST
+        description: Shopify Creates A Customer Saved Search
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-07-customer_saved_searches-count.json
+      path: /admin/api/2020-07/customer_saved_searches/count.json
+      operations:
+      - name: deprecated202007getcustomersavedsearchescount
+        method: GET
+        description: Shopify Retrieves A Count Of All Customer Saved Searches
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: since_id
+          in: query
+          type: string
+          description: Restrict results to after the specified ID
+    - name: admin-api-2020-07-customer_saved_searches-customer_saved_search_id}.json
+      path: /admin/api/2020-07/customer_saved_searches/{customer_saved_search_id}.json
+      operations:
+      - name: deprecated202007getcustomersavedsearchesparamcustomersavedsearchid
+        method: GET
+        description: Shopify Retrieves A Single Customer Saved Search
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_saved_search_id
+          in: path
+          type: string
+          description: customer_saved_search_id
+          required: true
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+      - name: deprecated202007updatecustomersavedsearchesparamcustomersavedsearchid
+        method: PUT
+        description: Shopify Updates A Customer Saved Search
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_saved_search_id
+          in: path
+          type: string
+          description: customer_saved_search_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deprecated202007deletecustomersavedsearchesparamcustomersavedsearchid
+        method: DELETE
+        description: Shopify Deletes A Customer Saved Search
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_saved_search_id
+          in: path
+          type: string
+          description: customer_saved_search_id
+          required: true
+    - name: admin-api-2020-07-customer_saved_searches-customer_saved_search_id-customers.jso
+      path: /admin/api/2020-07/customer_saved_searches/{customer_saved_search_id}/customers.json
+      operations:
+      - name: deprecated202007getcustomersavedsearchesparamcustomersavedsearchidcustomers
+        method: GET
+        description: Shopify Retrieves All Customers Returned By A Customer Saved Search
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_saved_search_id
+          in: path
+          type: string
+          description: customer_saved_search_id
+          required: true
+        - name: order
+          in: query
+          type: string
+          description: Set the field and direction by which to order results.
+        - name: limit
+          in: query
+          type: string
+          description: The maximum number of results to show.
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+    - name: admin-api-2020-07-customers.json
+      path: /admin/api/2020-07/customers.json
+      operations:
+      - name: deprecated202007getcustomers
+        method: GET
+        description: Shopify Retrieves A List Of Customers
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: ids
+          in: query
+          type: string
+          description: Restrict results to customers specified by a comma-separated list of IDs.
+        - name: since_id
+          in: query
+          type: string
+          description: Restrict results to those after the specified ID.
+        - name: created_at_min
+          in: query
+          type: string
+          description: 'Show customers created after a specified date.(format: 2014-04-25T16:15:47-04:00)'
+        - name: created_at_max
+          in: query
+          type: string
+          description: 'Show customers created before a specified date.(format: 2014-04-25T16:15:47-04:00)'
+        - name: updated_at_min
+          in: query
+          type: string
+          description: 'Show customers last updated after a specified date.(format: 2014-04-25T16:15:47-04:00)'
+        - name: updated_at_max
+          in: query
+          type: string
+          description: 'Show customers last updated before a specified date.(format: 2014-04-25T16:15:47-04:00)'
+        - name: limit
+          in: query
+          type: string
+          description: The maximum number of results to show.
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+    - name: admin-api-2020-07-customers-count.json
+      path: /admin/api/2020-07/customers/count.json
+      operations:
+      - name: deprecated202007getcustomerscount
+        method: GET
+        description: Shopify Retrieves A Count Of All Customers
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: admin-api-2020-07-customers-search.json
+      path: /admin/api/2020-07/customers/search.json
+      operations:
+      - name: deprecated202007getcustomerssearch
+        method: GET
+        description: Shopify Searches For Customers That Match A Supplied Query
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: order
+          in: query
+          type: string
+          description: Set the field and direction by which to order results.
+        - name: query
+          in: query
+          type: string
+          description: Text to search for in the shop's customer data.
+        - name: limit
+          in: query
+          type: string
+          description: The maximum number of results to show.
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+    - name: admin-api-2020-07-customers-customer_id-addresses.json
+      path: /admin/api/2020-07/customers/{customer_id}/addresses.json
+      operations:
+      - name: deprecated202007getcustomersparamcustomeridaddresses
+        method: GET
+        description: Shopify Retrieves A List Of Addresses For A Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+      - name: deprecated202007createcustomersparamcustomeridaddresses
+        method: POST
+        description: Shopify Creates A New Address For A Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-07-customers-customer_id-addresses-set.json
+      path: /admin/api/2020-07/customers/{customer_id}/addresses/set.json
+      operations:
+      - name: deprecated202007updatecustomersparamcustomeridaddressesset
+        method: PUT
+        description: Shopify Performs Bulk Operations For Multiple Customer Addresses
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: address_ids[]
+          in: query
+          type: integer
+          description: address_ids[]
+        - name: operation
+          in: query
+          type: string
+          description: operation
+    - name: admin-api-2020-07-customers-customer_id-addresses-address_id}.json
+      path: /admin/api/2020-07/customers/{customer_id}/addresses/{address_id}.json
+      operations:
+      - name: deprecated202007getcustomersparamcustomeridaddressesparamaddressid
+        method: GET
+        description: Shopify Retrieves Details A Single Customer Address
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: address_id
+          in: path
+          type: string
+          description: address_id
+          required: true
+      - name: deprecated202007updatecustomersparamcustomeridaddressesparamaddressid
+        method: PUT
+        description: Shopify Updates An Existing Customer Address
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: address_id
+          in: path
+          type: string
+          description: address_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-07-customers-customer_id-addresses-address_id-default.json
+      path: /admin/api/2020-07/customers/{customer_id}/addresses/{address_id}/default.json
+      operations:
+      - name: deprecated202007updatecustomersparamcustomeridaddressesparamaddressiddefault
+        method: PUT
+        description: Shopify Sets The Default Address For A Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: address_id
+          in: path
+          type: string
+          description: address_id
+          required: true
+    - name: admin-api-2020-10-customer_saved_searches.json
+      path: /admin/api/2020-10/customer_saved_searches.json
+      operations:
+      - name: getcustomersavedsearches
+        method: GET
+        description: Shopify Retrieves A List Of Customer Saved Searches
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: string
+          description: The maximum number of results to show.
+        - name: since_id
+          in: query
+          type: string
+          description: Restrict results to after the specified ID.
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+      - name: createcustomersavedsearches
+        method: POST
+        description: Shopify Creates A Customer Saved Search
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-10-customer_saved_searches-count.json
+      path: /admin/api/2020-10/customer_saved_searches/count.json
+      operations:
+      - name: getcustomersavedsearchescount
+        method: GET
+        description: Shopify Retrieves A Count Of All Customer Saved Searches
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: since_id
+          in: query
+          type: string
+          description: Restrict results to after the specified ID
+    - name: admin-api-2020-10-customer_saved_searches-customer_saved_search_id}.json
+      path: /admin/api/2020-10/customer_saved_searches/{customer_saved_search_id}.json
+      operations:
+      - name: getcustomersavedsearchesparamcustomersavedsearchid
+        method: GET
+        description: Shopify Retrieves A Single Customer Saved Search
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_saved_search_id
+          in: path
+          type: string
+          description: customer_saved_search_id
+          required: true
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+      - name: updatecustomersavedsearchesparamcustomersavedsearchid
+        method: PUT
+        description: Shopify Updates A Customer Saved Search
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_saved_search_id
+          in: path
+          type: string
+          description: customer_saved_search_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deletecustomersavedsearchesparamcustomersavedsearchid
+        method: DELETE
+        description: Shopify Deletes A Customer Saved Search
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_saved_search_id
+          in: path
+          type: string
+          description: customer_saved_search_id
+          required: true
+    - name: admin-api-2020-10-customer_saved_searches-customer_saved_search_id-customers.jso
+      path: /admin/api/2020-10/customer_saved_searches/{customer_saved_search_id}/customers.json
+      operations:
+      - name: getcustomersavedsearchesparamcustomersavedsearchidcustomers
+        method: GET
+        description: Shopify Retrieves All Customers Returned By A Customer Saved Search
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_saved_search_id
+          in: path
+          type: string
+          description: customer_saved_search_id
+          required: true
+        - name: order
+          in: query
+          type: string
+          description: Set the field and direction by which to order results.
+        - name: limit
+          in: query
+          type: string
+          description: The maximum number of results to show.
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+    - name: admin-api-2020-10-customers.json
+      path: /admin/api/2020-10/customers.json
+      operations:
+      - name: getcustomers
+        method: GET
+        description: Shopify Retrieves A List Of Customers
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: ids
+          in: query
+          type: string
+          description: Restrict results to customers specified by a comma-separated list of IDs.
+        - name: since_id
+          in: query
+          type: string
+          description: Restrict results to those after the specified ID.
+        - name: created_at_min
+          in: query
+          type: string
+          description: 'Show customers created after a specified date.(format: 2014-04-25T16:15:47-04:00)'
+        - name: created_at_max
+          in: query
+          type: string
+          description: 'Show customers created before a specified date.(format: 2014-04-25T16:15:47-04:00)'
+        - name: updated_at_min
+          in: query
+          type: string
+          description: 'Show customers last updated after a specified date.(format: 2014-04-25T16:15:47-04:00)'
+        - name: updated_at_max
+          in: query
+          type: string
+          description: 'Show customers last updated before a specified date.(format: 2014-04-25T16:15:47-04:00)'
+        - name: limit
+          in: query
+          type: string
+          description: The maximum number of results to show.
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+    - name: admin-api-2020-10-customers-count.json
+      path: /admin/api/2020-10/customers/count.json
+      operations:
+      - name: getcustomerscount
+        method: GET
+        description: Shopify Retrieves A Count Of All Customers
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: admin-api-2020-10-customers-search.json
+      path: /admin/api/2020-10/customers/search.json
+      operations:
+      - name: getcustomerssearch
+        method: GET
+        description: Shopify Searches For Customers That Match A Supplied Query
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: order
+          in: query
+          type: string
+          description: Set the field and direction by which to order results.
+        - name: query
+          in: query
+          type: string
+          description: Text to search for in the shop's customer data.
+        - name: limit
+          in: query
+          type: string
+          description: The maximum number of results to show.
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+    - name: admin-api-2020-10-customers-customer_id-addresses.json
+      path: /admin/api/2020-10/customers/{customer_id}/addresses.json
+      operations:
+      - name: getcustomersparamcustomeridaddresses
+        method: GET
+        description: Shopify Retrieves A List Of Addresses For A Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+      - name: createcustomersparamcustomeridaddresses
+        method: POST
+        description: Shopify Creates A New Address For A Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-10-customers-customer_id-addresses-set.json
+      path: /admin/api/2020-10/customers/{customer_id}/addresses/set.json
+      operations:
+      - name: updatecustomersparamcustomeridaddressesset
+        method: PUT
+        description: Shopify Performs Bulk Operations For Multiple Customer Addresses
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: address_ids[]
+          in: query
+          type: integer
+          description: address_ids[]
+        - name: operation
+          in: query
+          type: string
+          description: operation
+    - name: admin-api-2020-10-customers-customer_id-addresses-address_id}.json
+      path: /admin/api/2020-10/customers/{customer_id}/addresses/{address_id}.json
+      operations:
+      - name: getcustomersparamcustomeridaddressesparamaddressid
+        method: GET
+        description: Shopify Retrieves Details A Single Customer Address
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: address_id
+          in: path
+          type: string
+          description: address_id
+          required: true
+      - name: updatecustomersparamcustomeridaddressesparamaddressid
+        method: PUT
+        description: Shopify Updates An Existing Customer Address
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: address_id
+          in: path
+          type: string
+          description: address_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-10-customers-customer_id-addresses-address_id-default.json
+      path: /admin/api/2020-10/customers/{customer_id}/addresses/{address_id}/default.json
+      operations:
+      - name: updatecustomersparamcustomeridaddressesparamaddressiddefault
+        method: PUT
+        description: Shopify Sets The Default Address For A Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: address_id
+          in: path
+          type: string
+          description: address_id
+          required: true
+    - name: admin-api-2021-01-customer_saved_searches.json
+      path: /admin/api/2021-01/customer_saved_searches.json
+      operations:
+      - name: deprecated202101getcustomersavedsearches
+        method: GET
+        description: Shopify Retrieves A List Of Customer Saved Searches
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: string
+          description: The maximum number of results to show.
+        - name: since_id
+          in: query
+          type: string
+          description: Restrict results to after the specified ID.
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+      - name: deprecated202101createcustomersavedsearches
+        method: POST
+        description: Shopify Creates A Customer Saved Search
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2021-01-customer_saved_searches-count.json
+      path: /admin/api/2021-01/customer_saved_searches/count.json
+      operations:
+      - name: deprecated202101getcustomersavedsearchescount
+        method: GET
+        description: Shopify Retrieves A Count Of All Customer Saved Searches
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: since_id
+          in: query
+          type: string
+          description: Restrict results to after the specified ID
+    - name: admin-api-2021-01-customer_saved_searches-customer_saved_search_id}.json
+      path: /admin/api/2021-01/customer_saved_searches/{customer_saved_search_id}.json
+      operations:
+      - name: deprecated202101getcustomersavedsearchesparamcustomersavedsearchid
+        method: GET
+        description: Shopify Retrieves A Single Customer Saved Search
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_saved_search_id
+          in: path
+          type: string
+          description: customer_saved_search_id
+          required: true
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+      - name: deprecated202101updatecustomersavedsearchesparamcustomersavedsearchid
+        method: PUT
+        description: Shopify Updates A Customer Saved Search
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_saved_search_id
+          in: path
+          type: string
+          description: customer_saved_search_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deprecated202101deletecustomersavedsearchesparamcustomersavedsearchid
+        method: DELETE
+        description: Shopify Deletes A Customer Saved Search
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_saved_search_id
+          in: path
+          type: string
+          description: customer_saved_search_id
+          required: true
+    - name: admin-api-2021-01-customer_saved_searches-customer_saved_search_id-customers.jso
+      path: /admin/api/2021-01/customer_saved_searches/{customer_saved_search_id}/customers.json
+      operations:
+      - name: deprecated202101getcustomersavedsearchesparamcustomersavedsearchidcustomers
+        method: GET
+        description: Shopify Retrieves All Customers Returned By A Customer Saved Search
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_saved_search_id
+          in: path
+          type: string
+          description: customer_saved_search_id
+          required: true
+        - name: order
+          in: query
+          type: string
+          description: Set the field and direction by which to order results.
+        - name: limit
+          in: query
+          type: string
+          description: The maximum number of results to show.
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+    - name: admin-api-2021-01-customers.json
+      path: /admin/api/2021-01/customers.json
+      operations:
+      - name: deprecated202101getcustomers
+        method: GET
+        description: Shopify Retrieves A List Of Customers
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: ids
+          in: query
+          type: string
+          description: Restrict results to customers specified by a comma-separated list of IDs.
+        - name: since_id
+          in: query
+          type: string
+          description: Restrict results to those after the specified ID.
+        - name: created_at_min
+          in: query
+          type: string
+          description: 'Show customers created after a specified date.(format: 2014-04-25T16:15:47-04:00)'
+        - name: created_at_max
+          in: query
+          type: string
+          description: 'Show customers created before a specified date.(format: 2014-04-25T16:15:47-04:00)'
+        - name: updated_at_min
+          in: query
+          type: string
+          description: 'Show customers last updated after a specified date.(format: 2014-04-25T16:15:47-04:00)'
+        - name: updated_at_max
+          in: query
+          type: string
+          description: 'Show customers last updated before a specified date.(format: 2014-04-25T16:15:47-04:00)'
+        - name: limit
+          in: query
+          type: string
+          description: The maximum number of results to show.
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+    - name: admin-api-2021-01-customers-count.json
+      path: /admin/api/2021-01/customers/count.json
+      operations:
+      - name: deprecated202101getcustomerscount
+        method: GET
+        description: Shopify Retrieves A Count Of All Customers
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: admin-api-2021-01-customers-search.json
+      path: /admin/api/2021-01/customers/search.json
+      operations:
+      - name: deprecated202101getcustomerssearch
+        method: GET
+        description: Shopify Searches For Customers That Match A Supplied Query
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: order
+          in: query
+          type: string
+          description: Set the field and direction by which to order results.
+        - name: query
+          in: query
+          type: string
+          description: Text to search for in the shop's customer data.
+        - name: limit
+          in: query
+          type: string
+          description: The maximum number of results to show.
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+    - name: admin-api-2021-01-customers-customer_id-addresses.json
+      path: /admin/api/2021-01/customers/{customer_id}/addresses.json
+      operations:
+      - name: deprecated202101getcustomersparamcustomeridaddresses
+        method: GET
+        description: Shopify Retrieves A List Of Addresses For A Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+      - name: deprecated202101createcustomersparamcustomeridaddresses
+        method: POST
+        description: Shopify Creates A New Address For A Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2021-01-customers-customer_id-addresses-set.json
+      path: /admin/api/2021-01/customers/{customer_id}/addresses/set.json
+      operations:
+      - name: deprecated202101updatecustomersparamcustomeridaddressesset
+        method: PUT
+        description: Shopify Performs Bulk Operations For Multiple Customer Addresses
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: address_ids[]
+          in: query
+          type: integer
+          description: address_ids[]
+        - name: operation
+          in: query
+          type: string
+          description: operation
+    - name: admin-api-2021-01-customers-customer_id-addresses-address_id}.json
+      path: /admin/api/2021-01/customers/{customer_id}/addresses/{address_id}.json
+      operations:
+      - name: deprecated202101getcustomersparamcustomeridaddressesparamaddressid
+        method: GET
+        description: Shopify Retrieves Details A Single Customer Address
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: address_id
+          in: path
+          type: string
+          description: address_id
+          required: true
+      - name: deprecated202101updatecustomersparamcustomeridaddressesparamaddressid
+        method: PUT
+        description: Shopify Updates An Existing Customer Address
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: address_id
+          in: path
+          type: string
+          description: address_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2021-01-customers-customer_id-addresses-address_id-default.json
+      path: /admin/api/2021-01/customers/{customer_id}/addresses/{address_id}/default.json
+      operations:
+      - name: deprecated202101updatecustomersparamcustomeridaddressesparamaddressiddefault
+        method: PUT
+        description: Shopify Sets The Default Address For A Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: address_id
+          in: path
+          type: string
+          description: address_id
+          required: true
+    - name: admin-api-unstable-customer_saved_searches.json
+      path: /admin/api/unstable/customer_saved_searches.json
+      operations:
+      - name: deprecatedunstablegetcustomersavedsearches
+        method: GET
+        description: Shopify Retrieves A List Of Customer Saved Searches
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: string
+          description: The maximum number of results to show.
+        - name: since_id
+          in: query
+          type: string
+          description: Restrict results to after the specified ID.
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+      - name: deprecatedunstablecreatecustomersavedsearches
+        method: POST
+        description: Shopify Creates A Customer Saved Search
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-unstable-customer_saved_searches-count.json
+      path: /admin/api/unstable/customer_saved_searches/count.json
+      operations:
+      - name: deprecatedunstablegetcustomersavedsearchescount
+        method: GET
+        description: Shopify Retrieves A Count Of All Customer Saved Searches
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: since_id
+          in: query
+          type: string
+          description: Restrict results to after the specified ID
+    - name: admin-api-unstable-customer_saved_searches-customer_saved_search_id}.json
+      path: /admin/api/unstable/customer_saved_searches/{customer_saved_search_id}.json
+      operations:
+      - name: deprecatedunstablegetcustomersavedsearchesparamcustomersavedsearchid
+        method: GET
+        description: Shopify Retrieves A Single Customer Saved Search
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_saved_search_id
+          in: path
+          type: string
+          description: customer_saved_search_id
+          required: true
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+      - name: deprecatedunstableupdatecustomersavedsearchesparamcustomersavedsearchid
+        method: PUT
+        description: Shopify Updates A Customer Saved Search
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_saved_search_id
+          in: path
+          type: string
+          description: customer_saved_search_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deprecatedunstabledeletecustomersavedsearchesparamcustomersavedsearchid
+        method: DELETE
+        description: Shopify Deletes A Customer Saved Search
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_saved_search_id
+          in: path
+          type: string
+          description: customer_saved_search_id
+          required: true
+    - name: admin-api-unstable-customer_saved_searches-customer_saved_search_id-customers.js
+      path: /admin/api/unstable/customer_saved_searches/{customer_saved_search_id}/customers.json
+      operations:
+      - name: deprecatedunstablegetcustomersavedsearchesparamcustomersavedsearchidcustomers
+        method: GET
+        description: Shopify Retrieves All Customers Returned By A Customer Saved Search
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_saved_search_id
+          in: path
+          type: string
+          description: customer_saved_search_id
+          required: true
+        - name: order
+          in: query
+          type: string
+          description: Set the field and direction by which to order results.
+        - name: limit
+          in: query
+          type: string
+          description: The maximum number of results to show.
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+    - name: admin-api-unstable-customers.json
+      path: /admin/api/unstable/customers.json
+      operations:
+      - name: deprecatedunstablegetcustomers
+        method: GET
+        description: Shopify Retrieves A List Of Customers
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: ids
+          in: query
+          type: string
+          description: Restrict results to customers specified by a comma-separated list of IDs.
+        - name: since_id
+          in: query
+          type: string
+          description: Restrict results to those after the specified ID.
+        - name: created_at_min
+          in: query
+          type: string
+          description: 'Show customers created after a specified date.(format: 2014-04-25T16:15:47-04:00)'
+        - name: created_at_max
+          in: query
+          type: string
+          description: 'Show customers created before a specified date.(format: 2014-04-25T16:15:47-04:00)'
+        - name: updated_at_min
+          in: query
+          type: string
+          description: 'Show customers last updated after a specified date.(format: 2014-04-25T16:15:47-04:00)'
+        - name: updated_at_max
+          in: query
+          type: string
+          description: 'Show customers last updated before a specified date.(format: 2014-04-25T16:15:47-04:00)'
+        - name: limit
+          in: query
+          type: string
+          description: The maximum number of results to show.
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+    - name: admin-api-unstable-customers-count.json
+      path: /admin/api/unstable/customers/count.json
+      operations:
+      - name: deprecatedunstablegetcustomerscount
+        method: GET
+        description: Shopify Retrieves A Count Of All Customers
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: admin-api-unstable-customers-search.json
+      path: /admin/api/unstable/customers/search.json
+      operations:
+      - name: deprecatedunstablegetcustomerssearch
+        method: GET
+        description: Shopify Searches For Customers That Match A Supplied Query
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: order
+          in: query
+          type: string
+          description: Set the field and direction by which to order results.
+        - name: query
+          in: query
+          type: string
+          description: Text to search for in the shop's customer data.
+        - name: limit
+          in: query
+          type: string
+          description: The maximum number of results to show.
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+    - name: admin-api-unstable-customers-customer_id-addresses.json
+      path: /admin/api/unstable/customers/{customer_id}/addresses.json
+      operations:
+      - name: deprecatedunstablegetcustomersparamcustomeridaddresses
+        method: GET
+        description: Shopify Retrieves A List Of Addresses For A Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+      - name: deprecatedunstablecreatecustomersparamcustomeridaddresses
+        method: POST
+        description: Shopify Creates A New Address For A Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-unstable-customers-customer_id-addresses-set.json
+      path: /admin/api/unstable/customers/{customer_id}/addresses/set.json
+      operations:
+      - name: deprecatedunstableupdatecustomersparamcustomeridaddressesset
+        method: PUT
+        description: Shopify Performs Bulk Operations For Multiple Customer Addresses
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: address_ids[]
+          in: query
+          type: integer
+          description: address_ids[]
+        - name: operation
+          in: query
+          type: string
+          description: operation
+    - name: admin-api-unstable-customers-customer_id-addresses-address_id}.json
+      path: /admin/api/unstable/customers/{customer_id}/addresses/{address_id}.json
+      operations:
+      - name: deprecatedunstablegetcustomersparamcustomeridaddressesparamaddressid
+        method: GET
+        description: Shopify Retrieves Details A Single Customer Address
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: address_id
+          in: path
+          type: string
+          description: address_id
+          required: true
+      - name: deprecatedunstableupdatecustomersparamcustomeridaddressesparamaddressid
+        method: PUT
+        description: Shopify Updates An Existing Customer Address
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: address_id
+          in: path
+          type: string
+          description: address_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-unstable-customers-customer_id-addresses-address_id-default.json
+      path: /admin/api/unstable/customers/{customer_id}/addresses/{address_id}/default.json
+      operations:
+      - name: deprecatedunstableupdatecustomersparamcustomeridaddressesparamaddressiddefault
+        method: PUT
+        description: Shopify Sets The Default Address For A Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: address_id
+          in: path
+          type: string
+          description: address_id
+          required: true
+  exposes:
+  - type: rest
+    namespace: shopify-customers-rest
+    port: 8080
+    description: REST adapter for Shopify  API — Customers. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/admin/api/2020-01/customer-saved-searches-json
+      name: admin-api-2020-01-customer-saved-searches-json
+      description: REST surface for admin-api-2020-01-customer_saved_searches.json.
+      operations:
+      - method: GET
+        name: deprecated202001getcustomersavedsearches
+        description: Shopify Retrieves A List Of Customer Saved Searches
+        call: shopify-customers.deprecated202001getcustomersavedsearches
+        with:
+          limit: rest.limit
+          since_id: rest.since_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: deprecated202001createcustomersavedsearches
+        description: Shopify Creates A Customer Saved Search
+        call: shopify-customers.deprecated202001createcustomersavedsearches
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-01/customer-saved-searches/count-json
+      name: admin-api-2020-01-customer-saved-searches-count-json
+      description: REST surface for admin-api-2020-01-customer_saved_searches-count.json.
+      operations:
+      - method: GET
+        name: deprecated202001getcustomersavedsearchescount
+        description: Shopify Retrieves A Count Of All Customer Saved Searches
+        call: shopify-customers.deprecated202001getcustomersavedsearchescount
+        with:
+          since_id: rest.since_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-01/customer-saved-searches/customer-saved-search-id-json
+      name: admin-api-2020-01-customer-saved-searches-customer-saved-search-id-json
+      description: REST surface for admin-api-2020-01-customer_saved_searches-customer_saved_search_id}.json.
+      operations:
+      - method: GET
+        name: deprecated202001getcustomersavedsearchesparamcustomersavedsearchid
+        description: Shopify Retrieves A Single Customer Saved Search
+        call: shopify-customers.deprecated202001getcustomersavedsearchesparamcustomersavedsearchid
+        with:
+          customer_saved_search_id: rest.customer_saved_search_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: deprecated202001updatecustomersavedsearchesparamcustomersavedsearchid
+        description: Shopify Updates A Customer Saved Search
+        call: shopify-customers.deprecated202001updatecustomersavedsearchesparamcustomersavedsearchid
+        with:
+          customer_saved_search_id: rest.customer_saved_search_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deprecated202001deletecustomersavedsearchesparamcustomersavedsearchid
+        description: Shopify Deletes A Customer Saved Search
+        call: shopify-customers.deprecated202001deletecustomersavedsearchesparamcustomersavedsearchid
+        with:
+          customer_saved_search_id: rest.customer_saved_search_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-01/customer-saved-searches/{customer-saved-search-id}/customers-json
+      name: admin-api-2020-01-customer-saved-searches-customer-saved-search-id-customers-jso
+      description: REST surface for admin-api-2020-01-customer_saved_searches-customer_saved_search_id-customers.jso.
+      operations:
+      - method: GET
+        name: deprecated202001getcustomersavedsearchesparamcustomersavedsearchidcustomers
+        description: Shopify Retrieves All Customers Returned By A Customer Saved Search
+        call: shopify-customers.deprecated202001getcustomersavedsearchesparamcustomersavedsearchidcustomers
+        with:
+          customer_saved_search_id: rest.customer_saved_search_id
+          order: rest.order
+          limit: rest.limit
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-01/customers-json
+      name: admin-api-2020-01-customers-json
+      description: REST surface for admin-api-2020-01-customers.json.
+      operations:
+      - method: GET
+        name: deprecated202001getcustomers
+        description: Shopify Retrieves A List Of Customers
+        call: shopify-customers.deprecated202001getcustomers
+        with:
+          ids: rest.ids
+          since_id: rest.since_id
+          created_at_min: rest.created_at_min
+          created_at_max: rest.created_at_max
+          updated_at_min: rest.updated_at_min
+          updated_at_max: rest.updated_at_max
+          limit: rest.limit
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-01/customers/count-json
+      name: admin-api-2020-01-customers-count-json
+      description: REST surface for admin-api-2020-01-customers-count.json.
+      operations:
+      - method: GET
+        name: deprecated202001getcustomerscount
+        description: Shopify Retrieves A Count Of All Customers
+        call: shopify-customers.deprecated202001getcustomerscount
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-01/customers/search-json
+      name: admin-api-2020-01-customers-search-json
+      description: REST surface for admin-api-2020-01-customers-search.json.
+      operations:
+      - method: GET
+        name: deprecated202001getcustomerssearch
+        description: Shopify Searches For Customers That Match A Supplied Query
+        call: shopify-customers.deprecated202001getcustomerssearch
+        with:
+          order: rest.order
+          query: rest.query
+          limit: rest.limit
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-01/customers/{customer-id}/addresses-json
+      name: admin-api-2020-01-customers-customer-id-addresses-json
+      description: REST surface for admin-api-2020-01-customers-customer_id-addresses.json.
+      operations:
+      - method: GET
+        name: deprecated202001getcustomersparamcustomeridaddresses
+        description: Shopify Retrieves A List Of Addresses For A Customer
+        call: shopify-customers.deprecated202001getcustomersparamcustomeridaddresses
+        with:
+          customer_id: rest.customer_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: deprecated202001createcustomersparamcustomeridaddresses
+        description: Shopify Creates A New Address For A Customer
+        call: shopify-customers.deprecated202001createcustomersparamcustomeridaddresses
+        with:
+          customer_id: rest.customer_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-01/customers/{customer-id}/addresses/set-json
+      name: admin-api-2020-01-customers-customer-id-addresses-set-json
+      description: REST surface for admin-api-2020-01-customers-customer_id-addresses-set.json.
+      operations:
+      - method: PUT
+        name: deprecated202001updatecustomersparamcustomeridaddressesset
+        description: Shopify Performs Bulk Operations For Multiple Customer Addresses
+        call: shopify-customers.deprecated202001updatecustomersparamcustomeridaddressesset
+        with:
+          customer_id: rest.customer_id
+          address_ids[]: rest.address_ids[]
+          operation: rest.operation
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-01/customers/{customer-id}/addresses/address-id-json
+      name: admin-api-2020-01-customers-customer-id-addresses-address-id-json
+      description: REST surface for admin-api-2020-01-customers-customer_id-addresses-address_id}.json.
+      operations:
+      - method: GET
+        name: deprecated202001getcustomersparamcustomeridaddressesparamaddressid
+        description: Shopify Retrieves Details A Single Customer Address
+        call: shopify-customers.deprecated202001getcustomersparamcustomeridaddressesparamaddressid
+        with:
+          customer_id: rest.customer_id
+          address_id: rest.address_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: deprecated202001updatecustomersparamcustomeridaddressesparamaddressid
+        description: Shopify Updates An Existing Customer Address
+        call: shopify-customers.deprecated202001updatecustomersparamcustomeridaddressesparamaddressid
+        with:
+          customer_id: rest.customer_id
+          address_id: rest.address_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-01/customers/{customer-id}/addresses/{address-id}/default-json
+      name: admin-api-2020-01-customers-customer-id-addresses-address-id-default-json
+      description: REST surface for admin-api-2020-01-customers-customer_id-addresses-address_id-default.json.
+      operations:
+      - method: PUT
+        name: deprecated202001updatecustomersparamcustomeridaddressesparamaddressiddefault
+        description: Shopify Sets The Default Address For A Customer
+        call: shopify-customers.deprecated202001updatecustomersparamcustomeridaddressesparamaddressiddefault
+        with:
+          customer_id: rest.customer_id
+          address_id: rest.address_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/customer-saved-searches-json
+      name: admin-api-2020-04-customer-saved-searches-json
+      description: REST surface for admin-api-2020-04-customer_saved_searches.json.
+      operations:
+      - method: GET
+        name: deprecated202004getcustomersavedsearches
+        description: Shopify Retrieves A List Of Customer Saved Searches
+        call: shopify-customers.deprecated202004getcustomersavedsearches
+        with:
+          limit: rest.limit
+          since_id: rest.since_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: deprecated202004createcustomersavedsearches
+        description: Shopify Creates A Customer Saved Search
+        call: shopify-customers.deprecated202004createcustomersavedsearches
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/customer-saved-searches/count-json
+      name: admin-api-2020-04-customer-saved-searches-count-json
+      description: REST surface for admin-api-2020-04-customer_saved_searches-count.json.
+      operations:
+      - method: GET
+        name: deprecated202004getcustomersavedsearchescount
+        description: Shopify Retrieves A Count Of All Customer Saved Searches
+        call: shopify-customers.deprecated202004getcustomersavedsearchescount
+        with:
+          since_id: rest.since_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/customer-saved-searches/customer-saved-search-id-json
+      name: admin-api-2020-04-customer-saved-searches-customer-saved-search-id-json
+      description: REST surface for admin-api-2020-04-customer_saved_searches-customer_saved_search_id}.json.
+      operations:
+      - method: GET
+        name: deprecated202004getcustomersavedsearchesparamcustomersavedsearchid
+        description: Shopify Retrieves A Single Customer Saved Search
+        call: shopify-customers.deprecated202004getcustomersavedsearchesparamcustomersavedsearchid
+        with:
+          customer_saved_search_id: rest.customer_saved_search_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: deprecated202004updatecustomersavedsearchesparamcustomersavedsearchid
+        description: Shopify Updates A Customer Saved Search
+        call: shopify-customers.deprecated202004updatecustomersavedsearchesparamcustomersavedsearchid
+        with:
+          customer_saved_search_id: rest.customer_saved_search_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deprecated202004deletecustomersavedsearchesparamcustomersavedsearchid
+        description: Shopify Deletes A Customer Saved Search
+        call: shopify-customers.deprecated202004deletecustomersavedsearchesparamcustomersavedsearchid
+        with:
+          customer_saved_search_id: rest.customer_saved_search_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/customer-saved-searches/{customer-saved-search-id}/customers-json
+      name: admin-api-2020-04-customer-saved-searches-customer-saved-search-id-customers-jso
+      description: REST surface for admin-api-2020-04-customer_saved_searches-customer_saved_search_id-customers.jso.
+      operations:
+      - method: GET
+        name: deprecated202004getcustomersavedsearchesparamcustomersavedsearchidcustomers
+        description: Shopify Retrieves All Customers Returned By A Customer Saved Search
+        call: shopify-customers.deprecated202004getcustomersavedsearchesparamcustomersavedsearchidcustomers
+        with:
+          customer_saved_search_id: rest.customer_saved_search_id
+          order: rest.order
+          limit: rest.limit
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/customers-json
+      name: admin-api-2020-04-customers-json
+      description: REST surface for admin-api-2020-04-customers.json.
+      operations:
+      - method: GET
+        name: deprecated202004getcustomers
+        description: Shopify Retrieves A List Of Customers
+        call: shopify-customers.deprecated202004getcustomers
+        with:
+          ids: rest.ids
+          since_id: rest.since_id
+          created_at_min: rest.created_at_min
+          created_at_max: rest.created_at_max
+          updated_at_min: rest.updated_at_min
+          updated_at_max: rest.updated_at_max
+          limit: rest.limit
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/customers/count-json
+      name: admin-api-2020-04-customers-count-json
+      description: REST surface for admin-api-2020-04-customers-count.json.
+      operations:
+      - method: GET
+        name: deprecated202004getcustomerscount
+        description: Shopify Retrieves A Count Of All Customers
+        call: shopify-customers.deprecated202004getcustomerscount
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/customers/search-json
+      name: admin-api-2020-04-customers-search-json
+      description: REST surface for admin-api-2020-04-customers-search.json.
+      operations:
+      - method: GET
+        name: deprecated202004getcustomerssearch
+        description: Shopify Searches For Customers That Match A Supplied Query
+        call: shopify-customers.deprecated202004getcustomerssearch
+        with:
+          order: rest.order
+          query: rest.query
+          limit: rest.limit
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/customers/{customer-id}/addresses-json
+      name: admin-api-2020-04-customers-customer-id-addresses-json
+      description: REST surface for admin-api-2020-04-customers-customer_id-addresses.json.
+      operations:
+      - method: GET
+        name: deprecated202004getcustomersparamcustomeridaddresses
+        description: Shopify Retrieves A List Of Addresses For A Customer
+        call: shopify-customers.deprecated202004getcustomersparamcustomeridaddresses
+        with:
+          customer_id: rest.customer_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: deprecated202004createcustomersparamcustomeridaddresses
+        description: Shopify Creates A New Address For A Customer
+        call: shopify-customers.deprecated202004createcustomersparamcustomeridaddresses
+        with:
+          customer_id: rest.customer_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/customers/{customer-id}/addresses/set-json
+      name: admin-api-2020-04-customers-customer-id-addresses-set-json
+      description: REST surface for admin-api-2020-04-customers-customer_id-addresses-set.json.
+      operations:
+      - method: PUT
+        name: deprecated202004updatecustomersparamcustomeridaddressesset
+        description: Shopify Performs Bulk Operations For Multiple Customer Addresses
+        call: shopify-customers.deprecated202004updatecustomersparamcustomeridaddressesset
+        with:
+          customer_id: rest.customer_id
+          address_ids[]: rest.address_ids[]
+          operation: rest.operation
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/customers/{customer-id}/addresses/address-id-json
+      name: admin-api-2020-04-customers-customer-id-addresses-address-id-json
+      description: REST surface for admin-api-2020-04-customers-customer_id-addresses-address_id}.json.
+      operations:
+      - method: GET
+        name: deprecated202004getcustomersparamcustomeridaddressesparamaddressid
+        description: Shopify Retrieves Details A Single Customer Address
+        call: shopify-customers.deprecated202004getcustomersparamcustomeridaddressesparamaddressid
+        with:
+          customer_id: rest.customer_id
+          address_id: rest.address_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: deprecated202004updatecustomersparamcustomeridaddressesparamaddressid
+        description: Shopify Updates An Existing Customer Address
+        call: shopify-customers.deprecated202004updatecustomersparamcustomeridaddressesparamaddressid
+        with:
+          customer_id: rest.customer_id
+          address_id: rest.address_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/customers/{customer-id}/addresses/{address-id}/default-json
+      name: admin-api-2020-04-customers-customer-id-addresses-address-id-default-json
+      description: REST surface for admin-api-2020-04-customers-customer_id-addresses-address_id-default.json.
+      operations:
+      - method: PUT
+        name: deprecated202004updatecustomersparamcustomeridaddressesparamaddressiddefault
+        description: Shopify Sets The Default Address For A Customer
+        call: shopify-customers.deprecated202004updatecustomersparamcustomeridaddressesparamaddressiddefault
+        with:
+          customer_id: rest.customer_id
+          address_id: rest.address_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/customer-saved-searches-json
+      name: admin-api-2020-07-customer-saved-searches-json
+      description: REST surface for admin-api-2020-07-customer_saved_searches.json.
+      operations:
+      - method: GET
+        name: deprecated202007getcustomersavedsearches
+        description: Shopify Retrieves A List Of Customer Saved Searches
+        call: shopify-customers.deprecated202007getcustomersavedsearches
+        with:
+          limit: rest.limit
+          since_id: rest.since_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: deprecated202007createcustomersavedsearches
+        description: Shopify Creates A Customer Saved Search
+        call: shopify-customers.deprecated202007createcustomersavedsearches
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/customer-saved-searches/count-json
+      name: admin-api-2020-07-customer-saved-searches-count-json
+      description: REST surface for admin-api-2020-07-customer_saved_searches-count.json.
+      operations:
+      - method: GET
+        name: deprecated202007getcustomersavedsearchescount
+        description: Shopify Retrieves A Count Of All Customer Saved Searches
+        call: shopify-customers.deprecated202007getcustomersavedsearchescount
+        with:
+          since_id: rest.since_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/customer-saved-searches/customer-saved-search-id-json
+      name: admin-api-2020-07-customer-saved-searches-customer-saved-search-id-json
+      description: REST surface for admin-api-2020-07-customer_saved_searches-customer_saved_search_id}.json.
+      operations:
+      - method: GET
+        name: deprecated202007getcustomersavedsearchesparamcustomersavedsearchid
+        description: Shopify Retrieves A Single Customer Saved Search
+        call: shopify-customers.deprecated202007getcustomersavedsearchesparamcustomersavedsearchid
+        with:
+          customer_saved_search_id: rest.customer_saved_search_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: deprecated202007updatecustomersavedsearchesparamcustomersavedsearchid
+        description: Shopify Updates A Customer Saved Search
+        call: shopify-customers.deprecated202007updatecustomersavedsearchesparamcustomersavedsearchid
+        with:
+          customer_saved_search_id: rest.customer_saved_search_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deprecated202007deletecustomersavedsearchesparamcustomersavedsearchid
+        description: Shopify Deletes A Customer Saved Search
+        call: shopify-customers.deprecated202007deletecustomersavedsearchesparamcustomersavedsearchid
+        with:
+          customer_saved_search_id: rest.customer_saved_search_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/customer-saved-searches/{customer-saved-search-id}/customers-json
+      name: admin-api-2020-07-customer-saved-searches-customer-saved-search-id-customers-jso
+      description: REST surface for admin-api-2020-07-customer_saved_searches-customer_saved_search_id-customers.jso.
+      operations:
+      - method: GET
+        name: deprecated202007getcustomersavedsearchesparamcustomersavedsearchidcustomers
+        description: Shopify Retrieves All Customers Returned By A Customer Saved Search
+        call: shopify-customers.deprecated202007getcustomersavedsearchesparamcustomersavedsearchidcustomers
+        with:
+          customer_saved_search_id: rest.customer_saved_search_id
+          order: rest.order
+          limit: rest.limit
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/customers-json
+      name: admin-api-2020-07-customers-json
+      description: REST surface for admin-api-2020-07-customers.json.
+      operations:
+      - method: GET
+        name: deprecated202007getcustomers
+        description: Shopify Retrieves A List Of Customers
+        call: shopify-customers.deprecated202007getcustomers
+        with:
+          ids: rest.ids
+          since_id: rest.since_id
+          created_at_min: rest.created_at_min
+          created_at_max: rest.created_at_max
+          updated_at_min: rest.updated_at_min
+          updated_at_max: rest.updated_at_max
+          limit: rest.limit
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/customers/count-json
+      name: admin-api-2020-07-customers-count-json
+      description: REST surface for admin-api-2020-07-customers-count.json.
+      operations:
+      - method: GET
+        name: deprecated202007getcustomerscount
+        description: Shopify Retrieves A Count Of All Customers
+        call: shopify-customers.deprecated202007getcustomerscount
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/customers/search-json
+      name: admin-api-2020-07-customers-search-json
+      description: REST surface for admin-api-2020-07-customers-search.json.
+      operations:
+      - method: GET
+        name: deprecated202007getcustomerssearch
+        description: Shopify Searches For Customers That Match A Supplied Query
+        call: shopify-customers.deprecated202007getcustomerssearch
+        with:
+          order: rest.order
+          query: rest.query
+          limit: rest.limit
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/customers/{customer-id}/addresses-json
+      name: admin-api-2020-07-customers-customer-id-addresses-json
+      description: REST surface for admin-api-2020-07-customers-customer_id-addresses.json.
+      operations:
+      - method: GET
+        name: deprecated202007getcustomersparamcustomeridaddresses
+        description: Shopify Retrieves A List Of Addresses For A Customer
+        call: shopify-customers.deprecated202007getcustomersparamcustomeridaddresses
+        with:
+          customer_id: rest.customer_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: deprecated202007createcustomersparamcustomeridaddresses
+        description: Shopify Creates A New Address For A Customer
+        call: shopify-customers.deprecated202007createcustomersparamcustomeridaddresses
+        with:
+          customer_id: rest.customer_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/customers/{customer-id}/addresses/set-json
+      name: admin-api-2020-07-customers-customer-id-addresses-set-json
+      description: REST surface for admin-api-2020-07-customers-customer_id-addresses-set.json.
+      operations:
+      - method: PUT
+        name: deprecated202007updatecustomersparamcustomeridaddressesset
+        description: Shopify Performs Bulk Operations For Multiple Customer Addresses
+        call: shopify-customers.deprecated202007updatecustomersparamcustomeridaddressesset
+        with:
+          customer_id: rest.customer_id
+          address_ids[]: rest.address_ids[]
+          operation: rest.operation
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/customers/{customer-id}/addresses/address-id-json
+      name: admin-api-2020-07-customers-customer-id-addresses-address-id-json
+      description: REST surface for admin-api-2020-07-customers-customer_id-addresses-address_id}.json.
+      operations:
+      - method: GET
+        name: deprecated202007getcustomersparamcustomeridaddressesparamaddressid
+        description: Shopify Retrieves Details A Single Customer Address
+        call: shopify-customers.deprecated202007getcustomersparamcustomeridaddressesparamaddressid
+        with:
+          customer_id: rest.customer_id
+          address_id: rest.address_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: deprecated202007updatecustomersparamcustomeridaddressesparamaddressid
+        description: Shopify Updates An Existing Customer Address
+        call: shopify-customers.deprecated202007updatecustomersparamcustomeridaddressesparamaddressid
+        with:
+          customer_id: rest.customer_id
+          address_id: rest.address_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/customers/{customer-id}/addresses/{address-id}/default-json
+      name: admin-api-2020-07-customers-customer-id-addresses-address-id-default-json
+      description: REST surface for admin-api-2020-07-customers-customer_id-addresses-address_id-default.json.
+      operations:
+      - method: PUT
+        name: deprecated202007updatecustomersparamcustomeridaddressesparamaddressiddefault
+        description: Shopify Sets The Default Address For A Customer
+        call: shopify-customers.deprecated202007updatecustomersparamcustomeridaddressesparamaddressiddefault
+        with:
+          customer_id: rest.customer_id
+          address_id: rest.address_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/customer-saved-searches-json
+      name: admin-api-2020-10-customer-saved-searches-json
+      description: REST surface for admin-api-2020-10-customer_saved_searches.json.
+      operations:
+      - method: GET
+        name: getcustomersavedsearches
+        description: Shopify Retrieves A List Of Customer Saved Searches
+        call: shopify-customers.getcustomersavedsearches
+        with:
+          limit: rest.limit
+          since_id: rest.since_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createcustomersavedsearches
+        description: Shopify Creates A Customer Saved Search
+        call: shopify-customers.createcustomersavedsearches
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/customer-saved-searches/count-json
+      name: admin-api-2020-10-customer-saved-searches-count-json
+      description: REST surface for admin-api-2020-10-customer_saved_searches-count.json.
+      operations:
+      - method: GET
+        name: getcustomersavedsearchescount
+        description: Shopify Retrieves A Count Of All Customer Saved Searches
+        call: shopify-customers.getcustomersavedsearchescount
+        with:
+          since_id: rest.since_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/customer-saved-searches/customer-saved-search-id-json
+      name: admin-api-2020-10-customer-saved-searches-customer-saved-search-id-json
+      description: REST surface for admin-api-2020-10-customer_saved_searches-customer_saved_search_id}.json.
+      operations:
+      - method: GET
+        name: getcustomersavedsearchesparamcustomersavedsearchid
+        description: Shopify Retrieves A Single Customer Saved Search
+        call: shopify-customers.getcustomersavedsearchesparamcustomersavedsearchid
+        with:
+          customer_saved_search_id: rest.customer_saved_search_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updatecustomersavedsearchesparamcustomersavedsearchid
+        description: Shopify Updates A Customer Saved Search
+        call: shopify-customers.updatecustomersavedsearchesparamcustomersavedsearchid
+        with:
+          customer_saved_search_id: rest.customer_saved_search_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletecustomersavedsearchesparamcustomersavedsearchid
+        description: Shopify Deletes A Customer Saved Search
+        call: shopify-customers.deletecustomersavedsearchesparamcustomersavedsearchid
+        with:
+          customer_saved_search_id: rest.customer_saved_search_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/customer-saved-searches/{customer-saved-search-id}/customers-json
+      name: admin-api-2020-10-customer-saved-searches-customer-saved-search-id-customers-jso
+      description: REST surface for admin-api-2020-10-customer_saved_searches-customer_saved_search_id-customers.jso.
+      operations:
+      - method: GET
+        name: getcustomersavedsearchesparamcustomersavedsearchidcustomers
+        description: Shopify Retrieves All Customers Returned By A Customer Saved Search
+        call: shopify-customers.getcustomersavedsearchesparamcustomersavedsearchidcustomers
+        with:
+          customer_saved_search_id: rest.customer_saved_search_id
+          order: rest.order
+          limit: rest.limit
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/customers-json
+      name: admin-api-2020-10-customers-json
+      description: REST surface for admin-api-2020-10-customers.json.
+      operations:
+      - method: GET
+        name: getcustomers
+        description: Shopify Retrieves A List Of Customers
+        call: shopify-customers.getcustomers
+        with:
+          ids: rest.ids
+          since_id: rest.since_id
+          created_at_min: rest.created_at_min
+          created_at_max: rest.created_at_max
+          updated_at_min: rest.updated_at_min
+          updated_at_max: rest.updated_at_max
+          limit: rest.limit
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/customers/count-json
+      name: admin-api-2020-10-customers-count-json
+      description: REST surface for admin-api-2020-10-customers-count.json.
+      operations:
+      - method: GET
+        name: getcustomerscount
+        description: Shopify Retrieves A Count Of All Customers
+        call: shopify-customers.getcustomerscount
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/customers/search-json
+      name: admin-api-2020-10-customers-search-json
+      description: REST surface for admin-api-2020-10-customers-search.json.
+      operations:
+      - method: GET
+        name: getcustomerssearch
+        description: Shopify Searches For Customers That Match A Supplied Query
+        call: shopify-customers.getcustomerssearch
+        with:
+          order: rest.order
+          query: rest.query
+          limit: rest.limit
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/customers/{customer-id}/addresses-json
+      name: admin-api-2020-10-customers-customer-id-addresses-json
+      description: REST surface for admin-api-2020-10-customers-customer_id-addresses.json.
+      operations:
+      - method: GET
+        name: getcustomersparamcustomeridaddresses
+        description: Shopify Retrieves A List Of Addresses For A Customer
+        call: shopify-customers.getcustomersparamcustomeridaddresses
+        with:
+          customer_id: rest.customer_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createcustomersparamcustomeridaddresses
+        description: Shopify Creates A New Address For A Customer
+        call: shopify-customers.createcustomersparamcustomeridaddresses
+        with:
+          customer_id: rest.customer_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/customers/{customer-id}/addresses/set-json
+      name: admin-api-2020-10-customers-customer-id-addresses-set-json
+      description: REST surface for admin-api-2020-10-customers-customer_id-addresses-set.json.
+      operations:
+      - method: PUT
+        name: updatecustomersparamcustomeridaddressesset
+        description: Shopify Performs Bulk Operations For Multiple Customer Addresses
+        call: shopify-customers.updatecustomersparamcustomeridaddressesset
+        with:
+          customer_id: rest.customer_id
+          address_ids[]: rest.address_ids[]
+          operation: rest.operation
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/customers/{customer-id}/addresses/address-id-json
+      name: admin-api-2020-10-customers-customer-id-addresses-address-id-json
+      description: REST surface for admin-api-2020-10-customers-customer_id-addresses-address_id}.json.
+      operations:
+      - method: GET
+        name: getcustomersparamcustomeridaddressesparamaddressid
+        description: Shopify Retrieves Details A Single Customer Address
+        call: shopify-customers.getcustomersparamcustomeridaddressesparamaddressid
+        with:
+          customer_id: rest.customer_id
+          address_id: rest.address_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updatecustomersparamcustomeridaddressesparamaddressid
+        description: Shopify Updates An Existing Customer Address
+        call: shopify-customers.updatecustomersparamcustomeridaddressesparamaddressid
+        with:
+          customer_id: rest.customer_id
+          address_id: rest.address_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/customers/{customer-id}/addresses/{address-id}/default-json
+      name: admin-api-2020-10-customers-customer-id-addresses-address-id-default-json
+      description: REST surface for admin-api-2020-10-customers-customer_id-addresses-address_id-default.json.
+      operations:
+      - method: PUT
+        name: updatecustomersparamcustomeridaddressesparamaddressiddefault
+        description: Shopify Sets The Default Address For A Customer
+        call: shopify-customers.updatecustomersparamcustomeridaddressesparamaddressiddefault
+        with:
+          customer_id: rest.customer_id
+          address_id: rest.address_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/customer-saved-searches-json
+      name: admin-api-2021-01-customer-saved-searches-json
+      description: REST surface for admin-api-2021-01-customer_saved_searches.json.
+      operations:
+      - method: GET
+        name: deprecated202101getcustomersavedsearches
+        description: Shopify Retrieves A List Of Customer Saved Searches
+        call: shopify-customers.deprecated202101getcustomersavedsearches
+        with:
+          limit: rest.limit
+          since_id: rest.since_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: deprecated202101createcustomersavedsearches
+        description: Shopify Creates A Customer Saved Search
+        call: shopify-customers.deprecated202101createcustomersavedsearches
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/customer-saved-searches/count-json
+      name: admin-api-2021-01-customer-saved-searches-count-json
+      description: REST surface for admin-api-2021-01-customer_saved_searches-count.json.
+      operations:
+      - method: GET
+        name: deprecated202101getcustomersavedsearchescount
+        description: Shopify Retrieves A Count Of All Customer Saved Searches
+        call: shopify-customers.deprecated202101getcustomersavedsearchescount
+        with:
+          since_id: rest.since_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/customer-saved-searches/customer-saved-search-id-json
+      name: admin-api-2021-01-customer-saved-searches-customer-saved-search-id-json
+      description: REST surface for admin-api-2021-01-customer_saved_searches-customer_saved_search_id}.json.
+      operations:
+      - method: GET
+        name: deprecated202101getcustomersavedsearchesparamcustomersavedsearchid
+        description: Shopify Retrieves A Single Customer Saved Search
+        call: shopify-customers.deprecated202101getcustomersavedsearchesparamcustomersavedsearchid
+        with:
+          customer_saved_search_id: rest.customer_saved_search_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: deprecated202101updatecustomersavedsearchesparamcustomersavedsearchid
+        description: Shopify Updates A Customer Saved Search
+        call: shopify-customers.deprecated202101updatecustomersavedsearchesparamcustomersavedsearchid
+        with:
+          customer_saved_search_id: rest.customer_saved_search_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deprecated202101deletecustomersavedsearchesparamcustomersavedsearchid
+        description: Shopify Deletes A Customer Saved Search
+        call: shopify-customers.deprecated202101deletecustomersavedsearchesparamcustomersavedsearchid
+        with:
+          customer_saved_search_id: rest.customer_saved_search_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/customer-saved-searches/{customer-saved-search-id}/customers-json
+      name: admin-api-2021-01-customer-saved-searches-customer-saved-search-id-customers-jso
+      description: REST surface for admin-api-2021-01-customer_saved_searches-customer_saved_search_id-customers.jso.
+      operations:
+      - method: GET
+        name: deprecated202101getcustomersavedsearchesparamcustomersavedsearchidcustomers
+        description: Shopify Retrieves All Customers Returned By A Customer Saved Search
+        call: shopify-customers.deprecated202101getcustomersavedsearchesparamcustomersavedsearchidcustomers
+        with:
+          customer_saved_search_id: rest.customer_saved_search_id
+          order: rest.order
+          limit: rest.limit
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/customers-json
+      name: admin-api-2021-01-customers-json
+      description: REST surface for admin-api-2021-01-customers.json.
+      operations:
+      - method: GET
+        name: deprecated202101getcustomers
+        description: Shopify Retrieves A List Of Customers
+        call: shopify-customers.deprecated202101getcustomers
+        with:
+          ids: rest.ids
+          since_id: rest.since_id
+          created_at_min: rest.created_at_min
+          created_at_max: rest.created_at_max
+          updated_at_min: rest.updated_at_min
+          updated_at_max: rest.updated_at_max
+          limit: rest.limit
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/customers/count-json
+      name: admin-api-2021-01-customers-count-json
+      description: REST surface for admin-api-2021-01-customers-count.json.
+      operations:
+      - method: GET
+        name: deprecated202101getcustomerscount
+        description: Shopify Retrieves A Count Of All Customers
+        call: shopify-customers.deprecated202101getcustomerscount
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/customers/search-json
+      name: admin-api-2021-01-customers-search-json
+      description: REST surface for admin-api-2021-01-customers-search.json.
+      operations:
+      - method: GET
+        name: deprecated202101getcustomerssearch
+        description: Shopify Searches For Customers That Match A Supplied Query
+        call: shopify-customers.deprecated202101getcustomerssearch
+        with:
+          order: rest.order
+          query: rest.query
+          limit: rest.limit
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/customers/{customer-id}/addresses-json
+      name: admin-api-2021-01-customers-customer-id-addresses-json
+      description: REST surface for admin-api-2021-01-customers-customer_id-addresses.json.
+      operations:
+      - method: GET
+        name: deprecated202101getcustomersparamcustomeridaddresses
+        description: Shopify Retrieves A List Of Addresses For A Customer
+        call: shopify-customers.deprecated202101getcustomersparamcustomeridaddresses
+        with:
+          customer_id: rest.customer_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: deprecated202101createcustomersparamcustomeridaddresses
+        description: Shopify Creates A New Address For A Customer
+        call: shopify-customers.deprecated202101createcustomersparamcustomeridaddresses
+        with:
+          customer_id: rest.customer_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/customers/{customer-id}/addresses/set-json
+      name: admin-api-2021-01-customers-customer-id-addresses-set-json
+      description: REST surface for admin-api-2021-01-customers-customer_id-addresses-set.json.
+      operations:
+      - method: PUT
+        name: deprecated202101updatecustomersparamcustomeridaddressesset
+        description: Shopify Performs Bulk Operations For Multiple Customer Addresses
+        call: shopify-customers.deprecated202101updatecustomersparamcustomeridaddressesset
+        with:
+          customer_id: rest.customer_id
+          address_ids[]: rest.address_ids[]
+          operation: rest.operation
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/customers/{customer-id}/addresses/address-id-json
+      name: admin-api-2021-01-customers-customer-id-addresses-address-id-json
+      description: REST surface for admin-api-2021-01-customers-customer_id-addresses-address_id}.json.
+      operations:
+      - method: GET
+        name: deprecated202101getcustomersparamcustomeridaddressesparamaddressid
+        description: Shopify Retrieves Details A Single Customer Address
+        call: shopify-customers.deprecated202101getcustomersparamcustomeridaddressesparamaddressid
+        with:
+          customer_id: rest.customer_id
+          address_id: rest.address_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: deprecated202101updatecustomersparamcustomeridaddressesparamaddressid
+        description: Shopify Updates An Existing Customer Address
+        call: shopify-customers.deprecated202101updatecustomersparamcustomeridaddressesparamaddressid
+        with:
+          customer_id: rest.customer_id
+          address_id: rest.address_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/customers/{customer-id}/addresses/{address-id}/default-json
+      name: admin-api-2021-01-customers-customer-id-addresses-address-id-default-json
+      description: REST surface for admin-api-2021-01-customers-customer_id-addresses-address_id-default.json.
+      operations:
+      - method: PUT
+        name: deprecated202101updatecustomersparamcustomeridaddressesparamaddressiddefault
+        description: Shopify Sets The Default Address For A Customer
+        call: shopify-customers.deprecated202101updatecustomersparamcustomeridaddressesparamaddressiddefault
+        with:
+          customer_id: rest.customer_id
+          address_id: rest.address_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/customer-saved-searches-json
+      name: admin-api-unstable-customer-saved-searches-json
+      description: REST surface for admin-api-unstable-customer_saved_searches.json.
+      operations:
+      - method: GET
+        name: deprecatedunstablegetcustomersavedsearches
+        description: Shopify Retrieves A List Of Customer Saved Searches
+        call: shopify-customers.deprecatedunstablegetcustomersavedsearches
+        with:
+          limit: rest.limit
+          since_id: rest.since_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: deprecatedunstablecreatecustomersavedsearches
+        description: Shopify Creates A Customer Saved Search
+        call: shopify-customers.deprecatedunstablecreatecustomersavedsearches
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/customer-saved-searches/count-json
+      name: admin-api-unstable-customer-saved-searches-count-json
+      description: REST surface for admin-api-unstable-customer_saved_searches-count.json.
+      operations:
+      - method: GET
+        name: deprecatedunstablegetcustomersavedsearchescount
+        description: Shopify Retrieves A Count Of All Customer Saved Searches
+        call: shopify-customers.deprecatedunstablegetcustomersavedsearchescount
+        with:
+          since_id: rest.since_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/customer-saved-searches/customer-saved-search-id-json
+      name: admin-api-unstable-customer-saved-searches-customer-saved-search-id-json
+      description: REST surface for admin-api-unstable-customer_saved_searches-customer_saved_search_id}.json.
+      operations:
+      - method: GET
+        name: deprecatedunstablegetcustomersavedsearchesparamcustomersavedsearchid
+        description: Shopify Retrieves A Single Customer Saved Search
+        call: shopify-customers.deprecatedunstablegetcustomersavedsearchesparamcustomersavedsearchid
+        with:
+          customer_saved_search_id: rest.customer_saved_search_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: deprecatedunstableupdatecustomersavedsearchesparamcustomersavedsearchid
+        description: Shopify Updates A Customer Saved Search
+        call: shopify-customers.deprecatedunstableupdatecustomersavedsearchesparamcustomersavedsearchid
+        with:
+          customer_saved_search_id: rest.customer_saved_search_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deprecatedunstabledeletecustomersavedsearchesparamcustomersavedsearchid
+        description: Shopify Deletes A Customer Saved Search
+        call: shopify-customers.deprecatedunstabledeletecustomersavedsearchesparamcustomersavedsearchid
+        with:
+          customer_saved_search_id: rest.customer_saved_search_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/customer-saved-searches/{customer-saved-search-id}/customers-json
+      name: admin-api-unstable-customer-saved-searches-customer-saved-search-id-customers-js
+      description: REST surface for admin-api-unstable-customer_saved_searches-customer_saved_search_id-customers.js.
+      operations:
+      - method: GET
+        name: deprecatedunstablegetcustomersavedsearchesparamcustomersavedsearchidcustomers
+        description: Shopify Retrieves All Customers Returned By A Customer Saved Search
+        call: shopify-customers.deprecatedunstablegetcustomersavedsearchesparamcustomersavedsearchidcustomers
+        with:
+          customer_saved_search_id: rest.customer_saved_search_id
+          order: rest.order
+          limit: rest.limit
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/customers-json
+      name: admin-api-unstable-customers-json
+      description: REST surface for admin-api-unstable-customers.json.
+      operations:
+      - method: GET
+        name: deprecatedunstablegetcustomers
+        description: Shopify Retrieves A List Of Customers
+        call: shopify-customers.deprecatedunstablegetcustomers
+        with:
+          ids: rest.ids
+          since_id: rest.since_id
+          created_at_min: rest.created_at_min
+          created_at_max: rest.created_at_max
+          updated_at_min: rest.updated_at_min
+          updated_at_max: rest.updated_at_max
+          limit: rest.limit
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/customers/count-json
+      name: admin-api-unstable-customers-count-json
+      description: REST surface for admin-api-unstable-customers-count.json.
+      operations:
+      - method: GET
+        name: deprecatedunstablegetcustomerscount
+        description: Shopify Retrieves A Count Of All Customers
+        call: shopify-customers.deprecatedunstablegetcustomerscount
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/customers/search-json
+      name: admin-api-unstable-customers-search-json
+      description: REST surface for admin-api-unstable-customers-search.json.
+      operations:
+      - method: GET
+        name: deprecatedunstablegetcustomerssearch
+        description: Shopify Searches For Customers That Match A Supplied Query
+        call: shopify-customers.deprecatedunstablegetcustomerssearch
+        with:
+          order: rest.order
+          query: rest.query
+          limit: rest.limit
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/customers/{customer-id}/addresses-json
+      name: admin-api-unstable-customers-customer-id-addresses-json
+      description: REST surface for admin-api-unstable-customers-customer_id-addresses.json.
+      operations:
+      - method: GET
+        name: deprecatedunstablegetcustomersparamcustomeridaddresses
+        description: Shopify Retrieves A List Of Addresses For A Customer
+        call: shopify-customers.deprecatedunstablegetcustomersparamcustomeridaddresses
+        with:
+          customer_id: rest.customer_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: deprecatedunstablecreatecustomersparamcustomeridaddresses
+        description: Shopify Creates A New Address For A Customer
+        call: shopify-customers.deprecatedunstablecreatecustomersparamcustomeridaddresses
+        with:
+          customer_id: rest.customer_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/customers/{customer-id}/addresses/set-json
+      name: admin-api-unstable-customers-customer-id-addresses-set-json
+      description: REST surface for admin-api-unstable-customers-customer_id-addresses-set.json.
+      operations:
+      - method: PUT
+        name: deprecatedunstableupdatecustomersparamcustomeridaddressesset
+        description: Shopify Performs Bulk Operations For Multiple Customer Addresses
+        call: shopify-customers.deprecatedunstableupdatecustomersparamcustomeridaddressesset
+        with:
+          customer_id: rest.customer_id
+          address_ids[]: rest.address_ids[]
+          operation: rest.operation
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/customers/{customer-id}/addresses/address-id-json
+      name: admin-api-unstable-customers-customer-id-addresses-address-id-json
+      description: REST surface for admin-api-unstable-customers-customer_id-addresses-address_id}.json.
+      operations:
+      - method: GET
+        name: deprecatedunstablegetcustomersparamcustomeridaddressesparamaddressid
+        description: Shopify Retrieves Details A Single Customer Address
+        call: shopify-customers.deprecatedunstablegetcustomersparamcustomeridaddressesparamaddressid
+        with:
+          customer_id: rest.customer_id
+          address_id: rest.address_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: deprecatedunstableupdatecustomersparamcustomeridaddressesparamaddressid
+        description: Shopify Updates An Existing Customer Address
+        call: shopify-customers.deprecatedunstableupdatecustomersparamcustomeridaddressesparamaddressid
+        with:
+          customer_id: rest.customer_id
+          address_id: rest.address_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/customers/{customer-id}/addresses/{address-id}/default-json
+      name: admin-api-unstable-customers-customer-id-addresses-address-id-default-json
+      description: REST surface for admin-api-unstable-customers-customer_id-addresses-address_id-default.json.
+      operations:
+      - method: PUT
+        name: deprecatedunstableupdatecustomersparamcustomeridaddressesparamaddressiddefault
+        description: Shopify Sets The Default Address For A Customer
+        call: shopify-customers.deprecatedunstableupdatecustomersparamcustomeridaddressesparamaddressiddefault
+        with:
+          customer_id: rest.customer_id
+          address_id: rest.address_id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: shopify-customers-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Shopify  API — Customers. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: shopify-retrieves-list-customer-saved
+      description: Shopify Retrieves A List Of Customer Saved Searches
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-customers.deprecated202001getcustomersavedsearches
+      with:
+        limit: tools.limit
+        since_id: tools.since_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-creates-customer-saved-search
+      description: Shopify Creates A Customer Saved Search
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: shopify-customers.deprecated202001createcustomersavedsearches
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-count-all-customer
+      description: Shopify Retrieves A Count Of All Customer Saved Searches
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-customers.deprecated202001getcustomersavedsearchescount
+      with:
+        since_id: tools.since_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-single-customer-saved
+      description: Shopify Retrieves A Single Customer Saved Search
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-customers.deprecated202001getcustomersavedsearchesparamcustomersavedsearchid
+      with:
+        customer_saved_search_id: tools.customer_saved_search_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-updates-customer-saved-search
+      description: Shopify Updates A Customer Saved Search
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-customers.deprecated202001updatecustomersavedsearchesparamcustomersavedsearchid
+      with:
+        customer_saved_search_id: tools.customer_saved_search_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-deletes-customer-saved-search
+      description: Shopify Deletes A Customer Saved Search
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-customers.deprecated202001deletecustomersavedsearchesparamcustomersavedsearchid
+      with:
+        customer_saved_search_id: tools.customer_saved_search_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-all-customers-returned
+      description: Shopify Retrieves All Customers Returned By A Customer Saved Search
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-customers.deprecated202001getcustomersavedsearchesparamcustomersavedsearchidcustomers
+      with:
+        customer_saved_search_id: tools.customer_saved_search_id
+        order: tools.order
+        limit: tools.limit
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-customers
+      description: Shopify Retrieves A List Of Customers
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-customers.deprecated202001getcustomers
+      with:
+        ids: tools.ids
+        since_id: tools.since_id
+        created_at_min: tools.created_at_min
+        created_at_max: tools.created_at_max
+        updated_at_min: tools.updated_at_min
+        updated_at_max: tools.updated_at_max
+        limit: tools.limit
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-count-all-customers
+      description: Shopify Retrieves A Count Of All Customers
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-customers.deprecated202001getcustomerscount
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-searches-customers-that-match
+      description: Shopify Searches For Customers That Match A Supplied Query
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-customers.deprecated202001getcustomerssearch
+      with:
+        order: tools.order
+        query: tools.query
+        limit: tools.limit
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-addresses-customer
+      description: Shopify Retrieves A List Of Addresses For A Customer
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-customers.deprecated202001getcustomersparamcustomeridaddresses
+      with:
+        customer_id: tools.customer_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-creates-new-address-customer
+      description: Shopify Creates A New Address For A Customer
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-customers.deprecated202001createcustomersparamcustomeridaddresses
+      with:
+        customer_id: tools.customer_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-performs-bulk-operations-multiple
+      description: Shopify Performs Bulk Operations For Multiple Customer Addresses
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-customers.deprecated202001updatecustomersparamcustomeridaddressesset
+      with:
+        customer_id: tools.customer_id
+        address_ids[]: tools.address_ids[]
+        operation: tools.operation
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-details-single-customer
+      description: Shopify Retrieves Details A Single Customer Address
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-customers.deprecated202001getcustomersparamcustomeridaddressesparamaddressid
+      with:
+        customer_id: tools.customer_id
+        address_id: tools.address_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-updates-existing-customer-address
+      description: Shopify Updates An Existing Customer Address
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-customers.deprecated202001updatecustomersparamcustomeridaddressesparamaddressid
+      with:
+        customer_id: tools.customer_id
+        address_id: tools.address_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-sets-default-address-customer
+      description: Shopify Sets The Default Address For A Customer
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-customers.deprecated202001updatecustomersparamcustomeridaddressesparamaddressiddefault
+      with:
+        customer_id: tools.customer_id
+        address_id: tools.address_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-customer-saved-2
+      description: Shopify Retrieves A List Of Customer Saved Searches
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-customers.deprecated202004getcustomersavedsearches
+      with:
+        limit: tools.limit
+        since_id: tools.since_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-creates-customer-saved-search-2
+      description: Shopify Creates A Customer Saved Search
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: shopify-customers.deprecated202004createcustomersavedsearches
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-count-all-customer-2
+      description: Shopify Retrieves A Count Of All Customer Saved Searches
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-customers.deprecated202004getcustomersavedsearchescount
+      with:
+        since_id: tools.since_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-single-customer-saved-2
+      description: Shopify Retrieves A Single Customer Saved Search
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-customers.deprecated202004getcustomersavedsearchesparamcustomersavedsearchid
+      with:
+        customer_saved_search_id: tools.customer_saved_search_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-updates-customer-saved-search-2
+      description: Shopify Updates A Customer Saved Search
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-customers.deprecated202004updatecustomersavedsearchesparamcustomersavedsearchid
+      with:
+        customer_saved_search_id: tools.customer_saved_search_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-deletes-customer-saved-search-2
+      description: Shopify Deletes A Customer Saved Search
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-customers.deprecated202004deletecustomersavedsearchesparamcustomersavedsearchid
+      with:
+        customer_saved_search_id: tools.customer_saved_search_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-all-customers-returned-2
+      description: Shopify Retrieves All Customers Returned By A Customer Saved Search
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-customers.deprecated202004getcustomersavedsearchesparamcustomersavedsearchidcustomers
+      with:
+        customer_saved_search_id: tools.customer_saved_search_id
+        order: tools.order
+        limit: tools.limit
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-customers-2
+      description: Shopify Retrieves A List Of Customers
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-customers.deprecated202004getcustomers
+      with:
+        ids: tools.ids
+        since_id: tools.since_id
+        created_at_min: tools.created_at_min
+        created_at_max: tools.created_at_max
+        updated_at_min: tools.updated_at_min
+        updated_at_max: tools.updated_at_max
+        limit: tools.limit
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-count-all-customers-2
+      description: Shopify Retrieves A Count Of All Customers
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-customers.deprecated202004getcustomerscount
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-searches-customers-that-match-2
+      description: Shopify Searches For Customers That Match A Supplied Query
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-customers.deprecated202004getcustomerssearch
+      with:
+        order: tools.order
+        query: tools.query
+        limit: tools.limit
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-addresses-customer-2
+      description: Shopify Retrieves A List Of Addresses For A Customer
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-customers.deprecated202004getcustomersparamcustomeridaddresses
+      with:
+        customer_id: tools.customer_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-creates-new-address-customer-2
+      description: Shopify Creates A New Address For A Customer
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-customers.deprecated202004createcustomersparamcustomeridaddresses
+      with:
+        customer_id: tools.customer_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-performs-bulk-operations-multiple-2
+      description: Shopify Performs Bulk Operations For Multiple Customer Addresses
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-customers.deprecated202004updatecustomersparamcustomeridaddressesset
+      with:
+        customer_id: tools.customer_id
+        address_ids[]: tools.address_ids[]
+        operation: tools.operation
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-details-single-customer-2
+      description: Shopify Retrieves Details A Single Customer Address
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-customers.deprecated202004getcustomersparamcustomeridaddressesparamaddressid
+      with:
+        customer_id: tools.customer_id
+        address_id: tools.address_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-updates-existing-customer-address-2
+      description: Shopify Updates An Existing Customer Address
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-customers.deprecated202004updatecustomersparamcustomeridaddressesparamaddressid
+      with:
+        customer_id: tools.customer_id
+        address_id: tools.address_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-sets-default-address-customer-2
+      description: Shopify Sets The Default Address For A Customer
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-customers.deprecated202004updatecustomersparamcustomeridaddressesparamaddressiddefault
+      with:
+        customer_id: tools.customer_id
+        address_id: tools.address_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-customer-saved-3
+      description: Shopify Retrieves A List Of Customer Saved Searches
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-customers.deprecated202007getcustomersavedsearches
+      with:
+        limit: tools.limit
+        since_id: tools.since_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-creates-customer-saved-search-3
+      description: Shopify Creates A Customer Saved Search
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: shopify-customers.deprecated202007createcustomersavedsearches
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-count-all-customer-3
+      description: Shopify Retrieves A Count Of All Customer Saved Searches
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-customers.deprecated202007getcustomersavedsearchescount
+      with:
+        since_id: tools.since_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-single-customer-saved-3
+      description: Shopify Retrieves A Single Customer Saved Search
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-customers.deprecated202007getcustomersavedsearchesparamcustomersavedsearchid
+      with:
+        customer_saved_search_id: tools.customer_saved_search_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-updates-customer-saved-search-3
+      description: Shopify Updates A Customer Saved Search
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-customers.deprecated202007updatecustomersavedsearchesparamcustomersavedsearchid
+      with:
+        customer_saved_search_id: tools.customer_saved_search_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-deletes-customer-saved-search-3
+      description: Shopify Deletes A Customer Saved Search
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-customers.deprecated202007deletecustomersavedsearchesparamcustomersavedsearchid
+      with:
+        customer_saved_search_id: tools.customer_saved_search_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-all-customers-returned-3
+      description: Shopify Retrieves All Customers Returned By A Customer Saved Search
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-customers.deprecated202007getcustomersavedsearchesparamcustomersavedsearchidcustomers
+      with:
+        customer_saved_search_id: tools.customer_saved_search_id
+        order: tools.order
+        limit: tools.limit
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-customers-3
+      description: Shopify Retrieves A List Of Customers
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-customers.deprecated202007getcustomers
+      with:
+        ids: tools.ids
+        since_id: tools.since_id
+        created_at_min: tools.created_at_min
+        created_at_max: tools.created_at_max
+        updated_at_min: tools.updated_at_min
+        updated_at_max: tools.updated_at_max
+        limit: tools.limit
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-count-all-customers-3
+      description: Shopify Retrieves A Count Of All Customers
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-customers.deprecated202007getcustomerscount
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-searches-customers-that-match-3
+      description: Shopify Searches For Customers That Match A Supplied Query
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-customers.deprecated202007getcustomerssearch
+      with:
+        order: tools.order
+        query: tools.query
+        limit: tools.limit
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-addresses-customer-3
+      description: Shopify Retrieves A List Of Addresses For A Customer
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-customers.deprecated202007getcustomersparamcustomeridaddresses
+      with:
+        customer_id: tools.customer_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-creates-new-address-customer-3
+      description: Shopify Creates A New Address For A Customer
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-customers.deprecated202007createcustomersparamcustomeridaddresses
+      with:
+        customer_id: tools.customer_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-performs-bulk-operations-multiple-3
+      description: Shopify Performs Bulk Operations For Multiple Customer Addresses
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-customers.deprecated202007updatecustomersparamcustomeridaddressesset
+      with:
+        customer_id: tools.customer_id
+        address_ids[]: tools.address_ids[]
+        operation: tools.operation
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-details-single-customer-3
+      description: Shopify Retrieves Details A Single Customer Address
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-customers.deprecated202007getcustomersparamcustomeridaddressesparamaddressid
+      with:
+        customer_id: tools.customer_id
+        address_id: tools.address_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-updates-existing-customer-address-3
+      description: Shopify Updates An Existing Customer Address
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-customers.deprecated202007updatecustomersparamcustomeridaddressesparamaddressid
+      with:
+        customer_id: tools.customer_id
+        address_id: tools.address_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-sets-default-address-customer-3
+      description: Shopify Sets The Default Address For A Customer
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-customers.deprecated202007updatecustomersparamcustomeridaddressesparamaddressiddefault
+      with:
+        customer_id: tools.customer_id
+        address_id: tools.address_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-customer-saved-4
+      description: Shopify Retrieves A List Of Customer Saved Searches
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-customers.getcustomersavedsearches
+      with:
+        limit: tools.limit
+        since_id: tools.since_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-creates-customer-saved-search-4
+      description: Shopify Creates A Customer Saved Search
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: shopify-customers.createcustomersavedsearches
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-count-all-customer-4
+      description: Shopify Retrieves A Count Of All Customer Saved Searches
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-customers.getcustomersavedsearchescount
+      with:
+        since_id: tools.since_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-single-customer-saved-4
+      description: Shopify Retrieves A Single Customer Saved Search
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-customers.getcustomersavedsearchesparamcustomersavedsearchid
+      with:
+        customer_saved_search_id: tools.customer_saved_search_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-updates-customer-saved-search-4
+      description: Shopify Updates A Customer Saved Search
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-customers.updatecustomersavedsearchesparamcustomersavedsearchid
+      with:
+        customer_saved_search_id: tools.customer_saved_search_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-deletes-customer-saved-search-4
+      description: Shopify Deletes A Customer Saved Search
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-customers.deletecustomersavedsearchesparamcustomersavedsearchid
+      with:
+        customer_saved_search_id: tools.customer_saved_search_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-all-customers-returned-4
+      description: Shopify Retrieves All Customers Returned By A Customer Saved Search
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-customers.getcustomersavedsearchesparamcustomersavedsearchidcustomers
+      with:
+        customer_saved_search_id: tools.customer_saved_search_id
+        order: tools.order
+        limit: tools.limit
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-customers-4
+      description: Shopify Retrieves A List Of Customers
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-customers.getcustomers
+      with:
+        ids: tools.ids
+        since_id: tools.since_id
+        created_at_min: tools.created_at_min
+        created_at_max: tools.created_at_max
+        updated_at_min: tools.updated_at_min
+        updated_at_max: tools.updated_at_max
+        limit: tools.limit
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-count-all-customers-4
+      description: Shopify Retrieves A Count Of All Customers
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-customers.getcustomerscount
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-searches-customers-that-match-4
+      description: Shopify Searches For Customers That Match A Supplied Query
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-customers.getcustomerssearch
+      with:
+        order: tools.order
+        query: tools.query
+        limit: tools.limit
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-addresses-customer-4
+      description: Shopify Retrieves A List Of Addresses For A Customer
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-customers.getcustomersparamcustomeridaddresses
+      with:
+        customer_id: tools.customer_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-creates-new-address-customer-4
+      description: Shopify Creates A New Address For A Customer
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-customers.createcustomersparamcustomeridaddresses
+      with:
+        customer_id: tools.customer_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-performs-bulk-operations-multiple-4
+      description: Shopify Performs Bulk Operations For Multiple Customer Addresses
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-customers.updatecustomersparamcustomeridaddressesset
+      with:
+        customer_id: tools.customer_id
+        address_ids[]: tools.address_ids[]
+        operation: tools.operation
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-details-single-customer-4
+      description: Shopify Retrieves Details A Single Customer Address
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-customers.getcustomersparamcustomeridaddressesparamaddressid
+      with:
+        customer_id: tools.customer_id
+        address_id: tools.address_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-updates-existing-customer-address-4
+      description: Shopify Updates An Existing Customer Address
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-customers.updatecustomersparamcustomeridaddressesparamaddressid
+      with:
+        customer_id: tools.customer_id
+        address_id: tools.address_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-sets-default-address-customer-4
+      description: Shopify Sets The Default Address For A Customer
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-customers.updatecustomersparamcustomeridaddressesparamaddressiddefault
+      with:
+        customer_id: tools.customer_id
+        address_id: tools.address_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-customer-saved-5
+      description: Shopify Retrieves A List Of Customer Saved Searches
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-customers.deprecated202101getcustomersavedsearches
+      with:
+        limit: tools.limit
+        since_id: tools.since_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-creates-customer-saved-search-5
+      description: Shopify Creates A Customer Saved Search
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: shopify-customers.deprecated202101createcustomersavedsearches
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-count-all-customer-5
+      description: Shopify Retrieves A Count Of All Customer Saved Searches
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-customers.deprecated202101getcustomersavedsearchescount
+      with:
+        since_id: tools.since_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-single-customer-saved-5
+      description: Shopify Retrieves A Single Customer Saved Search
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-customers.deprecated202101getcustomersavedsearchesparamcustomersavedsearchid
+      with:
+        customer_saved_search_id: tools.customer_saved_search_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-updates-customer-saved-search-5
+      description: Shopify Updates A Customer Saved Search
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-customers.deprecated202101updatecustomersavedsearchesparamcustomersavedsearchid
+      with:
+        customer_saved_search_id: tools.customer_saved_search_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-deletes-customer-saved-search-5
+      description: Shopify Deletes A Customer Saved Search
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-customers.deprecated202101deletecustomersavedsearchesparamcustomersavedsearchid
+      with:
+        customer_saved_search_id: tools.customer_saved_search_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-all-customers-returned-5
+      description: Shopify Retrieves All Customers Returned By A Customer Saved Search
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-customers.deprecated202101getcustomersavedsearchesparamcustomersavedsearchidcustomers
+      with:
+        customer_saved_search_id: tools.customer_saved_search_id
+        order: tools.order
+        limit: tools.limit
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-customers-5
+      description: Shopify Retrieves A List Of Customers
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-customers.deprecated202101getcustomers
+      with:
+        ids: tools.ids
+        since_id: tools.since_id
+        created_at_min: tools.created_at_min
+        created_at_max: tools.created_at_max
+        updated_at_min: tools.updated_at_min
+        updated_at_max: tools.updated_at_max
+        limit: tools.limit
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-count-all-customers-5
+      description: Shopify Retrieves A Count Of All Customers
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-customers.deprecated202101getcustomerscount
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-searches-customers-that-match-5
+      description: Shopify Searches For Customers That Match A Supplied Query
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-customers.deprecated202101getcustomerssearch
+      with:
+        order: tools.order
+        query: tools.query
+        limit: tools.limit
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-addresses-customer-5
+      description: Shopify Retrieves A List Of Addresses For A Customer
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-customers.deprecated202101getcustomersparamcustomeridaddresses
+      with:
+        customer_id: tools.customer_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-creates-new-address-customer-5
+      description: Shopify Creates A New Address For A Customer
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-customers.deprecated202101createcustomersparamcustomeridaddresses
+      with:
+        customer_id: tools.customer_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-performs-bulk-operations-multiple-5
+      description: Shopify Performs Bulk Operations For Multiple Customer Addresses
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-customers.deprecated202101updatecustomersparamcustomeridaddressesset
+      with:
+        customer_id: tools.customer_id
+        address_ids[]: tools.address_ids[]
+        operation: tools.operation
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-details-single-customer-5
+      description: Shopify Retrieves Details A Single Customer Address
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-customers.deprecated202101getcustomersparamcustomeridaddressesparamaddressid
+      with:
+        customer_id: tools.customer_id
+        address_id: tools.address_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-updates-existing-customer-address-5
+      description: Shopify Updates An Existing Customer Address
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-customers.deprecated202101updatecustomersparamcustomeridaddressesparamaddressid
+      with:
+        customer_id: tools.customer_id
+        address_id: tools.address_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-sets-default-address-customer-5
+      description: Shopify Sets The Default Address For A Customer
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-customers.deprecated202101updatecustomersparamcustomeridaddressesparamaddressiddefault
+      with:
+        customer_id: tools.customer_id
+        address_id: tools.address_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-customer-saved-6
+      description: Shopify Retrieves A List Of Customer Saved Searches
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-customers.deprecatedunstablegetcustomersavedsearches
+      with:
+        limit: tools.limit
+        since_id: tools.since_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-creates-customer-saved-search-6
+      description: Shopify Creates A Customer Saved Search
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: shopify-customers.deprecatedunstablecreatecustomersavedsearches
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-count-all-customer-6
+      description: Shopify Retrieves A Count Of All Customer Saved Searches
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-customers.deprecatedunstablegetcustomersavedsearchescount
+      with:
+        since_id: tools.since_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-single-customer-saved-6
+      description: Shopify Retrieves A Single Customer Saved Search
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-customers.deprecatedunstablegetcustomersavedsearchesparamcustomersavedsearchid
+      with:
+        customer_saved_search_id: tools.customer_saved_search_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-updates-customer-saved-search-6
+      description: Shopify Updates A Customer Saved Search
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-customers.deprecatedunstableupdatecustomersavedsearchesparamcustomersavedsearchid
+      with:
+        customer_saved_search_id: tools.customer_saved_search_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-deletes-customer-saved-search-6
+      description: Shopify Deletes A Customer Saved Search
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-customers.deprecatedunstabledeletecustomersavedsearchesparamcustomersavedsearchid
+      with:
+        customer_saved_search_id: tools.customer_saved_search_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-all-customers-returned-6
+      description: Shopify Retrieves All Customers Returned By A Customer Saved Search
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-customers.deprecatedunstablegetcustomersavedsearchesparamcustomersavedsearchidcustomers
+      with:
+        customer_saved_search_id: tools.customer_saved_search_id
+        order: tools.order
+        limit: tools.limit
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-customers-6
+      description: Shopify Retrieves A List Of Customers
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-customers.deprecatedunstablegetcustomers
+      with:
+        ids: tools.ids
+        since_id: tools.since_id
+        created_at_min: tools.created_at_min
+        created_at_max: tools.created_at_max
+        updated_at_min: tools.updated_at_min
+        updated_at_max: tools.updated_at_max
+        limit: tools.limit
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-count-all-customers-6
+      description: Shopify Retrieves A Count Of All Customers
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-customers.deprecatedunstablegetcustomerscount
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-searches-customers-that-match-6
+      description: Shopify Searches For Customers That Match A Supplied Query
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-customers.deprecatedunstablegetcustomerssearch
+      with:
+        order: tools.order
+        query: tools.query
+        limit: tools.limit
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-addresses-customer-6
+      description: Shopify Retrieves A List Of Addresses For A Customer
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-customers.deprecatedunstablegetcustomersparamcustomeridaddresses
+      with:
+        customer_id: tools.customer_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-creates-new-address-customer-6
+      description: Shopify Creates A New Address For A Customer
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-customers.deprecatedunstablecreatecustomersparamcustomeridaddresses
+      with:
+        customer_id: tools.customer_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-performs-bulk-operations-multiple-6
+      description: Shopify Performs Bulk Operations For Multiple Customer Addresses
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-customers.deprecatedunstableupdatecustomersparamcustomeridaddressesset
+      with:
+        customer_id: tools.customer_id
+        address_ids[]: tools.address_ids[]
+        operation: tools.operation
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-details-single-customer-6
+      description: Shopify Retrieves Details A Single Customer Address
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-customers.deprecatedunstablegetcustomersparamcustomeridaddressesparamaddressid
+      with:
+        customer_id: tools.customer_id
+        address_id: tools.address_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-updates-existing-customer-address-6
+      description: Shopify Updates An Existing Customer Address
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-customers.deprecatedunstableupdatecustomersparamcustomeridaddressesparamaddressid
+      with:
+        customer_id: tools.customer_id
+        address_id: tools.address_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-sets-default-address-customer-6
+      description: Shopify Sets The Default Address For A Customer
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-customers.deprecatedunstableupdatecustomersparamcustomeridaddressesparamaddressiddefault
+      with:
+        customer_id: tools.customer_id
+        address_id: tools.address_id
+      outputParameters:
+      - type: object
+        mapping: $.

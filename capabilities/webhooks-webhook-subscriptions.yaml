@@ -1,0 +1,312 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Shopify Webhooks API — Webhook Subscriptions
+  description: 'Shopify Webhooks API — Webhook Subscriptions. 6 operations. Lead operation: Shopify Retrieve a list of webhook
+    subscriptions. Self-contained Naftiko capability covering one Shopify business surface.'
+  tags:
+  - Shopify
+  - Webhook Subscriptions
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SHOPIFY_API_KEY: SHOPIFY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: webhooks-webhook-subscriptions
+    baseUri: https://{store}.myshopify.com/admin/api/2025-01
+    description: Shopify Webhooks API — Webhook Subscriptions business capability. Self-contained, no shared references.
+    resources:
+    - name: webhooks.json
+      path: /webhooks.json
+      operations:
+      - name: listwebhooksubscriptions
+        method: GET
+        description: Shopify Retrieve a list of webhook subscriptions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: topic
+          in: query
+          type: string
+          description: Filter by webhook topic (e.g. orders/create)
+        - name: address
+          in: query
+          type: string
+          description: Filter by callback address
+        - name: created_at_min
+          in: query
+          type: string
+          description: Show webhooks created after this date
+        - name: created_at_max
+          in: query
+          type: string
+          description: Show webhooks created before this date
+        - name: updated_at_min
+          in: query
+          type: string
+          description: Show webhooks updated after this date
+        - name: updated_at_max
+          in: query
+          type: string
+          description: Show webhooks updated before this date
+        - name: limit
+          in: query
+          type: integer
+          description: Maximum number of results (max 250, default 50)
+        - name: since_id
+          in: query
+          type: integer
+          description: Return webhooks after the specified ID
+        - name: fields
+          in: query
+          type: string
+          description: Comma-separated list of fields to include
+      - name: createwebhooksubscription
+        method: POST
+        description: Shopify Create a webhook subscription
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: webhooks-count.json
+      path: /webhooks/count.json
+      operations:
+      - name: getwebhooksubscriptioncount
+        method: GET
+        description: Shopify Retrieve a count of webhook subscriptions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: topic
+          in: query
+          type: string
+          description: Count webhooks for a specific topic
+        - name: address
+          in: query
+          type: string
+          description: Count webhooks for a specific address
+    - name: webhooks-webhook_id}.json
+      path: /webhooks/{webhook_id}.json
+      operations:
+      - name: getwebhooksubscription
+        method: GET
+        description: Shopify Retrieve a single webhook subscription
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fields
+          in: query
+          type: string
+          description: Comma-separated list of fields to include
+      - name: updatewebhooksubscription
+        method: PUT
+        description: Shopify Update a webhook subscription
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletewebhooksubscription
+        method: DELETE
+        description: Shopify Delete a webhook subscription
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: X-Shopify-Access-Token
+      value: '{{env.SHOPIFY_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: webhooks-webhook-subscriptions-rest
+    port: 8080
+    description: REST adapter for Shopify Webhooks API — Webhook Subscriptions. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/webhooks-json
+      name: webhooks-json
+      description: REST surface for webhooks.json.
+      operations:
+      - method: GET
+        name: listwebhooksubscriptions
+        description: Shopify Retrieve a list of webhook subscriptions
+        call: webhooks-webhook-subscriptions.listwebhooksubscriptions
+        with:
+          topic: rest.topic
+          address: rest.address
+          created_at_min: rest.created_at_min
+          created_at_max: rest.created_at_max
+          updated_at_min: rest.updated_at_min
+          updated_at_max: rest.updated_at_max
+          limit: rest.limit
+          since_id: rest.since_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createwebhooksubscription
+        description: Shopify Create a webhook subscription
+        call: webhooks-webhook-subscriptions.createwebhooksubscription
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/webhooks/count-json
+      name: webhooks-count-json
+      description: REST surface for webhooks-count.json.
+      operations:
+      - method: GET
+        name: getwebhooksubscriptioncount
+        description: Shopify Retrieve a count of webhook subscriptions
+        call: webhooks-webhook-subscriptions.getwebhooksubscriptioncount
+        with:
+          topic: rest.topic
+          address: rest.address
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/webhooks/webhook-id-json
+      name: webhooks-webhook-id-json
+      description: REST surface for webhooks-webhook_id}.json.
+      operations:
+      - method: GET
+        name: getwebhooksubscription
+        description: Shopify Retrieve a single webhook subscription
+        call: webhooks-webhook-subscriptions.getwebhooksubscription
+        with:
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updatewebhooksubscription
+        description: Shopify Update a webhook subscription
+        call: webhooks-webhook-subscriptions.updatewebhooksubscription
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletewebhooksubscription
+        description: Shopify Delete a webhook subscription
+        call: webhooks-webhook-subscriptions.deletewebhooksubscription
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: webhooks-webhook-subscriptions-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Shopify Webhooks API — Webhook Subscriptions. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: shopify-retrieve-list-webhook-subscriptions
+      description: Shopify Retrieve a list of webhook subscriptions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: webhooks-webhook-subscriptions.listwebhooksubscriptions
+      with:
+        topic: tools.topic
+        address: tools.address
+        created_at_min: tools.created_at_min
+        created_at_max: tools.created_at_max
+        updated_at_min: tools.updated_at_min
+        updated_at_max: tools.updated_at_max
+        limit: tools.limit
+        since_id: tools.since_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-create-webhook-subscription
+      description: Shopify Create a webhook subscription
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: webhooks-webhook-subscriptions.createwebhooksubscription
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieve-count-webhook-subscriptions
+      description: Shopify Retrieve a count of webhook subscriptions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: webhooks-webhook-subscriptions.getwebhooksubscriptioncount
+      with:
+        topic: tools.topic
+        address: tools.address
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieve-single-webhook-subscription
+      description: Shopify Retrieve a single webhook subscription
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: webhooks-webhook-subscriptions.getwebhooksubscription
+      with:
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-update-webhook-subscription
+      description: Shopify Update a webhook subscription
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: webhooks-webhook-subscriptions.updatewebhooksubscription
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-delete-webhook-subscription
+      description: Shopify Delete a webhook subscription
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: webhooks-webhook-subscriptions.deletewebhooksubscription
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,689 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Shopify  API — Storefront
+  description: 'Shopify  API — Storefront. 18 operations. Lead operation: Shopify Creates A New Storefront Access Token. Self-contained
+    Naftiko capability covering one Shopify business surface.'
+  tags:
+  - Shopify
+  - Storefront
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SHOPIFY_API_KEY: SHOPIFY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: shopify-storefront
+    baseUri: ''
+    description: Shopify  API — Storefront business capability. Self-contained, no shared references.
+    resources:
+    - name: admin-api-2020-01-storefront_access_tokens.json
+      path: /admin/api/2020-01/storefront_access_tokens.json
+      operations:
+      - name: deprecated202001createstorefrontaccesstokens
+        method: POST
+        description: Shopify Creates A New Storefront Access Token
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deprecated202001getstorefrontaccesstokens
+        method: GET
+        description: Shopify Retrieves A List Of Storefront Access Tokens That Have Been Issued
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: admin-api-2020-01-storefront_access_tokens-storefront_access_token_id}.json
+      path: /admin/api/2020-01/storefront_access_tokens/{storefront_access_token_id}.json
+      operations:
+      - name: deprecated202001deletestorefrontaccesstokensparamstorefrontaccesstokenid
+        method: DELETE
+        description: Shopify Deletes An Existing Storefront Access Token
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: storefront_access_token_id
+          in: path
+          type: string
+          description: storefront_access_token_id
+          required: true
+    - name: admin-api-2020-04-storefront_access_tokens.json
+      path: /admin/api/2020-04/storefront_access_tokens.json
+      operations:
+      - name: deprecated202004createstorefrontaccesstokens
+        method: POST
+        description: Shopify Creates A New Storefront Access Token
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deprecated202004getstorefrontaccesstokens
+        method: GET
+        description: Shopify Retrieves A List Of Storefront Access Tokens That Have Been Issued
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: admin-api-2020-04-storefront_access_tokens-storefront_access_token_id}.json
+      path: /admin/api/2020-04/storefront_access_tokens/{storefront_access_token_id}.json
+      operations:
+      - name: deprecated202004deletestorefrontaccesstokensparamstorefrontaccesstokenid
+        method: DELETE
+        description: Shopify Deletes An Existing Storefront Access Token
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: storefront_access_token_id
+          in: path
+          type: string
+          description: storefront_access_token_id
+          required: true
+    - name: admin-api-2020-07-storefront_access_tokens.json
+      path: /admin/api/2020-07/storefront_access_tokens.json
+      operations:
+      - name: deprecated202007createstorefrontaccesstokens
+        method: POST
+        description: Shopify Creates A New Storefront Access Token
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deprecated202007getstorefrontaccesstokens
+        method: GET
+        description: Shopify Retrieves A List Of Storefront Access Tokens That Have Been Issued
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: admin-api-2020-07-storefront_access_tokens-storefront_access_token_id}.json
+      path: /admin/api/2020-07/storefront_access_tokens/{storefront_access_token_id}.json
+      operations:
+      - name: deprecated202007deletestorefrontaccesstokensparamstorefrontaccesstokenid
+        method: DELETE
+        description: Shopify Deletes An Existing Storefront Access Token
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: storefront_access_token_id
+          in: path
+          type: string
+          description: storefront_access_token_id
+          required: true
+    - name: admin-api-2020-10-storefront_access_tokens.json
+      path: /admin/api/2020-10/storefront_access_tokens.json
+      operations:
+      - name: createstorefrontaccesstokens
+        method: POST
+        description: Shopify Creates A New Storefront Access Token
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: getstorefrontaccesstokens
+        method: GET
+        description: Shopify Retrieves A List Of Storefront Access Tokens That Have Been Issued
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: admin-api-2020-10-storefront_access_tokens-storefront_access_token_id}.json
+      path: /admin/api/2020-10/storefront_access_tokens/{storefront_access_token_id}.json
+      operations:
+      - name: deletestorefrontaccesstokensparamstorefrontaccesstokenid
+        method: DELETE
+        description: Shopify Deletes An Existing Storefront Access Token
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: storefront_access_token_id
+          in: path
+          type: string
+          description: storefront_access_token_id
+          required: true
+    - name: admin-api-2021-01-storefront_access_tokens.json
+      path: /admin/api/2021-01/storefront_access_tokens.json
+      operations:
+      - name: deprecated202101createstorefrontaccesstokens
+        method: POST
+        description: Shopify Creates A New Storefront Access Token
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deprecated202101getstorefrontaccesstokens
+        method: GET
+        description: Shopify Retrieves A List Of Storefront Access Tokens That Have Been Issued
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: admin-api-2021-01-storefront_access_tokens-storefront_access_token_id}.json
+      path: /admin/api/2021-01/storefront_access_tokens/{storefront_access_token_id}.json
+      operations:
+      - name: deprecated202101deletestorefrontaccesstokensparamstorefrontaccesstokenid
+        method: DELETE
+        description: Shopify Deletes An Existing Storefront Access Token
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: storefront_access_token_id
+          in: path
+          type: string
+          description: storefront_access_token_id
+          required: true
+    - name: admin-api-unstable-storefront_access_tokens.json
+      path: /admin/api/unstable/storefront_access_tokens.json
+      operations:
+      - name: deprecatedunstablecreatestorefrontaccesstokens
+        method: POST
+        description: Shopify Creates A New Storefront Access Token
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deprecatedunstablegetstorefrontaccesstokens
+        method: GET
+        description: Shopify Retrieves A List Of Storefront Access Tokens That Have Been Issued
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: admin-api-unstable-storefront_access_tokens-storefront_access_token_id}.json
+      path: /admin/api/unstable/storefront_access_tokens/{storefront_access_token_id}.json
+      operations:
+      - name: deprecatedunstabledeletestorefrontaccesstokensparamstorefrontaccesstokenid
+        method: DELETE
+        description: Shopify Deletes An Existing Storefront Access Token
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: storefront_access_token_id
+          in: path
+          type: string
+          description: storefront_access_token_id
+          required: true
+  exposes:
+  - type: rest
+    namespace: shopify-storefront-rest
+    port: 8080
+    description: REST adapter for Shopify  API — Storefront. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/admin/api/2020-01/storefront-access-tokens-json
+      name: admin-api-2020-01-storefront-access-tokens-json
+      description: REST surface for admin-api-2020-01-storefront_access_tokens.json.
+      operations:
+      - method: POST
+        name: deprecated202001createstorefrontaccesstokens
+        description: Shopify Creates A New Storefront Access Token
+        call: shopify-storefront.deprecated202001createstorefrontaccesstokens
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: deprecated202001getstorefrontaccesstokens
+        description: Shopify Retrieves A List Of Storefront Access Tokens That Have Been Issued
+        call: shopify-storefront.deprecated202001getstorefrontaccesstokens
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-01/storefront-access-tokens/storefront-access-token-id-json
+      name: admin-api-2020-01-storefront-access-tokens-storefront-access-token-id-json
+      description: REST surface for admin-api-2020-01-storefront_access_tokens-storefront_access_token_id}.json.
+      operations:
+      - method: DELETE
+        name: deprecated202001deletestorefrontaccesstokensparamstorefrontaccesstokenid
+        description: Shopify Deletes An Existing Storefront Access Token
+        call: shopify-storefront.deprecated202001deletestorefrontaccesstokensparamstorefrontaccesstokenid
+        with:
+          storefront_access_token_id: rest.storefront_access_token_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/storefront-access-tokens-json
+      name: admin-api-2020-04-storefront-access-tokens-json
+      description: REST surface for admin-api-2020-04-storefront_access_tokens.json.
+      operations:
+      - method: POST
+        name: deprecated202004createstorefrontaccesstokens
+        description: Shopify Creates A New Storefront Access Token
+        call: shopify-storefront.deprecated202004createstorefrontaccesstokens
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: deprecated202004getstorefrontaccesstokens
+        description: Shopify Retrieves A List Of Storefront Access Tokens That Have Been Issued
+        call: shopify-storefront.deprecated202004getstorefrontaccesstokens
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/storefront-access-tokens/storefront-access-token-id-json
+      name: admin-api-2020-04-storefront-access-tokens-storefront-access-token-id-json
+      description: REST surface for admin-api-2020-04-storefront_access_tokens-storefront_access_token_id}.json.
+      operations:
+      - method: DELETE
+        name: deprecated202004deletestorefrontaccesstokensparamstorefrontaccesstokenid
+        description: Shopify Deletes An Existing Storefront Access Token
+        call: shopify-storefront.deprecated202004deletestorefrontaccesstokensparamstorefrontaccesstokenid
+        with:
+          storefront_access_token_id: rest.storefront_access_token_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/storefront-access-tokens-json
+      name: admin-api-2020-07-storefront-access-tokens-json
+      description: REST surface for admin-api-2020-07-storefront_access_tokens.json.
+      operations:
+      - method: POST
+        name: deprecated202007createstorefrontaccesstokens
+        description: Shopify Creates A New Storefront Access Token
+        call: shopify-storefront.deprecated202007createstorefrontaccesstokens
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: deprecated202007getstorefrontaccesstokens
+        description: Shopify Retrieves A List Of Storefront Access Tokens That Have Been Issued
+        call: shopify-storefront.deprecated202007getstorefrontaccesstokens
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/storefront-access-tokens/storefront-access-token-id-json
+      name: admin-api-2020-07-storefront-access-tokens-storefront-access-token-id-json
+      description: REST surface for admin-api-2020-07-storefront_access_tokens-storefront_access_token_id}.json.
+      operations:
+      - method: DELETE
+        name: deprecated202007deletestorefrontaccesstokensparamstorefrontaccesstokenid
+        description: Shopify Deletes An Existing Storefront Access Token
+        call: shopify-storefront.deprecated202007deletestorefrontaccesstokensparamstorefrontaccesstokenid
+        with:
+          storefront_access_token_id: rest.storefront_access_token_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/storefront-access-tokens-json
+      name: admin-api-2020-10-storefront-access-tokens-json
+      description: REST surface for admin-api-2020-10-storefront_access_tokens.json.
+      operations:
+      - method: POST
+        name: createstorefrontaccesstokens
+        description: Shopify Creates A New Storefront Access Token
+        call: shopify-storefront.createstorefrontaccesstokens
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: getstorefrontaccesstokens
+        description: Shopify Retrieves A List Of Storefront Access Tokens That Have Been Issued
+        call: shopify-storefront.getstorefrontaccesstokens
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/storefront-access-tokens/storefront-access-token-id-json
+      name: admin-api-2020-10-storefront-access-tokens-storefront-access-token-id-json
+      description: REST surface for admin-api-2020-10-storefront_access_tokens-storefront_access_token_id}.json.
+      operations:
+      - method: DELETE
+        name: deletestorefrontaccesstokensparamstorefrontaccesstokenid
+        description: Shopify Deletes An Existing Storefront Access Token
+        call: shopify-storefront.deletestorefrontaccesstokensparamstorefrontaccesstokenid
+        with:
+          storefront_access_token_id: rest.storefront_access_token_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/storefront-access-tokens-json
+      name: admin-api-2021-01-storefront-access-tokens-json
+      description: REST surface for admin-api-2021-01-storefront_access_tokens.json.
+      operations:
+      - method: POST
+        name: deprecated202101createstorefrontaccesstokens
+        description: Shopify Creates A New Storefront Access Token
+        call: shopify-storefront.deprecated202101createstorefrontaccesstokens
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: deprecated202101getstorefrontaccesstokens
+        description: Shopify Retrieves A List Of Storefront Access Tokens That Have Been Issued
+        call: shopify-storefront.deprecated202101getstorefrontaccesstokens
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/storefront-access-tokens/storefront-access-token-id-json
+      name: admin-api-2021-01-storefront-access-tokens-storefront-access-token-id-json
+      description: REST surface for admin-api-2021-01-storefront_access_tokens-storefront_access_token_id}.json.
+      operations:
+      - method: DELETE
+        name: deprecated202101deletestorefrontaccesstokensparamstorefrontaccesstokenid
+        description: Shopify Deletes An Existing Storefront Access Token
+        call: shopify-storefront.deprecated202101deletestorefrontaccesstokensparamstorefrontaccesstokenid
+        with:
+          storefront_access_token_id: rest.storefront_access_token_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/storefront-access-tokens-json
+      name: admin-api-unstable-storefront-access-tokens-json
+      description: REST surface for admin-api-unstable-storefront_access_tokens.json.
+      operations:
+      - method: POST
+        name: deprecatedunstablecreatestorefrontaccesstokens
+        description: Shopify Creates A New Storefront Access Token
+        call: shopify-storefront.deprecatedunstablecreatestorefrontaccesstokens
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: deprecatedunstablegetstorefrontaccesstokens
+        description: Shopify Retrieves A List Of Storefront Access Tokens That Have Been Issued
+        call: shopify-storefront.deprecatedunstablegetstorefrontaccesstokens
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/storefront-access-tokens/storefront-access-token-id-json
+      name: admin-api-unstable-storefront-access-tokens-storefront-access-token-id-json
+      description: REST surface for admin-api-unstable-storefront_access_tokens-storefront_access_token_id}.json.
+      operations:
+      - method: DELETE
+        name: deprecatedunstabledeletestorefrontaccesstokensparamstorefrontaccesstokenid
+        description: Shopify Deletes An Existing Storefront Access Token
+        call: shopify-storefront.deprecatedunstabledeletestorefrontaccesstokensparamstorefrontaccesstokenid
+        with:
+          storefront_access_token_id: rest.storefront_access_token_id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: shopify-storefront-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Shopify  API — Storefront. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: shopify-creates-new-storefront-access
+      description: Shopify Creates A New Storefront Access Token
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-storefront.deprecated202001createstorefrontaccesstokens
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-storefront-access
+      description: Shopify Retrieves A List Of Storefront Access Tokens That Have Been Issued
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-storefront.deprecated202001getstorefrontaccesstokens
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-deletes-existing-storefront-access
+      description: Shopify Deletes An Existing Storefront Access Token
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-storefront.deprecated202001deletestorefrontaccesstokensparamstorefrontaccesstokenid
+      with:
+        storefront_access_token_id: tools.storefront_access_token_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-creates-new-storefront-access-2
+      description: Shopify Creates A New Storefront Access Token
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-storefront.deprecated202004createstorefrontaccesstokens
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-storefront-access-2
+      description: Shopify Retrieves A List Of Storefront Access Tokens That Have Been Issued
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-storefront.deprecated202004getstorefrontaccesstokens
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-deletes-existing-storefront-access-2
+      description: Shopify Deletes An Existing Storefront Access Token
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-storefront.deprecated202004deletestorefrontaccesstokensparamstorefrontaccesstokenid
+      with:
+        storefront_access_token_id: tools.storefront_access_token_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-creates-new-storefront-access-3
+      description: Shopify Creates A New Storefront Access Token
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-storefront.deprecated202007createstorefrontaccesstokens
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-storefront-access-3
+      description: Shopify Retrieves A List Of Storefront Access Tokens That Have Been Issued
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-storefront.deprecated202007getstorefrontaccesstokens
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-deletes-existing-storefront-access-3
+      description: Shopify Deletes An Existing Storefront Access Token
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-storefront.deprecated202007deletestorefrontaccesstokensparamstorefrontaccesstokenid
+      with:
+        storefront_access_token_id: tools.storefront_access_token_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-creates-new-storefront-access-4
+      description: Shopify Creates A New Storefront Access Token
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-storefront.createstorefrontaccesstokens
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-storefront-access-4
+      description: Shopify Retrieves A List Of Storefront Access Tokens That Have Been Issued
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-storefront.getstorefrontaccesstokens
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-deletes-existing-storefront-access-4
+      description: Shopify Deletes An Existing Storefront Access Token
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-storefront.deletestorefrontaccesstokensparamstorefrontaccesstokenid
+      with:
+        storefront_access_token_id: tools.storefront_access_token_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-creates-new-storefront-access-5
+      description: Shopify Creates A New Storefront Access Token
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-storefront.deprecated202101createstorefrontaccesstokens
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-storefront-access-5
+      description: Shopify Retrieves A List Of Storefront Access Tokens That Have Been Issued
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-storefront.deprecated202101getstorefrontaccesstokens
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-deletes-existing-storefront-access-5
+      description: Shopify Deletes An Existing Storefront Access Token
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-storefront.deprecated202101deletestorefrontaccesstokensparamstorefrontaccesstokenid
+      with:
+        storefront_access_token_id: tools.storefront_access_token_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-creates-new-storefront-access-6
+      description: Shopify Creates A New Storefront Access Token
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-storefront.deprecatedunstablecreatestorefrontaccesstokens
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-storefront-access-6
+      description: Shopify Retrieves A List Of Storefront Access Tokens That Have Been Issued
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-storefront.deprecatedunstablegetstorefrontaccesstokens
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-deletes-existing-storefront-access-6
+      description: Shopify Deletes An Existing Storefront Access Token
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-storefront.deprecatedunstabledeletestorefrontaccesstokensparamstorefrontaccesstokenid
+      with:
+        storefront_access_token_id: tools.storefront_access_token_id
+      outputParameters:
+      - type: object
+        mapping: $.

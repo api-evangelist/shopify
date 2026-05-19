@@ -1,0 +1,323 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Shopify  API — Collect
+  description: 'Shopify  API — Collect. 6 operations. Lead operation: Shopify Retrieves A Specific Collect By Its Id. Self-contained
+    Naftiko capability covering one Shopify business surface.'
+  tags:
+  - Shopify
+  - Collect
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SHOPIFY_API_KEY: SHOPIFY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: shopify-collect
+    baseUri: ''
+    description: Shopify  API — Collect business capability. Self-contained, no shared references.
+    resources:
+    - name: admin-api-2020-01-collects-collect_id}.json
+      path: /admin/api/2020-01/collects/{collect_id}.json
+      operations:
+      - name: deprecated202001getcollectsparamcollectid
+        method: GET
+        description: Shopify Retrieves A Specific Collect By Its Id
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: collect_id
+          in: path
+          type: string
+          description: collect_id
+          required: true
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+    - name: admin-api-2020-04-collects-collect_id}.json
+      path: /admin/api/2020-04/collects/{collect_id}.json
+      operations:
+      - name: deprecated202004getcollectsparamcollectid
+        method: GET
+        description: Shopify Retrieves A Specific Collect By Its Id
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: collect_id
+          in: path
+          type: string
+          description: collect_id
+          required: true
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+    - name: admin-api-2020-07-collects-collect_id}.json
+      path: /admin/api/2020-07/collects/{collect_id}.json
+      operations:
+      - name: deprecated202007getcollectsparamcollectid
+        method: GET
+        description: Shopify Retrieves A Specific Collect By Its Id
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: collect_id
+          in: path
+          type: string
+          description: collect_id
+          required: true
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+    - name: admin-api-2020-10-collects-collect_id}.json
+      path: /admin/api/2020-10/collects/{collect_id}.json
+      operations:
+      - name: getcollectsparamcollectid
+        method: GET
+        description: Shopify Retrieves A Specific Collect By Its Id
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: collect_id
+          in: path
+          type: string
+          description: collect_id
+          required: true
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+    - name: admin-api-2021-01-collects-collect_id}.json
+      path: /admin/api/2021-01/collects/{collect_id}.json
+      operations:
+      - name: deprecated202101getcollectsparamcollectid
+        method: GET
+        description: Shopify Retrieves A Specific Collect By Its Id
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: collect_id
+          in: path
+          type: string
+          description: collect_id
+          required: true
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+    - name: admin-api-unstable-collects-collect_id}.json
+      path: /admin/api/unstable/collects/{collect_id}.json
+      operations:
+      - name: deprecatedunstablegetcollectsparamcollectid
+        method: GET
+        description: Shopify Retrieves A Specific Collect By Its Id
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: collect_id
+          in: path
+          type: string
+          description: collect_id
+          required: true
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+  exposes:
+  - type: rest
+    namespace: shopify-collect-rest
+    port: 8080
+    description: REST adapter for Shopify  API — Collect. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/admin/api/2020-01/collects/collect-id-json
+      name: admin-api-2020-01-collects-collect-id-json
+      description: REST surface for admin-api-2020-01-collects-collect_id}.json.
+      operations:
+      - method: GET
+        name: deprecated202001getcollectsparamcollectid
+        description: Shopify Retrieves A Specific Collect By Its Id
+        call: shopify-collect.deprecated202001getcollectsparamcollectid
+        with:
+          collect_id: rest.collect_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/collects/collect-id-json
+      name: admin-api-2020-04-collects-collect-id-json
+      description: REST surface for admin-api-2020-04-collects-collect_id}.json.
+      operations:
+      - method: GET
+        name: deprecated202004getcollectsparamcollectid
+        description: Shopify Retrieves A Specific Collect By Its Id
+        call: shopify-collect.deprecated202004getcollectsparamcollectid
+        with:
+          collect_id: rest.collect_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/collects/collect-id-json
+      name: admin-api-2020-07-collects-collect-id-json
+      description: REST surface for admin-api-2020-07-collects-collect_id}.json.
+      operations:
+      - method: GET
+        name: deprecated202007getcollectsparamcollectid
+        description: Shopify Retrieves A Specific Collect By Its Id
+        call: shopify-collect.deprecated202007getcollectsparamcollectid
+        with:
+          collect_id: rest.collect_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/collects/collect-id-json
+      name: admin-api-2020-10-collects-collect-id-json
+      description: REST surface for admin-api-2020-10-collects-collect_id}.json.
+      operations:
+      - method: GET
+        name: getcollectsparamcollectid
+        description: Shopify Retrieves A Specific Collect By Its Id
+        call: shopify-collect.getcollectsparamcollectid
+        with:
+          collect_id: rest.collect_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/collects/collect-id-json
+      name: admin-api-2021-01-collects-collect-id-json
+      description: REST surface for admin-api-2021-01-collects-collect_id}.json.
+      operations:
+      - method: GET
+        name: deprecated202101getcollectsparamcollectid
+        description: Shopify Retrieves A Specific Collect By Its Id
+        call: shopify-collect.deprecated202101getcollectsparamcollectid
+        with:
+          collect_id: rest.collect_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/collects/collect-id-json
+      name: admin-api-unstable-collects-collect-id-json
+      description: REST surface for admin-api-unstable-collects-collect_id}.json.
+      operations:
+      - method: GET
+        name: deprecatedunstablegetcollectsparamcollectid
+        description: Shopify Retrieves A Specific Collect By Its Id
+        call: shopify-collect.deprecatedunstablegetcollectsparamcollectid
+        with:
+          collect_id: rest.collect_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: shopify-collect-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Shopify  API — Collect. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: shopify-retrieves-specific-collect-its
+      description: Shopify Retrieves A Specific Collect By Its Id
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-collect.deprecated202001getcollectsparamcollectid
+      with:
+        collect_id: tools.collect_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-specific-collect-its-2
+      description: Shopify Retrieves A Specific Collect By Its Id
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-collect.deprecated202004getcollectsparamcollectid
+      with:
+        collect_id: tools.collect_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-specific-collect-its-3
+      description: Shopify Retrieves A Specific Collect By Its Id
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-collect.deprecated202007getcollectsparamcollectid
+      with:
+        collect_id: tools.collect_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-specific-collect-its-4
+      description: Shopify Retrieves A Specific Collect By Its Id
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-collect.getcollectsparamcollectid
+      with:
+        collect_id: tools.collect_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-specific-collect-its-5
+      description: Shopify Retrieves A Specific Collect By Its Id
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-collect.deprecated202101getcollectsparamcollectid
+      with:
+        collect_id: tools.collect_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-specific-collect-its-6
+      description: Shopify Retrieves A Specific Collect By Its Id
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-collect.deprecatedunstablegetcollectsparamcollectid
+      with:
+        collect_id: tools.collect_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.

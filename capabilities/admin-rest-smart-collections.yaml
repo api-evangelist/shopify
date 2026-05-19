@@ -1,0 +1,105 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Shopify Admin REST API — Smart Collections
+  description: 'Shopify Admin REST API — Smart Collections. 1 operations. Lead operation: Shopify Retrieve a list of smart
+    collections. Self-contained Naftiko capability covering one Shopify business surface.'
+  tags:
+  - Shopify
+  - Smart Collections
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SHOPIFY_API_KEY: SHOPIFY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: admin-rest-smart-collections
+    baseUri: https://{store}.myshopify.com/admin/api/2025-01
+    description: Shopify Admin REST API — Smart Collections business capability. Self-contained, no shared references.
+    resources:
+    - name: smart_collections.json
+      path: /smart_collections.json
+      operations:
+      - name: listsmartcollections
+        method: GET
+        description: Shopify Retrieve a list of smart collections
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: integer
+          description: Maximum number of results (max 250, default 50)
+        - name: since_id
+          in: query
+          type: integer
+          description: Return collections after the specified ID
+        - name: title
+          in: query
+          type: string
+          description: Filter by collection title
+        - name: product_id
+          in: query
+          type: integer
+          description: Show collections containing this product
+        - name: fields
+          in: query
+          type: string
+          description: Comma-separated list of fields to include
+    authentication:
+      type: apikey
+      key: X-Shopify-Access-Token
+      value: '{{env.SHOPIFY_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: admin-rest-smart-collections-rest
+    port: 8080
+    description: REST adapter for Shopify Admin REST API — Smart Collections. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/smart-collections-json
+      name: smart-collections-json
+      description: REST surface for smart_collections.json.
+      operations:
+      - method: GET
+        name: listsmartcollections
+        description: Shopify Retrieve a list of smart collections
+        call: admin-rest-smart-collections.listsmartcollections
+        with:
+          limit: rest.limit
+          since_id: rest.since_id
+          title: rest.title
+          product_id: rest.product_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: admin-rest-smart-collections-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Shopify Admin REST API — Smart Collections. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: shopify-retrieve-list-smart-collections
+      description: Shopify Retrieve a list of smart collections
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: admin-rest-smart-collections.listsmartcollections
+      with:
+        limit: tools.limit
+        since_id: tools.since_id
+        title: tools.title
+        product_id: tools.product_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.

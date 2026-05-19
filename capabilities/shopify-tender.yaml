@@ -1,0 +1,461 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Shopify  API — Tender
+  description: 'Shopify  API — Tender. 6 operations. Lead operation: Shopify Retrieves A List Of Tender Transactions. Self-contained
+    Naftiko capability covering one Shopify business surface.'
+  tags:
+  - Shopify
+  - Tender
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SHOPIFY_API_KEY: SHOPIFY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: shopify-tender
+    baseUri: ''
+    description: Shopify  API — Tender business capability. Self-contained, no shared references.
+    resources:
+    - name: admin-api-2020-01-tender_transactions.json
+      path: /admin/api/2020-01/tender_transactions.json
+      operations:
+      - name: deprecated202001gettendertransactions
+        method: GET
+        description: Shopify Retrieves A List Of Tender Transactions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: string
+          description: The maximum number of results to retrieve.
+        - name: since_id
+          in: query
+          type: string
+          description: Retrieve only transactions after the specified ID.
+        - name: processed_at_min
+          in: query
+          type: string
+          description: Show tender transactions processed_at or after the specified date.
+        - name: processed_at_max
+          in: query
+          type: string
+          description: Show tender transactions processed_at or before the specified date.
+        - name: processed_at
+          in: query
+          type: string
+          description: Show tender transactions processed at the specified date.
+        - name: order
+          in: query
+          type: string
+          description: Show tender transactions ordered by processed_at in ascending or descending order.
+    - name: admin-api-2020-04-tender_transactions.json
+      path: /admin/api/2020-04/tender_transactions.json
+      operations:
+      - name: deprecated202004gettendertransactions
+        method: GET
+        description: Shopify Retrieves A List Of Tender Transactions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: string
+          description: The maximum number of results to retrieve.
+        - name: since_id
+          in: query
+          type: string
+          description: Retrieve only transactions after the specified ID.
+        - name: processed_at_min
+          in: query
+          type: string
+          description: Show tender transactions processed_at or after the specified date.
+        - name: processed_at_max
+          in: query
+          type: string
+          description: Show tender transactions processed_at or before the specified date.
+        - name: processed_at
+          in: query
+          type: string
+          description: Show tender transactions processed at the specified date.
+        - name: order
+          in: query
+          type: string
+          description: Show tender transactions ordered by processed_at in ascending or descending order.
+    - name: admin-api-2020-07-tender_transactions.json
+      path: /admin/api/2020-07/tender_transactions.json
+      operations:
+      - name: deprecated202007gettendertransactions
+        method: GET
+        description: Shopify Retrieves A List Of Tender Transactions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: string
+          description: The maximum number of results to retrieve.
+        - name: since_id
+          in: query
+          type: string
+          description: Retrieve only transactions after the specified ID.
+        - name: processed_at_min
+          in: query
+          type: string
+          description: Show tender transactions processed_at or after the specified date.
+        - name: processed_at_max
+          in: query
+          type: string
+          description: Show tender transactions processed_at or before the specified date.
+        - name: processed_at
+          in: query
+          type: string
+          description: Show tender transactions processed at the specified date.
+        - name: order
+          in: query
+          type: string
+          description: Show tender transactions ordered by processed_at in ascending or descending order.
+    - name: admin-api-2020-10-tender_transactions.json
+      path: /admin/api/2020-10/tender_transactions.json
+      operations:
+      - name: gettendertransactions
+        method: GET
+        description: Shopify Retrieves A List Of Tender Transactions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: string
+          description: The maximum number of results to retrieve.
+        - name: since_id
+          in: query
+          type: string
+          description: Retrieve only transactions after the specified ID.
+        - name: processed_at_min
+          in: query
+          type: string
+          description: Show tender transactions processed_at or after the specified date.
+        - name: processed_at_max
+          in: query
+          type: string
+          description: Show tender transactions processed_at or before the specified date.
+        - name: processed_at
+          in: query
+          type: string
+          description: Show tender transactions processed at the specified date.
+        - name: order
+          in: query
+          type: string
+          description: Show tender transactions ordered by processed_at in ascending or descending order.
+    - name: admin-api-2021-01-tender_transactions.json
+      path: /admin/api/2021-01/tender_transactions.json
+      operations:
+      - name: deprecated202101gettendertransactions
+        method: GET
+        description: Shopify Retrieves A List Of Tender Transactions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: string
+          description: The maximum number of results to retrieve.
+        - name: since_id
+          in: query
+          type: string
+          description: Retrieve only transactions after the specified ID.
+        - name: processed_at_min
+          in: query
+          type: string
+          description: Show tender transactions processed_at or after the specified date.
+        - name: processed_at_max
+          in: query
+          type: string
+          description: Show tender transactions processed_at or before the specified date.
+        - name: processed_at
+          in: query
+          type: string
+          description: Show tender transactions processed at the specified date.
+        - name: order
+          in: query
+          type: string
+          description: Show tender transactions ordered by processed_at in ascending or descending order.
+    - name: admin-api-unstable-tender_transactions.json
+      path: /admin/api/unstable/tender_transactions.json
+      operations:
+      - name: deprecatedunstablegettendertransactions
+        method: GET
+        description: Shopify Retrieves A List Of Tender Transactions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: string
+          description: The maximum number of results to retrieve.
+        - name: since_id
+          in: query
+          type: string
+          description: Retrieve only transactions after the specified ID.
+        - name: processed_at_min
+          in: query
+          type: string
+          description: Show tender transactions processed_at or after the specified date.
+        - name: processed_at_max
+          in: query
+          type: string
+          description: Show tender transactions processed_at or before the specified date.
+        - name: processed_at
+          in: query
+          type: string
+          description: Show tender transactions processed at the specified date.
+        - name: order
+          in: query
+          type: string
+          description: Show tender transactions ordered by processed_at in ascending or descending order.
+  exposes:
+  - type: rest
+    namespace: shopify-tender-rest
+    port: 8080
+    description: REST adapter for Shopify  API — Tender. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/admin/api/2020-01/tender-transactions-json
+      name: admin-api-2020-01-tender-transactions-json
+      description: REST surface for admin-api-2020-01-tender_transactions.json.
+      operations:
+      - method: GET
+        name: deprecated202001gettendertransactions
+        description: Shopify Retrieves A List Of Tender Transactions
+        call: shopify-tender.deprecated202001gettendertransactions
+        with:
+          limit: rest.limit
+          since_id: rest.since_id
+          processed_at_min: rest.processed_at_min
+          processed_at_max: rest.processed_at_max
+          processed_at: rest.processed_at
+          order: rest.order
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/tender-transactions-json
+      name: admin-api-2020-04-tender-transactions-json
+      description: REST surface for admin-api-2020-04-tender_transactions.json.
+      operations:
+      - method: GET
+        name: deprecated202004gettendertransactions
+        description: Shopify Retrieves A List Of Tender Transactions
+        call: shopify-tender.deprecated202004gettendertransactions
+        with:
+          limit: rest.limit
+          since_id: rest.since_id
+          processed_at_min: rest.processed_at_min
+          processed_at_max: rest.processed_at_max
+          processed_at: rest.processed_at
+          order: rest.order
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/tender-transactions-json
+      name: admin-api-2020-07-tender-transactions-json
+      description: REST surface for admin-api-2020-07-tender_transactions.json.
+      operations:
+      - method: GET
+        name: deprecated202007gettendertransactions
+        description: Shopify Retrieves A List Of Tender Transactions
+        call: shopify-tender.deprecated202007gettendertransactions
+        with:
+          limit: rest.limit
+          since_id: rest.since_id
+          processed_at_min: rest.processed_at_min
+          processed_at_max: rest.processed_at_max
+          processed_at: rest.processed_at
+          order: rest.order
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/tender-transactions-json
+      name: admin-api-2020-10-tender-transactions-json
+      description: REST surface for admin-api-2020-10-tender_transactions.json.
+      operations:
+      - method: GET
+        name: gettendertransactions
+        description: Shopify Retrieves A List Of Tender Transactions
+        call: shopify-tender.gettendertransactions
+        with:
+          limit: rest.limit
+          since_id: rest.since_id
+          processed_at_min: rest.processed_at_min
+          processed_at_max: rest.processed_at_max
+          processed_at: rest.processed_at
+          order: rest.order
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/tender-transactions-json
+      name: admin-api-2021-01-tender-transactions-json
+      description: REST surface for admin-api-2021-01-tender_transactions.json.
+      operations:
+      - method: GET
+        name: deprecated202101gettendertransactions
+        description: Shopify Retrieves A List Of Tender Transactions
+        call: shopify-tender.deprecated202101gettendertransactions
+        with:
+          limit: rest.limit
+          since_id: rest.since_id
+          processed_at_min: rest.processed_at_min
+          processed_at_max: rest.processed_at_max
+          processed_at: rest.processed_at
+          order: rest.order
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/tender-transactions-json
+      name: admin-api-unstable-tender-transactions-json
+      description: REST surface for admin-api-unstable-tender_transactions.json.
+      operations:
+      - method: GET
+        name: deprecatedunstablegettendertransactions
+        description: Shopify Retrieves A List Of Tender Transactions
+        call: shopify-tender.deprecatedunstablegettendertransactions
+        with:
+          limit: rest.limit
+          since_id: rest.since_id
+          processed_at_min: rest.processed_at_min
+          processed_at_max: rest.processed_at_max
+          processed_at: rest.processed_at
+          order: rest.order
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: shopify-tender-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Shopify  API — Tender. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: shopify-retrieves-list-tender-transactions
+      description: Shopify Retrieves A List Of Tender Transactions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-tender.deprecated202001gettendertransactions
+      with:
+        limit: tools.limit
+        since_id: tools.since_id
+        processed_at_min: tools.processed_at_min
+        processed_at_max: tools.processed_at_max
+        processed_at: tools.processed_at
+        order: tools.order
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-tender-transactions-2
+      description: Shopify Retrieves A List Of Tender Transactions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-tender.deprecated202004gettendertransactions
+      with:
+        limit: tools.limit
+        since_id: tools.since_id
+        processed_at_min: tools.processed_at_min
+        processed_at_max: tools.processed_at_max
+        processed_at: tools.processed_at
+        order: tools.order
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-tender-transactions-3
+      description: Shopify Retrieves A List Of Tender Transactions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-tender.deprecated202007gettendertransactions
+      with:
+        limit: tools.limit
+        since_id: tools.since_id
+        processed_at_min: tools.processed_at_min
+        processed_at_max: tools.processed_at_max
+        processed_at: tools.processed_at
+        order: tools.order
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-tender-transactions-4
+      description: Shopify Retrieves A List Of Tender Transactions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-tender.gettendertransactions
+      with:
+        limit: tools.limit
+        since_id: tools.since_id
+        processed_at_min: tools.processed_at_min
+        processed_at_max: tools.processed_at_max
+        processed_at: tools.processed_at
+        order: tools.order
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-tender-transactions-5
+      description: Shopify Retrieves A List Of Tender Transactions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-tender.deprecated202101gettendertransactions
+      with:
+        limit: tools.limit
+        since_id: tools.since_id
+        processed_at_min: tools.processed_at_min
+        processed_at_max: tools.processed_at_max
+        processed_at: tools.processed_at
+        order: tools.order
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-tender-transactions-6
+      description: Shopify Retrieves A List Of Tender Transactions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-tender.deprecatedunstablegettendertransactions
+      with:
+        limit: tools.limit
+        since_id: tools.since_id
+        processed_at_min: tools.processed_at_min
+        processed_at_max: tools.processed_at_max
+        processed_at: tools.processed_at
+        order: tools.order
+      outputParameters:
+      - type: object
+        mapping: $.

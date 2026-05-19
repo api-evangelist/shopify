@@ -1,0 +1,617 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Shopify  API — Topic
+  description: 'Shopify  API — Topic. 12 operations. Lead operation: Shopify Create A New Webhook Subscription By Specifying
+    Both An Address And A Topic. Self-contained Naftiko capability covering one Shopify business surface.'
+  tags:
+  - Shopify
+  - Topic
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SHOPIFY_API_KEY: SHOPIFY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: shopify-topic
+    baseUri: ''
+    description: Shopify  API — Topic business capability. Self-contained, no shared references.
+    resources:
+    - name: admin-api-2020-01-webhooks.json
+      path: /admin/api/2020-01/webhooks.json
+      operations:
+      - name: deprecated202001createwebhooks
+        method: POST
+        description: Shopify Create A New Webhook Subscription By Specifying Both An Address And A Topic
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: format
+          in: query
+          type: string
+          description: Use this parameter to select the data format for the payload. Valid values are json and xml.
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-01-webhooks-webhook_id}.json
+      path: /admin/api/2020-01/webhooks/{webhook_id}.json
+      operations:
+      - name: deprecated202001updatewebhooksparamwebhookid
+        method: PUT
+        description: Shopify Update A Webhook Subscription's Topic Or Address Uris
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: webhook_id
+          in: path
+          type: string
+          description: webhook_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-04-webhooks.json
+      path: /admin/api/2020-04/webhooks.json
+      operations:
+      - name: deprecated202004createwebhooks
+        method: POST
+        description: Shopify Create A New Webhook Subscription By Specifying Both An Address And A Topic
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: format
+          in: query
+          type: string
+          description: Use this parameter to select the data format for the payload. Valid values are json and xml.
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-04-webhooks-webhook_id}.json
+      path: /admin/api/2020-04/webhooks/{webhook_id}.json
+      operations:
+      - name: deprecated202004updatewebhooksparamwebhookid
+        method: PUT
+        description: Shopify Update A Webhook Subscription's Topic Or Address Uris
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: webhook_id
+          in: path
+          type: string
+          description: webhook_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-07-webhooks.json
+      path: /admin/api/2020-07/webhooks.json
+      operations:
+      - name: deprecated202007createwebhooks
+        method: POST
+        description: Shopify Create A New Webhook Subscription By Specifying Both An Address And A Topic
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: format
+          in: query
+          type: string
+          description: Use this parameter to select the data format for the payload. Valid values are json and xml.
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-07-webhooks-webhook_id}.json
+      path: /admin/api/2020-07/webhooks/{webhook_id}.json
+      operations:
+      - name: deprecated202007updatewebhooksparamwebhookid
+        method: PUT
+        description: Shopify Update A Webhook Subscription's Topic Or Address Uris
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: webhook_id
+          in: path
+          type: string
+          description: webhook_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-10-webhooks.json
+      path: /admin/api/2020-10/webhooks.json
+      operations:
+      - name: createwebhooks
+        method: POST
+        description: Shopify Create A New Webhook Subscription By Specifying Both An Address And A Topic
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: format
+          in: query
+          type: string
+          description: Use this parameter to select the data format for the payload. Valid values are json and xml.
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-10-webhooks-webhook_id}.json
+      path: /admin/api/2020-10/webhooks/{webhook_id}.json
+      operations:
+      - name: updatewebhooksparamwebhookid
+        method: PUT
+        description: Shopify Update A Webhook Subscription's Topic Or Address Uris
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: webhook_id
+          in: path
+          type: string
+          description: webhook_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2021-01-webhooks.json
+      path: /admin/api/2021-01/webhooks.json
+      operations:
+      - name: deprecated202101createwebhooks
+        method: POST
+        description: Shopify Create A New Webhook Subscription By Specifying Both An Address And A Topic
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: format
+          in: query
+          type: string
+          description: Use this parameter to select the data format for the payload. Valid values are json and xml.
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2021-01-webhooks-webhook_id}.json
+      path: /admin/api/2021-01/webhooks/{webhook_id}.json
+      operations:
+      - name: deprecated202101updatewebhooksparamwebhookid
+        method: PUT
+        description: Shopify Update A Webhook Subscription's Topic Or Address Uris
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: webhook_id
+          in: path
+          type: string
+          description: webhook_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-unstable-webhooks.json
+      path: /admin/api/unstable/webhooks.json
+      operations:
+      - name: deprecatedunstablecreatewebhooks
+        method: POST
+        description: Shopify Create A New Webhook Subscription By Specifying Both An Address And A Topic
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: format
+          in: query
+          type: string
+          description: Use this parameter to select the data format for the payload. Valid values are json and xml.
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-unstable-webhooks-webhook_id}.json
+      path: /admin/api/unstable/webhooks/{webhook_id}.json
+      operations:
+      - name: deprecatedunstableupdatewebhooksparamwebhookid
+        method: PUT
+        description: Shopify Update A Webhook Subscription's Topic Or Address Uris
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: webhook_id
+          in: path
+          type: string
+          description: webhook_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+  exposes:
+  - type: rest
+    namespace: shopify-topic-rest
+    port: 8080
+    description: REST adapter for Shopify  API — Topic. One Spectral-compliant resource per consumed operation, prefixed with
+      /v1.
+    resources:
+    - path: /v1/admin/api/2020-01/webhooks-json
+      name: admin-api-2020-01-webhooks-json
+      description: REST surface for admin-api-2020-01-webhooks.json.
+      operations:
+      - method: POST
+        name: deprecated202001createwebhooks
+        description: Shopify Create A New Webhook Subscription By Specifying Both An Address And A Topic
+        call: shopify-topic.deprecated202001createwebhooks
+        with:
+          format: rest.format
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-01/webhooks/webhook-id-json
+      name: admin-api-2020-01-webhooks-webhook-id-json
+      description: REST surface for admin-api-2020-01-webhooks-webhook_id}.json.
+      operations:
+      - method: PUT
+        name: deprecated202001updatewebhooksparamwebhookid
+        description: Shopify Update A Webhook Subscription's Topic Or Address Uris
+        call: shopify-topic.deprecated202001updatewebhooksparamwebhookid
+        with:
+          webhook_id: rest.webhook_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/webhooks-json
+      name: admin-api-2020-04-webhooks-json
+      description: REST surface for admin-api-2020-04-webhooks.json.
+      operations:
+      - method: POST
+        name: deprecated202004createwebhooks
+        description: Shopify Create A New Webhook Subscription By Specifying Both An Address And A Topic
+        call: shopify-topic.deprecated202004createwebhooks
+        with:
+          format: rest.format
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/webhooks/webhook-id-json
+      name: admin-api-2020-04-webhooks-webhook-id-json
+      description: REST surface for admin-api-2020-04-webhooks-webhook_id}.json.
+      operations:
+      - method: PUT
+        name: deprecated202004updatewebhooksparamwebhookid
+        description: Shopify Update A Webhook Subscription's Topic Or Address Uris
+        call: shopify-topic.deprecated202004updatewebhooksparamwebhookid
+        with:
+          webhook_id: rest.webhook_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/webhooks-json
+      name: admin-api-2020-07-webhooks-json
+      description: REST surface for admin-api-2020-07-webhooks.json.
+      operations:
+      - method: POST
+        name: deprecated202007createwebhooks
+        description: Shopify Create A New Webhook Subscription By Specifying Both An Address And A Topic
+        call: shopify-topic.deprecated202007createwebhooks
+        with:
+          format: rest.format
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/webhooks/webhook-id-json
+      name: admin-api-2020-07-webhooks-webhook-id-json
+      description: REST surface for admin-api-2020-07-webhooks-webhook_id}.json.
+      operations:
+      - method: PUT
+        name: deprecated202007updatewebhooksparamwebhookid
+        description: Shopify Update A Webhook Subscription's Topic Or Address Uris
+        call: shopify-topic.deprecated202007updatewebhooksparamwebhookid
+        with:
+          webhook_id: rest.webhook_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/webhooks-json
+      name: admin-api-2020-10-webhooks-json
+      description: REST surface for admin-api-2020-10-webhooks.json.
+      operations:
+      - method: POST
+        name: createwebhooks
+        description: Shopify Create A New Webhook Subscription By Specifying Both An Address And A Topic
+        call: shopify-topic.createwebhooks
+        with:
+          format: rest.format
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/webhooks/webhook-id-json
+      name: admin-api-2020-10-webhooks-webhook-id-json
+      description: REST surface for admin-api-2020-10-webhooks-webhook_id}.json.
+      operations:
+      - method: PUT
+        name: updatewebhooksparamwebhookid
+        description: Shopify Update A Webhook Subscription's Topic Or Address Uris
+        call: shopify-topic.updatewebhooksparamwebhookid
+        with:
+          webhook_id: rest.webhook_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/webhooks-json
+      name: admin-api-2021-01-webhooks-json
+      description: REST surface for admin-api-2021-01-webhooks.json.
+      operations:
+      - method: POST
+        name: deprecated202101createwebhooks
+        description: Shopify Create A New Webhook Subscription By Specifying Both An Address And A Topic
+        call: shopify-topic.deprecated202101createwebhooks
+        with:
+          format: rest.format
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/webhooks/webhook-id-json
+      name: admin-api-2021-01-webhooks-webhook-id-json
+      description: REST surface for admin-api-2021-01-webhooks-webhook_id}.json.
+      operations:
+      - method: PUT
+        name: deprecated202101updatewebhooksparamwebhookid
+        description: Shopify Update A Webhook Subscription's Topic Or Address Uris
+        call: shopify-topic.deprecated202101updatewebhooksparamwebhookid
+        with:
+          webhook_id: rest.webhook_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/webhooks-json
+      name: admin-api-unstable-webhooks-json
+      description: REST surface for admin-api-unstable-webhooks.json.
+      operations:
+      - method: POST
+        name: deprecatedunstablecreatewebhooks
+        description: Shopify Create A New Webhook Subscription By Specifying Both An Address And A Topic
+        call: shopify-topic.deprecatedunstablecreatewebhooks
+        with:
+          format: rest.format
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/webhooks/webhook-id-json
+      name: admin-api-unstable-webhooks-webhook-id-json
+      description: REST surface for admin-api-unstable-webhooks-webhook_id}.json.
+      operations:
+      - method: PUT
+        name: deprecatedunstableupdatewebhooksparamwebhookid
+        description: Shopify Update A Webhook Subscription's Topic Or Address Uris
+        call: shopify-topic.deprecatedunstableupdatewebhooksparamwebhookid
+        with:
+          webhook_id: rest.webhook_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: shopify-topic-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Shopify  API — Topic. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: shopify-create-new-webhook-subscription
+      description: Shopify Create A New Webhook Subscription By Specifying Both An Address And A Topic
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-topic.deprecated202001createwebhooks
+      with:
+        format: tools.format
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-update-webhook-subscription-s-topic
+      description: Shopify Update A Webhook Subscription's Topic Or Address Uris
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-topic.deprecated202001updatewebhooksparamwebhookid
+      with:
+        webhook_id: tools.webhook_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-create-new-webhook-subscription-2
+      description: Shopify Create A New Webhook Subscription By Specifying Both An Address And A Topic
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-topic.deprecated202004createwebhooks
+      with:
+        format: tools.format
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-update-webhook-subscription-s-topic-2
+      description: Shopify Update A Webhook Subscription's Topic Or Address Uris
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-topic.deprecated202004updatewebhooksparamwebhookid
+      with:
+        webhook_id: tools.webhook_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-create-new-webhook-subscription-3
+      description: Shopify Create A New Webhook Subscription By Specifying Both An Address And A Topic
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-topic.deprecated202007createwebhooks
+      with:
+        format: tools.format
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-update-webhook-subscription-s-topic-3
+      description: Shopify Update A Webhook Subscription's Topic Or Address Uris
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-topic.deprecated202007updatewebhooksparamwebhookid
+      with:
+        webhook_id: tools.webhook_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-create-new-webhook-subscription-4
+      description: Shopify Create A New Webhook Subscription By Specifying Both An Address And A Topic
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-topic.createwebhooks
+      with:
+        format: tools.format
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-update-webhook-subscription-s-topic-4
+      description: Shopify Update A Webhook Subscription's Topic Or Address Uris
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-topic.updatewebhooksparamwebhookid
+      with:
+        webhook_id: tools.webhook_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-create-new-webhook-subscription-5
+      description: Shopify Create A New Webhook Subscription By Specifying Both An Address And A Topic
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-topic.deprecated202101createwebhooks
+      with:
+        format: tools.format
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-update-webhook-subscription-s-topic-5
+      description: Shopify Update A Webhook Subscription's Topic Or Address Uris
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-topic.deprecated202101updatewebhooksparamwebhookid
+      with:
+        webhook_id: tools.webhook_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-create-new-webhook-subscription-6
+      description: Shopify Create A New Webhook Subscription By Specifying Both An Address And A Topic
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-topic.deprecatedunstablecreatewebhooks
+      with:
+        format: tools.format
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-update-webhook-subscription-s-topic-6
+      description: Shopify Update A Webhook Subscription's Topic Or Address Uris
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-topic.deprecatedunstableupdatewebhooksparamwebhookid
+      with:
+        webhook_id: tools.webhook_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

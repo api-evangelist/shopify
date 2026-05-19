@@ -1,0 +1,448 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Shopify Admin REST API — Orders
+  description: 'Shopify Admin REST API — Orders. 9 operations. Lead operation: Shopify Retrieve a list of orders. Self-contained
+    Naftiko capability covering one Shopify business surface.'
+  tags:
+  - Shopify
+  - Orders
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SHOPIFY_API_KEY: SHOPIFY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: admin-rest-orders
+    baseUri: https://{store}.myshopify.com/admin/api/2025-01
+    description: Shopify Admin REST API — Orders business capability. Self-contained, no shared references.
+    resources:
+    - name: orders.json
+      path: /orders.json
+      operations:
+      - name: listorders
+        method: GET
+        description: Shopify Retrieve a list of orders
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: ids
+          in: query
+          type: string
+          description: Comma-separated list of order IDs
+        - name: limit
+          in: query
+          type: integer
+          description: Maximum number of results (max 250, default 50)
+        - name: since_id
+          in: query
+          type: integer
+          description: Return orders after the specified ID
+        - name: status
+          in: query
+          type: string
+          description: Filter by order status
+        - name: financial_status
+          in: query
+          type: string
+          description: Filter by financial status
+        - name: fulfillment_status
+          in: query
+          type: string
+          description: Filter by fulfillment status
+        - name: created_at_min
+          in: query
+          type: string
+          description: Show orders created after this date
+        - name: created_at_max
+          in: query
+          type: string
+          description: Show orders created before this date
+        - name: updated_at_min
+          in: query
+          type: string
+          description: Show orders updated after this date
+        - name: updated_at_max
+          in: query
+          type: string
+          description: Show orders updated before this date
+        - name: fields
+          in: query
+          type: string
+          description: Comma-separated list of fields to include
+      - name: createorder
+        method: POST
+        description: Shopify Create an order
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: orders-count.json
+      path: /orders/count.json
+      operations:
+      - name: getordercount
+        method: GET
+        description: Shopify Retrieve a count of orders
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: status
+          in: query
+          type: string
+          description: Filter by order status
+        - name: financial_status
+          in: query
+          type: string
+          description: Filter by financial status
+        - name: fulfillment_status
+          in: query
+          type: string
+          description: Filter by fulfillment status
+        - name: created_at_min
+          in: query
+          type: string
+          description: Count orders created after this date
+        - name: updated_at_min
+          in: query
+          type: string
+          description: Count orders updated after this date
+    - name: orders-order_id}.json
+      path: /orders/{order_id}.json
+      operations:
+      - name: getorder
+        method: GET
+        description: Shopify Retrieve a single order
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fields
+          in: query
+          type: string
+          description: Comma-separated list of fields to include
+      - name: updateorder
+        method: PUT
+        description: Shopify Update an order
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deleteorder
+        method: DELETE
+        description: Shopify Delete an order
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: orders-order_id-cancel.json
+      path: /orders/{order_id}/cancel.json
+      operations:
+      - name: cancelorder
+        method: POST
+        description: Shopify Cancel an order
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: orders-order_id-close.json
+      path: /orders/{order_id}/close.json
+      operations:
+      - name: closeorder
+        method: POST
+        description: Shopify Close an order
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: orders-order_id-open.json
+      path: /orders/{order_id}/open.json
+      operations:
+      - name: reopenorder
+        method: POST
+        description: Shopify Re-open a closed order
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: X-Shopify-Access-Token
+      value: '{{env.SHOPIFY_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: admin-rest-orders-rest
+    port: 8080
+    description: REST adapter for Shopify Admin REST API — Orders. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/orders-json
+      name: orders-json
+      description: REST surface for orders.json.
+      operations:
+      - method: GET
+        name: listorders
+        description: Shopify Retrieve a list of orders
+        call: admin-rest-orders.listorders
+        with:
+          ids: rest.ids
+          limit: rest.limit
+          since_id: rest.since_id
+          status: rest.status
+          financial_status: rest.financial_status
+          fulfillment_status: rest.fulfillment_status
+          created_at_min: rest.created_at_min
+          created_at_max: rest.created_at_max
+          updated_at_min: rest.updated_at_min
+          updated_at_max: rest.updated_at_max
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createorder
+        description: Shopify Create an order
+        call: admin-rest-orders.createorder
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/orders/count-json
+      name: orders-count-json
+      description: REST surface for orders-count.json.
+      operations:
+      - method: GET
+        name: getordercount
+        description: Shopify Retrieve a count of orders
+        call: admin-rest-orders.getordercount
+        with:
+          status: rest.status
+          financial_status: rest.financial_status
+          fulfillment_status: rest.fulfillment_status
+          created_at_min: rest.created_at_min
+          updated_at_min: rest.updated_at_min
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/orders/order-id-json
+      name: orders-order-id-json
+      description: REST surface for orders-order_id}.json.
+      operations:
+      - method: GET
+        name: getorder
+        description: Shopify Retrieve a single order
+        call: admin-rest-orders.getorder
+        with:
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updateorder
+        description: Shopify Update an order
+        call: admin-rest-orders.updateorder
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteorder
+        description: Shopify Delete an order
+        call: admin-rest-orders.deleteorder
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/orders/{order-id}/cancel-json
+      name: orders-order-id-cancel-json
+      description: REST surface for orders-order_id-cancel.json.
+      operations:
+      - method: POST
+        name: cancelorder
+        description: Shopify Cancel an order
+        call: admin-rest-orders.cancelorder
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/orders/{order-id}/close-json
+      name: orders-order-id-close-json
+      description: REST surface for orders-order_id-close.json.
+      operations:
+      - method: POST
+        name: closeorder
+        description: Shopify Close an order
+        call: admin-rest-orders.closeorder
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/orders/{order-id}/open-json
+      name: orders-order-id-open-json
+      description: REST surface for orders-order_id-open.json.
+      operations:
+      - method: POST
+        name: reopenorder
+        description: Shopify Re-open a closed order
+        call: admin-rest-orders.reopenorder
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: admin-rest-orders-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Shopify Admin REST API — Orders. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: shopify-retrieve-list-orders
+      description: Shopify Retrieve a list of orders
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: admin-rest-orders.listorders
+      with:
+        ids: tools.ids
+        limit: tools.limit
+        since_id: tools.since_id
+        status: tools.status
+        financial_status: tools.financial_status
+        fulfillment_status: tools.fulfillment_status
+        created_at_min: tools.created_at_min
+        created_at_max: tools.created_at_max
+        updated_at_min: tools.updated_at_min
+        updated_at_max: tools.updated_at_max
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-create-order
+      description: Shopify Create an order
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: admin-rest-orders.createorder
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieve-count-orders
+      description: Shopify Retrieve a count of orders
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: admin-rest-orders.getordercount
+      with:
+        status: tools.status
+        financial_status: tools.financial_status
+        fulfillment_status: tools.fulfillment_status
+        created_at_min: tools.created_at_min
+        updated_at_min: tools.updated_at_min
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieve-single-order
+      description: Shopify Retrieve a single order
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: admin-rest-orders.getorder
+      with:
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-update-order
+      description: Shopify Update an order
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: admin-rest-orders.updateorder
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-delete-order
+      description: Shopify Delete an order
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: admin-rest-orders.deleteorder
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-cancel-order
+      description: Shopify Cancel an order
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: admin-rest-orders.cancelorder
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-close-order
+      description: Shopify Close an order
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: admin-rest-orders.closeorder
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-re-open-closed-order
+      description: Shopify Re-open a closed order
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: admin-rest-orders.reopenorder
+      outputParameters:
+      - type: object
+        mapping: $.

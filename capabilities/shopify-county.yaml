@@ -1,0 +1,323 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Shopify  API — County
+  description: 'Shopify  API — County. 6 operations. Lead operation: Shopify Retrieves A Specific County. Self-contained Naftiko
+    capability covering one Shopify business surface.'
+  tags:
+  - Shopify
+  - County
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SHOPIFY_API_KEY: SHOPIFY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: shopify-county
+    baseUri: ''
+    description: Shopify  API — County business capability. Self-contained, no shared references.
+    resources:
+    - name: admin-api-2020-01-countries-country_id}.json
+      path: /admin/api/2020-01/countries/{country_id}.json
+      operations:
+      - name: deprecated202001getcountriesparamcountryid
+        method: GET
+        description: Shopify Retrieves A Specific County
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: country_id
+          in: path
+          type: string
+          description: country_id
+          required: true
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+    - name: admin-api-2020-04-countries-country_id}.json
+      path: /admin/api/2020-04/countries/{country_id}.json
+      operations:
+      - name: deprecated202004getcountriesparamcountryid
+        method: GET
+        description: Shopify Retrieves A Specific County
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: country_id
+          in: path
+          type: string
+          description: country_id
+          required: true
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+    - name: admin-api-2020-07-countries-country_id}.json
+      path: /admin/api/2020-07/countries/{country_id}.json
+      operations:
+      - name: deprecated202007getcountriesparamcountryid
+        method: GET
+        description: Shopify Retrieves A Specific County
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: country_id
+          in: path
+          type: string
+          description: country_id
+          required: true
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+    - name: admin-api-2020-10-countries-country_id}.json
+      path: /admin/api/2020-10/countries/{country_id}.json
+      operations:
+      - name: getcountriesparamcountryid
+        method: GET
+        description: Shopify Retrieves A Specific County
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: country_id
+          in: path
+          type: string
+          description: country_id
+          required: true
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+    - name: admin-api-2021-01-countries-country_id}.json
+      path: /admin/api/2021-01/countries/{country_id}.json
+      operations:
+      - name: deprecated202101getcountriesparamcountryid
+        method: GET
+        description: Shopify Retrieves A Specific County
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: country_id
+          in: path
+          type: string
+          description: country_id
+          required: true
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+    - name: admin-api-unstable-countries-country_id}.json
+      path: /admin/api/unstable/countries/{country_id}.json
+      operations:
+      - name: deprecatedunstablegetcountriesparamcountryid
+        method: GET
+        description: Shopify Retrieves A Specific County
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: country_id
+          in: path
+          type: string
+          description: country_id
+          required: true
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+  exposes:
+  - type: rest
+    namespace: shopify-county-rest
+    port: 8080
+    description: REST adapter for Shopify  API — County. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/admin/api/2020-01/countries/country-id-json
+      name: admin-api-2020-01-countries-country-id-json
+      description: REST surface for admin-api-2020-01-countries-country_id}.json.
+      operations:
+      - method: GET
+        name: deprecated202001getcountriesparamcountryid
+        description: Shopify Retrieves A Specific County
+        call: shopify-county.deprecated202001getcountriesparamcountryid
+        with:
+          country_id: rest.country_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/countries/country-id-json
+      name: admin-api-2020-04-countries-country-id-json
+      description: REST surface for admin-api-2020-04-countries-country_id}.json.
+      operations:
+      - method: GET
+        name: deprecated202004getcountriesparamcountryid
+        description: Shopify Retrieves A Specific County
+        call: shopify-county.deprecated202004getcountriesparamcountryid
+        with:
+          country_id: rest.country_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/countries/country-id-json
+      name: admin-api-2020-07-countries-country-id-json
+      description: REST surface for admin-api-2020-07-countries-country_id}.json.
+      operations:
+      - method: GET
+        name: deprecated202007getcountriesparamcountryid
+        description: Shopify Retrieves A Specific County
+        call: shopify-county.deprecated202007getcountriesparamcountryid
+        with:
+          country_id: rest.country_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/countries/country-id-json
+      name: admin-api-2020-10-countries-country-id-json
+      description: REST surface for admin-api-2020-10-countries-country_id}.json.
+      operations:
+      - method: GET
+        name: getcountriesparamcountryid
+        description: Shopify Retrieves A Specific County
+        call: shopify-county.getcountriesparamcountryid
+        with:
+          country_id: rest.country_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/countries/country-id-json
+      name: admin-api-2021-01-countries-country-id-json
+      description: REST surface for admin-api-2021-01-countries-country_id}.json.
+      operations:
+      - method: GET
+        name: deprecated202101getcountriesparamcountryid
+        description: Shopify Retrieves A Specific County
+        call: shopify-county.deprecated202101getcountriesparamcountryid
+        with:
+          country_id: rest.country_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/countries/country-id-json
+      name: admin-api-unstable-countries-country-id-json
+      description: REST surface for admin-api-unstable-countries-country_id}.json.
+      operations:
+      - method: GET
+        name: deprecatedunstablegetcountriesparamcountryid
+        description: Shopify Retrieves A Specific County
+        call: shopify-county.deprecatedunstablegetcountriesparamcountryid
+        with:
+          country_id: rest.country_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: shopify-county-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Shopify  API — County. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: shopify-retrieves-specific-county
+      description: Shopify Retrieves A Specific County
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-county.deprecated202001getcountriesparamcountryid
+      with:
+        country_id: tools.country_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-specific-county-2
+      description: Shopify Retrieves A Specific County
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-county.deprecated202004getcountriesparamcountryid
+      with:
+        country_id: tools.country_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-specific-county-3
+      description: Shopify Retrieves A Specific County
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-county.deprecated202007getcountriesparamcountryid
+      with:
+        country_id: tools.country_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-specific-county-4
+      description: Shopify Retrieves A Specific County
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-county.getcountriesparamcountryid
+      with:
+        country_id: tools.country_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-specific-county-5
+      description: Shopify Retrieves A Specific County
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-county.deprecated202101getcountriesparamcountryid
+      with:
+        country_id: tools.country_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-specific-county-6
+      description: Shopify Retrieves A Specific County
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-county.deprecatedunstablegetcountriesparamcountryid
+      with:
+        country_id: tools.country_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.

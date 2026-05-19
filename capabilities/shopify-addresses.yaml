@@ -1,0 +1,611 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Shopify  API — Addresses
+  description: 'Shopify  API — Addresses. 12 operations. Lead operation: Shopify Retrieves A List Of Addresses For A Customer.
+    Self-contained Naftiko capability covering one Shopify business surface.'
+  tags:
+  - Shopify
+  - Addresses
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SHOPIFY_API_KEY: SHOPIFY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: shopify-addresses
+    baseUri: ''
+    description: Shopify  API — Addresses business capability. Self-contained, no shared references.
+    resources:
+    - name: admin-api-2020-01-customers-customer_id-addresses.json
+      path: /admin/api/2020-01/customers/{customer_id}/addresses.json
+      operations:
+      - name: deprecated202001getcustomersparamcustomeridaddresses
+        method: GET
+        description: Shopify Retrieves A List Of Addresses For A Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+    - name: admin-api-2020-01-customers-customer_id-addresses-set.json
+      path: /admin/api/2020-01/customers/{customer_id}/addresses/set.json
+      operations:
+      - name: deprecated202001updatecustomersparamcustomeridaddressesset
+        method: PUT
+        description: Shopify Performs Bulk Operations For Multiple Customer Addresses
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: address_ids[]
+          in: query
+          type: integer
+          description: address_ids[]
+        - name: operation
+          in: query
+          type: string
+          description: operation
+    - name: admin-api-2020-04-customers-customer_id-addresses.json
+      path: /admin/api/2020-04/customers/{customer_id}/addresses.json
+      operations:
+      - name: deprecated202004getcustomersparamcustomeridaddresses
+        method: GET
+        description: Shopify Retrieves A List Of Addresses For A Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+    - name: admin-api-2020-04-customers-customer_id-addresses-set.json
+      path: /admin/api/2020-04/customers/{customer_id}/addresses/set.json
+      operations:
+      - name: deprecated202004updatecustomersparamcustomeridaddressesset
+        method: PUT
+        description: Shopify Performs Bulk Operations For Multiple Customer Addresses
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: address_ids[]
+          in: query
+          type: integer
+          description: address_ids[]
+        - name: operation
+          in: query
+          type: string
+          description: operation
+    - name: admin-api-2020-07-customers-customer_id-addresses.json
+      path: /admin/api/2020-07/customers/{customer_id}/addresses.json
+      operations:
+      - name: deprecated202007getcustomersparamcustomeridaddresses
+        method: GET
+        description: Shopify Retrieves A List Of Addresses For A Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+    - name: admin-api-2020-07-customers-customer_id-addresses-set.json
+      path: /admin/api/2020-07/customers/{customer_id}/addresses/set.json
+      operations:
+      - name: deprecated202007updatecustomersparamcustomeridaddressesset
+        method: PUT
+        description: Shopify Performs Bulk Operations For Multiple Customer Addresses
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: address_ids[]
+          in: query
+          type: integer
+          description: address_ids[]
+        - name: operation
+          in: query
+          type: string
+          description: operation
+    - name: admin-api-2020-10-customers-customer_id-addresses.json
+      path: /admin/api/2020-10/customers/{customer_id}/addresses.json
+      operations:
+      - name: getcustomersparamcustomeridaddresses
+        method: GET
+        description: Shopify Retrieves A List Of Addresses For A Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+    - name: admin-api-2020-10-customers-customer_id-addresses-set.json
+      path: /admin/api/2020-10/customers/{customer_id}/addresses/set.json
+      operations:
+      - name: updatecustomersparamcustomeridaddressesset
+        method: PUT
+        description: Shopify Performs Bulk Operations For Multiple Customer Addresses
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: address_ids[]
+          in: query
+          type: integer
+          description: address_ids[]
+        - name: operation
+          in: query
+          type: string
+          description: operation
+    - name: admin-api-2021-01-customers-customer_id-addresses.json
+      path: /admin/api/2021-01/customers/{customer_id}/addresses.json
+      operations:
+      - name: deprecated202101getcustomersparamcustomeridaddresses
+        method: GET
+        description: Shopify Retrieves A List Of Addresses For A Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+    - name: admin-api-2021-01-customers-customer_id-addresses-set.json
+      path: /admin/api/2021-01/customers/{customer_id}/addresses/set.json
+      operations:
+      - name: deprecated202101updatecustomersparamcustomeridaddressesset
+        method: PUT
+        description: Shopify Performs Bulk Operations For Multiple Customer Addresses
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: address_ids[]
+          in: query
+          type: integer
+          description: address_ids[]
+        - name: operation
+          in: query
+          type: string
+          description: operation
+    - name: admin-api-unstable-customers-customer_id-addresses.json
+      path: /admin/api/unstable/customers/{customer_id}/addresses.json
+      operations:
+      - name: deprecatedunstablegetcustomersparamcustomeridaddresses
+        method: GET
+        description: Shopify Retrieves A List Of Addresses For A Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+    - name: admin-api-unstable-customers-customer_id-addresses-set.json
+      path: /admin/api/unstable/customers/{customer_id}/addresses/set.json
+      operations:
+      - name: deprecatedunstableupdatecustomersparamcustomeridaddressesset
+        method: PUT
+        description: Shopify Performs Bulk Operations For Multiple Customer Addresses
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: address_ids[]
+          in: query
+          type: integer
+          description: address_ids[]
+        - name: operation
+          in: query
+          type: string
+          description: operation
+  exposes:
+  - type: rest
+    namespace: shopify-addresses-rest
+    port: 8080
+    description: REST adapter for Shopify  API — Addresses. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/admin/api/2020-01/customers/{customer-id}/addresses-json
+      name: admin-api-2020-01-customers-customer-id-addresses-json
+      description: REST surface for admin-api-2020-01-customers-customer_id-addresses.json.
+      operations:
+      - method: GET
+        name: deprecated202001getcustomersparamcustomeridaddresses
+        description: Shopify Retrieves A List Of Addresses For A Customer
+        call: shopify-addresses.deprecated202001getcustomersparamcustomeridaddresses
+        with:
+          customer_id: rest.customer_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-01/customers/{customer-id}/addresses/set-json
+      name: admin-api-2020-01-customers-customer-id-addresses-set-json
+      description: REST surface for admin-api-2020-01-customers-customer_id-addresses-set.json.
+      operations:
+      - method: PUT
+        name: deprecated202001updatecustomersparamcustomeridaddressesset
+        description: Shopify Performs Bulk Operations For Multiple Customer Addresses
+        call: shopify-addresses.deprecated202001updatecustomersparamcustomeridaddressesset
+        with:
+          customer_id: rest.customer_id
+          address_ids[]: rest.address_ids[]
+          operation: rest.operation
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/customers/{customer-id}/addresses-json
+      name: admin-api-2020-04-customers-customer-id-addresses-json
+      description: REST surface for admin-api-2020-04-customers-customer_id-addresses.json.
+      operations:
+      - method: GET
+        name: deprecated202004getcustomersparamcustomeridaddresses
+        description: Shopify Retrieves A List Of Addresses For A Customer
+        call: shopify-addresses.deprecated202004getcustomersparamcustomeridaddresses
+        with:
+          customer_id: rest.customer_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/customers/{customer-id}/addresses/set-json
+      name: admin-api-2020-04-customers-customer-id-addresses-set-json
+      description: REST surface for admin-api-2020-04-customers-customer_id-addresses-set.json.
+      operations:
+      - method: PUT
+        name: deprecated202004updatecustomersparamcustomeridaddressesset
+        description: Shopify Performs Bulk Operations For Multiple Customer Addresses
+        call: shopify-addresses.deprecated202004updatecustomersparamcustomeridaddressesset
+        with:
+          customer_id: rest.customer_id
+          address_ids[]: rest.address_ids[]
+          operation: rest.operation
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/customers/{customer-id}/addresses-json
+      name: admin-api-2020-07-customers-customer-id-addresses-json
+      description: REST surface for admin-api-2020-07-customers-customer_id-addresses.json.
+      operations:
+      - method: GET
+        name: deprecated202007getcustomersparamcustomeridaddresses
+        description: Shopify Retrieves A List Of Addresses For A Customer
+        call: shopify-addresses.deprecated202007getcustomersparamcustomeridaddresses
+        with:
+          customer_id: rest.customer_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/customers/{customer-id}/addresses/set-json
+      name: admin-api-2020-07-customers-customer-id-addresses-set-json
+      description: REST surface for admin-api-2020-07-customers-customer_id-addresses-set.json.
+      operations:
+      - method: PUT
+        name: deprecated202007updatecustomersparamcustomeridaddressesset
+        description: Shopify Performs Bulk Operations For Multiple Customer Addresses
+        call: shopify-addresses.deprecated202007updatecustomersparamcustomeridaddressesset
+        with:
+          customer_id: rest.customer_id
+          address_ids[]: rest.address_ids[]
+          operation: rest.operation
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/customers/{customer-id}/addresses-json
+      name: admin-api-2020-10-customers-customer-id-addresses-json
+      description: REST surface for admin-api-2020-10-customers-customer_id-addresses.json.
+      operations:
+      - method: GET
+        name: getcustomersparamcustomeridaddresses
+        description: Shopify Retrieves A List Of Addresses For A Customer
+        call: shopify-addresses.getcustomersparamcustomeridaddresses
+        with:
+          customer_id: rest.customer_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/customers/{customer-id}/addresses/set-json
+      name: admin-api-2020-10-customers-customer-id-addresses-set-json
+      description: REST surface for admin-api-2020-10-customers-customer_id-addresses-set.json.
+      operations:
+      - method: PUT
+        name: updatecustomersparamcustomeridaddressesset
+        description: Shopify Performs Bulk Operations For Multiple Customer Addresses
+        call: shopify-addresses.updatecustomersparamcustomeridaddressesset
+        with:
+          customer_id: rest.customer_id
+          address_ids[]: rest.address_ids[]
+          operation: rest.operation
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/customers/{customer-id}/addresses-json
+      name: admin-api-2021-01-customers-customer-id-addresses-json
+      description: REST surface for admin-api-2021-01-customers-customer_id-addresses.json.
+      operations:
+      - method: GET
+        name: deprecated202101getcustomersparamcustomeridaddresses
+        description: Shopify Retrieves A List Of Addresses For A Customer
+        call: shopify-addresses.deprecated202101getcustomersparamcustomeridaddresses
+        with:
+          customer_id: rest.customer_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/customers/{customer-id}/addresses/set-json
+      name: admin-api-2021-01-customers-customer-id-addresses-set-json
+      description: REST surface for admin-api-2021-01-customers-customer_id-addresses-set.json.
+      operations:
+      - method: PUT
+        name: deprecated202101updatecustomersparamcustomeridaddressesset
+        description: Shopify Performs Bulk Operations For Multiple Customer Addresses
+        call: shopify-addresses.deprecated202101updatecustomersparamcustomeridaddressesset
+        with:
+          customer_id: rest.customer_id
+          address_ids[]: rest.address_ids[]
+          operation: rest.operation
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/customers/{customer-id}/addresses-json
+      name: admin-api-unstable-customers-customer-id-addresses-json
+      description: REST surface for admin-api-unstable-customers-customer_id-addresses.json.
+      operations:
+      - method: GET
+        name: deprecatedunstablegetcustomersparamcustomeridaddresses
+        description: Shopify Retrieves A List Of Addresses For A Customer
+        call: shopify-addresses.deprecatedunstablegetcustomersparamcustomeridaddresses
+        with:
+          customer_id: rest.customer_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/customers/{customer-id}/addresses/set-json
+      name: admin-api-unstable-customers-customer-id-addresses-set-json
+      description: REST surface for admin-api-unstable-customers-customer_id-addresses-set.json.
+      operations:
+      - method: PUT
+        name: deprecatedunstableupdatecustomersparamcustomeridaddressesset
+        description: Shopify Performs Bulk Operations For Multiple Customer Addresses
+        call: shopify-addresses.deprecatedunstableupdatecustomersparamcustomeridaddressesset
+        with:
+          customer_id: rest.customer_id
+          address_ids[]: rest.address_ids[]
+          operation: rest.operation
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: shopify-addresses-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Shopify  API — Addresses. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: shopify-retrieves-list-addresses-customer
+      description: Shopify Retrieves A List Of Addresses For A Customer
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-addresses.deprecated202001getcustomersparamcustomeridaddresses
+      with:
+        customer_id: tools.customer_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-performs-bulk-operations-multiple
+      description: Shopify Performs Bulk Operations For Multiple Customer Addresses
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-addresses.deprecated202001updatecustomersparamcustomeridaddressesset
+      with:
+        customer_id: tools.customer_id
+        address_ids[]: tools.address_ids[]
+        operation: tools.operation
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-addresses-customer-2
+      description: Shopify Retrieves A List Of Addresses For A Customer
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-addresses.deprecated202004getcustomersparamcustomeridaddresses
+      with:
+        customer_id: tools.customer_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-performs-bulk-operations-multiple-2
+      description: Shopify Performs Bulk Operations For Multiple Customer Addresses
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-addresses.deprecated202004updatecustomersparamcustomeridaddressesset
+      with:
+        customer_id: tools.customer_id
+        address_ids[]: tools.address_ids[]
+        operation: tools.operation
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-addresses-customer-3
+      description: Shopify Retrieves A List Of Addresses For A Customer
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-addresses.deprecated202007getcustomersparamcustomeridaddresses
+      with:
+        customer_id: tools.customer_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-performs-bulk-operations-multiple-3
+      description: Shopify Performs Bulk Operations For Multiple Customer Addresses
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-addresses.deprecated202007updatecustomersparamcustomeridaddressesset
+      with:
+        customer_id: tools.customer_id
+        address_ids[]: tools.address_ids[]
+        operation: tools.operation
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-addresses-customer-4
+      description: Shopify Retrieves A List Of Addresses For A Customer
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-addresses.getcustomersparamcustomeridaddresses
+      with:
+        customer_id: tools.customer_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-performs-bulk-operations-multiple-4
+      description: Shopify Performs Bulk Operations For Multiple Customer Addresses
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-addresses.updatecustomersparamcustomeridaddressesset
+      with:
+        customer_id: tools.customer_id
+        address_ids[]: tools.address_ids[]
+        operation: tools.operation
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-addresses-customer-5
+      description: Shopify Retrieves A List Of Addresses For A Customer
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-addresses.deprecated202101getcustomersparamcustomeridaddresses
+      with:
+        customer_id: tools.customer_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-performs-bulk-operations-multiple-5
+      description: Shopify Performs Bulk Operations For Multiple Customer Addresses
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-addresses.deprecated202101updatecustomersparamcustomeridaddressesset
+      with:
+        customer_id: tools.customer_id
+        address_ids[]: tools.address_ids[]
+        operation: tools.operation
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-addresses-customer-6
+      description: Shopify Retrieves A List Of Addresses For A Customer
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-addresses.deprecatedunstablegetcustomersparamcustomeridaddresses
+      with:
+        customer_id: tools.customer_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-performs-bulk-operations-multiple-6
+      description: Shopify Performs Bulk Operations For Multiple Customer Addresses
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-addresses.deprecatedunstableupdatecustomersparamcustomeridaddressesset
+      with:
+        customer_id: tools.customer_id
+        address_ids[]: tools.address_ids[]
+        operation: tools.operation
+      outputParameters:
+      - type: object
+        mapping: $.

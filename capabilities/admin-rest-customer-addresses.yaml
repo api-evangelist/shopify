@@ -1,0 +1,116 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Shopify Admin REST API — Customer Addresses
+  description: 'Shopify Admin REST API — Customer Addresses. 2 operations. Lead operation: Shopify Retrieve addresses for
+    a customer. Self-contained Naftiko capability covering one Shopify business surface.'
+  tags:
+  - Shopify
+  - Customer Addresses
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SHOPIFY_API_KEY: SHOPIFY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: admin-rest-customer-addresses
+    baseUri: https://{store}.myshopify.com/admin/api/2025-01
+    description: Shopify Admin REST API — Customer Addresses business capability. Self-contained, no shared references.
+    resources:
+    - name: customers-customer_id-addresses.json
+      path: /customers/{customer_id}/addresses.json
+      operations:
+      - name: listcustomeraddresses
+        method: GET
+        description: Shopify Retrieve addresses for a customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: integer
+          description: Maximum number of results (max 250, default 50)
+      - name: createcustomeraddress
+        method: POST
+        description: Shopify Create a customer address
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: apikey
+      key: X-Shopify-Access-Token
+      value: '{{env.SHOPIFY_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: admin-rest-customer-addresses-rest
+    port: 8080
+    description: REST adapter for Shopify Admin REST API — Customer Addresses. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/customers/{customer-id}/addresses-json
+      name: customers-customer-id-addresses-json
+      description: REST surface for customers-customer_id-addresses.json.
+      operations:
+      - method: GET
+        name: listcustomeraddresses
+        description: Shopify Retrieve addresses for a customer
+        call: admin-rest-customer-addresses.listcustomeraddresses
+        with:
+          limit: rest.limit
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createcustomeraddress
+        description: Shopify Create a customer address
+        call: admin-rest-customer-addresses.createcustomeraddress
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: admin-rest-customer-addresses-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Shopify Admin REST API — Customer Addresses. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: shopify-retrieve-addresses-customer
+      description: Shopify Retrieve addresses for a customer
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: admin-rest-customer-addresses.listcustomeraddresses
+      with:
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-create-customer-address
+      description: Shopify Create a customer address
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: admin-rest-customer-addresses.createcustomeraddress
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

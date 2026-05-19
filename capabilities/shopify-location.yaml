@@ -1,0 +1,2747 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Shopify  API — Location
+  description: 'Shopify  API — Location. 48 operations. Lead operation: Shopify Retrieves The Location Of A Discount Code.
+    Self-contained Naftiko capability covering one Shopify business surface.'
+  tags:
+  - Shopify
+  - Location
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SHOPIFY_API_KEY: SHOPIFY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: shopify-location
+    baseUri: ''
+    description: Shopify  API — Location business capability. Self-contained, no shared references.
+    resources:
+    - name: admin-api-2020-01-discount_codes-lookup.json
+      path: /admin/api/2020-01/discount_codes/lookup.json
+      operations:
+      - name: deprecated202001getdiscountcodeslookup
+        method: GET
+        description: Shopify Retrieves The Location Of A Discount Code
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: code
+          in: query
+          type: integer
+          description: code
+    - name: admin-api-2020-01-fulfillment_orders-fulfillment_order_id-move.json
+      path: /admin/api/2020-01/fulfillment_orders/{fulfillment_order_id}/move.json
+      operations:
+      - name: deprecated202001createfulfillmentordersparamfulfillmentorderidmove
+        method: POST
+        description: Shopify Moves A Fulfillment Order From One Merchant Managed Location To Another Merchant Managed Location
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fulfillment_order_id
+          in: path
+          type: string
+          description: fulfillment_order_id
+          required: true
+        - name: new_location_id
+          in: query
+          type: string
+          description: The id of the location to which the fulfillment order will be moved.
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-01-inventory_levels.json
+      path: /admin/api/2020-01/inventory_levels.json
+      operations:
+      - name: deprecated202001deleteinventorylevels
+        method: DELETE
+        description: Shopify Deletes An Inventory Level Of An Inventory Item At A Location
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: "inventory_item_id\n                  required"
+          in: query
+          type: string
+          description: The ID for the inventory item.
+        - name: "location_id\n                  required"
+          in: query
+          type: string
+          description: The ID of the location that the inventory level belongs to. To find the ID of the location, use the
+            Location resource.
+        - name: inventory_item_id
+          in: query
+          type: integer
+          description: inventory_item_id
+        - name: location_id
+          in: query
+          type: integer
+          description: location_id
+    - name: admin-api-2020-01-inventory_levels-adjust.json
+      path: /admin/api/2020-01/inventory_levels/adjust.json
+      operations:
+      - name: deprecated202001createinventorylevelsadjust
+        method: POST
+        description: Shopify Adjusts The Inventory Level Of An Inventory Item At A Single Location
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: "inventory_item_id\n                  required"
+          in: query
+          type: string
+          description: The ID of the inventory item.
+        - name: "location_id\n                  required"
+          in: query
+          type: string
+          description: The ID of the location that the inventory level belongs to. To find the ID of the location, use the
+            Location resource.
+        - name: "available_adjustment\n                  required"
+          in: query
+          type: string
+          description: The amount to adjust the available inventory quantity. Send negative values to subtract from the current
+            available quantity. For example, "available_adjustment"
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-01-inventory_levels-connect.json
+      path: /admin/api/2020-01/inventory_levels/connect.json
+      operations:
+      - name: deprecated202001createinventorylevelsconnect
+        method: POST
+        description: Shopify Connects An Inventory Item To A Location By Creating An Inventory Level At That Location
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: "inventory_item_id\n                  required"
+          in: query
+          type: string
+          description: The ID of the inventory item.
+        - name: "location_id\n                  required"
+          in: query
+          type: string
+          description: The ID of the location that the inventory level belongs to. To find the ID of the location, use the
+            Location resource.
+        - name: relocate_if_necessary
+          in: query
+          type: string
+          description: 'Whether inventory for any previously connected locations will be relocated. This property is ignored
+            when no fulfillment service location is involved. For more '
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-01-inventory_levels-set.json
+      path: /admin/api/2020-01/inventory_levels/set.json
+      operations:
+      - name: deprecated202001createinventorylevelsset
+        method: POST
+        description: Shopify Sets The Inventory Level For An Inventory Item At A Location
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: "inventory_item_id\n                  required"
+          in: query
+          type: string
+          description: The ID for the inventory item.
+        - name: "location_id\n                  required"
+          in: query
+          type: string
+          description: The ID of the location that the inventory level belongs to. To find the ID of the location, use the
+            Location resource.
+        - name: "available\n                  required"
+          in: query
+          type: string
+          description: Sets the available inventory quantity.
+        - name: disconnect_if_necessary
+          in: query
+          type: string
+          description: 'Whether inventory for any previously connected locations will be set to 0 and the locations disconnected.
+            This property is ignored when no fulfillment service  '
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-01-locations-location_id}.json
+      path: /admin/api/2020-01/locations/{location_id}.json
+      operations:
+      - name: deprecated202001getlocationsparamlocationid
+        method: GET
+        description: Shopify Retrieves A Single Location By Its Id
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: location_id
+          in: path
+          type: string
+          description: location_id
+          required: true
+    - name: admin-api-2020-01-locations-location_id-inventory_levels.json
+      path: /admin/api/2020-01/locations/{location_id}/inventory_levels.json
+      operations:
+      - name: deprecated202001getlocationsparamlocationidinventorylevels
+        method: GET
+        description: Shopify Retrieves A List Of Inventory Levels For A Location
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: location_id
+          in: path
+          type: string
+          description: location_id
+          required: true
+    - name: admin-api-2020-04-discount_codes-lookup.json
+      path: /admin/api/2020-04/discount_codes/lookup.json
+      operations:
+      - name: deprecated202004getdiscountcodeslookup
+        method: GET
+        description: Shopify Retrieves The Location Of A Discount Code
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: code
+          in: query
+          type: integer
+          description: code
+    - name: admin-api-2020-04-fulfillment_orders-fulfillment_order_id-move.json
+      path: /admin/api/2020-04/fulfillment_orders/{fulfillment_order_id}/move.json
+      operations:
+      - name: deprecated202004createfulfillmentordersparamfulfillmentorderidmove
+        method: POST
+        description: Shopify Moves A Fulfillment Order From One Merchant Managed Location To Another Merchant Managed Location
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fulfillment_order_id
+          in: path
+          type: string
+          description: fulfillment_order_id
+          required: true
+        - name: new_location_id
+          in: query
+          type: string
+          description: The id of the location to which the fulfillment order will be moved.
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-04-inventory_levels.json
+      path: /admin/api/2020-04/inventory_levels.json
+      operations:
+      - name: deprecated202004deleteinventorylevels
+        method: DELETE
+        description: Shopify Deletes An Inventory Level Of An Inventory Item At A Location
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: "inventory_item_id\n                  required"
+          in: query
+          type: string
+          description: The ID for the inventory item.
+        - name: "location_id\n                  required"
+          in: query
+          type: string
+          description: The ID of the location that the inventory level belongs to. To find the ID of the location, use the
+            Location resource.
+        - name: inventory_item_id
+          in: query
+          type: integer
+          description: inventory_item_id
+        - name: location_id
+          in: query
+          type: integer
+          description: location_id
+    - name: admin-api-2020-04-inventory_levels-adjust.json
+      path: /admin/api/2020-04/inventory_levels/adjust.json
+      operations:
+      - name: deprecated202004createinventorylevelsadjust
+        method: POST
+        description: Shopify Adjusts The Inventory Level Of An Inventory Item At A Single Location
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: "inventory_item_id\n                  required"
+          in: query
+          type: string
+          description: The ID of the inventory item.
+        - name: "location_id\n                  required"
+          in: query
+          type: string
+          description: The ID of the location that the inventory level belongs to. To find the ID of the location, use the
+            Location resource.
+        - name: "available_adjustment\n                  required"
+          in: query
+          type: string
+          description: The amount to adjust the available inventory quantity. Send negative values to subtract from the current
+            available quantity. For example, "available_adjustment"
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-04-inventory_levels-connect.json
+      path: /admin/api/2020-04/inventory_levels/connect.json
+      operations:
+      - name: deprecated202004createinventorylevelsconnect
+        method: POST
+        description: Shopify Connects An Inventory Item To A Location By Creating An Inventory Level At That Location
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: "inventory_item_id\n                  required"
+          in: query
+          type: string
+          description: The ID of the inventory item.
+        - name: "location_id\n                  required"
+          in: query
+          type: string
+          description: The ID of the location that the inventory level belongs to. To find the ID of the location, use the
+            Location resource.
+        - name: relocate_if_necessary
+          in: query
+          type: string
+          description: 'Whether inventory for any previously connected locations will be relocated. This property is ignored
+            when no fulfillment service location is involved. For more '
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-04-inventory_levels-set.json
+      path: /admin/api/2020-04/inventory_levels/set.json
+      operations:
+      - name: deprecated202004createinventorylevelsset
+        method: POST
+        description: Shopify Sets The Inventory Level For An Inventory Item At A Location
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: "inventory_item_id\n                  required"
+          in: query
+          type: string
+          description: The ID for the inventory item.
+        - name: "location_id\n                  required"
+          in: query
+          type: string
+          description: The ID of the location that the inventory level belongs to. To find the ID of the location, use the
+            Location resource.
+        - name: "available\n                  required"
+          in: query
+          type: string
+          description: Sets the available inventory quantity.
+        - name: disconnect_if_necessary
+          in: query
+          type: string
+          description: 'Whether inventory for any previously connected locations will be set to 0 and the locations disconnected.
+            This property is ignored when no fulfillment service  '
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-04-locations-location_id}.json
+      path: /admin/api/2020-04/locations/{location_id}.json
+      operations:
+      - name: deprecated202004getlocationsparamlocationid
+        method: GET
+        description: Shopify Retrieves A Single Location By Its Id
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: location_id
+          in: path
+          type: string
+          description: location_id
+          required: true
+    - name: admin-api-2020-04-locations-location_id-inventory_levels.json
+      path: /admin/api/2020-04/locations/{location_id}/inventory_levels.json
+      operations:
+      - name: deprecated202004getlocationsparamlocationidinventorylevels
+        method: GET
+        description: Shopify Retrieves A List Of Inventory Levels For A Location
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: location_id
+          in: path
+          type: string
+          description: location_id
+          required: true
+    - name: admin-api-2020-07-discount_codes-lookup.json
+      path: /admin/api/2020-07/discount_codes/lookup.json
+      operations:
+      - name: deprecated202007getdiscountcodeslookup
+        method: GET
+        description: Shopify Retrieves The Location Of A Discount Code
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: code
+          in: query
+          type: integer
+          description: code
+    - name: admin-api-2020-07-fulfillment_orders-fulfillment_order_id-move.json
+      path: /admin/api/2020-07/fulfillment_orders/{fulfillment_order_id}/move.json
+      operations:
+      - name: deprecated202007createfulfillmentordersparamfulfillmentorderidmove
+        method: POST
+        description: Shopify Moves A Fulfillment Order From One Merchant Managed Location To Another Merchant Managed Location
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fulfillment_order_id
+          in: path
+          type: string
+          description: fulfillment_order_id
+          required: true
+        - name: new_location_id
+          in: query
+          type: string
+          description: The id of the location to which the fulfillment order will be moved.
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-07-inventory_levels.json
+      path: /admin/api/2020-07/inventory_levels.json
+      operations:
+      - name: deprecated202007deleteinventorylevels
+        method: DELETE
+        description: Shopify Deletes An Inventory Level Of An Inventory Item At A Location
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: "inventory_item_id\n                  required"
+          in: query
+          type: string
+          description: The ID for the inventory item.
+        - name: "location_id\n                  required"
+          in: query
+          type: string
+          description: The ID of the location that the inventory level belongs to. To find the ID of the location, use the
+            Location resource.
+        - name: inventory_item_id
+          in: query
+          type: integer
+          description: inventory_item_id
+        - name: location_id
+          in: query
+          type: integer
+          description: location_id
+    - name: admin-api-2020-07-inventory_levels-adjust.json
+      path: /admin/api/2020-07/inventory_levels/adjust.json
+      operations:
+      - name: deprecated202007createinventorylevelsadjust
+        method: POST
+        description: Shopify Adjusts The Inventory Level Of An Inventory Item At A Single Location
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: "inventory_item_id\n                  required"
+          in: query
+          type: string
+          description: The ID of the inventory item.
+        - name: "location_id\n                  required"
+          in: query
+          type: string
+          description: The ID of the location that the inventory level belongs to. To find the ID of the location, use the
+            Location resource.
+        - name: "available_adjustment\n                  required"
+          in: query
+          type: string
+          description: The amount to adjust the available inventory quantity. Send negative values to subtract from the current
+            available quantity. For example, "available_adjustment"
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-07-inventory_levels-connect.json
+      path: /admin/api/2020-07/inventory_levels/connect.json
+      operations:
+      - name: deprecated202007createinventorylevelsconnect
+        method: POST
+        description: Shopify Connects An Inventory Item To A Location By Creating An Inventory Level At That Location
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: "inventory_item_id\n                  required"
+          in: query
+          type: string
+          description: The ID of the inventory item.
+        - name: "location_id\n                  required"
+          in: query
+          type: string
+          description: The ID of the location that the inventory level belongs to. To find the ID of the location, use the
+            Location resource.
+        - name: relocate_if_necessary
+          in: query
+          type: string
+          description: 'Whether inventory for any previously connected locations will be relocated. This property is ignored
+            when no fulfillment service location is involved. For more '
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-07-inventory_levels-set.json
+      path: /admin/api/2020-07/inventory_levels/set.json
+      operations:
+      - name: deprecated202007createinventorylevelsset
+        method: POST
+        description: Shopify Sets The Inventory Level For An Inventory Item At A Location
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: "inventory_item_id\n                  required"
+          in: query
+          type: string
+          description: The ID for the inventory item.
+        - name: "location_id\n                  required"
+          in: query
+          type: string
+          description: The ID of the location that the inventory level belongs to. To find the ID of the location, use the
+            Location resource.
+        - name: "available\n                  required"
+          in: query
+          type: string
+          description: Sets the available inventory quantity.
+        - name: disconnect_if_necessary
+          in: query
+          type: string
+          description: 'Whether inventory for any previously connected locations will be set to 0 and the locations disconnected.
+            This property is ignored when no fulfillment service  '
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-07-locations-location_id}.json
+      path: /admin/api/2020-07/locations/{location_id}.json
+      operations:
+      - name: deprecated202007getlocationsparamlocationid
+        method: GET
+        description: Shopify Retrieves A Single Location By Its Id
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: location_id
+          in: path
+          type: string
+          description: location_id
+          required: true
+    - name: admin-api-2020-07-locations-location_id-inventory_levels.json
+      path: /admin/api/2020-07/locations/{location_id}/inventory_levels.json
+      operations:
+      - name: deprecated202007getlocationsparamlocationidinventorylevels
+        method: GET
+        description: Shopify Retrieves A List Of Inventory Levels For A Location
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: location_id
+          in: path
+          type: string
+          description: location_id
+          required: true
+    - name: admin-api-2020-10-discount_codes-lookup.json
+      path: /admin/api/2020-10/discount_codes/lookup.json
+      operations:
+      - name: getdiscountcodeslookup
+        method: GET
+        description: Shopify Retrieves The Location Of A Discount Code
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: code
+          in: query
+          type: integer
+          description: code
+    - name: admin-api-2020-10-fulfillment_orders-fulfillment_order_id-move.json
+      path: /admin/api/2020-10/fulfillment_orders/{fulfillment_order_id}/move.json
+      operations:
+      - name: createfulfillmentordersparamfulfillmentorderidmove
+        method: POST
+        description: Shopify Moves A Fulfillment Order From One Merchant Managed Location To Another Merchant Managed Location
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fulfillment_order_id
+          in: path
+          type: string
+          description: fulfillment_order_id
+          required: true
+        - name: new_location_id
+          in: query
+          type: string
+          description: The id of the location to which the fulfillment order will be moved.
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-10-inventory_levels.json
+      path: /admin/api/2020-10/inventory_levels.json
+      operations:
+      - name: deleteinventorylevels
+        method: DELETE
+        description: Shopify Deletes An Inventory Level Of An Inventory Item At A Location
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: "inventory_item_id\n                  required"
+          in: query
+          type: string
+          description: The ID for the inventory item.
+        - name: "location_id\n                  required"
+          in: query
+          type: string
+          description: The ID of the location that the inventory level belongs to. To find the ID of the location, use the
+            Location resource.
+        - name: inventory_item_id
+          in: query
+          type: integer
+          description: inventory_item_id
+        - name: location_id
+          in: query
+          type: integer
+          description: location_id
+    - name: admin-api-2020-10-inventory_levels-adjust.json
+      path: /admin/api/2020-10/inventory_levels/adjust.json
+      operations:
+      - name: createinventorylevelsadjust
+        method: POST
+        description: Shopify Adjusts The Inventory Level Of An Inventory Item At A Single Location
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: "inventory_item_id\n                  required"
+          in: query
+          type: string
+          description: The ID of the inventory item.
+        - name: "location_id\n                  required"
+          in: query
+          type: string
+          description: The ID of the location that the inventory level belongs to. To find the ID of the location, use the
+            Location resource.
+        - name: "available_adjustment\n                  required"
+          in: query
+          type: string
+          description: The amount to adjust the available inventory quantity. Send negative values to subtract from the current
+            available quantity. For example, "available_adjustment"
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-10-inventory_levels-connect.json
+      path: /admin/api/2020-10/inventory_levels/connect.json
+      operations:
+      - name: createinventorylevelsconnect
+        method: POST
+        description: Shopify Connects An Inventory Item To A Location By Creating An Inventory Level At That Location
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: "inventory_item_id\n                  required"
+          in: query
+          type: string
+          description: The ID of the inventory item.
+        - name: "location_id\n                  required"
+          in: query
+          type: string
+          description: The ID of the location that the inventory level belongs to. To find the ID of the location, use the
+            Location resource.
+        - name: relocate_if_necessary
+          in: query
+          type: string
+          description: 'Whether inventory for any previously connected locations will be relocated. This property is ignored
+            when no fulfillment service location is involved. For more '
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-10-inventory_levels-set.json
+      path: /admin/api/2020-10/inventory_levels/set.json
+      operations:
+      - name: createinventorylevelsset
+        method: POST
+        description: Shopify Sets The Inventory Level For An Inventory Item At A Location
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: "inventory_item_id\n                  required"
+          in: query
+          type: string
+          description: The ID for the inventory item.
+        - name: "location_id\n                  required"
+          in: query
+          type: string
+          description: The ID of the location that the inventory level belongs to. To find the ID of the location, use the
+            Location resource.
+        - name: "available\n                  required"
+          in: query
+          type: string
+          description: Sets the available inventory quantity.
+        - name: disconnect_if_necessary
+          in: query
+          type: string
+          description: 'Whether inventory for any previously connected locations will be set to 0 and the locations disconnected.
+            This property is ignored when no fulfillment service  '
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-10-locations-location_id}.json
+      path: /admin/api/2020-10/locations/{location_id}.json
+      operations:
+      - name: getlocationsparamlocationid
+        method: GET
+        description: Shopify Retrieves A Single Location By Its Id
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: location_id
+          in: path
+          type: string
+          description: location_id
+          required: true
+    - name: admin-api-2020-10-locations-location_id-inventory_levels.json
+      path: /admin/api/2020-10/locations/{location_id}/inventory_levels.json
+      operations:
+      - name: getlocationsparamlocationidinventorylevels
+        method: GET
+        description: Shopify Retrieves A List Of Inventory Levels For A Location
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: location_id
+          in: path
+          type: string
+          description: location_id
+          required: true
+    - name: admin-api-2021-01-discount_codes-lookup.json
+      path: /admin/api/2021-01/discount_codes/lookup.json
+      operations:
+      - name: deprecated202101getdiscountcodeslookup
+        method: GET
+        description: Shopify Retrieves The Location Of A Discount Code
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: code
+          in: query
+          type: integer
+          description: code
+    - name: admin-api-2021-01-fulfillment_orders-fulfillment_order_id-move.json
+      path: /admin/api/2021-01/fulfillment_orders/{fulfillment_order_id}/move.json
+      operations:
+      - name: deprecated202101createfulfillmentordersparamfulfillmentorderidmove
+        method: POST
+        description: Shopify Moves A Fulfillment Order From One Merchant Managed Location To Another Merchant Managed Location
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fulfillment_order_id
+          in: path
+          type: string
+          description: fulfillment_order_id
+          required: true
+        - name: new_location_id
+          in: query
+          type: string
+          description: The id of the location to which the fulfillment order will be moved.
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2021-01-inventory_levels.json
+      path: /admin/api/2021-01/inventory_levels.json
+      operations:
+      - name: deprecated202101deleteinventorylevels
+        method: DELETE
+        description: Shopify Deletes An Inventory Level Of An Inventory Item At A Location
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: "inventory_item_id\n                  required"
+          in: query
+          type: string
+          description: The ID for the inventory item.
+        - name: "location_id\n                  required"
+          in: query
+          type: string
+          description: The ID of the location that the inventory level belongs to. To find the ID of the location, use the
+            Location resource.
+        - name: inventory_item_id
+          in: query
+          type: integer
+          description: inventory_item_id
+        - name: location_id
+          in: query
+          type: integer
+          description: location_id
+    - name: admin-api-2021-01-inventory_levels-adjust.json
+      path: /admin/api/2021-01/inventory_levels/adjust.json
+      operations:
+      - name: deprecated202101createinventorylevelsadjust
+        method: POST
+        description: Shopify Adjusts The Inventory Level Of An Inventory Item At A Single Location
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: "inventory_item_id\n                  required"
+          in: query
+          type: string
+          description: The ID of the inventory item.
+        - name: "location_id\n                  required"
+          in: query
+          type: string
+          description: The ID of the location that the inventory level belongs to. To find the ID of the location, use the
+            Location resource.
+        - name: "available_adjustment\n                  required"
+          in: query
+          type: string
+          description: The amount to adjust the available inventory quantity. Send negative values to subtract from the current
+            available quantity. For example, "available_adjustment"
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2021-01-inventory_levels-connect.json
+      path: /admin/api/2021-01/inventory_levels/connect.json
+      operations:
+      - name: deprecated202101createinventorylevelsconnect
+        method: POST
+        description: Shopify Connects An Inventory Item To A Location By Creating An Inventory Level At That Location
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: "inventory_item_id\n                  required"
+          in: query
+          type: string
+          description: The ID of the inventory item.
+        - name: "location_id\n                  required"
+          in: query
+          type: string
+          description: The ID of the location that the inventory level belongs to. To find the ID of the location, use the
+            Location resource.
+        - name: relocate_if_necessary
+          in: query
+          type: string
+          description: 'Whether inventory for any previously connected locations will be relocated. This property is ignored
+            when no fulfillment service location is involved. For more '
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2021-01-inventory_levels-set.json
+      path: /admin/api/2021-01/inventory_levels/set.json
+      operations:
+      - name: deprecated202101createinventorylevelsset
+        method: POST
+        description: Shopify Sets The Inventory Level For An Inventory Item At A Location
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: "inventory_item_id\n                  required"
+          in: query
+          type: string
+          description: The ID for the inventory item.
+        - name: "location_id\n                  required"
+          in: query
+          type: string
+          description: The ID of the location that the inventory level belongs to. To find the ID of the location, use the
+            Location resource.
+        - name: "available\n                  required"
+          in: query
+          type: string
+          description: Sets the available inventory quantity.
+        - name: disconnect_if_necessary
+          in: query
+          type: string
+          description: 'Whether inventory for any previously connected locations will be set to 0 and the locations disconnected.
+            This property is ignored when no fulfillment service  '
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2021-01-locations-location_id}.json
+      path: /admin/api/2021-01/locations/{location_id}.json
+      operations:
+      - name: deprecated202101getlocationsparamlocationid
+        method: GET
+        description: Shopify Retrieves A Single Location By Its Id
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: location_id
+          in: path
+          type: string
+          description: location_id
+          required: true
+    - name: admin-api-2021-01-locations-location_id-inventory_levels.json
+      path: /admin/api/2021-01/locations/{location_id}/inventory_levels.json
+      operations:
+      - name: deprecated202101getlocationsparamlocationidinventorylevels
+        method: GET
+        description: Shopify Retrieves A List Of Inventory Levels For A Location
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: location_id
+          in: path
+          type: string
+          description: location_id
+          required: true
+    - name: admin-api-unstable-discount_codes-lookup.json
+      path: /admin/api/unstable/discount_codes/lookup.json
+      operations:
+      - name: deprecatedunstablegetdiscountcodeslookup
+        method: GET
+        description: Shopify Retrieves The Location Of A Discount Code
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: code
+          in: query
+          type: integer
+          description: code
+    - name: admin-api-unstable-fulfillment_orders-fulfillment_order_id-move.json
+      path: /admin/api/unstable/fulfillment_orders/{fulfillment_order_id}/move.json
+      operations:
+      - name: deprecatedunstablecreatefulfillmentordersparamfulfillmentorderidmove
+        method: POST
+        description: Shopify Moves A Fulfillment Order From One Merchant Managed Location To Another Merchant Managed Location
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fulfillment_order_id
+          in: path
+          type: string
+          description: fulfillment_order_id
+          required: true
+        - name: new_location_id
+          in: query
+          type: string
+          description: The id of the location to which the fulfillment order will be moved.
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-unstable-inventory_levels.json
+      path: /admin/api/unstable/inventory_levels.json
+      operations:
+      - name: deprecatedunstabledeleteinventorylevels
+        method: DELETE
+        description: Shopify Deletes An Inventory Level Of An Inventory Item At A Location
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: "inventory_item_id\n                  required"
+          in: query
+          type: string
+          description: The ID for the inventory item.
+        - name: "location_id\n                  required"
+          in: query
+          type: string
+          description: The ID of the location that the inventory level belongs to. To find the ID of the location, use the
+            Location resource.
+        - name: inventory_item_id
+          in: query
+          type: integer
+          description: inventory_item_id
+        - name: location_id
+          in: query
+          type: integer
+          description: location_id
+    - name: admin-api-unstable-inventory_levels-adjust.json
+      path: /admin/api/unstable/inventory_levels/adjust.json
+      operations:
+      - name: deprecatedunstablecreateinventorylevelsadjust
+        method: POST
+        description: Shopify Adjusts The Inventory Level Of An Inventory Item At A Single Location
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: "inventory_item_id\n                  required"
+          in: query
+          type: string
+          description: The ID of the inventory item.
+        - name: "location_id\n                  required"
+          in: query
+          type: string
+          description: The ID of the location that the inventory level belongs to. To find the ID of the location, use the
+            Location resource.
+        - name: "available_adjustment\n                  required"
+          in: query
+          type: string
+          description: The amount to adjust the available inventory quantity. Send negative values to subtract from the current
+            available quantity. For example, "available_adjustment"
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-unstable-inventory_levels-connect.json
+      path: /admin/api/unstable/inventory_levels/connect.json
+      operations:
+      - name: deprecatedunstablecreateinventorylevelsconnect
+        method: POST
+        description: Shopify Connects An Inventory Item To A Location By Creating An Inventory Level At That Location
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: "inventory_item_id\n                  required"
+          in: query
+          type: string
+          description: The ID of the inventory item.
+        - name: "location_id\n                  required"
+          in: query
+          type: string
+          description: The ID of the location that the inventory level belongs to. To find the ID of the location, use the
+            Location resource.
+        - name: relocate_if_necessary
+          in: query
+          type: string
+          description: 'Whether inventory for any previously connected locations will be relocated. This property is ignored
+            when no fulfillment service location is involved. For more '
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-unstable-inventory_levels-set.json
+      path: /admin/api/unstable/inventory_levels/set.json
+      operations:
+      - name: deprecatedunstablecreateinventorylevelsset
+        method: POST
+        description: Shopify Sets The Inventory Level For An Inventory Item At A Location
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: "inventory_item_id\n                  required"
+          in: query
+          type: string
+          description: The ID for the inventory item.
+        - name: "location_id\n                  required"
+          in: query
+          type: string
+          description: The ID of the location that the inventory level belongs to. To find the ID of the location, use the
+            Location resource.
+        - name: "available\n                  required"
+          in: query
+          type: string
+          description: Sets the available inventory quantity.
+        - name: disconnect_if_necessary
+          in: query
+          type: string
+          description: 'Whether inventory for any previously connected locations will be set to 0 and the locations disconnected.
+            This property is ignored when no fulfillment service  '
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-unstable-locations-location_id}.json
+      path: /admin/api/unstable/locations/{location_id}.json
+      operations:
+      - name: deprecatedunstablegetlocationsparamlocationid
+        method: GET
+        description: Shopify Retrieves A Single Location By Its Id
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: location_id
+          in: path
+          type: string
+          description: location_id
+          required: true
+    - name: admin-api-unstable-locations-location_id-inventory_levels.json
+      path: /admin/api/unstable/locations/{location_id}/inventory_levels.json
+      operations:
+      - name: deprecatedunstablegetlocationsparamlocationidinventorylevels
+        method: GET
+        description: Shopify Retrieves A List Of Inventory Levels For A Location
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: location_id
+          in: path
+          type: string
+          description: location_id
+          required: true
+  exposes:
+  - type: rest
+    namespace: shopify-location-rest
+    port: 8080
+    description: REST adapter for Shopify  API — Location. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/admin/api/2020-01/discount-codes/lookup-json
+      name: admin-api-2020-01-discount-codes-lookup-json
+      description: REST surface for admin-api-2020-01-discount_codes-lookup.json.
+      operations:
+      - method: GET
+        name: deprecated202001getdiscountcodeslookup
+        description: Shopify Retrieves The Location Of A Discount Code
+        call: shopify-location.deprecated202001getdiscountcodeslookup
+        with:
+          code: rest.code
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-01/fulfillment-orders/{fulfillment-order-id}/move-json
+      name: admin-api-2020-01-fulfillment-orders-fulfillment-order-id-move-json
+      description: REST surface for admin-api-2020-01-fulfillment_orders-fulfillment_order_id-move.json.
+      operations:
+      - method: POST
+        name: deprecated202001createfulfillmentordersparamfulfillmentorderidmove
+        description: Shopify Moves A Fulfillment Order From One Merchant Managed Location To Another Merchant Managed Location
+        call: shopify-location.deprecated202001createfulfillmentordersparamfulfillmentorderidmove
+        with:
+          fulfillment_order_id: rest.fulfillment_order_id
+          new_location_id: rest.new_location_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-01/inventory-levels-json
+      name: admin-api-2020-01-inventory-levels-json
+      description: REST surface for admin-api-2020-01-inventory_levels.json.
+      operations:
+      - method: DELETE
+        name: deprecated202001deleteinventorylevels
+        description: Shopify Deletes An Inventory Level Of An Inventory Item At A Location
+        call: shopify-location.deprecated202001deleteinventorylevels
+        with:
+          ? "inventory_item_id\n                  required"
+          : "rest.inventory_item_id\n                  required"
+          ? "location_id\n                  required"
+          : "rest.location_id\n                  required"
+          inventory_item_id: rest.inventory_item_id
+          location_id: rest.location_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-01/inventory-levels/adjust-json
+      name: admin-api-2020-01-inventory-levels-adjust-json
+      description: REST surface for admin-api-2020-01-inventory_levels-adjust.json.
+      operations:
+      - method: POST
+        name: deprecated202001createinventorylevelsadjust
+        description: Shopify Adjusts The Inventory Level Of An Inventory Item At A Single Location
+        call: shopify-location.deprecated202001createinventorylevelsadjust
+        with:
+          ? "inventory_item_id\n                  required"
+          : "rest.inventory_item_id\n                  required"
+          ? "location_id\n                  required"
+          : "rest.location_id\n                  required"
+          ? "available_adjustment\n                  required"
+          : "rest.available_adjustment\n                  required"
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-01/inventory-levels/connect-json
+      name: admin-api-2020-01-inventory-levels-connect-json
+      description: REST surface for admin-api-2020-01-inventory_levels-connect.json.
+      operations:
+      - method: POST
+        name: deprecated202001createinventorylevelsconnect
+        description: Shopify Connects An Inventory Item To A Location By Creating An Inventory Level At That Location
+        call: shopify-location.deprecated202001createinventorylevelsconnect
+        with:
+          ? "inventory_item_id\n                  required"
+          : "rest.inventory_item_id\n                  required"
+          ? "location_id\n                  required"
+          : "rest.location_id\n                  required"
+          relocate_if_necessary: rest.relocate_if_necessary
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-01/inventory-levels/set-json
+      name: admin-api-2020-01-inventory-levels-set-json
+      description: REST surface for admin-api-2020-01-inventory_levels-set.json.
+      operations:
+      - method: POST
+        name: deprecated202001createinventorylevelsset
+        description: Shopify Sets The Inventory Level For An Inventory Item At A Location
+        call: shopify-location.deprecated202001createinventorylevelsset
+        with:
+          ? "inventory_item_id\n                  required"
+          : "rest.inventory_item_id\n                  required"
+          ? "location_id\n                  required"
+          : "rest.location_id\n                  required"
+          ? "available\n                  required"
+          : "rest.available\n                  required"
+          disconnect_if_necessary: rest.disconnect_if_necessary
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-01/locations/location-id-json
+      name: admin-api-2020-01-locations-location-id-json
+      description: REST surface for admin-api-2020-01-locations-location_id}.json.
+      operations:
+      - method: GET
+        name: deprecated202001getlocationsparamlocationid
+        description: Shopify Retrieves A Single Location By Its Id
+        call: shopify-location.deprecated202001getlocationsparamlocationid
+        with:
+          location_id: rest.location_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-01/locations/{location-id}/inventory-levels-json
+      name: admin-api-2020-01-locations-location-id-inventory-levels-json
+      description: REST surface for admin-api-2020-01-locations-location_id-inventory_levels.json.
+      operations:
+      - method: GET
+        name: deprecated202001getlocationsparamlocationidinventorylevels
+        description: Shopify Retrieves A List Of Inventory Levels For A Location
+        call: shopify-location.deprecated202001getlocationsparamlocationidinventorylevels
+        with:
+          location_id: rest.location_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/discount-codes/lookup-json
+      name: admin-api-2020-04-discount-codes-lookup-json
+      description: REST surface for admin-api-2020-04-discount_codes-lookup.json.
+      operations:
+      - method: GET
+        name: deprecated202004getdiscountcodeslookup
+        description: Shopify Retrieves The Location Of A Discount Code
+        call: shopify-location.deprecated202004getdiscountcodeslookup
+        with:
+          code: rest.code
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/fulfillment-orders/{fulfillment-order-id}/move-json
+      name: admin-api-2020-04-fulfillment-orders-fulfillment-order-id-move-json
+      description: REST surface for admin-api-2020-04-fulfillment_orders-fulfillment_order_id-move.json.
+      operations:
+      - method: POST
+        name: deprecated202004createfulfillmentordersparamfulfillmentorderidmove
+        description: Shopify Moves A Fulfillment Order From One Merchant Managed Location To Another Merchant Managed Location
+        call: shopify-location.deprecated202004createfulfillmentordersparamfulfillmentorderidmove
+        with:
+          fulfillment_order_id: rest.fulfillment_order_id
+          new_location_id: rest.new_location_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/inventory-levels-json
+      name: admin-api-2020-04-inventory-levels-json
+      description: REST surface for admin-api-2020-04-inventory_levels.json.
+      operations:
+      - method: DELETE
+        name: deprecated202004deleteinventorylevels
+        description: Shopify Deletes An Inventory Level Of An Inventory Item At A Location
+        call: shopify-location.deprecated202004deleteinventorylevels
+        with:
+          ? "inventory_item_id\n                  required"
+          : "rest.inventory_item_id\n                  required"
+          ? "location_id\n                  required"
+          : "rest.location_id\n                  required"
+          inventory_item_id: rest.inventory_item_id
+          location_id: rest.location_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/inventory-levels/adjust-json
+      name: admin-api-2020-04-inventory-levels-adjust-json
+      description: REST surface for admin-api-2020-04-inventory_levels-adjust.json.
+      operations:
+      - method: POST
+        name: deprecated202004createinventorylevelsadjust
+        description: Shopify Adjusts The Inventory Level Of An Inventory Item At A Single Location
+        call: shopify-location.deprecated202004createinventorylevelsadjust
+        with:
+          ? "inventory_item_id\n                  required"
+          : "rest.inventory_item_id\n                  required"
+          ? "location_id\n                  required"
+          : "rest.location_id\n                  required"
+          ? "available_adjustment\n                  required"
+          : "rest.available_adjustment\n                  required"
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/inventory-levels/connect-json
+      name: admin-api-2020-04-inventory-levels-connect-json
+      description: REST surface for admin-api-2020-04-inventory_levels-connect.json.
+      operations:
+      - method: POST
+        name: deprecated202004createinventorylevelsconnect
+        description: Shopify Connects An Inventory Item To A Location By Creating An Inventory Level At That Location
+        call: shopify-location.deprecated202004createinventorylevelsconnect
+        with:
+          ? "inventory_item_id\n                  required"
+          : "rest.inventory_item_id\n                  required"
+          ? "location_id\n                  required"
+          : "rest.location_id\n                  required"
+          relocate_if_necessary: rest.relocate_if_necessary
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/inventory-levels/set-json
+      name: admin-api-2020-04-inventory-levels-set-json
+      description: REST surface for admin-api-2020-04-inventory_levels-set.json.
+      operations:
+      - method: POST
+        name: deprecated202004createinventorylevelsset
+        description: Shopify Sets The Inventory Level For An Inventory Item At A Location
+        call: shopify-location.deprecated202004createinventorylevelsset
+        with:
+          ? "inventory_item_id\n                  required"
+          : "rest.inventory_item_id\n                  required"
+          ? "location_id\n                  required"
+          : "rest.location_id\n                  required"
+          ? "available\n                  required"
+          : "rest.available\n                  required"
+          disconnect_if_necessary: rest.disconnect_if_necessary
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/locations/location-id-json
+      name: admin-api-2020-04-locations-location-id-json
+      description: REST surface for admin-api-2020-04-locations-location_id}.json.
+      operations:
+      - method: GET
+        name: deprecated202004getlocationsparamlocationid
+        description: Shopify Retrieves A Single Location By Its Id
+        call: shopify-location.deprecated202004getlocationsparamlocationid
+        with:
+          location_id: rest.location_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/locations/{location-id}/inventory-levels-json
+      name: admin-api-2020-04-locations-location-id-inventory-levels-json
+      description: REST surface for admin-api-2020-04-locations-location_id-inventory_levels.json.
+      operations:
+      - method: GET
+        name: deprecated202004getlocationsparamlocationidinventorylevels
+        description: Shopify Retrieves A List Of Inventory Levels For A Location
+        call: shopify-location.deprecated202004getlocationsparamlocationidinventorylevels
+        with:
+          location_id: rest.location_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/discount-codes/lookup-json
+      name: admin-api-2020-07-discount-codes-lookup-json
+      description: REST surface for admin-api-2020-07-discount_codes-lookup.json.
+      operations:
+      - method: GET
+        name: deprecated202007getdiscountcodeslookup
+        description: Shopify Retrieves The Location Of A Discount Code
+        call: shopify-location.deprecated202007getdiscountcodeslookup
+        with:
+          code: rest.code
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/fulfillment-orders/{fulfillment-order-id}/move-json
+      name: admin-api-2020-07-fulfillment-orders-fulfillment-order-id-move-json
+      description: REST surface for admin-api-2020-07-fulfillment_orders-fulfillment_order_id-move.json.
+      operations:
+      - method: POST
+        name: deprecated202007createfulfillmentordersparamfulfillmentorderidmove
+        description: Shopify Moves A Fulfillment Order From One Merchant Managed Location To Another Merchant Managed Location
+        call: shopify-location.deprecated202007createfulfillmentordersparamfulfillmentorderidmove
+        with:
+          fulfillment_order_id: rest.fulfillment_order_id
+          new_location_id: rest.new_location_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/inventory-levels-json
+      name: admin-api-2020-07-inventory-levels-json
+      description: REST surface for admin-api-2020-07-inventory_levels.json.
+      operations:
+      - method: DELETE
+        name: deprecated202007deleteinventorylevels
+        description: Shopify Deletes An Inventory Level Of An Inventory Item At A Location
+        call: shopify-location.deprecated202007deleteinventorylevels
+        with:
+          ? "inventory_item_id\n                  required"
+          : "rest.inventory_item_id\n                  required"
+          ? "location_id\n                  required"
+          : "rest.location_id\n                  required"
+          inventory_item_id: rest.inventory_item_id
+          location_id: rest.location_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/inventory-levels/adjust-json
+      name: admin-api-2020-07-inventory-levels-adjust-json
+      description: REST surface for admin-api-2020-07-inventory_levels-adjust.json.
+      operations:
+      - method: POST
+        name: deprecated202007createinventorylevelsadjust
+        description: Shopify Adjusts The Inventory Level Of An Inventory Item At A Single Location
+        call: shopify-location.deprecated202007createinventorylevelsadjust
+        with:
+          ? "inventory_item_id\n                  required"
+          : "rest.inventory_item_id\n                  required"
+          ? "location_id\n                  required"
+          : "rest.location_id\n                  required"
+          ? "available_adjustment\n                  required"
+          : "rest.available_adjustment\n                  required"
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/inventory-levels/connect-json
+      name: admin-api-2020-07-inventory-levels-connect-json
+      description: REST surface for admin-api-2020-07-inventory_levels-connect.json.
+      operations:
+      - method: POST
+        name: deprecated202007createinventorylevelsconnect
+        description: Shopify Connects An Inventory Item To A Location By Creating An Inventory Level At That Location
+        call: shopify-location.deprecated202007createinventorylevelsconnect
+        with:
+          ? "inventory_item_id\n                  required"
+          : "rest.inventory_item_id\n                  required"
+          ? "location_id\n                  required"
+          : "rest.location_id\n                  required"
+          relocate_if_necessary: rest.relocate_if_necessary
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/inventory-levels/set-json
+      name: admin-api-2020-07-inventory-levels-set-json
+      description: REST surface for admin-api-2020-07-inventory_levels-set.json.
+      operations:
+      - method: POST
+        name: deprecated202007createinventorylevelsset
+        description: Shopify Sets The Inventory Level For An Inventory Item At A Location
+        call: shopify-location.deprecated202007createinventorylevelsset
+        with:
+          ? "inventory_item_id\n                  required"
+          : "rest.inventory_item_id\n                  required"
+          ? "location_id\n                  required"
+          : "rest.location_id\n                  required"
+          ? "available\n                  required"
+          : "rest.available\n                  required"
+          disconnect_if_necessary: rest.disconnect_if_necessary
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/locations/location-id-json
+      name: admin-api-2020-07-locations-location-id-json
+      description: REST surface for admin-api-2020-07-locations-location_id}.json.
+      operations:
+      - method: GET
+        name: deprecated202007getlocationsparamlocationid
+        description: Shopify Retrieves A Single Location By Its Id
+        call: shopify-location.deprecated202007getlocationsparamlocationid
+        with:
+          location_id: rest.location_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/locations/{location-id}/inventory-levels-json
+      name: admin-api-2020-07-locations-location-id-inventory-levels-json
+      description: REST surface for admin-api-2020-07-locations-location_id-inventory_levels.json.
+      operations:
+      - method: GET
+        name: deprecated202007getlocationsparamlocationidinventorylevels
+        description: Shopify Retrieves A List Of Inventory Levels For A Location
+        call: shopify-location.deprecated202007getlocationsparamlocationidinventorylevels
+        with:
+          location_id: rest.location_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/discount-codes/lookup-json
+      name: admin-api-2020-10-discount-codes-lookup-json
+      description: REST surface for admin-api-2020-10-discount_codes-lookup.json.
+      operations:
+      - method: GET
+        name: getdiscountcodeslookup
+        description: Shopify Retrieves The Location Of A Discount Code
+        call: shopify-location.getdiscountcodeslookup
+        with:
+          code: rest.code
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/fulfillment-orders/{fulfillment-order-id}/move-json
+      name: admin-api-2020-10-fulfillment-orders-fulfillment-order-id-move-json
+      description: REST surface for admin-api-2020-10-fulfillment_orders-fulfillment_order_id-move.json.
+      operations:
+      - method: POST
+        name: createfulfillmentordersparamfulfillmentorderidmove
+        description: Shopify Moves A Fulfillment Order From One Merchant Managed Location To Another Merchant Managed Location
+        call: shopify-location.createfulfillmentordersparamfulfillmentorderidmove
+        with:
+          fulfillment_order_id: rest.fulfillment_order_id
+          new_location_id: rest.new_location_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/inventory-levels-json
+      name: admin-api-2020-10-inventory-levels-json
+      description: REST surface for admin-api-2020-10-inventory_levels.json.
+      operations:
+      - method: DELETE
+        name: deleteinventorylevels
+        description: Shopify Deletes An Inventory Level Of An Inventory Item At A Location
+        call: shopify-location.deleteinventorylevels
+        with:
+          ? "inventory_item_id\n                  required"
+          : "rest.inventory_item_id\n                  required"
+          ? "location_id\n                  required"
+          : "rest.location_id\n                  required"
+          inventory_item_id: rest.inventory_item_id
+          location_id: rest.location_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/inventory-levels/adjust-json
+      name: admin-api-2020-10-inventory-levels-adjust-json
+      description: REST surface for admin-api-2020-10-inventory_levels-adjust.json.
+      operations:
+      - method: POST
+        name: createinventorylevelsadjust
+        description: Shopify Adjusts The Inventory Level Of An Inventory Item At A Single Location
+        call: shopify-location.createinventorylevelsadjust
+        with:
+          ? "inventory_item_id\n                  required"
+          : "rest.inventory_item_id\n                  required"
+          ? "location_id\n                  required"
+          : "rest.location_id\n                  required"
+          ? "available_adjustment\n                  required"
+          : "rest.available_adjustment\n                  required"
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/inventory-levels/connect-json
+      name: admin-api-2020-10-inventory-levels-connect-json
+      description: REST surface for admin-api-2020-10-inventory_levels-connect.json.
+      operations:
+      - method: POST
+        name: createinventorylevelsconnect
+        description: Shopify Connects An Inventory Item To A Location By Creating An Inventory Level At That Location
+        call: shopify-location.createinventorylevelsconnect
+        with:
+          ? "inventory_item_id\n                  required"
+          : "rest.inventory_item_id\n                  required"
+          ? "location_id\n                  required"
+          : "rest.location_id\n                  required"
+          relocate_if_necessary: rest.relocate_if_necessary
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/inventory-levels/set-json
+      name: admin-api-2020-10-inventory-levels-set-json
+      description: REST surface for admin-api-2020-10-inventory_levels-set.json.
+      operations:
+      - method: POST
+        name: createinventorylevelsset
+        description: Shopify Sets The Inventory Level For An Inventory Item At A Location
+        call: shopify-location.createinventorylevelsset
+        with:
+          ? "inventory_item_id\n                  required"
+          : "rest.inventory_item_id\n                  required"
+          ? "location_id\n                  required"
+          : "rest.location_id\n                  required"
+          ? "available\n                  required"
+          : "rest.available\n                  required"
+          disconnect_if_necessary: rest.disconnect_if_necessary
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/locations/location-id-json
+      name: admin-api-2020-10-locations-location-id-json
+      description: REST surface for admin-api-2020-10-locations-location_id}.json.
+      operations:
+      - method: GET
+        name: getlocationsparamlocationid
+        description: Shopify Retrieves A Single Location By Its Id
+        call: shopify-location.getlocationsparamlocationid
+        with:
+          location_id: rest.location_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/locations/{location-id}/inventory-levels-json
+      name: admin-api-2020-10-locations-location-id-inventory-levels-json
+      description: REST surface for admin-api-2020-10-locations-location_id-inventory_levels.json.
+      operations:
+      - method: GET
+        name: getlocationsparamlocationidinventorylevels
+        description: Shopify Retrieves A List Of Inventory Levels For A Location
+        call: shopify-location.getlocationsparamlocationidinventorylevels
+        with:
+          location_id: rest.location_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/discount-codes/lookup-json
+      name: admin-api-2021-01-discount-codes-lookup-json
+      description: REST surface for admin-api-2021-01-discount_codes-lookup.json.
+      operations:
+      - method: GET
+        name: deprecated202101getdiscountcodeslookup
+        description: Shopify Retrieves The Location Of A Discount Code
+        call: shopify-location.deprecated202101getdiscountcodeslookup
+        with:
+          code: rest.code
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/fulfillment-orders/{fulfillment-order-id}/move-json
+      name: admin-api-2021-01-fulfillment-orders-fulfillment-order-id-move-json
+      description: REST surface for admin-api-2021-01-fulfillment_orders-fulfillment_order_id-move.json.
+      operations:
+      - method: POST
+        name: deprecated202101createfulfillmentordersparamfulfillmentorderidmove
+        description: Shopify Moves A Fulfillment Order From One Merchant Managed Location To Another Merchant Managed Location
+        call: shopify-location.deprecated202101createfulfillmentordersparamfulfillmentorderidmove
+        with:
+          fulfillment_order_id: rest.fulfillment_order_id
+          new_location_id: rest.new_location_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/inventory-levels-json
+      name: admin-api-2021-01-inventory-levels-json
+      description: REST surface for admin-api-2021-01-inventory_levels.json.
+      operations:
+      - method: DELETE
+        name: deprecated202101deleteinventorylevels
+        description: Shopify Deletes An Inventory Level Of An Inventory Item At A Location
+        call: shopify-location.deprecated202101deleteinventorylevels
+        with:
+          ? "inventory_item_id\n                  required"
+          : "rest.inventory_item_id\n                  required"
+          ? "location_id\n                  required"
+          : "rest.location_id\n                  required"
+          inventory_item_id: rest.inventory_item_id
+          location_id: rest.location_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/inventory-levels/adjust-json
+      name: admin-api-2021-01-inventory-levels-adjust-json
+      description: REST surface for admin-api-2021-01-inventory_levels-adjust.json.
+      operations:
+      - method: POST
+        name: deprecated202101createinventorylevelsadjust
+        description: Shopify Adjusts The Inventory Level Of An Inventory Item At A Single Location
+        call: shopify-location.deprecated202101createinventorylevelsadjust
+        with:
+          ? "inventory_item_id\n                  required"
+          : "rest.inventory_item_id\n                  required"
+          ? "location_id\n                  required"
+          : "rest.location_id\n                  required"
+          ? "available_adjustment\n                  required"
+          : "rest.available_adjustment\n                  required"
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/inventory-levels/connect-json
+      name: admin-api-2021-01-inventory-levels-connect-json
+      description: REST surface for admin-api-2021-01-inventory_levels-connect.json.
+      operations:
+      - method: POST
+        name: deprecated202101createinventorylevelsconnect
+        description: Shopify Connects An Inventory Item To A Location By Creating An Inventory Level At That Location
+        call: shopify-location.deprecated202101createinventorylevelsconnect
+        with:
+          ? "inventory_item_id\n                  required"
+          : "rest.inventory_item_id\n                  required"
+          ? "location_id\n                  required"
+          : "rest.location_id\n                  required"
+          relocate_if_necessary: rest.relocate_if_necessary
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/inventory-levels/set-json
+      name: admin-api-2021-01-inventory-levels-set-json
+      description: REST surface for admin-api-2021-01-inventory_levels-set.json.
+      operations:
+      - method: POST
+        name: deprecated202101createinventorylevelsset
+        description: Shopify Sets The Inventory Level For An Inventory Item At A Location
+        call: shopify-location.deprecated202101createinventorylevelsset
+        with:
+          ? "inventory_item_id\n                  required"
+          : "rest.inventory_item_id\n                  required"
+          ? "location_id\n                  required"
+          : "rest.location_id\n                  required"
+          ? "available\n                  required"
+          : "rest.available\n                  required"
+          disconnect_if_necessary: rest.disconnect_if_necessary
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/locations/location-id-json
+      name: admin-api-2021-01-locations-location-id-json
+      description: REST surface for admin-api-2021-01-locations-location_id}.json.
+      operations:
+      - method: GET
+        name: deprecated202101getlocationsparamlocationid
+        description: Shopify Retrieves A Single Location By Its Id
+        call: shopify-location.deprecated202101getlocationsparamlocationid
+        with:
+          location_id: rest.location_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/locations/{location-id}/inventory-levels-json
+      name: admin-api-2021-01-locations-location-id-inventory-levels-json
+      description: REST surface for admin-api-2021-01-locations-location_id-inventory_levels.json.
+      operations:
+      - method: GET
+        name: deprecated202101getlocationsparamlocationidinventorylevels
+        description: Shopify Retrieves A List Of Inventory Levels For A Location
+        call: shopify-location.deprecated202101getlocationsparamlocationidinventorylevels
+        with:
+          location_id: rest.location_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/discount-codes/lookup-json
+      name: admin-api-unstable-discount-codes-lookup-json
+      description: REST surface for admin-api-unstable-discount_codes-lookup.json.
+      operations:
+      - method: GET
+        name: deprecatedunstablegetdiscountcodeslookup
+        description: Shopify Retrieves The Location Of A Discount Code
+        call: shopify-location.deprecatedunstablegetdiscountcodeslookup
+        with:
+          code: rest.code
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/fulfillment-orders/{fulfillment-order-id}/move-json
+      name: admin-api-unstable-fulfillment-orders-fulfillment-order-id-move-json
+      description: REST surface for admin-api-unstable-fulfillment_orders-fulfillment_order_id-move.json.
+      operations:
+      - method: POST
+        name: deprecatedunstablecreatefulfillmentordersparamfulfillmentorderidmove
+        description: Shopify Moves A Fulfillment Order From One Merchant Managed Location To Another Merchant Managed Location
+        call: shopify-location.deprecatedunstablecreatefulfillmentordersparamfulfillmentorderidmove
+        with:
+          fulfillment_order_id: rest.fulfillment_order_id
+          new_location_id: rest.new_location_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/inventory-levels-json
+      name: admin-api-unstable-inventory-levels-json
+      description: REST surface for admin-api-unstable-inventory_levels.json.
+      operations:
+      - method: DELETE
+        name: deprecatedunstabledeleteinventorylevels
+        description: Shopify Deletes An Inventory Level Of An Inventory Item At A Location
+        call: shopify-location.deprecatedunstabledeleteinventorylevels
+        with:
+          ? "inventory_item_id\n                  required"
+          : "rest.inventory_item_id\n                  required"
+          ? "location_id\n                  required"
+          : "rest.location_id\n                  required"
+          inventory_item_id: rest.inventory_item_id
+          location_id: rest.location_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/inventory-levels/adjust-json
+      name: admin-api-unstable-inventory-levels-adjust-json
+      description: REST surface for admin-api-unstable-inventory_levels-adjust.json.
+      operations:
+      - method: POST
+        name: deprecatedunstablecreateinventorylevelsadjust
+        description: Shopify Adjusts The Inventory Level Of An Inventory Item At A Single Location
+        call: shopify-location.deprecatedunstablecreateinventorylevelsadjust
+        with:
+          ? "inventory_item_id\n                  required"
+          : "rest.inventory_item_id\n                  required"
+          ? "location_id\n                  required"
+          : "rest.location_id\n                  required"
+          ? "available_adjustment\n                  required"
+          : "rest.available_adjustment\n                  required"
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/inventory-levels/connect-json
+      name: admin-api-unstable-inventory-levels-connect-json
+      description: REST surface for admin-api-unstable-inventory_levels-connect.json.
+      operations:
+      - method: POST
+        name: deprecatedunstablecreateinventorylevelsconnect
+        description: Shopify Connects An Inventory Item To A Location By Creating An Inventory Level At That Location
+        call: shopify-location.deprecatedunstablecreateinventorylevelsconnect
+        with:
+          ? "inventory_item_id\n                  required"
+          : "rest.inventory_item_id\n                  required"
+          ? "location_id\n                  required"
+          : "rest.location_id\n                  required"
+          relocate_if_necessary: rest.relocate_if_necessary
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/inventory-levels/set-json
+      name: admin-api-unstable-inventory-levels-set-json
+      description: REST surface for admin-api-unstable-inventory_levels-set.json.
+      operations:
+      - method: POST
+        name: deprecatedunstablecreateinventorylevelsset
+        description: Shopify Sets The Inventory Level For An Inventory Item At A Location
+        call: shopify-location.deprecatedunstablecreateinventorylevelsset
+        with:
+          ? "inventory_item_id\n                  required"
+          : "rest.inventory_item_id\n                  required"
+          ? "location_id\n                  required"
+          : "rest.location_id\n                  required"
+          ? "available\n                  required"
+          : "rest.available\n                  required"
+          disconnect_if_necessary: rest.disconnect_if_necessary
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/locations/location-id-json
+      name: admin-api-unstable-locations-location-id-json
+      description: REST surface for admin-api-unstable-locations-location_id}.json.
+      operations:
+      - method: GET
+        name: deprecatedunstablegetlocationsparamlocationid
+        description: Shopify Retrieves A Single Location By Its Id
+        call: shopify-location.deprecatedunstablegetlocationsparamlocationid
+        with:
+          location_id: rest.location_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/locations/{location-id}/inventory-levels-json
+      name: admin-api-unstable-locations-location-id-inventory-levels-json
+      description: REST surface for admin-api-unstable-locations-location_id-inventory_levels.json.
+      operations:
+      - method: GET
+        name: deprecatedunstablegetlocationsparamlocationidinventorylevels
+        description: Shopify Retrieves A List Of Inventory Levels For A Location
+        call: shopify-location.deprecatedunstablegetlocationsparamlocationidinventorylevels
+        with:
+          location_id: rest.location_id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: shopify-location-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Shopify  API — Location. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: shopify-retrieves-location-discount-code
+      description: Shopify Retrieves The Location Of A Discount Code
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-location.deprecated202001getdiscountcodeslookup
+      with:
+        code: tools.code
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-moves-fulfillment-order-one
+      description: Shopify Moves A Fulfillment Order From One Merchant Managed Location To Another Merchant Managed Location
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-location.deprecated202001createfulfillmentordersparamfulfillmentorderidmove
+      with:
+        fulfillment_order_id: tools.fulfillment_order_id
+        new_location_id: tools.new_location_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-deletes-inventory-level-inventory
+      description: Shopify Deletes An Inventory Level Of An Inventory Item At A Location
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-location.deprecated202001deleteinventorylevels
+      with:
+        ? "inventory_item_id\n                  required"
+        : "tools.inventory_item_id\n                  required"
+        ? "location_id\n                  required"
+        : "tools.location_id\n                  required"
+        inventory_item_id: tools.inventory_item_id
+        location_id: tools.location_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-adjusts-inventory-level-inventory
+      description: Shopify Adjusts The Inventory Level Of An Inventory Item At A Single Location
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-location.deprecated202001createinventorylevelsadjust
+      with:
+        ? "inventory_item_id\n                  required"
+        : "tools.inventory_item_id\n                  required"
+        ? "location_id\n                  required"
+        : "tools.location_id\n                  required"
+        ? "available_adjustment\n                  required"
+        : "tools.available_adjustment\n                  required"
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-connects-inventory-item-location
+      description: Shopify Connects An Inventory Item To A Location By Creating An Inventory Level At That Location
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-location.deprecated202001createinventorylevelsconnect
+      with:
+        ? "inventory_item_id\n                  required"
+        : "tools.inventory_item_id\n                  required"
+        ? "location_id\n                  required"
+        : "tools.location_id\n                  required"
+        relocate_if_necessary: tools.relocate_if_necessary
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-sets-inventory-level-inventory
+      description: Shopify Sets The Inventory Level For An Inventory Item At A Location
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-location.deprecated202001createinventorylevelsset
+      with:
+        ? "inventory_item_id\n                  required"
+        : "tools.inventory_item_id\n                  required"
+        ? "location_id\n                  required"
+        : "tools.location_id\n                  required"
+        ? "available\n                  required"
+        : "tools.available\n                  required"
+        disconnect_if_necessary: tools.disconnect_if_necessary
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-single-location-its
+      description: Shopify Retrieves A Single Location By Its Id
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-location.deprecated202001getlocationsparamlocationid
+      with:
+        location_id: tools.location_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-inventory-levels
+      description: Shopify Retrieves A List Of Inventory Levels For A Location
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-location.deprecated202001getlocationsparamlocationidinventorylevels
+      with:
+        location_id: tools.location_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-location-discount-code-2
+      description: Shopify Retrieves The Location Of A Discount Code
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-location.deprecated202004getdiscountcodeslookup
+      with:
+        code: tools.code
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-moves-fulfillment-order-one-2
+      description: Shopify Moves A Fulfillment Order From One Merchant Managed Location To Another Merchant Managed Location
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-location.deprecated202004createfulfillmentordersparamfulfillmentorderidmove
+      with:
+        fulfillment_order_id: tools.fulfillment_order_id
+        new_location_id: tools.new_location_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-deletes-inventory-level-inventory-2
+      description: Shopify Deletes An Inventory Level Of An Inventory Item At A Location
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-location.deprecated202004deleteinventorylevels
+      with:
+        ? "inventory_item_id\n                  required"
+        : "tools.inventory_item_id\n                  required"
+        ? "location_id\n                  required"
+        : "tools.location_id\n                  required"
+        inventory_item_id: tools.inventory_item_id
+        location_id: tools.location_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-adjusts-inventory-level-inventory-2
+      description: Shopify Adjusts The Inventory Level Of An Inventory Item At A Single Location
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-location.deprecated202004createinventorylevelsadjust
+      with:
+        ? "inventory_item_id\n                  required"
+        : "tools.inventory_item_id\n                  required"
+        ? "location_id\n                  required"
+        : "tools.location_id\n                  required"
+        ? "available_adjustment\n                  required"
+        : "tools.available_adjustment\n                  required"
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-connects-inventory-item-location-2
+      description: Shopify Connects An Inventory Item To A Location By Creating An Inventory Level At That Location
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-location.deprecated202004createinventorylevelsconnect
+      with:
+        ? "inventory_item_id\n                  required"
+        : "tools.inventory_item_id\n                  required"
+        ? "location_id\n                  required"
+        : "tools.location_id\n                  required"
+        relocate_if_necessary: tools.relocate_if_necessary
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-sets-inventory-level-inventory-2
+      description: Shopify Sets The Inventory Level For An Inventory Item At A Location
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-location.deprecated202004createinventorylevelsset
+      with:
+        ? "inventory_item_id\n                  required"
+        : "tools.inventory_item_id\n                  required"
+        ? "location_id\n                  required"
+        : "tools.location_id\n                  required"
+        ? "available\n                  required"
+        : "tools.available\n                  required"
+        disconnect_if_necessary: tools.disconnect_if_necessary
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-single-location-its-2
+      description: Shopify Retrieves A Single Location By Its Id
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-location.deprecated202004getlocationsparamlocationid
+      with:
+        location_id: tools.location_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-inventory-levels-2
+      description: Shopify Retrieves A List Of Inventory Levels For A Location
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-location.deprecated202004getlocationsparamlocationidinventorylevels
+      with:
+        location_id: tools.location_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-location-discount-code-3
+      description: Shopify Retrieves The Location Of A Discount Code
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-location.deprecated202007getdiscountcodeslookup
+      with:
+        code: tools.code
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-moves-fulfillment-order-one-3
+      description: Shopify Moves A Fulfillment Order From One Merchant Managed Location To Another Merchant Managed Location
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-location.deprecated202007createfulfillmentordersparamfulfillmentorderidmove
+      with:
+        fulfillment_order_id: tools.fulfillment_order_id
+        new_location_id: tools.new_location_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-deletes-inventory-level-inventory-3
+      description: Shopify Deletes An Inventory Level Of An Inventory Item At A Location
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-location.deprecated202007deleteinventorylevels
+      with:
+        ? "inventory_item_id\n                  required"
+        : "tools.inventory_item_id\n                  required"
+        ? "location_id\n                  required"
+        : "tools.location_id\n                  required"
+        inventory_item_id: tools.inventory_item_id
+        location_id: tools.location_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-adjusts-inventory-level-inventory-3
+      description: Shopify Adjusts The Inventory Level Of An Inventory Item At A Single Location
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-location.deprecated202007createinventorylevelsadjust
+      with:
+        ? "inventory_item_id\n                  required"
+        : "tools.inventory_item_id\n                  required"
+        ? "location_id\n                  required"
+        : "tools.location_id\n                  required"
+        ? "available_adjustment\n                  required"
+        : "tools.available_adjustment\n                  required"
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-connects-inventory-item-location-3
+      description: Shopify Connects An Inventory Item To A Location By Creating An Inventory Level At That Location
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-location.deprecated202007createinventorylevelsconnect
+      with:
+        ? "inventory_item_id\n                  required"
+        : "tools.inventory_item_id\n                  required"
+        ? "location_id\n                  required"
+        : "tools.location_id\n                  required"
+        relocate_if_necessary: tools.relocate_if_necessary
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-sets-inventory-level-inventory-3
+      description: Shopify Sets The Inventory Level For An Inventory Item At A Location
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-location.deprecated202007createinventorylevelsset
+      with:
+        ? "inventory_item_id\n                  required"
+        : "tools.inventory_item_id\n                  required"
+        ? "location_id\n                  required"
+        : "tools.location_id\n                  required"
+        ? "available\n                  required"
+        : "tools.available\n                  required"
+        disconnect_if_necessary: tools.disconnect_if_necessary
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-single-location-its-3
+      description: Shopify Retrieves A Single Location By Its Id
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-location.deprecated202007getlocationsparamlocationid
+      with:
+        location_id: tools.location_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-inventory-levels-3
+      description: Shopify Retrieves A List Of Inventory Levels For A Location
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-location.deprecated202007getlocationsparamlocationidinventorylevels
+      with:
+        location_id: tools.location_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-location-discount-code-4
+      description: Shopify Retrieves The Location Of A Discount Code
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-location.getdiscountcodeslookup
+      with:
+        code: tools.code
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-moves-fulfillment-order-one-4
+      description: Shopify Moves A Fulfillment Order From One Merchant Managed Location To Another Merchant Managed Location
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-location.createfulfillmentordersparamfulfillmentorderidmove
+      with:
+        fulfillment_order_id: tools.fulfillment_order_id
+        new_location_id: tools.new_location_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-deletes-inventory-level-inventory-4
+      description: Shopify Deletes An Inventory Level Of An Inventory Item At A Location
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-location.deleteinventorylevels
+      with:
+        ? "inventory_item_id\n                  required"
+        : "tools.inventory_item_id\n                  required"
+        ? "location_id\n                  required"
+        : "tools.location_id\n                  required"
+        inventory_item_id: tools.inventory_item_id
+        location_id: tools.location_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-adjusts-inventory-level-inventory-4
+      description: Shopify Adjusts The Inventory Level Of An Inventory Item At A Single Location
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-location.createinventorylevelsadjust
+      with:
+        ? "inventory_item_id\n                  required"
+        : "tools.inventory_item_id\n                  required"
+        ? "location_id\n                  required"
+        : "tools.location_id\n                  required"
+        ? "available_adjustment\n                  required"
+        : "tools.available_adjustment\n                  required"
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-connects-inventory-item-location-4
+      description: Shopify Connects An Inventory Item To A Location By Creating An Inventory Level At That Location
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-location.createinventorylevelsconnect
+      with:
+        ? "inventory_item_id\n                  required"
+        : "tools.inventory_item_id\n                  required"
+        ? "location_id\n                  required"
+        : "tools.location_id\n                  required"
+        relocate_if_necessary: tools.relocate_if_necessary
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-sets-inventory-level-inventory-4
+      description: Shopify Sets The Inventory Level For An Inventory Item At A Location
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-location.createinventorylevelsset
+      with:
+        ? "inventory_item_id\n                  required"
+        : "tools.inventory_item_id\n                  required"
+        ? "location_id\n                  required"
+        : "tools.location_id\n                  required"
+        ? "available\n                  required"
+        : "tools.available\n                  required"
+        disconnect_if_necessary: tools.disconnect_if_necessary
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-single-location-its-4
+      description: Shopify Retrieves A Single Location By Its Id
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-location.getlocationsparamlocationid
+      with:
+        location_id: tools.location_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-inventory-levels-4
+      description: Shopify Retrieves A List Of Inventory Levels For A Location
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-location.getlocationsparamlocationidinventorylevels
+      with:
+        location_id: tools.location_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-location-discount-code-5
+      description: Shopify Retrieves The Location Of A Discount Code
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-location.deprecated202101getdiscountcodeslookup
+      with:
+        code: tools.code
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-moves-fulfillment-order-one-5
+      description: Shopify Moves A Fulfillment Order From One Merchant Managed Location To Another Merchant Managed Location
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-location.deprecated202101createfulfillmentordersparamfulfillmentorderidmove
+      with:
+        fulfillment_order_id: tools.fulfillment_order_id
+        new_location_id: tools.new_location_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-deletes-inventory-level-inventory-5
+      description: Shopify Deletes An Inventory Level Of An Inventory Item At A Location
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-location.deprecated202101deleteinventorylevels
+      with:
+        ? "inventory_item_id\n                  required"
+        : "tools.inventory_item_id\n                  required"
+        ? "location_id\n                  required"
+        : "tools.location_id\n                  required"
+        inventory_item_id: tools.inventory_item_id
+        location_id: tools.location_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-adjusts-inventory-level-inventory-5
+      description: Shopify Adjusts The Inventory Level Of An Inventory Item At A Single Location
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-location.deprecated202101createinventorylevelsadjust
+      with:
+        ? "inventory_item_id\n                  required"
+        : "tools.inventory_item_id\n                  required"
+        ? "location_id\n                  required"
+        : "tools.location_id\n                  required"
+        ? "available_adjustment\n                  required"
+        : "tools.available_adjustment\n                  required"
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-connects-inventory-item-location-5
+      description: Shopify Connects An Inventory Item To A Location By Creating An Inventory Level At That Location
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-location.deprecated202101createinventorylevelsconnect
+      with:
+        ? "inventory_item_id\n                  required"
+        : "tools.inventory_item_id\n                  required"
+        ? "location_id\n                  required"
+        : "tools.location_id\n                  required"
+        relocate_if_necessary: tools.relocate_if_necessary
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-sets-inventory-level-inventory-5
+      description: Shopify Sets The Inventory Level For An Inventory Item At A Location
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-location.deprecated202101createinventorylevelsset
+      with:
+        ? "inventory_item_id\n                  required"
+        : "tools.inventory_item_id\n                  required"
+        ? "location_id\n                  required"
+        : "tools.location_id\n                  required"
+        ? "available\n                  required"
+        : "tools.available\n                  required"
+        disconnect_if_necessary: tools.disconnect_if_necessary
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-single-location-its-5
+      description: Shopify Retrieves A Single Location By Its Id
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-location.deprecated202101getlocationsparamlocationid
+      with:
+        location_id: tools.location_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-inventory-levels-5
+      description: Shopify Retrieves A List Of Inventory Levels For A Location
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-location.deprecated202101getlocationsparamlocationidinventorylevels
+      with:
+        location_id: tools.location_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-location-discount-code-6
+      description: Shopify Retrieves The Location Of A Discount Code
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-location.deprecatedunstablegetdiscountcodeslookup
+      with:
+        code: tools.code
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-moves-fulfillment-order-one-6
+      description: Shopify Moves A Fulfillment Order From One Merchant Managed Location To Another Merchant Managed Location
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-location.deprecatedunstablecreatefulfillmentordersparamfulfillmentorderidmove
+      with:
+        fulfillment_order_id: tools.fulfillment_order_id
+        new_location_id: tools.new_location_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-deletes-inventory-level-inventory-6
+      description: Shopify Deletes An Inventory Level Of An Inventory Item At A Location
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-location.deprecatedunstabledeleteinventorylevels
+      with:
+        ? "inventory_item_id\n                  required"
+        : "tools.inventory_item_id\n                  required"
+        ? "location_id\n                  required"
+        : "tools.location_id\n                  required"
+        inventory_item_id: tools.inventory_item_id
+        location_id: tools.location_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-adjusts-inventory-level-inventory-6
+      description: Shopify Adjusts The Inventory Level Of An Inventory Item At A Single Location
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-location.deprecatedunstablecreateinventorylevelsadjust
+      with:
+        ? "inventory_item_id\n                  required"
+        : "tools.inventory_item_id\n                  required"
+        ? "location_id\n                  required"
+        : "tools.location_id\n                  required"
+        ? "available_adjustment\n                  required"
+        : "tools.available_adjustment\n                  required"
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-connects-inventory-item-location-6
+      description: Shopify Connects An Inventory Item To A Location By Creating An Inventory Level At That Location
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-location.deprecatedunstablecreateinventorylevelsconnect
+      with:
+        ? "inventory_item_id\n                  required"
+        : "tools.inventory_item_id\n                  required"
+        ? "location_id\n                  required"
+        : "tools.location_id\n                  required"
+        relocate_if_necessary: tools.relocate_if_necessary
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-sets-inventory-level-inventory-6
+      description: Shopify Sets The Inventory Level For An Inventory Item At A Location
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-location.deprecatedunstablecreateinventorylevelsset
+      with:
+        ? "inventory_item_id\n                  required"
+        : "tools.inventory_item_id\n                  required"
+        ? "location_id\n                  required"
+        : "tools.location_id\n                  required"
+        ? "available\n                  required"
+        : "tools.available\n                  required"
+        disconnect_if_necessary: tools.disconnect_if_necessary
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-single-location-its-6
+      description: Shopify Retrieves A Single Location By Its Id
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-location.deprecatedunstablegetlocationsparamlocationid
+      with:
+        location_id: tools.location_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-inventory-levels-6
+      description: Shopify Retrieves A List Of Inventory Levels For A Location
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-location.deprecatedunstablegetlocationsparamlocationidinventorylevels
+      with:
+        location_id: tools.location_id
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,108 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Shopify Ajax API — Predictive Search
+  description: 'Shopify Ajax API — Predictive Search. 1 operations. Lead operation: Shopify Get predictive search results.
+    Self-contained Naftiko capability covering one Shopify business surface.'
+  tags:
+  - Shopify
+  - Predictive Search
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SHOPIFY_API_KEY: SHOPIFY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: ajax-predictive-search
+    baseUri: https://{store}.myshopify.com
+    description: Shopify Ajax API — Predictive Search business capability. Self-contained, no shared references.
+    resources:
+    - name: search-suggest.json
+      path: /search/suggest.json
+      operations:
+      - name: getpredictivesearchresults
+        method: GET
+        description: Shopify Get predictive search results
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: q
+          in: query
+          type: string
+          description: The search query
+          required: true
+        - name: resources[type]
+          in: query
+          type: string
+          description: Comma-separated resource types to search (product, page, article, collection, query)
+        - name: resources[limit]
+          in: query
+          type: integer
+          description: Number of results per type (1-10, default 10)
+        - name: resources[limit_scope]
+          in: query
+          type: string
+          description: 'How the limit is distributed: all (shared across types) or each (per type)'
+        - name: resources[options][unavailable_products]
+          in: query
+          type: string
+          description: How to handle unavailable products
+        - name: resources[options][fields]
+          in: query
+          type: string
+          description: Comma-separated fields to search within (title, product_type, vendor, tag, variants.title, variants.sku,
+            body)
+  exposes:
+  - type: rest
+    namespace: ajax-predictive-search-rest
+    port: 8080
+    description: REST adapter for Shopify Ajax API — Predictive Search. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/search/suggest-json
+      name: search-suggest-json
+      description: REST surface for search-suggest.json.
+      operations:
+      - method: GET
+        name: getpredictivesearchresults
+        description: Shopify Get predictive search results
+        call: ajax-predictive-search.getpredictivesearchresults
+        with:
+          q: rest.q
+          resources[type]: rest.resources[type]
+          resources[limit]: rest.resources[limit]
+          resources[limit_scope]: rest.resources[limit_scope]
+          resources[options][unavailable_products]: rest.resources[options][unavailable_products]
+          resources[options][fields]: rest.resources[options][fields]
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: ajax-predictive-search-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Shopify Ajax API — Predictive Search. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: shopify-get-predictive-search-results
+      description: Shopify Get predictive search results
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: ajax-predictive-search.getpredictivesearchresults
+      with:
+        q: tools.q
+        resources[type]: tools.resources[type]
+        resources[limit]: tools.resources[limit]
+        resources[limit_scope]: tools.resources[limit_scope]
+        resources[options][unavailable_products]: tools.resources[options][unavailable_products]
+        resources[options][fields]: tools.resources[options][fields]
+      outputParameters:
+      - type: object
+        mapping: $.

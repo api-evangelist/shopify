@@ -1,0 +1,329 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Shopify  API — Invites
+  description: 'Shopify  API — Invites. 6 operations. Lead operation: Shopify Sends An Account Invite To A Customer. Self-contained
+    Naftiko capability covering one Shopify business surface.'
+  tags:
+  - Shopify
+  - Invites
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SHOPIFY_API_KEY: SHOPIFY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: shopify-invites
+    baseUri: ''
+    description: Shopify  API — Invites business capability. Self-contained, no shared references.
+    resources:
+    - name: admin-api-2020-01-customers-customer_id-send_invite.json
+      path: /admin/api/2020-01/customers/{customer_id}/send_invite.json
+      operations:
+      - name: deprecated202001createcustomersparamcustomeridsendinvite
+        method: POST
+        description: Shopify Sends An Account Invite To A Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-04-customers-customer_id-send_invite.json
+      path: /admin/api/2020-04/customers/{customer_id}/send_invite.json
+      operations:
+      - name: deprecated202004createcustomersparamcustomeridsendinvite
+        method: POST
+        description: Shopify Sends An Account Invite To A Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-07-customers-customer_id-send_invite.json
+      path: /admin/api/2020-07/customers/{customer_id}/send_invite.json
+      operations:
+      - name: deprecated202007createcustomersparamcustomeridsendinvite
+        method: POST
+        description: Shopify Sends An Account Invite To A Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-10-customers-customer_id-send_invite.json
+      path: /admin/api/2020-10/customers/{customer_id}/send_invite.json
+      operations:
+      - name: createcustomersparamcustomeridsendinvite
+        method: POST
+        description: Shopify Sends An Account Invite To A Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2021-01-customers-customer_id-send_invite.json
+      path: /admin/api/2021-01/customers/{customer_id}/send_invite.json
+      operations:
+      - name: deprecated202101createcustomersparamcustomeridsendinvite
+        method: POST
+        description: Shopify Sends An Account Invite To A Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-unstable-customers-customer_id-send_invite.json
+      path: /admin/api/unstable/customers/{customer_id}/send_invite.json
+      operations:
+      - name: deprecatedunstablecreatecustomersparamcustomeridsendinvite
+        method: POST
+        description: Shopify Sends An Account Invite To A Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+  exposes:
+  - type: rest
+    namespace: shopify-invites-rest
+    port: 8080
+    description: REST adapter for Shopify  API — Invites. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/admin/api/2020-01/customers/{customer-id}/send-invite-json
+      name: admin-api-2020-01-customers-customer-id-send-invite-json
+      description: REST surface for admin-api-2020-01-customers-customer_id-send_invite.json.
+      operations:
+      - method: POST
+        name: deprecated202001createcustomersparamcustomeridsendinvite
+        description: Shopify Sends An Account Invite To A Customer
+        call: shopify-invites.deprecated202001createcustomersparamcustomeridsendinvite
+        with:
+          customer_id: rest.customer_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/customers/{customer-id}/send-invite-json
+      name: admin-api-2020-04-customers-customer-id-send-invite-json
+      description: REST surface for admin-api-2020-04-customers-customer_id-send_invite.json.
+      operations:
+      - method: POST
+        name: deprecated202004createcustomersparamcustomeridsendinvite
+        description: Shopify Sends An Account Invite To A Customer
+        call: shopify-invites.deprecated202004createcustomersparamcustomeridsendinvite
+        with:
+          customer_id: rest.customer_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/customers/{customer-id}/send-invite-json
+      name: admin-api-2020-07-customers-customer-id-send-invite-json
+      description: REST surface for admin-api-2020-07-customers-customer_id-send_invite.json.
+      operations:
+      - method: POST
+        name: deprecated202007createcustomersparamcustomeridsendinvite
+        description: Shopify Sends An Account Invite To A Customer
+        call: shopify-invites.deprecated202007createcustomersparamcustomeridsendinvite
+        with:
+          customer_id: rest.customer_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/customers/{customer-id}/send-invite-json
+      name: admin-api-2020-10-customers-customer-id-send-invite-json
+      description: REST surface for admin-api-2020-10-customers-customer_id-send_invite.json.
+      operations:
+      - method: POST
+        name: createcustomersparamcustomeridsendinvite
+        description: Shopify Sends An Account Invite To A Customer
+        call: shopify-invites.createcustomersparamcustomeridsendinvite
+        with:
+          customer_id: rest.customer_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/customers/{customer-id}/send-invite-json
+      name: admin-api-2021-01-customers-customer-id-send-invite-json
+      description: REST surface for admin-api-2021-01-customers-customer_id-send_invite.json.
+      operations:
+      - method: POST
+        name: deprecated202101createcustomersparamcustomeridsendinvite
+        description: Shopify Sends An Account Invite To A Customer
+        call: shopify-invites.deprecated202101createcustomersparamcustomeridsendinvite
+        with:
+          customer_id: rest.customer_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/customers/{customer-id}/send-invite-json
+      name: admin-api-unstable-customers-customer-id-send-invite-json
+      description: REST surface for admin-api-unstable-customers-customer_id-send_invite.json.
+      operations:
+      - method: POST
+        name: deprecatedunstablecreatecustomersparamcustomeridsendinvite
+        description: Shopify Sends An Account Invite To A Customer
+        call: shopify-invites.deprecatedunstablecreatecustomersparamcustomeridsendinvite
+        with:
+          customer_id: rest.customer_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: shopify-invites-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Shopify  API — Invites. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: shopify-sends-account-invite-customer
+      description: Shopify Sends An Account Invite To A Customer
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-invites.deprecated202001createcustomersparamcustomeridsendinvite
+      with:
+        customer_id: tools.customer_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-sends-account-invite-customer-2
+      description: Shopify Sends An Account Invite To A Customer
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-invites.deprecated202004createcustomersparamcustomeridsendinvite
+      with:
+        customer_id: tools.customer_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-sends-account-invite-customer-3
+      description: Shopify Sends An Account Invite To A Customer
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-invites.deprecated202007createcustomersparamcustomeridsendinvite
+      with:
+        customer_id: tools.customer_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-sends-account-invite-customer-4
+      description: Shopify Sends An Account Invite To A Customer
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-invites.createcustomersparamcustomeridsendinvite
+      with:
+        customer_id: tools.customer_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-sends-account-invite-customer-5
+      description: Shopify Sends An Account Invite To A Customer
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-invites.deprecated202101createcustomersparamcustomeridsendinvite
+      with:
+        customer_id: tools.customer_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-sends-account-invite-customer-6
+      description: Shopify Sends An Account Invite To A Customer
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-invites.deprecatedunstablecreatecustomersparamcustomeridsendinvite
+      with:
+        customer_id: tools.customer_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

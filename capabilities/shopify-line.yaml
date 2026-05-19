@@ -1,0 +1,329 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Shopify  API — Line
+  description: 'Shopify  API — Line. 6 operations. Lead operation: Shopify Create A Fulfillment For The Specified Order And
+    Line Items. Self-contained Naftiko capability covering one Shopify business surface.'
+  tags:
+  - Shopify
+  - Line
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SHOPIFY_API_KEY: SHOPIFY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: shopify-line
+    baseUri: ''
+    description: Shopify  API — Line business capability. Self-contained, no shared references.
+    resources:
+    - name: admin-api-2020-01-orders-order_id-fulfillments.json
+      path: /admin/api/2020-01/orders/{order_id}/fulfillments.json
+      operations:
+      - name: deprecated202001createordersparamorderidfulfillments
+        method: POST
+        description: Shopify Create A Fulfillment For The Specified Order And Line Items
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: order_id
+          in: path
+          type: string
+          description: order_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-04-orders-order_id-fulfillments.json
+      path: /admin/api/2020-04/orders/{order_id}/fulfillments.json
+      operations:
+      - name: deprecated202004createordersparamorderidfulfillments
+        method: POST
+        description: Shopify Create A Fulfillment For The Specified Order And Line Items
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: order_id
+          in: path
+          type: string
+          description: order_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-07-orders-order_id-fulfillments.json
+      path: /admin/api/2020-07/orders/{order_id}/fulfillments.json
+      operations:
+      - name: deprecated202007createordersparamorderidfulfillments
+        method: POST
+        description: Shopify Create A Fulfillment For The Specified Order And Line Items
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: order_id
+          in: path
+          type: string
+          description: order_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-10-orders-order_id-fulfillments.json
+      path: /admin/api/2020-10/orders/{order_id}/fulfillments.json
+      operations:
+      - name: createordersparamorderidfulfillments
+        method: POST
+        description: Shopify Create A Fulfillment For The Specified Order And Line Items
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: order_id
+          in: path
+          type: string
+          description: order_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2021-01-orders-order_id-fulfillments.json
+      path: /admin/api/2021-01/orders/{order_id}/fulfillments.json
+      operations:
+      - name: deprecated202101createordersparamorderidfulfillments
+        method: POST
+        description: Shopify Create A Fulfillment For The Specified Order And Line Items
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: order_id
+          in: path
+          type: string
+          description: order_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-unstable-orders-order_id-fulfillments.json
+      path: /admin/api/unstable/orders/{order_id}/fulfillments.json
+      operations:
+      - name: deprecatedunstablecreateordersparamorderidfulfillments
+        method: POST
+        description: Shopify Create A Fulfillment For The Specified Order And Line Items
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: order_id
+          in: path
+          type: string
+          description: order_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+  exposes:
+  - type: rest
+    namespace: shopify-line-rest
+    port: 8080
+    description: REST adapter for Shopify  API — Line. One Spectral-compliant resource per consumed operation, prefixed with
+      /v1.
+    resources:
+    - path: /v1/admin/api/2020-01/orders/{order-id}/fulfillments-json
+      name: admin-api-2020-01-orders-order-id-fulfillments-json
+      description: REST surface for admin-api-2020-01-orders-order_id-fulfillments.json.
+      operations:
+      - method: POST
+        name: deprecated202001createordersparamorderidfulfillments
+        description: Shopify Create A Fulfillment For The Specified Order And Line Items
+        call: shopify-line.deprecated202001createordersparamorderidfulfillments
+        with:
+          order_id: rest.order_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/orders/{order-id}/fulfillments-json
+      name: admin-api-2020-04-orders-order-id-fulfillments-json
+      description: REST surface for admin-api-2020-04-orders-order_id-fulfillments.json.
+      operations:
+      - method: POST
+        name: deprecated202004createordersparamorderidfulfillments
+        description: Shopify Create A Fulfillment For The Specified Order And Line Items
+        call: shopify-line.deprecated202004createordersparamorderidfulfillments
+        with:
+          order_id: rest.order_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/orders/{order-id}/fulfillments-json
+      name: admin-api-2020-07-orders-order-id-fulfillments-json
+      description: REST surface for admin-api-2020-07-orders-order_id-fulfillments.json.
+      operations:
+      - method: POST
+        name: deprecated202007createordersparamorderidfulfillments
+        description: Shopify Create A Fulfillment For The Specified Order And Line Items
+        call: shopify-line.deprecated202007createordersparamorderidfulfillments
+        with:
+          order_id: rest.order_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/orders/{order-id}/fulfillments-json
+      name: admin-api-2020-10-orders-order-id-fulfillments-json
+      description: REST surface for admin-api-2020-10-orders-order_id-fulfillments.json.
+      operations:
+      - method: POST
+        name: createordersparamorderidfulfillments
+        description: Shopify Create A Fulfillment For The Specified Order And Line Items
+        call: shopify-line.createordersparamorderidfulfillments
+        with:
+          order_id: rest.order_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/orders/{order-id}/fulfillments-json
+      name: admin-api-2021-01-orders-order-id-fulfillments-json
+      description: REST surface for admin-api-2021-01-orders-order_id-fulfillments.json.
+      operations:
+      - method: POST
+        name: deprecated202101createordersparamorderidfulfillments
+        description: Shopify Create A Fulfillment For The Specified Order And Line Items
+        call: shopify-line.deprecated202101createordersparamorderidfulfillments
+        with:
+          order_id: rest.order_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/orders/{order-id}/fulfillments-json
+      name: admin-api-unstable-orders-order-id-fulfillments-json
+      description: REST surface for admin-api-unstable-orders-order_id-fulfillments.json.
+      operations:
+      - method: POST
+        name: deprecatedunstablecreateordersparamorderidfulfillments
+        description: Shopify Create A Fulfillment For The Specified Order And Line Items
+        call: shopify-line.deprecatedunstablecreateordersparamorderidfulfillments
+        with:
+          order_id: rest.order_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: shopify-line-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Shopify  API — Line. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: shopify-create-fulfillment-specified-order
+      description: Shopify Create A Fulfillment For The Specified Order And Line Items
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-line.deprecated202001createordersparamorderidfulfillments
+      with:
+        order_id: tools.order_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-create-fulfillment-specified-order-2
+      description: Shopify Create A Fulfillment For The Specified Order And Line Items
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-line.deprecated202004createordersparamorderidfulfillments
+      with:
+        order_id: tools.order_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-create-fulfillment-specified-order-3
+      description: Shopify Create A Fulfillment For The Specified Order And Line Items
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-line.deprecated202007createordersparamorderidfulfillments
+      with:
+        order_id: tools.order_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-create-fulfillment-specified-order-4
+      description: Shopify Create A Fulfillment For The Specified Order And Line Items
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-line.createordersparamorderidfulfillments
+      with:
+        order_id: tools.order_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-create-fulfillment-specified-order-5
+      description: Shopify Create A Fulfillment For The Specified Order And Line Items
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-line.deprecated202101createordersparamorderidfulfillments
+      with:
+        order_id: tools.order_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-create-fulfillment-specified-order-6
+      description: Shopify Create A Fulfillment For The Specified Order And Line Items
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-line.deprecatedunstablecreateordersparamorderidfulfillments
+      with:
+        order_id: tools.order_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

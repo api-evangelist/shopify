@@ -1,0 +1,287 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Shopify  API — Rules
+  description: 'Shopify  API — Rules. 6 operations. Lead operation: Shopify Creates A New Smart Collection Using The Specified
+    Rules. Self-contained Naftiko capability covering one Shopify business surface.'
+  tags:
+  - Shopify
+  - Rules
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SHOPIFY_API_KEY: SHOPIFY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: shopify-rules
+    baseUri: ''
+    description: Shopify  API — Rules business capability. Self-contained, no shared references.
+    resources:
+    - name: admin-api-2020-01-smart_collections.json
+      path: /admin/api/2020-01/smart_collections.json
+      operations:
+      - name: deprecated202001createsmartcollections
+        method: POST
+        description: Shopify Creates A New Smart Collection Using The Specified Rules
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-04-smart_collections.json
+      path: /admin/api/2020-04/smart_collections.json
+      operations:
+      - name: deprecated202004createsmartcollections
+        method: POST
+        description: Shopify Creates A New Smart Collection Using The Specified Rules
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-07-smart_collections.json
+      path: /admin/api/2020-07/smart_collections.json
+      operations:
+      - name: deprecated202007createsmartcollections
+        method: POST
+        description: Shopify Creates A New Smart Collection Using The Specified Rules
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-10-smart_collections.json
+      path: /admin/api/2020-10/smart_collections.json
+      operations:
+      - name: createsmartcollections
+        method: POST
+        description: Shopify Creates A New Smart Collection Using The Specified Rules
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2021-01-smart_collections.json
+      path: /admin/api/2021-01/smart_collections.json
+      operations:
+      - name: deprecated202101createsmartcollections
+        method: POST
+        description: Shopify Creates A New Smart Collection Using The Specified Rules
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-unstable-smart_collections.json
+      path: /admin/api/unstable/smart_collections.json
+      operations:
+      - name: deprecatedunstablecreatesmartcollections
+        method: POST
+        description: Shopify Creates A New Smart Collection Using The Specified Rules
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+  exposes:
+  - type: rest
+    namespace: shopify-rules-rest
+    port: 8080
+    description: REST adapter for Shopify  API — Rules. One Spectral-compliant resource per consumed operation, prefixed with
+      /v1.
+    resources:
+    - path: /v1/admin/api/2020-01/smart-collections-json
+      name: admin-api-2020-01-smart-collections-json
+      description: REST surface for admin-api-2020-01-smart_collections.json.
+      operations:
+      - method: POST
+        name: deprecated202001createsmartcollections
+        description: Shopify Creates A New Smart Collection Using The Specified Rules
+        call: shopify-rules.deprecated202001createsmartcollections
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/smart-collections-json
+      name: admin-api-2020-04-smart-collections-json
+      description: REST surface for admin-api-2020-04-smart_collections.json.
+      operations:
+      - method: POST
+        name: deprecated202004createsmartcollections
+        description: Shopify Creates A New Smart Collection Using The Specified Rules
+        call: shopify-rules.deprecated202004createsmartcollections
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/smart-collections-json
+      name: admin-api-2020-07-smart-collections-json
+      description: REST surface for admin-api-2020-07-smart_collections.json.
+      operations:
+      - method: POST
+        name: deprecated202007createsmartcollections
+        description: Shopify Creates A New Smart Collection Using The Specified Rules
+        call: shopify-rules.deprecated202007createsmartcollections
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/smart-collections-json
+      name: admin-api-2020-10-smart-collections-json
+      description: REST surface for admin-api-2020-10-smart_collections.json.
+      operations:
+      - method: POST
+        name: createsmartcollections
+        description: Shopify Creates A New Smart Collection Using The Specified Rules
+        call: shopify-rules.createsmartcollections
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/smart-collections-json
+      name: admin-api-2021-01-smart-collections-json
+      description: REST surface for admin-api-2021-01-smart_collections.json.
+      operations:
+      - method: POST
+        name: deprecated202101createsmartcollections
+        description: Shopify Creates A New Smart Collection Using The Specified Rules
+        call: shopify-rules.deprecated202101createsmartcollections
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/smart-collections-json
+      name: admin-api-unstable-smart-collections-json
+      description: REST surface for admin-api-unstable-smart_collections.json.
+      operations:
+      - method: POST
+        name: deprecatedunstablecreatesmartcollections
+        description: Shopify Creates A New Smart Collection Using The Specified Rules
+        call: shopify-rules.deprecatedunstablecreatesmartcollections
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: shopify-rules-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Shopify  API — Rules. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: shopify-creates-new-smart-collection
+      description: Shopify Creates A New Smart Collection Using The Specified Rules
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-rules.deprecated202001createsmartcollections
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-creates-new-smart-collection-2
+      description: Shopify Creates A New Smart Collection Using The Specified Rules
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-rules.deprecated202004createsmartcollections
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-creates-new-smart-collection-3
+      description: Shopify Creates A New Smart Collection Using The Specified Rules
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-rules.deprecated202007createsmartcollections
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-creates-new-smart-collection-4
+      description: Shopify Creates A New Smart Collection Using The Specified Rules
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-rules.createsmartcollections
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-creates-new-smart-collection-5
+      description: Shopify Creates A New Smart Collection Using The Specified Rules
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-rules.deprecated202101createsmartcollections
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-creates-new-smart-collection-6
+      description: Shopify Creates A New Smart Collection Using The Specified Rules
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-rules.deprecatedunstablecreatesmartcollections
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

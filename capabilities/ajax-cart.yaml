@@ -1,0 +1,280 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Shopify Ajax API — Cart
+  description: 'Shopify Ajax API — Cart. 6 operations. Lead operation: Shopify Retrieve the current cart. Self-contained Naftiko
+    capability covering one Shopify business surface.'
+  tags:
+  - Shopify
+  - Cart
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SHOPIFY_API_KEY: SHOPIFY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: ajax-cart
+    baseUri: https://{store}.myshopify.com
+    description: Shopify Ajax API — Cart business capability. Self-contained, no shared references.
+    resources:
+    - name: cart.js
+      path: /cart.js
+      operations:
+      - name: getcart
+        method: GET
+        description: Shopify Retrieve the current cart
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: cart-add.js
+      path: /cart/add.js
+      operations:
+      - name: addtocart
+        method: POST
+        description: Shopify Add items to the cart
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: cart-change.js
+      path: /cart/change.js
+      operations:
+      - name: changecartitem
+        method: POST
+        description: Shopify Change a cart line item
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: cart-clear.js
+      path: /cart/clear.js
+      operations:
+      - name: clearcart
+        method: POST
+        description: Shopify Clear all items from the cart
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: cart-shipping_rates.json
+      path: /cart/shipping_rates.json
+      operations:
+      - name: getcartshippingrates
+        method: GET
+        description: Shopify Get estimated shipping rates
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: shipping_address[zip]
+          in: query
+          type: string
+          description: Postal or zip code
+          required: true
+        - name: shipping_address[country]
+          in: query
+          type: string
+          description: Country name or ISO code
+          required: true
+        - name: shipping_address[province]
+          in: query
+          type: string
+          description: Province, state, or region
+    - name: cart-update.js
+      path: /cart/update.js
+      operations:
+      - name: updatecart
+        method: POST
+        description: Shopify Update the cart
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+  exposes:
+  - type: rest
+    namespace: ajax-cart-rest
+    port: 8080
+    description: REST adapter for Shopify Ajax API — Cart. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/cart-js
+      name: cart-js
+      description: REST surface for cart.js.
+      operations:
+      - method: GET
+        name: getcart
+        description: Shopify Retrieve the current cart
+        call: ajax-cart.getcart
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/cart/add-js
+      name: cart-add-js
+      description: REST surface for cart-add.js.
+      operations:
+      - method: POST
+        name: addtocart
+        description: Shopify Add items to the cart
+        call: ajax-cart.addtocart
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/cart/change-js
+      name: cart-change-js
+      description: REST surface for cart-change.js.
+      operations:
+      - method: POST
+        name: changecartitem
+        description: Shopify Change a cart line item
+        call: ajax-cart.changecartitem
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/cart/clear-js
+      name: cart-clear-js
+      description: REST surface for cart-clear.js.
+      operations:
+      - method: POST
+        name: clearcart
+        description: Shopify Clear all items from the cart
+        call: ajax-cart.clearcart
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/cart/shipping-rates-json
+      name: cart-shipping-rates-json
+      description: REST surface for cart-shipping_rates.json.
+      operations:
+      - method: GET
+        name: getcartshippingrates
+        description: Shopify Get estimated shipping rates
+        call: ajax-cart.getcartshippingrates
+        with:
+          shipping_address[zip]: rest.shipping_address[zip]
+          shipping_address[country]: rest.shipping_address[country]
+          shipping_address[province]: rest.shipping_address[province]
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/cart/update-js
+      name: cart-update-js
+      description: REST surface for cart-update.js.
+      operations:
+      - method: POST
+        name: updatecart
+        description: Shopify Update the cart
+        call: ajax-cart.updatecart
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: ajax-cart-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Shopify Ajax API — Cart. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: shopify-retrieve-current-cart
+      description: Shopify Retrieve the current cart
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: ajax-cart.getcart
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-add-items-cart
+      description: Shopify Add items to the cart
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: ajax-cart.addtocart
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-change-cart-line-item
+      description: Shopify Change a cart line item
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: ajax-cart.changecartitem
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-clear-all-items-cart
+      description: Shopify Clear all items from the cart
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: ajax-cart.clearcart
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-get-estimated-shipping-rates
+      description: Shopify Get estimated shipping rates
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: ajax-cart.getcartshippingrates
+      with:
+        shipping_address[zip]: tools.shipping_address[zip]
+        shipping_address[country]: tools.shipping_address[country]
+        shipping_address[province]: tools.shipping_address[province]
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-update-cart
+      description: Shopify Update the cart
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: ajax-cart.updatecart
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,3863 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Shopify  API — Product
+  description: 'Shopify  API — Product. 84 operations. Lead operation: Shopify Adds A Product To A Custom Collection. Self-contained
+    Naftiko capability covering one Shopify business surface.'
+  tags:
+  - Shopify
+  - Product
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SHOPIFY_API_KEY: SHOPIFY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: shopify-product
+    baseUri: ''
+    description: Shopify  API — Product business capability. Self-contained, no shared references.
+    resources:
+    - name: admin-api-2020-01-collects.json
+      path: /admin/api/2020-01/collects.json
+      operations:
+      - name: deprecated202001createcollects
+        method: POST
+        description: Shopify Adds A Product To A Custom Collection
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-01-collects-collect_id}.json
+      path: /admin/api/2020-01/collects/{collect_id}.json
+      operations:
+      - name: deprecated202001deletecollectsparamcollectid
+        method: DELETE
+        description: Shopify Removes A Product From A Collection
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: collect_id
+          in: path
+          type: string
+          description: collect_id
+          required: true
+    - name: admin-api-2020-01-metafields.json
+      path: /admin/api/2020-01/metafields.json
+      operations:
+      - name: deprecated202001getmetafields
+        method: GET
+        description: Shopify Retrieves A List Of Metafields That Belong To A Product Image Resource
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: metafield[owner_id]
+          in: query
+          type: integer
+          description: metafield[owner_id]
+        - name: metafield[owner_resource]
+          in: query
+          type: string
+          description: metafield[owner_resource]
+    - name: admin-api-2020-01-product_listings.json
+      path: /admin/api/2020-01/product_listings.json
+      operations:
+      - name: deprecated202001getproductlistings
+        method: GET
+        description: Shopify Retrieve Product Listings That Are Published To Your App
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_ids
+          in: query
+          type: string
+          description: A comma-separated list of product ids
+        - name: limit
+          in: query
+          type: string
+          description: Amount of results
+        - name: collection_id
+          in: query
+          type: string
+          description: Filter by products belonging to a particular collection
+        - name: updated_at_min
+          in: query
+          type: string
+          description: Filter by products last updated after a certain date and time (formatted in ISO 8601)
+        - name: handle
+          in: query
+          type: string
+          description: Filter by product handle
+    - name: admin-api-2020-01-product_listings-product_listing_id}.json
+      path: /admin/api/2020-01/product_listings/{product_listing_id}.json
+      operations:
+      - name: deprecated202001getproductlistingsparamproductlistingid
+        method: GET
+        description: Shopify Retrieve A Specific Product Listing That Is Published To Your App
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_listing_id
+          in: path
+          type: string
+          description: product_listing_id
+          required: true
+      - name: deprecated202001updateproductlistingsparamproductlistingid
+        method: PUT
+        description: Shopify Create A Product Listing To Publish A Product To Your App
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_listing_id
+          in: path
+          type: string
+          description: product_listing_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deprecated202001deleteproductlistingsparamproductlistingid
+        method: DELETE
+        description: Shopify Delete A Product Listing To Unpublish A Product From Your App
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_listing_id
+          in: path
+          type: string
+          description: product_listing_id
+          required: true
+    - name: admin-api-2020-01-products.json
+      path: /admin/api/2020-01/products.json
+      operations:
+      - name: deprecated202001createproducts
+        method: POST
+        description: Shopify Creates A New Product
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-01-products-product_id}.json
+      path: /admin/api/2020-01/products/{product_id}.json
+      operations:
+      - name: deprecated202001getproductsparamproductid
+        method: GET
+        description: Shopify Retrieves A Single Product
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_id
+          in: path
+          type: string
+          description: product_id
+          required: true
+        - name: fields
+          in: query
+          type: string
+          description: A comma-separated list of fields to include in the response.
+      - name: deprecated202001updateproductsparamproductid
+        method: PUT
+        description: Shopify Updates A Product And Its Variants And Images
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_id
+          in: path
+          type: string
+          description: product_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deprecated202001deleteproductsparamproductid
+        method: DELETE
+        description: Shopify Deletes A Product
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_id
+          in: path
+          type: string
+          description: product_id
+          required: true
+    - name: admin-api-2020-01-products-product_id-images.json
+      path: /admin/api/2020-01/products/{product_id}/images.json
+      operations:
+      - name: deprecated202001getproductsparamproductidimages
+        method: GET
+        description: Shopify Get All Product Images
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_id
+          in: path
+          type: string
+          description: product_id
+          required: true
+        - name: since_id
+          in: query
+          type: string
+          description: Restrict results to after the specified ID
+        - name: fields
+          in: query
+          type: string
+          description: comma-separated list of fields to include in the response
+      - name: deprecated202001createproductsparamproductidimages
+        method: POST
+        description: Shopify Create A New Product Image
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_id
+          in: path
+          type: string
+          description: product_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-01-products-product_id-images-count.json
+      path: /admin/api/2020-01/products/{product_id}/images/count.json
+      operations:
+      - name: deprecated202001getproductsparamproductidimagescount
+        method: GET
+        description: Shopify Get A Count Of All Product Images
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_id
+          in: path
+          type: string
+          description: product_id
+          required: true
+        - name: since_id
+          in: query
+          type: string
+          description: Restrict results to after the specified ID
+    - name: admin-api-2020-01-products-product_id-images-image_id}.json
+      path: /admin/api/2020-01/products/{product_id}/images/{image_id}.json
+      operations:
+      - name: deprecated202001getproductsparamproductidimagesparamimageid
+        method: GET
+        description: Shopify Get A Single Product Image By Id
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_id
+          in: path
+          type: string
+          description: product_id
+          required: true
+        - name: image_id
+          in: path
+          type: string
+          description: image_id
+          required: true
+        - name: fields
+          in: query
+          type: string
+          description: comma-separated list of fields to include in the response
+      - name: deprecated202001updateproductsparamproductidimagesparamimageid
+        method: PUT
+        description: Shopify Modify An Existing Product Image
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_id
+          in: path
+          type: string
+          description: product_id
+          required: true
+        - name: image_id
+          in: path
+          type: string
+          description: image_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-04-collects.json
+      path: /admin/api/2020-04/collects.json
+      operations:
+      - name: deprecated202004createcollects
+        method: POST
+        description: Shopify Adds A Product To A Custom Collection
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-04-collects-collect_id}.json
+      path: /admin/api/2020-04/collects/{collect_id}.json
+      operations:
+      - name: deprecated202004deletecollectsparamcollectid
+        method: DELETE
+        description: Shopify Removes A Product From A Collection
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: collect_id
+          in: path
+          type: string
+          description: collect_id
+          required: true
+    - name: admin-api-2020-04-metafields.json
+      path: /admin/api/2020-04/metafields.json
+      operations:
+      - name: deprecated202004getmetafields
+        method: GET
+        description: Shopify Retrieves A List Of Metafields That Belong To A Product Image Resource
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: metafield[owner_id]
+          in: query
+          type: integer
+          description: metafield[owner_id]
+        - name: metafield[owner_resource]
+          in: query
+          type: string
+          description: metafield[owner_resource]
+    - name: admin-api-2020-04-product_listings.json
+      path: /admin/api/2020-04/product_listings.json
+      operations:
+      - name: deprecated202004getproductlistings
+        method: GET
+        description: Shopify Retrieve Product Listings That Are Published To Your App
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_ids
+          in: query
+          type: string
+          description: A comma-separated list of product ids
+        - name: limit
+          in: query
+          type: string
+          description: Amount of results
+        - name: collection_id
+          in: query
+          type: string
+          description: Filter by products belonging to a particular collection
+        - name: updated_at_min
+          in: query
+          type: string
+          description: Filter by products last updated after a certain date and time (formatted in ISO 8601)
+        - name: handle
+          in: query
+          type: string
+          description: Filter by product handle
+    - name: admin-api-2020-04-product_listings-product_listing_id}.json
+      path: /admin/api/2020-04/product_listings/{product_listing_id}.json
+      operations:
+      - name: deprecated202004getproductlistingsparamproductlistingid
+        method: GET
+        description: Shopify Retrieve A Specific Product Listing That Is Published To Your App
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_listing_id
+          in: path
+          type: string
+          description: product_listing_id
+          required: true
+      - name: deprecated202004updateproductlistingsparamproductlistingid
+        method: PUT
+        description: Shopify Create A Product Listing To Publish A Product To Your App
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_listing_id
+          in: path
+          type: string
+          description: product_listing_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deprecated202004deleteproductlistingsparamproductlistingid
+        method: DELETE
+        description: Shopify Delete A Product Listing To Unpublish A Product From Your App
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_listing_id
+          in: path
+          type: string
+          description: product_listing_id
+          required: true
+    - name: admin-api-2020-04-products.json
+      path: /admin/api/2020-04/products.json
+      operations:
+      - name: deprecated202004createproducts
+        method: POST
+        description: Shopify Creates A New Product
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-04-products-product_id}.json
+      path: /admin/api/2020-04/products/{product_id}.json
+      operations:
+      - name: deprecated202004getproductsparamproductid
+        method: GET
+        description: Shopify Retrieves A Single Product
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_id
+          in: path
+          type: string
+          description: product_id
+          required: true
+        - name: fields
+          in: query
+          type: string
+          description: A comma-separated list of fields to include in the response.
+      - name: deprecated202004updateproductsparamproductid
+        method: PUT
+        description: Shopify Updates A Product And Its Variants And Images
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_id
+          in: path
+          type: string
+          description: product_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deprecated202004deleteproductsparamproductid
+        method: DELETE
+        description: Shopify Deletes A Product
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_id
+          in: path
+          type: string
+          description: product_id
+          required: true
+    - name: admin-api-2020-04-products-product_id-images.json
+      path: /admin/api/2020-04/products/{product_id}/images.json
+      operations:
+      - name: deprecated202004getproductsparamproductidimages
+        method: GET
+        description: Shopify Get All Product Images
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_id
+          in: path
+          type: string
+          description: product_id
+          required: true
+        - name: since_id
+          in: query
+          type: string
+          description: Restrict results to after the specified ID
+        - name: fields
+          in: query
+          type: string
+          description: comma-separated list of fields to include in the response
+      - name: deprecated202004createproductsparamproductidimages
+        method: POST
+        description: Shopify Create A New Product Image
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_id
+          in: path
+          type: string
+          description: product_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-04-products-product_id-images-count.json
+      path: /admin/api/2020-04/products/{product_id}/images/count.json
+      operations:
+      - name: deprecated202004getproductsparamproductidimagescount
+        method: GET
+        description: Shopify Get A Count Of All Product Images
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_id
+          in: path
+          type: string
+          description: product_id
+          required: true
+        - name: since_id
+          in: query
+          type: string
+          description: Restrict results to after the specified ID
+    - name: admin-api-2020-04-products-product_id-images-image_id}.json
+      path: /admin/api/2020-04/products/{product_id}/images/{image_id}.json
+      operations:
+      - name: deprecated202004getproductsparamproductidimagesparamimageid
+        method: GET
+        description: Shopify Get A Single Product Image By Id
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_id
+          in: path
+          type: string
+          description: product_id
+          required: true
+        - name: image_id
+          in: path
+          type: string
+          description: image_id
+          required: true
+        - name: fields
+          in: query
+          type: string
+          description: comma-separated list of fields to include in the response
+      - name: deprecated202004updateproductsparamproductidimagesparamimageid
+        method: PUT
+        description: Shopify Modify An Existing Product Image
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_id
+          in: path
+          type: string
+          description: product_id
+          required: true
+        - name: image_id
+          in: path
+          type: string
+          description: image_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-07-collects.json
+      path: /admin/api/2020-07/collects.json
+      operations:
+      - name: deprecated202007createcollects
+        method: POST
+        description: Shopify Adds A Product To A Custom Collection
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-07-collects-collect_id}.json
+      path: /admin/api/2020-07/collects/{collect_id}.json
+      operations:
+      - name: deprecated202007deletecollectsparamcollectid
+        method: DELETE
+        description: Shopify Removes A Product From A Collection
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: collect_id
+          in: path
+          type: string
+          description: collect_id
+          required: true
+    - name: admin-api-2020-07-metafields.json
+      path: /admin/api/2020-07/metafields.json
+      operations:
+      - name: deprecated202007getmetafields
+        method: GET
+        description: Shopify Retrieves A List Of Metafields That Belong To A Product Image Resource
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: metafield[owner_id]
+          in: query
+          type: integer
+          description: metafield[owner_id]
+        - name: metafield[owner_resource]
+          in: query
+          type: string
+          description: metafield[owner_resource]
+    - name: admin-api-2020-07-product_listings.json
+      path: /admin/api/2020-07/product_listings.json
+      operations:
+      - name: deprecated202007getproductlistings
+        method: GET
+        description: Shopify Retrieve Product Listings That Are Published To Your App
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_ids
+          in: query
+          type: string
+          description: A comma-separated list of product ids
+        - name: limit
+          in: query
+          type: string
+          description: Amount of results
+        - name: collection_id
+          in: query
+          type: string
+          description: Filter by products belonging to a particular collection
+        - name: updated_at_min
+          in: query
+          type: string
+          description: Filter by products last updated after a certain date and time (formatted in ISO 8601)
+        - name: handle
+          in: query
+          type: string
+          description: Filter by product handle
+    - name: admin-api-2020-07-product_listings-product_listing_id}.json
+      path: /admin/api/2020-07/product_listings/{product_listing_id}.json
+      operations:
+      - name: deprecated202007getproductlistingsparamproductlistingid
+        method: GET
+        description: Shopify Retrieve A Specific Product Listing That Is Published To Your App
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_listing_id
+          in: path
+          type: string
+          description: product_listing_id
+          required: true
+      - name: deprecated202007updateproductlistingsparamproductlistingid
+        method: PUT
+        description: Shopify Create A Product Listing To Publish A Product To Your App
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_listing_id
+          in: path
+          type: string
+          description: product_listing_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deprecated202007deleteproductlistingsparamproductlistingid
+        method: DELETE
+        description: Shopify Delete A Product Listing To Unpublish A Product From Your App
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_listing_id
+          in: path
+          type: string
+          description: product_listing_id
+          required: true
+    - name: admin-api-2020-07-products.json
+      path: /admin/api/2020-07/products.json
+      operations:
+      - name: deprecated202007createproducts
+        method: POST
+        description: Shopify Creates A New Product
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-07-products-product_id}.json
+      path: /admin/api/2020-07/products/{product_id}.json
+      operations:
+      - name: deprecated202007getproductsparamproductid
+        method: GET
+        description: Shopify Retrieves A Single Product
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_id
+          in: path
+          type: string
+          description: product_id
+          required: true
+        - name: fields
+          in: query
+          type: string
+          description: A comma-separated list of fields to include in the response.
+      - name: deprecated202007updateproductsparamproductid
+        method: PUT
+        description: Shopify Updates A Product And Its Variants And Images
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_id
+          in: path
+          type: string
+          description: product_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deprecated202007deleteproductsparamproductid
+        method: DELETE
+        description: Shopify Deletes A Product
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_id
+          in: path
+          type: string
+          description: product_id
+          required: true
+    - name: admin-api-2020-07-products-product_id-images.json
+      path: /admin/api/2020-07/products/{product_id}/images.json
+      operations:
+      - name: deprecated202007getproductsparamproductidimages
+        method: GET
+        description: Shopify Get All Product Images
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_id
+          in: path
+          type: string
+          description: product_id
+          required: true
+        - name: since_id
+          in: query
+          type: string
+          description: Restrict results to after the specified ID
+        - name: fields
+          in: query
+          type: string
+          description: comma-separated list of fields to include in the response
+      - name: deprecated202007createproductsparamproductidimages
+        method: POST
+        description: Shopify Create A New Product Image
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_id
+          in: path
+          type: string
+          description: product_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-07-products-product_id-images-count.json
+      path: /admin/api/2020-07/products/{product_id}/images/count.json
+      operations:
+      - name: deprecated202007getproductsparamproductidimagescount
+        method: GET
+        description: Shopify Get A Count Of All Product Images
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_id
+          in: path
+          type: string
+          description: product_id
+          required: true
+        - name: since_id
+          in: query
+          type: string
+          description: Restrict results to after the specified ID
+    - name: admin-api-2020-07-products-product_id-images-image_id}.json
+      path: /admin/api/2020-07/products/{product_id}/images/{image_id}.json
+      operations:
+      - name: deprecated202007getproductsparamproductidimagesparamimageid
+        method: GET
+        description: Shopify Get A Single Product Image By Id
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_id
+          in: path
+          type: string
+          description: product_id
+          required: true
+        - name: image_id
+          in: path
+          type: string
+          description: image_id
+          required: true
+        - name: fields
+          in: query
+          type: string
+          description: comma-separated list of fields to include in the response
+      - name: deprecated202007updateproductsparamproductidimagesparamimageid
+        method: PUT
+        description: Shopify Modify An Existing Product Image
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_id
+          in: path
+          type: string
+          description: product_id
+          required: true
+        - name: image_id
+          in: path
+          type: string
+          description: image_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-10-collects.json
+      path: /admin/api/2020-10/collects.json
+      operations:
+      - name: createcollects
+        method: POST
+        description: Shopify Adds A Product To A Custom Collection
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-10-collects-collect_id}.json
+      path: /admin/api/2020-10/collects/{collect_id}.json
+      operations:
+      - name: deletecollectsparamcollectid
+        method: DELETE
+        description: Shopify Removes A Product From A Collection
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: collect_id
+          in: path
+          type: string
+          description: collect_id
+          required: true
+    - name: admin-api-2020-10-metafields.json
+      path: /admin/api/2020-10/metafields.json
+      operations:
+      - name: getmetafields
+        method: GET
+        description: Shopify Retrieves A List Of Metafields That Belong To A Product Image Resource
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: metafield[owner_id]
+          in: query
+          type: integer
+          description: metafield[owner_id]
+        - name: metafield[owner_resource]
+          in: query
+          type: string
+          description: metafield[owner_resource]
+    - name: admin-api-2020-10-products.json
+      path: /admin/api/2020-10/products.json
+      operations:
+      - name: createproducts
+        method: POST
+        description: Shopify Creates A New Product
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-10-products-product_id}.json
+      path: /admin/api/2020-10/products/{product_id}.json
+      operations:
+      - name: getproductsparamproductid
+        method: GET
+        description: Shopify Retrieves A Single Product
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_id
+          in: path
+          type: string
+          description: product_id
+          required: true
+        - name: fields
+          in: query
+          type: string
+          description: A comma-separated list of fields to include in the response.
+      - name: updateproductsparamproductid
+        method: PUT
+        description: Shopify Updates A Product And Its Variants And Images
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_id
+          in: path
+          type: string
+          description: product_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deleteproductsparamproductid
+        method: DELETE
+        description: Shopify Deletes A Product
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_id
+          in: path
+          type: string
+          description: product_id
+          required: true
+    - name: admin-api-2020-10-products-product_id-images.json
+      path: /admin/api/2020-10/products/{product_id}/images.json
+      operations:
+      - name: getproductsparamproductidimages
+        method: GET
+        description: Shopify Get All Product Images
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_id
+          in: path
+          type: string
+          description: product_id
+          required: true
+        - name: since_id
+          in: query
+          type: string
+          description: Restrict results to after the specified ID
+        - name: fields
+          in: query
+          type: string
+          description: comma-separated list of fields to include in the response
+      - name: createproductsparamproductidimages
+        method: POST
+        description: Shopify Create A New Product Image
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_id
+          in: path
+          type: string
+          description: product_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-10-products-product_id-images-count.json
+      path: /admin/api/2020-10/products/{product_id}/images/count.json
+      operations:
+      - name: getproductsparamproductidimagescount
+        method: GET
+        description: Shopify Get A Count Of All Product Images
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_id
+          in: path
+          type: string
+          description: product_id
+          required: true
+        - name: since_id
+          in: query
+          type: string
+          description: Restrict results to after the specified ID
+    - name: admin-api-2020-10-products-product_id-images-image_id}.json
+      path: /admin/api/2020-10/products/{product_id}/images/{image_id}.json
+      operations:
+      - name: getproductsparamproductidimagesparamimageid
+        method: GET
+        description: Shopify Get A Single Product Image By Id
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_id
+          in: path
+          type: string
+          description: product_id
+          required: true
+        - name: image_id
+          in: path
+          type: string
+          description: image_id
+          required: true
+        - name: fields
+          in: query
+          type: string
+          description: comma-separated list of fields to include in the response
+      - name: updateproductsparamproductidimagesparamimageid
+        method: PUT
+        description: Shopify Modify An Existing Product Image
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_id
+          in: path
+          type: string
+          description: product_id
+          required: true
+        - name: image_id
+          in: path
+          type: string
+          description: image_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2021-01-collects.json
+      path: /admin/api/2021-01/collects.json
+      operations:
+      - name: deprecated202101createcollects
+        method: POST
+        description: Shopify Adds A Product To A Custom Collection
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2021-01-collects-collect_id}.json
+      path: /admin/api/2021-01/collects/{collect_id}.json
+      operations:
+      - name: deprecated202101deletecollectsparamcollectid
+        method: DELETE
+        description: Shopify Removes A Product From A Collection
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: collect_id
+          in: path
+          type: string
+          description: collect_id
+          required: true
+    - name: admin-api-2021-01-metafields.json
+      path: /admin/api/2021-01/metafields.json
+      operations:
+      - name: deprecated202101getmetafields
+        method: GET
+        description: Shopify Retrieves A List Of Metafields That Belong To A Product Image Resource
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: metafield[owner_id]
+          in: query
+          type: integer
+          description: metafield[owner_id]
+        - name: metafield[owner_resource]
+          in: query
+          type: string
+          description: metafield[owner_resource]
+    - name: admin-api-2021-01-products.json
+      path: /admin/api/2021-01/products.json
+      operations:
+      - name: deprecated202101createproducts
+        method: POST
+        description: Shopify Creates A New Product
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2021-01-products-product_id}.json
+      path: /admin/api/2021-01/products/{product_id}.json
+      operations:
+      - name: deprecated202101getproductsparamproductid
+        method: GET
+        description: Shopify Retrieves A Single Product
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_id
+          in: path
+          type: string
+          description: product_id
+          required: true
+        - name: fields
+          in: query
+          type: string
+          description: A comma-separated list of fields to include in the response.
+      - name: deprecated202101updateproductsparamproductid
+        method: PUT
+        description: Shopify Updates A Product And Its Variants And Images
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_id
+          in: path
+          type: string
+          description: product_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deprecated202101deleteproductsparamproductid
+        method: DELETE
+        description: Shopify Deletes A Product
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_id
+          in: path
+          type: string
+          description: product_id
+          required: true
+    - name: admin-api-2021-01-products-product_id-images.json
+      path: /admin/api/2021-01/products/{product_id}/images.json
+      operations:
+      - name: deprecated202101getproductsparamproductidimages
+        method: GET
+        description: Shopify Get All Product Images
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_id
+          in: path
+          type: string
+          description: product_id
+          required: true
+        - name: since_id
+          in: query
+          type: string
+          description: Restrict results to after the specified ID
+        - name: fields
+          in: query
+          type: string
+          description: comma-separated list of fields to include in the response
+      - name: deprecated202101createproductsparamproductidimages
+        method: POST
+        description: Shopify Create A New Product Image
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_id
+          in: path
+          type: string
+          description: product_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2021-01-products-product_id-images-count.json
+      path: /admin/api/2021-01/products/{product_id}/images/count.json
+      operations:
+      - name: deprecated202101getproductsparamproductidimagescount
+        method: GET
+        description: Shopify Get A Count Of All Product Images
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_id
+          in: path
+          type: string
+          description: product_id
+          required: true
+        - name: since_id
+          in: query
+          type: string
+          description: Restrict results to after the specified ID
+    - name: admin-api-2021-01-products-product_id-images-image_id}.json
+      path: /admin/api/2021-01/products/{product_id}/images/{image_id}.json
+      operations:
+      - name: deprecated202101getproductsparamproductidimagesparamimageid
+        method: GET
+        description: Shopify Get A Single Product Image By Id
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_id
+          in: path
+          type: string
+          description: product_id
+          required: true
+        - name: image_id
+          in: path
+          type: string
+          description: image_id
+          required: true
+        - name: fields
+          in: query
+          type: string
+          description: comma-separated list of fields to include in the response
+      - name: deprecated202101updateproductsparamproductidimagesparamimageid
+        method: PUT
+        description: Shopify Modify An Existing Product Image
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_id
+          in: path
+          type: string
+          description: product_id
+          required: true
+        - name: image_id
+          in: path
+          type: string
+          description: image_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-unstable-collects.json
+      path: /admin/api/unstable/collects.json
+      operations:
+      - name: deprecatedunstablecreatecollects
+        method: POST
+        description: Shopify Adds A Product To A Custom Collection
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-unstable-collects-collect_id}.json
+      path: /admin/api/unstable/collects/{collect_id}.json
+      operations:
+      - name: deprecatedunstabledeletecollectsparamcollectid
+        method: DELETE
+        description: Shopify Removes A Product From A Collection
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: collect_id
+          in: path
+          type: string
+          description: collect_id
+          required: true
+    - name: admin-api-unstable-metafields.json
+      path: /admin/api/unstable/metafields.json
+      operations:
+      - name: deprecatedunstablegetmetafields
+        method: GET
+        description: Shopify Retrieves A List Of Metafields That Belong To A Product Image Resource
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: metafield[owner_id]
+          in: query
+          type: integer
+          description: metafield[owner_id]
+        - name: metafield[owner_resource]
+          in: query
+          type: string
+          description: metafield[owner_resource]
+    - name: admin-api-unstable-products.json
+      path: /admin/api/unstable/products.json
+      operations:
+      - name: deprecatedunstablecreateproducts
+        method: POST
+        description: Shopify Creates A New Product
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-unstable-products-product_id}.json
+      path: /admin/api/unstable/products/{product_id}.json
+      operations:
+      - name: deprecatedunstablegetproductsparamproductid
+        method: GET
+        description: Shopify Retrieves A Single Product
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_id
+          in: path
+          type: string
+          description: product_id
+          required: true
+        - name: fields
+          in: query
+          type: string
+          description: A comma-separated list of fields to include in the response.
+      - name: deprecatedunstableupdateproductsparamproductid
+        method: PUT
+        description: Shopify Updates A Product And Its Variants And Images
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_id
+          in: path
+          type: string
+          description: product_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deprecatedunstabledeleteproductsparamproductid
+        method: DELETE
+        description: Shopify Deletes A Product
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_id
+          in: path
+          type: string
+          description: product_id
+          required: true
+    - name: admin-api-unstable-products-product_id-images.json
+      path: /admin/api/unstable/products/{product_id}/images.json
+      operations:
+      - name: deprecatedunstablegetproductsparamproductidimages
+        method: GET
+        description: Shopify Get All Product Images
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_id
+          in: path
+          type: string
+          description: product_id
+          required: true
+        - name: since_id
+          in: query
+          type: string
+          description: Restrict results to after the specified ID
+        - name: fields
+          in: query
+          type: string
+          description: comma-separated list of fields to include in the response
+      - name: deprecatedunstablecreateproductsparamproductidimages
+        method: POST
+        description: Shopify Create A New Product Image
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_id
+          in: path
+          type: string
+          description: product_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-unstable-products-product_id-images-count.json
+      path: /admin/api/unstable/products/{product_id}/images/count.json
+      operations:
+      - name: deprecatedunstablegetproductsparamproductidimagescount
+        method: GET
+        description: Shopify Get A Count Of All Product Images
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_id
+          in: path
+          type: string
+          description: product_id
+          required: true
+        - name: since_id
+          in: query
+          type: string
+          description: Restrict results to after the specified ID
+    - name: admin-api-unstable-products-product_id-images-image_id}.json
+      path: /admin/api/unstable/products/{product_id}/images/{image_id}.json
+      operations:
+      - name: deprecatedunstablegetproductsparamproductidimagesparamimageid
+        method: GET
+        description: Shopify Get A Single Product Image By Id
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_id
+          in: path
+          type: string
+          description: product_id
+          required: true
+        - name: image_id
+          in: path
+          type: string
+          description: image_id
+          required: true
+        - name: fields
+          in: query
+          type: string
+          description: comma-separated list of fields to include in the response
+      - name: deprecatedunstableupdateproductsparamproductidimagesparamimageid
+        method: PUT
+        description: Shopify Modify An Existing Product Image
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_id
+          in: path
+          type: string
+          description: product_id
+          required: true
+        - name: image_id
+          in: path
+          type: string
+          description: image_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+  exposes:
+  - type: rest
+    namespace: shopify-product-rest
+    port: 8080
+    description: REST adapter for Shopify  API — Product. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/admin/api/2020-01/collects-json
+      name: admin-api-2020-01-collects-json
+      description: REST surface for admin-api-2020-01-collects.json.
+      operations:
+      - method: POST
+        name: deprecated202001createcollects
+        description: Shopify Adds A Product To A Custom Collection
+        call: shopify-product.deprecated202001createcollects
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-01/collects/collect-id-json
+      name: admin-api-2020-01-collects-collect-id-json
+      description: REST surface for admin-api-2020-01-collects-collect_id}.json.
+      operations:
+      - method: DELETE
+        name: deprecated202001deletecollectsparamcollectid
+        description: Shopify Removes A Product From A Collection
+        call: shopify-product.deprecated202001deletecollectsparamcollectid
+        with:
+          collect_id: rest.collect_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-01/metafields-json
+      name: admin-api-2020-01-metafields-json
+      description: REST surface for admin-api-2020-01-metafields.json.
+      operations:
+      - method: GET
+        name: deprecated202001getmetafields
+        description: Shopify Retrieves A List Of Metafields That Belong To A Product Image Resource
+        call: shopify-product.deprecated202001getmetafields
+        with:
+          metafield[owner_id]: rest.metafield[owner_id]
+          metafield[owner_resource]: rest.metafield[owner_resource]
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-01/product-listings-json
+      name: admin-api-2020-01-product-listings-json
+      description: REST surface for admin-api-2020-01-product_listings.json.
+      operations:
+      - method: GET
+        name: deprecated202001getproductlistings
+        description: Shopify Retrieve Product Listings That Are Published To Your App
+        call: shopify-product.deprecated202001getproductlistings
+        with:
+          product_ids: rest.product_ids
+          limit: rest.limit
+          collection_id: rest.collection_id
+          updated_at_min: rest.updated_at_min
+          handle: rest.handle
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-01/product-listings/product-listing-id-json
+      name: admin-api-2020-01-product-listings-product-listing-id-json
+      description: REST surface for admin-api-2020-01-product_listings-product_listing_id}.json.
+      operations:
+      - method: GET
+        name: deprecated202001getproductlistingsparamproductlistingid
+        description: Shopify Retrieve A Specific Product Listing That Is Published To Your App
+        call: shopify-product.deprecated202001getproductlistingsparamproductlistingid
+        with:
+          product_listing_id: rest.product_listing_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: deprecated202001updateproductlistingsparamproductlistingid
+        description: Shopify Create A Product Listing To Publish A Product To Your App
+        call: shopify-product.deprecated202001updateproductlistingsparamproductlistingid
+        with:
+          product_listing_id: rest.product_listing_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deprecated202001deleteproductlistingsparamproductlistingid
+        description: Shopify Delete A Product Listing To Unpublish A Product From Your App
+        call: shopify-product.deprecated202001deleteproductlistingsparamproductlistingid
+        with:
+          product_listing_id: rest.product_listing_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-01/products-json
+      name: admin-api-2020-01-products-json
+      description: REST surface for admin-api-2020-01-products.json.
+      operations:
+      - method: POST
+        name: deprecated202001createproducts
+        description: Shopify Creates A New Product
+        call: shopify-product.deprecated202001createproducts
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-01/products/product-id-json
+      name: admin-api-2020-01-products-product-id-json
+      description: REST surface for admin-api-2020-01-products-product_id}.json.
+      operations:
+      - method: GET
+        name: deprecated202001getproductsparamproductid
+        description: Shopify Retrieves A Single Product
+        call: shopify-product.deprecated202001getproductsparamproductid
+        with:
+          product_id: rest.product_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: deprecated202001updateproductsparamproductid
+        description: Shopify Updates A Product And Its Variants And Images
+        call: shopify-product.deprecated202001updateproductsparamproductid
+        with:
+          product_id: rest.product_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deprecated202001deleteproductsparamproductid
+        description: Shopify Deletes A Product
+        call: shopify-product.deprecated202001deleteproductsparamproductid
+        with:
+          product_id: rest.product_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-01/products/{product-id}/images-json
+      name: admin-api-2020-01-products-product-id-images-json
+      description: REST surface for admin-api-2020-01-products-product_id-images.json.
+      operations:
+      - method: GET
+        name: deprecated202001getproductsparamproductidimages
+        description: Shopify Get All Product Images
+        call: shopify-product.deprecated202001getproductsparamproductidimages
+        with:
+          product_id: rest.product_id
+          since_id: rest.since_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: deprecated202001createproductsparamproductidimages
+        description: Shopify Create A New Product Image
+        call: shopify-product.deprecated202001createproductsparamproductidimages
+        with:
+          product_id: rest.product_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-01/products/{product-id}/images/count-json
+      name: admin-api-2020-01-products-product-id-images-count-json
+      description: REST surface for admin-api-2020-01-products-product_id-images-count.json.
+      operations:
+      - method: GET
+        name: deprecated202001getproductsparamproductidimagescount
+        description: Shopify Get A Count Of All Product Images
+        call: shopify-product.deprecated202001getproductsparamproductidimagescount
+        with:
+          product_id: rest.product_id
+          since_id: rest.since_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-01/products/{product-id}/images/image-id-json
+      name: admin-api-2020-01-products-product-id-images-image-id-json
+      description: REST surface for admin-api-2020-01-products-product_id-images-image_id}.json.
+      operations:
+      - method: GET
+        name: deprecated202001getproductsparamproductidimagesparamimageid
+        description: Shopify Get A Single Product Image By Id
+        call: shopify-product.deprecated202001getproductsparamproductidimagesparamimageid
+        with:
+          product_id: rest.product_id
+          image_id: rest.image_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: deprecated202001updateproductsparamproductidimagesparamimageid
+        description: Shopify Modify An Existing Product Image
+        call: shopify-product.deprecated202001updateproductsparamproductidimagesparamimageid
+        with:
+          product_id: rest.product_id
+          image_id: rest.image_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/collects-json
+      name: admin-api-2020-04-collects-json
+      description: REST surface for admin-api-2020-04-collects.json.
+      operations:
+      - method: POST
+        name: deprecated202004createcollects
+        description: Shopify Adds A Product To A Custom Collection
+        call: shopify-product.deprecated202004createcollects
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/collects/collect-id-json
+      name: admin-api-2020-04-collects-collect-id-json
+      description: REST surface for admin-api-2020-04-collects-collect_id}.json.
+      operations:
+      - method: DELETE
+        name: deprecated202004deletecollectsparamcollectid
+        description: Shopify Removes A Product From A Collection
+        call: shopify-product.deprecated202004deletecollectsparamcollectid
+        with:
+          collect_id: rest.collect_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/metafields-json
+      name: admin-api-2020-04-metafields-json
+      description: REST surface for admin-api-2020-04-metafields.json.
+      operations:
+      - method: GET
+        name: deprecated202004getmetafields
+        description: Shopify Retrieves A List Of Metafields That Belong To A Product Image Resource
+        call: shopify-product.deprecated202004getmetafields
+        with:
+          metafield[owner_id]: rest.metafield[owner_id]
+          metafield[owner_resource]: rest.metafield[owner_resource]
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/product-listings-json
+      name: admin-api-2020-04-product-listings-json
+      description: REST surface for admin-api-2020-04-product_listings.json.
+      operations:
+      - method: GET
+        name: deprecated202004getproductlistings
+        description: Shopify Retrieve Product Listings That Are Published To Your App
+        call: shopify-product.deprecated202004getproductlistings
+        with:
+          product_ids: rest.product_ids
+          limit: rest.limit
+          collection_id: rest.collection_id
+          updated_at_min: rest.updated_at_min
+          handle: rest.handle
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/product-listings/product-listing-id-json
+      name: admin-api-2020-04-product-listings-product-listing-id-json
+      description: REST surface for admin-api-2020-04-product_listings-product_listing_id}.json.
+      operations:
+      - method: GET
+        name: deprecated202004getproductlistingsparamproductlistingid
+        description: Shopify Retrieve A Specific Product Listing That Is Published To Your App
+        call: shopify-product.deprecated202004getproductlistingsparamproductlistingid
+        with:
+          product_listing_id: rest.product_listing_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: deprecated202004updateproductlistingsparamproductlistingid
+        description: Shopify Create A Product Listing To Publish A Product To Your App
+        call: shopify-product.deprecated202004updateproductlistingsparamproductlistingid
+        with:
+          product_listing_id: rest.product_listing_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deprecated202004deleteproductlistingsparamproductlistingid
+        description: Shopify Delete A Product Listing To Unpublish A Product From Your App
+        call: shopify-product.deprecated202004deleteproductlistingsparamproductlistingid
+        with:
+          product_listing_id: rest.product_listing_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/products-json
+      name: admin-api-2020-04-products-json
+      description: REST surface for admin-api-2020-04-products.json.
+      operations:
+      - method: POST
+        name: deprecated202004createproducts
+        description: Shopify Creates A New Product
+        call: shopify-product.deprecated202004createproducts
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/products/product-id-json
+      name: admin-api-2020-04-products-product-id-json
+      description: REST surface for admin-api-2020-04-products-product_id}.json.
+      operations:
+      - method: GET
+        name: deprecated202004getproductsparamproductid
+        description: Shopify Retrieves A Single Product
+        call: shopify-product.deprecated202004getproductsparamproductid
+        with:
+          product_id: rest.product_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: deprecated202004updateproductsparamproductid
+        description: Shopify Updates A Product And Its Variants And Images
+        call: shopify-product.deprecated202004updateproductsparamproductid
+        with:
+          product_id: rest.product_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deprecated202004deleteproductsparamproductid
+        description: Shopify Deletes A Product
+        call: shopify-product.deprecated202004deleteproductsparamproductid
+        with:
+          product_id: rest.product_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/products/{product-id}/images-json
+      name: admin-api-2020-04-products-product-id-images-json
+      description: REST surface for admin-api-2020-04-products-product_id-images.json.
+      operations:
+      - method: GET
+        name: deprecated202004getproductsparamproductidimages
+        description: Shopify Get All Product Images
+        call: shopify-product.deprecated202004getproductsparamproductidimages
+        with:
+          product_id: rest.product_id
+          since_id: rest.since_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: deprecated202004createproductsparamproductidimages
+        description: Shopify Create A New Product Image
+        call: shopify-product.deprecated202004createproductsparamproductidimages
+        with:
+          product_id: rest.product_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/products/{product-id}/images/count-json
+      name: admin-api-2020-04-products-product-id-images-count-json
+      description: REST surface for admin-api-2020-04-products-product_id-images-count.json.
+      operations:
+      - method: GET
+        name: deprecated202004getproductsparamproductidimagescount
+        description: Shopify Get A Count Of All Product Images
+        call: shopify-product.deprecated202004getproductsparamproductidimagescount
+        with:
+          product_id: rest.product_id
+          since_id: rest.since_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/products/{product-id}/images/image-id-json
+      name: admin-api-2020-04-products-product-id-images-image-id-json
+      description: REST surface for admin-api-2020-04-products-product_id-images-image_id}.json.
+      operations:
+      - method: GET
+        name: deprecated202004getproductsparamproductidimagesparamimageid
+        description: Shopify Get A Single Product Image By Id
+        call: shopify-product.deprecated202004getproductsparamproductidimagesparamimageid
+        with:
+          product_id: rest.product_id
+          image_id: rest.image_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: deprecated202004updateproductsparamproductidimagesparamimageid
+        description: Shopify Modify An Existing Product Image
+        call: shopify-product.deprecated202004updateproductsparamproductidimagesparamimageid
+        with:
+          product_id: rest.product_id
+          image_id: rest.image_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/collects-json
+      name: admin-api-2020-07-collects-json
+      description: REST surface for admin-api-2020-07-collects.json.
+      operations:
+      - method: POST
+        name: deprecated202007createcollects
+        description: Shopify Adds A Product To A Custom Collection
+        call: shopify-product.deprecated202007createcollects
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/collects/collect-id-json
+      name: admin-api-2020-07-collects-collect-id-json
+      description: REST surface for admin-api-2020-07-collects-collect_id}.json.
+      operations:
+      - method: DELETE
+        name: deprecated202007deletecollectsparamcollectid
+        description: Shopify Removes A Product From A Collection
+        call: shopify-product.deprecated202007deletecollectsparamcollectid
+        with:
+          collect_id: rest.collect_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/metafields-json
+      name: admin-api-2020-07-metafields-json
+      description: REST surface for admin-api-2020-07-metafields.json.
+      operations:
+      - method: GET
+        name: deprecated202007getmetafields
+        description: Shopify Retrieves A List Of Metafields That Belong To A Product Image Resource
+        call: shopify-product.deprecated202007getmetafields
+        with:
+          metafield[owner_id]: rest.metafield[owner_id]
+          metafield[owner_resource]: rest.metafield[owner_resource]
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/product-listings-json
+      name: admin-api-2020-07-product-listings-json
+      description: REST surface for admin-api-2020-07-product_listings.json.
+      operations:
+      - method: GET
+        name: deprecated202007getproductlistings
+        description: Shopify Retrieve Product Listings That Are Published To Your App
+        call: shopify-product.deprecated202007getproductlistings
+        with:
+          product_ids: rest.product_ids
+          limit: rest.limit
+          collection_id: rest.collection_id
+          updated_at_min: rest.updated_at_min
+          handle: rest.handle
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/product-listings/product-listing-id-json
+      name: admin-api-2020-07-product-listings-product-listing-id-json
+      description: REST surface for admin-api-2020-07-product_listings-product_listing_id}.json.
+      operations:
+      - method: GET
+        name: deprecated202007getproductlistingsparamproductlistingid
+        description: Shopify Retrieve A Specific Product Listing That Is Published To Your App
+        call: shopify-product.deprecated202007getproductlistingsparamproductlistingid
+        with:
+          product_listing_id: rest.product_listing_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: deprecated202007updateproductlistingsparamproductlistingid
+        description: Shopify Create A Product Listing To Publish A Product To Your App
+        call: shopify-product.deprecated202007updateproductlistingsparamproductlistingid
+        with:
+          product_listing_id: rest.product_listing_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deprecated202007deleteproductlistingsparamproductlistingid
+        description: Shopify Delete A Product Listing To Unpublish A Product From Your App
+        call: shopify-product.deprecated202007deleteproductlistingsparamproductlistingid
+        with:
+          product_listing_id: rest.product_listing_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/products-json
+      name: admin-api-2020-07-products-json
+      description: REST surface for admin-api-2020-07-products.json.
+      operations:
+      - method: POST
+        name: deprecated202007createproducts
+        description: Shopify Creates A New Product
+        call: shopify-product.deprecated202007createproducts
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/products/product-id-json
+      name: admin-api-2020-07-products-product-id-json
+      description: REST surface for admin-api-2020-07-products-product_id}.json.
+      operations:
+      - method: GET
+        name: deprecated202007getproductsparamproductid
+        description: Shopify Retrieves A Single Product
+        call: shopify-product.deprecated202007getproductsparamproductid
+        with:
+          product_id: rest.product_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: deprecated202007updateproductsparamproductid
+        description: Shopify Updates A Product And Its Variants And Images
+        call: shopify-product.deprecated202007updateproductsparamproductid
+        with:
+          product_id: rest.product_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deprecated202007deleteproductsparamproductid
+        description: Shopify Deletes A Product
+        call: shopify-product.deprecated202007deleteproductsparamproductid
+        with:
+          product_id: rest.product_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/products/{product-id}/images-json
+      name: admin-api-2020-07-products-product-id-images-json
+      description: REST surface for admin-api-2020-07-products-product_id-images.json.
+      operations:
+      - method: GET
+        name: deprecated202007getproductsparamproductidimages
+        description: Shopify Get All Product Images
+        call: shopify-product.deprecated202007getproductsparamproductidimages
+        with:
+          product_id: rest.product_id
+          since_id: rest.since_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: deprecated202007createproductsparamproductidimages
+        description: Shopify Create A New Product Image
+        call: shopify-product.deprecated202007createproductsparamproductidimages
+        with:
+          product_id: rest.product_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/products/{product-id}/images/count-json
+      name: admin-api-2020-07-products-product-id-images-count-json
+      description: REST surface for admin-api-2020-07-products-product_id-images-count.json.
+      operations:
+      - method: GET
+        name: deprecated202007getproductsparamproductidimagescount
+        description: Shopify Get A Count Of All Product Images
+        call: shopify-product.deprecated202007getproductsparamproductidimagescount
+        with:
+          product_id: rest.product_id
+          since_id: rest.since_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/products/{product-id}/images/image-id-json
+      name: admin-api-2020-07-products-product-id-images-image-id-json
+      description: REST surface for admin-api-2020-07-products-product_id-images-image_id}.json.
+      operations:
+      - method: GET
+        name: deprecated202007getproductsparamproductidimagesparamimageid
+        description: Shopify Get A Single Product Image By Id
+        call: shopify-product.deprecated202007getproductsparamproductidimagesparamimageid
+        with:
+          product_id: rest.product_id
+          image_id: rest.image_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: deprecated202007updateproductsparamproductidimagesparamimageid
+        description: Shopify Modify An Existing Product Image
+        call: shopify-product.deprecated202007updateproductsparamproductidimagesparamimageid
+        with:
+          product_id: rest.product_id
+          image_id: rest.image_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/collects-json
+      name: admin-api-2020-10-collects-json
+      description: REST surface for admin-api-2020-10-collects.json.
+      operations:
+      - method: POST
+        name: createcollects
+        description: Shopify Adds A Product To A Custom Collection
+        call: shopify-product.createcollects
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/collects/collect-id-json
+      name: admin-api-2020-10-collects-collect-id-json
+      description: REST surface for admin-api-2020-10-collects-collect_id}.json.
+      operations:
+      - method: DELETE
+        name: deletecollectsparamcollectid
+        description: Shopify Removes A Product From A Collection
+        call: shopify-product.deletecollectsparamcollectid
+        with:
+          collect_id: rest.collect_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/metafields-json
+      name: admin-api-2020-10-metafields-json
+      description: REST surface for admin-api-2020-10-metafields.json.
+      operations:
+      - method: GET
+        name: getmetafields
+        description: Shopify Retrieves A List Of Metafields That Belong To A Product Image Resource
+        call: shopify-product.getmetafields
+        with:
+          metafield[owner_id]: rest.metafield[owner_id]
+          metafield[owner_resource]: rest.metafield[owner_resource]
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/products-json
+      name: admin-api-2020-10-products-json
+      description: REST surface for admin-api-2020-10-products.json.
+      operations:
+      - method: POST
+        name: createproducts
+        description: Shopify Creates A New Product
+        call: shopify-product.createproducts
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/products/product-id-json
+      name: admin-api-2020-10-products-product-id-json
+      description: REST surface for admin-api-2020-10-products-product_id}.json.
+      operations:
+      - method: GET
+        name: getproductsparamproductid
+        description: Shopify Retrieves A Single Product
+        call: shopify-product.getproductsparamproductid
+        with:
+          product_id: rest.product_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updateproductsparamproductid
+        description: Shopify Updates A Product And Its Variants And Images
+        call: shopify-product.updateproductsparamproductid
+        with:
+          product_id: rest.product_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteproductsparamproductid
+        description: Shopify Deletes A Product
+        call: shopify-product.deleteproductsparamproductid
+        with:
+          product_id: rest.product_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/products/{product-id}/images-json
+      name: admin-api-2020-10-products-product-id-images-json
+      description: REST surface for admin-api-2020-10-products-product_id-images.json.
+      operations:
+      - method: GET
+        name: getproductsparamproductidimages
+        description: Shopify Get All Product Images
+        call: shopify-product.getproductsparamproductidimages
+        with:
+          product_id: rest.product_id
+          since_id: rest.since_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createproductsparamproductidimages
+        description: Shopify Create A New Product Image
+        call: shopify-product.createproductsparamproductidimages
+        with:
+          product_id: rest.product_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/products/{product-id}/images/count-json
+      name: admin-api-2020-10-products-product-id-images-count-json
+      description: REST surface for admin-api-2020-10-products-product_id-images-count.json.
+      operations:
+      - method: GET
+        name: getproductsparamproductidimagescount
+        description: Shopify Get A Count Of All Product Images
+        call: shopify-product.getproductsparamproductidimagescount
+        with:
+          product_id: rest.product_id
+          since_id: rest.since_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/products/{product-id}/images/image-id-json
+      name: admin-api-2020-10-products-product-id-images-image-id-json
+      description: REST surface for admin-api-2020-10-products-product_id-images-image_id}.json.
+      operations:
+      - method: GET
+        name: getproductsparamproductidimagesparamimageid
+        description: Shopify Get A Single Product Image By Id
+        call: shopify-product.getproductsparamproductidimagesparamimageid
+        with:
+          product_id: rest.product_id
+          image_id: rest.image_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updateproductsparamproductidimagesparamimageid
+        description: Shopify Modify An Existing Product Image
+        call: shopify-product.updateproductsparamproductidimagesparamimageid
+        with:
+          product_id: rest.product_id
+          image_id: rest.image_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/collects-json
+      name: admin-api-2021-01-collects-json
+      description: REST surface for admin-api-2021-01-collects.json.
+      operations:
+      - method: POST
+        name: deprecated202101createcollects
+        description: Shopify Adds A Product To A Custom Collection
+        call: shopify-product.deprecated202101createcollects
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/collects/collect-id-json
+      name: admin-api-2021-01-collects-collect-id-json
+      description: REST surface for admin-api-2021-01-collects-collect_id}.json.
+      operations:
+      - method: DELETE
+        name: deprecated202101deletecollectsparamcollectid
+        description: Shopify Removes A Product From A Collection
+        call: shopify-product.deprecated202101deletecollectsparamcollectid
+        with:
+          collect_id: rest.collect_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/metafields-json
+      name: admin-api-2021-01-metafields-json
+      description: REST surface for admin-api-2021-01-metafields.json.
+      operations:
+      - method: GET
+        name: deprecated202101getmetafields
+        description: Shopify Retrieves A List Of Metafields That Belong To A Product Image Resource
+        call: shopify-product.deprecated202101getmetafields
+        with:
+          metafield[owner_id]: rest.metafield[owner_id]
+          metafield[owner_resource]: rest.metafield[owner_resource]
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/products-json
+      name: admin-api-2021-01-products-json
+      description: REST surface for admin-api-2021-01-products.json.
+      operations:
+      - method: POST
+        name: deprecated202101createproducts
+        description: Shopify Creates A New Product
+        call: shopify-product.deprecated202101createproducts
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/products/product-id-json
+      name: admin-api-2021-01-products-product-id-json
+      description: REST surface for admin-api-2021-01-products-product_id}.json.
+      operations:
+      - method: GET
+        name: deprecated202101getproductsparamproductid
+        description: Shopify Retrieves A Single Product
+        call: shopify-product.deprecated202101getproductsparamproductid
+        with:
+          product_id: rest.product_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: deprecated202101updateproductsparamproductid
+        description: Shopify Updates A Product And Its Variants And Images
+        call: shopify-product.deprecated202101updateproductsparamproductid
+        with:
+          product_id: rest.product_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deprecated202101deleteproductsparamproductid
+        description: Shopify Deletes A Product
+        call: shopify-product.deprecated202101deleteproductsparamproductid
+        with:
+          product_id: rest.product_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/products/{product-id}/images-json
+      name: admin-api-2021-01-products-product-id-images-json
+      description: REST surface for admin-api-2021-01-products-product_id-images.json.
+      operations:
+      - method: GET
+        name: deprecated202101getproductsparamproductidimages
+        description: Shopify Get All Product Images
+        call: shopify-product.deprecated202101getproductsparamproductidimages
+        with:
+          product_id: rest.product_id
+          since_id: rest.since_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: deprecated202101createproductsparamproductidimages
+        description: Shopify Create A New Product Image
+        call: shopify-product.deprecated202101createproductsparamproductidimages
+        with:
+          product_id: rest.product_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/products/{product-id}/images/count-json
+      name: admin-api-2021-01-products-product-id-images-count-json
+      description: REST surface for admin-api-2021-01-products-product_id-images-count.json.
+      operations:
+      - method: GET
+        name: deprecated202101getproductsparamproductidimagescount
+        description: Shopify Get A Count Of All Product Images
+        call: shopify-product.deprecated202101getproductsparamproductidimagescount
+        with:
+          product_id: rest.product_id
+          since_id: rest.since_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/products/{product-id}/images/image-id-json
+      name: admin-api-2021-01-products-product-id-images-image-id-json
+      description: REST surface for admin-api-2021-01-products-product_id-images-image_id}.json.
+      operations:
+      - method: GET
+        name: deprecated202101getproductsparamproductidimagesparamimageid
+        description: Shopify Get A Single Product Image By Id
+        call: shopify-product.deprecated202101getproductsparamproductidimagesparamimageid
+        with:
+          product_id: rest.product_id
+          image_id: rest.image_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: deprecated202101updateproductsparamproductidimagesparamimageid
+        description: Shopify Modify An Existing Product Image
+        call: shopify-product.deprecated202101updateproductsparamproductidimagesparamimageid
+        with:
+          product_id: rest.product_id
+          image_id: rest.image_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/collects-json
+      name: admin-api-unstable-collects-json
+      description: REST surface for admin-api-unstable-collects.json.
+      operations:
+      - method: POST
+        name: deprecatedunstablecreatecollects
+        description: Shopify Adds A Product To A Custom Collection
+        call: shopify-product.deprecatedunstablecreatecollects
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/collects/collect-id-json
+      name: admin-api-unstable-collects-collect-id-json
+      description: REST surface for admin-api-unstable-collects-collect_id}.json.
+      operations:
+      - method: DELETE
+        name: deprecatedunstabledeletecollectsparamcollectid
+        description: Shopify Removes A Product From A Collection
+        call: shopify-product.deprecatedunstabledeletecollectsparamcollectid
+        with:
+          collect_id: rest.collect_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/metafields-json
+      name: admin-api-unstable-metafields-json
+      description: REST surface for admin-api-unstable-metafields.json.
+      operations:
+      - method: GET
+        name: deprecatedunstablegetmetafields
+        description: Shopify Retrieves A List Of Metafields That Belong To A Product Image Resource
+        call: shopify-product.deprecatedunstablegetmetafields
+        with:
+          metafield[owner_id]: rest.metafield[owner_id]
+          metafield[owner_resource]: rest.metafield[owner_resource]
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/products-json
+      name: admin-api-unstable-products-json
+      description: REST surface for admin-api-unstable-products.json.
+      operations:
+      - method: POST
+        name: deprecatedunstablecreateproducts
+        description: Shopify Creates A New Product
+        call: shopify-product.deprecatedunstablecreateproducts
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/products/product-id-json
+      name: admin-api-unstable-products-product-id-json
+      description: REST surface for admin-api-unstable-products-product_id}.json.
+      operations:
+      - method: GET
+        name: deprecatedunstablegetproductsparamproductid
+        description: Shopify Retrieves A Single Product
+        call: shopify-product.deprecatedunstablegetproductsparamproductid
+        with:
+          product_id: rest.product_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: deprecatedunstableupdateproductsparamproductid
+        description: Shopify Updates A Product And Its Variants And Images
+        call: shopify-product.deprecatedunstableupdateproductsparamproductid
+        with:
+          product_id: rest.product_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deprecatedunstabledeleteproductsparamproductid
+        description: Shopify Deletes A Product
+        call: shopify-product.deprecatedunstabledeleteproductsparamproductid
+        with:
+          product_id: rest.product_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/products/{product-id}/images-json
+      name: admin-api-unstable-products-product-id-images-json
+      description: REST surface for admin-api-unstable-products-product_id-images.json.
+      operations:
+      - method: GET
+        name: deprecatedunstablegetproductsparamproductidimages
+        description: Shopify Get All Product Images
+        call: shopify-product.deprecatedunstablegetproductsparamproductidimages
+        with:
+          product_id: rest.product_id
+          since_id: rest.since_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: deprecatedunstablecreateproductsparamproductidimages
+        description: Shopify Create A New Product Image
+        call: shopify-product.deprecatedunstablecreateproductsparamproductidimages
+        with:
+          product_id: rest.product_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/products/{product-id}/images/count-json
+      name: admin-api-unstable-products-product-id-images-count-json
+      description: REST surface for admin-api-unstable-products-product_id-images-count.json.
+      operations:
+      - method: GET
+        name: deprecatedunstablegetproductsparamproductidimagescount
+        description: Shopify Get A Count Of All Product Images
+        call: shopify-product.deprecatedunstablegetproductsparamproductidimagescount
+        with:
+          product_id: rest.product_id
+          since_id: rest.since_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/products/{product-id}/images/image-id-json
+      name: admin-api-unstable-products-product-id-images-image-id-json
+      description: REST surface for admin-api-unstable-products-product_id-images-image_id}.json.
+      operations:
+      - method: GET
+        name: deprecatedunstablegetproductsparamproductidimagesparamimageid
+        description: Shopify Get A Single Product Image By Id
+        call: shopify-product.deprecatedunstablegetproductsparamproductidimagesparamimageid
+        with:
+          product_id: rest.product_id
+          image_id: rest.image_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: deprecatedunstableupdateproductsparamproductidimagesparamimageid
+        description: Shopify Modify An Existing Product Image
+        call: shopify-product.deprecatedunstableupdateproductsparamproductidimagesparamimageid
+        with:
+          product_id: rest.product_id
+          image_id: rest.image_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: shopify-product-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Shopify  API — Product. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: shopify-adds-product-custom-collection
+      description: Shopify Adds A Product To A Custom Collection
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-product.deprecated202001createcollects
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-removes-product-collection
+      description: Shopify Removes A Product From A Collection
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-product.deprecated202001deletecollectsparamcollectid
+      with:
+        collect_id: tools.collect_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-metafields-that
+      description: Shopify Retrieves A List Of Metafields That Belong To A Product Image Resource
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-product.deprecated202001getmetafields
+      with:
+        metafield[owner_id]: tools.metafield[owner_id]
+        metafield[owner_resource]: tools.metafield[owner_resource]
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieve-product-listings-that
+      description: Shopify Retrieve Product Listings That Are Published To Your App
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-product.deprecated202001getproductlistings
+      with:
+        product_ids: tools.product_ids
+        limit: tools.limit
+        collection_id: tools.collection_id
+        updated_at_min: tools.updated_at_min
+        handle: tools.handle
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieve-specific-product-listing
+      description: Shopify Retrieve A Specific Product Listing That Is Published To Your App
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-product.deprecated202001getproductlistingsparamproductlistingid
+      with:
+        product_listing_id: tools.product_listing_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-create-product-listing-publish
+      description: Shopify Create A Product Listing To Publish A Product To Your App
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-product.deprecated202001updateproductlistingsparamproductlistingid
+      with:
+        product_listing_id: tools.product_listing_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-delete-product-listing-unpublish
+      description: Shopify Delete A Product Listing To Unpublish A Product From Your App
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-product.deprecated202001deleteproductlistingsparamproductlistingid
+      with:
+        product_listing_id: tools.product_listing_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-creates-new-product
+      description: Shopify Creates A New Product
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-product.deprecated202001createproducts
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-single-product
+      description: Shopify Retrieves A Single Product
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-product.deprecated202001getproductsparamproductid
+      with:
+        product_id: tools.product_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-updates-product-and-its
+      description: Shopify Updates A Product And Its Variants And Images
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-product.deprecated202001updateproductsparamproductid
+      with:
+        product_id: tools.product_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-deletes-product
+      description: Shopify Deletes A Product
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-product.deprecated202001deleteproductsparamproductid
+      with:
+        product_id: tools.product_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-get-all-product-images
+      description: Shopify Get All Product Images
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-product.deprecated202001getproductsparamproductidimages
+      with:
+        product_id: tools.product_id
+        since_id: tools.since_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-create-new-product-image
+      description: Shopify Create A New Product Image
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-product.deprecated202001createproductsparamproductidimages
+      with:
+        product_id: tools.product_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-get-count-all-product
+      description: Shopify Get A Count Of All Product Images
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-product.deprecated202001getproductsparamproductidimagescount
+      with:
+        product_id: tools.product_id
+        since_id: tools.since_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-get-single-product-image
+      description: Shopify Get A Single Product Image By Id
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-product.deprecated202001getproductsparamproductidimagesparamimageid
+      with:
+        product_id: tools.product_id
+        image_id: tools.image_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-modify-existing-product-image
+      description: Shopify Modify An Existing Product Image
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-product.deprecated202001updateproductsparamproductidimagesparamimageid
+      with:
+        product_id: tools.product_id
+        image_id: tools.image_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-adds-product-custom-collection-2
+      description: Shopify Adds A Product To A Custom Collection
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-product.deprecated202004createcollects
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-removes-product-collection-2
+      description: Shopify Removes A Product From A Collection
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-product.deprecated202004deletecollectsparamcollectid
+      with:
+        collect_id: tools.collect_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-metafields-that-2
+      description: Shopify Retrieves A List Of Metafields That Belong To A Product Image Resource
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-product.deprecated202004getmetafields
+      with:
+        metafield[owner_id]: tools.metafield[owner_id]
+        metafield[owner_resource]: tools.metafield[owner_resource]
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieve-product-listings-that-2
+      description: Shopify Retrieve Product Listings That Are Published To Your App
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-product.deprecated202004getproductlistings
+      with:
+        product_ids: tools.product_ids
+        limit: tools.limit
+        collection_id: tools.collection_id
+        updated_at_min: tools.updated_at_min
+        handle: tools.handle
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieve-specific-product-listing-2
+      description: Shopify Retrieve A Specific Product Listing That Is Published To Your App
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-product.deprecated202004getproductlistingsparamproductlistingid
+      with:
+        product_listing_id: tools.product_listing_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-create-product-listing-publish-2
+      description: Shopify Create A Product Listing To Publish A Product To Your App
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-product.deprecated202004updateproductlistingsparamproductlistingid
+      with:
+        product_listing_id: tools.product_listing_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-delete-product-listing-unpublish-2
+      description: Shopify Delete A Product Listing To Unpublish A Product From Your App
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-product.deprecated202004deleteproductlistingsparamproductlistingid
+      with:
+        product_listing_id: tools.product_listing_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-creates-new-product-2
+      description: Shopify Creates A New Product
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-product.deprecated202004createproducts
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-single-product-2
+      description: Shopify Retrieves A Single Product
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-product.deprecated202004getproductsparamproductid
+      with:
+        product_id: tools.product_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-updates-product-and-its-2
+      description: Shopify Updates A Product And Its Variants And Images
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-product.deprecated202004updateproductsparamproductid
+      with:
+        product_id: tools.product_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-deletes-product-2
+      description: Shopify Deletes A Product
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-product.deprecated202004deleteproductsparamproductid
+      with:
+        product_id: tools.product_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-get-all-product-images-2
+      description: Shopify Get All Product Images
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-product.deprecated202004getproductsparamproductidimages
+      with:
+        product_id: tools.product_id
+        since_id: tools.since_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-create-new-product-image-2
+      description: Shopify Create A New Product Image
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-product.deprecated202004createproductsparamproductidimages
+      with:
+        product_id: tools.product_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-get-count-all-product-2
+      description: Shopify Get A Count Of All Product Images
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-product.deprecated202004getproductsparamproductidimagescount
+      with:
+        product_id: tools.product_id
+        since_id: tools.since_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-get-single-product-image-2
+      description: Shopify Get A Single Product Image By Id
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-product.deprecated202004getproductsparamproductidimagesparamimageid
+      with:
+        product_id: tools.product_id
+        image_id: tools.image_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-modify-existing-product-image-2
+      description: Shopify Modify An Existing Product Image
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-product.deprecated202004updateproductsparamproductidimagesparamimageid
+      with:
+        product_id: tools.product_id
+        image_id: tools.image_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-adds-product-custom-collection-3
+      description: Shopify Adds A Product To A Custom Collection
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-product.deprecated202007createcollects
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-removes-product-collection-3
+      description: Shopify Removes A Product From A Collection
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-product.deprecated202007deletecollectsparamcollectid
+      with:
+        collect_id: tools.collect_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-metafields-that-3
+      description: Shopify Retrieves A List Of Metafields That Belong To A Product Image Resource
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-product.deprecated202007getmetafields
+      with:
+        metafield[owner_id]: tools.metafield[owner_id]
+        metafield[owner_resource]: tools.metafield[owner_resource]
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieve-product-listings-that-3
+      description: Shopify Retrieve Product Listings That Are Published To Your App
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-product.deprecated202007getproductlistings
+      with:
+        product_ids: tools.product_ids
+        limit: tools.limit
+        collection_id: tools.collection_id
+        updated_at_min: tools.updated_at_min
+        handle: tools.handle
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieve-specific-product-listing-3
+      description: Shopify Retrieve A Specific Product Listing That Is Published To Your App
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-product.deprecated202007getproductlistingsparamproductlistingid
+      with:
+        product_listing_id: tools.product_listing_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-create-product-listing-publish-3
+      description: Shopify Create A Product Listing To Publish A Product To Your App
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-product.deprecated202007updateproductlistingsparamproductlistingid
+      with:
+        product_listing_id: tools.product_listing_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-delete-product-listing-unpublish-3
+      description: Shopify Delete A Product Listing To Unpublish A Product From Your App
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-product.deprecated202007deleteproductlistingsparamproductlistingid
+      with:
+        product_listing_id: tools.product_listing_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-creates-new-product-3
+      description: Shopify Creates A New Product
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-product.deprecated202007createproducts
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-single-product-3
+      description: Shopify Retrieves A Single Product
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-product.deprecated202007getproductsparamproductid
+      with:
+        product_id: tools.product_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-updates-product-and-its-3
+      description: Shopify Updates A Product And Its Variants And Images
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-product.deprecated202007updateproductsparamproductid
+      with:
+        product_id: tools.product_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-deletes-product-3
+      description: Shopify Deletes A Product
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-product.deprecated202007deleteproductsparamproductid
+      with:
+        product_id: tools.product_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-get-all-product-images-3
+      description: Shopify Get All Product Images
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-product.deprecated202007getproductsparamproductidimages
+      with:
+        product_id: tools.product_id
+        since_id: tools.since_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-create-new-product-image-3
+      description: Shopify Create A New Product Image
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-product.deprecated202007createproductsparamproductidimages
+      with:
+        product_id: tools.product_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-get-count-all-product-3
+      description: Shopify Get A Count Of All Product Images
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-product.deprecated202007getproductsparamproductidimagescount
+      with:
+        product_id: tools.product_id
+        since_id: tools.since_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-get-single-product-image-3
+      description: Shopify Get A Single Product Image By Id
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-product.deprecated202007getproductsparamproductidimagesparamimageid
+      with:
+        product_id: tools.product_id
+        image_id: tools.image_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-modify-existing-product-image-3
+      description: Shopify Modify An Existing Product Image
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-product.deprecated202007updateproductsparamproductidimagesparamimageid
+      with:
+        product_id: tools.product_id
+        image_id: tools.image_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-adds-product-custom-collection-4
+      description: Shopify Adds A Product To A Custom Collection
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-product.createcollects
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-removes-product-collection-4
+      description: Shopify Removes A Product From A Collection
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-product.deletecollectsparamcollectid
+      with:
+        collect_id: tools.collect_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-metafields-that-4
+      description: Shopify Retrieves A List Of Metafields That Belong To A Product Image Resource
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-product.getmetafields
+      with:
+        metafield[owner_id]: tools.metafield[owner_id]
+        metafield[owner_resource]: tools.metafield[owner_resource]
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-creates-new-product-4
+      description: Shopify Creates A New Product
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-product.createproducts
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-single-product-4
+      description: Shopify Retrieves A Single Product
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-product.getproductsparamproductid
+      with:
+        product_id: tools.product_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-updates-product-and-its-4
+      description: Shopify Updates A Product And Its Variants And Images
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-product.updateproductsparamproductid
+      with:
+        product_id: tools.product_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-deletes-product-4
+      description: Shopify Deletes A Product
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-product.deleteproductsparamproductid
+      with:
+        product_id: tools.product_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-get-all-product-images-4
+      description: Shopify Get All Product Images
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-product.getproductsparamproductidimages
+      with:
+        product_id: tools.product_id
+        since_id: tools.since_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-create-new-product-image-4
+      description: Shopify Create A New Product Image
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-product.createproductsparamproductidimages
+      with:
+        product_id: tools.product_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-get-count-all-product-4
+      description: Shopify Get A Count Of All Product Images
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-product.getproductsparamproductidimagescount
+      with:
+        product_id: tools.product_id
+        since_id: tools.since_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-get-single-product-image-4
+      description: Shopify Get A Single Product Image By Id
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-product.getproductsparamproductidimagesparamimageid
+      with:
+        product_id: tools.product_id
+        image_id: tools.image_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-modify-existing-product-image-4
+      description: Shopify Modify An Existing Product Image
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-product.updateproductsparamproductidimagesparamimageid
+      with:
+        product_id: tools.product_id
+        image_id: tools.image_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-adds-product-custom-collection-5
+      description: Shopify Adds A Product To A Custom Collection
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-product.deprecated202101createcollects
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-removes-product-collection-5
+      description: Shopify Removes A Product From A Collection
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-product.deprecated202101deletecollectsparamcollectid
+      with:
+        collect_id: tools.collect_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-metafields-that-5
+      description: Shopify Retrieves A List Of Metafields That Belong To A Product Image Resource
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-product.deprecated202101getmetafields
+      with:
+        metafield[owner_id]: tools.metafield[owner_id]
+        metafield[owner_resource]: tools.metafield[owner_resource]
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-creates-new-product-5
+      description: Shopify Creates A New Product
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-product.deprecated202101createproducts
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-single-product-5
+      description: Shopify Retrieves A Single Product
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-product.deprecated202101getproductsparamproductid
+      with:
+        product_id: tools.product_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-updates-product-and-its-5
+      description: Shopify Updates A Product And Its Variants And Images
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-product.deprecated202101updateproductsparamproductid
+      with:
+        product_id: tools.product_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-deletes-product-5
+      description: Shopify Deletes A Product
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-product.deprecated202101deleteproductsparamproductid
+      with:
+        product_id: tools.product_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-get-all-product-images-5
+      description: Shopify Get All Product Images
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-product.deprecated202101getproductsparamproductidimages
+      with:
+        product_id: tools.product_id
+        since_id: tools.since_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-create-new-product-image-5
+      description: Shopify Create A New Product Image
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-product.deprecated202101createproductsparamproductidimages
+      with:
+        product_id: tools.product_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-get-count-all-product-5
+      description: Shopify Get A Count Of All Product Images
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-product.deprecated202101getproductsparamproductidimagescount
+      with:
+        product_id: tools.product_id
+        since_id: tools.since_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-get-single-product-image-5
+      description: Shopify Get A Single Product Image By Id
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-product.deprecated202101getproductsparamproductidimagesparamimageid
+      with:
+        product_id: tools.product_id
+        image_id: tools.image_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-modify-existing-product-image-5
+      description: Shopify Modify An Existing Product Image
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-product.deprecated202101updateproductsparamproductidimagesparamimageid
+      with:
+        product_id: tools.product_id
+        image_id: tools.image_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-adds-product-custom-collection-6
+      description: Shopify Adds A Product To A Custom Collection
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-product.deprecatedunstablecreatecollects
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-removes-product-collection-6
+      description: Shopify Removes A Product From A Collection
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-product.deprecatedunstabledeletecollectsparamcollectid
+      with:
+        collect_id: tools.collect_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-metafields-that-6
+      description: Shopify Retrieves A List Of Metafields That Belong To A Product Image Resource
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-product.deprecatedunstablegetmetafields
+      with:
+        metafield[owner_id]: tools.metafield[owner_id]
+        metafield[owner_resource]: tools.metafield[owner_resource]
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-creates-new-product-6
+      description: Shopify Creates A New Product
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-product.deprecatedunstablecreateproducts
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-single-product-6
+      description: Shopify Retrieves A Single Product
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-product.deprecatedunstablegetproductsparamproductid
+      with:
+        product_id: tools.product_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-updates-product-and-its-6
+      description: Shopify Updates A Product And Its Variants And Images
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-product.deprecatedunstableupdateproductsparamproductid
+      with:
+        product_id: tools.product_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-deletes-product-6
+      description: Shopify Deletes A Product
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-product.deprecatedunstabledeleteproductsparamproductid
+      with:
+        product_id: tools.product_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-get-all-product-images-6
+      description: Shopify Get All Product Images
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-product.deprecatedunstablegetproductsparamproductidimages
+      with:
+        product_id: tools.product_id
+        since_id: tools.since_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-create-new-product-image-6
+      description: Shopify Create A New Product Image
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-product.deprecatedunstablecreateproductsparamproductidimages
+      with:
+        product_id: tools.product_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-get-count-all-product-6
+      description: Shopify Get A Count Of All Product Images
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-product.deprecatedunstablegetproductsparamproductidimagescount
+      with:
+        product_id: tools.product_id
+        since_id: tools.since_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-get-single-product-image-6
+      description: Shopify Get A Single Product Image By Id
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-product.deprecatedunstablegetproductsparamproductidimagesparamimageid
+      with:
+        product_id: tools.product_id
+        image_id: tools.image_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-modify-existing-product-image-6
+      description: Shopify Modify An Existing Product Image
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-product.deprecatedunstableupdateproductsparamproductidimagesparamimageid
+      with:
+        product_id: tools.product_id
+        image_id: tools.image_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,2357 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Shopify  API — Events
+  description: 'Shopify  API — Events. 42 operations. Lead operation: Shopify Retrieves A List Of Events. Self-contained Naftiko
+    capability covering one Shopify business surface.'
+  tags:
+  - Shopify
+  - Events
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SHOPIFY_API_KEY: SHOPIFY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: shopify-events
+    baseUri: ''
+    description: Shopify  API — Events business capability. Self-contained, no shared references.
+    resources:
+    - name: admin-api-2020-01-events.json
+      path: /admin/api/2020-01/events.json
+      operations:
+      - name: deprecated202001getevents
+        method: GET
+        description: Shopify Retrieves A List Of Events
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: string
+          description: The number of results to show.
+        - name: since_id
+          in: query
+          type: string
+          description: Show only results after the specified ID.
+        - name: created_at_min
+          in: query
+          type: string
+          description: 'Show events created at or after this date and time. (format: 2014-04-25T16:15:47-04:00)'
+        - name: created_at_max
+          in: query
+          type: string
+          description: 'Show events created at or before this date and time. (format: 2014-04-25T16:15:47-04:00)'
+        - name: filter
+          in: query
+          type: string
+          description: Show events specified in this filter.
+        - name: verb
+          in: query
+          type: string
+          description: Show events of a certain type.
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+    - name: admin-api-2020-01-events-count.json
+      path: /admin/api/2020-01/events/count.json
+      operations:
+      - name: deprecated202001geteventscount
+        method: GET
+        description: Shopify Retrieves A Count Of Events
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: created_at_min
+          in: query
+          type: string
+          description: 'Count only events created at or after this date and time. (format: 2014-04-25T16:15:47-04:00)'
+        - name: created_at_max
+          in: query
+          type: string
+          description: 'Count only events created at or before this date and time. (format: 2014-04-25T16:15:47-04:00)'
+    - name: admin-api-2020-01-events-event_id}.json
+      path: /admin/api/2020-01/events/{event_id}.json
+      operations:
+      - name: deprecated202001geteventsparameventid
+        method: GET
+        description: Shopify Retrieves A Single Event By Its Id
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: event_id
+          in: path
+          type: string
+          description: event_id
+          required: true
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+    - name: admin-api-2020-01-orders-order_id-fulfillments-fulfillment_id-events.json
+      path: /admin/api/2020-01/orders/{order_id}/fulfillments/{fulfillment_id}/events.json
+      operations:
+      - name: deprecated202001getordersparamorderidfulfillmentsparamfulfillmentidevents
+        method: GET
+        description: Shopify Retrieves A List Of Fulfillment Events For A Specific Fulfillment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: order_id
+          in: path
+          type: string
+          description: order_id
+          required: true
+        - name: fulfillment_id
+          in: path
+          type: string
+          description: fulfillment_id
+          required: true
+        - name: fulfillment_id
+          in: query
+          type: string
+          description: The ID of the fulfillment that's associated with the fulfillment event.
+        - name: order_id
+          in: query
+          type: string
+          description: The ID of the order that's associated with the fulfillment event.
+      - name: deprecated202001createordersparamorderidfulfillmentsparamfulfillmentidevents
+        method: POST
+        description: Shopify Creates A Fulfillment Event
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: order_id
+          in: path
+          type: string
+          description: order_id
+          required: true
+        - name: fulfillment_id
+          in: path
+          type: string
+          description: fulfillment_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-01-orders-order_id-fulfillments-fulfillment_id-events-event_id}.j
+      path: /admin/api/2020-01/orders/{order_id}/fulfillments/{fulfillment_id}/events/{event_id}.json
+      operations:
+      - name: deprecated202001getordersparamorderidfulfillmentsparamfulfillmentideventsparameventid
+        method: GET
+        description: Shopify Retrieves A Specific Fulfillment Event
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: order_id
+          in: path
+          type: string
+          description: order_id
+          required: true
+        - name: fulfillment_id
+          in: path
+          type: string
+          description: fulfillment_id
+          required: true
+        - name: event_id
+          in: path
+          type: string
+          description: event_id
+          required: true
+        - name: event_id
+          in: query
+          type: string
+          description: The ID of the fulfillment event.
+      - name: deprecated202001deleteordersparamorderidfulfillmentsparamfulfillmentideventsparameventid
+        method: DELETE
+        description: Shopify Deletes A Fulfillment Event
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: order_id
+          in: path
+          type: string
+          description: order_id
+          required: true
+        - name: fulfillment_id
+          in: path
+          type: string
+          description: fulfillment_id
+          required: true
+        - name: event_id
+          in: path
+          type: string
+          description: event_id
+          required: true
+    - name: admin-api-2020-04-events.json
+      path: /admin/api/2020-04/events.json
+      operations:
+      - name: deprecated202004getevents
+        method: GET
+        description: Shopify Retrieves A List Of Events
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: string
+          description: The number of results to show.
+        - name: since_id
+          in: query
+          type: string
+          description: Show only results after the specified ID.
+        - name: created_at_min
+          in: query
+          type: string
+          description: 'Show events created at or after this date and time. (format: 2014-04-25T16:15:47-04:00)'
+        - name: created_at_max
+          in: query
+          type: string
+          description: 'Show events created at or before this date and time. (format: 2014-04-25T16:15:47-04:00)'
+        - name: filter
+          in: query
+          type: string
+          description: Show events specified in this filter.
+        - name: verb
+          in: query
+          type: string
+          description: Show events of a certain type.
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+    - name: admin-api-2020-04-events-count.json
+      path: /admin/api/2020-04/events/count.json
+      operations:
+      - name: deprecated202004geteventscount
+        method: GET
+        description: Shopify Retrieves A Count Of Events
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: created_at_min
+          in: query
+          type: string
+          description: 'Count only events created at or after this date and time. (format: 2014-04-25T16:15:47-04:00)'
+        - name: created_at_max
+          in: query
+          type: string
+          description: 'Count only events created at or before this date and time. (format: 2014-04-25T16:15:47-04:00)'
+    - name: admin-api-2020-04-events-event_id}.json
+      path: /admin/api/2020-04/events/{event_id}.json
+      operations:
+      - name: deprecated202004geteventsparameventid
+        method: GET
+        description: Shopify Retrieves A Single Event By Its Id
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: event_id
+          in: path
+          type: string
+          description: event_id
+          required: true
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+    - name: admin-api-2020-04-orders-order_id-fulfillments-fulfillment_id-events.json
+      path: /admin/api/2020-04/orders/{order_id}/fulfillments/{fulfillment_id}/events.json
+      operations:
+      - name: deprecated202004getordersparamorderidfulfillmentsparamfulfillmentidevents
+        method: GET
+        description: Shopify Retrieves A List Of Fulfillment Events For A Specific Fulfillment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: order_id
+          in: path
+          type: string
+          description: order_id
+          required: true
+        - name: fulfillment_id
+          in: path
+          type: string
+          description: fulfillment_id
+          required: true
+        - name: fulfillment_id
+          in: query
+          type: string
+          description: The ID of the fulfillment that's associated with the fulfillment event.
+        - name: order_id
+          in: query
+          type: string
+          description: The ID of the order that's associated with the fulfillment event.
+      - name: deprecated202004createordersparamorderidfulfillmentsparamfulfillmentidevents
+        method: POST
+        description: Shopify Creates A Fulfillment Event
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: order_id
+          in: path
+          type: string
+          description: order_id
+          required: true
+        - name: fulfillment_id
+          in: path
+          type: string
+          description: fulfillment_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-04-orders-order_id-fulfillments-fulfillment_id-events-event_id}.j
+      path: /admin/api/2020-04/orders/{order_id}/fulfillments/{fulfillment_id}/events/{event_id}.json
+      operations:
+      - name: deprecated202004getordersparamorderidfulfillmentsparamfulfillmentideventsparameventid
+        method: GET
+        description: Shopify Retrieves A Specific Fulfillment Event
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: order_id
+          in: path
+          type: string
+          description: order_id
+          required: true
+        - name: fulfillment_id
+          in: path
+          type: string
+          description: fulfillment_id
+          required: true
+        - name: event_id
+          in: path
+          type: string
+          description: event_id
+          required: true
+        - name: event_id
+          in: query
+          type: string
+          description: The ID of the fulfillment event.
+      - name: deprecated202004deleteordersparamorderidfulfillmentsparamfulfillmentideventsparameventid
+        method: DELETE
+        description: Shopify Deletes A Fulfillment Event
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: order_id
+          in: path
+          type: string
+          description: order_id
+          required: true
+        - name: fulfillment_id
+          in: path
+          type: string
+          description: fulfillment_id
+          required: true
+        - name: event_id
+          in: path
+          type: string
+          description: event_id
+          required: true
+    - name: admin-api-2020-07-events.json
+      path: /admin/api/2020-07/events.json
+      operations:
+      - name: deprecated202007getevents
+        method: GET
+        description: Shopify Retrieves A List Of Events
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: string
+          description: The number of results to show.
+        - name: since_id
+          in: query
+          type: string
+          description: Show only results after the specified ID.
+        - name: created_at_min
+          in: query
+          type: string
+          description: 'Show events created at or after this date and time. (format: 2014-04-25T16:15:47-04:00)'
+        - name: created_at_max
+          in: query
+          type: string
+          description: 'Show events created at or before this date and time. (format: 2014-04-25T16:15:47-04:00)'
+        - name: filter
+          in: query
+          type: string
+          description: Show events specified in this filter.
+        - name: verb
+          in: query
+          type: string
+          description: Show events of a certain type.
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+    - name: admin-api-2020-07-events-count.json
+      path: /admin/api/2020-07/events/count.json
+      operations:
+      - name: deprecated202007geteventscount
+        method: GET
+        description: Shopify Retrieves A Count Of Events
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: created_at_min
+          in: query
+          type: string
+          description: 'Count only events created at or after this date and time. (format: 2014-04-25T16:15:47-04:00)'
+        - name: created_at_max
+          in: query
+          type: string
+          description: 'Count only events created at or before this date and time. (format: 2014-04-25T16:15:47-04:00)'
+    - name: admin-api-2020-07-events-event_id}.json
+      path: /admin/api/2020-07/events/{event_id}.json
+      operations:
+      - name: deprecated202007geteventsparameventid
+        method: GET
+        description: Shopify Retrieves A Single Event By Its Id
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: event_id
+          in: path
+          type: string
+          description: event_id
+          required: true
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+    - name: admin-api-2020-07-orders-order_id-fulfillments-fulfillment_id-events.json
+      path: /admin/api/2020-07/orders/{order_id}/fulfillments/{fulfillment_id}/events.json
+      operations:
+      - name: deprecated202007getordersparamorderidfulfillmentsparamfulfillmentidevents
+        method: GET
+        description: Shopify Retrieves A List Of Fulfillment Events For A Specific Fulfillment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: order_id
+          in: path
+          type: string
+          description: order_id
+          required: true
+        - name: fulfillment_id
+          in: path
+          type: string
+          description: fulfillment_id
+          required: true
+        - name: fulfillment_id
+          in: query
+          type: string
+          description: The ID of the fulfillment that's associated with the fulfillment event.
+        - name: order_id
+          in: query
+          type: string
+          description: The ID of the order that's associated with the fulfillment event.
+      - name: deprecated202007createordersparamorderidfulfillmentsparamfulfillmentidevents
+        method: POST
+        description: Shopify Creates A Fulfillment Event
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: order_id
+          in: path
+          type: string
+          description: order_id
+          required: true
+        - name: fulfillment_id
+          in: path
+          type: string
+          description: fulfillment_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-07-orders-order_id-fulfillments-fulfillment_id-events-event_id}.j
+      path: /admin/api/2020-07/orders/{order_id}/fulfillments/{fulfillment_id}/events/{event_id}.json
+      operations:
+      - name: deprecated202007getordersparamorderidfulfillmentsparamfulfillmentideventsparameventid
+        method: GET
+        description: Shopify Retrieves A Specific Fulfillment Event
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: order_id
+          in: path
+          type: string
+          description: order_id
+          required: true
+        - name: fulfillment_id
+          in: path
+          type: string
+          description: fulfillment_id
+          required: true
+        - name: event_id
+          in: path
+          type: string
+          description: event_id
+          required: true
+        - name: event_id
+          in: query
+          type: string
+          description: The ID of the fulfillment event.
+      - name: deprecated202007deleteordersparamorderidfulfillmentsparamfulfillmentideventsparameventid
+        method: DELETE
+        description: Shopify Deletes A Fulfillment Event
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: order_id
+          in: path
+          type: string
+          description: order_id
+          required: true
+        - name: fulfillment_id
+          in: path
+          type: string
+          description: fulfillment_id
+          required: true
+        - name: event_id
+          in: path
+          type: string
+          description: event_id
+          required: true
+    - name: admin-api-2020-10-events.json
+      path: /admin/api/2020-10/events.json
+      operations:
+      - name: getevents
+        method: GET
+        description: Shopify Retrieves A List Of Events
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: string
+          description: The number of results to show.
+        - name: since_id
+          in: query
+          type: string
+          description: Show only results after the specified ID.
+        - name: created_at_min
+          in: query
+          type: string
+          description: 'Show events created at or after this date and time. (format: 2014-04-25T16:15:47-04:00)'
+        - name: created_at_max
+          in: query
+          type: string
+          description: 'Show events created at or before this date and time. (format: 2014-04-25T16:15:47-04:00)'
+        - name: filter
+          in: query
+          type: string
+          description: Show events specified in this filter.
+        - name: verb
+          in: query
+          type: string
+          description: Show events of a certain type.
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+    - name: admin-api-2020-10-events-count.json
+      path: /admin/api/2020-10/events/count.json
+      operations:
+      - name: geteventscount
+        method: GET
+        description: Shopify Retrieves A Count Of Events
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: created_at_min
+          in: query
+          type: string
+          description: 'Count only events created at or after this date and time. (format: 2014-04-25T16:15:47-04:00)'
+        - name: created_at_max
+          in: query
+          type: string
+          description: 'Count only events created at or before this date and time. (format: 2014-04-25T16:15:47-04:00)'
+    - name: admin-api-2020-10-events-event_id}.json
+      path: /admin/api/2020-10/events/{event_id}.json
+      operations:
+      - name: geteventsparameventid
+        method: GET
+        description: Shopify Retrieves A Single Event By Its Id
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: event_id
+          in: path
+          type: string
+          description: event_id
+          required: true
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+    - name: admin-api-2020-10-orders-order_id-fulfillments-fulfillment_id-events.json
+      path: /admin/api/2020-10/orders/{order_id}/fulfillments/{fulfillment_id}/events.json
+      operations:
+      - name: getordersparamorderidfulfillmentsparamfulfillmentidevents
+        method: GET
+        description: Shopify Retrieves A List Of Fulfillment Events For A Specific Fulfillment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: order_id
+          in: path
+          type: string
+          description: order_id
+          required: true
+        - name: fulfillment_id
+          in: path
+          type: string
+          description: fulfillment_id
+          required: true
+        - name: fulfillment_id
+          in: query
+          type: string
+          description: The ID of the fulfillment that's associated with the fulfillment event.
+        - name: order_id
+          in: query
+          type: string
+          description: The ID of the order that's associated with the fulfillment event.
+      - name: createordersparamorderidfulfillmentsparamfulfillmentidevents
+        method: POST
+        description: Shopify Creates A Fulfillment Event
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: order_id
+          in: path
+          type: string
+          description: order_id
+          required: true
+        - name: fulfillment_id
+          in: path
+          type: string
+          description: fulfillment_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-10-orders-order_id-fulfillments-fulfillment_id-events-event_id}.j
+      path: /admin/api/2020-10/orders/{order_id}/fulfillments/{fulfillment_id}/events/{event_id}.json
+      operations:
+      - name: getordersparamorderidfulfillmentsparamfulfillmentideventsparameventid
+        method: GET
+        description: Shopify Retrieves A Specific Fulfillment Event
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: order_id
+          in: path
+          type: string
+          description: order_id
+          required: true
+        - name: fulfillment_id
+          in: path
+          type: string
+          description: fulfillment_id
+          required: true
+        - name: event_id
+          in: path
+          type: string
+          description: event_id
+          required: true
+        - name: event_id
+          in: query
+          type: string
+          description: The ID of the fulfillment event.
+      - name: deleteordersparamorderidfulfillmentsparamfulfillmentideventsparameventid
+        method: DELETE
+        description: Shopify Deletes A Fulfillment Event
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: order_id
+          in: path
+          type: string
+          description: order_id
+          required: true
+        - name: fulfillment_id
+          in: path
+          type: string
+          description: fulfillment_id
+          required: true
+        - name: event_id
+          in: path
+          type: string
+          description: event_id
+          required: true
+    - name: admin-api-2021-01-events.json
+      path: /admin/api/2021-01/events.json
+      operations:
+      - name: deprecated202101getevents
+        method: GET
+        description: Shopify Retrieves A List Of Events
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: string
+          description: The number of results to show.
+        - name: since_id
+          in: query
+          type: string
+          description: Show only results after the specified ID.
+        - name: created_at_min
+          in: query
+          type: string
+          description: 'Show events created at or after this date and time. (format: 2014-04-25T16:15:47-04:00)'
+        - name: created_at_max
+          in: query
+          type: string
+          description: 'Show events created at or before this date and time. (format: 2014-04-25T16:15:47-04:00)'
+        - name: filter
+          in: query
+          type: string
+          description: Show events specified in this filter.
+        - name: verb
+          in: query
+          type: string
+          description: Show events of a certain type.
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+    - name: admin-api-2021-01-events-count.json
+      path: /admin/api/2021-01/events/count.json
+      operations:
+      - name: deprecated202101geteventscount
+        method: GET
+        description: Shopify Retrieves A Count Of Events
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: created_at_min
+          in: query
+          type: string
+          description: 'Count only events created at or after this date and time. (format: 2014-04-25T16:15:47-04:00)'
+        - name: created_at_max
+          in: query
+          type: string
+          description: 'Count only events created at or before this date and time. (format: 2014-04-25T16:15:47-04:00)'
+    - name: admin-api-2021-01-events-event_id}.json
+      path: /admin/api/2021-01/events/{event_id}.json
+      operations:
+      - name: deprecated202101geteventsparameventid
+        method: GET
+        description: Shopify Retrieves A Single Event By Its Id
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: event_id
+          in: path
+          type: string
+          description: event_id
+          required: true
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+    - name: admin-api-2021-01-orders-order_id-fulfillments-fulfillment_id-events.json
+      path: /admin/api/2021-01/orders/{order_id}/fulfillments/{fulfillment_id}/events.json
+      operations:
+      - name: deprecated202101getordersparamorderidfulfillmentsparamfulfillmentidevents
+        method: GET
+        description: Shopify Retrieves A List Of Fulfillment Events For A Specific Fulfillment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: order_id
+          in: path
+          type: string
+          description: order_id
+          required: true
+        - name: fulfillment_id
+          in: path
+          type: string
+          description: fulfillment_id
+          required: true
+        - name: fulfillment_id
+          in: query
+          type: string
+          description: The ID of the fulfillment that's associated with the fulfillment event.
+        - name: order_id
+          in: query
+          type: string
+          description: The ID of the order that's associated with the fulfillment event.
+      - name: deprecated202101createordersparamorderidfulfillmentsparamfulfillmentidevents
+        method: POST
+        description: Shopify Creates A Fulfillment Event
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: order_id
+          in: path
+          type: string
+          description: order_id
+          required: true
+        - name: fulfillment_id
+          in: path
+          type: string
+          description: fulfillment_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2021-01-orders-order_id-fulfillments-fulfillment_id-events-event_id}.j
+      path: /admin/api/2021-01/orders/{order_id}/fulfillments/{fulfillment_id}/events/{event_id}.json
+      operations:
+      - name: deprecated202101getordersparamorderidfulfillmentsparamfulfillmentideventsparameventid
+        method: GET
+        description: Shopify Retrieves A Specific Fulfillment Event
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: order_id
+          in: path
+          type: string
+          description: order_id
+          required: true
+        - name: fulfillment_id
+          in: path
+          type: string
+          description: fulfillment_id
+          required: true
+        - name: event_id
+          in: path
+          type: string
+          description: event_id
+          required: true
+        - name: event_id
+          in: query
+          type: string
+          description: The ID of the fulfillment event.
+      - name: deprecated202101deleteordersparamorderidfulfillmentsparamfulfillmentideventsparameventid
+        method: DELETE
+        description: Shopify Deletes A Fulfillment Event
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: order_id
+          in: path
+          type: string
+          description: order_id
+          required: true
+        - name: fulfillment_id
+          in: path
+          type: string
+          description: fulfillment_id
+          required: true
+        - name: event_id
+          in: path
+          type: string
+          description: event_id
+          required: true
+    - name: admin-api-unstable-events.json
+      path: /admin/api/unstable/events.json
+      operations:
+      - name: deprecatedunstablegetevents
+        method: GET
+        description: Shopify Retrieves A List Of Events
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: string
+          description: The number of results to show.
+        - name: since_id
+          in: query
+          type: string
+          description: Show only results after the specified ID.
+        - name: created_at_min
+          in: query
+          type: string
+          description: 'Show events created at or after this date and time. (format: 2014-04-25T16:15:47-04:00)'
+        - name: created_at_max
+          in: query
+          type: string
+          description: 'Show events created at or before this date and time. (format: 2014-04-25T16:15:47-04:00)'
+        - name: filter
+          in: query
+          type: string
+          description: Show events specified in this filter.
+        - name: verb
+          in: query
+          type: string
+          description: Show events of a certain type.
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+    - name: admin-api-unstable-events-count.json
+      path: /admin/api/unstable/events/count.json
+      operations:
+      - name: deprecatedunstablegeteventscount
+        method: GET
+        description: Shopify Retrieves A Count Of Events
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: created_at_min
+          in: query
+          type: string
+          description: 'Count only events created at or after this date and time. (format: 2014-04-25T16:15:47-04:00)'
+        - name: created_at_max
+          in: query
+          type: string
+          description: 'Count only events created at or before this date and time. (format: 2014-04-25T16:15:47-04:00)'
+    - name: admin-api-unstable-events-event_id}.json
+      path: /admin/api/unstable/events/{event_id}.json
+      operations:
+      - name: deprecatedunstablegeteventsparameventid
+        method: GET
+        description: Shopify Retrieves A Single Event By Its Id
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: event_id
+          in: path
+          type: string
+          description: event_id
+          required: true
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+    - name: admin-api-unstable-orders-order_id-fulfillments-fulfillment_id-events.json
+      path: /admin/api/unstable/orders/{order_id}/fulfillments/{fulfillment_id}/events.json
+      operations:
+      - name: deprecatedunstablegetordersparamorderidfulfillmentsparamfulfillmentidevents
+        method: GET
+        description: Shopify Retrieves A List Of Fulfillment Events For A Specific Fulfillment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: order_id
+          in: path
+          type: string
+          description: order_id
+          required: true
+        - name: fulfillment_id
+          in: path
+          type: string
+          description: fulfillment_id
+          required: true
+        - name: fulfillment_id
+          in: query
+          type: string
+          description: The ID of the fulfillment that's associated with the fulfillment event.
+        - name: order_id
+          in: query
+          type: string
+          description: The ID of the order that's associated with the fulfillment event.
+      - name: deprecatedunstablecreateordersparamorderidfulfillmentsparamfulfillmentidevents
+        method: POST
+        description: Shopify Creates A Fulfillment Event
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: order_id
+          in: path
+          type: string
+          description: order_id
+          required: true
+        - name: fulfillment_id
+          in: path
+          type: string
+          description: fulfillment_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-unstable-orders-order_id-fulfillments-fulfillment_id-events-event_id}.
+      path: /admin/api/unstable/orders/{order_id}/fulfillments/{fulfillment_id}/events/{event_id}.json
+      operations:
+      - name: deprecatedunstablegetordersparamorderidfulfillmentsparamfulfillmentideventsparameventid
+        method: GET
+        description: Shopify Retrieves A Specific Fulfillment Event
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: order_id
+          in: path
+          type: string
+          description: order_id
+          required: true
+        - name: fulfillment_id
+          in: path
+          type: string
+          description: fulfillment_id
+          required: true
+        - name: event_id
+          in: path
+          type: string
+          description: event_id
+          required: true
+        - name: event_id
+          in: query
+          type: string
+          description: The ID of the fulfillment event.
+      - name: deprecatedunstabledeleteordersparamorderidfulfillmentsparamfulfillmentideventsparameventid
+        method: DELETE
+        description: Shopify Deletes A Fulfillment Event
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: order_id
+          in: path
+          type: string
+          description: order_id
+          required: true
+        - name: fulfillment_id
+          in: path
+          type: string
+          description: fulfillment_id
+          required: true
+        - name: event_id
+          in: path
+          type: string
+          description: event_id
+          required: true
+  exposes:
+  - type: rest
+    namespace: shopify-events-rest
+    port: 8080
+    description: REST adapter for Shopify  API — Events. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/admin/api/2020-01/events-json
+      name: admin-api-2020-01-events-json
+      description: REST surface for admin-api-2020-01-events.json.
+      operations:
+      - method: GET
+        name: deprecated202001getevents
+        description: Shopify Retrieves A List Of Events
+        call: shopify-events.deprecated202001getevents
+        with:
+          limit: rest.limit
+          since_id: rest.since_id
+          created_at_min: rest.created_at_min
+          created_at_max: rest.created_at_max
+          filter: rest.filter
+          verb: rest.verb
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-01/events/count-json
+      name: admin-api-2020-01-events-count-json
+      description: REST surface for admin-api-2020-01-events-count.json.
+      operations:
+      - method: GET
+        name: deprecated202001geteventscount
+        description: Shopify Retrieves A Count Of Events
+        call: shopify-events.deprecated202001geteventscount
+        with:
+          created_at_min: rest.created_at_min
+          created_at_max: rest.created_at_max
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-01/events/event-id-json
+      name: admin-api-2020-01-events-event-id-json
+      description: REST surface for admin-api-2020-01-events-event_id}.json.
+      operations:
+      - method: GET
+        name: deprecated202001geteventsparameventid
+        description: Shopify Retrieves A Single Event By Its Id
+        call: shopify-events.deprecated202001geteventsparameventid
+        with:
+          event_id: rest.event_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-01/orders/{order-id}/fulfillments/{fulfillment-id}/events-json
+      name: admin-api-2020-01-orders-order-id-fulfillments-fulfillment-id-events-json
+      description: REST surface for admin-api-2020-01-orders-order_id-fulfillments-fulfillment_id-events.json.
+      operations:
+      - method: GET
+        name: deprecated202001getordersparamorderidfulfillmentsparamfulfillmentidevents
+        description: Shopify Retrieves A List Of Fulfillment Events For A Specific Fulfillment
+        call: shopify-events.deprecated202001getordersparamorderidfulfillmentsparamfulfillmentidevents
+        with:
+          order_id: rest.order_id
+          fulfillment_id: rest.fulfillment_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: deprecated202001createordersparamorderidfulfillmentsparamfulfillmentidevents
+        description: Shopify Creates A Fulfillment Event
+        call: shopify-events.deprecated202001createordersparamorderidfulfillmentsparamfulfillmentidevents
+        with:
+          order_id: rest.order_id
+          fulfillment_id: rest.fulfillment_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-01/orders/{order-id}/fulfillments/{fulfillment-id}/events/event-id-json
+      name: admin-api-2020-01-orders-order-id-fulfillments-fulfillment-id-events-event-id-j
+      description: REST surface for admin-api-2020-01-orders-order_id-fulfillments-fulfillment_id-events-event_id}.j.
+      operations:
+      - method: GET
+        name: deprecated202001getordersparamorderidfulfillmentsparamfulfillmentideventsparameventid
+        description: Shopify Retrieves A Specific Fulfillment Event
+        call: shopify-events.deprecated202001getordersparamorderidfulfillmentsparamfulfillmentideventsparameventid
+        with:
+          order_id: rest.order_id
+          fulfillment_id: rest.fulfillment_id
+          event_id: rest.event_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deprecated202001deleteordersparamorderidfulfillmentsparamfulfillmentideventsparameventid
+        description: Shopify Deletes A Fulfillment Event
+        call: shopify-events.deprecated202001deleteordersparamorderidfulfillmentsparamfulfillmentideventsparameventid
+        with:
+          order_id: rest.order_id
+          fulfillment_id: rest.fulfillment_id
+          event_id: rest.event_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/events-json
+      name: admin-api-2020-04-events-json
+      description: REST surface for admin-api-2020-04-events.json.
+      operations:
+      - method: GET
+        name: deprecated202004getevents
+        description: Shopify Retrieves A List Of Events
+        call: shopify-events.deprecated202004getevents
+        with:
+          limit: rest.limit
+          since_id: rest.since_id
+          created_at_min: rest.created_at_min
+          created_at_max: rest.created_at_max
+          filter: rest.filter
+          verb: rest.verb
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/events/count-json
+      name: admin-api-2020-04-events-count-json
+      description: REST surface for admin-api-2020-04-events-count.json.
+      operations:
+      - method: GET
+        name: deprecated202004geteventscount
+        description: Shopify Retrieves A Count Of Events
+        call: shopify-events.deprecated202004geteventscount
+        with:
+          created_at_min: rest.created_at_min
+          created_at_max: rest.created_at_max
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/events/event-id-json
+      name: admin-api-2020-04-events-event-id-json
+      description: REST surface for admin-api-2020-04-events-event_id}.json.
+      operations:
+      - method: GET
+        name: deprecated202004geteventsparameventid
+        description: Shopify Retrieves A Single Event By Its Id
+        call: shopify-events.deprecated202004geteventsparameventid
+        with:
+          event_id: rest.event_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/orders/{order-id}/fulfillments/{fulfillment-id}/events-json
+      name: admin-api-2020-04-orders-order-id-fulfillments-fulfillment-id-events-json
+      description: REST surface for admin-api-2020-04-orders-order_id-fulfillments-fulfillment_id-events.json.
+      operations:
+      - method: GET
+        name: deprecated202004getordersparamorderidfulfillmentsparamfulfillmentidevents
+        description: Shopify Retrieves A List Of Fulfillment Events For A Specific Fulfillment
+        call: shopify-events.deprecated202004getordersparamorderidfulfillmentsparamfulfillmentidevents
+        with:
+          order_id: rest.order_id
+          fulfillment_id: rest.fulfillment_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: deprecated202004createordersparamorderidfulfillmentsparamfulfillmentidevents
+        description: Shopify Creates A Fulfillment Event
+        call: shopify-events.deprecated202004createordersparamorderidfulfillmentsparamfulfillmentidevents
+        with:
+          order_id: rest.order_id
+          fulfillment_id: rest.fulfillment_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/orders/{order-id}/fulfillments/{fulfillment-id}/events/event-id-json
+      name: admin-api-2020-04-orders-order-id-fulfillments-fulfillment-id-events-event-id-j
+      description: REST surface for admin-api-2020-04-orders-order_id-fulfillments-fulfillment_id-events-event_id}.j.
+      operations:
+      - method: GET
+        name: deprecated202004getordersparamorderidfulfillmentsparamfulfillmentideventsparameventid
+        description: Shopify Retrieves A Specific Fulfillment Event
+        call: shopify-events.deprecated202004getordersparamorderidfulfillmentsparamfulfillmentideventsparameventid
+        with:
+          order_id: rest.order_id
+          fulfillment_id: rest.fulfillment_id
+          event_id: rest.event_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deprecated202004deleteordersparamorderidfulfillmentsparamfulfillmentideventsparameventid
+        description: Shopify Deletes A Fulfillment Event
+        call: shopify-events.deprecated202004deleteordersparamorderidfulfillmentsparamfulfillmentideventsparameventid
+        with:
+          order_id: rest.order_id
+          fulfillment_id: rest.fulfillment_id
+          event_id: rest.event_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/events-json
+      name: admin-api-2020-07-events-json
+      description: REST surface for admin-api-2020-07-events.json.
+      operations:
+      - method: GET
+        name: deprecated202007getevents
+        description: Shopify Retrieves A List Of Events
+        call: shopify-events.deprecated202007getevents
+        with:
+          limit: rest.limit
+          since_id: rest.since_id
+          created_at_min: rest.created_at_min
+          created_at_max: rest.created_at_max
+          filter: rest.filter
+          verb: rest.verb
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/events/count-json
+      name: admin-api-2020-07-events-count-json
+      description: REST surface for admin-api-2020-07-events-count.json.
+      operations:
+      - method: GET
+        name: deprecated202007geteventscount
+        description: Shopify Retrieves A Count Of Events
+        call: shopify-events.deprecated202007geteventscount
+        with:
+          created_at_min: rest.created_at_min
+          created_at_max: rest.created_at_max
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/events/event-id-json
+      name: admin-api-2020-07-events-event-id-json
+      description: REST surface for admin-api-2020-07-events-event_id}.json.
+      operations:
+      - method: GET
+        name: deprecated202007geteventsparameventid
+        description: Shopify Retrieves A Single Event By Its Id
+        call: shopify-events.deprecated202007geteventsparameventid
+        with:
+          event_id: rest.event_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/orders/{order-id}/fulfillments/{fulfillment-id}/events-json
+      name: admin-api-2020-07-orders-order-id-fulfillments-fulfillment-id-events-json
+      description: REST surface for admin-api-2020-07-orders-order_id-fulfillments-fulfillment_id-events.json.
+      operations:
+      - method: GET
+        name: deprecated202007getordersparamorderidfulfillmentsparamfulfillmentidevents
+        description: Shopify Retrieves A List Of Fulfillment Events For A Specific Fulfillment
+        call: shopify-events.deprecated202007getordersparamorderidfulfillmentsparamfulfillmentidevents
+        with:
+          order_id: rest.order_id
+          fulfillment_id: rest.fulfillment_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: deprecated202007createordersparamorderidfulfillmentsparamfulfillmentidevents
+        description: Shopify Creates A Fulfillment Event
+        call: shopify-events.deprecated202007createordersparamorderidfulfillmentsparamfulfillmentidevents
+        with:
+          order_id: rest.order_id
+          fulfillment_id: rest.fulfillment_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/orders/{order-id}/fulfillments/{fulfillment-id}/events/event-id-json
+      name: admin-api-2020-07-orders-order-id-fulfillments-fulfillment-id-events-event-id-j
+      description: REST surface for admin-api-2020-07-orders-order_id-fulfillments-fulfillment_id-events-event_id}.j.
+      operations:
+      - method: GET
+        name: deprecated202007getordersparamorderidfulfillmentsparamfulfillmentideventsparameventid
+        description: Shopify Retrieves A Specific Fulfillment Event
+        call: shopify-events.deprecated202007getordersparamorderidfulfillmentsparamfulfillmentideventsparameventid
+        with:
+          order_id: rest.order_id
+          fulfillment_id: rest.fulfillment_id
+          event_id: rest.event_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deprecated202007deleteordersparamorderidfulfillmentsparamfulfillmentideventsparameventid
+        description: Shopify Deletes A Fulfillment Event
+        call: shopify-events.deprecated202007deleteordersparamorderidfulfillmentsparamfulfillmentideventsparameventid
+        with:
+          order_id: rest.order_id
+          fulfillment_id: rest.fulfillment_id
+          event_id: rest.event_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/events-json
+      name: admin-api-2020-10-events-json
+      description: REST surface for admin-api-2020-10-events.json.
+      operations:
+      - method: GET
+        name: getevents
+        description: Shopify Retrieves A List Of Events
+        call: shopify-events.getevents
+        with:
+          limit: rest.limit
+          since_id: rest.since_id
+          created_at_min: rest.created_at_min
+          created_at_max: rest.created_at_max
+          filter: rest.filter
+          verb: rest.verb
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/events/count-json
+      name: admin-api-2020-10-events-count-json
+      description: REST surface for admin-api-2020-10-events-count.json.
+      operations:
+      - method: GET
+        name: geteventscount
+        description: Shopify Retrieves A Count Of Events
+        call: shopify-events.geteventscount
+        with:
+          created_at_min: rest.created_at_min
+          created_at_max: rest.created_at_max
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/events/event-id-json
+      name: admin-api-2020-10-events-event-id-json
+      description: REST surface for admin-api-2020-10-events-event_id}.json.
+      operations:
+      - method: GET
+        name: geteventsparameventid
+        description: Shopify Retrieves A Single Event By Its Id
+        call: shopify-events.geteventsparameventid
+        with:
+          event_id: rest.event_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/orders/{order-id}/fulfillments/{fulfillment-id}/events-json
+      name: admin-api-2020-10-orders-order-id-fulfillments-fulfillment-id-events-json
+      description: REST surface for admin-api-2020-10-orders-order_id-fulfillments-fulfillment_id-events.json.
+      operations:
+      - method: GET
+        name: getordersparamorderidfulfillmentsparamfulfillmentidevents
+        description: Shopify Retrieves A List Of Fulfillment Events For A Specific Fulfillment
+        call: shopify-events.getordersparamorderidfulfillmentsparamfulfillmentidevents
+        with:
+          order_id: rest.order_id
+          fulfillment_id: rest.fulfillment_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createordersparamorderidfulfillmentsparamfulfillmentidevents
+        description: Shopify Creates A Fulfillment Event
+        call: shopify-events.createordersparamorderidfulfillmentsparamfulfillmentidevents
+        with:
+          order_id: rest.order_id
+          fulfillment_id: rest.fulfillment_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/orders/{order-id}/fulfillments/{fulfillment-id}/events/event-id-json
+      name: admin-api-2020-10-orders-order-id-fulfillments-fulfillment-id-events-event-id-j
+      description: REST surface for admin-api-2020-10-orders-order_id-fulfillments-fulfillment_id-events-event_id}.j.
+      operations:
+      - method: GET
+        name: getordersparamorderidfulfillmentsparamfulfillmentideventsparameventid
+        description: Shopify Retrieves A Specific Fulfillment Event
+        call: shopify-events.getordersparamorderidfulfillmentsparamfulfillmentideventsparameventid
+        with:
+          order_id: rest.order_id
+          fulfillment_id: rest.fulfillment_id
+          event_id: rest.event_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteordersparamorderidfulfillmentsparamfulfillmentideventsparameventid
+        description: Shopify Deletes A Fulfillment Event
+        call: shopify-events.deleteordersparamorderidfulfillmentsparamfulfillmentideventsparameventid
+        with:
+          order_id: rest.order_id
+          fulfillment_id: rest.fulfillment_id
+          event_id: rest.event_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/events-json
+      name: admin-api-2021-01-events-json
+      description: REST surface for admin-api-2021-01-events.json.
+      operations:
+      - method: GET
+        name: deprecated202101getevents
+        description: Shopify Retrieves A List Of Events
+        call: shopify-events.deprecated202101getevents
+        with:
+          limit: rest.limit
+          since_id: rest.since_id
+          created_at_min: rest.created_at_min
+          created_at_max: rest.created_at_max
+          filter: rest.filter
+          verb: rest.verb
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/events/count-json
+      name: admin-api-2021-01-events-count-json
+      description: REST surface for admin-api-2021-01-events-count.json.
+      operations:
+      - method: GET
+        name: deprecated202101geteventscount
+        description: Shopify Retrieves A Count Of Events
+        call: shopify-events.deprecated202101geteventscount
+        with:
+          created_at_min: rest.created_at_min
+          created_at_max: rest.created_at_max
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/events/event-id-json
+      name: admin-api-2021-01-events-event-id-json
+      description: REST surface for admin-api-2021-01-events-event_id}.json.
+      operations:
+      - method: GET
+        name: deprecated202101geteventsparameventid
+        description: Shopify Retrieves A Single Event By Its Id
+        call: shopify-events.deprecated202101geteventsparameventid
+        with:
+          event_id: rest.event_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/orders/{order-id}/fulfillments/{fulfillment-id}/events-json
+      name: admin-api-2021-01-orders-order-id-fulfillments-fulfillment-id-events-json
+      description: REST surface for admin-api-2021-01-orders-order_id-fulfillments-fulfillment_id-events.json.
+      operations:
+      - method: GET
+        name: deprecated202101getordersparamorderidfulfillmentsparamfulfillmentidevents
+        description: Shopify Retrieves A List Of Fulfillment Events For A Specific Fulfillment
+        call: shopify-events.deprecated202101getordersparamorderidfulfillmentsparamfulfillmentidevents
+        with:
+          order_id: rest.order_id
+          fulfillment_id: rest.fulfillment_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: deprecated202101createordersparamorderidfulfillmentsparamfulfillmentidevents
+        description: Shopify Creates A Fulfillment Event
+        call: shopify-events.deprecated202101createordersparamorderidfulfillmentsparamfulfillmentidevents
+        with:
+          order_id: rest.order_id
+          fulfillment_id: rest.fulfillment_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/orders/{order-id}/fulfillments/{fulfillment-id}/events/event-id-json
+      name: admin-api-2021-01-orders-order-id-fulfillments-fulfillment-id-events-event-id-j
+      description: REST surface for admin-api-2021-01-orders-order_id-fulfillments-fulfillment_id-events-event_id}.j.
+      operations:
+      - method: GET
+        name: deprecated202101getordersparamorderidfulfillmentsparamfulfillmentideventsparameventid
+        description: Shopify Retrieves A Specific Fulfillment Event
+        call: shopify-events.deprecated202101getordersparamorderidfulfillmentsparamfulfillmentideventsparameventid
+        with:
+          order_id: rest.order_id
+          fulfillment_id: rest.fulfillment_id
+          event_id: rest.event_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deprecated202101deleteordersparamorderidfulfillmentsparamfulfillmentideventsparameventid
+        description: Shopify Deletes A Fulfillment Event
+        call: shopify-events.deprecated202101deleteordersparamorderidfulfillmentsparamfulfillmentideventsparameventid
+        with:
+          order_id: rest.order_id
+          fulfillment_id: rest.fulfillment_id
+          event_id: rest.event_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/events-json
+      name: admin-api-unstable-events-json
+      description: REST surface for admin-api-unstable-events.json.
+      operations:
+      - method: GET
+        name: deprecatedunstablegetevents
+        description: Shopify Retrieves A List Of Events
+        call: shopify-events.deprecatedunstablegetevents
+        with:
+          limit: rest.limit
+          since_id: rest.since_id
+          created_at_min: rest.created_at_min
+          created_at_max: rest.created_at_max
+          filter: rest.filter
+          verb: rest.verb
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/events/count-json
+      name: admin-api-unstable-events-count-json
+      description: REST surface for admin-api-unstable-events-count.json.
+      operations:
+      - method: GET
+        name: deprecatedunstablegeteventscount
+        description: Shopify Retrieves A Count Of Events
+        call: shopify-events.deprecatedunstablegeteventscount
+        with:
+          created_at_min: rest.created_at_min
+          created_at_max: rest.created_at_max
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/events/event-id-json
+      name: admin-api-unstable-events-event-id-json
+      description: REST surface for admin-api-unstable-events-event_id}.json.
+      operations:
+      - method: GET
+        name: deprecatedunstablegeteventsparameventid
+        description: Shopify Retrieves A Single Event By Its Id
+        call: shopify-events.deprecatedunstablegeteventsparameventid
+        with:
+          event_id: rest.event_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/orders/{order-id}/fulfillments/{fulfillment-id}/events-json
+      name: admin-api-unstable-orders-order-id-fulfillments-fulfillment-id-events-json
+      description: REST surface for admin-api-unstable-orders-order_id-fulfillments-fulfillment_id-events.json.
+      operations:
+      - method: GET
+        name: deprecatedunstablegetordersparamorderidfulfillmentsparamfulfillmentidevents
+        description: Shopify Retrieves A List Of Fulfillment Events For A Specific Fulfillment
+        call: shopify-events.deprecatedunstablegetordersparamorderidfulfillmentsparamfulfillmentidevents
+        with:
+          order_id: rest.order_id
+          fulfillment_id: rest.fulfillment_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: deprecatedunstablecreateordersparamorderidfulfillmentsparamfulfillmentidevents
+        description: Shopify Creates A Fulfillment Event
+        call: shopify-events.deprecatedunstablecreateordersparamorderidfulfillmentsparamfulfillmentidevents
+        with:
+          order_id: rest.order_id
+          fulfillment_id: rest.fulfillment_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/orders/{order-id}/fulfillments/{fulfillment-id}/events/event-id-json
+      name: admin-api-unstable-orders-order-id-fulfillments-fulfillment-id-events-event-id
+      description: REST surface for admin-api-unstable-orders-order_id-fulfillments-fulfillment_id-events-event_id}..
+      operations:
+      - method: GET
+        name: deprecatedunstablegetordersparamorderidfulfillmentsparamfulfillmentideventsparameventid
+        description: Shopify Retrieves A Specific Fulfillment Event
+        call: shopify-events.deprecatedunstablegetordersparamorderidfulfillmentsparamfulfillmentideventsparameventid
+        with:
+          order_id: rest.order_id
+          fulfillment_id: rest.fulfillment_id
+          event_id: rest.event_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deprecatedunstabledeleteordersparamorderidfulfillmentsparamfulfillmentideventsparameventid
+        description: Shopify Deletes A Fulfillment Event
+        call: shopify-events.deprecatedunstabledeleteordersparamorderidfulfillmentsparamfulfillmentideventsparameventid
+        with:
+          order_id: rest.order_id
+          fulfillment_id: rest.fulfillment_id
+          event_id: rest.event_id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: shopify-events-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Shopify  API — Events. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: shopify-retrieves-list-events
+      description: Shopify Retrieves A List Of Events
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-events.deprecated202001getevents
+      with:
+        limit: tools.limit
+        since_id: tools.since_id
+        created_at_min: tools.created_at_min
+        created_at_max: tools.created_at_max
+        filter: tools.filter
+        verb: tools.verb
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-count-events
+      description: Shopify Retrieves A Count Of Events
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-events.deprecated202001geteventscount
+      with:
+        created_at_min: tools.created_at_min
+        created_at_max: tools.created_at_max
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-single-event-its
+      description: Shopify Retrieves A Single Event By Its Id
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-events.deprecated202001geteventsparameventid
+      with:
+        event_id: tools.event_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-fulfillment-events
+      description: Shopify Retrieves A List Of Fulfillment Events For A Specific Fulfillment
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-events.deprecated202001getordersparamorderidfulfillmentsparamfulfillmentidevents
+      with:
+        order_id: tools.order_id
+        fulfillment_id: tools.fulfillment_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-creates-fulfillment-event
+      description: Shopify Creates A Fulfillment Event
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-events.deprecated202001createordersparamorderidfulfillmentsparamfulfillmentidevents
+      with:
+        order_id: tools.order_id
+        fulfillment_id: tools.fulfillment_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-specific-fulfillment-event
+      description: Shopify Retrieves A Specific Fulfillment Event
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-events.deprecated202001getordersparamorderidfulfillmentsparamfulfillmentideventsparameventid
+      with:
+        order_id: tools.order_id
+        fulfillment_id: tools.fulfillment_id
+        event_id: tools.event_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-deletes-fulfillment-event
+      description: Shopify Deletes A Fulfillment Event
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-events.deprecated202001deleteordersparamorderidfulfillmentsparamfulfillmentideventsparameventid
+      with:
+        order_id: tools.order_id
+        fulfillment_id: tools.fulfillment_id
+        event_id: tools.event_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-events-2
+      description: Shopify Retrieves A List Of Events
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-events.deprecated202004getevents
+      with:
+        limit: tools.limit
+        since_id: tools.since_id
+        created_at_min: tools.created_at_min
+        created_at_max: tools.created_at_max
+        filter: tools.filter
+        verb: tools.verb
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-count-events-2
+      description: Shopify Retrieves A Count Of Events
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-events.deprecated202004geteventscount
+      with:
+        created_at_min: tools.created_at_min
+        created_at_max: tools.created_at_max
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-single-event-its-2
+      description: Shopify Retrieves A Single Event By Its Id
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-events.deprecated202004geteventsparameventid
+      with:
+        event_id: tools.event_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-fulfillment-events-2
+      description: Shopify Retrieves A List Of Fulfillment Events For A Specific Fulfillment
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-events.deprecated202004getordersparamorderidfulfillmentsparamfulfillmentidevents
+      with:
+        order_id: tools.order_id
+        fulfillment_id: tools.fulfillment_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-creates-fulfillment-event-2
+      description: Shopify Creates A Fulfillment Event
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-events.deprecated202004createordersparamorderidfulfillmentsparamfulfillmentidevents
+      with:
+        order_id: tools.order_id
+        fulfillment_id: tools.fulfillment_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-specific-fulfillment-event-2
+      description: Shopify Retrieves A Specific Fulfillment Event
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-events.deprecated202004getordersparamorderidfulfillmentsparamfulfillmentideventsparameventid
+      with:
+        order_id: tools.order_id
+        fulfillment_id: tools.fulfillment_id
+        event_id: tools.event_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-deletes-fulfillment-event-2
+      description: Shopify Deletes A Fulfillment Event
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-events.deprecated202004deleteordersparamorderidfulfillmentsparamfulfillmentideventsparameventid
+      with:
+        order_id: tools.order_id
+        fulfillment_id: tools.fulfillment_id
+        event_id: tools.event_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-events-3
+      description: Shopify Retrieves A List Of Events
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-events.deprecated202007getevents
+      with:
+        limit: tools.limit
+        since_id: tools.since_id
+        created_at_min: tools.created_at_min
+        created_at_max: tools.created_at_max
+        filter: tools.filter
+        verb: tools.verb
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-count-events-3
+      description: Shopify Retrieves A Count Of Events
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-events.deprecated202007geteventscount
+      with:
+        created_at_min: tools.created_at_min
+        created_at_max: tools.created_at_max
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-single-event-its-3
+      description: Shopify Retrieves A Single Event By Its Id
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-events.deprecated202007geteventsparameventid
+      with:
+        event_id: tools.event_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-fulfillment-events-3
+      description: Shopify Retrieves A List Of Fulfillment Events For A Specific Fulfillment
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-events.deprecated202007getordersparamorderidfulfillmentsparamfulfillmentidevents
+      with:
+        order_id: tools.order_id
+        fulfillment_id: tools.fulfillment_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-creates-fulfillment-event-3
+      description: Shopify Creates A Fulfillment Event
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-events.deprecated202007createordersparamorderidfulfillmentsparamfulfillmentidevents
+      with:
+        order_id: tools.order_id
+        fulfillment_id: tools.fulfillment_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-specific-fulfillment-event-3
+      description: Shopify Retrieves A Specific Fulfillment Event
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-events.deprecated202007getordersparamorderidfulfillmentsparamfulfillmentideventsparameventid
+      with:
+        order_id: tools.order_id
+        fulfillment_id: tools.fulfillment_id
+        event_id: tools.event_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-deletes-fulfillment-event-3
+      description: Shopify Deletes A Fulfillment Event
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-events.deprecated202007deleteordersparamorderidfulfillmentsparamfulfillmentideventsparameventid
+      with:
+        order_id: tools.order_id
+        fulfillment_id: tools.fulfillment_id
+        event_id: tools.event_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-events-4
+      description: Shopify Retrieves A List Of Events
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-events.getevents
+      with:
+        limit: tools.limit
+        since_id: tools.since_id
+        created_at_min: tools.created_at_min
+        created_at_max: tools.created_at_max
+        filter: tools.filter
+        verb: tools.verb
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-count-events-4
+      description: Shopify Retrieves A Count Of Events
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-events.geteventscount
+      with:
+        created_at_min: tools.created_at_min
+        created_at_max: tools.created_at_max
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-single-event-its-4
+      description: Shopify Retrieves A Single Event By Its Id
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-events.geteventsparameventid
+      with:
+        event_id: tools.event_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-fulfillment-events-4
+      description: Shopify Retrieves A List Of Fulfillment Events For A Specific Fulfillment
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-events.getordersparamorderidfulfillmentsparamfulfillmentidevents
+      with:
+        order_id: tools.order_id
+        fulfillment_id: tools.fulfillment_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-creates-fulfillment-event-4
+      description: Shopify Creates A Fulfillment Event
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-events.createordersparamorderidfulfillmentsparamfulfillmentidevents
+      with:
+        order_id: tools.order_id
+        fulfillment_id: tools.fulfillment_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-specific-fulfillment-event-4
+      description: Shopify Retrieves A Specific Fulfillment Event
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-events.getordersparamorderidfulfillmentsparamfulfillmentideventsparameventid
+      with:
+        order_id: tools.order_id
+        fulfillment_id: tools.fulfillment_id
+        event_id: tools.event_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-deletes-fulfillment-event-4
+      description: Shopify Deletes A Fulfillment Event
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-events.deleteordersparamorderidfulfillmentsparamfulfillmentideventsparameventid
+      with:
+        order_id: tools.order_id
+        fulfillment_id: tools.fulfillment_id
+        event_id: tools.event_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-events-5
+      description: Shopify Retrieves A List Of Events
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-events.deprecated202101getevents
+      with:
+        limit: tools.limit
+        since_id: tools.since_id
+        created_at_min: tools.created_at_min
+        created_at_max: tools.created_at_max
+        filter: tools.filter
+        verb: tools.verb
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-count-events-5
+      description: Shopify Retrieves A Count Of Events
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-events.deprecated202101geteventscount
+      with:
+        created_at_min: tools.created_at_min
+        created_at_max: tools.created_at_max
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-single-event-its-5
+      description: Shopify Retrieves A Single Event By Its Id
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-events.deprecated202101geteventsparameventid
+      with:
+        event_id: tools.event_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-fulfillment-events-5
+      description: Shopify Retrieves A List Of Fulfillment Events For A Specific Fulfillment
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-events.deprecated202101getordersparamorderidfulfillmentsparamfulfillmentidevents
+      with:
+        order_id: tools.order_id
+        fulfillment_id: tools.fulfillment_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-creates-fulfillment-event-5
+      description: Shopify Creates A Fulfillment Event
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-events.deprecated202101createordersparamorderidfulfillmentsparamfulfillmentidevents
+      with:
+        order_id: tools.order_id
+        fulfillment_id: tools.fulfillment_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-specific-fulfillment-event-5
+      description: Shopify Retrieves A Specific Fulfillment Event
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-events.deprecated202101getordersparamorderidfulfillmentsparamfulfillmentideventsparameventid
+      with:
+        order_id: tools.order_id
+        fulfillment_id: tools.fulfillment_id
+        event_id: tools.event_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-deletes-fulfillment-event-5
+      description: Shopify Deletes A Fulfillment Event
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-events.deprecated202101deleteordersparamorderidfulfillmentsparamfulfillmentideventsparameventid
+      with:
+        order_id: tools.order_id
+        fulfillment_id: tools.fulfillment_id
+        event_id: tools.event_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-events-6
+      description: Shopify Retrieves A List Of Events
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-events.deprecatedunstablegetevents
+      with:
+        limit: tools.limit
+        since_id: tools.since_id
+        created_at_min: tools.created_at_min
+        created_at_max: tools.created_at_max
+        filter: tools.filter
+        verb: tools.verb
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-count-events-6
+      description: Shopify Retrieves A Count Of Events
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-events.deprecatedunstablegeteventscount
+      with:
+        created_at_min: tools.created_at_min
+        created_at_max: tools.created_at_max
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-single-event-its-6
+      description: Shopify Retrieves A Single Event By Its Id
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-events.deprecatedunstablegeteventsparameventid
+      with:
+        event_id: tools.event_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-fulfillment-events-6
+      description: Shopify Retrieves A List Of Fulfillment Events For A Specific Fulfillment
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-events.deprecatedunstablegetordersparamorderidfulfillmentsparamfulfillmentidevents
+      with:
+        order_id: tools.order_id
+        fulfillment_id: tools.fulfillment_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-creates-fulfillment-event-6
+      description: Shopify Creates A Fulfillment Event
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-events.deprecatedunstablecreateordersparamorderidfulfillmentsparamfulfillmentidevents
+      with:
+        order_id: tools.order_id
+        fulfillment_id: tools.fulfillment_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-specific-fulfillment-event-6
+      description: Shopify Retrieves A Specific Fulfillment Event
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-events.deprecatedunstablegetordersparamorderidfulfillmentsparamfulfillmentideventsparameventid
+      with:
+        order_id: tools.order_id
+        fulfillment_id: tools.fulfillment_id
+        event_id: tools.event_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-deletes-fulfillment-event-6
+      description: Shopify Deletes A Fulfillment Event
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-events.deprecatedunstabledeleteordersparamorderidfulfillmentsparamfulfillmentideventsparameventid
+      with:
+        order_id: tools.order_id
+        fulfillment_id: tools.fulfillment_id
+        event_id: tools.event_id
+      outputParameters:
+      - type: object
+        mapping: $.

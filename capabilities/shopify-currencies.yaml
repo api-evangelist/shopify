@@ -1,0 +1,227 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Shopify  API — Currencies
+  description: 'Shopify  API — Currencies. 6 operations. Lead operation: Shopify Retrieves A List Of Currencies Enabled On
+    A Shop. Self-contained Naftiko capability covering one Shopify business surface.'
+  tags:
+  - Shopify
+  - Currencies
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SHOPIFY_API_KEY: SHOPIFY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: shopify-currencies
+    baseUri: ''
+    description: Shopify  API — Currencies business capability. Self-contained, no shared references.
+    resources:
+    - name: admin-api-2020-01-currencies.json
+      path: /admin/api/2020-01/currencies.json
+      operations:
+      - name: deprecated202001getcurrencies
+        method: GET
+        description: Shopify Retrieves A List Of Currencies Enabled On A Shop
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: admin-api-2020-04-currencies.json
+      path: /admin/api/2020-04/currencies.json
+      operations:
+      - name: deprecated202004getcurrencies
+        method: GET
+        description: Shopify Retrieves A List Of Currencies Enabled On A Shop
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: admin-api-2020-07-currencies.json
+      path: /admin/api/2020-07/currencies.json
+      operations:
+      - name: deprecated202007getcurrencies
+        method: GET
+        description: Shopify Retrieves A List Of Currencies Enabled On A Shop
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: admin-api-2020-10-currencies.json
+      path: /admin/api/2020-10/currencies.json
+      operations:
+      - name: getcurrencies
+        method: GET
+        description: Shopify Retrieves A List Of Currencies Enabled On A Shop
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: admin-api-2021-01-currencies.json
+      path: /admin/api/2021-01/currencies.json
+      operations:
+      - name: deprecated202101getcurrencies
+        method: GET
+        description: Shopify Retrieves A List Of Currencies Enabled On A Shop
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: admin-api-unstable-currencies.json
+      path: /admin/api/unstable/currencies.json
+      operations:
+      - name: deprecatedunstablegetcurrencies
+        method: GET
+        description: Shopify Retrieves A List Of Currencies Enabled On A Shop
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    namespace: shopify-currencies-rest
+    port: 8080
+    description: REST adapter for Shopify  API — Currencies. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/admin/api/2020-01/currencies-json
+      name: admin-api-2020-01-currencies-json
+      description: REST surface for admin-api-2020-01-currencies.json.
+      operations:
+      - method: GET
+        name: deprecated202001getcurrencies
+        description: Shopify Retrieves A List Of Currencies Enabled On A Shop
+        call: shopify-currencies.deprecated202001getcurrencies
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/currencies-json
+      name: admin-api-2020-04-currencies-json
+      description: REST surface for admin-api-2020-04-currencies.json.
+      operations:
+      - method: GET
+        name: deprecated202004getcurrencies
+        description: Shopify Retrieves A List Of Currencies Enabled On A Shop
+        call: shopify-currencies.deprecated202004getcurrencies
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/currencies-json
+      name: admin-api-2020-07-currencies-json
+      description: REST surface for admin-api-2020-07-currencies.json.
+      operations:
+      - method: GET
+        name: deprecated202007getcurrencies
+        description: Shopify Retrieves A List Of Currencies Enabled On A Shop
+        call: shopify-currencies.deprecated202007getcurrencies
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/currencies-json
+      name: admin-api-2020-10-currencies-json
+      description: REST surface for admin-api-2020-10-currencies.json.
+      operations:
+      - method: GET
+        name: getcurrencies
+        description: Shopify Retrieves A List Of Currencies Enabled On A Shop
+        call: shopify-currencies.getcurrencies
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/currencies-json
+      name: admin-api-2021-01-currencies-json
+      description: REST surface for admin-api-2021-01-currencies.json.
+      operations:
+      - method: GET
+        name: deprecated202101getcurrencies
+        description: Shopify Retrieves A List Of Currencies Enabled On A Shop
+        call: shopify-currencies.deprecated202101getcurrencies
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/currencies-json
+      name: admin-api-unstable-currencies-json
+      description: REST surface for admin-api-unstable-currencies.json.
+      operations:
+      - method: GET
+        name: deprecatedunstablegetcurrencies
+        description: Shopify Retrieves A List Of Currencies Enabled On A Shop
+        call: shopify-currencies.deprecatedunstablegetcurrencies
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: shopify-currencies-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Shopify  API — Currencies. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: shopify-retrieves-list-currencies-enabled
+      description: Shopify Retrieves A List Of Currencies Enabled On A Shop
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-currencies.deprecated202001getcurrencies
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-currencies-enabled-2
+      description: Shopify Retrieves A List Of Currencies Enabled On A Shop
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-currencies.deprecated202004getcurrencies
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-currencies-enabled-3
+      description: Shopify Retrieves A List Of Currencies Enabled On A Shop
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-currencies.deprecated202007getcurrencies
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-currencies-enabled-4
+      description: Shopify Retrieves A List Of Currencies Enabled On A Shop
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-currencies.getcurrencies
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-currencies-enabled-5
+      description: Shopify Retrieves A List Of Currencies Enabled On A Shop
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-currencies.deprecated202101getcurrencies
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-currencies-enabled-6
+      description: Shopify Retrieves A List Of Currencies Enabled On A Shop
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-currencies.deprecatedunstablegetcurrencies
+      outputParameters:
+      - type: object
+        mapping: $.

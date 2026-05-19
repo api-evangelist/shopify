@@ -1,0 +1,294 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Shopify Admin REST API — Webhooks
+  description: 'Shopify Admin REST API — Webhooks. 6 operations. Lead operation: Shopify Retrieve a list of webhooks. Self-contained
+    Naftiko capability covering one Shopify business surface.'
+  tags:
+  - Shopify
+  - Webhooks
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SHOPIFY_API_KEY: SHOPIFY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: admin-rest-webhooks
+    baseUri: https://{store}.myshopify.com/admin/api/2025-01
+    description: Shopify Admin REST API — Webhooks business capability. Self-contained, no shared references.
+    resources:
+    - name: webhooks.json
+      path: /webhooks.json
+      operations:
+      - name: listwebhooks
+        method: GET
+        description: Shopify Retrieve a list of webhooks
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: topic
+          in: query
+          type: string
+          description: Filter by webhook topic
+        - name: limit
+          in: query
+          type: integer
+          description: Maximum number of results (max 250, default 50)
+        - name: since_id
+          in: query
+          type: integer
+          description: Return webhooks after the specified ID
+        - name: fields
+          in: query
+          type: string
+          description: Comma-separated list of fields to include
+      - name: createwebhook
+        method: POST
+        description: Shopify Create a webhook subscription
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: webhooks-count.json
+      path: /webhooks/count.json
+      operations:
+      - name: getwebhookcount
+        method: GET
+        description: Shopify Retrieve a count of webhooks
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: topic
+          in: query
+          type: string
+          description: Count webhooks for a specific topic
+    - name: webhooks-webhook_id}.json
+      path: /webhooks/{webhook_id}.json
+      operations:
+      - name: getwebhook
+        method: GET
+        description: Shopify Retrieve a single webhook
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: webhook_id
+          in: path
+          type: integer
+          description: The ID of the webhook
+          required: true
+      - name: updatewebhook
+        method: PUT
+        description: Shopify Update a webhook subscription
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: webhook_id
+          in: path
+          type: integer
+          description: The ID of the webhook
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletewebhook
+        method: DELETE
+        description: Shopify Delete a webhook subscription
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: webhook_id
+          in: path
+          type: integer
+          description: The ID of the webhook
+          required: true
+    authentication:
+      type: apikey
+      key: X-Shopify-Access-Token
+      value: '{{env.SHOPIFY_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: admin-rest-webhooks-rest
+    port: 8080
+    description: REST adapter for Shopify Admin REST API — Webhooks. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/webhooks-json
+      name: webhooks-json
+      description: REST surface for webhooks.json.
+      operations:
+      - method: GET
+        name: listwebhooks
+        description: Shopify Retrieve a list of webhooks
+        call: admin-rest-webhooks.listwebhooks
+        with:
+          topic: rest.topic
+          limit: rest.limit
+          since_id: rest.since_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createwebhook
+        description: Shopify Create a webhook subscription
+        call: admin-rest-webhooks.createwebhook
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/webhooks/count-json
+      name: webhooks-count-json
+      description: REST surface for webhooks-count.json.
+      operations:
+      - method: GET
+        name: getwebhookcount
+        description: Shopify Retrieve a count of webhooks
+        call: admin-rest-webhooks.getwebhookcount
+        with:
+          topic: rest.topic
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/webhooks/webhook-id-json
+      name: webhooks-webhook-id-json
+      description: REST surface for webhooks-webhook_id}.json.
+      operations:
+      - method: GET
+        name: getwebhook
+        description: Shopify Retrieve a single webhook
+        call: admin-rest-webhooks.getwebhook
+        with:
+          webhook_id: rest.webhook_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updatewebhook
+        description: Shopify Update a webhook subscription
+        call: admin-rest-webhooks.updatewebhook
+        with:
+          webhook_id: rest.webhook_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletewebhook
+        description: Shopify Delete a webhook subscription
+        call: admin-rest-webhooks.deletewebhook
+        with:
+          webhook_id: rest.webhook_id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: admin-rest-webhooks-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Shopify Admin REST API — Webhooks. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: shopify-retrieve-list-webhooks
+      description: Shopify Retrieve a list of webhooks
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: admin-rest-webhooks.listwebhooks
+      with:
+        topic: tools.topic
+        limit: tools.limit
+        since_id: tools.since_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-create-webhook-subscription
+      description: Shopify Create a webhook subscription
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: admin-rest-webhooks.createwebhook
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieve-count-webhooks
+      description: Shopify Retrieve a count of webhooks
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: admin-rest-webhooks.getwebhookcount
+      with:
+        topic: tools.topic
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieve-single-webhook
+      description: Shopify Retrieve a single webhook
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: admin-rest-webhooks.getwebhook
+      with:
+        webhook_id: tools.webhook_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-update-webhook-subscription
+      description: Shopify Update a webhook subscription
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: admin-rest-webhooks.updatewebhook
+      with:
+        webhook_id: tools.webhook_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-delete-webhook-subscription
+      description: Shopify Delete a webhook subscription
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: admin-rest-webhooks.deletewebhook
+      with:
+        webhook_id: tools.webhook_id
+      outputParameters:
+      - type: object
+        mapping: $.

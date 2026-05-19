@@ -1,0 +1,287 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Shopify  API — Particular
+  description: 'Shopify  API — Particular. 6 operations. Lead operation: Shopify Retrieves A List Of Payments On A Particular
+    Checkout. Self-contained Naftiko capability covering one Shopify business surface.'
+  tags:
+  - Shopify
+  - Particular
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SHOPIFY_API_KEY: SHOPIFY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: shopify-particular
+    baseUri: ''
+    description: Shopify  API — Particular business capability. Self-contained, no shared references.
+    resources:
+    - name: admin-api-2020-01-checkouts-token-payments.json
+      path: /admin/api/2020-01/checkouts/{token}/payments.json
+      operations:
+      - name: deprecated202001getcheckoutsparamtokenpayments
+        method: GET
+        description: Shopify Retrieves A List Of Payments On A Particular Checkout
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: token
+          in: path
+          type: string
+          description: token
+          required: true
+    - name: admin-api-2020-04-checkouts-token-payments.json
+      path: /admin/api/2020-04/checkouts/{token}/payments.json
+      operations:
+      - name: deprecated202004getcheckoutsparamtokenpayments
+        method: GET
+        description: Shopify Retrieves A List Of Payments On A Particular Checkout
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: token
+          in: path
+          type: string
+          description: token
+          required: true
+    - name: admin-api-2020-07-checkouts-token-payments.json
+      path: /admin/api/2020-07/checkouts/{token}/payments.json
+      operations:
+      - name: deprecated202007getcheckoutsparamtokenpayments
+        method: GET
+        description: Shopify Retrieves A List Of Payments On A Particular Checkout
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: token
+          in: path
+          type: string
+          description: token
+          required: true
+    - name: admin-api-2020-10-checkouts-token-payments.json
+      path: /admin/api/2020-10/checkouts/{token}/payments.json
+      operations:
+      - name: getcheckoutsparamtokenpayments
+        method: GET
+        description: Shopify Retrieves A List Of Payments On A Particular Checkout
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: token
+          in: path
+          type: string
+          description: token
+          required: true
+    - name: admin-api-2021-01-checkouts-token-payments.json
+      path: /admin/api/2021-01/checkouts/{token}/payments.json
+      operations:
+      - name: deprecated202101getcheckoutsparamtokenpayments
+        method: GET
+        description: Shopify Retrieves A List Of Payments On A Particular Checkout
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: token
+          in: path
+          type: string
+          description: token
+          required: true
+    - name: admin-api-unstable-checkouts-token-payments.json
+      path: /admin/api/unstable/checkouts/{token}/payments.json
+      operations:
+      - name: deprecatedunstablegetcheckoutsparamtokenpayments
+        method: GET
+        description: Shopify Retrieves A List Of Payments On A Particular Checkout
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: token
+          in: path
+          type: string
+          description: token
+          required: true
+  exposes:
+  - type: rest
+    namespace: shopify-particular-rest
+    port: 8080
+    description: REST adapter for Shopify  API — Particular. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/admin/api/2020-01/checkouts/{token}/payments-json
+      name: admin-api-2020-01-checkouts-token-payments-json
+      description: REST surface for admin-api-2020-01-checkouts-token-payments.json.
+      operations:
+      - method: GET
+        name: deprecated202001getcheckoutsparamtokenpayments
+        description: Shopify Retrieves A List Of Payments On A Particular Checkout
+        call: shopify-particular.deprecated202001getcheckoutsparamtokenpayments
+        with:
+          token: rest.token
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/checkouts/{token}/payments-json
+      name: admin-api-2020-04-checkouts-token-payments-json
+      description: REST surface for admin-api-2020-04-checkouts-token-payments.json.
+      operations:
+      - method: GET
+        name: deprecated202004getcheckoutsparamtokenpayments
+        description: Shopify Retrieves A List Of Payments On A Particular Checkout
+        call: shopify-particular.deprecated202004getcheckoutsparamtokenpayments
+        with:
+          token: rest.token
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/checkouts/{token}/payments-json
+      name: admin-api-2020-07-checkouts-token-payments-json
+      description: REST surface for admin-api-2020-07-checkouts-token-payments.json.
+      operations:
+      - method: GET
+        name: deprecated202007getcheckoutsparamtokenpayments
+        description: Shopify Retrieves A List Of Payments On A Particular Checkout
+        call: shopify-particular.deprecated202007getcheckoutsparamtokenpayments
+        with:
+          token: rest.token
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/checkouts/{token}/payments-json
+      name: admin-api-2020-10-checkouts-token-payments-json
+      description: REST surface for admin-api-2020-10-checkouts-token-payments.json.
+      operations:
+      - method: GET
+        name: getcheckoutsparamtokenpayments
+        description: Shopify Retrieves A List Of Payments On A Particular Checkout
+        call: shopify-particular.getcheckoutsparamtokenpayments
+        with:
+          token: rest.token
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/checkouts/{token}/payments-json
+      name: admin-api-2021-01-checkouts-token-payments-json
+      description: REST surface for admin-api-2021-01-checkouts-token-payments.json.
+      operations:
+      - method: GET
+        name: deprecated202101getcheckoutsparamtokenpayments
+        description: Shopify Retrieves A List Of Payments On A Particular Checkout
+        call: shopify-particular.deprecated202101getcheckoutsparamtokenpayments
+        with:
+          token: rest.token
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/checkouts/{token}/payments-json
+      name: admin-api-unstable-checkouts-token-payments-json
+      description: REST surface for admin-api-unstable-checkouts-token-payments.json.
+      operations:
+      - method: GET
+        name: deprecatedunstablegetcheckoutsparamtokenpayments
+        description: Shopify Retrieves A List Of Payments On A Particular Checkout
+        call: shopify-particular.deprecatedunstablegetcheckoutsparamtokenpayments
+        with:
+          token: rest.token
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: shopify-particular-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Shopify  API — Particular. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: shopify-retrieves-list-payments-particular
+      description: Shopify Retrieves A List Of Payments On A Particular Checkout
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-particular.deprecated202001getcheckoutsparamtokenpayments
+      with:
+        token: tools.token
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-payments-particular-2
+      description: Shopify Retrieves A List Of Payments On A Particular Checkout
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-particular.deprecated202004getcheckoutsparamtokenpayments
+      with:
+        token: tools.token
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-payments-particular-3
+      description: Shopify Retrieves A List Of Payments On A Particular Checkout
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-particular.deprecated202007getcheckoutsparamtokenpayments
+      with:
+        token: tools.token
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-payments-particular-4
+      description: Shopify Retrieves A List Of Payments On A Particular Checkout
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-particular.getcheckoutsparamtokenpayments
+      with:
+        token: tools.token
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-payments-particular-5
+      description: Shopify Retrieves A List Of Payments On A Particular Checkout
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-particular.deprecated202101getcheckoutsparamtokenpayments
+      with:
+        token: tools.token
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-payments-particular-6
+      description: Shopify Retrieves A List Of Payments On A Particular Checkout
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-particular.deprecatedunstablegetcheckoutsparamtokenpayments
+      with:
+        token: tools.token
+      outputParameters:
+      - type: object
+        mapping: $.

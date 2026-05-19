@@ -1,0 +1,521 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Shopify  API — Enabled
+  description: 'Shopify  API — Enabled. 12 operations. Lead operation: Shopify Retrieves A List Of Currencies Enabled On A
+    Shop. Self-contained Naftiko capability covering one Shopify business surface.'
+  tags:
+  - Shopify
+  - Enabled
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SHOPIFY_API_KEY: SHOPIFY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: shopify-enabled
+    baseUri: ''
+    description: Shopify  API — Enabled business capability. Self-contained, no shared references.
+    resources:
+    - name: admin-api-2020-01-currencies.json
+      path: /admin/api/2020-01/currencies.json
+      operations:
+      - name: deprecated202001getcurrencies
+        method: GET
+        description: Shopify Retrieves A List Of Currencies Enabled On A Shop
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: admin-api-2020-01-customers-customer_id-account_activation_url.json
+      path: /admin/api/2020-01/customers/{customer_id}/account_activation_url.json
+      operations:
+      - name: deprecated202001createcustomersparamcustomeridaccountactivationurl
+        method: POST
+        description: Shopify Generate An Account Activation Url For A Customer Whose Account Is Not Yet Enabled
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-04-currencies.json
+      path: /admin/api/2020-04/currencies.json
+      operations:
+      - name: deprecated202004getcurrencies
+        method: GET
+        description: Shopify Retrieves A List Of Currencies Enabled On A Shop
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: admin-api-2020-04-customers-customer_id-account_activation_url.json
+      path: /admin/api/2020-04/customers/{customer_id}/account_activation_url.json
+      operations:
+      - name: deprecated202004createcustomersparamcustomeridaccountactivationurl
+        method: POST
+        description: Shopify Generate An Account Activation Url For A Customer Whose Account Is Not Yet Enabled
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-07-currencies.json
+      path: /admin/api/2020-07/currencies.json
+      operations:
+      - name: deprecated202007getcurrencies
+        method: GET
+        description: Shopify Retrieves A List Of Currencies Enabled On A Shop
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: admin-api-2020-07-customers-customer_id-account_activation_url.json
+      path: /admin/api/2020-07/customers/{customer_id}/account_activation_url.json
+      operations:
+      - name: deprecated202007createcustomersparamcustomeridaccountactivationurl
+        method: POST
+        description: Shopify Generate An Account Activation Url For A Customer Whose Account Is Not Yet Enabled
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-10-currencies.json
+      path: /admin/api/2020-10/currencies.json
+      operations:
+      - name: getcurrencies
+        method: GET
+        description: Shopify Retrieves A List Of Currencies Enabled On A Shop
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: admin-api-2020-10-customers-customer_id-account_activation_url.json
+      path: /admin/api/2020-10/customers/{customer_id}/account_activation_url.json
+      operations:
+      - name: createcustomersparamcustomeridaccountactivationurl
+        method: POST
+        description: Shopify Generate An Account Activation Url For A Customer Whose Account Is Not Yet Enabled
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2021-01-currencies.json
+      path: /admin/api/2021-01/currencies.json
+      operations:
+      - name: deprecated202101getcurrencies
+        method: GET
+        description: Shopify Retrieves A List Of Currencies Enabled On A Shop
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: admin-api-2021-01-customers-customer_id-account_activation_url.json
+      path: /admin/api/2021-01/customers/{customer_id}/account_activation_url.json
+      operations:
+      - name: deprecated202101createcustomersparamcustomeridaccountactivationurl
+        method: POST
+        description: Shopify Generate An Account Activation Url For A Customer Whose Account Is Not Yet Enabled
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-unstable-currencies.json
+      path: /admin/api/unstable/currencies.json
+      operations:
+      - name: deprecatedunstablegetcurrencies
+        method: GET
+        description: Shopify Retrieves A List Of Currencies Enabled On A Shop
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: admin-api-unstable-customers-customer_id-account_activation_url.json
+      path: /admin/api/unstable/customers/{customer_id}/account_activation_url.json
+      operations:
+      - name: deprecatedunstablecreatecustomersparamcustomeridaccountactivationurl
+        method: POST
+        description: Shopify Generate An Account Activation Url For A Customer Whose Account Is Not Yet Enabled
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+  exposes:
+  - type: rest
+    namespace: shopify-enabled-rest
+    port: 8080
+    description: REST adapter for Shopify  API — Enabled. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/admin/api/2020-01/currencies-json
+      name: admin-api-2020-01-currencies-json
+      description: REST surface for admin-api-2020-01-currencies.json.
+      operations:
+      - method: GET
+        name: deprecated202001getcurrencies
+        description: Shopify Retrieves A List Of Currencies Enabled On A Shop
+        call: shopify-enabled.deprecated202001getcurrencies
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-01/customers/{customer-id}/account-activation-url-json
+      name: admin-api-2020-01-customers-customer-id-account-activation-url-json
+      description: REST surface for admin-api-2020-01-customers-customer_id-account_activation_url.json.
+      operations:
+      - method: POST
+        name: deprecated202001createcustomersparamcustomeridaccountactivationurl
+        description: Shopify Generate An Account Activation Url For A Customer Whose Account Is Not Yet Enabled
+        call: shopify-enabled.deprecated202001createcustomersparamcustomeridaccountactivationurl
+        with:
+          customer_id: rest.customer_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/currencies-json
+      name: admin-api-2020-04-currencies-json
+      description: REST surface for admin-api-2020-04-currencies.json.
+      operations:
+      - method: GET
+        name: deprecated202004getcurrencies
+        description: Shopify Retrieves A List Of Currencies Enabled On A Shop
+        call: shopify-enabled.deprecated202004getcurrencies
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/customers/{customer-id}/account-activation-url-json
+      name: admin-api-2020-04-customers-customer-id-account-activation-url-json
+      description: REST surface for admin-api-2020-04-customers-customer_id-account_activation_url.json.
+      operations:
+      - method: POST
+        name: deprecated202004createcustomersparamcustomeridaccountactivationurl
+        description: Shopify Generate An Account Activation Url For A Customer Whose Account Is Not Yet Enabled
+        call: shopify-enabled.deprecated202004createcustomersparamcustomeridaccountactivationurl
+        with:
+          customer_id: rest.customer_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/currencies-json
+      name: admin-api-2020-07-currencies-json
+      description: REST surface for admin-api-2020-07-currencies.json.
+      operations:
+      - method: GET
+        name: deprecated202007getcurrencies
+        description: Shopify Retrieves A List Of Currencies Enabled On A Shop
+        call: shopify-enabled.deprecated202007getcurrencies
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/customers/{customer-id}/account-activation-url-json
+      name: admin-api-2020-07-customers-customer-id-account-activation-url-json
+      description: REST surface for admin-api-2020-07-customers-customer_id-account_activation_url.json.
+      operations:
+      - method: POST
+        name: deprecated202007createcustomersparamcustomeridaccountactivationurl
+        description: Shopify Generate An Account Activation Url For A Customer Whose Account Is Not Yet Enabled
+        call: shopify-enabled.deprecated202007createcustomersparamcustomeridaccountactivationurl
+        with:
+          customer_id: rest.customer_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/currencies-json
+      name: admin-api-2020-10-currencies-json
+      description: REST surface for admin-api-2020-10-currencies.json.
+      operations:
+      - method: GET
+        name: getcurrencies
+        description: Shopify Retrieves A List Of Currencies Enabled On A Shop
+        call: shopify-enabled.getcurrencies
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/customers/{customer-id}/account-activation-url-json
+      name: admin-api-2020-10-customers-customer-id-account-activation-url-json
+      description: REST surface for admin-api-2020-10-customers-customer_id-account_activation_url.json.
+      operations:
+      - method: POST
+        name: createcustomersparamcustomeridaccountactivationurl
+        description: Shopify Generate An Account Activation Url For A Customer Whose Account Is Not Yet Enabled
+        call: shopify-enabled.createcustomersparamcustomeridaccountactivationurl
+        with:
+          customer_id: rest.customer_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/currencies-json
+      name: admin-api-2021-01-currencies-json
+      description: REST surface for admin-api-2021-01-currencies.json.
+      operations:
+      - method: GET
+        name: deprecated202101getcurrencies
+        description: Shopify Retrieves A List Of Currencies Enabled On A Shop
+        call: shopify-enabled.deprecated202101getcurrencies
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/customers/{customer-id}/account-activation-url-json
+      name: admin-api-2021-01-customers-customer-id-account-activation-url-json
+      description: REST surface for admin-api-2021-01-customers-customer_id-account_activation_url.json.
+      operations:
+      - method: POST
+        name: deprecated202101createcustomersparamcustomeridaccountactivationurl
+        description: Shopify Generate An Account Activation Url For A Customer Whose Account Is Not Yet Enabled
+        call: shopify-enabled.deprecated202101createcustomersparamcustomeridaccountactivationurl
+        with:
+          customer_id: rest.customer_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/currencies-json
+      name: admin-api-unstable-currencies-json
+      description: REST surface for admin-api-unstable-currencies.json.
+      operations:
+      - method: GET
+        name: deprecatedunstablegetcurrencies
+        description: Shopify Retrieves A List Of Currencies Enabled On A Shop
+        call: shopify-enabled.deprecatedunstablegetcurrencies
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/customers/{customer-id}/account-activation-url-json
+      name: admin-api-unstable-customers-customer-id-account-activation-url-json
+      description: REST surface for admin-api-unstable-customers-customer_id-account_activation_url.json.
+      operations:
+      - method: POST
+        name: deprecatedunstablecreatecustomersparamcustomeridaccountactivationurl
+        description: Shopify Generate An Account Activation Url For A Customer Whose Account Is Not Yet Enabled
+        call: shopify-enabled.deprecatedunstablecreatecustomersparamcustomeridaccountactivationurl
+        with:
+          customer_id: rest.customer_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: shopify-enabled-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Shopify  API — Enabled. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: shopify-retrieves-list-currencies-enabled
+      description: Shopify Retrieves A List Of Currencies Enabled On A Shop
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-enabled.deprecated202001getcurrencies
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-generate-account-activation-url
+      description: Shopify Generate An Account Activation Url For A Customer Whose Account Is Not Yet Enabled
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-enabled.deprecated202001createcustomersparamcustomeridaccountactivationurl
+      with:
+        customer_id: tools.customer_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-currencies-enabled-2
+      description: Shopify Retrieves A List Of Currencies Enabled On A Shop
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-enabled.deprecated202004getcurrencies
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-generate-account-activation-url-2
+      description: Shopify Generate An Account Activation Url For A Customer Whose Account Is Not Yet Enabled
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-enabled.deprecated202004createcustomersparamcustomeridaccountactivationurl
+      with:
+        customer_id: tools.customer_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-currencies-enabled-3
+      description: Shopify Retrieves A List Of Currencies Enabled On A Shop
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-enabled.deprecated202007getcurrencies
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-generate-account-activation-url-3
+      description: Shopify Generate An Account Activation Url For A Customer Whose Account Is Not Yet Enabled
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-enabled.deprecated202007createcustomersparamcustomeridaccountactivationurl
+      with:
+        customer_id: tools.customer_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-currencies-enabled-4
+      description: Shopify Retrieves A List Of Currencies Enabled On A Shop
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-enabled.getcurrencies
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-generate-account-activation-url-4
+      description: Shopify Generate An Account Activation Url For A Customer Whose Account Is Not Yet Enabled
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-enabled.createcustomersparamcustomeridaccountactivationurl
+      with:
+        customer_id: tools.customer_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-currencies-enabled-5
+      description: Shopify Retrieves A List Of Currencies Enabled On A Shop
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-enabled.deprecated202101getcurrencies
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-generate-account-activation-url-5
+      description: Shopify Generate An Account Activation Url For A Customer Whose Account Is Not Yet Enabled
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-enabled.deprecated202101createcustomersparamcustomeridaccountactivationurl
+      with:
+        customer_id: tools.customer_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-currencies-enabled-6
+      description: Shopify Retrieves A List Of Currencies Enabled On A Shop
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-enabled.deprecatedunstablegetcurrencies
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-generate-account-activation-url-6
+      description: Shopify Generate An Account Activation Url For A Customer Whose Account Is Not Yet Enabled
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-enabled.deprecatedunstablecreatecustomersparamcustomeridaccountactivationurl
+      with:
+        customer_id: tools.customer_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

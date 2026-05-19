@@ -1,0 +1,2243 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Shopify  API — Collections
+  description: 'Shopify  API — Collections. 24 operations. Lead operation: Shopify Retrieves A List Of Custom Collections.
+    Self-contained Naftiko capability covering one Shopify business surface.'
+  tags:
+  - Shopify
+  - Collections
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SHOPIFY_API_KEY: SHOPIFY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: shopify-collections
+    baseUri: ''
+    description: Shopify  API — Collections business capability. Self-contained, no shared references.
+    resources:
+    - name: admin-api-2020-01-custom_collections.json
+      path: /admin/api/2020-01/custom_collections.json
+      operations:
+      - name: deprecated202001getcustomcollections
+        method: GET
+        description: Shopify Retrieves A List Of Custom Collections
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: string
+          description: The maximum number of results to retrieve.
+        - name: ids
+          in: query
+          type: string
+          description: Show only collections specified by a comma-separated list of IDs.
+        - name: since_id
+          in: query
+          type: string
+          description: Restrict results to after the specified ID.
+        - name: title
+          in: query
+          type: string
+          description: Show custom collections with a given title.
+        - name: product_id
+          in: query
+          type: string
+          description: Show custom collections that include a given product.
+        - name: handle
+          in: query
+          type: string
+          description: Filter by custom collection handle.
+        - name: updated_at_min
+          in: query
+          type: string
+          description: 'Show custom collections last updated after date (format: 2014-04-25T16:15:47-04:00).'
+        - name: updated_at_max
+          in: query
+          type: string
+          description: 'Show custom collections last updated before date (format: 2014-04-25T16:15:47-04:00).'
+        - name: published_at_min
+          in: query
+          type: string
+          description: 'Show custom collections published after date (format: 2014-04-25T16:15:47-04:00).'
+        - name: published_at_max
+          in: query
+          type: string
+          description: 'Show custom collections published before date (format: 2014-04-25T16:15:47-04:00).'
+        - name: published_status
+          in: query
+          type: string
+          description: Show custom collectsion with a given published status.
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+    - name: admin-api-2020-01-custom_collections-count.json
+      path: /admin/api/2020-01/custom_collections/count.json
+      operations:
+      - name: deprecated202001getcustomcollectionscount
+        method: GET
+        description: Shopify Retrieves A Count Of Custom Collections
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: title
+          in: query
+          type: string
+          description: Count custom collections with given title.
+        - name: product_id
+          in: query
+          type: string
+          description: Count custom collections that include a given product.
+        - name: updated_at_min
+          in: query
+          type: string
+          description: 'Count custom collections last updated after date (format: 2014-04-25T16:15:47-04:00).'
+        - name: updated_at_max
+          in: query
+          type: string
+          description: 'Count custom collections last updated before date (format: 2014-04-25T16:15:47-04:00).'
+        - name: published_at_min
+          in: query
+          type: string
+          description: 'Count custom collections published after date (format: 2014-04-25T16:15:47-04:00).'
+        - name: published_at_max
+          in: query
+          type: string
+          description: 'Count custom collections published before date (format: 2014-04-25T16:15:47-04:00).'
+        - name: published_status
+          in: query
+          type: string
+          description: Count custom collections with a given published status.
+    - name: admin-api-2020-01-smart_collections.json
+      path: /admin/api/2020-01/smart_collections.json
+      operations:
+      - name: deprecated202001getsmartcollections
+        method: GET
+        description: Shopify Retrieves A List Of Smart Collections
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: string
+          description: The number of results to show.
+        - name: ids
+          in: query
+          type: string
+          description: Show only the smart collections specified by a comma-separated list of IDs.
+        - name: since_id
+          in: query
+          type: string
+          description: Restrict results to after the specified ID.
+        - name: title
+          in: query
+          type: string
+          description: Show smart collections with the specified title.
+        - name: product_id
+          in: query
+          type: string
+          description: Show smart collections that includes the specified product.
+        - name: handle
+          in: query
+          type: string
+          description: Filter results by smart collection handle.
+        - name: updated_at_min
+          in: query
+          type: string
+          description: 'Show smart collections last updated after this date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: updated_at_max
+          in: query
+          type: string
+          description: 'Show smart collections last updated before this date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: published_at_min
+          in: query
+          type: string
+          description: 'Show smart collections published after this date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: published_at_max
+          in: query
+          type: string
+          description: 'Show smart collections published before this date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: published_status
+          in: query
+          type: string
+          description: Filter results based on the published status of smart collections.
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+    - name: admin-api-2020-01-smart_collections-count.json
+      path: /admin/api/2020-01/smart_collections/count.json
+      operations:
+      - name: deprecated202001getsmartcollectionscount
+        method: GET
+        description: Shopify Retrieves A Count Of Smart Collections
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: title
+          in: query
+          type: string
+          description: Show smart collections with the specified title.
+        - name: product_id
+          in: query
+          type: string
+          description: Show smart collections that include the specified product.
+        - name: updated_at_min
+          in: query
+          type: string
+          description: 'Show smart collections last updated after this date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: updated_at_max
+          in: query
+          type: string
+          description: 'Show smart collections last updated before this date.  (format: 2014-04-25T16:15:47-04:00)'
+        - name: published_at_min
+          in: query
+          type: string
+          description: 'Show smart collections published after this date.  (format: 2014-04-25T16:15:47-04:00)'
+        - name: published_at_max
+          in: query
+          type: string
+          description: 'Show smart collections published before this date.  (format: 2014-04-25T16:15:47-04:00)'
+        - name: published_status
+          in: query
+          type: string
+          description: Filter results based on the published status of smart collections.
+    - name: admin-api-2020-04-custom_collections.json
+      path: /admin/api/2020-04/custom_collections.json
+      operations:
+      - name: deprecated202004getcustomcollections
+        method: GET
+        description: Shopify Retrieves A List Of Custom Collections
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: string
+          description: The maximum number of results to retrieve.
+        - name: ids
+          in: query
+          type: string
+          description: Show only collections specified by a comma-separated list of IDs.
+        - name: since_id
+          in: query
+          type: string
+          description: Restrict results to after the specified ID.
+        - name: title
+          in: query
+          type: string
+          description: Show custom collections with a given title.
+        - name: product_id
+          in: query
+          type: string
+          description: Show custom collections that include a given product.
+        - name: handle
+          in: query
+          type: string
+          description: Filter by custom collection handle.
+        - name: updated_at_min
+          in: query
+          type: string
+          description: 'Show custom collections last updated after date (format: 2014-04-25T16:15:47-04:00).'
+        - name: updated_at_max
+          in: query
+          type: string
+          description: 'Show custom collections last updated before date (format: 2014-04-25T16:15:47-04:00).'
+        - name: published_at_min
+          in: query
+          type: string
+          description: 'Show custom collections published after date (format: 2014-04-25T16:15:47-04:00).'
+        - name: published_at_max
+          in: query
+          type: string
+          description: 'Show custom collections published before date (format: 2014-04-25T16:15:47-04:00).'
+        - name: published_status
+          in: query
+          type: string
+          description: Show custom collectsion with a given published status.
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+    - name: admin-api-2020-04-custom_collections-count.json
+      path: /admin/api/2020-04/custom_collections/count.json
+      operations:
+      - name: deprecated202004getcustomcollectionscount
+        method: GET
+        description: Shopify Retrieves A Count Of Custom Collections
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: title
+          in: query
+          type: string
+          description: Count custom collections with given title.
+        - name: product_id
+          in: query
+          type: string
+          description: Count custom collections that include a given product.
+        - name: updated_at_min
+          in: query
+          type: string
+          description: 'Count custom collections last updated after date (format: 2014-04-25T16:15:47-04:00).'
+        - name: updated_at_max
+          in: query
+          type: string
+          description: 'Count custom collections last updated before date (format: 2014-04-25T16:15:47-04:00).'
+        - name: published_at_min
+          in: query
+          type: string
+          description: 'Count custom collections published after date (format: 2014-04-25T16:15:47-04:00).'
+        - name: published_at_max
+          in: query
+          type: string
+          description: 'Count custom collections published before date (format: 2014-04-25T16:15:47-04:00).'
+        - name: published_status
+          in: query
+          type: string
+          description: Count custom collections with a given published status.
+    - name: admin-api-2020-04-smart_collections.json
+      path: /admin/api/2020-04/smart_collections.json
+      operations:
+      - name: deprecated202004getsmartcollections
+        method: GET
+        description: Shopify Retrieves A List Of Smart Collections
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: string
+          description: The number of results to show.
+        - name: ids
+          in: query
+          type: string
+          description: Show only the smart collections specified by a comma-separated list of IDs.
+        - name: since_id
+          in: query
+          type: string
+          description: Restrict results to after the specified ID.
+        - name: title
+          in: query
+          type: string
+          description: Show smart collections with the specified title.
+        - name: product_id
+          in: query
+          type: string
+          description: Show smart collections that includes the specified product.
+        - name: handle
+          in: query
+          type: string
+          description: Filter results by smart collection handle.
+        - name: updated_at_min
+          in: query
+          type: string
+          description: 'Show smart collections last updated after this date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: updated_at_max
+          in: query
+          type: string
+          description: 'Show smart collections last updated before this date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: published_at_min
+          in: query
+          type: string
+          description: 'Show smart collections published after this date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: published_at_max
+          in: query
+          type: string
+          description: 'Show smart collections published before this date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: published_status
+          in: query
+          type: string
+          description: Filter results based on the published status of smart collections.
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+    - name: admin-api-2020-04-smart_collections-count.json
+      path: /admin/api/2020-04/smart_collections/count.json
+      operations:
+      - name: deprecated202004getsmartcollectionscount
+        method: GET
+        description: Shopify Retrieves A Count Of Smart Collections
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: title
+          in: query
+          type: string
+          description: Show smart collections with the specified title.
+        - name: product_id
+          in: query
+          type: string
+          description: Show smart collections that include the specified product.
+        - name: updated_at_min
+          in: query
+          type: string
+          description: 'Show smart collections last updated after this date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: updated_at_max
+          in: query
+          type: string
+          description: 'Show smart collections last updated before this date.  (format: 2014-04-25T16:15:47-04:00)'
+        - name: published_at_min
+          in: query
+          type: string
+          description: 'Show smart collections published after this date.  (format: 2014-04-25T16:15:47-04:00)'
+        - name: published_at_max
+          in: query
+          type: string
+          description: 'Show smart collections published before this date.  (format: 2014-04-25T16:15:47-04:00)'
+        - name: published_status
+          in: query
+          type: string
+          description: Filter results based on the published status of smart collections.
+    - name: admin-api-2020-07-custom_collections.json
+      path: /admin/api/2020-07/custom_collections.json
+      operations:
+      - name: deprecated202007getcustomcollections
+        method: GET
+        description: Shopify Retrieves A List Of Custom Collections
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: string
+          description: The maximum number of results to retrieve.
+        - name: ids
+          in: query
+          type: string
+          description: Show only collections specified by a comma-separated list of IDs.
+        - name: since_id
+          in: query
+          type: string
+          description: Restrict results to after the specified ID.
+        - name: title
+          in: query
+          type: string
+          description: Show custom collections with a given title.
+        - name: product_id
+          in: query
+          type: string
+          description: Show custom collections that include a given product.
+        - name: handle
+          in: query
+          type: string
+          description: Filter by custom collection handle.
+        - name: updated_at_min
+          in: query
+          type: string
+          description: 'Show custom collections last updated after date (format: 2014-04-25T16:15:47-04:00).'
+        - name: updated_at_max
+          in: query
+          type: string
+          description: 'Show custom collections last updated before date (format: 2014-04-25T16:15:47-04:00).'
+        - name: published_at_min
+          in: query
+          type: string
+          description: 'Show custom collections published after date (format: 2014-04-25T16:15:47-04:00).'
+        - name: published_at_max
+          in: query
+          type: string
+          description: 'Show custom collections published before date (format: 2014-04-25T16:15:47-04:00).'
+        - name: published_status
+          in: query
+          type: string
+          description: Show custom collectsion with a given published status.
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+    - name: admin-api-2020-07-custom_collections-count.json
+      path: /admin/api/2020-07/custom_collections/count.json
+      operations:
+      - name: deprecated202007getcustomcollectionscount
+        method: GET
+        description: Shopify Retrieves A Count Of Custom Collections
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: title
+          in: query
+          type: string
+          description: Count custom collections with given title.
+        - name: product_id
+          in: query
+          type: string
+          description: Count custom collections that include a given product.
+        - name: updated_at_min
+          in: query
+          type: string
+          description: 'Count custom collections last updated after date (format: 2014-04-25T16:15:47-04:00).'
+        - name: updated_at_max
+          in: query
+          type: string
+          description: 'Count custom collections last updated before date (format: 2014-04-25T16:15:47-04:00).'
+        - name: published_at_min
+          in: query
+          type: string
+          description: 'Count custom collections published after date (format: 2014-04-25T16:15:47-04:00).'
+        - name: published_at_max
+          in: query
+          type: string
+          description: 'Count custom collections published before date (format: 2014-04-25T16:15:47-04:00).'
+        - name: published_status
+          in: query
+          type: string
+          description: Count custom collections with a given published status.
+    - name: admin-api-2020-07-smart_collections.json
+      path: /admin/api/2020-07/smart_collections.json
+      operations:
+      - name: deprecated202007getsmartcollections
+        method: GET
+        description: Shopify Retrieves A List Of Smart Collections
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: string
+          description: The number of results to show.
+        - name: ids
+          in: query
+          type: string
+          description: Show only the smart collections specified by a comma-separated list of IDs.
+        - name: since_id
+          in: query
+          type: string
+          description: Restrict results to after the specified ID.
+        - name: title
+          in: query
+          type: string
+          description: Show smart collections with the specified title.
+        - name: product_id
+          in: query
+          type: string
+          description: Show smart collections that includes the specified product.
+        - name: handle
+          in: query
+          type: string
+          description: Filter results by smart collection handle.
+        - name: updated_at_min
+          in: query
+          type: string
+          description: 'Show smart collections last updated after this date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: updated_at_max
+          in: query
+          type: string
+          description: 'Show smart collections last updated before this date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: published_at_min
+          in: query
+          type: string
+          description: 'Show smart collections published after this date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: published_at_max
+          in: query
+          type: string
+          description: 'Show smart collections published before this date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: published_status
+          in: query
+          type: string
+          description: Filter results based on the published status of smart collections.
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+    - name: admin-api-2020-07-smart_collections-count.json
+      path: /admin/api/2020-07/smart_collections/count.json
+      operations:
+      - name: deprecated202007getsmartcollectionscount
+        method: GET
+        description: Shopify Retrieves A Count Of Smart Collections
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: title
+          in: query
+          type: string
+          description: Show smart collections with the specified title.
+        - name: product_id
+          in: query
+          type: string
+          description: Show smart collections that include the specified product.
+        - name: updated_at_min
+          in: query
+          type: string
+          description: 'Show smart collections last updated after this date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: updated_at_max
+          in: query
+          type: string
+          description: 'Show smart collections last updated before this date.  (format: 2014-04-25T16:15:47-04:00)'
+        - name: published_at_min
+          in: query
+          type: string
+          description: 'Show smart collections published after this date.  (format: 2014-04-25T16:15:47-04:00)'
+        - name: published_at_max
+          in: query
+          type: string
+          description: 'Show smart collections published before this date.  (format: 2014-04-25T16:15:47-04:00)'
+        - name: published_status
+          in: query
+          type: string
+          description: Filter results based on the published status of smart collections.
+    - name: admin-api-2020-10-custom_collections.json
+      path: /admin/api/2020-10/custom_collections.json
+      operations:
+      - name: getcustomcollections
+        method: GET
+        description: Shopify Retrieves A List Of Custom Collections
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: string
+          description: The maximum number of results to retrieve.
+        - name: ids
+          in: query
+          type: string
+          description: Show only collections specified by a comma-separated list of IDs.
+        - name: since_id
+          in: query
+          type: string
+          description: Restrict results to after the specified ID.
+        - name: title
+          in: query
+          type: string
+          description: Show custom collections with a given title.
+        - name: product_id
+          in: query
+          type: string
+          description: Show custom collections that include a given product.
+        - name: handle
+          in: query
+          type: string
+          description: Filter by custom collection handle.
+        - name: updated_at_min
+          in: query
+          type: string
+          description: 'Show custom collections last updated after date (format: 2014-04-25T16:15:47-04:00).'
+        - name: updated_at_max
+          in: query
+          type: string
+          description: 'Show custom collections last updated before date (format: 2014-04-25T16:15:47-04:00).'
+        - name: published_at_min
+          in: query
+          type: string
+          description: 'Show custom collections published after date (format: 2014-04-25T16:15:47-04:00).'
+        - name: published_at_max
+          in: query
+          type: string
+          description: 'Show custom collections published before date (format: 2014-04-25T16:15:47-04:00).'
+        - name: published_status
+          in: query
+          type: string
+          description: Show custom collectsion with a given published status.
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+    - name: admin-api-2020-10-custom_collections-count.json
+      path: /admin/api/2020-10/custom_collections/count.json
+      operations:
+      - name: getcustomcollectionscount
+        method: GET
+        description: Shopify Retrieves A Count Of Custom Collections
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: title
+          in: query
+          type: string
+          description: Count custom collections with given title.
+        - name: product_id
+          in: query
+          type: string
+          description: Count custom collections that include a given product.
+        - name: updated_at_min
+          in: query
+          type: string
+          description: 'Count custom collections last updated after date (format: 2014-04-25T16:15:47-04:00).'
+        - name: updated_at_max
+          in: query
+          type: string
+          description: 'Count custom collections last updated before date (format: 2014-04-25T16:15:47-04:00).'
+        - name: published_at_min
+          in: query
+          type: string
+          description: 'Count custom collections published after date (format: 2014-04-25T16:15:47-04:00).'
+        - name: published_at_max
+          in: query
+          type: string
+          description: 'Count custom collections published before date (format: 2014-04-25T16:15:47-04:00).'
+        - name: published_status
+          in: query
+          type: string
+          description: Count custom collections with a given published status.
+    - name: admin-api-2020-10-smart_collections.json
+      path: /admin/api/2020-10/smart_collections.json
+      operations:
+      - name: getsmartcollections
+        method: GET
+        description: Shopify Retrieves A List Of Smart Collections
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: string
+          description: The number of results to show.
+        - name: ids
+          in: query
+          type: string
+          description: Show only the smart collections specified by a comma-separated list of IDs.
+        - name: since_id
+          in: query
+          type: string
+          description: Restrict results to after the specified ID.
+        - name: title
+          in: query
+          type: string
+          description: Show smart collections with the specified title.
+        - name: product_id
+          in: query
+          type: string
+          description: Show smart collections that includes the specified product.
+        - name: handle
+          in: query
+          type: string
+          description: Filter results by smart collection handle.
+        - name: updated_at_min
+          in: query
+          type: string
+          description: 'Show smart collections last updated after this date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: updated_at_max
+          in: query
+          type: string
+          description: 'Show smart collections last updated before this date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: published_at_min
+          in: query
+          type: string
+          description: 'Show smart collections published after this date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: published_at_max
+          in: query
+          type: string
+          description: 'Show smart collections published before this date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: published_status
+          in: query
+          type: string
+          description: Filter results based on the published status of smart collections.
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+    - name: admin-api-2020-10-smart_collections-count.json
+      path: /admin/api/2020-10/smart_collections/count.json
+      operations:
+      - name: getsmartcollectionscount
+        method: GET
+        description: Shopify Retrieves A Count Of Smart Collections
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: title
+          in: query
+          type: string
+          description: Show smart collections with the specified title.
+        - name: product_id
+          in: query
+          type: string
+          description: Show smart collections that include the specified product.
+        - name: updated_at_min
+          in: query
+          type: string
+          description: 'Show smart collections last updated after this date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: updated_at_max
+          in: query
+          type: string
+          description: 'Show smart collections last updated before this date.  (format: 2014-04-25T16:15:47-04:00)'
+        - name: published_at_min
+          in: query
+          type: string
+          description: 'Show smart collections published after this date.  (format: 2014-04-25T16:15:47-04:00)'
+        - name: published_at_max
+          in: query
+          type: string
+          description: 'Show smart collections published before this date.  (format: 2014-04-25T16:15:47-04:00)'
+        - name: published_status
+          in: query
+          type: string
+          description: Filter results based on the published status of smart collections.
+    - name: admin-api-2021-01-custom_collections.json
+      path: /admin/api/2021-01/custom_collections.json
+      operations:
+      - name: deprecated202101getcustomcollections
+        method: GET
+        description: Shopify Retrieves A List Of Custom Collections
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: string
+          description: The maximum number of results to retrieve.
+        - name: ids
+          in: query
+          type: string
+          description: Show only collections specified by a comma-separated list of IDs.
+        - name: since_id
+          in: query
+          type: string
+          description: Restrict results to after the specified ID.
+        - name: title
+          in: query
+          type: string
+          description: Show custom collections with a given title.
+        - name: product_id
+          in: query
+          type: string
+          description: Show custom collections that include a given product.
+        - name: handle
+          in: query
+          type: string
+          description: Filter by custom collection handle.
+        - name: updated_at_min
+          in: query
+          type: string
+          description: 'Show custom collections last updated after date (format: 2014-04-25T16:15:47-04:00).'
+        - name: updated_at_max
+          in: query
+          type: string
+          description: 'Show custom collections last updated before date (format: 2014-04-25T16:15:47-04:00).'
+        - name: published_at_min
+          in: query
+          type: string
+          description: 'Show custom collections published after date (format: 2014-04-25T16:15:47-04:00).'
+        - name: published_at_max
+          in: query
+          type: string
+          description: 'Show custom collections published before date (format: 2014-04-25T16:15:47-04:00).'
+        - name: published_status
+          in: query
+          type: string
+          description: Show custom collectsion with a given published status.
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+    - name: admin-api-2021-01-custom_collections-count.json
+      path: /admin/api/2021-01/custom_collections/count.json
+      operations:
+      - name: deprecated202101getcustomcollectionscount
+        method: GET
+        description: Shopify Retrieves A Count Of Custom Collections
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: title
+          in: query
+          type: string
+          description: Count custom collections with given title.
+        - name: product_id
+          in: query
+          type: string
+          description: Count custom collections that include a given product.
+        - name: updated_at_min
+          in: query
+          type: string
+          description: 'Count custom collections last updated after date (format: 2014-04-25T16:15:47-04:00).'
+        - name: updated_at_max
+          in: query
+          type: string
+          description: 'Count custom collections last updated before date (format: 2014-04-25T16:15:47-04:00).'
+        - name: published_at_min
+          in: query
+          type: string
+          description: 'Count custom collections published after date (format: 2014-04-25T16:15:47-04:00).'
+        - name: published_at_max
+          in: query
+          type: string
+          description: 'Count custom collections published before date (format: 2014-04-25T16:15:47-04:00).'
+        - name: published_status
+          in: query
+          type: string
+          description: Count custom collections with a given published status.
+    - name: admin-api-2021-01-smart_collections.json
+      path: /admin/api/2021-01/smart_collections.json
+      operations:
+      - name: deprecated202101getsmartcollections
+        method: GET
+        description: Shopify Retrieves A List Of Smart Collections
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: string
+          description: The number of results to show.
+        - name: ids
+          in: query
+          type: string
+          description: Show only the smart collections specified by a comma-separated list of IDs.
+        - name: since_id
+          in: query
+          type: string
+          description: Restrict results to after the specified ID.
+        - name: title
+          in: query
+          type: string
+          description: Show smart collections with the specified title.
+        - name: product_id
+          in: query
+          type: string
+          description: Show smart collections that includes the specified product.
+        - name: handle
+          in: query
+          type: string
+          description: Filter results by smart collection handle.
+        - name: updated_at_min
+          in: query
+          type: string
+          description: 'Show smart collections last updated after this date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: updated_at_max
+          in: query
+          type: string
+          description: 'Show smart collections last updated before this date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: published_at_min
+          in: query
+          type: string
+          description: 'Show smart collections published after this date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: published_at_max
+          in: query
+          type: string
+          description: 'Show smart collections published before this date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: published_status
+          in: query
+          type: string
+          description: Filter results based on the published status of smart collections.
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+    - name: admin-api-2021-01-smart_collections-count.json
+      path: /admin/api/2021-01/smart_collections/count.json
+      operations:
+      - name: deprecated202101getsmartcollectionscount
+        method: GET
+        description: Shopify Retrieves A Count Of Smart Collections
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: title
+          in: query
+          type: string
+          description: Show smart collections with the specified title.
+        - name: product_id
+          in: query
+          type: string
+          description: Show smart collections that include the specified product.
+        - name: updated_at_min
+          in: query
+          type: string
+          description: 'Show smart collections last updated after this date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: updated_at_max
+          in: query
+          type: string
+          description: 'Show smart collections last updated before this date.  (format: 2014-04-25T16:15:47-04:00)'
+        - name: published_at_min
+          in: query
+          type: string
+          description: 'Show smart collections published after this date.  (format: 2014-04-25T16:15:47-04:00)'
+        - name: published_at_max
+          in: query
+          type: string
+          description: 'Show smart collections published before this date.  (format: 2014-04-25T16:15:47-04:00)'
+        - name: published_status
+          in: query
+          type: string
+          description: Filter results based on the published status of smart collections.
+    - name: admin-api-unstable-custom_collections.json
+      path: /admin/api/unstable/custom_collections.json
+      operations:
+      - name: deprecatedunstablegetcustomcollections
+        method: GET
+        description: Shopify Retrieves A List Of Custom Collections
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: string
+          description: The maximum number of results to retrieve.
+        - name: ids
+          in: query
+          type: string
+          description: Show only collections specified by a comma-separated list of IDs.
+        - name: since_id
+          in: query
+          type: string
+          description: Restrict results to after the specified ID.
+        - name: title
+          in: query
+          type: string
+          description: Show custom collections with a given title.
+        - name: product_id
+          in: query
+          type: string
+          description: Show custom collections that include a given product.
+        - name: handle
+          in: query
+          type: string
+          description: Filter by custom collection handle.
+        - name: updated_at_min
+          in: query
+          type: string
+          description: 'Show custom collections last updated after date (format: 2014-04-25T16:15:47-04:00).'
+        - name: updated_at_max
+          in: query
+          type: string
+          description: 'Show custom collections last updated before date (format: 2014-04-25T16:15:47-04:00).'
+        - name: published_at_min
+          in: query
+          type: string
+          description: 'Show custom collections published after date (format: 2014-04-25T16:15:47-04:00).'
+        - name: published_at_max
+          in: query
+          type: string
+          description: 'Show custom collections published before date (format: 2014-04-25T16:15:47-04:00).'
+        - name: published_status
+          in: query
+          type: string
+          description: Show custom collectsion with a given published status.
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+    - name: admin-api-unstable-custom_collections-count.json
+      path: /admin/api/unstable/custom_collections/count.json
+      operations:
+      - name: deprecatedunstablegetcustomcollectionscount
+        method: GET
+        description: Shopify Retrieves A Count Of Custom Collections
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: title
+          in: query
+          type: string
+          description: Count custom collections with given title.
+        - name: product_id
+          in: query
+          type: string
+          description: Count custom collections that include a given product.
+        - name: updated_at_min
+          in: query
+          type: string
+          description: 'Count custom collections last updated after date (format: 2014-04-25T16:15:47-04:00).'
+        - name: updated_at_max
+          in: query
+          type: string
+          description: 'Count custom collections last updated before date (format: 2014-04-25T16:15:47-04:00).'
+        - name: published_at_min
+          in: query
+          type: string
+          description: 'Count custom collections published after date (format: 2014-04-25T16:15:47-04:00).'
+        - name: published_at_max
+          in: query
+          type: string
+          description: 'Count custom collections published before date (format: 2014-04-25T16:15:47-04:00).'
+        - name: published_status
+          in: query
+          type: string
+          description: Count custom collections with a given published status.
+    - name: admin-api-unstable-smart_collections.json
+      path: /admin/api/unstable/smart_collections.json
+      operations:
+      - name: deprecatedunstablegetsmartcollections
+        method: GET
+        description: Shopify Retrieves A List Of Smart Collections
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: string
+          description: The number of results to show.
+        - name: ids
+          in: query
+          type: string
+          description: Show only the smart collections specified by a comma-separated list of IDs.
+        - name: since_id
+          in: query
+          type: string
+          description: Restrict results to after the specified ID.
+        - name: title
+          in: query
+          type: string
+          description: Show smart collections with the specified title.
+        - name: product_id
+          in: query
+          type: string
+          description: Show smart collections that includes the specified product.
+        - name: handle
+          in: query
+          type: string
+          description: Filter results by smart collection handle.
+        - name: updated_at_min
+          in: query
+          type: string
+          description: 'Show smart collections last updated after this date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: updated_at_max
+          in: query
+          type: string
+          description: 'Show smart collections last updated before this date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: published_at_min
+          in: query
+          type: string
+          description: 'Show smart collections published after this date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: published_at_max
+          in: query
+          type: string
+          description: 'Show smart collections published before this date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: published_status
+          in: query
+          type: string
+          description: Filter results based on the published status of smart collections.
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+    - name: admin-api-unstable-smart_collections-count.json
+      path: /admin/api/unstable/smart_collections/count.json
+      operations:
+      - name: deprecatedunstablegetsmartcollectionscount
+        method: GET
+        description: Shopify Retrieves A Count Of Smart Collections
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: title
+          in: query
+          type: string
+          description: Show smart collections with the specified title.
+        - name: product_id
+          in: query
+          type: string
+          description: Show smart collections that include the specified product.
+        - name: updated_at_min
+          in: query
+          type: string
+          description: 'Show smart collections last updated after this date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: updated_at_max
+          in: query
+          type: string
+          description: 'Show smart collections last updated before this date.  (format: 2014-04-25T16:15:47-04:00)'
+        - name: published_at_min
+          in: query
+          type: string
+          description: 'Show smart collections published after this date.  (format: 2014-04-25T16:15:47-04:00)'
+        - name: published_at_max
+          in: query
+          type: string
+          description: 'Show smart collections published before this date.  (format: 2014-04-25T16:15:47-04:00)'
+        - name: published_status
+          in: query
+          type: string
+          description: Filter results based on the published status of smart collections.
+  exposes:
+  - type: rest
+    namespace: shopify-collections-rest
+    port: 8080
+    description: REST adapter for Shopify  API — Collections. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/admin/api/2020-01/custom-collections-json
+      name: admin-api-2020-01-custom-collections-json
+      description: REST surface for admin-api-2020-01-custom_collections.json.
+      operations:
+      - method: GET
+        name: deprecated202001getcustomcollections
+        description: Shopify Retrieves A List Of Custom Collections
+        call: shopify-collections.deprecated202001getcustomcollections
+        with:
+          limit: rest.limit
+          ids: rest.ids
+          since_id: rest.since_id
+          title: rest.title
+          product_id: rest.product_id
+          handle: rest.handle
+          updated_at_min: rest.updated_at_min
+          updated_at_max: rest.updated_at_max
+          published_at_min: rest.published_at_min
+          published_at_max: rest.published_at_max
+          published_status: rest.published_status
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-01/custom-collections/count-json
+      name: admin-api-2020-01-custom-collections-count-json
+      description: REST surface for admin-api-2020-01-custom_collections-count.json.
+      operations:
+      - method: GET
+        name: deprecated202001getcustomcollectionscount
+        description: Shopify Retrieves A Count Of Custom Collections
+        call: shopify-collections.deprecated202001getcustomcollectionscount
+        with:
+          title: rest.title
+          product_id: rest.product_id
+          updated_at_min: rest.updated_at_min
+          updated_at_max: rest.updated_at_max
+          published_at_min: rest.published_at_min
+          published_at_max: rest.published_at_max
+          published_status: rest.published_status
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-01/smart-collections-json
+      name: admin-api-2020-01-smart-collections-json
+      description: REST surface for admin-api-2020-01-smart_collections.json.
+      operations:
+      - method: GET
+        name: deprecated202001getsmartcollections
+        description: Shopify Retrieves A List Of Smart Collections
+        call: shopify-collections.deprecated202001getsmartcollections
+        with:
+          limit: rest.limit
+          ids: rest.ids
+          since_id: rest.since_id
+          title: rest.title
+          product_id: rest.product_id
+          handle: rest.handle
+          updated_at_min: rest.updated_at_min
+          updated_at_max: rest.updated_at_max
+          published_at_min: rest.published_at_min
+          published_at_max: rest.published_at_max
+          published_status: rest.published_status
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-01/smart-collections/count-json
+      name: admin-api-2020-01-smart-collections-count-json
+      description: REST surface for admin-api-2020-01-smart_collections-count.json.
+      operations:
+      - method: GET
+        name: deprecated202001getsmartcollectionscount
+        description: Shopify Retrieves A Count Of Smart Collections
+        call: shopify-collections.deprecated202001getsmartcollectionscount
+        with:
+          title: rest.title
+          product_id: rest.product_id
+          updated_at_min: rest.updated_at_min
+          updated_at_max: rest.updated_at_max
+          published_at_min: rest.published_at_min
+          published_at_max: rest.published_at_max
+          published_status: rest.published_status
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/custom-collections-json
+      name: admin-api-2020-04-custom-collections-json
+      description: REST surface for admin-api-2020-04-custom_collections.json.
+      operations:
+      - method: GET
+        name: deprecated202004getcustomcollections
+        description: Shopify Retrieves A List Of Custom Collections
+        call: shopify-collections.deprecated202004getcustomcollections
+        with:
+          limit: rest.limit
+          ids: rest.ids
+          since_id: rest.since_id
+          title: rest.title
+          product_id: rest.product_id
+          handle: rest.handle
+          updated_at_min: rest.updated_at_min
+          updated_at_max: rest.updated_at_max
+          published_at_min: rest.published_at_min
+          published_at_max: rest.published_at_max
+          published_status: rest.published_status
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/custom-collections/count-json
+      name: admin-api-2020-04-custom-collections-count-json
+      description: REST surface for admin-api-2020-04-custom_collections-count.json.
+      operations:
+      - method: GET
+        name: deprecated202004getcustomcollectionscount
+        description: Shopify Retrieves A Count Of Custom Collections
+        call: shopify-collections.deprecated202004getcustomcollectionscount
+        with:
+          title: rest.title
+          product_id: rest.product_id
+          updated_at_min: rest.updated_at_min
+          updated_at_max: rest.updated_at_max
+          published_at_min: rest.published_at_min
+          published_at_max: rest.published_at_max
+          published_status: rest.published_status
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/smart-collections-json
+      name: admin-api-2020-04-smart-collections-json
+      description: REST surface for admin-api-2020-04-smart_collections.json.
+      operations:
+      - method: GET
+        name: deprecated202004getsmartcollections
+        description: Shopify Retrieves A List Of Smart Collections
+        call: shopify-collections.deprecated202004getsmartcollections
+        with:
+          limit: rest.limit
+          ids: rest.ids
+          since_id: rest.since_id
+          title: rest.title
+          product_id: rest.product_id
+          handle: rest.handle
+          updated_at_min: rest.updated_at_min
+          updated_at_max: rest.updated_at_max
+          published_at_min: rest.published_at_min
+          published_at_max: rest.published_at_max
+          published_status: rest.published_status
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/smart-collections/count-json
+      name: admin-api-2020-04-smart-collections-count-json
+      description: REST surface for admin-api-2020-04-smart_collections-count.json.
+      operations:
+      - method: GET
+        name: deprecated202004getsmartcollectionscount
+        description: Shopify Retrieves A Count Of Smart Collections
+        call: shopify-collections.deprecated202004getsmartcollectionscount
+        with:
+          title: rest.title
+          product_id: rest.product_id
+          updated_at_min: rest.updated_at_min
+          updated_at_max: rest.updated_at_max
+          published_at_min: rest.published_at_min
+          published_at_max: rest.published_at_max
+          published_status: rest.published_status
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/custom-collections-json
+      name: admin-api-2020-07-custom-collections-json
+      description: REST surface for admin-api-2020-07-custom_collections.json.
+      operations:
+      - method: GET
+        name: deprecated202007getcustomcollections
+        description: Shopify Retrieves A List Of Custom Collections
+        call: shopify-collections.deprecated202007getcustomcollections
+        with:
+          limit: rest.limit
+          ids: rest.ids
+          since_id: rest.since_id
+          title: rest.title
+          product_id: rest.product_id
+          handle: rest.handle
+          updated_at_min: rest.updated_at_min
+          updated_at_max: rest.updated_at_max
+          published_at_min: rest.published_at_min
+          published_at_max: rest.published_at_max
+          published_status: rest.published_status
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/custom-collections/count-json
+      name: admin-api-2020-07-custom-collections-count-json
+      description: REST surface for admin-api-2020-07-custom_collections-count.json.
+      operations:
+      - method: GET
+        name: deprecated202007getcustomcollectionscount
+        description: Shopify Retrieves A Count Of Custom Collections
+        call: shopify-collections.deprecated202007getcustomcollectionscount
+        with:
+          title: rest.title
+          product_id: rest.product_id
+          updated_at_min: rest.updated_at_min
+          updated_at_max: rest.updated_at_max
+          published_at_min: rest.published_at_min
+          published_at_max: rest.published_at_max
+          published_status: rest.published_status
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/smart-collections-json
+      name: admin-api-2020-07-smart-collections-json
+      description: REST surface for admin-api-2020-07-smart_collections.json.
+      operations:
+      - method: GET
+        name: deprecated202007getsmartcollections
+        description: Shopify Retrieves A List Of Smart Collections
+        call: shopify-collections.deprecated202007getsmartcollections
+        with:
+          limit: rest.limit
+          ids: rest.ids
+          since_id: rest.since_id
+          title: rest.title
+          product_id: rest.product_id
+          handle: rest.handle
+          updated_at_min: rest.updated_at_min
+          updated_at_max: rest.updated_at_max
+          published_at_min: rest.published_at_min
+          published_at_max: rest.published_at_max
+          published_status: rest.published_status
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/smart-collections/count-json
+      name: admin-api-2020-07-smart-collections-count-json
+      description: REST surface for admin-api-2020-07-smart_collections-count.json.
+      operations:
+      - method: GET
+        name: deprecated202007getsmartcollectionscount
+        description: Shopify Retrieves A Count Of Smart Collections
+        call: shopify-collections.deprecated202007getsmartcollectionscount
+        with:
+          title: rest.title
+          product_id: rest.product_id
+          updated_at_min: rest.updated_at_min
+          updated_at_max: rest.updated_at_max
+          published_at_min: rest.published_at_min
+          published_at_max: rest.published_at_max
+          published_status: rest.published_status
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/custom-collections-json
+      name: admin-api-2020-10-custom-collections-json
+      description: REST surface for admin-api-2020-10-custom_collections.json.
+      operations:
+      - method: GET
+        name: getcustomcollections
+        description: Shopify Retrieves A List Of Custom Collections
+        call: shopify-collections.getcustomcollections
+        with:
+          limit: rest.limit
+          ids: rest.ids
+          since_id: rest.since_id
+          title: rest.title
+          product_id: rest.product_id
+          handle: rest.handle
+          updated_at_min: rest.updated_at_min
+          updated_at_max: rest.updated_at_max
+          published_at_min: rest.published_at_min
+          published_at_max: rest.published_at_max
+          published_status: rest.published_status
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/custom-collections/count-json
+      name: admin-api-2020-10-custom-collections-count-json
+      description: REST surface for admin-api-2020-10-custom_collections-count.json.
+      operations:
+      - method: GET
+        name: getcustomcollectionscount
+        description: Shopify Retrieves A Count Of Custom Collections
+        call: shopify-collections.getcustomcollectionscount
+        with:
+          title: rest.title
+          product_id: rest.product_id
+          updated_at_min: rest.updated_at_min
+          updated_at_max: rest.updated_at_max
+          published_at_min: rest.published_at_min
+          published_at_max: rest.published_at_max
+          published_status: rest.published_status
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/smart-collections-json
+      name: admin-api-2020-10-smart-collections-json
+      description: REST surface for admin-api-2020-10-smart_collections.json.
+      operations:
+      - method: GET
+        name: getsmartcollections
+        description: Shopify Retrieves A List Of Smart Collections
+        call: shopify-collections.getsmartcollections
+        with:
+          limit: rest.limit
+          ids: rest.ids
+          since_id: rest.since_id
+          title: rest.title
+          product_id: rest.product_id
+          handle: rest.handle
+          updated_at_min: rest.updated_at_min
+          updated_at_max: rest.updated_at_max
+          published_at_min: rest.published_at_min
+          published_at_max: rest.published_at_max
+          published_status: rest.published_status
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/smart-collections/count-json
+      name: admin-api-2020-10-smart-collections-count-json
+      description: REST surface for admin-api-2020-10-smart_collections-count.json.
+      operations:
+      - method: GET
+        name: getsmartcollectionscount
+        description: Shopify Retrieves A Count Of Smart Collections
+        call: shopify-collections.getsmartcollectionscount
+        with:
+          title: rest.title
+          product_id: rest.product_id
+          updated_at_min: rest.updated_at_min
+          updated_at_max: rest.updated_at_max
+          published_at_min: rest.published_at_min
+          published_at_max: rest.published_at_max
+          published_status: rest.published_status
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/custom-collections-json
+      name: admin-api-2021-01-custom-collections-json
+      description: REST surface for admin-api-2021-01-custom_collections.json.
+      operations:
+      - method: GET
+        name: deprecated202101getcustomcollections
+        description: Shopify Retrieves A List Of Custom Collections
+        call: shopify-collections.deprecated202101getcustomcollections
+        with:
+          limit: rest.limit
+          ids: rest.ids
+          since_id: rest.since_id
+          title: rest.title
+          product_id: rest.product_id
+          handle: rest.handle
+          updated_at_min: rest.updated_at_min
+          updated_at_max: rest.updated_at_max
+          published_at_min: rest.published_at_min
+          published_at_max: rest.published_at_max
+          published_status: rest.published_status
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/custom-collections/count-json
+      name: admin-api-2021-01-custom-collections-count-json
+      description: REST surface for admin-api-2021-01-custom_collections-count.json.
+      operations:
+      - method: GET
+        name: deprecated202101getcustomcollectionscount
+        description: Shopify Retrieves A Count Of Custom Collections
+        call: shopify-collections.deprecated202101getcustomcollectionscount
+        with:
+          title: rest.title
+          product_id: rest.product_id
+          updated_at_min: rest.updated_at_min
+          updated_at_max: rest.updated_at_max
+          published_at_min: rest.published_at_min
+          published_at_max: rest.published_at_max
+          published_status: rest.published_status
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/smart-collections-json
+      name: admin-api-2021-01-smart-collections-json
+      description: REST surface for admin-api-2021-01-smart_collections.json.
+      operations:
+      - method: GET
+        name: deprecated202101getsmartcollections
+        description: Shopify Retrieves A List Of Smart Collections
+        call: shopify-collections.deprecated202101getsmartcollections
+        with:
+          limit: rest.limit
+          ids: rest.ids
+          since_id: rest.since_id
+          title: rest.title
+          product_id: rest.product_id
+          handle: rest.handle
+          updated_at_min: rest.updated_at_min
+          updated_at_max: rest.updated_at_max
+          published_at_min: rest.published_at_min
+          published_at_max: rest.published_at_max
+          published_status: rest.published_status
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/smart-collections/count-json
+      name: admin-api-2021-01-smart-collections-count-json
+      description: REST surface for admin-api-2021-01-smart_collections-count.json.
+      operations:
+      - method: GET
+        name: deprecated202101getsmartcollectionscount
+        description: Shopify Retrieves A Count Of Smart Collections
+        call: shopify-collections.deprecated202101getsmartcollectionscount
+        with:
+          title: rest.title
+          product_id: rest.product_id
+          updated_at_min: rest.updated_at_min
+          updated_at_max: rest.updated_at_max
+          published_at_min: rest.published_at_min
+          published_at_max: rest.published_at_max
+          published_status: rest.published_status
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/custom-collections-json
+      name: admin-api-unstable-custom-collections-json
+      description: REST surface for admin-api-unstable-custom_collections.json.
+      operations:
+      - method: GET
+        name: deprecatedunstablegetcustomcollections
+        description: Shopify Retrieves A List Of Custom Collections
+        call: shopify-collections.deprecatedunstablegetcustomcollections
+        with:
+          limit: rest.limit
+          ids: rest.ids
+          since_id: rest.since_id
+          title: rest.title
+          product_id: rest.product_id
+          handle: rest.handle
+          updated_at_min: rest.updated_at_min
+          updated_at_max: rest.updated_at_max
+          published_at_min: rest.published_at_min
+          published_at_max: rest.published_at_max
+          published_status: rest.published_status
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/custom-collections/count-json
+      name: admin-api-unstable-custom-collections-count-json
+      description: REST surface for admin-api-unstable-custom_collections-count.json.
+      operations:
+      - method: GET
+        name: deprecatedunstablegetcustomcollectionscount
+        description: Shopify Retrieves A Count Of Custom Collections
+        call: shopify-collections.deprecatedunstablegetcustomcollectionscount
+        with:
+          title: rest.title
+          product_id: rest.product_id
+          updated_at_min: rest.updated_at_min
+          updated_at_max: rest.updated_at_max
+          published_at_min: rest.published_at_min
+          published_at_max: rest.published_at_max
+          published_status: rest.published_status
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/smart-collections-json
+      name: admin-api-unstable-smart-collections-json
+      description: REST surface for admin-api-unstable-smart_collections.json.
+      operations:
+      - method: GET
+        name: deprecatedunstablegetsmartcollections
+        description: Shopify Retrieves A List Of Smart Collections
+        call: shopify-collections.deprecatedunstablegetsmartcollections
+        with:
+          limit: rest.limit
+          ids: rest.ids
+          since_id: rest.since_id
+          title: rest.title
+          product_id: rest.product_id
+          handle: rest.handle
+          updated_at_min: rest.updated_at_min
+          updated_at_max: rest.updated_at_max
+          published_at_min: rest.published_at_min
+          published_at_max: rest.published_at_max
+          published_status: rest.published_status
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/smart-collections/count-json
+      name: admin-api-unstable-smart-collections-count-json
+      description: REST surface for admin-api-unstable-smart_collections-count.json.
+      operations:
+      - method: GET
+        name: deprecatedunstablegetsmartcollectionscount
+        description: Shopify Retrieves A Count Of Smart Collections
+        call: shopify-collections.deprecatedunstablegetsmartcollectionscount
+        with:
+          title: rest.title
+          product_id: rest.product_id
+          updated_at_min: rest.updated_at_min
+          updated_at_max: rest.updated_at_max
+          published_at_min: rest.published_at_min
+          published_at_max: rest.published_at_max
+          published_status: rest.published_status
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: shopify-collections-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Shopify  API — Collections. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: shopify-retrieves-list-custom-collections
+      description: Shopify Retrieves A List Of Custom Collections
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-collections.deprecated202001getcustomcollections
+      with:
+        limit: tools.limit
+        ids: tools.ids
+        since_id: tools.since_id
+        title: tools.title
+        product_id: tools.product_id
+        handle: tools.handle
+        updated_at_min: tools.updated_at_min
+        updated_at_max: tools.updated_at_max
+        published_at_min: tools.published_at_min
+        published_at_max: tools.published_at_max
+        published_status: tools.published_status
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-count-custom-collections
+      description: Shopify Retrieves A Count Of Custom Collections
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-collections.deprecated202001getcustomcollectionscount
+      with:
+        title: tools.title
+        product_id: tools.product_id
+        updated_at_min: tools.updated_at_min
+        updated_at_max: tools.updated_at_max
+        published_at_min: tools.published_at_min
+        published_at_max: tools.published_at_max
+        published_status: tools.published_status
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-smart-collections
+      description: Shopify Retrieves A List Of Smart Collections
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-collections.deprecated202001getsmartcollections
+      with:
+        limit: tools.limit
+        ids: tools.ids
+        since_id: tools.since_id
+        title: tools.title
+        product_id: tools.product_id
+        handle: tools.handle
+        updated_at_min: tools.updated_at_min
+        updated_at_max: tools.updated_at_max
+        published_at_min: tools.published_at_min
+        published_at_max: tools.published_at_max
+        published_status: tools.published_status
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-count-smart-collections
+      description: Shopify Retrieves A Count Of Smart Collections
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-collections.deprecated202001getsmartcollectionscount
+      with:
+        title: tools.title
+        product_id: tools.product_id
+        updated_at_min: tools.updated_at_min
+        updated_at_max: tools.updated_at_max
+        published_at_min: tools.published_at_min
+        published_at_max: tools.published_at_max
+        published_status: tools.published_status
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-custom-collections-2
+      description: Shopify Retrieves A List Of Custom Collections
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-collections.deprecated202004getcustomcollections
+      with:
+        limit: tools.limit
+        ids: tools.ids
+        since_id: tools.since_id
+        title: tools.title
+        product_id: tools.product_id
+        handle: tools.handle
+        updated_at_min: tools.updated_at_min
+        updated_at_max: tools.updated_at_max
+        published_at_min: tools.published_at_min
+        published_at_max: tools.published_at_max
+        published_status: tools.published_status
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-count-custom-collections-2
+      description: Shopify Retrieves A Count Of Custom Collections
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-collections.deprecated202004getcustomcollectionscount
+      with:
+        title: tools.title
+        product_id: tools.product_id
+        updated_at_min: tools.updated_at_min
+        updated_at_max: tools.updated_at_max
+        published_at_min: tools.published_at_min
+        published_at_max: tools.published_at_max
+        published_status: tools.published_status
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-smart-collections-2
+      description: Shopify Retrieves A List Of Smart Collections
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-collections.deprecated202004getsmartcollections
+      with:
+        limit: tools.limit
+        ids: tools.ids
+        since_id: tools.since_id
+        title: tools.title
+        product_id: tools.product_id
+        handle: tools.handle
+        updated_at_min: tools.updated_at_min
+        updated_at_max: tools.updated_at_max
+        published_at_min: tools.published_at_min
+        published_at_max: tools.published_at_max
+        published_status: tools.published_status
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-count-smart-collections-2
+      description: Shopify Retrieves A Count Of Smart Collections
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-collections.deprecated202004getsmartcollectionscount
+      with:
+        title: tools.title
+        product_id: tools.product_id
+        updated_at_min: tools.updated_at_min
+        updated_at_max: tools.updated_at_max
+        published_at_min: tools.published_at_min
+        published_at_max: tools.published_at_max
+        published_status: tools.published_status
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-custom-collections-3
+      description: Shopify Retrieves A List Of Custom Collections
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-collections.deprecated202007getcustomcollections
+      with:
+        limit: tools.limit
+        ids: tools.ids
+        since_id: tools.since_id
+        title: tools.title
+        product_id: tools.product_id
+        handle: tools.handle
+        updated_at_min: tools.updated_at_min
+        updated_at_max: tools.updated_at_max
+        published_at_min: tools.published_at_min
+        published_at_max: tools.published_at_max
+        published_status: tools.published_status
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-count-custom-collections-3
+      description: Shopify Retrieves A Count Of Custom Collections
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-collections.deprecated202007getcustomcollectionscount
+      with:
+        title: tools.title
+        product_id: tools.product_id
+        updated_at_min: tools.updated_at_min
+        updated_at_max: tools.updated_at_max
+        published_at_min: tools.published_at_min
+        published_at_max: tools.published_at_max
+        published_status: tools.published_status
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-smart-collections-3
+      description: Shopify Retrieves A List Of Smart Collections
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-collections.deprecated202007getsmartcollections
+      with:
+        limit: tools.limit
+        ids: tools.ids
+        since_id: tools.since_id
+        title: tools.title
+        product_id: tools.product_id
+        handle: tools.handle
+        updated_at_min: tools.updated_at_min
+        updated_at_max: tools.updated_at_max
+        published_at_min: tools.published_at_min
+        published_at_max: tools.published_at_max
+        published_status: tools.published_status
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-count-smart-collections-3
+      description: Shopify Retrieves A Count Of Smart Collections
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-collections.deprecated202007getsmartcollectionscount
+      with:
+        title: tools.title
+        product_id: tools.product_id
+        updated_at_min: tools.updated_at_min
+        updated_at_max: tools.updated_at_max
+        published_at_min: tools.published_at_min
+        published_at_max: tools.published_at_max
+        published_status: tools.published_status
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-custom-collections-4
+      description: Shopify Retrieves A List Of Custom Collections
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-collections.getcustomcollections
+      with:
+        limit: tools.limit
+        ids: tools.ids
+        since_id: tools.since_id
+        title: tools.title
+        product_id: tools.product_id
+        handle: tools.handle
+        updated_at_min: tools.updated_at_min
+        updated_at_max: tools.updated_at_max
+        published_at_min: tools.published_at_min
+        published_at_max: tools.published_at_max
+        published_status: tools.published_status
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-count-custom-collections-4
+      description: Shopify Retrieves A Count Of Custom Collections
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-collections.getcustomcollectionscount
+      with:
+        title: tools.title
+        product_id: tools.product_id
+        updated_at_min: tools.updated_at_min
+        updated_at_max: tools.updated_at_max
+        published_at_min: tools.published_at_min
+        published_at_max: tools.published_at_max
+        published_status: tools.published_status
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-smart-collections-4
+      description: Shopify Retrieves A List Of Smart Collections
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-collections.getsmartcollections
+      with:
+        limit: tools.limit
+        ids: tools.ids
+        since_id: tools.since_id
+        title: tools.title
+        product_id: tools.product_id
+        handle: tools.handle
+        updated_at_min: tools.updated_at_min
+        updated_at_max: tools.updated_at_max
+        published_at_min: tools.published_at_min
+        published_at_max: tools.published_at_max
+        published_status: tools.published_status
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-count-smart-collections-4
+      description: Shopify Retrieves A Count Of Smart Collections
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-collections.getsmartcollectionscount
+      with:
+        title: tools.title
+        product_id: tools.product_id
+        updated_at_min: tools.updated_at_min
+        updated_at_max: tools.updated_at_max
+        published_at_min: tools.published_at_min
+        published_at_max: tools.published_at_max
+        published_status: tools.published_status
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-custom-collections-5
+      description: Shopify Retrieves A List Of Custom Collections
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-collections.deprecated202101getcustomcollections
+      with:
+        limit: tools.limit
+        ids: tools.ids
+        since_id: tools.since_id
+        title: tools.title
+        product_id: tools.product_id
+        handle: tools.handle
+        updated_at_min: tools.updated_at_min
+        updated_at_max: tools.updated_at_max
+        published_at_min: tools.published_at_min
+        published_at_max: tools.published_at_max
+        published_status: tools.published_status
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-count-custom-collections-5
+      description: Shopify Retrieves A Count Of Custom Collections
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-collections.deprecated202101getcustomcollectionscount
+      with:
+        title: tools.title
+        product_id: tools.product_id
+        updated_at_min: tools.updated_at_min
+        updated_at_max: tools.updated_at_max
+        published_at_min: tools.published_at_min
+        published_at_max: tools.published_at_max
+        published_status: tools.published_status
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-smart-collections-5
+      description: Shopify Retrieves A List Of Smart Collections
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-collections.deprecated202101getsmartcollections
+      with:
+        limit: tools.limit
+        ids: tools.ids
+        since_id: tools.since_id
+        title: tools.title
+        product_id: tools.product_id
+        handle: tools.handle
+        updated_at_min: tools.updated_at_min
+        updated_at_max: tools.updated_at_max
+        published_at_min: tools.published_at_min
+        published_at_max: tools.published_at_max
+        published_status: tools.published_status
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-count-smart-collections-5
+      description: Shopify Retrieves A Count Of Smart Collections
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-collections.deprecated202101getsmartcollectionscount
+      with:
+        title: tools.title
+        product_id: tools.product_id
+        updated_at_min: tools.updated_at_min
+        updated_at_max: tools.updated_at_max
+        published_at_min: tools.published_at_min
+        published_at_max: tools.published_at_max
+        published_status: tools.published_status
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-custom-collections-6
+      description: Shopify Retrieves A List Of Custom Collections
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-collections.deprecatedunstablegetcustomcollections
+      with:
+        limit: tools.limit
+        ids: tools.ids
+        since_id: tools.since_id
+        title: tools.title
+        product_id: tools.product_id
+        handle: tools.handle
+        updated_at_min: tools.updated_at_min
+        updated_at_max: tools.updated_at_max
+        published_at_min: tools.published_at_min
+        published_at_max: tools.published_at_max
+        published_status: tools.published_status
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-count-custom-collections-6
+      description: Shopify Retrieves A Count Of Custom Collections
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-collections.deprecatedunstablegetcustomcollectionscount
+      with:
+        title: tools.title
+        product_id: tools.product_id
+        updated_at_min: tools.updated_at_min
+        updated_at_max: tools.updated_at_max
+        published_at_min: tools.published_at_min
+        published_at_max: tools.published_at_max
+        published_status: tools.published_status
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-smart-collections-6
+      description: Shopify Retrieves A List Of Smart Collections
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-collections.deprecatedunstablegetsmartcollections
+      with:
+        limit: tools.limit
+        ids: tools.ids
+        since_id: tools.since_id
+        title: tools.title
+        product_id: tools.product_id
+        handle: tools.handle
+        updated_at_min: tools.updated_at_min
+        updated_at_max: tools.updated_at_max
+        published_at_min: tools.published_at_min
+        published_at_max: tools.published_at_max
+        published_status: tools.published_status
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-count-smart-collections-6
+      description: Shopify Retrieves A Count Of Smart Collections
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-collections.deprecatedunstablegetsmartcollectionscount
+      with:
+        title: tools.title
+        product_id: tools.product_id
+        updated_at_min: tools.updated_at_min
+        updated_at_max: tools.updated_at_max
+        published_at_min: tools.published_at_min
+        published_at_max: tools.published_at_max
+        published_status: tools.published_status
+      outputParameters:
+      - type: object
+        mapping: $.

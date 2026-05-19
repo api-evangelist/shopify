@@ -1,0 +1,941 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Shopify  API — Images
+  description: 'Shopify  API — Images. 18 operations. Lead operation: Shopify Updates A Product And Its Variants And Images.
+    Self-contained Naftiko capability covering one Shopify business surface.'
+  tags:
+  - Shopify
+  - Images
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SHOPIFY_API_KEY: SHOPIFY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: shopify-images
+    baseUri: ''
+    description: Shopify  API — Images business capability. Self-contained, no shared references.
+    resources:
+    - name: admin-api-2020-01-products-product_id}.json
+      path: /admin/api/2020-01/products/{product_id}.json
+      operations:
+      - name: deprecated202001updateproductsparamproductid
+        method: PUT
+        description: Shopify Updates A Product And Its Variants And Images
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_id
+          in: path
+          type: string
+          description: product_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-01-products-product_id-images.json
+      path: /admin/api/2020-01/products/{product_id}/images.json
+      operations:
+      - name: deprecated202001getproductsparamproductidimages
+        method: GET
+        description: Shopify Get All Product Images
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_id
+          in: path
+          type: string
+          description: product_id
+          required: true
+        - name: since_id
+          in: query
+          type: string
+          description: Restrict results to after the specified ID
+        - name: fields
+          in: query
+          type: string
+          description: comma-separated list of fields to include in the response
+    - name: admin-api-2020-01-products-product_id-images-count.json
+      path: /admin/api/2020-01/products/{product_id}/images/count.json
+      operations:
+      - name: deprecated202001getproductsparamproductidimagescount
+        method: GET
+        description: Shopify Get A Count Of All Product Images
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_id
+          in: path
+          type: string
+          description: product_id
+          required: true
+        - name: since_id
+          in: query
+          type: string
+          description: Restrict results to after the specified ID
+    - name: admin-api-2020-04-products-product_id}.json
+      path: /admin/api/2020-04/products/{product_id}.json
+      operations:
+      - name: deprecated202004updateproductsparamproductid
+        method: PUT
+        description: Shopify Updates A Product And Its Variants And Images
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_id
+          in: path
+          type: string
+          description: product_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-04-products-product_id-images.json
+      path: /admin/api/2020-04/products/{product_id}/images.json
+      operations:
+      - name: deprecated202004getproductsparamproductidimages
+        method: GET
+        description: Shopify Get All Product Images
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_id
+          in: path
+          type: string
+          description: product_id
+          required: true
+        - name: since_id
+          in: query
+          type: string
+          description: Restrict results to after the specified ID
+        - name: fields
+          in: query
+          type: string
+          description: comma-separated list of fields to include in the response
+    - name: admin-api-2020-04-products-product_id-images-count.json
+      path: /admin/api/2020-04/products/{product_id}/images/count.json
+      operations:
+      - name: deprecated202004getproductsparamproductidimagescount
+        method: GET
+        description: Shopify Get A Count Of All Product Images
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_id
+          in: path
+          type: string
+          description: product_id
+          required: true
+        - name: since_id
+          in: query
+          type: string
+          description: Restrict results to after the specified ID
+    - name: admin-api-2020-07-products-product_id}.json
+      path: /admin/api/2020-07/products/{product_id}.json
+      operations:
+      - name: deprecated202007updateproductsparamproductid
+        method: PUT
+        description: Shopify Updates A Product And Its Variants And Images
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_id
+          in: path
+          type: string
+          description: product_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-07-products-product_id-images.json
+      path: /admin/api/2020-07/products/{product_id}/images.json
+      operations:
+      - name: deprecated202007getproductsparamproductidimages
+        method: GET
+        description: Shopify Get All Product Images
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_id
+          in: path
+          type: string
+          description: product_id
+          required: true
+        - name: since_id
+          in: query
+          type: string
+          description: Restrict results to after the specified ID
+        - name: fields
+          in: query
+          type: string
+          description: comma-separated list of fields to include in the response
+    - name: admin-api-2020-07-products-product_id-images-count.json
+      path: /admin/api/2020-07/products/{product_id}/images/count.json
+      operations:
+      - name: deprecated202007getproductsparamproductidimagescount
+        method: GET
+        description: Shopify Get A Count Of All Product Images
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_id
+          in: path
+          type: string
+          description: product_id
+          required: true
+        - name: since_id
+          in: query
+          type: string
+          description: Restrict results to after the specified ID
+    - name: admin-api-2020-10-products-product_id}.json
+      path: /admin/api/2020-10/products/{product_id}.json
+      operations:
+      - name: updateproductsparamproductid
+        method: PUT
+        description: Shopify Updates A Product And Its Variants And Images
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_id
+          in: path
+          type: string
+          description: product_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-10-products-product_id-images.json
+      path: /admin/api/2020-10/products/{product_id}/images.json
+      operations:
+      - name: getproductsparamproductidimages
+        method: GET
+        description: Shopify Get All Product Images
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_id
+          in: path
+          type: string
+          description: product_id
+          required: true
+        - name: since_id
+          in: query
+          type: string
+          description: Restrict results to after the specified ID
+        - name: fields
+          in: query
+          type: string
+          description: comma-separated list of fields to include in the response
+    - name: admin-api-2020-10-products-product_id-images-count.json
+      path: /admin/api/2020-10/products/{product_id}/images/count.json
+      operations:
+      - name: getproductsparamproductidimagescount
+        method: GET
+        description: Shopify Get A Count Of All Product Images
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_id
+          in: path
+          type: string
+          description: product_id
+          required: true
+        - name: since_id
+          in: query
+          type: string
+          description: Restrict results to after the specified ID
+    - name: admin-api-2021-01-products-product_id}.json
+      path: /admin/api/2021-01/products/{product_id}.json
+      operations:
+      - name: deprecated202101updateproductsparamproductid
+        method: PUT
+        description: Shopify Updates A Product And Its Variants And Images
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_id
+          in: path
+          type: string
+          description: product_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2021-01-products-product_id-images.json
+      path: /admin/api/2021-01/products/{product_id}/images.json
+      operations:
+      - name: deprecated202101getproductsparamproductidimages
+        method: GET
+        description: Shopify Get All Product Images
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_id
+          in: path
+          type: string
+          description: product_id
+          required: true
+        - name: since_id
+          in: query
+          type: string
+          description: Restrict results to after the specified ID
+        - name: fields
+          in: query
+          type: string
+          description: comma-separated list of fields to include in the response
+    - name: admin-api-2021-01-products-product_id-images-count.json
+      path: /admin/api/2021-01/products/{product_id}/images/count.json
+      operations:
+      - name: deprecated202101getproductsparamproductidimagescount
+        method: GET
+        description: Shopify Get A Count Of All Product Images
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_id
+          in: path
+          type: string
+          description: product_id
+          required: true
+        - name: since_id
+          in: query
+          type: string
+          description: Restrict results to after the specified ID
+    - name: admin-api-unstable-products-product_id}.json
+      path: /admin/api/unstable/products/{product_id}.json
+      operations:
+      - name: deprecatedunstableupdateproductsparamproductid
+        method: PUT
+        description: Shopify Updates A Product And Its Variants And Images
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_id
+          in: path
+          type: string
+          description: product_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-unstable-products-product_id-images.json
+      path: /admin/api/unstable/products/{product_id}/images.json
+      operations:
+      - name: deprecatedunstablegetproductsparamproductidimages
+        method: GET
+        description: Shopify Get All Product Images
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_id
+          in: path
+          type: string
+          description: product_id
+          required: true
+        - name: since_id
+          in: query
+          type: string
+          description: Restrict results to after the specified ID
+        - name: fields
+          in: query
+          type: string
+          description: comma-separated list of fields to include in the response
+    - name: admin-api-unstable-products-product_id-images-count.json
+      path: /admin/api/unstable/products/{product_id}/images/count.json
+      operations:
+      - name: deprecatedunstablegetproductsparamproductidimagescount
+        method: GET
+        description: Shopify Get A Count Of All Product Images
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_id
+          in: path
+          type: string
+          description: product_id
+          required: true
+        - name: since_id
+          in: query
+          type: string
+          description: Restrict results to after the specified ID
+  exposes:
+  - type: rest
+    namespace: shopify-images-rest
+    port: 8080
+    description: REST adapter for Shopify  API — Images. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/admin/api/2020-01/products/product-id-json
+      name: admin-api-2020-01-products-product-id-json
+      description: REST surface for admin-api-2020-01-products-product_id}.json.
+      operations:
+      - method: PUT
+        name: deprecated202001updateproductsparamproductid
+        description: Shopify Updates A Product And Its Variants And Images
+        call: shopify-images.deprecated202001updateproductsparamproductid
+        with:
+          product_id: rest.product_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-01/products/{product-id}/images-json
+      name: admin-api-2020-01-products-product-id-images-json
+      description: REST surface for admin-api-2020-01-products-product_id-images.json.
+      operations:
+      - method: GET
+        name: deprecated202001getproductsparamproductidimages
+        description: Shopify Get All Product Images
+        call: shopify-images.deprecated202001getproductsparamproductidimages
+        with:
+          product_id: rest.product_id
+          since_id: rest.since_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-01/products/{product-id}/images/count-json
+      name: admin-api-2020-01-products-product-id-images-count-json
+      description: REST surface for admin-api-2020-01-products-product_id-images-count.json.
+      operations:
+      - method: GET
+        name: deprecated202001getproductsparamproductidimagescount
+        description: Shopify Get A Count Of All Product Images
+        call: shopify-images.deprecated202001getproductsparamproductidimagescount
+        with:
+          product_id: rest.product_id
+          since_id: rest.since_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/products/product-id-json
+      name: admin-api-2020-04-products-product-id-json
+      description: REST surface for admin-api-2020-04-products-product_id}.json.
+      operations:
+      - method: PUT
+        name: deprecated202004updateproductsparamproductid
+        description: Shopify Updates A Product And Its Variants And Images
+        call: shopify-images.deprecated202004updateproductsparamproductid
+        with:
+          product_id: rest.product_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/products/{product-id}/images-json
+      name: admin-api-2020-04-products-product-id-images-json
+      description: REST surface for admin-api-2020-04-products-product_id-images.json.
+      operations:
+      - method: GET
+        name: deprecated202004getproductsparamproductidimages
+        description: Shopify Get All Product Images
+        call: shopify-images.deprecated202004getproductsparamproductidimages
+        with:
+          product_id: rest.product_id
+          since_id: rest.since_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/products/{product-id}/images/count-json
+      name: admin-api-2020-04-products-product-id-images-count-json
+      description: REST surface for admin-api-2020-04-products-product_id-images-count.json.
+      operations:
+      - method: GET
+        name: deprecated202004getproductsparamproductidimagescount
+        description: Shopify Get A Count Of All Product Images
+        call: shopify-images.deprecated202004getproductsparamproductidimagescount
+        with:
+          product_id: rest.product_id
+          since_id: rest.since_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/products/product-id-json
+      name: admin-api-2020-07-products-product-id-json
+      description: REST surface for admin-api-2020-07-products-product_id}.json.
+      operations:
+      - method: PUT
+        name: deprecated202007updateproductsparamproductid
+        description: Shopify Updates A Product And Its Variants And Images
+        call: shopify-images.deprecated202007updateproductsparamproductid
+        with:
+          product_id: rest.product_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/products/{product-id}/images-json
+      name: admin-api-2020-07-products-product-id-images-json
+      description: REST surface for admin-api-2020-07-products-product_id-images.json.
+      operations:
+      - method: GET
+        name: deprecated202007getproductsparamproductidimages
+        description: Shopify Get All Product Images
+        call: shopify-images.deprecated202007getproductsparamproductidimages
+        with:
+          product_id: rest.product_id
+          since_id: rest.since_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/products/{product-id}/images/count-json
+      name: admin-api-2020-07-products-product-id-images-count-json
+      description: REST surface for admin-api-2020-07-products-product_id-images-count.json.
+      operations:
+      - method: GET
+        name: deprecated202007getproductsparamproductidimagescount
+        description: Shopify Get A Count Of All Product Images
+        call: shopify-images.deprecated202007getproductsparamproductidimagescount
+        with:
+          product_id: rest.product_id
+          since_id: rest.since_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/products/product-id-json
+      name: admin-api-2020-10-products-product-id-json
+      description: REST surface for admin-api-2020-10-products-product_id}.json.
+      operations:
+      - method: PUT
+        name: updateproductsparamproductid
+        description: Shopify Updates A Product And Its Variants And Images
+        call: shopify-images.updateproductsparamproductid
+        with:
+          product_id: rest.product_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/products/{product-id}/images-json
+      name: admin-api-2020-10-products-product-id-images-json
+      description: REST surface for admin-api-2020-10-products-product_id-images.json.
+      operations:
+      - method: GET
+        name: getproductsparamproductidimages
+        description: Shopify Get All Product Images
+        call: shopify-images.getproductsparamproductidimages
+        with:
+          product_id: rest.product_id
+          since_id: rest.since_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/products/{product-id}/images/count-json
+      name: admin-api-2020-10-products-product-id-images-count-json
+      description: REST surface for admin-api-2020-10-products-product_id-images-count.json.
+      operations:
+      - method: GET
+        name: getproductsparamproductidimagescount
+        description: Shopify Get A Count Of All Product Images
+        call: shopify-images.getproductsparamproductidimagescount
+        with:
+          product_id: rest.product_id
+          since_id: rest.since_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/products/product-id-json
+      name: admin-api-2021-01-products-product-id-json
+      description: REST surface for admin-api-2021-01-products-product_id}.json.
+      operations:
+      - method: PUT
+        name: deprecated202101updateproductsparamproductid
+        description: Shopify Updates A Product And Its Variants And Images
+        call: shopify-images.deprecated202101updateproductsparamproductid
+        with:
+          product_id: rest.product_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/products/{product-id}/images-json
+      name: admin-api-2021-01-products-product-id-images-json
+      description: REST surface for admin-api-2021-01-products-product_id-images.json.
+      operations:
+      - method: GET
+        name: deprecated202101getproductsparamproductidimages
+        description: Shopify Get All Product Images
+        call: shopify-images.deprecated202101getproductsparamproductidimages
+        with:
+          product_id: rest.product_id
+          since_id: rest.since_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/products/{product-id}/images/count-json
+      name: admin-api-2021-01-products-product-id-images-count-json
+      description: REST surface for admin-api-2021-01-products-product_id-images-count.json.
+      operations:
+      - method: GET
+        name: deprecated202101getproductsparamproductidimagescount
+        description: Shopify Get A Count Of All Product Images
+        call: shopify-images.deprecated202101getproductsparamproductidimagescount
+        with:
+          product_id: rest.product_id
+          since_id: rest.since_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/products/product-id-json
+      name: admin-api-unstable-products-product-id-json
+      description: REST surface for admin-api-unstable-products-product_id}.json.
+      operations:
+      - method: PUT
+        name: deprecatedunstableupdateproductsparamproductid
+        description: Shopify Updates A Product And Its Variants And Images
+        call: shopify-images.deprecatedunstableupdateproductsparamproductid
+        with:
+          product_id: rest.product_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/products/{product-id}/images-json
+      name: admin-api-unstable-products-product-id-images-json
+      description: REST surface for admin-api-unstable-products-product_id-images.json.
+      operations:
+      - method: GET
+        name: deprecatedunstablegetproductsparamproductidimages
+        description: Shopify Get All Product Images
+        call: shopify-images.deprecatedunstablegetproductsparamproductidimages
+        with:
+          product_id: rest.product_id
+          since_id: rest.since_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/products/{product-id}/images/count-json
+      name: admin-api-unstable-products-product-id-images-count-json
+      description: REST surface for admin-api-unstable-products-product_id-images-count.json.
+      operations:
+      - method: GET
+        name: deprecatedunstablegetproductsparamproductidimagescount
+        description: Shopify Get A Count Of All Product Images
+        call: shopify-images.deprecatedunstablegetproductsparamproductidimagescount
+        with:
+          product_id: rest.product_id
+          since_id: rest.since_id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: shopify-images-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Shopify  API — Images. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: shopify-updates-product-and-its
+      description: Shopify Updates A Product And Its Variants And Images
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-images.deprecated202001updateproductsparamproductid
+      with:
+        product_id: tools.product_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-get-all-product-images
+      description: Shopify Get All Product Images
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-images.deprecated202001getproductsparamproductidimages
+      with:
+        product_id: tools.product_id
+        since_id: tools.since_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-get-count-all-product
+      description: Shopify Get A Count Of All Product Images
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-images.deprecated202001getproductsparamproductidimagescount
+      with:
+        product_id: tools.product_id
+        since_id: tools.since_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-updates-product-and-its-2
+      description: Shopify Updates A Product And Its Variants And Images
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-images.deprecated202004updateproductsparamproductid
+      with:
+        product_id: tools.product_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-get-all-product-images-2
+      description: Shopify Get All Product Images
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-images.deprecated202004getproductsparamproductidimages
+      with:
+        product_id: tools.product_id
+        since_id: tools.since_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-get-count-all-product-2
+      description: Shopify Get A Count Of All Product Images
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-images.deprecated202004getproductsparamproductidimagescount
+      with:
+        product_id: tools.product_id
+        since_id: tools.since_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-updates-product-and-its-3
+      description: Shopify Updates A Product And Its Variants And Images
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-images.deprecated202007updateproductsparamproductid
+      with:
+        product_id: tools.product_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-get-all-product-images-3
+      description: Shopify Get All Product Images
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-images.deprecated202007getproductsparamproductidimages
+      with:
+        product_id: tools.product_id
+        since_id: tools.since_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-get-count-all-product-3
+      description: Shopify Get A Count Of All Product Images
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-images.deprecated202007getproductsparamproductidimagescount
+      with:
+        product_id: tools.product_id
+        since_id: tools.since_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-updates-product-and-its-4
+      description: Shopify Updates A Product And Its Variants And Images
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-images.updateproductsparamproductid
+      with:
+        product_id: tools.product_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-get-all-product-images-4
+      description: Shopify Get All Product Images
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-images.getproductsparamproductidimages
+      with:
+        product_id: tools.product_id
+        since_id: tools.since_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-get-count-all-product-4
+      description: Shopify Get A Count Of All Product Images
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-images.getproductsparamproductidimagescount
+      with:
+        product_id: tools.product_id
+        since_id: tools.since_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-updates-product-and-its-5
+      description: Shopify Updates A Product And Its Variants And Images
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-images.deprecated202101updateproductsparamproductid
+      with:
+        product_id: tools.product_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-get-all-product-images-5
+      description: Shopify Get All Product Images
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-images.deprecated202101getproductsparamproductidimages
+      with:
+        product_id: tools.product_id
+        since_id: tools.since_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-get-count-all-product-5
+      description: Shopify Get A Count Of All Product Images
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-images.deprecated202101getproductsparamproductidimagescount
+      with:
+        product_id: tools.product_id
+        since_id: tools.since_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-updates-product-and-its-6
+      description: Shopify Updates A Product And Its Variants And Images
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-images.deprecatedunstableupdateproductsparamproductid
+      with:
+        product_id: tools.product_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-get-all-product-images-6
+      description: Shopify Get All Product Images
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-images.deprecatedunstablegetproductsparamproductidimages
+      with:
+        product_id: tools.product_id
+        since_id: tools.since_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-get-count-all-product-6
+      description: Shopify Get A Count Of All Product Images
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-images.deprecatedunstablegetproductsparamproductidimagescount
+      with:
+        product_id: tools.product_id
+        since_id: tools.since_id
+      outputParameters:
+      - type: object
+        mapping: $.

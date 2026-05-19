@@ -1,0 +1,77 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Shopify  API — Dispute
+  description: 'Shopify  API — Dispute. 1 operations. Lead operation: Shopify Retrieves A Single Dispute By Id. Self-contained
+    Naftiko capability covering one Shopify business surface.'
+  tags:
+  - Shopify
+  - Dispute
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SHOPIFY_API_KEY: SHOPIFY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: shopify-dispute
+    baseUri: ''
+    description: Shopify  API — Dispute business capability. Self-contained, no shared references.
+    resources:
+    - name: admin-api-2020-01-shopify_payments-disputes-dispute_id}.json
+      path: /admin/api/2020-01/shopify_payments/disputes/{dispute_id}.json
+      operations:
+      - name: deprecated202001getshopifypaymentsdisputesparamdisputeid
+        method: GET
+        description: Shopify Retrieves A Single Dispute By Id
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: dispute_id
+          in: path
+          type: string
+          description: dispute_id
+          required: true
+  exposes:
+  - type: rest
+    namespace: shopify-dispute-rest
+    port: 8080
+    description: REST adapter for Shopify  API — Dispute. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/admin/api/2020-01/shopify-payments/disputes/dispute-id-json
+      name: admin-api-2020-01-shopify-payments-disputes-dispute-id-json
+      description: REST surface for admin-api-2020-01-shopify_payments-disputes-dispute_id}.json.
+      operations:
+      - method: GET
+        name: deprecated202001getshopifypaymentsdisputesparamdisputeid
+        description: Shopify Retrieves A Single Dispute By Id
+        call: shopify-dispute.deprecated202001getshopifypaymentsdisputesparamdisputeid
+        with:
+          dispute_id: rest.dispute_id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: shopify-dispute-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Shopify  API — Dispute. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: shopify-retrieves-single-dispute-id
+      description: Shopify Retrieves A Single Dispute By Id
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-dispute.deprecated202001getshopifypaymentsdisputesparamdisputeid
+      with:
+        dispute_id: tools.dispute_id
+      outputParameters:
+      - type: object
+        mapping: $.

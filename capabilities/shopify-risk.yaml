@@ -1,0 +1,1205 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Shopify  API — Risk
+  description: 'Shopify  API — Risk. 24 operations. Lead operation: Shopify Creates An Order Risk For An Order. Self-contained
+    Naftiko capability covering one Shopify business surface.'
+  tags:
+  - Shopify
+  - Risk
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SHOPIFY_API_KEY: SHOPIFY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: shopify-risk
+    baseUri: ''
+    description: Shopify  API — Risk business capability. Self-contained, no shared references.
+    resources:
+    - name: admin-api-2020-01-orders-order_id-risks.json
+      path: /admin/api/2020-01/orders/{order_id}/risks.json
+      operations:
+      - name: deprecated202001createordersparamorderidrisks
+        method: POST
+        description: Shopify Creates An Order Risk For An Order
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: order_id
+          in: path
+          type: string
+          description: order_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-01-orders-order_id-risks-risk_id}.json
+      path: /admin/api/2020-01/orders/{order_id}/risks/{risk_id}.json
+      operations:
+      - name: deprecated202001getordersparamorderidrisksparamriskid
+        method: GET
+        description: Shopify Retrieves A Single Order Risk By Its Id
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: order_id
+          in: path
+          type: string
+          description: order_id
+          required: true
+        - name: risk_id
+          in: path
+          type: string
+          description: risk_id
+          required: true
+      - name: deprecated202001updateordersparamorderidrisksparamriskid
+        method: PUT
+        description: Shopify Updates An Order Risk                                            You Cannot Modify An Order Risk
+          That Was Created By Another Application
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: order_id
+          in: path
+          type: string
+          description: order_id
+          required: true
+        - name: risk_id
+          in: path
+          type: string
+          description: risk_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deprecated202001deleteordersparamorderidrisksparamriskid
+        method: DELETE
+        description: Shopify Deletes An Order Risk For An Order                                            You Cannot Delete
+          An Order Risk That Was Created By Another Application
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: order_id
+          in: path
+          type: string
+          description: order_id
+          required: true
+        - name: risk_id
+          in: path
+          type: string
+          description: risk_id
+          required: true
+    - name: admin-api-2020-04-orders-order_id-risks.json
+      path: /admin/api/2020-04/orders/{order_id}/risks.json
+      operations:
+      - name: deprecated202004createordersparamorderidrisks
+        method: POST
+        description: Shopify Creates An Order Risk For An Order
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: order_id
+          in: path
+          type: string
+          description: order_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-04-orders-order_id-risks-risk_id}.json
+      path: /admin/api/2020-04/orders/{order_id}/risks/{risk_id}.json
+      operations:
+      - name: deprecated202004getordersparamorderidrisksparamriskid
+        method: GET
+        description: Shopify Retrieves A Single Order Risk By Its Id
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: order_id
+          in: path
+          type: string
+          description: order_id
+          required: true
+        - name: risk_id
+          in: path
+          type: string
+          description: risk_id
+          required: true
+      - name: deprecated202004updateordersparamorderidrisksparamriskid
+        method: PUT
+        description: Shopify Updates An Order Risk                                            You Cannot Modify An Order Risk
+          That Was Created By Another Application
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: order_id
+          in: path
+          type: string
+          description: order_id
+          required: true
+        - name: risk_id
+          in: path
+          type: string
+          description: risk_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deprecated202004deleteordersparamorderidrisksparamriskid
+        method: DELETE
+        description: Shopify Deletes An Order Risk For An Order                                            You Cannot Delete
+          An Order Risk That Was Created By Another Application
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: order_id
+          in: path
+          type: string
+          description: order_id
+          required: true
+        - name: risk_id
+          in: path
+          type: string
+          description: risk_id
+          required: true
+    - name: admin-api-2020-07-orders-order_id-risks.json
+      path: /admin/api/2020-07/orders/{order_id}/risks.json
+      operations:
+      - name: deprecated202007createordersparamorderidrisks
+        method: POST
+        description: Shopify Creates An Order Risk For An Order
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: order_id
+          in: path
+          type: string
+          description: order_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-07-orders-order_id-risks-risk_id}.json
+      path: /admin/api/2020-07/orders/{order_id}/risks/{risk_id}.json
+      operations:
+      - name: deprecated202007getordersparamorderidrisksparamriskid
+        method: GET
+        description: Shopify Retrieves A Single Order Risk By Its Id
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: order_id
+          in: path
+          type: string
+          description: order_id
+          required: true
+        - name: risk_id
+          in: path
+          type: string
+          description: risk_id
+          required: true
+      - name: deprecated202007updateordersparamorderidrisksparamriskid
+        method: PUT
+        description: Shopify Updates An Order Risk                                            You Cannot Modify An Order Risk
+          That Was Created By Another Application
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: order_id
+          in: path
+          type: string
+          description: order_id
+          required: true
+        - name: risk_id
+          in: path
+          type: string
+          description: risk_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deprecated202007deleteordersparamorderidrisksparamriskid
+        method: DELETE
+        description: Shopify Deletes An Order Risk For An Order                                            You Cannot Delete
+          An Order Risk That Was Created By Another Application
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: order_id
+          in: path
+          type: string
+          description: order_id
+          required: true
+        - name: risk_id
+          in: path
+          type: string
+          description: risk_id
+          required: true
+    - name: admin-api-2020-10-orders-order_id-risks.json
+      path: /admin/api/2020-10/orders/{order_id}/risks.json
+      operations:
+      - name: createordersparamorderidrisks
+        method: POST
+        description: Shopify Creates An Order Risk For An Order
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: order_id
+          in: path
+          type: string
+          description: order_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-10-orders-order_id-risks-risk_id}.json
+      path: /admin/api/2020-10/orders/{order_id}/risks/{risk_id}.json
+      operations:
+      - name: getordersparamorderidrisksparamriskid
+        method: GET
+        description: Shopify Retrieves A Single Order Risk By Its Id
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: order_id
+          in: path
+          type: string
+          description: order_id
+          required: true
+        - name: risk_id
+          in: path
+          type: string
+          description: risk_id
+          required: true
+      - name: updateordersparamorderidrisksparamriskid
+        method: PUT
+        description: Shopify Updates An Order Risk                                            You Cannot Modify An Order Risk
+          That Was Created By Another Application
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: order_id
+          in: path
+          type: string
+          description: order_id
+          required: true
+        - name: risk_id
+          in: path
+          type: string
+          description: risk_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deleteordersparamorderidrisksparamriskid
+        method: DELETE
+        description: Shopify Deletes An Order Risk For An Order                                            You Cannot Delete
+          An Order Risk That Was Created By Another Application
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: order_id
+          in: path
+          type: string
+          description: order_id
+          required: true
+        - name: risk_id
+          in: path
+          type: string
+          description: risk_id
+          required: true
+    - name: admin-api-2021-01-orders-order_id-risks.json
+      path: /admin/api/2021-01/orders/{order_id}/risks.json
+      operations:
+      - name: deprecated202101createordersparamorderidrisks
+        method: POST
+        description: Shopify Creates An Order Risk For An Order
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: order_id
+          in: path
+          type: string
+          description: order_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2021-01-orders-order_id-risks-risk_id}.json
+      path: /admin/api/2021-01/orders/{order_id}/risks/{risk_id}.json
+      operations:
+      - name: deprecated202101getordersparamorderidrisksparamriskid
+        method: GET
+        description: Shopify Retrieves A Single Order Risk By Its Id
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: order_id
+          in: path
+          type: string
+          description: order_id
+          required: true
+        - name: risk_id
+          in: path
+          type: string
+          description: risk_id
+          required: true
+      - name: deprecated202101updateordersparamorderidrisksparamriskid
+        method: PUT
+        description: Shopify Updates An Order Risk                                            You Cannot Modify An Order Risk
+          That Was Created By Another Application
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: order_id
+          in: path
+          type: string
+          description: order_id
+          required: true
+        - name: risk_id
+          in: path
+          type: string
+          description: risk_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deprecated202101deleteordersparamorderidrisksparamriskid
+        method: DELETE
+        description: Shopify Deletes An Order Risk For An Order                                            You Cannot Delete
+          An Order Risk That Was Created By Another Application
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: order_id
+          in: path
+          type: string
+          description: order_id
+          required: true
+        - name: risk_id
+          in: path
+          type: string
+          description: risk_id
+          required: true
+    - name: admin-api-unstable-orders-order_id-risks.json
+      path: /admin/api/unstable/orders/{order_id}/risks.json
+      operations:
+      - name: deprecatedunstablecreateordersparamorderidrisks
+        method: POST
+        description: Shopify Creates An Order Risk For An Order
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: order_id
+          in: path
+          type: string
+          description: order_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-unstable-orders-order_id-risks-risk_id}.json
+      path: /admin/api/unstable/orders/{order_id}/risks/{risk_id}.json
+      operations:
+      - name: deprecatedunstablegetordersparamorderidrisksparamriskid
+        method: GET
+        description: Shopify Retrieves A Single Order Risk By Its Id
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: order_id
+          in: path
+          type: string
+          description: order_id
+          required: true
+        - name: risk_id
+          in: path
+          type: string
+          description: risk_id
+          required: true
+      - name: deprecatedunstableupdateordersparamorderidrisksparamriskid
+        method: PUT
+        description: Shopify Updates An Order Risk                                            You Cannot Modify An Order Risk
+          That Was Created By Another Application
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: order_id
+          in: path
+          type: string
+          description: order_id
+          required: true
+        - name: risk_id
+          in: path
+          type: string
+          description: risk_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deprecatedunstabledeleteordersparamorderidrisksparamriskid
+        method: DELETE
+        description: Shopify Deletes An Order Risk For An Order                                            You Cannot Delete
+          An Order Risk That Was Created By Another Application
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: order_id
+          in: path
+          type: string
+          description: order_id
+          required: true
+        - name: risk_id
+          in: path
+          type: string
+          description: risk_id
+          required: true
+  exposes:
+  - type: rest
+    namespace: shopify-risk-rest
+    port: 8080
+    description: REST adapter for Shopify  API — Risk. One Spectral-compliant resource per consumed operation, prefixed with
+      /v1.
+    resources:
+    - path: /v1/admin/api/2020-01/orders/{order-id}/risks-json
+      name: admin-api-2020-01-orders-order-id-risks-json
+      description: REST surface for admin-api-2020-01-orders-order_id-risks.json.
+      operations:
+      - method: POST
+        name: deprecated202001createordersparamorderidrisks
+        description: Shopify Creates An Order Risk For An Order
+        call: shopify-risk.deprecated202001createordersparamorderidrisks
+        with:
+          order_id: rest.order_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-01/orders/{order-id}/risks/risk-id-json
+      name: admin-api-2020-01-orders-order-id-risks-risk-id-json
+      description: REST surface for admin-api-2020-01-orders-order_id-risks-risk_id}.json.
+      operations:
+      - method: GET
+        name: deprecated202001getordersparamorderidrisksparamriskid
+        description: Shopify Retrieves A Single Order Risk By Its Id
+        call: shopify-risk.deprecated202001getordersparamorderidrisksparamriskid
+        with:
+          order_id: rest.order_id
+          risk_id: rest.risk_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: deprecated202001updateordersparamorderidrisksparamriskid
+        description: Shopify Updates An Order Risk                                            You Cannot Modify An Order Risk
+          That Was Created By Another Application
+        call: shopify-risk.deprecated202001updateordersparamorderidrisksparamriskid
+        with:
+          order_id: rest.order_id
+          risk_id: rest.risk_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deprecated202001deleteordersparamorderidrisksparamriskid
+        description: Shopify Deletes An Order Risk For An Order                                            You Cannot Delete
+          An Order Risk That Was Created By Another Application
+        call: shopify-risk.deprecated202001deleteordersparamorderidrisksparamriskid
+        with:
+          order_id: rest.order_id
+          risk_id: rest.risk_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/orders/{order-id}/risks-json
+      name: admin-api-2020-04-orders-order-id-risks-json
+      description: REST surface for admin-api-2020-04-orders-order_id-risks.json.
+      operations:
+      - method: POST
+        name: deprecated202004createordersparamorderidrisks
+        description: Shopify Creates An Order Risk For An Order
+        call: shopify-risk.deprecated202004createordersparamorderidrisks
+        with:
+          order_id: rest.order_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/orders/{order-id}/risks/risk-id-json
+      name: admin-api-2020-04-orders-order-id-risks-risk-id-json
+      description: REST surface for admin-api-2020-04-orders-order_id-risks-risk_id}.json.
+      operations:
+      - method: GET
+        name: deprecated202004getordersparamorderidrisksparamriskid
+        description: Shopify Retrieves A Single Order Risk By Its Id
+        call: shopify-risk.deprecated202004getordersparamorderidrisksparamriskid
+        with:
+          order_id: rest.order_id
+          risk_id: rest.risk_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: deprecated202004updateordersparamorderidrisksparamriskid
+        description: Shopify Updates An Order Risk                                            You Cannot Modify An Order Risk
+          That Was Created By Another Application
+        call: shopify-risk.deprecated202004updateordersparamorderidrisksparamriskid
+        with:
+          order_id: rest.order_id
+          risk_id: rest.risk_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deprecated202004deleteordersparamorderidrisksparamriskid
+        description: Shopify Deletes An Order Risk For An Order                                            You Cannot Delete
+          An Order Risk That Was Created By Another Application
+        call: shopify-risk.deprecated202004deleteordersparamorderidrisksparamriskid
+        with:
+          order_id: rest.order_id
+          risk_id: rest.risk_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/orders/{order-id}/risks-json
+      name: admin-api-2020-07-orders-order-id-risks-json
+      description: REST surface for admin-api-2020-07-orders-order_id-risks.json.
+      operations:
+      - method: POST
+        name: deprecated202007createordersparamorderidrisks
+        description: Shopify Creates An Order Risk For An Order
+        call: shopify-risk.deprecated202007createordersparamorderidrisks
+        with:
+          order_id: rest.order_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/orders/{order-id}/risks/risk-id-json
+      name: admin-api-2020-07-orders-order-id-risks-risk-id-json
+      description: REST surface for admin-api-2020-07-orders-order_id-risks-risk_id}.json.
+      operations:
+      - method: GET
+        name: deprecated202007getordersparamorderidrisksparamriskid
+        description: Shopify Retrieves A Single Order Risk By Its Id
+        call: shopify-risk.deprecated202007getordersparamorderidrisksparamriskid
+        with:
+          order_id: rest.order_id
+          risk_id: rest.risk_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: deprecated202007updateordersparamorderidrisksparamriskid
+        description: Shopify Updates An Order Risk                                            You Cannot Modify An Order Risk
+          That Was Created By Another Application
+        call: shopify-risk.deprecated202007updateordersparamorderidrisksparamriskid
+        with:
+          order_id: rest.order_id
+          risk_id: rest.risk_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deprecated202007deleteordersparamorderidrisksparamriskid
+        description: Shopify Deletes An Order Risk For An Order                                            You Cannot Delete
+          An Order Risk That Was Created By Another Application
+        call: shopify-risk.deprecated202007deleteordersparamorderidrisksparamriskid
+        with:
+          order_id: rest.order_id
+          risk_id: rest.risk_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/orders/{order-id}/risks-json
+      name: admin-api-2020-10-orders-order-id-risks-json
+      description: REST surface for admin-api-2020-10-orders-order_id-risks.json.
+      operations:
+      - method: POST
+        name: createordersparamorderidrisks
+        description: Shopify Creates An Order Risk For An Order
+        call: shopify-risk.createordersparamorderidrisks
+        with:
+          order_id: rest.order_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/orders/{order-id}/risks/risk-id-json
+      name: admin-api-2020-10-orders-order-id-risks-risk-id-json
+      description: REST surface for admin-api-2020-10-orders-order_id-risks-risk_id}.json.
+      operations:
+      - method: GET
+        name: getordersparamorderidrisksparamriskid
+        description: Shopify Retrieves A Single Order Risk By Its Id
+        call: shopify-risk.getordersparamorderidrisksparamriskid
+        with:
+          order_id: rest.order_id
+          risk_id: rest.risk_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updateordersparamorderidrisksparamriskid
+        description: Shopify Updates An Order Risk                                            You Cannot Modify An Order Risk
+          That Was Created By Another Application
+        call: shopify-risk.updateordersparamorderidrisksparamriskid
+        with:
+          order_id: rest.order_id
+          risk_id: rest.risk_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteordersparamorderidrisksparamriskid
+        description: Shopify Deletes An Order Risk For An Order                                            You Cannot Delete
+          An Order Risk That Was Created By Another Application
+        call: shopify-risk.deleteordersparamorderidrisksparamriskid
+        with:
+          order_id: rest.order_id
+          risk_id: rest.risk_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/orders/{order-id}/risks-json
+      name: admin-api-2021-01-orders-order-id-risks-json
+      description: REST surface for admin-api-2021-01-orders-order_id-risks.json.
+      operations:
+      - method: POST
+        name: deprecated202101createordersparamorderidrisks
+        description: Shopify Creates An Order Risk For An Order
+        call: shopify-risk.deprecated202101createordersparamorderidrisks
+        with:
+          order_id: rest.order_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/orders/{order-id}/risks/risk-id-json
+      name: admin-api-2021-01-orders-order-id-risks-risk-id-json
+      description: REST surface for admin-api-2021-01-orders-order_id-risks-risk_id}.json.
+      operations:
+      - method: GET
+        name: deprecated202101getordersparamorderidrisksparamriskid
+        description: Shopify Retrieves A Single Order Risk By Its Id
+        call: shopify-risk.deprecated202101getordersparamorderidrisksparamriskid
+        with:
+          order_id: rest.order_id
+          risk_id: rest.risk_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: deprecated202101updateordersparamorderidrisksparamriskid
+        description: Shopify Updates An Order Risk                                            You Cannot Modify An Order Risk
+          That Was Created By Another Application
+        call: shopify-risk.deprecated202101updateordersparamorderidrisksparamriskid
+        with:
+          order_id: rest.order_id
+          risk_id: rest.risk_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deprecated202101deleteordersparamorderidrisksparamriskid
+        description: Shopify Deletes An Order Risk For An Order                                            You Cannot Delete
+          An Order Risk That Was Created By Another Application
+        call: shopify-risk.deprecated202101deleteordersparamorderidrisksparamriskid
+        with:
+          order_id: rest.order_id
+          risk_id: rest.risk_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/orders/{order-id}/risks-json
+      name: admin-api-unstable-orders-order-id-risks-json
+      description: REST surface for admin-api-unstable-orders-order_id-risks.json.
+      operations:
+      - method: POST
+        name: deprecatedunstablecreateordersparamorderidrisks
+        description: Shopify Creates An Order Risk For An Order
+        call: shopify-risk.deprecatedunstablecreateordersparamorderidrisks
+        with:
+          order_id: rest.order_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/orders/{order-id}/risks/risk-id-json
+      name: admin-api-unstable-orders-order-id-risks-risk-id-json
+      description: REST surface for admin-api-unstable-orders-order_id-risks-risk_id}.json.
+      operations:
+      - method: GET
+        name: deprecatedunstablegetordersparamorderidrisksparamriskid
+        description: Shopify Retrieves A Single Order Risk By Its Id
+        call: shopify-risk.deprecatedunstablegetordersparamorderidrisksparamriskid
+        with:
+          order_id: rest.order_id
+          risk_id: rest.risk_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: deprecatedunstableupdateordersparamorderidrisksparamriskid
+        description: Shopify Updates An Order Risk                                            You Cannot Modify An Order Risk
+          That Was Created By Another Application
+        call: shopify-risk.deprecatedunstableupdateordersparamorderidrisksparamriskid
+        with:
+          order_id: rest.order_id
+          risk_id: rest.risk_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deprecatedunstabledeleteordersparamorderidrisksparamriskid
+        description: Shopify Deletes An Order Risk For An Order                                            You Cannot Delete
+          An Order Risk That Was Created By Another Application
+        call: shopify-risk.deprecatedunstabledeleteordersparamorderidrisksparamriskid
+        with:
+          order_id: rest.order_id
+          risk_id: rest.risk_id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: shopify-risk-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Shopify  API — Risk. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: shopify-creates-order-risk-order
+      description: Shopify Creates An Order Risk For An Order
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-risk.deprecated202001createordersparamorderidrisks
+      with:
+        order_id: tools.order_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-single-order-risk
+      description: Shopify Retrieves A Single Order Risk By Its Id
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-risk.deprecated202001getordersparamorderidrisksparamriskid
+      with:
+        order_id: tools.order_id
+        risk_id: tools.risk_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-updates-order-risk-you
+      description: Shopify Updates An Order Risk                                            You Cannot Modify An Order Risk
+        That Was Created By Another Application
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-risk.deprecated202001updateordersparamorderidrisksparamriskid
+      with:
+        order_id: tools.order_id
+        risk_id: tools.risk_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-deletes-order-risk-order
+      description: Shopify Deletes An Order Risk For An Order                                            You Cannot Delete
+        An Order Risk That Was Created By Another Application
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-risk.deprecated202001deleteordersparamorderidrisksparamriskid
+      with:
+        order_id: tools.order_id
+        risk_id: tools.risk_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-creates-order-risk-order-2
+      description: Shopify Creates An Order Risk For An Order
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-risk.deprecated202004createordersparamorderidrisks
+      with:
+        order_id: tools.order_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-single-order-risk-2
+      description: Shopify Retrieves A Single Order Risk By Its Id
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-risk.deprecated202004getordersparamorderidrisksparamriskid
+      with:
+        order_id: tools.order_id
+        risk_id: tools.risk_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-updates-order-risk-you-2
+      description: Shopify Updates An Order Risk                                            You Cannot Modify An Order Risk
+        That Was Created By Another Application
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-risk.deprecated202004updateordersparamorderidrisksparamriskid
+      with:
+        order_id: tools.order_id
+        risk_id: tools.risk_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-deletes-order-risk-order-2
+      description: Shopify Deletes An Order Risk For An Order                                            You Cannot Delete
+        An Order Risk That Was Created By Another Application
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-risk.deprecated202004deleteordersparamorderidrisksparamriskid
+      with:
+        order_id: tools.order_id
+        risk_id: tools.risk_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-creates-order-risk-order-3
+      description: Shopify Creates An Order Risk For An Order
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-risk.deprecated202007createordersparamorderidrisks
+      with:
+        order_id: tools.order_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-single-order-risk-3
+      description: Shopify Retrieves A Single Order Risk By Its Id
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-risk.deprecated202007getordersparamorderidrisksparamriskid
+      with:
+        order_id: tools.order_id
+        risk_id: tools.risk_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-updates-order-risk-you-3
+      description: Shopify Updates An Order Risk                                            You Cannot Modify An Order Risk
+        That Was Created By Another Application
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-risk.deprecated202007updateordersparamorderidrisksparamriskid
+      with:
+        order_id: tools.order_id
+        risk_id: tools.risk_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-deletes-order-risk-order-3
+      description: Shopify Deletes An Order Risk For An Order                                            You Cannot Delete
+        An Order Risk That Was Created By Another Application
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-risk.deprecated202007deleteordersparamorderidrisksparamriskid
+      with:
+        order_id: tools.order_id
+        risk_id: tools.risk_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-creates-order-risk-order-4
+      description: Shopify Creates An Order Risk For An Order
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-risk.createordersparamorderidrisks
+      with:
+        order_id: tools.order_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-single-order-risk-4
+      description: Shopify Retrieves A Single Order Risk By Its Id
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-risk.getordersparamorderidrisksparamriskid
+      with:
+        order_id: tools.order_id
+        risk_id: tools.risk_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-updates-order-risk-you-4
+      description: Shopify Updates An Order Risk                                            You Cannot Modify An Order Risk
+        That Was Created By Another Application
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-risk.updateordersparamorderidrisksparamriskid
+      with:
+        order_id: tools.order_id
+        risk_id: tools.risk_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-deletes-order-risk-order-4
+      description: Shopify Deletes An Order Risk For An Order                                            You Cannot Delete
+        An Order Risk That Was Created By Another Application
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-risk.deleteordersparamorderidrisksparamriskid
+      with:
+        order_id: tools.order_id
+        risk_id: tools.risk_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-creates-order-risk-order-5
+      description: Shopify Creates An Order Risk For An Order
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-risk.deprecated202101createordersparamorderidrisks
+      with:
+        order_id: tools.order_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-single-order-risk-5
+      description: Shopify Retrieves A Single Order Risk By Its Id
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-risk.deprecated202101getordersparamorderidrisksparamriskid
+      with:
+        order_id: tools.order_id
+        risk_id: tools.risk_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-updates-order-risk-you-5
+      description: Shopify Updates An Order Risk                                            You Cannot Modify An Order Risk
+        That Was Created By Another Application
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-risk.deprecated202101updateordersparamorderidrisksparamriskid
+      with:
+        order_id: tools.order_id
+        risk_id: tools.risk_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-deletes-order-risk-order-5
+      description: Shopify Deletes An Order Risk For An Order                                            You Cannot Delete
+        An Order Risk That Was Created By Another Application
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-risk.deprecated202101deleteordersparamorderidrisksparamriskid
+      with:
+        order_id: tools.order_id
+        risk_id: tools.risk_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-creates-order-risk-order-6
+      description: Shopify Creates An Order Risk For An Order
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-risk.deprecatedunstablecreateordersparamorderidrisks
+      with:
+        order_id: tools.order_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-single-order-risk-6
+      description: Shopify Retrieves A Single Order Risk By Its Id
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-risk.deprecatedunstablegetordersparamorderidrisksparamriskid
+      with:
+        order_id: tools.order_id
+        risk_id: tools.risk_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-updates-order-risk-you-6
+      description: Shopify Updates An Order Risk                                            You Cannot Modify An Order Risk
+        That Was Created By Another Application
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-risk.deprecatedunstableupdateordersparamorderidrisksparamriskid
+      with:
+        order_id: tools.order_id
+        risk_id: tools.risk_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-deletes-order-risk-order-6
+      description: Shopify Deletes An Order Risk For An Order                                            You Cannot Delete
+        An Order Risk That Was Created By Another Application
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-risk.deprecatedunstabledeleteordersparamorderidrisksparamriskid
+      with:
+        order_id: tools.order_id
+        risk_id: tools.risk_id
+      outputParameters:
+      - type: object
+        mapping: $.

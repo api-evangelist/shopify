@@ -1,0 +1,815 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Shopify  API — Resource
+  description: 'Shopify  API — Resource. 18 operations. Lead operation: Shopify Retrieves A List Of Metafields That Belong
+    To A Product Image Resource. Self-contained Naftiko capability covering one Shopify business surface.'
+  tags:
+  - Shopify
+  - Resource
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SHOPIFY_API_KEY: SHOPIFY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: shopify-resource
+    baseUri: ''
+    description: Shopify  API — Resource business capability. Self-contained, no shared references.
+    resources:
+    - name: admin-api-2020-01-metafields.json
+      path: /admin/api/2020-01/metafields.json
+      operations:
+      - name: deprecated202001getmetafields
+        method: GET
+        description: Shopify Retrieves A List Of Metafields That Belong To A Product Image Resource
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: metafield[owner_id]
+          in: query
+          type: integer
+          description: metafield[owner_id]
+        - name: metafield[owner_resource]
+          in: query
+          type: string
+          description: metafield[owner_resource]
+      - name: deprecated202001createmetafields
+        method: POST
+        description: Shopify Creates A New Metafield For A Resource
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-01-metafields-metafield_id}.json
+      path: /admin/api/2020-01/metafields/{metafield_id}.json
+      operations:
+      - name: deprecated202001getmetafieldsparammetafieldid
+        method: GET
+        description: Shopify Retrieves A Single Metafield From A Resource By Its Id
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: metafield_id
+          in: path
+          type: string
+          description: metafield_id
+          required: true
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+    - name: admin-api-2020-04-metafields.json
+      path: /admin/api/2020-04/metafields.json
+      operations:
+      - name: deprecated202004getmetafields
+        method: GET
+        description: Shopify Retrieves A List Of Metafields That Belong To A Product Image Resource
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: metafield[owner_id]
+          in: query
+          type: integer
+          description: metafield[owner_id]
+        - name: metafield[owner_resource]
+          in: query
+          type: string
+          description: metafield[owner_resource]
+      - name: deprecated202004createmetafields
+        method: POST
+        description: Shopify Creates A New Metafield For A Resource
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-04-metafields-metafield_id}.json
+      path: /admin/api/2020-04/metafields/{metafield_id}.json
+      operations:
+      - name: deprecated202004getmetafieldsparammetafieldid
+        method: GET
+        description: Shopify Retrieves A Single Metafield From A Resource By Its Id
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: metafield_id
+          in: path
+          type: string
+          description: metafield_id
+          required: true
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+    - name: admin-api-2020-07-metafields.json
+      path: /admin/api/2020-07/metafields.json
+      operations:
+      - name: deprecated202007getmetafields
+        method: GET
+        description: Shopify Retrieves A List Of Metafields That Belong To A Product Image Resource
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: metafield[owner_id]
+          in: query
+          type: integer
+          description: metafield[owner_id]
+        - name: metafield[owner_resource]
+          in: query
+          type: string
+          description: metafield[owner_resource]
+      - name: deprecated202007createmetafields
+        method: POST
+        description: Shopify Creates A New Metafield For A Resource
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-07-metafields-metafield_id}.json
+      path: /admin/api/2020-07/metafields/{metafield_id}.json
+      operations:
+      - name: deprecated202007getmetafieldsparammetafieldid
+        method: GET
+        description: Shopify Retrieves A Single Metafield From A Resource By Its Id
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: metafield_id
+          in: path
+          type: string
+          description: metafield_id
+          required: true
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+    - name: admin-api-2020-10-metafields.json
+      path: /admin/api/2020-10/metafields.json
+      operations:
+      - name: getmetafields
+        method: GET
+        description: Shopify Retrieves A List Of Metafields That Belong To A Product Image Resource
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: metafield[owner_id]
+          in: query
+          type: integer
+          description: metafield[owner_id]
+        - name: metafield[owner_resource]
+          in: query
+          type: string
+          description: metafield[owner_resource]
+      - name: createmetafields
+        method: POST
+        description: Shopify Creates A New Metafield For A Resource
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-10-metafields-metafield_id}.json
+      path: /admin/api/2020-10/metafields/{metafield_id}.json
+      operations:
+      - name: getmetafieldsparammetafieldid
+        method: GET
+        description: Shopify Retrieves A Single Metafield From A Resource By Its Id
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: metafield_id
+          in: path
+          type: string
+          description: metafield_id
+          required: true
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+    - name: admin-api-2021-01-metafields.json
+      path: /admin/api/2021-01/metafields.json
+      operations:
+      - name: deprecated202101getmetafields
+        method: GET
+        description: Shopify Retrieves A List Of Metafields That Belong To A Product Image Resource
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: metafield[owner_id]
+          in: query
+          type: integer
+          description: metafield[owner_id]
+        - name: metafield[owner_resource]
+          in: query
+          type: string
+          description: metafield[owner_resource]
+      - name: deprecated202101createmetafields
+        method: POST
+        description: Shopify Creates A New Metafield For A Resource
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2021-01-metafields-metafield_id}.json
+      path: /admin/api/2021-01/metafields/{metafield_id}.json
+      operations:
+      - name: deprecated202101getmetafieldsparammetafieldid
+        method: GET
+        description: Shopify Retrieves A Single Metafield From A Resource By Its Id
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: metafield_id
+          in: path
+          type: string
+          description: metafield_id
+          required: true
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+    - name: admin-api-unstable-metafields.json
+      path: /admin/api/unstable/metafields.json
+      operations:
+      - name: deprecatedunstablegetmetafields
+        method: GET
+        description: Shopify Retrieves A List Of Metafields That Belong To A Product Image Resource
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: metafield[owner_id]
+          in: query
+          type: integer
+          description: metafield[owner_id]
+        - name: metafield[owner_resource]
+          in: query
+          type: string
+          description: metafield[owner_resource]
+      - name: deprecatedunstablecreatemetafields
+        method: POST
+        description: Shopify Creates A New Metafield For A Resource
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-unstable-metafields-metafield_id}.json
+      path: /admin/api/unstable/metafields/{metafield_id}.json
+      operations:
+      - name: deprecatedunstablegetmetafieldsparammetafieldid
+        method: GET
+        description: Shopify Retrieves A Single Metafield From A Resource By Its Id
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: metafield_id
+          in: path
+          type: string
+          description: metafield_id
+          required: true
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+  exposes:
+  - type: rest
+    namespace: shopify-resource-rest
+    port: 8080
+    description: REST adapter for Shopify  API — Resource. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/admin/api/2020-01/metafields-json
+      name: admin-api-2020-01-metafields-json
+      description: REST surface for admin-api-2020-01-metafields.json.
+      operations:
+      - method: GET
+        name: deprecated202001getmetafields
+        description: Shopify Retrieves A List Of Metafields That Belong To A Product Image Resource
+        call: shopify-resource.deprecated202001getmetafields
+        with:
+          metafield[owner_id]: rest.metafield[owner_id]
+          metafield[owner_resource]: rest.metafield[owner_resource]
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: deprecated202001createmetafields
+        description: Shopify Creates A New Metafield For A Resource
+        call: shopify-resource.deprecated202001createmetafields
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-01/metafields/metafield-id-json
+      name: admin-api-2020-01-metafields-metafield-id-json
+      description: REST surface for admin-api-2020-01-metafields-metafield_id}.json.
+      operations:
+      - method: GET
+        name: deprecated202001getmetafieldsparammetafieldid
+        description: Shopify Retrieves A Single Metafield From A Resource By Its Id
+        call: shopify-resource.deprecated202001getmetafieldsparammetafieldid
+        with:
+          metafield_id: rest.metafield_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/metafields-json
+      name: admin-api-2020-04-metafields-json
+      description: REST surface for admin-api-2020-04-metafields.json.
+      operations:
+      - method: GET
+        name: deprecated202004getmetafields
+        description: Shopify Retrieves A List Of Metafields That Belong To A Product Image Resource
+        call: shopify-resource.deprecated202004getmetafields
+        with:
+          metafield[owner_id]: rest.metafield[owner_id]
+          metafield[owner_resource]: rest.metafield[owner_resource]
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: deprecated202004createmetafields
+        description: Shopify Creates A New Metafield For A Resource
+        call: shopify-resource.deprecated202004createmetafields
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/metafields/metafield-id-json
+      name: admin-api-2020-04-metafields-metafield-id-json
+      description: REST surface for admin-api-2020-04-metafields-metafield_id}.json.
+      operations:
+      - method: GET
+        name: deprecated202004getmetafieldsparammetafieldid
+        description: Shopify Retrieves A Single Metafield From A Resource By Its Id
+        call: shopify-resource.deprecated202004getmetafieldsparammetafieldid
+        with:
+          metafield_id: rest.metafield_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/metafields-json
+      name: admin-api-2020-07-metafields-json
+      description: REST surface for admin-api-2020-07-metafields.json.
+      operations:
+      - method: GET
+        name: deprecated202007getmetafields
+        description: Shopify Retrieves A List Of Metafields That Belong To A Product Image Resource
+        call: shopify-resource.deprecated202007getmetafields
+        with:
+          metafield[owner_id]: rest.metafield[owner_id]
+          metafield[owner_resource]: rest.metafield[owner_resource]
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: deprecated202007createmetafields
+        description: Shopify Creates A New Metafield For A Resource
+        call: shopify-resource.deprecated202007createmetafields
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/metafields/metafield-id-json
+      name: admin-api-2020-07-metafields-metafield-id-json
+      description: REST surface for admin-api-2020-07-metafields-metafield_id}.json.
+      operations:
+      - method: GET
+        name: deprecated202007getmetafieldsparammetafieldid
+        description: Shopify Retrieves A Single Metafield From A Resource By Its Id
+        call: shopify-resource.deprecated202007getmetafieldsparammetafieldid
+        with:
+          metafield_id: rest.metafield_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/metafields-json
+      name: admin-api-2020-10-metafields-json
+      description: REST surface for admin-api-2020-10-metafields.json.
+      operations:
+      - method: GET
+        name: getmetafields
+        description: Shopify Retrieves A List Of Metafields That Belong To A Product Image Resource
+        call: shopify-resource.getmetafields
+        with:
+          metafield[owner_id]: rest.metafield[owner_id]
+          metafield[owner_resource]: rest.metafield[owner_resource]
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createmetafields
+        description: Shopify Creates A New Metafield For A Resource
+        call: shopify-resource.createmetafields
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/metafields/metafield-id-json
+      name: admin-api-2020-10-metafields-metafield-id-json
+      description: REST surface for admin-api-2020-10-metafields-metafield_id}.json.
+      operations:
+      - method: GET
+        name: getmetafieldsparammetafieldid
+        description: Shopify Retrieves A Single Metafield From A Resource By Its Id
+        call: shopify-resource.getmetafieldsparammetafieldid
+        with:
+          metafield_id: rest.metafield_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/metafields-json
+      name: admin-api-2021-01-metafields-json
+      description: REST surface for admin-api-2021-01-metafields.json.
+      operations:
+      - method: GET
+        name: deprecated202101getmetafields
+        description: Shopify Retrieves A List Of Metafields That Belong To A Product Image Resource
+        call: shopify-resource.deprecated202101getmetafields
+        with:
+          metafield[owner_id]: rest.metafield[owner_id]
+          metafield[owner_resource]: rest.metafield[owner_resource]
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: deprecated202101createmetafields
+        description: Shopify Creates A New Metafield For A Resource
+        call: shopify-resource.deprecated202101createmetafields
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/metafields/metafield-id-json
+      name: admin-api-2021-01-metafields-metafield-id-json
+      description: REST surface for admin-api-2021-01-metafields-metafield_id}.json.
+      operations:
+      - method: GET
+        name: deprecated202101getmetafieldsparammetafieldid
+        description: Shopify Retrieves A Single Metafield From A Resource By Its Id
+        call: shopify-resource.deprecated202101getmetafieldsparammetafieldid
+        with:
+          metafield_id: rest.metafield_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/metafields-json
+      name: admin-api-unstable-metafields-json
+      description: REST surface for admin-api-unstable-metafields.json.
+      operations:
+      - method: GET
+        name: deprecatedunstablegetmetafields
+        description: Shopify Retrieves A List Of Metafields That Belong To A Product Image Resource
+        call: shopify-resource.deprecatedunstablegetmetafields
+        with:
+          metafield[owner_id]: rest.metafield[owner_id]
+          metafield[owner_resource]: rest.metafield[owner_resource]
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: deprecatedunstablecreatemetafields
+        description: Shopify Creates A New Metafield For A Resource
+        call: shopify-resource.deprecatedunstablecreatemetafields
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/metafields/metafield-id-json
+      name: admin-api-unstable-metafields-metafield-id-json
+      description: REST surface for admin-api-unstable-metafields-metafield_id}.json.
+      operations:
+      - method: GET
+        name: deprecatedunstablegetmetafieldsparammetafieldid
+        description: Shopify Retrieves A Single Metafield From A Resource By Its Id
+        call: shopify-resource.deprecatedunstablegetmetafieldsparammetafieldid
+        with:
+          metafield_id: rest.metafield_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: shopify-resource-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Shopify  API — Resource. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: shopify-retrieves-list-metafields-that
+      description: Shopify Retrieves A List Of Metafields That Belong To A Product Image Resource
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-resource.deprecated202001getmetafields
+      with:
+        metafield[owner_id]: tools.metafield[owner_id]
+        metafield[owner_resource]: tools.metafield[owner_resource]
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-creates-new-metafield-resource
+      description: Shopify Creates A New Metafield For A Resource
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-resource.deprecated202001createmetafields
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-single-metafield-resource
+      description: Shopify Retrieves A Single Metafield From A Resource By Its Id
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-resource.deprecated202001getmetafieldsparammetafieldid
+      with:
+        metafield_id: tools.metafield_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-metafields-that-2
+      description: Shopify Retrieves A List Of Metafields That Belong To A Product Image Resource
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-resource.deprecated202004getmetafields
+      with:
+        metafield[owner_id]: tools.metafield[owner_id]
+        metafield[owner_resource]: tools.metafield[owner_resource]
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-creates-new-metafield-resource-2
+      description: Shopify Creates A New Metafield For A Resource
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-resource.deprecated202004createmetafields
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-single-metafield-resource-2
+      description: Shopify Retrieves A Single Metafield From A Resource By Its Id
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-resource.deprecated202004getmetafieldsparammetafieldid
+      with:
+        metafield_id: tools.metafield_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-metafields-that-3
+      description: Shopify Retrieves A List Of Metafields That Belong To A Product Image Resource
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-resource.deprecated202007getmetafields
+      with:
+        metafield[owner_id]: tools.metafield[owner_id]
+        metafield[owner_resource]: tools.metafield[owner_resource]
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-creates-new-metafield-resource-3
+      description: Shopify Creates A New Metafield For A Resource
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-resource.deprecated202007createmetafields
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-single-metafield-resource-3
+      description: Shopify Retrieves A Single Metafield From A Resource By Its Id
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-resource.deprecated202007getmetafieldsparammetafieldid
+      with:
+        metafield_id: tools.metafield_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-metafields-that-4
+      description: Shopify Retrieves A List Of Metafields That Belong To A Product Image Resource
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-resource.getmetafields
+      with:
+        metafield[owner_id]: tools.metafield[owner_id]
+        metafield[owner_resource]: tools.metafield[owner_resource]
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-creates-new-metafield-resource-4
+      description: Shopify Creates A New Metafield For A Resource
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-resource.createmetafields
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-single-metafield-resource-4
+      description: Shopify Retrieves A Single Metafield From A Resource By Its Id
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-resource.getmetafieldsparammetafieldid
+      with:
+        metafield_id: tools.metafield_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-metafields-that-5
+      description: Shopify Retrieves A List Of Metafields That Belong To A Product Image Resource
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-resource.deprecated202101getmetafields
+      with:
+        metafield[owner_id]: tools.metafield[owner_id]
+        metafield[owner_resource]: tools.metafield[owner_resource]
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-creates-new-metafield-resource-5
+      description: Shopify Creates A New Metafield For A Resource
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-resource.deprecated202101createmetafields
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-single-metafield-resource-5
+      description: Shopify Retrieves A Single Metafield From A Resource By Its Id
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-resource.deprecated202101getmetafieldsparammetafieldid
+      with:
+        metafield_id: tools.metafield_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-metafields-that-6
+      description: Shopify Retrieves A List Of Metafields That Belong To A Product Image Resource
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-resource.deprecatedunstablegetmetafields
+      with:
+        metafield[owner_id]: tools.metafield[owner_id]
+        metafield[owner_resource]: tools.metafield[owner_resource]
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-creates-new-metafield-resource-6
+      description: Shopify Creates A New Metafield For A Resource
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-resource.deprecatedunstablecreatemetafields
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-single-metafield-resource-6
+      description: Shopify Retrieves A Single Metafield From A Resource By Its Id
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-resource.deprecatedunstablegetmetafieldsparammetafieldid
+      with:
+        metafield_id: tools.metafield_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,575 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Shopify  API — Belonging
+  description: 'Shopify  API — Belonging. 12 operations. Lead operation: Shopify Retrieve A List Of Products Belonging To
+    A Collection. Self-contained Naftiko capability covering one Shopify business surface.'
+  tags:
+  - Shopify
+  - Belonging
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SHOPIFY_API_KEY: SHOPIFY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: shopify-belonging
+    baseUri: ''
+    description: Shopify  API — Belonging business capability. Self-contained, no shared references.
+    resources:
+    - name: admin-api-2020-01-collections-collection_id-products.json
+      path: /admin/api/2020-01/collections/{collection_id}/products.json
+      operations:
+      - name: deprecated202001getcollectionsparamcollectionidproducts
+        method: GET
+        description: Shopify Retrieve A List Of Products Belonging To A Collection
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: collection_id
+          in: path
+          type: string
+          description: collection_id
+          required: true
+        - name: limit
+          in: query
+          type: string
+          description: The number of products to retrieve.
+    - name: admin-api-2020-01-customers-customer_id-orders.json
+      path: /admin/api/2020-01/customers/{customer_id}/orders.json
+      operations:
+      - name: deprecated202001getcustomersparamcustomeridorders
+        method: GET
+        description: Shopify Retrieves All Orders Belonging To A Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+    - name: admin-api-2020-04-collections-collection_id-products.json
+      path: /admin/api/2020-04/collections/{collection_id}/products.json
+      operations:
+      - name: deprecated202004getcollectionsparamcollectionidproducts
+        method: GET
+        description: Shopify Retrieve A List Of Products Belonging To A Collection
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: collection_id
+          in: path
+          type: string
+          description: collection_id
+          required: true
+        - name: limit
+          in: query
+          type: string
+          description: The number of products to retrieve.
+    - name: admin-api-2020-04-customers-customer_id-orders.json
+      path: /admin/api/2020-04/customers/{customer_id}/orders.json
+      operations:
+      - name: deprecated202004getcustomersparamcustomeridorders
+        method: GET
+        description: Shopify Retrieves All Orders Belonging To A Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+    - name: admin-api-2020-07-collections-collection_id-products.json
+      path: /admin/api/2020-07/collections/{collection_id}/products.json
+      operations:
+      - name: deprecated202007getcollectionsparamcollectionidproducts
+        method: GET
+        description: Shopify Retrieve A List Of Products Belonging To A Collection
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: collection_id
+          in: path
+          type: string
+          description: collection_id
+          required: true
+        - name: limit
+          in: query
+          type: string
+          description: The number of products to retrieve.
+    - name: admin-api-2020-07-customers-customer_id-orders.json
+      path: /admin/api/2020-07/customers/{customer_id}/orders.json
+      operations:
+      - name: deprecated202007getcustomersparamcustomeridorders
+        method: GET
+        description: Shopify Retrieves All Orders Belonging To A Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+    - name: admin-api-2020-10-collections-collection_id-products.json
+      path: /admin/api/2020-10/collections/{collection_id}/products.json
+      operations:
+      - name: getcollectionsparamcollectionidproducts
+        method: GET
+        description: Shopify Retrieve A List Of Products Belonging To A Collection
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: collection_id
+          in: path
+          type: string
+          description: collection_id
+          required: true
+        - name: limit
+          in: query
+          type: string
+          description: The number of products to retrieve.
+    - name: admin-api-2020-10-customers-customer_id-orders.json
+      path: /admin/api/2020-10/customers/{customer_id}/orders.json
+      operations:
+      - name: getcustomersparamcustomeridorders
+        method: GET
+        description: Shopify Retrieves All Orders Belonging To A Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+    - name: admin-api-2021-01-collections-collection_id-products.json
+      path: /admin/api/2021-01/collections/{collection_id}/products.json
+      operations:
+      - name: deprecated202101getcollectionsparamcollectionidproducts
+        method: GET
+        description: Shopify Retrieve A List Of Products Belonging To A Collection
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: collection_id
+          in: path
+          type: string
+          description: collection_id
+          required: true
+        - name: limit
+          in: query
+          type: string
+          description: The number of products to retrieve.
+    - name: admin-api-2021-01-customers-customer_id-orders.json
+      path: /admin/api/2021-01/customers/{customer_id}/orders.json
+      operations:
+      - name: deprecated202101getcustomersparamcustomeridorders
+        method: GET
+        description: Shopify Retrieves All Orders Belonging To A Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+    - name: admin-api-unstable-collections-collection_id-products.json
+      path: /admin/api/unstable/collections/{collection_id}/products.json
+      operations:
+      - name: deprecatedunstablegetcollectionsparamcollectionidproducts
+        method: GET
+        description: Shopify Retrieve A List Of Products Belonging To A Collection
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: collection_id
+          in: path
+          type: string
+          description: collection_id
+          required: true
+        - name: limit
+          in: query
+          type: string
+          description: The number of products to retrieve.
+    - name: admin-api-unstable-customers-customer_id-orders.json
+      path: /admin/api/unstable/customers/{customer_id}/orders.json
+      operations:
+      - name: deprecatedunstablegetcustomersparamcustomeridorders
+        method: GET
+        description: Shopify Retrieves All Orders Belonging To A Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+  exposes:
+  - type: rest
+    namespace: shopify-belonging-rest
+    port: 8080
+    description: REST adapter for Shopify  API — Belonging. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/admin/api/2020-01/collections/{collection-id}/products-json
+      name: admin-api-2020-01-collections-collection-id-products-json
+      description: REST surface for admin-api-2020-01-collections-collection_id-products.json.
+      operations:
+      - method: GET
+        name: deprecated202001getcollectionsparamcollectionidproducts
+        description: Shopify Retrieve A List Of Products Belonging To A Collection
+        call: shopify-belonging.deprecated202001getcollectionsparamcollectionidproducts
+        with:
+          collection_id: rest.collection_id
+          limit: rest.limit
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-01/customers/{customer-id}/orders-json
+      name: admin-api-2020-01-customers-customer-id-orders-json
+      description: REST surface for admin-api-2020-01-customers-customer_id-orders.json.
+      operations:
+      - method: GET
+        name: deprecated202001getcustomersparamcustomeridorders
+        description: Shopify Retrieves All Orders Belonging To A Customer
+        call: shopify-belonging.deprecated202001getcustomersparamcustomeridorders
+        with:
+          customer_id: rest.customer_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/collections/{collection-id}/products-json
+      name: admin-api-2020-04-collections-collection-id-products-json
+      description: REST surface for admin-api-2020-04-collections-collection_id-products.json.
+      operations:
+      - method: GET
+        name: deprecated202004getcollectionsparamcollectionidproducts
+        description: Shopify Retrieve A List Of Products Belonging To A Collection
+        call: shopify-belonging.deprecated202004getcollectionsparamcollectionidproducts
+        with:
+          collection_id: rest.collection_id
+          limit: rest.limit
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/customers/{customer-id}/orders-json
+      name: admin-api-2020-04-customers-customer-id-orders-json
+      description: REST surface for admin-api-2020-04-customers-customer_id-orders.json.
+      operations:
+      - method: GET
+        name: deprecated202004getcustomersparamcustomeridorders
+        description: Shopify Retrieves All Orders Belonging To A Customer
+        call: shopify-belonging.deprecated202004getcustomersparamcustomeridorders
+        with:
+          customer_id: rest.customer_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/collections/{collection-id}/products-json
+      name: admin-api-2020-07-collections-collection-id-products-json
+      description: REST surface for admin-api-2020-07-collections-collection_id-products.json.
+      operations:
+      - method: GET
+        name: deprecated202007getcollectionsparamcollectionidproducts
+        description: Shopify Retrieve A List Of Products Belonging To A Collection
+        call: shopify-belonging.deprecated202007getcollectionsparamcollectionidproducts
+        with:
+          collection_id: rest.collection_id
+          limit: rest.limit
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/customers/{customer-id}/orders-json
+      name: admin-api-2020-07-customers-customer-id-orders-json
+      description: REST surface for admin-api-2020-07-customers-customer_id-orders.json.
+      operations:
+      - method: GET
+        name: deprecated202007getcustomersparamcustomeridorders
+        description: Shopify Retrieves All Orders Belonging To A Customer
+        call: shopify-belonging.deprecated202007getcustomersparamcustomeridorders
+        with:
+          customer_id: rest.customer_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/collections/{collection-id}/products-json
+      name: admin-api-2020-10-collections-collection-id-products-json
+      description: REST surface for admin-api-2020-10-collections-collection_id-products.json.
+      operations:
+      - method: GET
+        name: getcollectionsparamcollectionidproducts
+        description: Shopify Retrieve A List Of Products Belonging To A Collection
+        call: shopify-belonging.getcollectionsparamcollectionidproducts
+        with:
+          collection_id: rest.collection_id
+          limit: rest.limit
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/customers/{customer-id}/orders-json
+      name: admin-api-2020-10-customers-customer-id-orders-json
+      description: REST surface for admin-api-2020-10-customers-customer_id-orders.json.
+      operations:
+      - method: GET
+        name: getcustomersparamcustomeridorders
+        description: Shopify Retrieves All Orders Belonging To A Customer
+        call: shopify-belonging.getcustomersparamcustomeridorders
+        with:
+          customer_id: rest.customer_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/collections/{collection-id}/products-json
+      name: admin-api-2021-01-collections-collection-id-products-json
+      description: REST surface for admin-api-2021-01-collections-collection_id-products.json.
+      operations:
+      - method: GET
+        name: deprecated202101getcollectionsparamcollectionidproducts
+        description: Shopify Retrieve A List Of Products Belonging To A Collection
+        call: shopify-belonging.deprecated202101getcollectionsparamcollectionidproducts
+        with:
+          collection_id: rest.collection_id
+          limit: rest.limit
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/customers/{customer-id}/orders-json
+      name: admin-api-2021-01-customers-customer-id-orders-json
+      description: REST surface for admin-api-2021-01-customers-customer_id-orders.json.
+      operations:
+      - method: GET
+        name: deprecated202101getcustomersparamcustomeridorders
+        description: Shopify Retrieves All Orders Belonging To A Customer
+        call: shopify-belonging.deprecated202101getcustomersparamcustomeridorders
+        with:
+          customer_id: rest.customer_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/collections/{collection-id}/products-json
+      name: admin-api-unstable-collections-collection-id-products-json
+      description: REST surface for admin-api-unstable-collections-collection_id-products.json.
+      operations:
+      - method: GET
+        name: deprecatedunstablegetcollectionsparamcollectionidproducts
+        description: Shopify Retrieve A List Of Products Belonging To A Collection
+        call: shopify-belonging.deprecatedunstablegetcollectionsparamcollectionidproducts
+        with:
+          collection_id: rest.collection_id
+          limit: rest.limit
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/customers/{customer-id}/orders-json
+      name: admin-api-unstable-customers-customer-id-orders-json
+      description: REST surface for admin-api-unstable-customers-customer_id-orders.json.
+      operations:
+      - method: GET
+        name: deprecatedunstablegetcustomersparamcustomeridorders
+        description: Shopify Retrieves All Orders Belonging To A Customer
+        call: shopify-belonging.deprecatedunstablegetcustomersparamcustomeridorders
+        with:
+          customer_id: rest.customer_id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: shopify-belonging-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Shopify  API — Belonging. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: shopify-retrieve-list-products-belonging
+      description: Shopify Retrieve A List Of Products Belonging To A Collection
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-belonging.deprecated202001getcollectionsparamcollectionidproducts
+      with:
+        collection_id: tools.collection_id
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-all-orders-belonging
+      description: Shopify Retrieves All Orders Belonging To A Customer
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-belonging.deprecated202001getcustomersparamcustomeridorders
+      with:
+        customer_id: tools.customer_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieve-list-products-belonging-2
+      description: Shopify Retrieve A List Of Products Belonging To A Collection
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-belonging.deprecated202004getcollectionsparamcollectionidproducts
+      with:
+        collection_id: tools.collection_id
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-all-orders-belonging-2
+      description: Shopify Retrieves All Orders Belonging To A Customer
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-belonging.deprecated202004getcustomersparamcustomeridorders
+      with:
+        customer_id: tools.customer_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieve-list-products-belonging-3
+      description: Shopify Retrieve A List Of Products Belonging To A Collection
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-belonging.deprecated202007getcollectionsparamcollectionidproducts
+      with:
+        collection_id: tools.collection_id
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-all-orders-belonging-3
+      description: Shopify Retrieves All Orders Belonging To A Customer
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-belonging.deprecated202007getcustomersparamcustomeridorders
+      with:
+        customer_id: tools.customer_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieve-list-products-belonging-4
+      description: Shopify Retrieve A List Of Products Belonging To A Collection
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-belonging.getcollectionsparamcollectionidproducts
+      with:
+        collection_id: tools.collection_id
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-all-orders-belonging-4
+      description: Shopify Retrieves All Orders Belonging To A Customer
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-belonging.getcustomersparamcustomeridorders
+      with:
+        customer_id: tools.customer_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieve-list-products-belonging-5
+      description: Shopify Retrieve A List Of Products Belonging To A Collection
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-belonging.deprecated202101getcollectionsparamcollectionidproducts
+      with:
+        collection_id: tools.collection_id
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-all-orders-belonging-5
+      description: Shopify Retrieves All Orders Belonging To A Customer
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-belonging.deprecated202101getcustomersparamcustomeridorders
+      with:
+        customer_id: tools.customer_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieve-list-products-belonging-6
+      description: Shopify Retrieve A List Of Products Belonging To A Collection
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-belonging.deprecatedunstablegetcollectionsparamcollectionidproducts
+      with:
+        collection_id: tools.collection_id
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-all-orders-belonging-6
+      description: Shopify Retrieves All Orders Belonging To A Customer
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-belonging.deprecatedunstablegetcustomersparamcustomeridorders
+      with:
+        customer_id: tools.customer_id
+      outputParameters:
+      - type: object
+        mapping: $.

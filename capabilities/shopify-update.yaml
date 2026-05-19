@@ -1,0 +1,714 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Shopify  API — Update
+  description: 'Shopify  API — Update. 13 operations. Lead operation: Shopify Update A Blog. Self-contained Naftiko capability
+    covering one Shopify business surface.'
+  tags:
+  - Shopify
+  - Update
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SHOPIFY_API_KEY: SHOPIFY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: shopify-update
+    baseUri: ''
+    description: Shopify  API — Update business capability. Self-contained, no shared references.
+    resources:
+    - name: admin-api-2020-01-blogs-blog_id}.json
+      path: /admin/api/2020-01/blogs/{blog_id}.json
+      operations:
+      - name: deprecated202001updateblogsparamblogid
+        method: PUT
+        description: Shopify Update A Blog
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: blog_id
+          in: path
+          type: string
+          description: blog_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-01-orders-order_id-fulfillments-fulfillment_id}.json
+      path: /admin/api/2020-01/orders/{order_id}/fulfillments/{fulfillment_id}.json
+      operations:
+      - name: deprecated202001updateordersparamorderidfulfillmentsparamfulfillmentid
+        method: PUT
+        description: Shopify Update Information Associated With A Fulfillment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: order_id
+          in: path
+          type: string
+          description: order_id
+          required: true
+        - name: fulfillment_id
+          in: path
+          type: string
+          description: fulfillment_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-01-webhooks-webhook_id}.json
+      path: /admin/api/2020-01/webhooks/{webhook_id}.json
+      operations:
+      - name: deprecated202001updatewebhooksparamwebhookid
+        method: PUT
+        description: Shopify Update A Webhook Subscription's Topic Or Address Uris
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: webhook_id
+          in: path
+          type: string
+          description: webhook_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-04-orders-order_id-fulfillments-fulfillment_id}.json
+      path: /admin/api/2020-04/orders/{order_id}/fulfillments/{fulfillment_id}.json
+      operations:
+      - name: deprecated202004updateordersparamorderidfulfillmentsparamfulfillmentid
+        method: PUT
+        description: Shopify Update Information Associated With A Fulfillment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: order_id
+          in: path
+          type: string
+          description: order_id
+          required: true
+        - name: fulfillment_id
+          in: path
+          type: string
+          description: fulfillment_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-04-webhooks-webhook_id}.json
+      path: /admin/api/2020-04/webhooks/{webhook_id}.json
+      operations:
+      - name: deprecated202004updatewebhooksparamwebhookid
+        method: PUT
+        description: Shopify Update A Webhook Subscription's Topic Or Address Uris
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: webhook_id
+          in: path
+          type: string
+          description: webhook_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-07-orders-order_id-fulfillments-fulfillment_id}.json
+      path: /admin/api/2020-07/orders/{order_id}/fulfillments/{fulfillment_id}.json
+      operations:
+      - name: deprecated202007updateordersparamorderidfulfillmentsparamfulfillmentid
+        method: PUT
+        description: Shopify Update Information Associated With A Fulfillment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: order_id
+          in: path
+          type: string
+          description: order_id
+          required: true
+        - name: fulfillment_id
+          in: path
+          type: string
+          description: fulfillment_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-07-webhooks-webhook_id}.json
+      path: /admin/api/2020-07/webhooks/{webhook_id}.json
+      operations:
+      - name: deprecated202007updatewebhooksparamwebhookid
+        method: PUT
+        description: Shopify Update A Webhook Subscription's Topic Or Address Uris
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: webhook_id
+          in: path
+          type: string
+          description: webhook_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-10-orders-order_id-fulfillments-fulfillment_id}.json
+      path: /admin/api/2020-10/orders/{order_id}/fulfillments/{fulfillment_id}.json
+      operations:
+      - name: updateordersparamorderidfulfillmentsparamfulfillmentid
+        method: PUT
+        description: Shopify Update Information Associated With A Fulfillment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: order_id
+          in: path
+          type: string
+          description: order_id
+          required: true
+        - name: fulfillment_id
+          in: path
+          type: string
+          description: fulfillment_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-10-webhooks-webhook_id}.json
+      path: /admin/api/2020-10/webhooks/{webhook_id}.json
+      operations:
+      - name: updatewebhooksparamwebhookid
+        method: PUT
+        description: Shopify Update A Webhook Subscription's Topic Or Address Uris
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: webhook_id
+          in: path
+          type: string
+          description: webhook_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2021-01-orders-order_id-fulfillments-fulfillment_id}.json
+      path: /admin/api/2021-01/orders/{order_id}/fulfillments/{fulfillment_id}.json
+      operations:
+      - name: deprecated202101updateordersparamorderidfulfillmentsparamfulfillmentid
+        method: PUT
+        description: Shopify Update Information Associated With A Fulfillment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: order_id
+          in: path
+          type: string
+          description: order_id
+          required: true
+        - name: fulfillment_id
+          in: path
+          type: string
+          description: fulfillment_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2021-01-webhooks-webhook_id}.json
+      path: /admin/api/2021-01/webhooks/{webhook_id}.json
+      operations:
+      - name: deprecated202101updatewebhooksparamwebhookid
+        method: PUT
+        description: Shopify Update A Webhook Subscription's Topic Or Address Uris
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: webhook_id
+          in: path
+          type: string
+          description: webhook_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-unstable-orders-order_id-fulfillments-fulfillment_id}.json
+      path: /admin/api/unstable/orders/{order_id}/fulfillments/{fulfillment_id}.json
+      operations:
+      - name: deprecatedunstableupdateordersparamorderidfulfillmentsparamfulfillmentid
+        method: PUT
+        description: Shopify Update Information Associated With A Fulfillment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: order_id
+          in: path
+          type: string
+          description: order_id
+          required: true
+        - name: fulfillment_id
+          in: path
+          type: string
+          description: fulfillment_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-unstable-webhooks-webhook_id}.json
+      path: /admin/api/unstable/webhooks/{webhook_id}.json
+      operations:
+      - name: deprecatedunstableupdatewebhooksparamwebhookid
+        method: PUT
+        description: Shopify Update A Webhook Subscription's Topic Or Address Uris
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: webhook_id
+          in: path
+          type: string
+          description: webhook_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+  exposes:
+  - type: rest
+    namespace: shopify-update-rest
+    port: 8080
+    description: REST adapter for Shopify  API — Update. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/admin/api/2020-01/blogs/blog-id-json
+      name: admin-api-2020-01-blogs-blog-id-json
+      description: REST surface for admin-api-2020-01-blogs-blog_id}.json.
+      operations:
+      - method: PUT
+        name: deprecated202001updateblogsparamblogid
+        description: Shopify Update A Blog
+        call: shopify-update.deprecated202001updateblogsparamblogid
+        with:
+          blog_id: rest.blog_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-01/orders/{order-id}/fulfillments/fulfillment-id-json
+      name: admin-api-2020-01-orders-order-id-fulfillments-fulfillment-id-json
+      description: REST surface for admin-api-2020-01-orders-order_id-fulfillments-fulfillment_id}.json.
+      operations:
+      - method: PUT
+        name: deprecated202001updateordersparamorderidfulfillmentsparamfulfillmentid
+        description: Shopify Update Information Associated With A Fulfillment
+        call: shopify-update.deprecated202001updateordersparamorderidfulfillmentsparamfulfillmentid
+        with:
+          order_id: rest.order_id
+          fulfillment_id: rest.fulfillment_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-01/webhooks/webhook-id-json
+      name: admin-api-2020-01-webhooks-webhook-id-json
+      description: REST surface for admin-api-2020-01-webhooks-webhook_id}.json.
+      operations:
+      - method: PUT
+        name: deprecated202001updatewebhooksparamwebhookid
+        description: Shopify Update A Webhook Subscription's Topic Or Address Uris
+        call: shopify-update.deprecated202001updatewebhooksparamwebhookid
+        with:
+          webhook_id: rest.webhook_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/orders/{order-id}/fulfillments/fulfillment-id-json
+      name: admin-api-2020-04-orders-order-id-fulfillments-fulfillment-id-json
+      description: REST surface for admin-api-2020-04-orders-order_id-fulfillments-fulfillment_id}.json.
+      operations:
+      - method: PUT
+        name: deprecated202004updateordersparamorderidfulfillmentsparamfulfillmentid
+        description: Shopify Update Information Associated With A Fulfillment
+        call: shopify-update.deprecated202004updateordersparamorderidfulfillmentsparamfulfillmentid
+        with:
+          order_id: rest.order_id
+          fulfillment_id: rest.fulfillment_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/webhooks/webhook-id-json
+      name: admin-api-2020-04-webhooks-webhook-id-json
+      description: REST surface for admin-api-2020-04-webhooks-webhook_id}.json.
+      operations:
+      - method: PUT
+        name: deprecated202004updatewebhooksparamwebhookid
+        description: Shopify Update A Webhook Subscription's Topic Or Address Uris
+        call: shopify-update.deprecated202004updatewebhooksparamwebhookid
+        with:
+          webhook_id: rest.webhook_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/orders/{order-id}/fulfillments/fulfillment-id-json
+      name: admin-api-2020-07-orders-order-id-fulfillments-fulfillment-id-json
+      description: REST surface for admin-api-2020-07-orders-order_id-fulfillments-fulfillment_id}.json.
+      operations:
+      - method: PUT
+        name: deprecated202007updateordersparamorderidfulfillmentsparamfulfillmentid
+        description: Shopify Update Information Associated With A Fulfillment
+        call: shopify-update.deprecated202007updateordersparamorderidfulfillmentsparamfulfillmentid
+        with:
+          order_id: rest.order_id
+          fulfillment_id: rest.fulfillment_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/webhooks/webhook-id-json
+      name: admin-api-2020-07-webhooks-webhook-id-json
+      description: REST surface for admin-api-2020-07-webhooks-webhook_id}.json.
+      operations:
+      - method: PUT
+        name: deprecated202007updatewebhooksparamwebhookid
+        description: Shopify Update A Webhook Subscription's Topic Or Address Uris
+        call: shopify-update.deprecated202007updatewebhooksparamwebhookid
+        with:
+          webhook_id: rest.webhook_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/orders/{order-id}/fulfillments/fulfillment-id-json
+      name: admin-api-2020-10-orders-order-id-fulfillments-fulfillment-id-json
+      description: REST surface for admin-api-2020-10-orders-order_id-fulfillments-fulfillment_id}.json.
+      operations:
+      - method: PUT
+        name: updateordersparamorderidfulfillmentsparamfulfillmentid
+        description: Shopify Update Information Associated With A Fulfillment
+        call: shopify-update.updateordersparamorderidfulfillmentsparamfulfillmentid
+        with:
+          order_id: rest.order_id
+          fulfillment_id: rest.fulfillment_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/webhooks/webhook-id-json
+      name: admin-api-2020-10-webhooks-webhook-id-json
+      description: REST surface for admin-api-2020-10-webhooks-webhook_id}.json.
+      operations:
+      - method: PUT
+        name: updatewebhooksparamwebhookid
+        description: Shopify Update A Webhook Subscription's Topic Or Address Uris
+        call: shopify-update.updatewebhooksparamwebhookid
+        with:
+          webhook_id: rest.webhook_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/orders/{order-id}/fulfillments/fulfillment-id-json
+      name: admin-api-2021-01-orders-order-id-fulfillments-fulfillment-id-json
+      description: REST surface for admin-api-2021-01-orders-order_id-fulfillments-fulfillment_id}.json.
+      operations:
+      - method: PUT
+        name: deprecated202101updateordersparamorderidfulfillmentsparamfulfillmentid
+        description: Shopify Update Information Associated With A Fulfillment
+        call: shopify-update.deprecated202101updateordersparamorderidfulfillmentsparamfulfillmentid
+        with:
+          order_id: rest.order_id
+          fulfillment_id: rest.fulfillment_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/webhooks/webhook-id-json
+      name: admin-api-2021-01-webhooks-webhook-id-json
+      description: REST surface for admin-api-2021-01-webhooks-webhook_id}.json.
+      operations:
+      - method: PUT
+        name: deprecated202101updatewebhooksparamwebhookid
+        description: Shopify Update A Webhook Subscription's Topic Or Address Uris
+        call: shopify-update.deprecated202101updatewebhooksparamwebhookid
+        with:
+          webhook_id: rest.webhook_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/orders/{order-id}/fulfillments/fulfillment-id-json
+      name: admin-api-unstable-orders-order-id-fulfillments-fulfillment-id-json
+      description: REST surface for admin-api-unstable-orders-order_id-fulfillments-fulfillment_id}.json.
+      operations:
+      - method: PUT
+        name: deprecatedunstableupdateordersparamorderidfulfillmentsparamfulfillmentid
+        description: Shopify Update Information Associated With A Fulfillment
+        call: shopify-update.deprecatedunstableupdateordersparamorderidfulfillmentsparamfulfillmentid
+        with:
+          order_id: rest.order_id
+          fulfillment_id: rest.fulfillment_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/webhooks/webhook-id-json
+      name: admin-api-unstable-webhooks-webhook-id-json
+      description: REST surface for admin-api-unstable-webhooks-webhook_id}.json.
+      operations:
+      - method: PUT
+        name: deprecatedunstableupdatewebhooksparamwebhookid
+        description: Shopify Update A Webhook Subscription's Topic Or Address Uris
+        call: shopify-update.deprecatedunstableupdatewebhooksparamwebhookid
+        with:
+          webhook_id: rest.webhook_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: shopify-update-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Shopify  API — Update. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: shopify-update-blog
+      description: Shopify Update A Blog
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-update.deprecated202001updateblogsparamblogid
+      with:
+        blog_id: tools.blog_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-update-information-associated-fulfillment
+      description: Shopify Update Information Associated With A Fulfillment
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-update.deprecated202001updateordersparamorderidfulfillmentsparamfulfillmentid
+      with:
+        order_id: tools.order_id
+        fulfillment_id: tools.fulfillment_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-update-webhook-subscription-s-topic
+      description: Shopify Update A Webhook Subscription's Topic Or Address Uris
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-update.deprecated202001updatewebhooksparamwebhookid
+      with:
+        webhook_id: tools.webhook_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-update-information-associated-fulfillment-2
+      description: Shopify Update Information Associated With A Fulfillment
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-update.deprecated202004updateordersparamorderidfulfillmentsparamfulfillmentid
+      with:
+        order_id: tools.order_id
+        fulfillment_id: tools.fulfillment_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-update-webhook-subscription-s-topic-2
+      description: Shopify Update A Webhook Subscription's Topic Or Address Uris
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-update.deprecated202004updatewebhooksparamwebhookid
+      with:
+        webhook_id: tools.webhook_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-update-information-associated-fulfillment-3
+      description: Shopify Update Information Associated With A Fulfillment
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-update.deprecated202007updateordersparamorderidfulfillmentsparamfulfillmentid
+      with:
+        order_id: tools.order_id
+        fulfillment_id: tools.fulfillment_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-update-webhook-subscription-s-topic-3
+      description: Shopify Update A Webhook Subscription's Topic Or Address Uris
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-update.deprecated202007updatewebhooksparamwebhookid
+      with:
+        webhook_id: tools.webhook_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-update-information-associated-fulfillment-4
+      description: Shopify Update Information Associated With A Fulfillment
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-update.updateordersparamorderidfulfillmentsparamfulfillmentid
+      with:
+        order_id: tools.order_id
+        fulfillment_id: tools.fulfillment_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-update-webhook-subscription-s-topic-4
+      description: Shopify Update A Webhook Subscription's Topic Or Address Uris
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-update.updatewebhooksparamwebhookid
+      with:
+        webhook_id: tools.webhook_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-update-information-associated-fulfillment-5
+      description: Shopify Update Information Associated With A Fulfillment
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-update.deprecated202101updateordersparamorderidfulfillmentsparamfulfillmentid
+      with:
+        order_id: tools.order_id
+        fulfillment_id: tools.fulfillment_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-update-webhook-subscription-s-topic-5
+      description: Shopify Update A Webhook Subscription's Topic Or Address Uris
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-update.deprecated202101updatewebhooksparamwebhookid
+      with:
+        webhook_id: tools.webhook_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-update-information-associated-fulfillment-6
+      description: Shopify Update Information Associated With A Fulfillment
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-update.deprecatedunstableupdateordersparamorderidfulfillmentsparamfulfillmentid
+      with:
+        order_id: tools.order_id
+        fulfillment_id: tools.fulfillment_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-update-webhook-subscription-s-topic-6
+      description: Shopify Update A Webhook Subscription's Topic Or Address Uris
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-update.deprecatedunstableupdatewebhooksparamwebhookid
+      with:
+        webhook_id: tools.webhook_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

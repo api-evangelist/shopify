@@ -1,0 +1,2507 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Shopify  API — Smart
+  description: 'Shopify  API — Smart. 42 operations. Lead operation: Shopify Retrieves A List Of Smart Collections. Self-contained
+    Naftiko capability covering one Shopify business surface.'
+  tags:
+  - Shopify
+  - Smart
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SHOPIFY_API_KEY: SHOPIFY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: shopify-smart
+    baseUri: ''
+    description: Shopify  API — Smart business capability. Self-contained, no shared references.
+    resources:
+    - name: admin-api-2020-01-smart_collections.json
+      path: /admin/api/2020-01/smart_collections.json
+      operations:
+      - name: deprecated202001getsmartcollections
+        method: GET
+        description: Shopify Retrieves A List Of Smart Collections
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: string
+          description: The number of results to show.
+        - name: ids
+          in: query
+          type: string
+          description: Show only the smart collections specified by a comma-separated list of IDs.
+        - name: since_id
+          in: query
+          type: string
+          description: Restrict results to after the specified ID.
+        - name: title
+          in: query
+          type: string
+          description: Show smart collections with the specified title.
+        - name: product_id
+          in: query
+          type: string
+          description: Show smart collections that includes the specified product.
+        - name: handle
+          in: query
+          type: string
+          description: Filter results by smart collection handle.
+        - name: updated_at_min
+          in: query
+          type: string
+          description: 'Show smart collections last updated after this date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: updated_at_max
+          in: query
+          type: string
+          description: 'Show smart collections last updated before this date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: published_at_min
+          in: query
+          type: string
+          description: 'Show smart collections published after this date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: published_at_max
+          in: query
+          type: string
+          description: 'Show smart collections published before this date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: published_status
+          in: query
+          type: string
+          description: Filter results based on the published status of smart collections.
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+      - name: deprecated202001createsmartcollections
+        method: POST
+        description: Shopify Creates A New Smart Collection Using The Specified Rules
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-01-smart_collections-count.json
+      path: /admin/api/2020-01/smart_collections/count.json
+      operations:
+      - name: deprecated202001getsmartcollectionscount
+        method: GET
+        description: Shopify Retrieves A Count Of Smart Collections
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: title
+          in: query
+          type: string
+          description: Show smart collections with the specified title.
+        - name: product_id
+          in: query
+          type: string
+          description: Show smart collections that include the specified product.
+        - name: updated_at_min
+          in: query
+          type: string
+          description: 'Show smart collections last updated after this date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: updated_at_max
+          in: query
+          type: string
+          description: 'Show smart collections last updated before this date.  (format: 2014-04-25T16:15:47-04:00)'
+        - name: published_at_min
+          in: query
+          type: string
+          description: 'Show smart collections published after this date.  (format: 2014-04-25T16:15:47-04:00)'
+        - name: published_at_max
+          in: query
+          type: string
+          description: 'Show smart collections published before this date.  (format: 2014-04-25T16:15:47-04:00)'
+        - name: published_status
+          in: query
+          type: string
+          description: Filter results based on the published status of smart collections.
+    - name: admin-api-2020-01-smart_collections-smart_collection_id}.json
+      path: /admin/api/2020-01/smart_collections/{smart_collection_id}.json
+      operations:
+      - name: deprecated202001getsmartcollectionsparamsmartcollectionid
+        method: GET
+        description: Shopify Retrieves A Single Smart Collection
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: smart_collection_id
+          in: path
+          type: string
+          description: smart_collection_id
+          required: true
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+      - name: deprecated202001updatesmartcollectionsparamsmartcollectionid
+        method: PUT
+        description: Shopify Updates An Existing Smart Collection
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: smart_collection_id
+          in: path
+          type: string
+          description: smart_collection_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deprecated202001deletesmartcollectionsparamsmartcollectionid
+        method: DELETE
+        description: Shopify Removes A Smart Collection
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: smart_collection_id
+          in: path
+          type: string
+          description: smart_collection_id
+          required: true
+    - name: admin-api-2020-01-smart_collections-smart_collection_id-order.json
+      path: /admin/api/2020-01/smart_collections/{smart_collection_id}/order.json
+      operations:
+      - name: deprecated202001updatesmartcollectionsparamsmartcollectionidorder
+        method: PUT
+        description: Shopify Updates The Ordering Type Of Products In A Smart Collection
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: smart_collection_id
+          in: path
+          type: string
+          description: smart_collection_id
+          required: true
+        - name: products
+          in: query
+          type: string
+          description: An array of product IDs, in the order that you want them to appear at the top of the collection. When
+            products is specified but empty, any previously sorted pro
+        - name: sort_order
+          in: query
+          type: string
+          description: The type of sorting to apply. Valid values are listed in the Properties section above.
+        - name: products[]
+          in: query
+          type: integer
+          description: products[]
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-04-smart_collections.json
+      path: /admin/api/2020-04/smart_collections.json
+      operations:
+      - name: deprecated202004getsmartcollections
+        method: GET
+        description: Shopify Retrieves A List Of Smart Collections
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: string
+          description: The number of results to show.
+        - name: ids
+          in: query
+          type: string
+          description: Show only the smart collections specified by a comma-separated list of IDs.
+        - name: since_id
+          in: query
+          type: string
+          description: Restrict results to after the specified ID.
+        - name: title
+          in: query
+          type: string
+          description: Show smart collections with the specified title.
+        - name: product_id
+          in: query
+          type: string
+          description: Show smart collections that includes the specified product.
+        - name: handle
+          in: query
+          type: string
+          description: Filter results by smart collection handle.
+        - name: updated_at_min
+          in: query
+          type: string
+          description: 'Show smart collections last updated after this date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: updated_at_max
+          in: query
+          type: string
+          description: 'Show smart collections last updated before this date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: published_at_min
+          in: query
+          type: string
+          description: 'Show smart collections published after this date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: published_at_max
+          in: query
+          type: string
+          description: 'Show smart collections published before this date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: published_status
+          in: query
+          type: string
+          description: Filter results based on the published status of smart collections.
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+      - name: deprecated202004createsmartcollections
+        method: POST
+        description: Shopify Creates A New Smart Collection Using The Specified Rules
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-04-smart_collections-count.json
+      path: /admin/api/2020-04/smart_collections/count.json
+      operations:
+      - name: deprecated202004getsmartcollectionscount
+        method: GET
+        description: Shopify Retrieves A Count Of Smart Collections
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: title
+          in: query
+          type: string
+          description: Show smart collections with the specified title.
+        - name: product_id
+          in: query
+          type: string
+          description: Show smart collections that include the specified product.
+        - name: updated_at_min
+          in: query
+          type: string
+          description: 'Show smart collections last updated after this date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: updated_at_max
+          in: query
+          type: string
+          description: 'Show smart collections last updated before this date.  (format: 2014-04-25T16:15:47-04:00)'
+        - name: published_at_min
+          in: query
+          type: string
+          description: 'Show smart collections published after this date.  (format: 2014-04-25T16:15:47-04:00)'
+        - name: published_at_max
+          in: query
+          type: string
+          description: 'Show smart collections published before this date.  (format: 2014-04-25T16:15:47-04:00)'
+        - name: published_status
+          in: query
+          type: string
+          description: Filter results based on the published status of smart collections.
+    - name: admin-api-2020-04-smart_collections-smart_collection_id}.json
+      path: /admin/api/2020-04/smart_collections/{smart_collection_id}.json
+      operations:
+      - name: deprecated202004getsmartcollectionsparamsmartcollectionid
+        method: GET
+        description: Shopify Retrieves A Single Smart Collection
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: smart_collection_id
+          in: path
+          type: string
+          description: smart_collection_id
+          required: true
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+      - name: deprecated202004updatesmartcollectionsparamsmartcollectionid
+        method: PUT
+        description: Shopify Updates An Existing Smart Collection
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: smart_collection_id
+          in: path
+          type: string
+          description: smart_collection_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deprecated202004deletesmartcollectionsparamsmartcollectionid
+        method: DELETE
+        description: Shopify Removes A Smart Collection
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: smart_collection_id
+          in: path
+          type: string
+          description: smart_collection_id
+          required: true
+    - name: admin-api-2020-04-smart_collections-smart_collection_id-order.json
+      path: /admin/api/2020-04/smart_collections/{smart_collection_id}/order.json
+      operations:
+      - name: deprecated202004updatesmartcollectionsparamsmartcollectionidorder
+        method: PUT
+        description: Shopify Updates The Ordering Type Of Products In A Smart Collection
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: smart_collection_id
+          in: path
+          type: string
+          description: smart_collection_id
+          required: true
+        - name: products
+          in: query
+          type: string
+          description: An array of product IDs, in the order that you want them to appear at the top of the collection. When
+            products is specified but empty, any previously sorted pro
+        - name: sort_order
+          in: query
+          type: string
+          description: The type of sorting to apply. Valid values are listed in the Properties section above.
+        - name: products[]
+          in: query
+          type: integer
+          description: products[]
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-07-smart_collections.json
+      path: /admin/api/2020-07/smart_collections.json
+      operations:
+      - name: deprecated202007getsmartcollections
+        method: GET
+        description: Shopify Retrieves A List Of Smart Collections
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: string
+          description: The number of results to show.
+        - name: ids
+          in: query
+          type: string
+          description: Show only the smart collections specified by a comma-separated list of IDs.
+        - name: since_id
+          in: query
+          type: string
+          description: Restrict results to after the specified ID.
+        - name: title
+          in: query
+          type: string
+          description: Show smart collections with the specified title.
+        - name: product_id
+          in: query
+          type: string
+          description: Show smart collections that includes the specified product.
+        - name: handle
+          in: query
+          type: string
+          description: Filter results by smart collection handle.
+        - name: updated_at_min
+          in: query
+          type: string
+          description: 'Show smart collections last updated after this date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: updated_at_max
+          in: query
+          type: string
+          description: 'Show smart collections last updated before this date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: published_at_min
+          in: query
+          type: string
+          description: 'Show smart collections published after this date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: published_at_max
+          in: query
+          type: string
+          description: 'Show smart collections published before this date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: published_status
+          in: query
+          type: string
+          description: Filter results based on the published status of smart collections.
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+      - name: deprecated202007createsmartcollections
+        method: POST
+        description: Shopify Creates A New Smart Collection Using The Specified Rules
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-07-smart_collections-count.json
+      path: /admin/api/2020-07/smart_collections/count.json
+      operations:
+      - name: deprecated202007getsmartcollectionscount
+        method: GET
+        description: Shopify Retrieves A Count Of Smart Collections
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: title
+          in: query
+          type: string
+          description: Show smart collections with the specified title.
+        - name: product_id
+          in: query
+          type: string
+          description: Show smart collections that include the specified product.
+        - name: updated_at_min
+          in: query
+          type: string
+          description: 'Show smart collections last updated after this date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: updated_at_max
+          in: query
+          type: string
+          description: 'Show smart collections last updated before this date.  (format: 2014-04-25T16:15:47-04:00)'
+        - name: published_at_min
+          in: query
+          type: string
+          description: 'Show smart collections published after this date.  (format: 2014-04-25T16:15:47-04:00)'
+        - name: published_at_max
+          in: query
+          type: string
+          description: 'Show smart collections published before this date.  (format: 2014-04-25T16:15:47-04:00)'
+        - name: published_status
+          in: query
+          type: string
+          description: Filter results based on the published status of smart collections.
+    - name: admin-api-2020-07-smart_collections-smart_collection_id}.json
+      path: /admin/api/2020-07/smart_collections/{smart_collection_id}.json
+      operations:
+      - name: deprecated202007getsmartcollectionsparamsmartcollectionid
+        method: GET
+        description: Shopify Retrieves A Single Smart Collection
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: smart_collection_id
+          in: path
+          type: string
+          description: smart_collection_id
+          required: true
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+      - name: deprecated202007updatesmartcollectionsparamsmartcollectionid
+        method: PUT
+        description: Shopify Updates An Existing Smart Collection
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: smart_collection_id
+          in: path
+          type: string
+          description: smart_collection_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deprecated202007deletesmartcollectionsparamsmartcollectionid
+        method: DELETE
+        description: Shopify Removes A Smart Collection
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: smart_collection_id
+          in: path
+          type: string
+          description: smart_collection_id
+          required: true
+    - name: admin-api-2020-07-smart_collections-smart_collection_id-order.json
+      path: /admin/api/2020-07/smart_collections/{smart_collection_id}/order.json
+      operations:
+      - name: deprecated202007updatesmartcollectionsparamsmartcollectionidorder
+        method: PUT
+        description: Shopify Updates The Ordering Type Of Products In A Smart Collection
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: smart_collection_id
+          in: path
+          type: string
+          description: smart_collection_id
+          required: true
+        - name: products
+          in: query
+          type: string
+          description: An array of product IDs, in the order that you want them to appear at the top of the collection. When
+            products is specified but empty, any previously sorted pro
+        - name: sort_order
+          in: query
+          type: string
+          description: The type of sorting to apply. Valid values are listed in the Properties section above.
+        - name: products[]
+          in: query
+          type: integer
+          description: products[]
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-10-smart_collections.json
+      path: /admin/api/2020-10/smart_collections.json
+      operations:
+      - name: getsmartcollections
+        method: GET
+        description: Shopify Retrieves A List Of Smart Collections
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: string
+          description: The number of results to show.
+        - name: ids
+          in: query
+          type: string
+          description: Show only the smart collections specified by a comma-separated list of IDs.
+        - name: since_id
+          in: query
+          type: string
+          description: Restrict results to after the specified ID.
+        - name: title
+          in: query
+          type: string
+          description: Show smart collections with the specified title.
+        - name: product_id
+          in: query
+          type: string
+          description: Show smart collections that includes the specified product.
+        - name: handle
+          in: query
+          type: string
+          description: Filter results by smart collection handle.
+        - name: updated_at_min
+          in: query
+          type: string
+          description: 'Show smart collections last updated after this date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: updated_at_max
+          in: query
+          type: string
+          description: 'Show smart collections last updated before this date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: published_at_min
+          in: query
+          type: string
+          description: 'Show smart collections published after this date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: published_at_max
+          in: query
+          type: string
+          description: 'Show smart collections published before this date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: published_status
+          in: query
+          type: string
+          description: Filter results based on the published status of smart collections.
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+      - name: createsmartcollections
+        method: POST
+        description: Shopify Creates A New Smart Collection Using The Specified Rules
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-10-smart_collections-count.json
+      path: /admin/api/2020-10/smart_collections/count.json
+      operations:
+      - name: getsmartcollectionscount
+        method: GET
+        description: Shopify Retrieves A Count Of Smart Collections
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: title
+          in: query
+          type: string
+          description: Show smart collections with the specified title.
+        - name: product_id
+          in: query
+          type: string
+          description: Show smart collections that include the specified product.
+        - name: updated_at_min
+          in: query
+          type: string
+          description: 'Show smart collections last updated after this date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: updated_at_max
+          in: query
+          type: string
+          description: 'Show smart collections last updated before this date.  (format: 2014-04-25T16:15:47-04:00)'
+        - name: published_at_min
+          in: query
+          type: string
+          description: 'Show smart collections published after this date.  (format: 2014-04-25T16:15:47-04:00)'
+        - name: published_at_max
+          in: query
+          type: string
+          description: 'Show smart collections published before this date.  (format: 2014-04-25T16:15:47-04:00)'
+        - name: published_status
+          in: query
+          type: string
+          description: Filter results based on the published status of smart collections.
+    - name: admin-api-2020-10-smart_collections-smart_collection_id}.json
+      path: /admin/api/2020-10/smart_collections/{smart_collection_id}.json
+      operations:
+      - name: getsmartcollectionsparamsmartcollectionid
+        method: GET
+        description: Shopify Retrieves A Single Smart Collection
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: smart_collection_id
+          in: path
+          type: string
+          description: smart_collection_id
+          required: true
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+      - name: updatesmartcollectionsparamsmartcollectionid
+        method: PUT
+        description: Shopify Updates An Existing Smart Collection
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: smart_collection_id
+          in: path
+          type: string
+          description: smart_collection_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deletesmartcollectionsparamsmartcollectionid
+        method: DELETE
+        description: Shopify Removes A Smart Collection
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: smart_collection_id
+          in: path
+          type: string
+          description: smart_collection_id
+          required: true
+    - name: admin-api-2020-10-smart_collections-smart_collection_id-order.json
+      path: /admin/api/2020-10/smart_collections/{smart_collection_id}/order.json
+      operations:
+      - name: updatesmartcollectionsparamsmartcollectionidorder
+        method: PUT
+        description: Shopify Updates The Ordering Type Of Products In A Smart Collection
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: smart_collection_id
+          in: path
+          type: string
+          description: smart_collection_id
+          required: true
+        - name: products
+          in: query
+          type: string
+          description: An array of product IDs, in the order that you want them to appear at the top of the collection. When
+            products is specified but empty, any previously sorted pro
+        - name: sort_order
+          in: query
+          type: string
+          description: The type of sorting to apply. Valid values are listed in the Properties section above.
+        - name: products[]
+          in: query
+          type: integer
+          description: products[]
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2021-01-smart_collections.json
+      path: /admin/api/2021-01/smart_collections.json
+      operations:
+      - name: deprecated202101getsmartcollections
+        method: GET
+        description: Shopify Retrieves A List Of Smart Collections
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: string
+          description: The number of results to show.
+        - name: ids
+          in: query
+          type: string
+          description: Show only the smart collections specified by a comma-separated list of IDs.
+        - name: since_id
+          in: query
+          type: string
+          description: Restrict results to after the specified ID.
+        - name: title
+          in: query
+          type: string
+          description: Show smart collections with the specified title.
+        - name: product_id
+          in: query
+          type: string
+          description: Show smart collections that includes the specified product.
+        - name: handle
+          in: query
+          type: string
+          description: Filter results by smart collection handle.
+        - name: updated_at_min
+          in: query
+          type: string
+          description: 'Show smart collections last updated after this date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: updated_at_max
+          in: query
+          type: string
+          description: 'Show smart collections last updated before this date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: published_at_min
+          in: query
+          type: string
+          description: 'Show smart collections published after this date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: published_at_max
+          in: query
+          type: string
+          description: 'Show smart collections published before this date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: published_status
+          in: query
+          type: string
+          description: Filter results based on the published status of smart collections.
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+      - name: deprecated202101createsmartcollections
+        method: POST
+        description: Shopify Creates A New Smart Collection Using The Specified Rules
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2021-01-smart_collections-count.json
+      path: /admin/api/2021-01/smart_collections/count.json
+      operations:
+      - name: deprecated202101getsmartcollectionscount
+        method: GET
+        description: Shopify Retrieves A Count Of Smart Collections
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: title
+          in: query
+          type: string
+          description: Show smart collections with the specified title.
+        - name: product_id
+          in: query
+          type: string
+          description: Show smart collections that include the specified product.
+        - name: updated_at_min
+          in: query
+          type: string
+          description: 'Show smart collections last updated after this date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: updated_at_max
+          in: query
+          type: string
+          description: 'Show smart collections last updated before this date.  (format: 2014-04-25T16:15:47-04:00)'
+        - name: published_at_min
+          in: query
+          type: string
+          description: 'Show smart collections published after this date.  (format: 2014-04-25T16:15:47-04:00)'
+        - name: published_at_max
+          in: query
+          type: string
+          description: 'Show smart collections published before this date.  (format: 2014-04-25T16:15:47-04:00)'
+        - name: published_status
+          in: query
+          type: string
+          description: Filter results based on the published status of smart collections.
+    - name: admin-api-2021-01-smart_collections-smart_collection_id}.json
+      path: /admin/api/2021-01/smart_collections/{smart_collection_id}.json
+      operations:
+      - name: deprecated202101getsmartcollectionsparamsmartcollectionid
+        method: GET
+        description: Shopify Retrieves A Single Smart Collection
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: smart_collection_id
+          in: path
+          type: string
+          description: smart_collection_id
+          required: true
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+      - name: deprecated202101updatesmartcollectionsparamsmartcollectionid
+        method: PUT
+        description: Shopify Updates An Existing Smart Collection
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: smart_collection_id
+          in: path
+          type: string
+          description: smart_collection_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deprecated202101deletesmartcollectionsparamsmartcollectionid
+        method: DELETE
+        description: Shopify Removes A Smart Collection
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: smart_collection_id
+          in: path
+          type: string
+          description: smart_collection_id
+          required: true
+    - name: admin-api-2021-01-smart_collections-smart_collection_id-order.json
+      path: /admin/api/2021-01/smart_collections/{smart_collection_id}/order.json
+      operations:
+      - name: deprecated202101updatesmartcollectionsparamsmartcollectionidorder
+        method: PUT
+        description: Shopify Updates The Ordering Type Of Products In A Smart Collection
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: smart_collection_id
+          in: path
+          type: string
+          description: smart_collection_id
+          required: true
+        - name: products
+          in: query
+          type: string
+          description: An array of product IDs, in the order that you want them to appear at the top of the collection. When
+            products is specified but empty, any previously sorted pro
+        - name: sort_order
+          in: query
+          type: string
+          description: The type of sorting to apply. Valid values are listed in the Properties section above.
+        - name: products[]
+          in: query
+          type: integer
+          description: products[]
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-unstable-smart_collections.json
+      path: /admin/api/unstable/smart_collections.json
+      operations:
+      - name: deprecatedunstablegetsmartcollections
+        method: GET
+        description: Shopify Retrieves A List Of Smart Collections
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: string
+          description: The number of results to show.
+        - name: ids
+          in: query
+          type: string
+          description: Show only the smart collections specified by a comma-separated list of IDs.
+        - name: since_id
+          in: query
+          type: string
+          description: Restrict results to after the specified ID.
+        - name: title
+          in: query
+          type: string
+          description: Show smart collections with the specified title.
+        - name: product_id
+          in: query
+          type: string
+          description: Show smart collections that includes the specified product.
+        - name: handle
+          in: query
+          type: string
+          description: Filter results by smart collection handle.
+        - name: updated_at_min
+          in: query
+          type: string
+          description: 'Show smart collections last updated after this date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: updated_at_max
+          in: query
+          type: string
+          description: 'Show smart collections last updated before this date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: published_at_min
+          in: query
+          type: string
+          description: 'Show smart collections published after this date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: published_at_max
+          in: query
+          type: string
+          description: 'Show smart collections published before this date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: published_status
+          in: query
+          type: string
+          description: Filter results based on the published status of smart collections.
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+      - name: deprecatedunstablecreatesmartcollections
+        method: POST
+        description: Shopify Creates A New Smart Collection Using The Specified Rules
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-unstable-smart_collections-count.json
+      path: /admin/api/unstable/smart_collections/count.json
+      operations:
+      - name: deprecatedunstablegetsmartcollectionscount
+        method: GET
+        description: Shopify Retrieves A Count Of Smart Collections
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: title
+          in: query
+          type: string
+          description: Show smart collections with the specified title.
+        - name: product_id
+          in: query
+          type: string
+          description: Show smart collections that include the specified product.
+        - name: updated_at_min
+          in: query
+          type: string
+          description: 'Show smart collections last updated after this date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: updated_at_max
+          in: query
+          type: string
+          description: 'Show smart collections last updated before this date.  (format: 2014-04-25T16:15:47-04:00)'
+        - name: published_at_min
+          in: query
+          type: string
+          description: 'Show smart collections published after this date.  (format: 2014-04-25T16:15:47-04:00)'
+        - name: published_at_max
+          in: query
+          type: string
+          description: 'Show smart collections published before this date.  (format: 2014-04-25T16:15:47-04:00)'
+        - name: published_status
+          in: query
+          type: string
+          description: Filter results based on the published status of smart collections.
+    - name: admin-api-unstable-smart_collections-smart_collection_id}.json
+      path: /admin/api/unstable/smart_collections/{smart_collection_id}.json
+      operations:
+      - name: deprecatedunstablegetsmartcollectionsparamsmartcollectionid
+        method: GET
+        description: Shopify Retrieves A Single Smart Collection
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: smart_collection_id
+          in: path
+          type: string
+          description: smart_collection_id
+          required: true
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+      - name: deprecatedunstableupdatesmartcollectionsparamsmartcollectionid
+        method: PUT
+        description: Shopify Updates An Existing Smart Collection
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: smart_collection_id
+          in: path
+          type: string
+          description: smart_collection_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deprecatedunstabledeletesmartcollectionsparamsmartcollectionid
+        method: DELETE
+        description: Shopify Removes A Smart Collection
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: smart_collection_id
+          in: path
+          type: string
+          description: smart_collection_id
+          required: true
+    - name: admin-api-unstable-smart_collections-smart_collection_id-order.json
+      path: /admin/api/unstable/smart_collections/{smart_collection_id}/order.json
+      operations:
+      - name: deprecatedunstableupdatesmartcollectionsparamsmartcollectionidorder
+        method: PUT
+        description: Shopify Updates The Ordering Type Of Products In A Smart Collection
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: smart_collection_id
+          in: path
+          type: string
+          description: smart_collection_id
+          required: true
+        - name: products
+          in: query
+          type: string
+          description: An array of product IDs, in the order that you want them to appear at the top of the collection. When
+            products is specified but empty, any previously sorted pro
+        - name: sort_order
+          in: query
+          type: string
+          description: The type of sorting to apply. Valid values are listed in the Properties section above.
+        - name: products[]
+          in: query
+          type: integer
+          description: products[]
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+  exposes:
+  - type: rest
+    namespace: shopify-smart-rest
+    port: 8080
+    description: REST adapter for Shopify  API — Smart. One Spectral-compliant resource per consumed operation, prefixed with
+      /v1.
+    resources:
+    - path: /v1/admin/api/2020-01/smart-collections-json
+      name: admin-api-2020-01-smart-collections-json
+      description: REST surface for admin-api-2020-01-smart_collections.json.
+      operations:
+      - method: GET
+        name: deprecated202001getsmartcollections
+        description: Shopify Retrieves A List Of Smart Collections
+        call: shopify-smart.deprecated202001getsmartcollections
+        with:
+          limit: rest.limit
+          ids: rest.ids
+          since_id: rest.since_id
+          title: rest.title
+          product_id: rest.product_id
+          handle: rest.handle
+          updated_at_min: rest.updated_at_min
+          updated_at_max: rest.updated_at_max
+          published_at_min: rest.published_at_min
+          published_at_max: rest.published_at_max
+          published_status: rest.published_status
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: deprecated202001createsmartcollections
+        description: Shopify Creates A New Smart Collection Using The Specified Rules
+        call: shopify-smart.deprecated202001createsmartcollections
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-01/smart-collections/count-json
+      name: admin-api-2020-01-smart-collections-count-json
+      description: REST surface for admin-api-2020-01-smart_collections-count.json.
+      operations:
+      - method: GET
+        name: deprecated202001getsmartcollectionscount
+        description: Shopify Retrieves A Count Of Smart Collections
+        call: shopify-smart.deprecated202001getsmartcollectionscount
+        with:
+          title: rest.title
+          product_id: rest.product_id
+          updated_at_min: rest.updated_at_min
+          updated_at_max: rest.updated_at_max
+          published_at_min: rest.published_at_min
+          published_at_max: rest.published_at_max
+          published_status: rest.published_status
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-01/smart-collections/smart-collection-id-json
+      name: admin-api-2020-01-smart-collections-smart-collection-id-json
+      description: REST surface for admin-api-2020-01-smart_collections-smart_collection_id}.json.
+      operations:
+      - method: GET
+        name: deprecated202001getsmartcollectionsparamsmartcollectionid
+        description: Shopify Retrieves A Single Smart Collection
+        call: shopify-smart.deprecated202001getsmartcollectionsparamsmartcollectionid
+        with:
+          smart_collection_id: rest.smart_collection_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: deprecated202001updatesmartcollectionsparamsmartcollectionid
+        description: Shopify Updates An Existing Smart Collection
+        call: shopify-smart.deprecated202001updatesmartcollectionsparamsmartcollectionid
+        with:
+          smart_collection_id: rest.smart_collection_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deprecated202001deletesmartcollectionsparamsmartcollectionid
+        description: Shopify Removes A Smart Collection
+        call: shopify-smart.deprecated202001deletesmartcollectionsparamsmartcollectionid
+        with:
+          smart_collection_id: rest.smart_collection_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-01/smart-collections/{smart-collection-id}/order-json
+      name: admin-api-2020-01-smart-collections-smart-collection-id-order-json
+      description: REST surface for admin-api-2020-01-smart_collections-smart_collection_id-order.json.
+      operations:
+      - method: PUT
+        name: deprecated202001updatesmartcollectionsparamsmartcollectionidorder
+        description: Shopify Updates The Ordering Type Of Products In A Smart Collection
+        call: shopify-smart.deprecated202001updatesmartcollectionsparamsmartcollectionidorder
+        with:
+          smart_collection_id: rest.smart_collection_id
+          products: rest.products
+          sort_order: rest.sort_order
+          products[]: rest.products[]
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/smart-collections-json
+      name: admin-api-2020-04-smart-collections-json
+      description: REST surface for admin-api-2020-04-smart_collections.json.
+      operations:
+      - method: GET
+        name: deprecated202004getsmartcollections
+        description: Shopify Retrieves A List Of Smart Collections
+        call: shopify-smart.deprecated202004getsmartcollections
+        with:
+          limit: rest.limit
+          ids: rest.ids
+          since_id: rest.since_id
+          title: rest.title
+          product_id: rest.product_id
+          handle: rest.handle
+          updated_at_min: rest.updated_at_min
+          updated_at_max: rest.updated_at_max
+          published_at_min: rest.published_at_min
+          published_at_max: rest.published_at_max
+          published_status: rest.published_status
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: deprecated202004createsmartcollections
+        description: Shopify Creates A New Smart Collection Using The Specified Rules
+        call: shopify-smart.deprecated202004createsmartcollections
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/smart-collections/count-json
+      name: admin-api-2020-04-smart-collections-count-json
+      description: REST surface for admin-api-2020-04-smart_collections-count.json.
+      operations:
+      - method: GET
+        name: deprecated202004getsmartcollectionscount
+        description: Shopify Retrieves A Count Of Smart Collections
+        call: shopify-smart.deprecated202004getsmartcollectionscount
+        with:
+          title: rest.title
+          product_id: rest.product_id
+          updated_at_min: rest.updated_at_min
+          updated_at_max: rest.updated_at_max
+          published_at_min: rest.published_at_min
+          published_at_max: rest.published_at_max
+          published_status: rest.published_status
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/smart-collections/smart-collection-id-json
+      name: admin-api-2020-04-smart-collections-smart-collection-id-json
+      description: REST surface for admin-api-2020-04-smart_collections-smart_collection_id}.json.
+      operations:
+      - method: GET
+        name: deprecated202004getsmartcollectionsparamsmartcollectionid
+        description: Shopify Retrieves A Single Smart Collection
+        call: shopify-smart.deprecated202004getsmartcollectionsparamsmartcollectionid
+        with:
+          smart_collection_id: rest.smart_collection_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: deprecated202004updatesmartcollectionsparamsmartcollectionid
+        description: Shopify Updates An Existing Smart Collection
+        call: shopify-smart.deprecated202004updatesmartcollectionsparamsmartcollectionid
+        with:
+          smart_collection_id: rest.smart_collection_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deprecated202004deletesmartcollectionsparamsmartcollectionid
+        description: Shopify Removes A Smart Collection
+        call: shopify-smart.deprecated202004deletesmartcollectionsparamsmartcollectionid
+        with:
+          smart_collection_id: rest.smart_collection_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/smart-collections/{smart-collection-id}/order-json
+      name: admin-api-2020-04-smart-collections-smart-collection-id-order-json
+      description: REST surface for admin-api-2020-04-smart_collections-smart_collection_id-order.json.
+      operations:
+      - method: PUT
+        name: deprecated202004updatesmartcollectionsparamsmartcollectionidorder
+        description: Shopify Updates The Ordering Type Of Products In A Smart Collection
+        call: shopify-smart.deprecated202004updatesmartcollectionsparamsmartcollectionidorder
+        with:
+          smart_collection_id: rest.smart_collection_id
+          products: rest.products
+          sort_order: rest.sort_order
+          products[]: rest.products[]
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/smart-collections-json
+      name: admin-api-2020-07-smart-collections-json
+      description: REST surface for admin-api-2020-07-smart_collections.json.
+      operations:
+      - method: GET
+        name: deprecated202007getsmartcollections
+        description: Shopify Retrieves A List Of Smart Collections
+        call: shopify-smart.deprecated202007getsmartcollections
+        with:
+          limit: rest.limit
+          ids: rest.ids
+          since_id: rest.since_id
+          title: rest.title
+          product_id: rest.product_id
+          handle: rest.handle
+          updated_at_min: rest.updated_at_min
+          updated_at_max: rest.updated_at_max
+          published_at_min: rest.published_at_min
+          published_at_max: rest.published_at_max
+          published_status: rest.published_status
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: deprecated202007createsmartcollections
+        description: Shopify Creates A New Smart Collection Using The Specified Rules
+        call: shopify-smart.deprecated202007createsmartcollections
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/smart-collections/count-json
+      name: admin-api-2020-07-smart-collections-count-json
+      description: REST surface for admin-api-2020-07-smart_collections-count.json.
+      operations:
+      - method: GET
+        name: deprecated202007getsmartcollectionscount
+        description: Shopify Retrieves A Count Of Smart Collections
+        call: shopify-smart.deprecated202007getsmartcollectionscount
+        with:
+          title: rest.title
+          product_id: rest.product_id
+          updated_at_min: rest.updated_at_min
+          updated_at_max: rest.updated_at_max
+          published_at_min: rest.published_at_min
+          published_at_max: rest.published_at_max
+          published_status: rest.published_status
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/smart-collections/smart-collection-id-json
+      name: admin-api-2020-07-smart-collections-smart-collection-id-json
+      description: REST surface for admin-api-2020-07-smart_collections-smart_collection_id}.json.
+      operations:
+      - method: GET
+        name: deprecated202007getsmartcollectionsparamsmartcollectionid
+        description: Shopify Retrieves A Single Smart Collection
+        call: shopify-smart.deprecated202007getsmartcollectionsparamsmartcollectionid
+        with:
+          smart_collection_id: rest.smart_collection_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: deprecated202007updatesmartcollectionsparamsmartcollectionid
+        description: Shopify Updates An Existing Smart Collection
+        call: shopify-smart.deprecated202007updatesmartcollectionsparamsmartcollectionid
+        with:
+          smart_collection_id: rest.smart_collection_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deprecated202007deletesmartcollectionsparamsmartcollectionid
+        description: Shopify Removes A Smart Collection
+        call: shopify-smart.deprecated202007deletesmartcollectionsparamsmartcollectionid
+        with:
+          smart_collection_id: rest.smart_collection_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/smart-collections/{smart-collection-id}/order-json
+      name: admin-api-2020-07-smart-collections-smart-collection-id-order-json
+      description: REST surface for admin-api-2020-07-smart_collections-smart_collection_id-order.json.
+      operations:
+      - method: PUT
+        name: deprecated202007updatesmartcollectionsparamsmartcollectionidorder
+        description: Shopify Updates The Ordering Type Of Products In A Smart Collection
+        call: shopify-smart.deprecated202007updatesmartcollectionsparamsmartcollectionidorder
+        with:
+          smart_collection_id: rest.smart_collection_id
+          products: rest.products
+          sort_order: rest.sort_order
+          products[]: rest.products[]
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/smart-collections-json
+      name: admin-api-2020-10-smart-collections-json
+      description: REST surface for admin-api-2020-10-smart_collections.json.
+      operations:
+      - method: GET
+        name: getsmartcollections
+        description: Shopify Retrieves A List Of Smart Collections
+        call: shopify-smart.getsmartcollections
+        with:
+          limit: rest.limit
+          ids: rest.ids
+          since_id: rest.since_id
+          title: rest.title
+          product_id: rest.product_id
+          handle: rest.handle
+          updated_at_min: rest.updated_at_min
+          updated_at_max: rest.updated_at_max
+          published_at_min: rest.published_at_min
+          published_at_max: rest.published_at_max
+          published_status: rest.published_status
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createsmartcollections
+        description: Shopify Creates A New Smart Collection Using The Specified Rules
+        call: shopify-smart.createsmartcollections
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/smart-collections/count-json
+      name: admin-api-2020-10-smart-collections-count-json
+      description: REST surface for admin-api-2020-10-smart_collections-count.json.
+      operations:
+      - method: GET
+        name: getsmartcollectionscount
+        description: Shopify Retrieves A Count Of Smart Collections
+        call: shopify-smart.getsmartcollectionscount
+        with:
+          title: rest.title
+          product_id: rest.product_id
+          updated_at_min: rest.updated_at_min
+          updated_at_max: rest.updated_at_max
+          published_at_min: rest.published_at_min
+          published_at_max: rest.published_at_max
+          published_status: rest.published_status
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/smart-collections/smart-collection-id-json
+      name: admin-api-2020-10-smart-collections-smart-collection-id-json
+      description: REST surface for admin-api-2020-10-smart_collections-smart_collection_id}.json.
+      operations:
+      - method: GET
+        name: getsmartcollectionsparamsmartcollectionid
+        description: Shopify Retrieves A Single Smart Collection
+        call: shopify-smart.getsmartcollectionsparamsmartcollectionid
+        with:
+          smart_collection_id: rest.smart_collection_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updatesmartcollectionsparamsmartcollectionid
+        description: Shopify Updates An Existing Smart Collection
+        call: shopify-smart.updatesmartcollectionsparamsmartcollectionid
+        with:
+          smart_collection_id: rest.smart_collection_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletesmartcollectionsparamsmartcollectionid
+        description: Shopify Removes A Smart Collection
+        call: shopify-smart.deletesmartcollectionsparamsmartcollectionid
+        with:
+          smart_collection_id: rest.smart_collection_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/smart-collections/{smart-collection-id}/order-json
+      name: admin-api-2020-10-smart-collections-smart-collection-id-order-json
+      description: REST surface for admin-api-2020-10-smart_collections-smart_collection_id-order.json.
+      operations:
+      - method: PUT
+        name: updatesmartcollectionsparamsmartcollectionidorder
+        description: Shopify Updates The Ordering Type Of Products In A Smart Collection
+        call: shopify-smart.updatesmartcollectionsparamsmartcollectionidorder
+        with:
+          smart_collection_id: rest.smart_collection_id
+          products: rest.products
+          sort_order: rest.sort_order
+          products[]: rest.products[]
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/smart-collections-json
+      name: admin-api-2021-01-smart-collections-json
+      description: REST surface for admin-api-2021-01-smart_collections.json.
+      operations:
+      - method: GET
+        name: deprecated202101getsmartcollections
+        description: Shopify Retrieves A List Of Smart Collections
+        call: shopify-smart.deprecated202101getsmartcollections
+        with:
+          limit: rest.limit
+          ids: rest.ids
+          since_id: rest.since_id
+          title: rest.title
+          product_id: rest.product_id
+          handle: rest.handle
+          updated_at_min: rest.updated_at_min
+          updated_at_max: rest.updated_at_max
+          published_at_min: rest.published_at_min
+          published_at_max: rest.published_at_max
+          published_status: rest.published_status
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: deprecated202101createsmartcollections
+        description: Shopify Creates A New Smart Collection Using The Specified Rules
+        call: shopify-smart.deprecated202101createsmartcollections
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/smart-collections/count-json
+      name: admin-api-2021-01-smart-collections-count-json
+      description: REST surface for admin-api-2021-01-smart_collections-count.json.
+      operations:
+      - method: GET
+        name: deprecated202101getsmartcollectionscount
+        description: Shopify Retrieves A Count Of Smart Collections
+        call: shopify-smart.deprecated202101getsmartcollectionscount
+        with:
+          title: rest.title
+          product_id: rest.product_id
+          updated_at_min: rest.updated_at_min
+          updated_at_max: rest.updated_at_max
+          published_at_min: rest.published_at_min
+          published_at_max: rest.published_at_max
+          published_status: rest.published_status
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/smart-collections/smart-collection-id-json
+      name: admin-api-2021-01-smart-collections-smart-collection-id-json
+      description: REST surface for admin-api-2021-01-smart_collections-smart_collection_id}.json.
+      operations:
+      - method: GET
+        name: deprecated202101getsmartcollectionsparamsmartcollectionid
+        description: Shopify Retrieves A Single Smart Collection
+        call: shopify-smart.deprecated202101getsmartcollectionsparamsmartcollectionid
+        with:
+          smart_collection_id: rest.smart_collection_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: deprecated202101updatesmartcollectionsparamsmartcollectionid
+        description: Shopify Updates An Existing Smart Collection
+        call: shopify-smart.deprecated202101updatesmartcollectionsparamsmartcollectionid
+        with:
+          smart_collection_id: rest.smart_collection_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deprecated202101deletesmartcollectionsparamsmartcollectionid
+        description: Shopify Removes A Smart Collection
+        call: shopify-smart.deprecated202101deletesmartcollectionsparamsmartcollectionid
+        with:
+          smart_collection_id: rest.smart_collection_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/smart-collections/{smart-collection-id}/order-json
+      name: admin-api-2021-01-smart-collections-smart-collection-id-order-json
+      description: REST surface for admin-api-2021-01-smart_collections-smart_collection_id-order.json.
+      operations:
+      - method: PUT
+        name: deprecated202101updatesmartcollectionsparamsmartcollectionidorder
+        description: Shopify Updates The Ordering Type Of Products In A Smart Collection
+        call: shopify-smart.deprecated202101updatesmartcollectionsparamsmartcollectionidorder
+        with:
+          smart_collection_id: rest.smart_collection_id
+          products: rest.products
+          sort_order: rest.sort_order
+          products[]: rest.products[]
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/smart-collections-json
+      name: admin-api-unstable-smart-collections-json
+      description: REST surface for admin-api-unstable-smart_collections.json.
+      operations:
+      - method: GET
+        name: deprecatedunstablegetsmartcollections
+        description: Shopify Retrieves A List Of Smart Collections
+        call: shopify-smart.deprecatedunstablegetsmartcollections
+        with:
+          limit: rest.limit
+          ids: rest.ids
+          since_id: rest.since_id
+          title: rest.title
+          product_id: rest.product_id
+          handle: rest.handle
+          updated_at_min: rest.updated_at_min
+          updated_at_max: rest.updated_at_max
+          published_at_min: rest.published_at_min
+          published_at_max: rest.published_at_max
+          published_status: rest.published_status
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: deprecatedunstablecreatesmartcollections
+        description: Shopify Creates A New Smart Collection Using The Specified Rules
+        call: shopify-smart.deprecatedunstablecreatesmartcollections
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/smart-collections/count-json
+      name: admin-api-unstable-smart-collections-count-json
+      description: REST surface for admin-api-unstable-smart_collections-count.json.
+      operations:
+      - method: GET
+        name: deprecatedunstablegetsmartcollectionscount
+        description: Shopify Retrieves A Count Of Smart Collections
+        call: shopify-smart.deprecatedunstablegetsmartcollectionscount
+        with:
+          title: rest.title
+          product_id: rest.product_id
+          updated_at_min: rest.updated_at_min
+          updated_at_max: rest.updated_at_max
+          published_at_min: rest.published_at_min
+          published_at_max: rest.published_at_max
+          published_status: rest.published_status
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/smart-collections/smart-collection-id-json
+      name: admin-api-unstable-smart-collections-smart-collection-id-json
+      description: REST surface for admin-api-unstable-smart_collections-smart_collection_id}.json.
+      operations:
+      - method: GET
+        name: deprecatedunstablegetsmartcollectionsparamsmartcollectionid
+        description: Shopify Retrieves A Single Smart Collection
+        call: shopify-smart.deprecatedunstablegetsmartcollectionsparamsmartcollectionid
+        with:
+          smart_collection_id: rest.smart_collection_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: deprecatedunstableupdatesmartcollectionsparamsmartcollectionid
+        description: Shopify Updates An Existing Smart Collection
+        call: shopify-smart.deprecatedunstableupdatesmartcollectionsparamsmartcollectionid
+        with:
+          smart_collection_id: rest.smart_collection_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deprecatedunstabledeletesmartcollectionsparamsmartcollectionid
+        description: Shopify Removes A Smart Collection
+        call: shopify-smart.deprecatedunstabledeletesmartcollectionsparamsmartcollectionid
+        with:
+          smart_collection_id: rest.smart_collection_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/smart-collections/{smart-collection-id}/order-json
+      name: admin-api-unstable-smart-collections-smart-collection-id-order-json
+      description: REST surface for admin-api-unstable-smart_collections-smart_collection_id-order.json.
+      operations:
+      - method: PUT
+        name: deprecatedunstableupdatesmartcollectionsparamsmartcollectionidorder
+        description: Shopify Updates The Ordering Type Of Products In A Smart Collection
+        call: shopify-smart.deprecatedunstableupdatesmartcollectionsparamsmartcollectionidorder
+        with:
+          smart_collection_id: rest.smart_collection_id
+          products: rest.products
+          sort_order: rest.sort_order
+          products[]: rest.products[]
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: shopify-smart-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Shopify  API — Smart. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: shopify-retrieves-list-smart-collections
+      description: Shopify Retrieves A List Of Smart Collections
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-smart.deprecated202001getsmartcollections
+      with:
+        limit: tools.limit
+        ids: tools.ids
+        since_id: tools.since_id
+        title: tools.title
+        product_id: tools.product_id
+        handle: tools.handle
+        updated_at_min: tools.updated_at_min
+        updated_at_max: tools.updated_at_max
+        published_at_min: tools.published_at_min
+        published_at_max: tools.published_at_max
+        published_status: tools.published_status
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-creates-new-smart-collection
+      description: Shopify Creates A New Smart Collection Using The Specified Rules
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-smart.deprecated202001createsmartcollections
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-count-smart-collections
+      description: Shopify Retrieves A Count Of Smart Collections
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-smart.deprecated202001getsmartcollectionscount
+      with:
+        title: tools.title
+        product_id: tools.product_id
+        updated_at_min: tools.updated_at_min
+        updated_at_max: tools.updated_at_max
+        published_at_min: tools.published_at_min
+        published_at_max: tools.published_at_max
+        published_status: tools.published_status
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-single-smart-collection
+      description: Shopify Retrieves A Single Smart Collection
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-smart.deprecated202001getsmartcollectionsparamsmartcollectionid
+      with:
+        smart_collection_id: tools.smart_collection_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-updates-existing-smart-collection
+      description: Shopify Updates An Existing Smart Collection
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-smart.deprecated202001updatesmartcollectionsparamsmartcollectionid
+      with:
+        smart_collection_id: tools.smart_collection_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-removes-smart-collection
+      description: Shopify Removes A Smart Collection
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-smart.deprecated202001deletesmartcollectionsparamsmartcollectionid
+      with:
+        smart_collection_id: tools.smart_collection_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-updates-ordering-type-products
+      description: Shopify Updates The Ordering Type Of Products In A Smart Collection
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-smart.deprecated202001updatesmartcollectionsparamsmartcollectionidorder
+      with:
+        smart_collection_id: tools.smart_collection_id
+        products: tools.products
+        sort_order: tools.sort_order
+        products[]: tools.products[]
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-smart-collections-2
+      description: Shopify Retrieves A List Of Smart Collections
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-smart.deprecated202004getsmartcollections
+      with:
+        limit: tools.limit
+        ids: tools.ids
+        since_id: tools.since_id
+        title: tools.title
+        product_id: tools.product_id
+        handle: tools.handle
+        updated_at_min: tools.updated_at_min
+        updated_at_max: tools.updated_at_max
+        published_at_min: tools.published_at_min
+        published_at_max: tools.published_at_max
+        published_status: tools.published_status
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-creates-new-smart-collection-2
+      description: Shopify Creates A New Smart Collection Using The Specified Rules
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-smart.deprecated202004createsmartcollections
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-count-smart-collections-2
+      description: Shopify Retrieves A Count Of Smart Collections
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-smart.deprecated202004getsmartcollectionscount
+      with:
+        title: tools.title
+        product_id: tools.product_id
+        updated_at_min: tools.updated_at_min
+        updated_at_max: tools.updated_at_max
+        published_at_min: tools.published_at_min
+        published_at_max: tools.published_at_max
+        published_status: tools.published_status
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-single-smart-collection-2
+      description: Shopify Retrieves A Single Smart Collection
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-smart.deprecated202004getsmartcollectionsparamsmartcollectionid
+      with:
+        smart_collection_id: tools.smart_collection_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-updates-existing-smart-collection-2
+      description: Shopify Updates An Existing Smart Collection
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-smart.deprecated202004updatesmartcollectionsparamsmartcollectionid
+      with:
+        smart_collection_id: tools.smart_collection_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-removes-smart-collection-2
+      description: Shopify Removes A Smart Collection
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-smart.deprecated202004deletesmartcollectionsparamsmartcollectionid
+      with:
+        smart_collection_id: tools.smart_collection_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-updates-ordering-type-products-2
+      description: Shopify Updates The Ordering Type Of Products In A Smart Collection
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-smart.deprecated202004updatesmartcollectionsparamsmartcollectionidorder
+      with:
+        smart_collection_id: tools.smart_collection_id
+        products: tools.products
+        sort_order: tools.sort_order
+        products[]: tools.products[]
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-smart-collections-3
+      description: Shopify Retrieves A List Of Smart Collections
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-smart.deprecated202007getsmartcollections
+      with:
+        limit: tools.limit
+        ids: tools.ids
+        since_id: tools.since_id
+        title: tools.title
+        product_id: tools.product_id
+        handle: tools.handle
+        updated_at_min: tools.updated_at_min
+        updated_at_max: tools.updated_at_max
+        published_at_min: tools.published_at_min
+        published_at_max: tools.published_at_max
+        published_status: tools.published_status
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-creates-new-smart-collection-3
+      description: Shopify Creates A New Smart Collection Using The Specified Rules
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-smart.deprecated202007createsmartcollections
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-count-smart-collections-3
+      description: Shopify Retrieves A Count Of Smart Collections
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-smart.deprecated202007getsmartcollectionscount
+      with:
+        title: tools.title
+        product_id: tools.product_id
+        updated_at_min: tools.updated_at_min
+        updated_at_max: tools.updated_at_max
+        published_at_min: tools.published_at_min
+        published_at_max: tools.published_at_max
+        published_status: tools.published_status
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-single-smart-collection-3
+      description: Shopify Retrieves A Single Smart Collection
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-smart.deprecated202007getsmartcollectionsparamsmartcollectionid
+      with:
+        smart_collection_id: tools.smart_collection_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-updates-existing-smart-collection-3
+      description: Shopify Updates An Existing Smart Collection
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-smart.deprecated202007updatesmartcollectionsparamsmartcollectionid
+      with:
+        smart_collection_id: tools.smart_collection_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-removes-smart-collection-3
+      description: Shopify Removes A Smart Collection
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-smart.deprecated202007deletesmartcollectionsparamsmartcollectionid
+      with:
+        smart_collection_id: tools.smart_collection_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-updates-ordering-type-products-3
+      description: Shopify Updates The Ordering Type Of Products In A Smart Collection
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-smart.deprecated202007updatesmartcollectionsparamsmartcollectionidorder
+      with:
+        smart_collection_id: tools.smart_collection_id
+        products: tools.products
+        sort_order: tools.sort_order
+        products[]: tools.products[]
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-smart-collections-4
+      description: Shopify Retrieves A List Of Smart Collections
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-smart.getsmartcollections
+      with:
+        limit: tools.limit
+        ids: tools.ids
+        since_id: tools.since_id
+        title: tools.title
+        product_id: tools.product_id
+        handle: tools.handle
+        updated_at_min: tools.updated_at_min
+        updated_at_max: tools.updated_at_max
+        published_at_min: tools.published_at_min
+        published_at_max: tools.published_at_max
+        published_status: tools.published_status
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-creates-new-smart-collection-4
+      description: Shopify Creates A New Smart Collection Using The Specified Rules
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-smart.createsmartcollections
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-count-smart-collections-4
+      description: Shopify Retrieves A Count Of Smart Collections
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-smart.getsmartcollectionscount
+      with:
+        title: tools.title
+        product_id: tools.product_id
+        updated_at_min: tools.updated_at_min
+        updated_at_max: tools.updated_at_max
+        published_at_min: tools.published_at_min
+        published_at_max: tools.published_at_max
+        published_status: tools.published_status
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-single-smart-collection-4
+      description: Shopify Retrieves A Single Smart Collection
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-smart.getsmartcollectionsparamsmartcollectionid
+      with:
+        smart_collection_id: tools.smart_collection_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-updates-existing-smart-collection-4
+      description: Shopify Updates An Existing Smart Collection
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-smart.updatesmartcollectionsparamsmartcollectionid
+      with:
+        smart_collection_id: tools.smart_collection_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-removes-smart-collection-4
+      description: Shopify Removes A Smart Collection
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-smart.deletesmartcollectionsparamsmartcollectionid
+      with:
+        smart_collection_id: tools.smart_collection_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-updates-ordering-type-products-4
+      description: Shopify Updates The Ordering Type Of Products In A Smart Collection
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-smart.updatesmartcollectionsparamsmartcollectionidorder
+      with:
+        smart_collection_id: tools.smart_collection_id
+        products: tools.products
+        sort_order: tools.sort_order
+        products[]: tools.products[]
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-smart-collections-5
+      description: Shopify Retrieves A List Of Smart Collections
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-smart.deprecated202101getsmartcollections
+      with:
+        limit: tools.limit
+        ids: tools.ids
+        since_id: tools.since_id
+        title: tools.title
+        product_id: tools.product_id
+        handle: tools.handle
+        updated_at_min: tools.updated_at_min
+        updated_at_max: tools.updated_at_max
+        published_at_min: tools.published_at_min
+        published_at_max: tools.published_at_max
+        published_status: tools.published_status
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-creates-new-smart-collection-5
+      description: Shopify Creates A New Smart Collection Using The Specified Rules
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-smart.deprecated202101createsmartcollections
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-count-smart-collections-5
+      description: Shopify Retrieves A Count Of Smart Collections
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-smart.deprecated202101getsmartcollectionscount
+      with:
+        title: tools.title
+        product_id: tools.product_id
+        updated_at_min: tools.updated_at_min
+        updated_at_max: tools.updated_at_max
+        published_at_min: tools.published_at_min
+        published_at_max: tools.published_at_max
+        published_status: tools.published_status
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-single-smart-collection-5
+      description: Shopify Retrieves A Single Smart Collection
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-smart.deprecated202101getsmartcollectionsparamsmartcollectionid
+      with:
+        smart_collection_id: tools.smart_collection_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-updates-existing-smart-collection-5
+      description: Shopify Updates An Existing Smart Collection
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-smart.deprecated202101updatesmartcollectionsparamsmartcollectionid
+      with:
+        smart_collection_id: tools.smart_collection_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-removes-smart-collection-5
+      description: Shopify Removes A Smart Collection
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-smart.deprecated202101deletesmartcollectionsparamsmartcollectionid
+      with:
+        smart_collection_id: tools.smart_collection_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-updates-ordering-type-products-5
+      description: Shopify Updates The Ordering Type Of Products In A Smart Collection
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-smart.deprecated202101updatesmartcollectionsparamsmartcollectionidorder
+      with:
+        smart_collection_id: tools.smart_collection_id
+        products: tools.products
+        sort_order: tools.sort_order
+        products[]: tools.products[]
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-smart-collections-6
+      description: Shopify Retrieves A List Of Smart Collections
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-smart.deprecatedunstablegetsmartcollections
+      with:
+        limit: tools.limit
+        ids: tools.ids
+        since_id: tools.since_id
+        title: tools.title
+        product_id: tools.product_id
+        handle: tools.handle
+        updated_at_min: tools.updated_at_min
+        updated_at_max: tools.updated_at_max
+        published_at_min: tools.published_at_min
+        published_at_max: tools.published_at_max
+        published_status: tools.published_status
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-creates-new-smart-collection-6
+      description: Shopify Creates A New Smart Collection Using The Specified Rules
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-smart.deprecatedunstablecreatesmartcollections
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-count-smart-collections-6
+      description: Shopify Retrieves A Count Of Smart Collections
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-smart.deprecatedunstablegetsmartcollectionscount
+      with:
+        title: tools.title
+        product_id: tools.product_id
+        updated_at_min: tools.updated_at_min
+        updated_at_max: tools.updated_at_max
+        published_at_min: tools.published_at_min
+        published_at_max: tools.published_at_max
+        published_status: tools.published_status
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-single-smart-collection-6
+      description: Shopify Retrieves A Single Smart Collection
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-smart.deprecatedunstablegetsmartcollectionsparamsmartcollectionid
+      with:
+        smart_collection_id: tools.smart_collection_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-updates-existing-smart-collection-6
+      description: Shopify Updates An Existing Smart Collection
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-smart.deprecatedunstableupdatesmartcollectionsparamsmartcollectionid
+      with:
+        smart_collection_id: tools.smart_collection_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-removes-smart-collection-6
+      description: Shopify Removes A Smart Collection
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-smart.deprecatedunstabledeletesmartcollectionsparamsmartcollectionid
+      with:
+        smart_collection_id: tools.smart_collection_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-updates-ordering-type-products-6
+      description: Shopify Updates The Ordering Type Of Products In A Smart Collection
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-smart.deprecatedunstableupdatesmartcollectionsparamsmartcollectionidorder
+      with:
+        smart_collection_id: tools.smart_collection_id
+        products: tools.products
+        sort_order: tools.sort_order
+        products[]: tools.products[]
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

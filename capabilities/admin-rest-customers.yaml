@@ -1,0 +1,361 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Shopify Admin REST API — Customers
+  description: 'Shopify Admin REST API — Customers. 7 operations. Lead operation: Shopify Retrieve a list of customers. Self-contained
+    Naftiko capability covering one Shopify business surface.'
+  tags:
+  - Shopify
+  - Customers
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SHOPIFY_API_KEY: SHOPIFY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: admin-rest-customers
+    baseUri: https://{store}.myshopify.com/admin/api/2025-01
+    description: Shopify Admin REST API — Customers business capability. Self-contained, no shared references.
+    resources:
+    - name: customers.json
+      path: /customers.json
+      operations:
+      - name: listcustomers
+        method: GET
+        description: Shopify Retrieve a list of customers
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: ids
+          in: query
+          type: string
+          description: Comma-separated list of customer IDs
+        - name: limit
+          in: query
+          type: integer
+          description: Maximum number of results (max 250, default 50)
+        - name: since_id
+          in: query
+          type: integer
+          description: Return customers after the specified ID
+        - name: created_at_min
+          in: query
+          type: string
+          description: Show customers created after this date
+        - name: created_at_max
+          in: query
+          type: string
+          description: Show customers created before this date
+        - name: updated_at_min
+          in: query
+          type: string
+          description: Show customers updated after this date
+        - name: updated_at_max
+          in: query
+          type: string
+          description: Show customers updated before this date
+        - name: fields
+          in: query
+          type: string
+          description: Comma-separated list of fields to include
+      - name: createcustomer
+        method: POST
+        description: Shopify Create a customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: customers-count.json
+      path: /customers/count.json
+      operations:
+      - name: getcustomercount
+        method: GET
+        description: Shopify Retrieve a count of customers
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: customers-search.json
+      path: /customers/search.json
+      operations:
+      - name: searchcustomers
+        method: GET
+        description: Shopify Search for customers
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: query
+          in: query
+          type: string
+          description: Search query (e.g. email:user@example.com)
+          required: true
+        - name: limit
+          in: query
+          type: integer
+          description: Maximum number of results (max 250, default 50)
+        - name: fields
+          in: query
+          type: string
+          description: Comma-separated list of fields to include
+    - name: customers-customer_id}.json
+      path: /customers/{customer_id}.json
+      operations:
+      - name: getcustomer
+        method: GET
+        description: Shopify Retrieve a single customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fields
+          in: query
+          type: string
+          description: Comma-separated list of fields to include
+      - name: updatecustomer
+        method: PUT
+        description: Shopify Update a customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: customers-customer_id-orders.json
+      path: /customers/{customer_id}/orders.json
+      operations:
+      - name: listcustomerorders
+        method: GET
+        description: Shopify Retrieve orders for a customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: status
+          in: query
+          type: string
+          description: Filter by order status
+    authentication:
+      type: apikey
+      key: X-Shopify-Access-Token
+      value: '{{env.SHOPIFY_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: admin-rest-customers-rest
+    port: 8080
+    description: REST adapter for Shopify Admin REST API — Customers. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/customers-json
+      name: customers-json
+      description: REST surface for customers.json.
+      operations:
+      - method: GET
+        name: listcustomers
+        description: Shopify Retrieve a list of customers
+        call: admin-rest-customers.listcustomers
+        with:
+          ids: rest.ids
+          limit: rest.limit
+          since_id: rest.since_id
+          created_at_min: rest.created_at_min
+          created_at_max: rest.created_at_max
+          updated_at_min: rest.updated_at_min
+          updated_at_max: rest.updated_at_max
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createcustomer
+        description: Shopify Create a customer
+        call: admin-rest-customers.createcustomer
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/customers/count-json
+      name: customers-count-json
+      description: REST surface for customers-count.json.
+      operations:
+      - method: GET
+        name: getcustomercount
+        description: Shopify Retrieve a count of customers
+        call: admin-rest-customers.getcustomercount
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/customers/search-json
+      name: customers-search-json
+      description: REST surface for customers-search.json.
+      operations:
+      - method: GET
+        name: searchcustomers
+        description: Shopify Search for customers
+        call: admin-rest-customers.searchcustomers
+        with:
+          query: rest.query
+          limit: rest.limit
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/customers/customer-id-json
+      name: customers-customer-id-json
+      description: REST surface for customers-customer_id}.json.
+      operations:
+      - method: GET
+        name: getcustomer
+        description: Shopify Retrieve a single customer
+        call: admin-rest-customers.getcustomer
+        with:
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updatecustomer
+        description: Shopify Update a customer
+        call: admin-rest-customers.updatecustomer
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/customers/{customer-id}/orders-json
+      name: customers-customer-id-orders-json
+      description: REST surface for customers-customer_id-orders.json.
+      operations:
+      - method: GET
+        name: listcustomerorders
+        description: Shopify Retrieve orders for a customer
+        call: admin-rest-customers.listcustomerorders
+        with:
+          status: rest.status
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: admin-rest-customers-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Shopify Admin REST API — Customers. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: shopify-retrieve-list-customers
+      description: Shopify Retrieve a list of customers
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: admin-rest-customers.listcustomers
+      with:
+        ids: tools.ids
+        limit: tools.limit
+        since_id: tools.since_id
+        created_at_min: tools.created_at_min
+        created_at_max: tools.created_at_max
+        updated_at_min: tools.updated_at_min
+        updated_at_max: tools.updated_at_max
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-create-customer
+      description: Shopify Create a customer
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: admin-rest-customers.createcustomer
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieve-count-customers
+      description: Shopify Retrieve a count of customers
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: admin-rest-customers.getcustomercount
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-search-customers
+      description: Shopify Search for customers
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: admin-rest-customers.searchcustomers
+      with:
+        query: tools.query
+        limit: tools.limit
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieve-single-customer
+      description: Shopify Retrieve a single customer
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: admin-rest-customers.getcustomer
+      with:
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-update-customer
+      description: Shopify Update a customer
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: admin-rest-customers.updatecustomer
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieve-orders-customer
+      description: Shopify Retrieve orders for a customer
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: admin-rest-customers.listcustomerorders
+      with:
+        status: tools.status
+      outputParameters:
+      - type: object
+        mapping: $.

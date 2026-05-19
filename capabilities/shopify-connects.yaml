@@ -1,0 +1,431 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Shopify  API — Connects
+  description: 'Shopify  API — Connects. 6 operations. Lead operation: Shopify Connects An Inventory Item To A Location By
+    Creating An Inventory Level At That Location. Self-contained Naftiko capability covering one Shopify business surface.'
+  tags:
+  - Shopify
+  - Connects
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SHOPIFY_API_KEY: SHOPIFY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: shopify-connects
+    baseUri: ''
+    description: Shopify  API — Connects business capability. Self-contained, no shared references.
+    resources:
+    - name: admin-api-2020-01-inventory_levels-connect.json
+      path: /admin/api/2020-01/inventory_levels/connect.json
+      operations:
+      - name: deprecated202001createinventorylevelsconnect
+        method: POST
+        description: Shopify Connects An Inventory Item To A Location By Creating An Inventory Level At That Location
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: "inventory_item_id\n                  required"
+          in: query
+          type: string
+          description: The ID of the inventory item.
+        - name: "location_id\n                  required"
+          in: query
+          type: string
+          description: The ID of the location that the inventory level belongs to. To find the ID of the location, use the
+            Location resource.
+        - name: relocate_if_necessary
+          in: query
+          type: string
+          description: 'Whether inventory for any previously connected locations will be relocated. This property is ignored
+            when no fulfillment service location is involved. For more '
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-04-inventory_levels-connect.json
+      path: /admin/api/2020-04/inventory_levels/connect.json
+      operations:
+      - name: deprecated202004createinventorylevelsconnect
+        method: POST
+        description: Shopify Connects An Inventory Item To A Location By Creating An Inventory Level At That Location
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: "inventory_item_id\n                  required"
+          in: query
+          type: string
+          description: The ID of the inventory item.
+        - name: "location_id\n                  required"
+          in: query
+          type: string
+          description: The ID of the location that the inventory level belongs to. To find the ID of the location, use the
+            Location resource.
+        - name: relocate_if_necessary
+          in: query
+          type: string
+          description: 'Whether inventory for any previously connected locations will be relocated. This property is ignored
+            when no fulfillment service location is involved. For more '
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-07-inventory_levels-connect.json
+      path: /admin/api/2020-07/inventory_levels/connect.json
+      operations:
+      - name: deprecated202007createinventorylevelsconnect
+        method: POST
+        description: Shopify Connects An Inventory Item To A Location By Creating An Inventory Level At That Location
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: "inventory_item_id\n                  required"
+          in: query
+          type: string
+          description: The ID of the inventory item.
+        - name: "location_id\n                  required"
+          in: query
+          type: string
+          description: The ID of the location that the inventory level belongs to. To find the ID of the location, use the
+            Location resource.
+        - name: relocate_if_necessary
+          in: query
+          type: string
+          description: 'Whether inventory for any previously connected locations will be relocated. This property is ignored
+            when no fulfillment service location is involved. For more '
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-10-inventory_levels-connect.json
+      path: /admin/api/2020-10/inventory_levels/connect.json
+      operations:
+      - name: createinventorylevelsconnect
+        method: POST
+        description: Shopify Connects An Inventory Item To A Location By Creating An Inventory Level At That Location
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: "inventory_item_id\n                  required"
+          in: query
+          type: string
+          description: The ID of the inventory item.
+        - name: "location_id\n                  required"
+          in: query
+          type: string
+          description: The ID of the location that the inventory level belongs to. To find the ID of the location, use the
+            Location resource.
+        - name: relocate_if_necessary
+          in: query
+          type: string
+          description: 'Whether inventory for any previously connected locations will be relocated. This property is ignored
+            when no fulfillment service location is involved. For more '
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2021-01-inventory_levels-connect.json
+      path: /admin/api/2021-01/inventory_levels/connect.json
+      operations:
+      - name: deprecated202101createinventorylevelsconnect
+        method: POST
+        description: Shopify Connects An Inventory Item To A Location By Creating An Inventory Level At That Location
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: "inventory_item_id\n                  required"
+          in: query
+          type: string
+          description: The ID of the inventory item.
+        - name: "location_id\n                  required"
+          in: query
+          type: string
+          description: The ID of the location that the inventory level belongs to. To find the ID of the location, use the
+            Location resource.
+        - name: relocate_if_necessary
+          in: query
+          type: string
+          description: 'Whether inventory for any previously connected locations will be relocated. This property is ignored
+            when no fulfillment service location is involved. For more '
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-unstable-inventory_levels-connect.json
+      path: /admin/api/unstable/inventory_levels/connect.json
+      operations:
+      - name: deprecatedunstablecreateinventorylevelsconnect
+        method: POST
+        description: Shopify Connects An Inventory Item To A Location By Creating An Inventory Level At That Location
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: "inventory_item_id\n                  required"
+          in: query
+          type: string
+          description: The ID of the inventory item.
+        - name: "location_id\n                  required"
+          in: query
+          type: string
+          description: The ID of the location that the inventory level belongs to. To find the ID of the location, use the
+            Location resource.
+        - name: relocate_if_necessary
+          in: query
+          type: string
+          description: 'Whether inventory for any previously connected locations will be relocated. This property is ignored
+            when no fulfillment service location is involved. For more '
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+  exposes:
+  - type: rest
+    namespace: shopify-connects-rest
+    port: 8080
+    description: REST adapter for Shopify  API — Connects. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/admin/api/2020-01/inventory-levels/connect-json
+      name: admin-api-2020-01-inventory-levels-connect-json
+      description: REST surface for admin-api-2020-01-inventory_levels-connect.json.
+      operations:
+      - method: POST
+        name: deprecated202001createinventorylevelsconnect
+        description: Shopify Connects An Inventory Item To A Location By Creating An Inventory Level At That Location
+        call: shopify-connects.deprecated202001createinventorylevelsconnect
+        with:
+          ? "inventory_item_id\n                  required"
+          : "rest.inventory_item_id\n                  required"
+          ? "location_id\n                  required"
+          : "rest.location_id\n                  required"
+          relocate_if_necessary: rest.relocate_if_necessary
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/inventory-levels/connect-json
+      name: admin-api-2020-04-inventory-levels-connect-json
+      description: REST surface for admin-api-2020-04-inventory_levels-connect.json.
+      operations:
+      - method: POST
+        name: deprecated202004createinventorylevelsconnect
+        description: Shopify Connects An Inventory Item To A Location By Creating An Inventory Level At That Location
+        call: shopify-connects.deprecated202004createinventorylevelsconnect
+        with:
+          ? "inventory_item_id\n                  required"
+          : "rest.inventory_item_id\n                  required"
+          ? "location_id\n                  required"
+          : "rest.location_id\n                  required"
+          relocate_if_necessary: rest.relocate_if_necessary
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/inventory-levels/connect-json
+      name: admin-api-2020-07-inventory-levels-connect-json
+      description: REST surface for admin-api-2020-07-inventory_levels-connect.json.
+      operations:
+      - method: POST
+        name: deprecated202007createinventorylevelsconnect
+        description: Shopify Connects An Inventory Item To A Location By Creating An Inventory Level At That Location
+        call: shopify-connects.deprecated202007createinventorylevelsconnect
+        with:
+          ? "inventory_item_id\n                  required"
+          : "rest.inventory_item_id\n                  required"
+          ? "location_id\n                  required"
+          : "rest.location_id\n                  required"
+          relocate_if_necessary: rest.relocate_if_necessary
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/inventory-levels/connect-json
+      name: admin-api-2020-10-inventory-levels-connect-json
+      description: REST surface for admin-api-2020-10-inventory_levels-connect.json.
+      operations:
+      - method: POST
+        name: createinventorylevelsconnect
+        description: Shopify Connects An Inventory Item To A Location By Creating An Inventory Level At That Location
+        call: shopify-connects.createinventorylevelsconnect
+        with:
+          ? "inventory_item_id\n                  required"
+          : "rest.inventory_item_id\n                  required"
+          ? "location_id\n                  required"
+          : "rest.location_id\n                  required"
+          relocate_if_necessary: rest.relocate_if_necessary
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/inventory-levels/connect-json
+      name: admin-api-2021-01-inventory-levels-connect-json
+      description: REST surface for admin-api-2021-01-inventory_levels-connect.json.
+      operations:
+      - method: POST
+        name: deprecated202101createinventorylevelsconnect
+        description: Shopify Connects An Inventory Item To A Location By Creating An Inventory Level At That Location
+        call: shopify-connects.deprecated202101createinventorylevelsconnect
+        with:
+          ? "inventory_item_id\n                  required"
+          : "rest.inventory_item_id\n                  required"
+          ? "location_id\n                  required"
+          : "rest.location_id\n                  required"
+          relocate_if_necessary: rest.relocate_if_necessary
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/inventory-levels/connect-json
+      name: admin-api-unstable-inventory-levels-connect-json
+      description: REST surface for admin-api-unstable-inventory_levels-connect.json.
+      operations:
+      - method: POST
+        name: deprecatedunstablecreateinventorylevelsconnect
+        description: Shopify Connects An Inventory Item To A Location By Creating An Inventory Level At That Location
+        call: shopify-connects.deprecatedunstablecreateinventorylevelsconnect
+        with:
+          ? "inventory_item_id\n                  required"
+          : "rest.inventory_item_id\n                  required"
+          ? "location_id\n                  required"
+          : "rest.location_id\n                  required"
+          relocate_if_necessary: rest.relocate_if_necessary
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: shopify-connects-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Shopify  API — Connects. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: shopify-connects-inventory-item-location
+      description: Shopify Connects An Inventory Item To A Location By Creating An Inventory Level At That Location
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-connects.deprecated202001createinventorylevelsconnect
+      with:
+        ? "inventory_item_id\n                  required"
+        : "tools.inventory_item_id\n                  required"
+        ? "location_id\n                  required"
+        : "tools.location_id\n                  required"
+        relocate_if_necessary: tools.relocate_if_necessary
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-connects-inventory-item-location-2
+      description: Shopify Connects An Inventory Item To A Location By Creating An Inventory Level At That Location
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-connects.deprecated202004createinventorylevelsconnect
+      with:
+        ? "inventory_item_id\n                  required"
+        : "tools.inventory_item_id\n                  required"
+        ? "location_id\n                  required"
+        : "tools.location_id\n                  required"
+        relocate_if_necessary: tools.relocate_if_necessary
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-connects-inventory-item-location-3
+      description: Shopify Connects An Inventory Item To A Location By Creating An Inventory Level At That Location
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-connects.deprecated202007createinventorylevelsconnect
+      with:
+        ? "inventory_item_id\n                  required"
+        : "tools.inventory_item_id\n                  required"
+        ? "location_id\n                  required"
+        : "tools.location_id\n                  required"
+        relocate_if_necessary: tools.relocate_if_necessary
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-connects-inventory-item-location-4
+      description: Shopify Connects An Inventory Item To A Location By Creating An Inventory Level At That Location
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-connects.createinventorylevelsconnect
+      with:
+        ? "inventory_item_id\n                  required"
+        : "tools.inventory_item_id\n                  required"
+        ? "location_id\n                  required"
+        : "tools.location_id\n                  required"
+        relocate_if_necessary: tools.relocate_if_necessary
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-connects-inventory-item-location-5
+      description: Shopify Connects An Inventory Item To A Location By Creating An Inventory Level At That Location
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-connects.deprecated202101createinventorylevelsconnect
+      with:
+        ? "inventory_item_id\n                  required"
+        : "tools.inventory_item_id\n                  required"
+        ? "location_id\n                  required"
+        : "tools.location_id\n                  required"
+        relocate_if_necessary: tools.relocate_if_necessary
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-connects-inventory-item-location-6
+      description: Shopify Connects An Inventory Item To A Location By Creating An Inventory Level At That Location
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-connects.deprecatedunstablecreateinventorylevelsconnect
+      with:
+        ? "inventory_item_id\n                  required"
+        : "tools.inventory_item_id\n                  required"
+        ? "location_id\n                  required"
+        : "tools.location_id\n                  required"
+        relocate_if_necessary: tools.relocate_if_necessary
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

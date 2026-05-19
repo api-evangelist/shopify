@@ -1,0 +1,1493 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Shopify  API — Reports
+  description: 'Shopify  API — Reports. 30 operations. Lead operation: Shopify Retrieves A List Of Reports. Self-contained
+    Naftiko capability covering one Shopify business surface.'
+  tags:
+  - Shopify
+  - Reports
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SHOPIFY_API_KEY: SHOPIFY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: shopify-reports
+    baseUri: ''
+    description: Shopify  API — Reports business capability. Self-contained, no shared references.
+    resources:
+    - name: admin-api-2020-01-reports.json
+      path: /admin/api/2020-01/reports.json
+      operations:
+      - name: deprecated202001getreports
+        method: GET
+        description: Shopify Retrieves A List Of Reports
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: ids
+          in: query
+          type: string
+          description: A comma-separated list of report IDs.
+        - name: limit
+          in: query
+          type: string
+          description: The amount of results to return.
+        - name: since_id
+          in: query
+          type: string
+          description: Restrict results to after the specified ID.
+        - name: updated_at_min
+          in: query
+          type: string
+          description: 'Show reports last updated after date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: updated_at_max
+          in: query
+          type: string
+          description: 'Show reports last updated before date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: fields
+          in: query
+          type: string
+          description: A comma-separated list of fields to include in the response.
+      - name: deprecated202001createreports
+        method: POST
+        description: Shopify Creates A New Report
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: query
+          type: string
+          description: 'The name of the report. Maximum length: 255 characters.'
+        - name: shopify_ql
+          in: query
+          type: string
+          description: The ShopifyQL the report will query.
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-01-reports-report_id}.json
+      path: /admin/api/2020-01/reports/{report_id}.json
+      operations:
+      - name: deprecated202001getreportsparamreportid
+        method: GET
+        description: Shopify Retrieves A Single Report Created By Your App
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: report_id
+          in: path
+          type: string
+          description: report_id
+          required: true
+        - name: fields
+          in: query
+          type: string
+          description: A comma-separated list of fields to include in the response.
+      - name: deprecated202001updatereportsparamreportid
+        method: PUT
+        description: Shopify Updates A Report
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: report_id
+          in: path
+          type: string
+          description: report_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deprecated202001deletereportsparamreportid
+        method: DELETE
+        description: Shopify Deletes A Report
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: report_id
+          in: path
+          type: string
+          description: report_id
+          required: true
+    - name: admin-api-2020-04-reports.json
+      path: /admin/api/2020-04/reports.json
+      operations:
+      - name: deprecated202004getreports
+        method: GET
+        description: Shopify Retrieves A List Of Reports
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: ids
+          in: query
+          type: string
+          description: A comma-separated list of report IDs.
+        - name: limit
+          in: query
+          type: string
+          description: The amount of results to return.
+        - name: since_id
+          in: query
+          type: string
+          description: Restrict results to after the specified ID.
+        - name: updated_at_min
+          in: query
+          type: string
+          description: 'Show reports last updated after date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: updated_at_max
+          in: query
+          type: string
+          description: 'Show reports last updated before date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: fields
+          in: query
+          type: string
+          description: A comma-separated list of fields to include in the response.
+      - name: deprecated202004createreports
+        method: POST
+        description: Shopify Creates A New Report
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: query
+          type: string
+          description: 'The name of the report. Maximum length: 255 characters.'
+        - name: shopify_ql
+          in: query
+          type: string
+          description: The ShopifyQL the report will query.
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-04-reports-report_id}.json
+      path: /admin/api/2020-04/reports/{report_id}.json
+      operations:
+      - name: deprecated202004getreportsparamreportid
+        method: GET
+        description: Shopify Retrieves A Single Report Created By Your App
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: report_id
+          in: path
+          type: string
+          description: report_id
+          required: true
+        - name: fields
+          in: query
+          type: string
+          description: A comma-separated list of fields to include in the response.
+      - name: deprecated202004updatereportsparamreportid
+        method: PUT
+        description: Shopify Updates A Report
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: report_id
+          in: path
+          type: string
+          description: report_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deprecated202004deletereportsparamreportid
+        method: DELETE
+        description: Shopify Deletes A Report
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: report_id
+          in: path
+          type: string
+          description: report_id
+          required: true
+    - name: admin-api-2020-07-reports.json
+      path: /admin/api/2020-07/reports.json
+      operations:
+      - name: deprecated202007getreports
+        method: GET
+        description: Shopify Retrieves A List Of Reports
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: ids
+          in: query
+          type: string
+          description: A comma-separated list of report IDs.
+        - name: limit
+          in: query
+          type: string
+          description: The amount of results to return.
+        - name: since_id
+          in: query
+          type: string
+          description: Restrict results to after the specified ID.
+        - name: updated_at_min
+          in: query
+          type: string
+          description: 'Show reports last updated after date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: updated_at_max
+          in: query
+          type: string
+          description: 'Show reports last updated before date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: fields
+          in: query
+          type: string
+          description: A comma-separated list of fields to include in the response.
+      - name: deprecated202007createreports
+        method: POST
+        description: Shopify Creates A New Report
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: query
+          type: string
+          description: 'The name of the report. Maximum length: 255 characters.'
+        - name: shopify_ql
+          in: query
+          type: string
+          description: The ShopifyQL the report will query.
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-07-reports-report_id}.json
+      path: /admin/api/2020-07/reports/{report_id}.json
+      operations:
+      - name: deprecated202007getreportsparamreportid
+        method: GET
+        description: Shopify Retrieves A Single Report Created By Your App
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: report_id
+          in: path
+          type: string
+          description: report_id
+          required: true
+        - name: fields
+          in: query
+          type: string
+          description: A comma-separated list of fields to include in the response.
+      - name: deprecated202007updatereportsparamreportid
+        method: PUT
+        description: Shopify Updates A Report
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: report_id
+          in: path
+          type: string
+          description: report_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deprecated202007deletereportsparamreportid
+        method: DELETE
+        description: Shopify Deletes A Report
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: report_id
+          in: path
+          type: string
+          description: report_id
+          required: true
+    - name: admin-api-2020-10-reports.json
+      path: /admin/api/2020-10/reports.json
+      operations:
+      - name: getreports
+        method: GET
+        description: Shopify Retrieves A List Of Reports
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: ids
+          in: query
+          type: string
+          description: A comma-separated list of report IDs.
+        - name: limit
+          in: query
+          type: string
+          description: The amount of results to return.
+        - name: since_id
+          in: query
+          type: string
+          description: Restrict results to after the specified ID.
+        - name: updated_at_min
+          in: query
+          type: string
+          description: 'Show reports last updated after date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: updated_at_max
+          in: query
+          type: string
+          description: 'Show reports last updated before date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: fields
+          in: query
+          type: string
+          description: A comma-separated list of fields to include in the response.
+      - name: createreports
+        method: POST
+        description: Shopify Creates A New Report
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: query
+          type: string
+          description: 'The name of the report. Maximum length: 255 characters.'
+        - name: shopify_ql
+          in: query
+          type: string
+          description: The ShopifyQL the report will query.
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-10-reports-report_id}.json
+      path: /admin/api/2020-10/reports/{report_id}.json
+      operations:
+      - name: getreportsparamreportid
+        method: GET
+        description: Shopify Retrieves A Single Report Created By Your App
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: report_id
+          in: path
+          type: string
+          description: report_id
+          required: true
+        - name: fields
+          in: query
+          type: string
+          description: A comma-separated list of fields to include in the response.
+      - name: updatereportsparamreportid
+        method: PUT
+        description: Shopify Updates A Report
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: report_id
+          in: path
+          type: string
+          description: report_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deletereportsparamreportid
+        method: DELETE
+        description: Shopify Deletes A Report
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: report_id
+          in: path
+          type: string
+          description: report_id
+          required: true
+    - name: admin-api-2021-01-reports.json
+      path: /admin/api/2021-01/reports.json
+      operations:
+      - name: deprecated202101getreports
+        method: GET
+        description: Shopify Retrieves A List Of Reports
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: ids
+          in: query
+          type: string
+          description: A comma-separated list of report IDs.
+        - name: limit
+          in: query
+          type: string
+          description: The amount of results to return.
+        - name: since_id
+          in: query
+          type: string
+          description: Restrict results to after the specified ID.
+        - name: updated_at_min
+          in: query
+          type: string
+          description: 'Show reports last updated after date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: updated_at_max
+          in: query
+          type: string
+          description: 'Show reports last updated before date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: fields
+          in: query
+          type: string
+          description: A comma-separated list of fields to include in the response.
+      - name: deprecated202101createreports
+        method: POST
+        description: Shopify Creates A New Report
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: query
+          type: string
+          description: 'The name of the report. Maximum length: 255 characters.'
+        - name: shopify_ql
+          in: query
+          type: string
+          description: The ShopifyQL the report will query.
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2021-01-reports-report_id}.json
+      path: /admin/api/2021-01/reports/{report_id}.json
+      operations:
+      - name: deprecated202101getreportsparamreportid
+        method: GET
+        description: Shopify Retrieves A Single Report Created By Your App
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: report_id
+          in: path
+          type: string
+          description: report_id
+          required: true
+        - name: fields
+          in: query
+          type: string
+          description: A comma-separated list of fields to include in the response.
+      - name: deprecated202101updatereportsparamreportid
+        method: PUT
+        description: Shopify Updates A Report
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: report_id
+          in: path
+          type: string
+          description: report_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deprecated202101deletereportsparamreportid
+        method: DELETE
+        description: Shopify Deletes A Report
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: report_id
+          in: path
+          type: string
+          description: report_id
+          required: true
+    - name: admin-api-unstable-reports.json
+      path: /admin/api/unstable/reports.json
+      operations:
+      - name: deprecatedunstablegetreports
+        method: GET
+        description: Shopify Retrieves A List Of Reports
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: ids
+          in: query
+          type: string
+          description: A comma-separated list of report IDs.
+        - name: limit
+          in: query
+          type: string
+          description: The amount of results to return.
+        - name: since_id
+          in: query
+          type: string
+          description: Restrict results to after the specified ID.
+        - name: updated_at_min
+          in: query
+          type: string
+          description: 'Show reports last updated after date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: updated_at_max
+          in: query
+          type: string
+          description: 'Show reports last updated before date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: fields
+          in: query
+          type: string
+          description: A comma-separated list of fields to include in the response.
+      - name: deprecatedunstablecreatereports
+        method: POST
+        description: Shopify Creates A New Report
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: query
+          type: string
+          description: 'The name of the report. Maximum length: 255 characters.'
+        - name: shopify_ql
+          in: query
+          type: string
+          description: The ShopifyQL the report will query.
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-unstable-reports-report_id}.json
+      path: /admin/api/unstable/reports/{report_id}.json
+      operations:
+      - name: deprecatedunstablegetreportsparamreportid
+        method: GET
+        description: Shopify Retrieves A Single Report Created By Your App
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: report_id
+          in: path
+          type: string
+          description: report_id
+          required: true
+        - name: fields
+          in: query
+          type: string
+          description: A comma-separated list of fields to include in the response.
+      - name: deprecatedunstableupdatereportsparamreportid
+        method: PUT
+        description: Shopify Updates A Report
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: report_id
+          in: path
+          type: string
+          description: report_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deprecatedunstabledeletereportsparamreportid
+        method: DELETE
+        description: Shopify Deletes A Report
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: report_id
+          in: path
+          type: string
+          description: report_id
+          required: true
+  exposes:
+  - type: rest
+    namespace: shopify-reports-rest
+    port: 8080
+    description: REST adapter for Shopify  API — Reports. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/admin/api/2020-01/reports-json
+      name: admin-api-2020-01-reports-json
+      description: REST surface for admin-api-2020-01-reports.json.
+      operations:
+      - method: GET
+        name: deprecated202001getreports
+        description: Shopify Retrieves A List Of Reports
+        call: shopify-reports.deprecated202001getreports
+        with:
+          ids: rest.ids
+          limit: rest.limit
+          since_id: rest.since_id
+          updated_at_min: rest.updated_at_min
+          updated_at_max: rest.updated_at_max
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: deprecated202001createreports
+        description: Shopify Creates A New Report
+        call: shopify-reports.deprecated202001createreports
+        with:
+          name: rest.name
+          shopify_ql: rest.shopify_ql
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-01/reports/report-id-json
+      name: admin-api-2020-01-reports-report-id-json
+      description: REST surface for admin-api-2020-01-reports-report_id}.json.
+      operations:
+      - method: GET
+        name: deprecated202001getreportsparamreportid
+        description: Shopify Retrieves A Single Report Created By Your App
+        call: shopify-reports.deprecated202001getreportsparamreportid
+        with:
+          report_id: rest.report_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: deprecated202001updatereportsparamreportid
+        description: Shopify Updates A Report
+        call: shopify-reports.deprecated202001updatereportsparamreportid
+        with:
+          report_id: rest.report_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deprecated202001deletereportsparamreportid
+        description: Shopify Deletes A Report
+        call: shopify-reports.deprecated202001deletereportsparamreportid
+        with:
+          report_id: rest.report_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/reports-json
+      name: admin-api-2020-04-reports-json
+      description: REST surface for admin-api-2020-04-reports.json.
+      operations:
+      - method: GET
+        name: deprecated202004getreports
+        description: Shopify Retrieves A List Of Reports
+        call: shopify-reports.deprecated202004getreports
+        with:
+          ids: rest.ids
+          limit: rest.limit
+          since_id: rest.since_id
+          updated_at_min: rest.updated_at_min
+          updated_at_max: rest.updated_at_max
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: deprecated202004createreports
+        description: Shopify Creates A New Report
+        call: shopify-reports.deprecated202004createreports
+        with:
+          name: rest.name
+          shopify_ql: rest.shopify_ql
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/reports/report-id-json
+      name: admin-api-2020-04-reports-report-id-json
+      description: REST surface for admin-api-2020-04-reports-report_id}.json.
+      operations:
+      - method: GET
+        name: deprecated202004getreportsparamreportid
+        description: Shopify Retrieves A Single Report Created By Your App
+        call: shopify-reports.deprecated202004getreportsparamreportid
+        with:
+          report_id: rest.report_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: deprecated202004updatereportsparamreportid
+        description: Shopify Updates A Report
+        call: shopify-reports.deprecated202004updatereportsparamreportid
+        with:
+          report_id: rest.report_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deprecated202004deletereportsparamreportid
+        description: Shopify Deletes A Report
+        call: shopify-reports.deprecated202004deletereportsparamreportid
+        with:
+          report_id: rest.report_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/reports-json
+      name: admin-api-2020-07-reports-json
+      description: REST surface for admin-api-2020-07-reports.json.
+      operations:
+      - method: GET
+        name: deprecated202007getreports
+        description: Shopify Retrieves A List Of Reports
+        call: shopify-reports.deprecated202007getreports
+        with:
+          ids: rest.ids
+          limit: rest.limit
+          since_id: rest.since_id
+          updated_at_min: rest.updated_at_min
+          updated_at_max: rest.updated_at_max
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: deprecated202007createreports
+        description: Shopify Creates A New Report
+        call: shopify-reports.deprecated202007createreports
+        with:
+          name: rest.name
+          shopify_ql: rest.shopify_ql
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/reports/report-id-json
+      name: admin-api-2020-07-reports-report-id-json
+      description: REST surface for admin-api-2020-07-reports-report_id}.json.
+      operations:
+      - method: GET
+        name: deprecated202007getreportsparamreportid
+        description: Shopify Retrieves A Single Report Created By Your App
+        call: shopify-reports.deprecated202007getreportsparamreportid
+        with:
+          report_id: rest.report_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: deprecated202007updatereportsparamreportid
+        description: Shopify Updates A Report
+        call: shopify-reports.deprecated202007updatereportsparamreportid
+        with:
+          report_id: rest.report_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deprecated202007deletereportsparamreportid
+        description: Shopify Deletes A Report
+        call: shopify-reports.deprecated202007deletereportsparamreportid
+        with:
+          report_id: rest.report_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/reports-json
+      name: admin-api-2020-10-reports-json
+      description: REST surface for admin-api-2020-10-reports.json.
+      operations:
+      - method: GET
+        name: getreports
+        description: Shopify Retrieves A List Of Reports
+        call: shopify-reports.getreports
+        with:
+          ids: rest.ids
+          limit: rest.limit
+          since_id: rest.since_id
+          updated_at_min: rest.updated_at_min
+          updated_at_max: rest.updated_at_max
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createreports
+        description: Shopify Creates A New Report
+        call: shopify-reports.createreports
+        with:
+          name: rest.name
+          shopify_ql: rest.shopify_ql
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/reports/report-id-json
+      name: admin-api-2020-10-reports-report-id-json
+      description: REST surface for admin-api-2020-10-reports-report_id}.json.
+      operations:
+      - method: GET
+        name: getreportsparamreportid
+        description: Shopify Retrieves A Single Report Created By Your App
+        call: shopify-reports.getreportsparamreportid
+        with:
+          report_id: rest.report_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updatereportsparamreportid
+        description: Shopify Updates A Report
+        call: shopify-reports.updatereportsparamreportid
+        with:
+          report_id: rest.report_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletereportsparamreportid
+        description: Shopify Deletes A Report
+        call: shopify-reports.deletereportsparamreportid
+        with:
+          report_id: rest.report_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/reports-json
+      name: admin-api-2021-01-reports-json
+      description: REST surface for admin-api-2021-01-reports.json.
+      operations:
+      - method: GET
+        name: deprecated202101getreports
+        description: Shopify Retrieves A List Of Reports
+        call: shopify-reports.deprecated202101getreports
+        with:
+          ids: rest.ids
+          limit: rest.limit
+          since_id: rest.since_id
+          updated_at_min: rest.updated_at_min
+          updated_at_max: rest.updated_at_max
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: deprecated202101createreports
+        description: Shopify Creates A New Report
+        call: shopify-reports.deprecated202101createreports
+        with:
+          name: rest.name
+          shopify_ql: rest.shopify_ql
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/reports/report-id-json
+      name: admin-api-2021-01-reports-report-id-json
+      description: REST surface for admin-api-2021-01-reports-report_id}.json.
+      operations:
+      - method: GET
+        name: deprecated202101getreportsparamreportid
+        description: Shopify Retrieves A Single Report Created By Your App
+        call: shopify-reports.deprecated202101getreportsparamreportid
+        with:
+          report_id: rest.report_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: deprecated202101updatereportsparamreportid
+        description: Shopify Updates A Report
+        call: shopify-reports.deprecated202101updatereportsparamreportid
+        with:
+          report_id: rest.report_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deprecated202101deletereportsparamreportid
+        description: Shopify Deletes A Report
+        call: shopify-reports.deprecated202101deletereportsparamreportid
+        with:
+          report_id: rest.report_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/reports-json
+      name: admin-api-unstable-reports-json
+      description: REST surface for admin-api-unstable-reports.json.
+      operations:
+      - method: GET
+        name: deprecatedunstablegetreports
+        description: Shopify Retrieves A List Of Reports
+        call: shopify-reports.deprecatedunstablegetreports
+        with:
+          ids: rest.ids
+          limit: rest.limit
+          since_id: rest.since_id
+          updated_at_min: rest.updated_at_min
+          updated_at_max: rest.updated_at_max
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: deprecatedunstablecreatereports
+        description: Shopify Creates A New Report
+        call: shopify-reports.deprecatedunstablecreatereports
+        with:
+          name: rest.name
+          shopify_ql: rest.shopify_ql
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/reports/report-id-json
+      name: admin-api-unstable-reports-report-id-json
+      description: REST surface for admin-api-unstable-reports-report_id}.json.
+      operations:
+      - method: GET
+        name: deprecatedunstablegetreportsparamreportid
+        description: Shopify Retrieves A Single Report Created By Your App
+        call: shopify-reports.deprecatedunstablegetreportsparamreportid
+        with:
+          report_id: rest.report_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: deprecatedunstableupdatereportsparamreportid
+        description: Shopify Updates A Report
+        call: shopify-reports.deprecatedunstableupdatereportsparamreportid
+        with:
+          report_id: rest.report_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deprecatedunstabledeletereportsparamreportid
+        description: Shopify Deletes A Report
+        call: shopify-reports.deprecatedunstabledeletereportsparamreportid
+        with:
+          report_id: rest.report_id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: shopify-reports-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Shopify  API — Reports. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: shopify-retrieves-list-reports
+      description: Shopify Retrieves A List Of Reports
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-reports.deprecated202001getreports
+      with:
+        ids: tools.ids
+        limit: tools.limit
+        since_id: tools.since_id
+        updated_at_min: tools.updated_at_min
+        updated_at_max: tools.updated_at_max
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-creates-new-report
+      description: Shopify Creates A New Report
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-reports.deprecated202001createreports
+      with:
+        name: tools.name
+        shopify_ql: tools.shopify_ql
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-single-report-created
+      description: Shopify Retrieves A Single Report Created By Your App
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-reports.deprecated202001getreportsparamreportid
+      with:
+        report_id: tools.report_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-updates-report
+      description: Shopify Updates A Report
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-reports.deprecated202001updatereportsparamreportid
+      with:
+        report_id: tools.report_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-deletes-report
+      description: Shopify Deletes A Report
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-reports.deprecated202001deletereportsparamreportid
+      with:
+        report_id: tools.report_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-reports-2
+      description: Shopify Retrieves A List Of Reports
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-reports.deprecated202004getreports
+      with:
+        ids: tools.ids
+        limit: tools.limit
+        since_id: tools.since_id
+        updated_at_min: tools.updated_at_min
+        updated_at_max: tools.updated_at_max
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-creates-new-report-2
+      description: Shopify Creates A New Report
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-reports.deprecated202004createreports
+      with:
+        name: tools.name
+        shopify_ql: tools.shopify_ql
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-single-report-created-2
+      description: Shopify Retrieves A Single Report Created By Your App
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-reports.deprecated202004getreportsparamreportid
+      with:
+        report_id: tools.report_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-updates-report-2
+      description: Shopify Updates A Report
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-reports.deprecated202004updatereportsparamreportid
+      with:
+        report_id: tools.report_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-deletes-report-2
+      description: Shopify Deletes A Report
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-reports.deprecated202004deletereportsparamreportid
+      with:
+        report_id: tools.report_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-reports-3
+      description: Shopify Retrieves A List Of Reports
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-reports.deprecated202007getreports
+      with:
+        ids: tools.ids
+        limit: tools.limit
+        since_id: tools.since_id
+        updated_at_min: tools.updated_at_min
+        updated_at_max: tools.updated_at_max
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-creates-new-report-3
+      description: Shopify Creates A New Report
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-reports.deprecated202007createreports
+      with:
+        name: tools.name
+        shopify_ql: tools.shopify_ql
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-single-report-created-3
+      description: Shopify Retrieves A Single Report Created By Your App
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-reports.deprecated202007getreportsparamreportid
+      with:
+        report_id: tools.report_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-updates-report-3
+      description: Shopify Updates A Report
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-reports.deprecated202007updatereportsparamreportid
+      with:
+        report_id: tools.report_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-deletes-report-3
+      description: Shopify Deletes A Report
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-reports.deprecated202007deletereportsparamreportid
+      with:
+        report_id: tools.report_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-reports-4
+      description: Shopify Retrieves A List Of Reports
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-reports.getreports
+      with:
+        ids: tools.ids
+        limit: tools.limit
+        since_id: tools.since_id
+        updated_at_min: tools.updated_at_min
+        updated_at_max: tools.updated_at_max
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-creates-new-report-4
+      description: Shopify Creates A New Report
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-reports.createreports
+      with:
+        name: tools.name
+        shopify_ql: tools.shopify_ql
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-single-report-created-4
+      description: Shopify Retrieves A Single Report Created By Your App
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-reports.getreportsparamreportid
+      with:
+        report_id: tools.report_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-updates-report-4
+      description: Shopify Updates A Report
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-reports.updatereportsparamreportid
+      with:
+        report_id: tools.report_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-deletes-report-4
+      description: Shopify Deletes A Report
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-reports.deletereportsparamreportid
+      with:
+        report_id: tools.report_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-reports-5
+      description: Shopify Retrieves A List Of Reports
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-reports.deprecated202101getreports
+      with:
+        ids: tools.ids
+        limit: tools.limit
+        since_id: tools.since_id
+        updated_at_min: tools.updated_at_min
+        updated_at_max: tools.updated_at_max
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-creates-new-report-5
+      description: Shopify Creates A New Report
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-reports.deprecated202101createreports
+      with:
+        name: tools.name
+        shopify_ql: tools.shopify_ql
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-single-report-created-5
+      description: Shopify Retrieves A Single Report Created By Your App
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-reports.deprecated202101getreportsparamreportid
+      with:
+        report_id: tools.report_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-updates-report-5
+      description: Shopify Updates A Report
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-reports.deprecated202101updatereportsparamreportid
+      with:
+        report_id: tools.report_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-deletes-report-5
+      description: Shopify Deletes A Report
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-reports.deprecated202101deletereportsparamreportid
+      with:
+        report_id: tools.report_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-reports-6
+      description: Shopify Retrieves A List Of Reports
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-reports.deprecatedunstablegetreports
+      with:
+        ids: tools.ids
+        limit: tools.limit
+        since_id: tools.since_id
+        updated_at_min: tools.updated_at_min
+        updated_at_max: tools.updated_at_max
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-creates-new-report-6
+      description: Shopify Creates A New Report
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-reports.deprecatedunstablecreatereports
+      with:
+        name: tools.name
+        shopify_ql: tools.shopify_ql
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-single-report-created-6
+      description: Shopify Retrieves A Single Report Created By Your App
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-reports.deprecatedunstablegetreportsparamreportid
+      with:
+        report_id: tools.report_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-updates-report-6
+      description: Shopify Updates A Report
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-reports.deprecatedunstableupdatereportsparamreportid
+      with:
+        report_id: tools.report_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-deletes-report-6
+      description: Shopify Deletes A Report
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-reports.deprecatedunstabledeletereportsparamreportid
+      with:
+        report_id: tools.report_id
+      outputParameters:
+      - type: object
+        mapping: $.

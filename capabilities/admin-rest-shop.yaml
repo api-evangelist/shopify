@@ -1,0 +1,81 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Shopify Admin REST API — Shop
+  description: 'Shopify Admin REST API — Shop. 1 operations. Lead operation: Shopify Retrieve shop configuration. Self-contained
+    Naftiko capability covering one Shopify business surface.'
+  tags:
+  - Shopify
+  - Shop
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SHOPIFY_API_KEY: SHOPIFY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: admin-rest-shop
+    baseUri: https://{store}.myshopify.com/admin/api/2025-01
+    description: Shopify Admin REST API — Shop business capability. Self-contained, no shared references.
+    resources:
+    - name: shop.json
+      path: /shop.json
+      operations:
+      - name: getshop
+        method: GET
+        description: Shopify Retrieve shop configuration
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fields
+          in: query
+          type: string
+          description: Comma-separated list of fields to include
+    authentication:
+      type: apikey
+      key: X-Shopify-Access-Token
+      value: '{{env.SHOPIFY_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: admin-rest-shop-rest
+    port: 8080
+    description: REST adapter for Shopify Admin REST API — Shop. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/shop-json
+      name: shop-json
+      description: REST surface for shop.json.
+      operations:
+      - method: GET
+        name: getshop
+        description: Shopify Retrieve shop configuration
+        call: admin-rest-shop.getshop
+        with:
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: admin-rest-shop-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Shopify Admin REST API — Shop. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: shopify-retrieve-shop-configuration
+      description: Shopify Retrieve shop configuration
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: admin-rest-shop.getshop
+      with:
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.

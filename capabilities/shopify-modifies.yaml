@@ -1,0 +1,329 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Shopify  API — Modifies
+  description: 'Shopify  API — Modifies. 6 operations. Lead operation: Shopify Modifies An Existing Checkout. Self-contained
+    Naftiko capability covering one Shopify business surface.'
+  tags:
+  - Shopify
+  - Modifies
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SHOPIFY_API_KEY: SHOPIFY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: shopify-modifies
+    baseUri: ''
+    description: Shopify  API — Modifies business capability. Self-contained, no shared references.
+    resources:
+    - name: admin-api-2020-01-checkouts-token}.json
+      path: /admin/api/2020-01/checkouts/{token}.json
+      operations:
+      - name: deprecated202001updatecheckoutsparamtoken
+        method: PUT
+        description: Shopify Modifies An Existing Checkout
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: token
+          in: path
+          type: string
+          description: token
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-04-checkouts-token}.json
+      path: /admin/api/2020-04/checkouts/{token}.json
+      operations:
+      - name: deprecated202004updatecheckoutsparamtoken
+        method: PUT
+        description: Shopify Modifies An Existing Checkout
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: token
+          in: path
+          type: string
+          description: token
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-07-checkouts-token}.json
+      path: /admin/api/2020-07/checkouts/{token}.json
+      operations:
+      - name: deprecated202007updatecheckoutsparamtoken
+        method: PUT
+        description: Shopify Modifies An Existing Checkout
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: token
+          in: path
+          type: string
+          description: token
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-10-checkouts-token}.json
+      path: /admin/api/2020-10/checkouts/{token}.json
+      operations:
+      - name: updatecheckoutsparamtoken
+        method: PUT
+        description: Shopify Modifies An Existing Checkout
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: token
+          in: path
+          type: string
+          description: token
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2021-01-checkouts-token}.json
+      path: /admin/api/2021-01/checkouts/{token}.json
+      operations:
+      - name: deprecated202101updatecheckoutsparamtoken
+        method: PUT
+        description: Shopify Modifies An Existing Checkout
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: token
+          in: path
+          type: string
+          description: token
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-unstable-checkouts-token}.json
+      path: /admin/api/unstable/checkouts/{token}.json
+      operations:
+      - name: deprecatedunstableupdatecheckoutsparamtoken
+        method: PUT
+        description: Shopify Modifies An Existing Checkout
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: token
+          in: path
+          type: string
+          description: token
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+  exposes:
+  - type: rest
+    namespace: shopify-modifies-rest
+    port: 8080
+    description: REST adapter for Shopify  API — Modifies. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/admin/api/2020-01/checkouts/token-json
+      name: admin-api-2020-01-checkouts-token-json
+      description: REST surface for admin-api-2020-01-checkouts-token}.json.
+      operations:
+      - method: PUT
+        name: deprecated202001updatecheckoutsparamtoken
+        description: Shopify Modifies An Existing Checkout
+        call: shopify-modifies.deprecated202001updatecheckoutsparamtoken
+        with:
+          token: rest.token
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/checkouts/token-json
+      name: admin-api-2020-04-checkouts-token-json
+      description: REST surface for admin-api-2020-04-checkouts-token}.json.
+      operations:
+      - method: PUT
+        name: deprecated202004updatecheckoutsparamtoken
+        description: Shopify Modifies An Existing Checkout
+        call: shopify-modifies.deprecated202004updatecheckoutsparamtoken
+        with:
+          token: rest.token
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/checkouts/token-json
+      name: admin-api-2020-07-checkouts-token-json
+      description: REST surface for admin-api-2020-07-checkouts-token}.json.
+      operations:
+      - method: PUT
+        name: deprecated202007updatecheckoutsparamtoken
+        description: Shopify Modifies An Existing Checkout
+        call: shopify-modifies.deprecated202007updatecheckoutsparamtoken
+        with:
+          token: rest.token
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/checkouts/token-json
+      name: admin-api-2020-10-checkouts-token-json
+      description: REST surface for admin-api-2020-10-checkouts-token}.json.
+      operations:
+      - method: PUT
+        name: updatecheckoutsparamtoken
+        description: Shopify Modifies An Existing Checkout
+        call: shopify-modifies.updatecheckoutsparamtoken
+        with:
+          token: rest.token
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/checkouts/token-json
+      name: admin-api-2021-01-checkouts-token-json
+      description: REST surface for admin-api-2021-01-checkouts-token}.json.
+      operations:
+      - method: PUT
+        name: deprecated202101updatecheckoutsparamtoken
+        description: Shopify Modifies An Existing Checkout
+        call: shopify-modifies.deprecated202101updatecheckoutsparamtoken
+        with:
+          token: rest.token
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/checkouts/token-json
+      name: admin-api-unstable-checkouts-token-json
+      description: REST surface for admin-api-unstable-checkouts-token}.json.
+      operations:
+      - method: PUT
+        name: deprecatedunstableupdatecheckoutsparamtoken
+        description: Shopify Modifies An Existing Checkout
+        call: shopify-modifies.deprecatedunstableupdatecheckoutsparamtoken
+        with:
+          token: rest.token
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: shopify-modifies-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Shopify  API — Modifies. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: shopify-modifies-existing-checkout
+      description: Shopify Modifies An Existing Checkout
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-modifies.deprecated202001updatecheckoutsparamtoken
+      with:
+        token: tools.token
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-modifies-existing-checkout-2
+      description: Shopify Modifies An Existing Checkout
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-modifies.deprecated202004updatecheckoutsparamtoken
+      with:
+        token: tools.token
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-modifies-existing-checkout-3
+      description: Shopify Modifies An Existing Checkout
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-modifies.deprecated202007updatecheckoutsparamtoken
+      with:
+        token: tools.token
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-modifies-existing-checkout-4
+      description: Shopify Modifies An Existing Checkout
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-modifies.updatecheckoutsparamtoken
+      with:
+        token: tools.token
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-modifies-existing-checkout-5
+      description: Shopify Modifies An Existing Checkout
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-modifies.deprecated202101updatecheckoutsparamtoken
+      with:
+        token: tools.token
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-modifies-existing-checkout-6
+      description: Shopify Modifies An Existing Checkout
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-modifies.deprecatedunstableupdatecheckoutsparamtoken
+      with:
+        token: tools.token
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

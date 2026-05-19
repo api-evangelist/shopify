@@ -1,0 +1,128 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Shopify Admin REST API — Product Variants
+  description: 'Shopify Admin REST API — Product Variants. 2 operations. Lead operation: Shopify Retrieve a list of product
+    variants. Self-contained Naftiko capability covering one Shopify business surface.'
+  tags:
+  - Shopify
+  - Product Variants
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SHOPIFY_API_KEY: SHOPIFY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: admin-rest-product-variants
+    baseUri: https://{store}.myshopify.com/admin/api/2025-01
+    description: Shopify Admin REST API — Product Variants business capability. Self-contained, no shared references.
+    resources:
+    - name: products-product_id-variants.json
+      path: /products/{product_id}/variants.json
+      operations:
+      - name: listproductvariants
+        method: GET
+        description: Shopify Retrieve a list of product variants
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: integer
+          description: Maximum number of results (max 250, default 50)
+        - name: since_id
+          in: query
+          type: integer
+          description: Return variants after the specified ID
+        - name: fields
+          in: query
+          type: string
+          description: Comma-separated list of fields to include
+      - name: createproductvariant
+        method: POST
+        description: Shopify Create a product variant
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: apikey
+      key: X-Shopify-Access-Token
+      value: '{{env.SHOPIFY_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: admin-rest-product-variants-rest
+    port: 8080
+    description: REST adapter for Shopify Admin REST API — Product Variants. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/products/{product-id}/variants-json
+      name: products-product-id-variants-json
+      description: REST surface for products-product_id-variants.json.
+      operations:
+      - method: GET
+        name: listproductvariants
+        description: Shopify Retrieve a list of product variants
+        call: admin-rest-product-variants.listproductvariants
+        with:
+          limit: rest.limit
+          since_id: rest.since_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createproductvariant
+        description: Shopify Create a product variant
+        call: admin-rest-product-variants.createproductvariant
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: admin-rest-product-variants-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Shopify Admin REST API — Product Variants. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: shopify-retrieve-list-product-variants
+      description: Shopify Retrieve a list of product variants
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: admin-rest-product-variants.listproductvariants
+      with:
+        limit: tools.limit
+        since_id: tools.since_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-create-product-variant
+      description: Shopify Create a product variant
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: admin-rest-product-variants.createproductvariant
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,509 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Shopify  API — Metafields
+  description: 'Shopify  API — Metafields. 12 operations. Lead operation: Shopify Retrieves A List Of Metafields That Belong
+    To A Product Image Resource. Self-contained Naftiko capability covering one Shopify business surface.'
+  tags:
+  - Shopify
+  - Metafields
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SHOPIFY_API_KEY: SHOPIFY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: shopify-metafields
+    baseUri: ''
+    description: Shopify  API — Metafields business capability. Self-contained, no shared references.
+    resources:
+    - name: admin-api-2020-01-metafields.json
+      path: /admin/api/2020-01/metafields.json
+      operations:
+      - name: deprecated202001getmetafields
+        method: GET
+        description: Shopify Retrieves A List Of Metafields That Belong To A Product Image Resource
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: metafield[owner_id]
+          in: query
+          type: integer
+          description: metafield[owner_id]
+        - name: metafield[owner_resource]
+          in: query
+          type: string
+          description: metafield[owner_resource]
+    - name: admin-api-2020-01-metafields-count.json
+      path: /admin/api/2020-01/metafields/count.json
+      operations:
+      - name: deprecated202001getmetafieldscount
+        method: GET
+        description: Shopify Retrieves A Count Of A Resource's Metafields
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: admin-api-2020-04-metafields.json
+      path: /admin/api/2020-04/metafields.json
+      operations:
+      - name: deprecated202004getmetafields
+        method: GET
+        description: Shopify Retrieves A List Of Metafields That Belong To A Product Image Resource
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: metafield[owner_id]
+          in: query
+          type: integer
+          description: metafield[owner_id]
+        - name: metafield[owner_resource]
+          in: query
+          type: string
+          description: metafield[owner_resource]
+    - name: admin-api-2020-04-metafields-count.json
+      path: /admin/api/2020-04/metafields/count.json
+      operations:
+      - name: deprecated202004getmetafieldscount
+        method: GET
+        description: Shopify Retrieves A Count Of A Resource's Metafields
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: admin-api-2020-07-metafields.json
+      path: /admin/api/2020-07/metafields.json
+      operations:
+      - name: deprecated202007getmetafields
+        method: GET
+        description: Shopify Retrieves A List Of Metafields That Belong To A Product Image Resource
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: metafield[owner_id]
+          in: query
+          type: integer
+          description: metafield[owner_id]
+        - name: metafield[owner_resource]
+          in: query
+          type: string
+          description: metafield[owner_resource]
+    - name: admin-api-2020-07-metafields-count.json
+      path: /admin/api/2020-07/metafields/count.json
+      operations:
+      - name: deprecated202007getmetafieldscount
+        method: GET
+        description: Shopify Retrieves A Count Of A Resource's Metafields
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: admin-api-2020-10-metafields.json
+      path: /admin/api/2020-10/metafields.json
+      operations:
+      - name: getmetafields
+        method: GET
+        description: Shopify Retrieves A List Of Metafields That Belong To A Product Image Resource
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: metafield[owner_id]
+          in: query
+          type: integer
+          description: metafield[owner_id]
+        - name: metafield[owner_resource]
+          in: query
+          type: string
+          description: metafield[owner_resource]
+    - name: admin-api-2020-10-metafields-count.json
+      path: /admin/api/2020-10/metafields/count.json
+      operations:
+      - name: getmetafieldscount
+        method: GET
+        description: Shopify Retrieves A Count Of A Resource's Metafields
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: admin-api-2021-01-metafields.json
+      path: /admin/api/2021-01/metafields.json
+      operations:
+      - name: deprecated202101getmetafields
+        method: GET
+        description: Shopify Retrieves A List Of Metafields That Belong To A Product Image Resource
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: metafield[owner_id]
+          in: query
+          type: integer
+          description: metafield[owner_id]
+        - name: metafield[owner_resource]
+          in: query
+          type: string
+          description: metafield[owner_resource]
+    - name: admin-api-2021-01-metafields-count.json
+      path: /admin/api/2021-01/metafields/count.json
+      operations:
+      - name: deprecated202101getmetafieldscount
+        method: GET
+        description: Shopify Retrieves A Count Of A Resource's Metafields
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: admin-api-unstable-metafields.json
+      path: /admin/api/unstable/metafields.json
+      operations:
+      - name: deprecatedunstablegetmetafields
+        method: GET
+        description: Shopify Retrieves A List Of Metafields That Belong To A Product Image Resource
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: metafield[owner_id]
+          in: query
+          type: integer
+          description: metafield[owner_id]
+        - name: metafield[owner_resource]
+          in: query
+          type: string
+          description: metafield[owner_resource]
+    - name: admin-api-unstable-metafields-count.json
+      path: /admin/api/unstable/metafields/count.json
+      operations:
+      - name: deprecatedunstablegetmetafieldscount
+        method: GET
+        description: Shopify Retrieves A Count Of A Resource's Metafields
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    namespace: shopify-metafields-rest
+    port: 8080
+    description: REST adapter for Shopify  API — Metafields. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/admin/api/2020-01/metafields-json
+      name: admin-api-2020-01-metafields-json
+      description: REST surface for admin-api-2020-01-metafields.json.
+      operations:
+      - method: GET
+        name: deprecated202001getmetafields
+        description: Shopify Retrieves A List Of Metafields That Belong To A Product Image Resource
+        call: shopify-metafields.deprecated202001getmetafields
+        with:
+          metafield[owner_id]: rest.metafield[owner_id]
+          metafield[owner_resource]: rest.metafield[owner_resource]
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-01/metafields/count-json
+      name: admin-api-2020-01-metafields-count-json
+      description: REST surface for admin-api-2020-01-metafields-count.json.
+      operations:
+      - method: GET
+        name: deprecated202001getmetafieldscount
+        description: Shopify Retrieves A Count Of A Resource's Metafields
+        call: shopify-metafields.deprecated202001getmetafieldscount
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/metafields-json
+      name: admin-api-2020-04-metafields-json
+      description: REST surface for admin-api-2020-04-metafields.json.
+      operations:
+      - method: GET
+        name: deprecated202004getmetafields
+        description: Shopify Retrieves A List Of Metafields That Belong To A Product Image Resource
+        call: shopify-metafields.deprecated202004getmetafields
+        with:
+          metafield[owner_id]: rest.metafield[owner_id]
+          metafield[owner_resource]: rest.metafield[owner_resource]
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/metafields/count-json
+      name: admin-api-2020-04-metafields-count-json
+      description: REST surface for admin-api-2020-04-metafields-count.json.
+      operations:
+      - method: GET
+        name: deprecated202004getmetafieldscount
+        description: Shopify Retrieves A Count Of A Resource's Metafields
+        call: shopify-metafields.deprecated202004getmetafieldscount
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/metafields-json
+      name: admin-api-2020-07-metafields-json
+      description: REST surface for admin-api-2020-07-metafields.json.
+      operations:
+      - method: GET
+        name: deprecated202007getmetafields
+        description: Shopify Retrieves A List Of Metafields That Belong To A Product Image Resource
+        call: shopify-metafields.deprecated202007getmetafields
+        with:
+          metafield[owner_id]: rest.metafield[owner_id]
+          metafield[owner_resource]: rest.metafield[owner_resource]
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/metafields/count-json
+      name: admin-api-2020-07-metafields-count-json
+      description: REST surface for admin-api-2020-07-metafields-count.json.
+      operations:
+      - method: GET
+        name: deprecated202007getmetafieldscount
+        description: Shopify Retrieves A Count Of A Resource's Metafields
+        call: shopify-metafields.deprecated202007getmetafieldscount
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/metafields-json
+      name: admin-api-2020-10-metafields-json
+      description: REST surface for admin-api-2020-10-metafields.json.
+      operations:
+      - method: GET
+        name: getmetafields
+        description: Shopify Retrieves A List Of Metafields That Belong To A Product Image Resource
+        call: shopify-metafields.getmetafields
+        with:
+          metafield[owner_id]: rest.metafield[owner_id]
+          metafield[owner_resource]: rest.metafield[owner_resource]
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/metafields/count-json
+      name: admin-api-2020-10-metafields-count-json
+      description: REST surface for admin-api-2020-10-metafields-count.json.
+      operations:
+      - method: GET
+        name: getmetafieldscount
+        description: Shopify Retrieves A Count Of A Resource's Metafields
+        call: shopify-metafields.getmetafieldscount
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/metafields-json
+      name: admin-api-2021-01-metafields-json
+      description: REST surface for admin-api-2021-01-metafields.json.
+      operations:
+      - method: GET
+        name: deprecated202101getmetafields
+        description: Shopify Retrieves A List Of Metafields That Belong To A Product Image Resource
+        call: shopify-metafields.deprecated202101getmetafields
+        with:
+          metafield[owner_id]: rest.metafield[owner_id]
+          metafield[owner_resource]: rest.metafield[owner_resource]
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/metafields/count-json
+      name: admin-api-2021-01-metafields-count-json
+      description: REST surface for admin-api-2021-01-metafields-count.json.
+      operations:
+      - method: GET
+        name: deprecated202101getmetafieldscount
+        description: Shopify Retrieves A Count Of A Resource's Metafields
+        call: shopify-metafields.deprecated202101getmetafieldscount
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/metafields-json
+      name: admin-api-unstable-metafields-json
+      description: REST surface for admin-api-unstable-metafields.json.
+      operations:
+      - method: GET
+        name: deprecatedunstablegetmetafields
+        description: Shopify Retrieves A List Of Metafields That Belong To A Product Image Resource
+        call: shopify-metafields.deprecatedunstablegetmetafields
+        with:
+          metafield[owner_id]: rest.metafield[owner_id]
+          metafield[owner_resource]: rest.metafield[owner_resource]
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/metafields/count-json
+      name: admin-api-unstable-metafields-count-json
+      description: REST surface for admin-api-unstable-metafields-count.json.
+      operations:
+      - method: GET
+        name: deprecatedunstablegetmetafieldscount
+        description: Shopify Retrieves A Count Of A Resource's Metafields
+        call: shopify-metafields.deprecatedunstablegetmetafieldscount
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: shopify-metafields-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Shopify  API — Metafields. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: shopify-retrieves-list-metafields-that
+      description: Shopify Retrieves A List Of Metafields That Belong To A Product Image Resource
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-metafields.deprecated202001getmetafields
+      with:
+        metafield[owner_id]: tools.metafield[owner_id]
+        metafield[owner_resource]: tools.metafield[owner_resource]
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-count-resource-s-metafields
+      description: Shopify Retrieves A Count Of A Resource's Metafields
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-metafields.deprecated202001getmetafieldscount
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-metafields-that-2
+      description: Shopify Retrieves A List Of Metafields That Belong To A Product Image Resource
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-metafields.deprecated202004getmetafields
+      with:
+        metafield[owner_id]: tools.metafield[owner_id]
+        metafield[owner_resource]: tools.metafield[owner_resource]
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-count-resource-s-metafields-2
+      description: Shopify Retrieves A Count Of A Resource's Metafields
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-metafields.deprecated202004getmetafieldscount
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-metafields-that-3
+      description: Shopify Retrieves A List Of Metafields That Belong To A Product Image Resource
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-metafields.deprecated202007getmetafields
+      with:
+        metafield[owner_id]: tools.metafield[owner_id]
+        metafield[owner_resource]: tools.metafield[owner_resource]
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-count-resource-s-metafields-3
+      description: Shopify Retrieves A Count Of A Resource's Metafields
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-metafields.deprecated202007getmetafieldscount
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-metafields-that-4
+      description: Shopify Retrieves A List Of Metafields That Belong To A Product Image Resource
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-metafields.getmetafields
+      with:
+        metafield[owner_id]: tools.metafield[owner_id]
+        metafield[owner_resource]: tools.metafield[owner_resource]
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-count-resource-s-metafields-4
+      description: Shopify Retrieves A Count Of A Resource's Metafields
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-metafields.getmetafieldscount
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-metafields-that-5
+      description: Shopify Retrieves A List Of Metafields That Belong To A Product Image Resource
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-metafields.deprecated202101getmetafields
+      with:
+        metafield[owner_id]: tools.metafield[owner_id]
+        metafield[owner_resource]: tools.metafield[owner_resource]
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-count-resource-s-metafields-5
+      description: Shopify Retrieves A Count Of A Resource's Metafields
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-metafields.deprecated202101getmetafieldscount
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-metafields-that-6
+      description: Shopify Retrieves A List Of Metafields That Belong To A Product Image Resource
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-metafields.deprecatedunstablegetmetafields
+      with:
+        metafield[owner_id]: tools.metafield[owner_id]
+        metafield[owner_resource]: tools.metafield[owner_resource]
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-count-resource-s-metafields-6
+      description: Shopify Retrieves A Count Of A Resource's Metafields
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-metafields.deprecatedunstablegetmetafieldscount
+      outputParameters:
+      - type: object
+        mapping: $.

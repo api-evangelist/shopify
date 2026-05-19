@@ -1,0 +1,2045 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Shopify  API — Address
+  description: 'Shopify  API — Address. 42 operations. Lead operation: Shopify Creates A New Address For A Customer. Self-contained
+    Naftiko capability covering one Shopify business surface.'
+  tags:
+  - Shopify
+  - Address
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SHOPIFY_API_KEY: SHOPIFY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: shopify-address
+    baseUri: ''
+    description: Shopify  API — Address business capability. Self-contained, no shared references.
+    resources:
+    - name: admin-api-2020-01-customers-customer_id-addresses.json
+      path: /admin/api/2020-01/customers/{customer_id}/addresses.json
+      operations:
+      - name: deprecated202001createcustomersparamcustomeridaddresses
+        method: POST
+        description: Shopify Creates A New Address For A Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-01-customers-customer_id-addresses-address_id}.json
+      path: /admin/api/2020-01/customers/{customer_id}/addresses/{address_id}.json
+      operations:
+      - name: deprecated202001getcustomersparamcustomeridaddressesparamaddressid
+        method: GET
+        description: Shopify Retrieves Details A Single Customer Address
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: address_id
+          in: path
+          type: string
+          description: address_id
+          required: true
+      - name: deprecated202001updatecustomersparamcustomeridaddressesparamaddressid
+        method: PUT
+        description: Shopify Updates An Existing Customer Address
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: address_id
+          in: path
+          type: string
+          description: address_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deprecated202001deletecustomersparamcustomeridaddressesparamaddressid
+        method: DELETE
+        description: Shopify Removes An Address From A Customer’s Address List
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: address_id
+          in: path
+          type: string
+          description: address_id
+          required: true
+    - name: admin-api-2020-01-customers-customer_id-addresses-address_id-default.json
+      path: /admin/api/2020-01/customers/{customer_id}/addresses/{address_id}/default.json
+      operations:
+      - name: deprecated202001updatecustomersparamcustomeridaddressesparamaddressiddefault
+        method: PUT
+        description: Shopify Sets The Default Address For A Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: address_id
+          in: path
+          type: string
+          description: address_id
+          required: true
+    - name: admin-api-2020-01-webhooks.json
+      path: /admin/api/2020-01/webhooks.json
+      operations:
+      - name: deprecated202001createwebhooks
+        method: POST
+        description: Shopify Create A New Webhook Subscription By Specifying Both An Address And A Topic
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: format
+          in: query
+          type: string
+          description: Use this parameter to select the data format for the payload. Valid values are json and xml.
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-01-webhooks-webhook_id}.json
+      path: /admin/api/2020-01/webhooks/{webhook_id}.json
+      operations:
+      - name: deprecated202001updatewebhooksparamwebhookid
+        method: PUT
+        description: Shopify Update A Webhook Subscription's Topic Or Address Uris
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: webhook_id
+          in: path
+          type: string
+          description: webhook_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-04-customers-customer_id-addresses.json
+      path: /admin/api/2020-04/customers/{customer_id}/addresses.json
+      operations:
+      - name: deprecated202004createcustomersparamcustomeridaddresses
+        method: POST
+        description: Shopify Creates A New Address For A Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-04-customers-customer_id-addresses-address_id}.json
+      path: /admin/api/2020-04/customers/{customer_id}/addresses/{address_id}.json
+      operations:
+      - name: deprecated202004getcustomersparamcustomeridaddressesparamaddressid
+        method: GET
+        description: Shopify Retrieves Details A Single Customer Address
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: address_id
+          in: path
+          type: string
+          description: address_id
+          required: true
+      - name: deprecated202004updatecustomersparamcustomeridaddressesparamaddressid
+        method: PUT
+        description: Shopify Updates An Existing Customer Address
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: address_id
+          in: path
+          type: string
+          description: address_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deprecated202004deletecustomersparamcustomeridaddressesparamaddressid
+        method: DELETE
+        description: Shopify Removes An Address From A Customer’s Address List
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: address_id
+          in: path
+          type: string
+          description: address_id
+          required: true
+    - name: admin-api-2020-04-customers-customer_id-addresses-address_id-default.json
+      path: /admin/api/2020-04/customers/{customer_id}/addresses/{address_id}/default.json
+      operations:
+      - name: deprecated202004updatecustomersparamcustomeridaddressesparamaddressiddefault
+        method: PUT
+        description: Shopify Sets The Default Address For A Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: address_id
+          in: path
+          type: string
+          description: address_id
+          required: true
+    - name: admin-api-2020-04-webhooks.json
+      path: /admin/api/2020-04/webhooks.json
+      operations:
+      - name: deprecated202004createwebhooks
+        method: POST
+        description: Shopify Create A New Webhook Subscription By Specifying Both An Address And A Topic
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: format
+          in: query
+          type: string
+          description: Use this parameter to select the data format for the payload. Valid values are json and xml.
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-04-webhooks-webhook_id}.json
+      path: /admin/api/2020-04/webhooks/{webhook_id}.json
+      operations:
+      - name: deprecated202004updatewebhooksparamwebhookid
+        method: PUT
+        description: Shopify Update A Webhook Subscription's Topic Or Address Uris
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: webhook_id
+          in: path
+          type: string
+          description: webhook_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-07-customers-customer_id-addresses.json
+      path: /admin/api/2020-07/customers/{customer_id}/addresses.json
+      operations:
+      - name: deprecated202007createcustomersparamcustomeridaddresses
+        method: POST
+        description: Shopify Creates A New Address For A Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-07-customers-customer_id-addresses-address_id}.json
+      path: /admin/api/2020-07/customers/{customer_id}/addresses/{address_id}.json
+      operations:
+      - name: deprecated202007getcustomersparamcustomeridaddressesparamaddressid
+        method: GET
+        description: Shopify Retrieves Details A Single Customer Address
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: address_id
+          in: path
+          type: string
+          description: address_id
+          required: true
+      - name: deprecated202007updatecustomersparamcustomeridaddressesparamaddressid
+        method: PUT
+        description: Shopify Updates An Existing Customer Address
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: address_id
+          in: path
+          type: string
+          description: address_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deprecated202007deletecustomersparamcustomeridaddressesparamaddressid
+        method: DELETE
+        description: Shopify Removes An Address From A Customer’s Address List
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: address_id
+          in: path
+          type: string
+          description: address_id
+          required: true
+    - name: admin-api-2020-07-customers-customer_id-addresses-address_id-default.json
+      path: /admin/api/2020-07/customers/{customer_id}/addresses/{address_id}/default.json
+      operations:
+      - name: deprecated202007updatecustomersparamcustomeridaddressesparamaddressiddefault
+        method: PUT
+        description: Shopify Sets The Default Address For A Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: address_id
+          in: path
+          type: string
+          description: address_id
+          required: true
+    - name: admin-api-2020-07-webhooks.json
+      path: /admin/api/2020-07/webhooks.json
+      operations:
+      - name: deprecated202007createwebhooks
+        method: POST
+        description: Shopify Create A New Webhook Subscription By Specifying Both An Address And A Topic
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: format
+          in: query
+          type: string
+          description: Use this parameter to select the data format for the payload. Valid values are json and xml.
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-07-webhooks-webhook_id}.json
+      path: /admin/api/2020-07/webhooks/{webhook_id}.json
+      operations:
+      - name: deprecated202007updatewebhooksparamwebhookid
+        method: PUT
+        description: Shopify Update A Webhook Subscription's Topic Or Address Uris
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: webhook_id
+          in: path
+          type: string
+          description: webhook_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-10-customers-customer_id-addresses.json
+      path: /admin/api/2020-10/customers/{customer_id}/addresses.json
+      operations:
+      - name: createcustomersparamcustomeridaddresses
+        method: POST
+        description: Shopify Creates A New Address For A Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-10-customers-customer_id-addresses-address_id}.json
+      path: /admin/api/2020-10/customers/{customer_id}/addresses/{address_id}.json
+      operations:
+      - name: getcustomersparamcustomeridaddressesparamaddressid
+        method: GET
+        description: Shopify Retrieves Details A Single Customer Address
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: address_id
+          in: path
+          type: string
+          description: address_id
+          required: true
+      - name: updatecustomersparamcustomeridaddressesparamaddressid
+        method: PUT
+        description: Shopify Updates An Existing Customer Address
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: address_id
+          in: path
+          type: string
+          description: address_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deletecustomersparamcustomeridaddressesparamaddressid
+        method: DELETE
+        description: Shopify Removes An Address From A Customer’s Address List
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: address_id
+          in: path
+          type: string
+          description: address_id
+          required: true
+    - name: admin-api-2020-10-customers-customer_id-addresses-address_id-default.json
+      path: /admin/api/2020-10/customers/{customer_id}/addresses/{address_id}/default.json
+      operations:
+      - name: updatecustomersparamcustomeridaddressesparamaddressiddefault
+        method: PUT
+        description: Shopify Sets The Default Address For A Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: address_id
+          in: path
+          type: string
+          description: address_id
+          required: true
+    - name: admin-api-2020-10-webhooks.json
+      path: /admin/api/2020-10/webhooks.json
+      operations:
+      - name: createwebhooks
+        method: POST
+        description: Shopify Create A New Webhook Subscription By Specifying Both An Address And A Topic
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: format
+          in: query
+          type: string
+          description: Use this parameter to select the data format for the payload. Valid values are json and xml.
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-10-webhooks-webhook_id}.json
+      path: /admin/api/2020-10/webhooks/{webhook_id}.json
+      operations:
+      - name: updatewebhooksparamwebhookid
+        method: PUT
+        description: Shopify Update A Webhook Subscription's Topic Or Address Uris
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: webhook_id
+          in: path
+          type: string
+          description: webhook_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2021-01-customers-customer_id-addresses.json
+      path: /admin/api/2021-01/customers/{customer_id}/addresses.json
+      operations:
+      - name: deprecated202101createcustomersparamcustomeridaddresses
+        method: POST
+        description: Shopify Creates A New Address For A Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2021-01-customers-customer_id-addresses-address_id}.json
+      path: /admin/api/2021-01/customers/{customer_id}/addresses/{address_id}.json
+      operations:
+      - name: deprecated202101getcustomersparamcustomeridaddressesparamaddressid
+        method: GET
+        description: Shopify Retrieves Details A Single Customer Address
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: address_id
+          in: path
+          type: string
+          description: address_id
+          required: true
+      - name: deprecated202101updatecustomersparamcustomeridaddressesparamaddressid
+        method: PUT
+        description: Shopify Updates An Existing Customer Address
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: address_id
+          in: path
+          type: string
+          description: address_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deprecated202101deletecustomersparamcustomeridaddressesparamaddressid
+        method: DELETE
+        description: Shopify Removes An Address From A Customer’s Address List
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: address_id
+          in: path
+          type: string
+          description: address_id
+          required: true
+    - name: admin-api-2021-01-customers-customer_id-addresses-address_id-default.json
+      path: /admin/api/2021-01/customers/{customer_id}/addresses/{address_id}/default.json
+      operations:
+      - name: deprecated202101updatecustomersparamcustomeridaddressesparamaddressiddefault
+        method: PUT
+        description: Shopify Sets The Default Address For A Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: address_id
+          in: path
+          type: string
+          description: address_id
+          required: true
+    - name: admin-api-2021-01-webhooks.json
+      path: /admin/api/2021-01/webhooks.json
+      operations:
+      - name: deprecated202101createwebhooks
+        method: POST
+        description: Shopify Create A New Webhook Subscription By Specifying Both An Address And A Topic
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: format
+          in: query
+          type: string
+          description: Use this parameter to select the data format for the payload. Valid values are json and xml.
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2021-01-webhooks-webhook_id}.json
+      path: /admin/api/2021-01/webhooks/{webhook_id}.json
+      operations:
+      - name: deprecated202101updatewebhooksparamwebhookid
+        method: PUT
+        description: Shopify Update A Webhook Subscription's Topic Or Address Uris
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: webhook_id
+          in: path
+          type: string
+          description: webhook_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-unstable-customers-customer_id-addresses.json
+      path: /admin/api/unstable/customers/{customer_id}/addresses.json
+      operations:
+      - name: deprecatedunstablecreatecustomersparamcustomeridaddresses
+        method: POST
+        description: Shopify Creates A New Address For A Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-unstable-customers-customer_id-addresses-address_id}.json
+      path: /admin/api/unstable/customers/{customer_id}/addresses/{address_id}.json
+      operations:
+      - name: deprecatedunstablegetcustomersparamcustomeridaddressesparamaddressid
+        method: GET
+        description: Shopify Retrieves Details A Single Customer Address
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: address_id
+          in: path
+          type: string
+          description: address_id
+          required: true
+      - name: deprecatedunstableupdatecustomersparamcustomeridaddressesparamaddressid
+        method: PUT
+        description: Shopify Updates An Existing Customer Address
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: address_id
+          in: path
+          type: string
+          description: address_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deprecatedunstabledeletecustomersparamcustomeridaddressesparamaddressid
+        method: DELETE
+        description: Shopify Removes An Address From A Customer’s Address List
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: address_id
+          in: path
+          type: string
+          description: address_id
+          required: true
+    - name: admin-api-unstable-customers-customer_id-addresses-address_id-default.json
+      path: /admin/api/unstable/customers/{customer_id}/addresses/{address_id}/default.json
+      operations:
+      - name: deprecatedunstableupdatecustomersparamcustomeridaddressesparamaddressiddefault
+        method: PUT
+        description: Shopify Sets The Default Address For A Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: address_id
+          in: path
+          type: string
+          description: address_id
+          required: true
+    - name: admin-api-unstable-webhooks.json
+      path: /admin/api/unstable/webhooks.json
+      operations:
+      - name: deprecatedunstablecreatewebhooks
+        method: POST
+        description: Shopify Create A New Webhook Subscription By Specifying Both An Address And A Topic
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: format
+          in: query
+          type: string
+          description: Use this parameter to select the data format for the payload. Valid values are json and xml.
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-unstable-webhooks-webhook_id}.json
+      path: /admin/api/unstable/webhooks/{webhook_id}.json
+      operations:
+      - name: deprecatedunstableupdatewebhooksparamwebhookid
+        method: PUT
+        description: Shopify Update A Webhook Subscription's Topic Or Address Uris
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: webhook_id
+          in: path
+          type: string
+          description: webhook_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+  exposes:
+  - type: rest
+    namespace: shopify-address-rest
+    port: 8080
+    description: REST adapter for Shopify  API — Address. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/admin/api/2020-01/customers/{customer-id}/addresses-json
+      name: admin-api-2020-01-customers-customer-id-addresses-json
+      description: REST surface for admin-api-2020-01-customers-customer_id-addresses.json.
+      operations:
+      - method: POST
+        name: deprecated202001createcustomersparamcustomeridaddresses
+        description: Shopify Creates A New Address For A Customer
+        call: shopify-address.deprecated202001createcustomersparamcustomeridaddresses
+        with:
+          customer_id: rest.customer_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-01/customers/{customer-id}/addresses/address-id-json
+      name: admin-api-2020-01-customers-customer-id-addresses-address-id-json
+      description: REST surface for admin-api-2020-01-customers-customer_id-addresses-address_id}.json.
+      operations:
+      - method: GET
+        name: deprecated202001getcustomersparamcustomeridaddressesparamaddressid
+        description: Shopify Retrieves Details A Single Customer Address
+        call: shopify-address.deprecated202001getcustomersparamcustomeridaddressesparamaddressid
+        with:
+          customer_id: rest.customer_id
+          address_id: rest.address_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: deprecated202001updatecustomersparamcustomeridaddressesparamaddressid
+        description: Shopify Updates An Existing Customer Address
+        call: shopify-address.deprecated202001updatecustomersparamcustomeridaddressesparamaddressid
+        with:
+          customer_id: rest.customer_id
+          address_id: rest.address_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deprecated202001deletecustomersparamcustomeridaddressesparamaddressid
+        description: Shopify Removes An Address From A Customer’s Address List
+        call: shopify-address.deprecated202001deletecustomersparamcustomeridaddressesparamaddressid
+        with:
+          customer_id: rest.customer_id
+          address_id: rest.address_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-01/customers/{customer-id}/addresses/{address-id}/default-json
+      name: admin-api-2020-01-customers-customer-id-addresses-address-id-default-json
+      description: REST surface for admin-api-2020-01-customers-customer_id-addresses-address_id-default.json.
+      operations:
+      - method: PUT
+        name: deprecated202001updatecustomersparamcustomeridaddressesparamaddressiddefault
+        description: Shopify Sets The Default Address For A Customer
+        call: shopify-address.deprecated202001updatecustomersparamcustomeridaddressesparamaddressiddefault
+        with:
+          customer_id: rest.customer_id
+          address_id: rest.address_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-01/webhooks-json
+      name: admin-api-2020-01-webhooks-json
+      description: REST surface for admin-api-2020-01-webhooks.json.
+      operations:
+      - method: POST
+        name: deprecated202001createwebhooks
+        description: Shopify Create A New Webhook Subscription By Specifying Both An Address And A Topic
+        call: shopify-address.deprecated202001createwebhooks
+        with:
+          format: rest.format
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-01/webhooks/webhook-id-json
+      name: admin-api-2020-01-webhooks-webhook-id-json
+      description: REST surface for admin-api-2020-01-webhooks-webhook_id}.json.
+      operations:
+      - method: PUT
+        name: deprecated202001updatewebhooksparamwebhookid
+        description: Shopify Update A Webhook Subscription's Topic Or Address Uris
+        call: shopify-address.deprecated202001updatewebhooksparamwebhookid
+        with:
+          webhook_id: rest.webhook_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/customers/{customer-id}/addresses-json
+      name: admin-api-2020-04-customers-customer-id-addresses-json
+      description: REST surface for admin-api-2020-04-customers-customer_id-addresses.json.
+      operations:
+      - method: POST
+        name: deprecated202004createcustomersparamcustomeridaddresses
+        description: Shopify Creates A New Address For A Customer
+        call: shopify-address.deprecated202004createcustomersparamcustomeridaddresses
+        with:
+          customer_id: rest.customer_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/customers/{customer-id}/addresses/address-id-json
+      name: admin-api-2020-04-customers-customer-id-addresses-address-id-json
+      description: REST surface for admin-api-2020-04-customers-customer_id-addresses-address_id}.json.
+      operations:
+      - method: GET
+        name: deprecated202004getcustomersparamcustomeridaddressesparamaddressid
+        description: Shopify Retrieves Details A Single Customer Address
+        call: shopify-address.deprecated202004getcustomersparamcustomeridaddressesparamaddressid
+        with:
+          customer_id: rest.customer_id
+          address_id: rest.address_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: deprecated202004updatecustomersparamcustomeridaddressesparamaddressid
+        description: Shopify Updates An Existing Customer Address
+        call: shopify-address.deprecated202004updatecustomersparamcustomeridaddressesparamaddressid
+        with:
+          customer_id: rest.customer_id
+          address_id: rest.address_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deprecated202004deletecustomersparamcustomeridaddressesparamaddressid
+        description: Shopify Removes An Address From A Customer’s Address List
+        call: shopify-address.deprecated202004deletecustomersparamcustomeridaddressesparamaddressid
+        with:
+          customer_id: rest.customer_id
+          address_id: rest.address_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/customers/{customer-id}/addresses/{address-id}/default-json
+      name: admin-api-2020-04-customers-customer-id-addresses-address-id-default-json
+      description: REST surface for admin-api-2020-04-customers-customer_id-addresses-address_id-default.json.
+      operations:
+      - method: PUT
+        name: deprecated202004updatecustomersparamcustomeridaddressesparamaddressiddefault
+        description: Shopify Sets The Default Address For A Customer
+        call: shopify-address.deprecated202004updatecustomersparamcustomeridaddressesparamaddressiddefault
+        with:
+          customer_id: rest.customer_id
+          address_id: rest.address_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/webhooks-json
+      name: admin-api-2020-04-webhooks-json
+      description: REST surface for admin-api-2020-04-webhooks.json.
+      operations:
+      - method: POST
+        name: deprecated202004createwebhooks
+        description: Shopify Create A New Webhook Subscription By Specifying Both An Address And A Topic
+        call: shopify-address.deprecated202004createwebhooks
+        with:
+          format: rest.format
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/webhooks/webhook-id-json
+      name: admin-api-2020-04-webhooks-webhook-id-json
+      description: REST surface for admin-api-2020-04-webhooks-webhook_id}.json.
+      operations:
+      - method: PUT
+        name: deprecated202004updatewebhooksparamwebhookid
+        description: Shopify Update A Webhook Subscription's Topic Or Address Uris
+        call: shopify-address.deprecated202004updatewebhooksparamwebhookid
+        with:
+          webhook_id: rest.webhook_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/customers/{customer-id}/addresses-json
+      name: admin-api-2020-07-customers-customer-id-addresses-json
+      description: REST surface for admin-api-2020-07-customers-customer_id-addresses.json.
+      operations:
+      - method: POST
+        name: deprecated202007createcustomersparamcustomeridaddresses
+        description: Shopify Creates A New Address For A Customer
+        call: shopify-address.deprecated202007createcustomersparamcustomeridaddresses
+        with:
+          customer_id: rest.customer_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/customers/{customer-id}/addresses/address-id-json
+      name: admin-api-2020-07-customers-customer-id-addresses-address-id-json
+      description: REST surface for admin-api-2020-07-customers-customer_id-addresses-address_id}.json.
+      operations:
+      - method: GET
+        name: deprecated202007getcustomersparamcustomeridaddressesparamaddressid
+        description: Shopify Retrieves Details A Single Customer Address
+        call: shopify-address.deprecated202007getcustomersparamcustomeridaddressesparamaddressid
+        with:
+          customer_id: rest.customer_id
+          address_id: rest.address_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: deprecated202007updatecustomersparamcustomeridaddressesparamaddressid
+        description: Shopify Updates An Existing Customer Address
+        call: shopify-address.deprecated202007updatecustomersparamcustomeridaddressesparamaddressid
+        with:
+          customer_id: rest.customer_id
+          address_id: rest.address_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deprecated202007deletecustomersparamcustomeridaddressesparamaddressid
+        description: Shopify Removes An Address From A Customer’s Address List
+        call: shopify-address.deprecated202007deletecustomersparamcustomeridaddressesparamaddressid
+        with:
+          customer_id: rest.customer_id
+          address_id: rest.address_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/customers/{customer-id}/addresses/{address-id}/default-json
+      name: admin-api-2020-07-customers-customer-id-addresses-address-id-default-json
+      description: REST surface for admin-api-2020-07-customers-customer_id-addresses-address_id-default.json.
+      operations:
+      - method: PUT
+        name: deprecated202007updatecustomersparamcustomeridaddressesparamaddressiddefault
+        description: Shopify Sets The Default Address For A Customer
+        call: shopify-address.deprecated202007updatecustomersparamcustomeridaddressesparamaddressiddefault
+        with:
+          customer_id: rest.customer_id
+          address_id: rest.address_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/webhooks-json
+      name: admin-api-2020-07-webhooks-json
+      description: REST surface for admin-api-2020-07-webhooks.json.
+      operations:
+      - method: POST
+        name: deprecated202007createwebhooks
+        description: Shopify Create A New Webhook Subscription By Specifying Both An Address And A Topic
+        call: shopify-address.deprecated202007createwebhooks
+        with:
+          format: rest.format
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/webhooks/webhook-id-json
+      name: admin-api-2020-07-webhooks-webhook-id-json
+      description: REST surface for admin-api-2020-07-webhooks-webhook_id}.json.
+      operations:
+      - method: PUT
+        name: deprecated202007updatewebhooksparamwebhookid
+        description: Shopify Update A Webhook Subscription's Topic Or Address Uris
+        call: shopify-address.deprecated202007updatewebhooksparamwebhookid
+        with:
+          webhook_id: rest.webhook_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/customers/{customer-id}/addresses-json
+      name: admin-api-2020-10-customers-customer-id-addresses-json
+      description: REST surface for admin-api-2020-10-customers-customer_id-addresses.json.
+      operations:
+      - method: POST
+        name: createcustomersparamcustomeridaddresses
+        description: Shopify Creates A New Address For A Customer
+        call: shopify-address.createcustomersparamcustomeridaddresses
+        with:
+          customer_id: rest.customer_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/customers/{customer-id}/addresses/address-id-json
+      name: admin-api-2020-10-customers-customer-id-addresses-address-id-json
+      description: REST surface for admin-api-2020-10-customers-customer_id-addresses-address_id}.json.
+      operations:
+      - method: GET
+        name: getcustomersparamcustomeridaddressesparamaddressid
+        description: Shopify Retrieves Details A Single Customer Address
+        call: shopify-address.getcustomersparamcustomeridaddressesparamaddressid
+        with:
+          customer_id: rest.customer_id
+          address_id: rest.address_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updatecustomersparamcustomeridaddressesparamaddressid
+        description: Shopify Updates An Existing Customer Address
+        call: shopify-address.updatecustomersparamcustomeridaddressesparamaddressid
+        with:
+          customer_id: rest.customer_id
+          address_id: rest.address_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletecustomersparamcustomeridaddressesparamaddressid
+        description: Shopify Removes An Address From A Customer’s Address List
+        call: shopify-address.deletecustomersparamcustomeridaddressesparamaddressid
+        with:
+          customer_id: rest.customer_id
+          address_id: rest.address_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/customers/{customer-id}/addresses/{address-id}/default-json
+      name: admin-api-2020-10-customers-customer-id-addresses-address-id-default-json
+      description: REST surface for admin-api-2020-10-customers-customer_id-addresses-address_id-default.json.
+      operations:
+      - method: PUT
+        name: updatecustomersparamcustomeridaddressesparamaddressiddefault
+        description: Shopify Sets The Default Address For A Customer
+        call: shopify-address.updatecustomersparamcustomeridaddressesparamaddressiddefault
+        with:
+          customer_id: rest.customer_id
+          address_id: rest.address_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/webhooks-json
+      name: admin-api-2020-10-webhooks-json
+      description: REST surface for admin-api-2020-10-webhooks.json.
+      operations:
+      - method: POST
+        name: createwebhooks
+        description: Shopify Create A New Webhook Subscription By Specifying Both An Address And A Topic
+        call: shopify-address.createwebhooks
+        with:
+          format: rest.format
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/webhooks/webhook-id-json
+      name: admin-api-2020-10-webhooks-webhook-id-json
+      description: REST surface for admin-api-2020-10-webhooks-webhook_id}.json.
+      operations:
+      - method: PUT
+        name: updatewebhooksparamwebhookid
+        description: Shopify Update A Webhook Subscription's Topic Or Address Uris
+        call: shopify-address.updatewebhooksparamwebhookid
+        with:
+          webhook_id: rest.webhook_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/customers/{customer-id}/addresses-json
+      name: admin-api-2021-01-customers-customer-id-addresses-json
+      description: REST surface for admin-api-2021-01-customers-customer_id-addresses.json.
+      operations:
+      - method: POST
+        name: deprecated202101createcustomersparamcustomeridaddresses
+        description: Shopify Creates A New Address For A Customer
+        call: shopify-address.deprecated202101createcustomersparamcustomeridaddresses
+        with:
+          customer_id: rest.customer_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/customers/{customer-id}/addresses/address-id-json
+      name: admin-api-2021-01-customers-customer-id-addresses-address-id-json
+      description: REST surface for admin-api-2021-01-customers-customer_id-addresses-address_id}.json.
+      operations:
+      - method: GET
+        name: deprecated202101getcustomersparamcustomeridaddressesparamaddressid
+        description: Shopify Retrieves Details A Single Customer Address
+        call: shopify-address.deprecated202101getcustomersparamcustomeridaddressesparamaddressid
+        with:
+          customer_id: rest.customer_id
+          address_id: rest.address_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: deprecated202101updatecustomersparamcustomeridaddressesparamaddressid
+        description: Shopify Updates An Existing Customer Address
+        call: shopify-address.deprecated202101updatecustomersparamcustomeridaddressesparamaddressid
+        with:
+          customer_id: rest.customer_id
+          address_id: rest.address_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deprecated202101deletecustomersparamcustomeridaddressesparamaddressid
+        description: Shopify Removes An Address From A Customer’s Address List
+        call: shopify-address.deprecated202101deletecustomersparamcustomeridaddressesparamaddressid
+        with:
+          customer_id: rest.customer_id
+          address_id: rest.address_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/customers/{customer-id}/addresses/{address-id}/default-json
+      name: admin-api-2021-01-customers-customer-id-addresses-address-id-default-json
+      description: REST surface for admin-api-2021-01-customers-customer_id-addresses-address_id-default.json.
+      operations:
+      - method: PUT
+        name: deprecated202101updatecustomersparamcustomeridaddressesparamaddressiddefault
+        description: Shopify Sets The Default Address For A Customer
+        call: shopify-address.deprecated202101updatecustomersparamcustomeridaddressesparamaddressiddefault
+        with:
+          customer_id: rest.customer_id
+          address_id: rest.address_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/webhooks-json
+      name: admin-api-2021-01-webhooks-json
+      description: REST surface for admin-api-2021-01-webhooks.json.
+      operations:
+      - method: POST
+        name: deprecated202101createwebhooks
+        description: Shopify Create A New Webhook Subscription By Specifying Both An Address And A Topic
+        call: shopify-address.deprecated202101createwebhooks
+        with:
+          format: rest.format
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/webhooks/webhook-id-json
+      name: admin-api-2021-01-webhooks-webhook-id-json
+      description: REST surface for admin-api-2021-01-webhooks-webhook_id}.json.
+      operations:
+      - method: PUT
+        name: deprecated202101updatewebhooksparamwebhookid
+        description: Shopify Update A Webhook Subscription's Topic Or Address Uris
+        call: shopify-address.deprecated202101updatewebhooksparamwebhookid
+        with:
+          webhook_id: rest.webhook_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/customers/{customer-id}/addresses-json
+      name: admin-api-unstable-customers-customer-id-addresses-json
+      description: REST surface for admin-api-unstable-customers-customer_id-addresses.json.
+      operations:
+      - method: POST
+        name: deprecatedunstablecreatecustomersparamcustomeridaddresses
+        description: Shopify Creates A New Address For A Customer
+        call: shopify-address.deprecatedunstablecreatecustomersparamcustomeridaddresses
+        with:
+          customer_id: rest.customer_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/customers/{customer-id}/addresses/address-id-json
+      name: admin-api-unstable-customers-customer-id-addresses-address-id-json
+      description: REST surface for admin-api-unstable-customers-customer_id-addresses-address_id}.json.
+      operations:
+      - method: GET
+        name: deprecatedunstablegetcustomersparamcustomeridaddressesparamaddressid
+        description: Shopify Retrieves Details A Single Customer Address
+        call: shopify-address.deprecatedunstablegetcustomersparamcustomeridaddressesparamaddressid
+        with:
+          customer_id: rest.customer_id
+          address_id: rest.address_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: deprecatedunstableupdatecustomersparamcustomeridaddressesparamaddressid
+        description: Shopify Updates An Existing Customer Address
+        call: shopify-address.deprecatedunstableupdatecustomersparamcustomeridaddressesparamaddressid
+        with:
+          customer_id: rest.customer_id
+          address_id: rest.address_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deprecatedunstabledeletecustomersparamcustomeridaddressesparamaddressid
+        description: Shopify Removes An Address From A Customer’s Address List
+        call: shopify-address.deprecatedunstabledeletecustomersparamcustomeridaddressesparamaddressid
+        with:
+          customer_id: rest.customer_id
+          address_id: rest.address_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/customers/{customer-id}/addresses/{address-id}/default-json
+      name: admin-api-unstable-customers-customer-id-addresses-address-id-default-json
+      description: REST surface for admin-api-unstable-customers-customer_id-addresses-address_id-default.json.
+      operations:
+      - method: PUT
+        name: deprecatedunstableupdatecustomersparamcustomeridaddressesparamaddressiddefault
+        description: Shopify Sets The Default Address For A Customer
+        call: shopify-address.deprecatedunstableupdatecustomersparamcustomeridaddressesparamaddressiddefault
+        with:
+          customer_id: rest.customer_id
+          address_id: rest.address_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/webhooks-json
+      name: admin-api-unstable-webhooks-json
+      description: REST surface for admin-api-unstable-webhooks.json.
+      operations:
+      - method: POST
+        name: deprecatedunstablecreatewebhooks
+        description: Shopify Create A New Webhook Subscription By Specifying Both An Address And A Topic
+        call: shopify-address.deprecatedunstablecreatewebhooks
+        with:
+          format: rest.format
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/webhooks/webhook-id-json
+      name: admin-api-unstable-webhooks-webhook-id-json
+      description: REST surface for admin-api-unstable-webhooks-webhook_id}.json.
+      operations:
+      - method: PUT
+        name: deprecatedunstableupdatewebhooksparamwebhookid
+        description: Shopify Update A Webhook Subscription's Topic Or Address Uris
+        call: shopify-address.deprecatedunstableupdatewebhooksparamwebhookid
+        with:
+          webhook_id: rest.webhook_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: shopify-address-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Shopify  API — Address. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: shopify-creates-new-address-customer
+      description: Shopify Creates A New Address For A Customer
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-address.deprecated202001createcustomersparamcustomeridaddresses
+      with:
+        customer_id: tools.customer_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-details-single-customer
+      description: Shopify Retrieves Details A Single Customer Address
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-address.deprecated202001getcustomersparamcustomeridaddressesparamaddressid
+      with:
+        customer_id: tools.customer_id
+        address_id: tools.address_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-updates-existing-customer-address
+      description: Shopify Updates An Existing Customer Address
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-address.deprecated202001updatecustomersparamcustomeridaddressesparamaddressid
+      with:
+        customer_id: tools.customer_id
+        address_id: tools.address_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-removes-address-customer-s-address
+      description: Shopify Removes An Address From A Customer’s Address List
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-address.deprecated202001deletecustomersparamcustomeridaddressesparamaddressid
+      with:
+        customer_id: tools.customer_id
+        address_id: tools.address_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-sets-default-address-customer
+      description: Shopify Sets The Default Address For A Customer
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-address.deprecated202001updatecustomersparamcustomeridaddressesparamaddressiddefault
+      with:
+        customer_id: tools.customer_id
+        address_id: tools.address_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-create-new-webhook-subscription
+      description: Shopify Create A New Webhook Subscription By Specifying Both An Address And A Topic
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-address.deprecated202001createwebhooks
+      with:
+        format: tools.format
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-update-webhook-subscription-s-topic
+      description: Shopify Update A Webhook Subscription's Topic Or Address Uris
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-address.deprecated202001updatewebhooksparamwebhookid
+      with:
+        webhook_id: tools.webhook_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-creates-new-address-customer-2
+      description: Shopify Creates A New Address For A Customer
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-address.deprecated202004createcustomersparamcustomeridaddresses
+      with:
+        customer_id: tools.customer_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-details-single-customer-2
+      description: Shopify Retrieves Details A Single Customer Address
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-address.deprecated202004getcustomersparamcustomeridaddressesparamaddressid
+      with:
+        customer_id: tools.customer_id
+        address_id: tools.address_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-updates-existing-customer-address-2
+      description: Shopify Updates An Existing Customer Address
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-address.deprecated202004updatecustomersparamcustomeridaddressesparamaddressid
+      with:
+        customer_id: tools.customer_id
+        address_id: tools.address_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-removes-address-customer-s-address-2
+      description: Shopify Removes An Address From A Customer’s Address List
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-address.deprecated202004deletecustomersparamcustomeridaddressesparamaddressid
+      with:
+        customer_id: tools.customer_id
+        address_id: tools.address_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-sets-default-address-customer-2
+      description: Shopify Sets The Default Address For A Customer
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-address.deprecated202004updatecustomersparamcustomeridaddressesparamaddressiddefault
+      with:
+        customer_id: tools.customer_id
+        address_id: tools.address_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-create-new-webhook-subscription-2
+      description: Shopify Create A New Webhook Subscription By Specifying Both An Address And A Topic
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-address.deprecated202004createwebhooks
+      with:
+        format: tools.format
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-update-webhook-subscription-s-topic-2
+      description: Shopify Update A Webhook Subscription's Topic Or Address Uris
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-address.deprecated202004updatewebhooksparamwebhookid
+      with:
+        webhook_id: tools.webhook_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-creates-new-address-customer-3
+      description: Shopify Creates A New Address For A Customer
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-address.deprecated202007createcustomersparamcustomeridaddresses
+      with:
+        customer_id: tools.customer_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-details-single-customer-3
+      description: Shopify Retrieves Details A Single Customer Address
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-address.deprecated202007getcustomersparamcustomeridaddressesparamaddressid
+      with:
+        customer_id: tools.customer_id
+        address_id: tools.address_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-updates-existing-customer-address-3
+      description: Shopify Updates An Existing Customer Address
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-address.deprecated202007updatecustomersparamcustomeridaddressesparamaddressid
+      with:
+        customer_id: tools.customer_id
+        address_id: tools.address_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-removes-address-customer-s-address-3
+      description: Shopify Removes An Address From A Customer’s Address List
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-address.deprecated202007deletecustomersparamcustomeridaddressesparamaddressid
+      with:
+        customer_id: tools.customer_id
+        address_id: tools.address_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-sets-default-address-customer-3
+      description: Shopify Sets The Default Address For A Customer
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-address.deprecated202007updatecustomersparamcustomeridaddressesparamaddressiddefault
+      with:
+        customer_id: tools.customer_id
+        address_id: tools.address_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-create-new-webhook-subscription-3
+      description: Shopify Create A New Webhook Subscription By Specifying Both An Address And A Topic
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-address.deprecated202007createwebhooks
+      with:
+        format: tools.format
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-update-webhook-subscription-s-topic-3
+      description: Shopify Update A Webhook Subscription's Topic Or Address Uris
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-address.deprecated202007updatewebhooksparamwebhookid
+      with:
+        webhook_id: tools.webhook_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-creates-new-address-customer-4
+      description: Shopify Creates A New Address For A Customer
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-address.createcustomersparamcustomeridaddresses
+      with:
+        customer_id: tools.customer_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-details-single-customer-4
+      description: Shopify Retrieves Details A Single Customer Address
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-address.getcustomersparamcustomeridaddressesparamaddressid
+      with:
+        customer_id: tools.customer_id
+        address_id: tools.address_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-updates-existing-customer-address-4
+      description: Shopify Updates An Existing Customer Address
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-address.updatecustomersparamcustomeridaddressesparamaddressid
+      with:
+        customer_id: tools.customer_id
+        address_id: tools.address_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-removes-address-customer-s-address-4
+      description: Shopify Removes An Address From A Customer’s Address List
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-address.deletecustomersparamcustomeridaddressesparamaddressid
+      with:
+        customer_id: tools.customer_id
+        address_id: tools.address_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-sets-default-address-customer-4
+      description: Shopify Sets The Default Address For A Customer
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-address.updatecustomersparamcustomeridaddressesparamaddressiddefault
+      with:
+        customer_id: tools.customer_id
+        address_id: tools.address_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-create-new-webhook-subscription-4
+      description: Shopify Create A New Webhook Subscription By Specifying Both An Address And A Topic
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-address.createwebhooks
+      with:
+        format: tools.format
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-update-webhook-subscription-s-topic-4
+      description: Shopify Update A Webhook Subscription's Topic Or Address Uris
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-address.updatewebhooksparamwebhookid
+      with:
+        webhook_id: tools.webhook_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-creates-new-address-customer-5
+      description: Shopify Creates A New Address For A Customer
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-address.deprecated202101createcustomersparamcustomeridaddresses
+      with:
+        customer_id: tools.customer_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-details-single-customer-5
+      description: Shopify Retrieves Details A Single Customer Address
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-address.deprecated202101getcustomersparamcustomeridaddressesparamaddressid
+      with:
+        customer_id: tools.customer_id
+        address_id: tools.address_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-updates-existing-customer-address-5
+      description: Shopify Updates An Existing Customer Address
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-address.deprecated202101updatecustomersparamcustomeridaddressesparamaddressid
+      with:
+        customer_id: tools.customer_id
+        address_id: tools.address_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-removes-address-customer-s-address-5
+      description: Shopify Removes An Address From A Customer’s Address List
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-address.deprecated202101deletecustomersparamcustomeridaddressesparamaddressid
+      with:
+        customer_id: tools.customer_id
+        address_id: tools.address_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-sets-default-address-customer-5
+      description: Shopify Sets The Default Address For A Customer
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-address.deprecated202101updatecustomersparamcustomeridaddressesparamaddressiddefault
+      with:
+        customer_id: tools.customer_id
+        address_id: tools.address_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-create-new-webhook-subscription-5
+      description: Shopify Create A New Webhook Subscription By Specifying Both An Address And A Topic
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-address.deprecated202101createwebhooks
+      with:
+        format: tools.format
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-update-webhook-subscription-s-topic-5
+      description: Shopify Update A Webhook Subscription's Topic Or Address Uris
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-address.deprecated202101updatewebhooksparamwebhookid
+      with:
+        webhook_id: tools.webhook_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-creates-new-address-customer-6
+      description: Shopify Creates A New Address For A Customer
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-address.deprecatedunstablecreatecustomersparamcustomeridaddresses
+      with:
+        customer_id: tools.customer_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-details-single-customer-6
+      description: Shopify Retrieves Details A Single Customer Address
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-address.deprecatedunstablegetcustomersparamcustomeridaddressesparamaddressid
+      with:
+        customer_id: tools.customer_id
+        address_id: tools.address_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-updates-existing-customer-address-6
+      description: Shopify Updates An Existing Customer Address
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-address.deprecatedunstableupdatecustomersparamcustomeridaddressesparamaddressid
+      with:
+        customer_id: tools.customer_id
+        address_id: tools.address_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-removes-address-customer-s-address-6
+      description: Shopify Removes An Address From A Customer’s Address List
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-address.deprecatedunstabledeletecustomersparamcustomeridaddressesparamaddressid
+      with:
+        customer_id: tools.customer_id
+        address_id: tools.address_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-sets-default-address-customer-6
+      description: Shopify Sets The Default Address For A Customer
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-address.deprecatedunstableupdatecustomersparamcustomeridaddressesparamaddressiddefault
+      with:
+        customer_id: tools.customer_id
+        address_id: tools.address_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-create-new-webhook-subscription-6
+      description: Shopify Create A New Webhook Subscription By Specifying Both An Address And A Topic
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-address.deprecatedunstablecreatewebhooks
+      with:
+        format: tools.format
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-update-webhook-subscription-s-topic-6
+      description: Shopify Update A Webhook Subscription's Topic Or Address Uris
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-address.deprecatedunstableupdatewebhooksparamwebhookid
+      with:
+        webhook_id: tools.webhook_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

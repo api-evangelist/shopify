@@ -1,0 +1,72 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Shopify Admin REST API — Access
+  description: 'Shopify Admin REST API — Access. 1 operations. Lead operation: Shopify Retrieve access scopes for the access
+    token. Self-contained Naftiko capability covering one Shopify business surface.'
+  tags:
+  - Shopify
+  - Access
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SHOPIFY_API_KEY: SHOPIFY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: admin-rest-access
+    baseUri: https://{store}.myshopify.com/admin/api/2025-01
+    description: Shopify Admin REST API — Access business capability. Self-contained, no shared references.
+    resources:
+    - name: admin-oauth-access_scopes.json
+      path: /admin/oauth/access_scopes.json
+      operations:
+      - name: listaccessscopes
+        method: GET
+        description: Shopify Retrieve access scopes for the access token
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: X-Shopify-Access-Token
+      value: '{{env.SHOPIFY_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: admin-rest-access-rest
+    port: 8080
+    description: REST adapter for Shopify Admin REST API — Access. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/admin/oauth/access-scopes-json
+      name: admin-oauth-access-scopes-json
+      description: REST surface for admin-oauth-access_scopes.json.
+      operations:
+      - method: GET
+        name: listaccessscopes
+        description: Shopify Retrieve access scopes for the access token
+        call: admin-rest-access.listaccessscopes
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: admin-rest-access-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Shopify Admin REST API — Access. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: shopify-retrieve-access-scopes-access
+      description: Shopify Retrieve access scopes for the access token
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: admin-rest-access.listaccessscopes
+      outputParameters:
+      - type: object
+        mapping: $.

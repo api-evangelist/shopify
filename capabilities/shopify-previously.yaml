@@ -1,0 +1,84 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Shopify  API — Previously
+  description: 'Shopify  API — Previously. 1 operations. Lead operation: Shopify Restores A Previously Removed Comment. Self-contained
+    Naftiko capability covering one Shopify business surface.'
+  tags:
+  - Shopify
+  - Previously
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SHOPIFY_API_KEY: SHOPIFY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: shopify-previously
+    baseUri: ''
+    description: Shopify  API — Previously business capability. Self-contained, no shared references.
+    resources:
+    - name: admin-api-2020-01-comments-comment_id-restore.json
+      path: /admin/api/2020-01/comments/{comment_id}/restore.json
+      operations:
+      - name: deprecated202001createcommentsparamcommentidrestore
+        method: POST
+        description: Shopify Restores A Previously Removed Comment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: comment_id
+          in: path
+          type: string
+          description: comment_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+  exposes:
+  - type: rest
+    namespace: shopify-previously-rest
+    port: 8080
+    description: REST adapter for Shopify  API — Previously. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/admin/api/2020-01/comments/{comment-id}/restore-json
+      name: admin-api-2020-01-comments-comment-id-restore-json
+      description: REST surface for admin-api-2020-01-comments-comment_id-restore.json.
+      operations:
+      - method: POST
+        name: deprecated202001createcommentsparamcommentidrestore
+        description: Shopify Restores A Previously Removed Comment
+        call: shopify-previously.deprecated202001createcommentsparamcommentidrestore
+        with:
+          comment_id: rest.comment_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: shopify-previously-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Shopify  API — Previously. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: shopify-restores-previously-removed-comment
+      description: Shopify Restores A Previously Removed Comment
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-previously.deprecated202001createcommentsparamcommentidrestore
+      with:
+        comment_id: tools.comment_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

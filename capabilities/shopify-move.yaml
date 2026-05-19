@@ -1,0 +1,311 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Shopify  API — Move
+  description: 'Shopify  API — Move. 6 operations. Lead operation: Shopify Retrieves A List Of Locations That A Fulfillment
+    Order Can Potentially Move To. Self-contained Naftiko capability covering one Shopify business surface.'
+  tags:
+  - Shopify
+  - Move
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SHOPIFY_API_KEY: SHOPIFY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: shopify-move
+    baseUri: ''
+    description: Shopify  API — Move business capability. Self-contained, no shared references.
+    resources:
+    - name: admin-api-2020-01-fulfillment_orders-fulfillment_order_id-locations_for_move.jso
+      path: /admin/api/2020-01/fulfillment_orders/{fulfillment_order_id}/locations_for_move.json
+      operations:
+      - name: deprecated202001getfulfillmentordersparamfulfillmentorderidlocationsformove
+        method: GET
+        description: Shopify Retrieves A List Of Locations That A Fulfillment Order Can Potentially Move To
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fulfillment_order_id
+          in: path
+          type: string
+          description: fulfillment_order_id
+          required: true
+        - name: fulfillment_order_id
+          in: query
+          type: string
+          description: The ID of the fulfillment order.
+    - name: admin-api-2020-04-fulfillment_orders-fulfillment_order_id-locations_for_move.jso
+      path: /admin/api/2020-04/fulfillment_orders/{fulfillment_order_id}/locations_for_move.json
+      operations:
+      - name: deprecated202004getfulfillmentordersparamfulfillmentorderidlocationsformove
+        method: GET
+        description: Shopify Retrieves A List Of Locations That A Fulfillment Order Can Potentially Move To
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fulfillment_order_id
+          in: path
+          type: string
+          description: fulfillment_order_id
+          required: true
+        - name: fulfillment_order_id
+          in: query
+          type: string
+          description: The ID of the fulfillment order.
+    - name: admin-api-2020-07-fulfillment_orders-fulfillment_order_id-locations_for_move.jso
+      path: /admin/api/2020-07/fulfillment_orders/{fulfillment_order_id}/locations_for_move.json
+      operations:
+      - name: deprecated202007getfulfillmentordersparamfulfillmentorderidlocationsformove
+        method: GET
+        description: Shopify Retrieves A List Of Locations That A Fulfillment Order Can Potentially Move To
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fulfillment_order_id
+          in: path
+          type: string
+          description: fulfillment_order_id
+          required: true
+        - name: fulfillment_order_id
+          in: query
+          type: string
+          description: The ID of the fulfillment order.
+    - name: admin-api-2020-10-fulfillment_orders-fulfillment_order_id-locations_for_move.jso
+      path: /admin/api/2020-10/fulfillment_orders/{fulfillment_order_id}/locations_for_move.json
+      operations:
+      - name: getfulfillmentordersparamfulfillmentorderidlocationsformove
+        method: GET
+        description: Shopify Retrieves A List Of Locations That A Fulfillment Order Can Potentially Move To
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fulfillment_order_id
+          in: path
+          type: string
+          description: fulfillment_order_id
+          required: true
+        - name: fulfillment_order_id
+          in: query
+          type: string
+          description: The ID of the fulfillment order.
+    - name: admin-api-2021-01-fulfillment_orders-fulfillment_order_id-locations_for_move.jso
+      path: /admin/api/2021-01/fulfillment_orders/{fulfillment_order_id}/locations_for_move.json
+      operations:
+      - name: deprecated202101getfulfillmentordersparamfulfillmentorderidlocationsformove
+        method: GET
+        description: Shopify Retrieves A List Of Locations That A Fulfillment Order Can Potentially Move To
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fulfillment_order_id
+          in: path
+          type: string
+          description: fulfillment_order_id
+          required: true
+        - name: fulfillment_order_id
+          in: query
+          type: string
+          description: The ID of the fulfillment order.
+    - name: admin-api-unstable-fulfillment_orders-fulfillment_order_id-locations_for_move.js
+      path: /admin/api/unstable/fulfillment_orders/{fulfillment_order_id}/locations_for_move.json
+      operations:
+      - name: deprecatedunstablegetfulfillmentordersparamfulfillmentorderidlocationsformove
+        method: GET
+        description: Shopify Retrieves A List Of Locations That A Fulfillment Order Can Potentially Move To
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fulfillment_order_id
+          in: path
+          type: string
+          description: fulfillment_order_id
+          required: true
+        - name: fulfillment_order_id
+          in: query
+          type: string
+          description: The ID of the fulfillment order.
+  exposes:
+  - type: rest
+    namespace: shopify-move-rest
+    port: 8080
+    description: REST adapter for Shopify  API — Move. One Spectral-compliant resource per consumed operation, prefixed with
+      /v1.
+    resources:
+    - path: /v1/admin/api/2020-01/fulfillment-orders/{fulfillment-order-id}/locations-for-move-json
+      name: admin-api-2020-01-fulfillment-orders-fulfillment-order-id-locations-for-move-jso
+      description: REST surface for admin-api-2020-01-fulfillment_orders-fulfillment_order_id-locations_for_move.jso.
+      operations:
+      - method: GET
+        name: deprecated202001getfulfillmentordersparamfulfillmentorderidlocationsformove
+        description: Shopify Retrieves A List Of Locations That A Fulfillment Order Can Potentially Move To
+        call: shopify-move.deprecated202001getfulfillmentordersparamfulfillmentorderidlocationsformove
+        with:
+          fulfillment_order_id: rest.fulfillment_order_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/fulfillment-orders/{fulfillment-order-id}/locations-for-move-json
+      name: admin-api-2020-04-fulfillment-orders-fulfillment-order-id-locations-for-move-jso
+      description: REST surface for admin-api-2020-04-fulfillment_orders-fulfillment_order_id-locations_for_move.jso.
+      operations:
+      - method: GET
+        name: deprecated202004getfulfillmentordersparamfulfillmentorderidlocationsformove
+        description: Shopify Retrieves A List Of Locations That A Fulfillment Order Can Potentially Move To
+        call: shopify-move.deprecated202004getfulfillmentordersparamfulfillmentorderidlocationsformove
+        with:
+          fulfillment_order_id: rest.fulfillment_order_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/fulfillment-orders/{fulfillment-order-id}/locations-for-move-json
+      name: admin-api-2020-07-fulfillment-orders-fulfillment-order-id-locations-for-move-jso
+      description: REST surface for admin-api-2020-07-fulfillment_orders-fulfillment_order_id-locations_for_move.jso.
+      operations:
+      - method: GET
+        name: deprecated202007getfulfillmentordersparamfulfillmentorderidlocationsformove
+        description: Shopify Retrieves A List Of Locations That A Fulfillment Order Can Potentially Move To
+        call: shopify-move.deprecated202007getfulfillmentordersparamfulfillmentorderidlocationsformove
+        with:
+          fulfillment_order_id: rest.fulfillment_order_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/fulfillment-orders/{fulfillment-order-id}/locations-for-move-json
+      name: admin-api-2020-10-fulfillment-orders-fulfillment-order-id-locations-for-move-jso
+      description: REST surface for admin-api-2020-10-fulfillment_orders-fulfillment_order_id-locations_for_move.jso.
+      operations:
+      - method: GET
+        name: getfulfillmentordersparamfulfillmentorderidlocationsformove
+        description: Shopify Retrieves A List Of Locations That A Fulfillment Order Can Potentially Move To
+        call: shopify-move.getfulfillmentordersparamfulfillmentorderidlocationsformove
+        with:
+          fulfillment_order_id: rest.fulfillment_order_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/fulfillment-orders/{fulfillment-order-id}/locations-for-move-json
+      name: admin-api-2021-01-fulfillment-orders-fulfillment-order-id-locations-for-move-jso
+      description: REST surface for admin-api-2021-01-fulfillment_orders-fulfillment_order_id-locations_for_move.jso.
+      operations:
+      - method: GET
+        name: deprecated202101getfulfillmentordersparamfulfillmentorderidlocationsformove
+        description: Shopify Retrieves A List Of Locations That A Fulfillment Order Can Potentially Move To
+        call: shopify-move.deprecated202101getfulfillmentordersparamfulfillmentorderidlocationsformove
+        with:
+          fulfillment_order_id: rest.fulfillment_order_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/fulfillment-orders/{fulfillment-order-id}/locations-for-move-json
+      name: admin-api-unstable-fulfillment-orders-fulfillment-order-id-locations-for-move-js
+      description: REST surface for admin-api-unstable-fulfillment_orders-fulfillment_order_id-locations_for_move.js.
+      operations:
+      - method: GET
+        name: deprecatedunstablegetfulfillmentordersparamfulfillmentorderidlocationsformove
+        description: Shopify Retrieves A List Of Locations That A Fulfillment Order Can Potentially Move To
+        call: shopify-move.deprecatedunstablegetfulfillmentordersparamfulfillmentorderidlocationsformove
+        with:
+          fulfillment_order_id: rest.fulfillment_order_id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: shopify-move-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Shopify  API — Move. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: shopify-retrieves-list-locations-that
+      description: Shopify Retrieves A List Of Locations That A Fulfillment Order Can Potentially Move To
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-move.deprecated202001getfulfillmentordersparamfulfillmentorderidlocationsformove
+      with:
+        fulfillment_order_id: tools.fulfillment_order_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-locations-that-2
+      description: Shopify Retrieves A List Of Locations That A Fulfillment Order Can Potentially Move To
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-move.deprecated202004getfulfillmentordersparamfulfillmentorderidlocationsformove
+      with:
+        fulfillment_order_id: tools.fulfillment_order_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-locations-that-3
+      description: Shopify Retrieves A List Of Locations That A Fulfillment Order Can Potentially Move To
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-move.deprecated202007getfulfillmentordersparamfulfillmentorderidlocationsformove
+      with:
+        fulfillment_order_id: tools.fulfillment_order_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-locations-that-4
+      description: Shopify Retrieves A List Of Locations That A Fulfillment Order Can Potentially Move To
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-move.getfulfillmentordersparamfulfillmentorderidlocationsformove
+      with:
+        fulfillment_order_id: tools.fulfillment_order_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-locations-that-5
+      description: Shopify Retrieves A List Of Locations That A Fulfillment Order Can Potentially Move To
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-move.deprecated202101getfulfillmentordersparamfulfillmentorderidlocationsformove
+      with:
+        fulfillment_order_id: tools.fulfillment_order_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-locations-that-6
+      description: Shopify Retrieves A List Of Locations That A Fulfillment Order Can Potentially Move To
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-move.deprecatedunstablegetfulfillmentordersparamfulfillmentorderidlocationsformove
+      with:
+        fulfillment_order_id: tools.fulfillment_order_id
+      outputParameters:
+      - type: object
+        mapping: $.

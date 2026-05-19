@@ -1,0 +1,707 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Shopify  API — Redirects
+  description: 'Shopify  API — Redirects. 12 operations. Lead operation: Shopify Retrieves A List Of Url Redirects. Self-contained
+    Naftiko capability covering one Shopify business surface.'
+  tags:
+  - Shopify
+  - Redirects
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SHOPIFY_API_KEY: SHOPIFY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: shopify-redirects
+    baseUri: ''
+    description: Shopify  API — Redirects business capability. Self-contained, no shared references.
+    resources:
+    - name: admin-api-2020-01-redirects.json
+      path: /admin/api/2020-01/redirects.json
+      operations:
+      - name: deprecated202001getredirects
+        method: GET
+        description: Shopify Retrieves A List Of Url Redirects
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: string
+          description: The maximum number of results to show.
+        - name: since_id
+          in: query
+          type: string
+          description: Restrict results to after the specified ID.
+        - name: path
+          in: query
+          type: string
+          description: Show redirects with a given path.
+        - name: target
+          in: query
+          type: string
+          description: Show redirects with a given target.
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+    - name: admin-api-2020-01-redirects-count.json
+      path: /admin/api/2020-01/redirects/count.json
+      operations:
+      - name: deprecated202001getredirectscount
+        method: GET
+        description: Shopify Retrieves A Count Of Url Redirects
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: path
+          in: query
+          type: string
+          description: Count redirects with given path.
+        - name: target
+          in: query
+          type: string
+          description: Count redirects with given target.
+    - name: admin-api-2020-04-redirects.json
+      path: /admin/api/2020-04/redirects.json
+      operations:
+      - name: deprecated202004getredirects
+        method: GET
+        description: Shopify Retrieves A List Of Url Redirects
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: string
+          description: The maximum number of results to show.
+        - name: since_id
+          in: query
+          type: string
+          description: Restrict results to after the specified ID.
+        - name: path
+          in: query
+          type: string
+          description: Show redirects with a given path.
+        - name: target
+          in: query
+          type: string
+          description: Show redirects with a given target.
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+    - name: admin-api-2020-04-redirects-count.json
+      path: /admin/api/2020-04/redirects/count.json
+      operations:
+      - name: deprecated202004getredirectscount
+        method: GET
+        description: Shopify Retrieves A Count Of Url Redirects
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: path
+          in: query
+          type: string
+          description: Count redirects with given path.
+        - name: target
+          in: query
+          type: string
+          description: Count redirects with given target.
+    - name: admin-api-2020-07-redirects.json
+      path: /admin/api/2020-07/redirects.json
+      operations:
+      - name: deprecated202007getredirects
+        method: GET
+        description: Shopify Retrieves A List Of Url Redirects
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: string
+          description: The maximum number of results to show.
+        - name: since_id
+          in: query
+          type: string
+          description: Restrict results to after the specified ID.
+        - name: path
+          in: query
+          type: string
+          description: Show redirects with a given path.
+        - name: target
+          in: query
+          type: string
+          description: Show redirects with a given target.
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+    - name: admin-api-2020-07-redirects-count.json
+      path: /admin/api/2020-07/redirects/count.json
+      operations:
+      - name: deprecated202007getredirectscount
+        method: GET
+        description: Shopify Retrieves A Count Of Url Redirects
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: path
+          in: query
+          type: string
+          description: Count redirects with given path.
+        - name: target
+          in: query
+          type: string
+          description: Count redirects with given target.
+    - name: admin-api-2020-10-redirects.json
+      path: /admin/api/2020-10/redirects.json
+      operations:
+      - name: getredirects
+        method: GET
+        description: Shopify Retrieves A List Of Url Redirects
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: string
+          description: The maximum number of results to show.
+        - name: since_id
+          in: query
+          type: string
+          description: Restrict results to after the specified ID.
+        - name: path
+          in: query
+          type: string
+          description: Show redirects with a given path.
+        - name: target
+          in: query
+          type: string
+          description: Show redirects with a given target.
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+    - name: admin-api-2020-10-redirects-count.json
+      path: /admin/api/2020-10/redirects/count.json
+      operations:
+      - name: getredirectscount
+        method: GET
+        description: Shopify Retrieves A Count Of Url Redirects
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: path
+          in: query
+          type: string
+          description: Count redirects with given path.
+        - name: target
+          in: query
+          type: string
+          description: Count redirects with given target.
+    - name: admin-api-2021-01-redirects.json
+      path: /admin/api/2021-01/redirects.json
+      operations:
+      - name: deprecated202101getredirects
+        method: GET
+        description: Shopify Retrieves A List Of Url Redirects
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: string
+          description: The maximum number of results to show.
+        - name: since_id
+          in: query
+          type: string
+          description: Restrict results to after the specified ID.
+        - name: path
+          in: query
+          type: string
+          description: Show redirects with a given path.
+        - name: target
+          in: query
+          type: string
+          description: Show redirects with a given target.
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+    - name: admin-api-2021-01-redirects-count.json
+      path: /admin/api/2021-01/redirects/count.json
+      operations:
+      - name: deprecated202101getredirectscount
+        method: GET
+        description: Shopify Retrieves A Count Of Url Redirects
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: path
+          in: query
+          type: string
+          description: Count redirects with given path.
+        - name: target
+          in: query
+          type: string
+          description: Count redirects with given target.
+    - name: admin-api-unstable-redirects.json
+      path: /admin/api/unstable/redirects.json
+      operations:
+      - name: deprecatedunstablegetredirects
+        method: GET
+        description: Shopify Retrieves A List Of Url Redirects
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: string
+          description: The maximum number of results to show.
+        - name: since_id
+          in: query
+          type: string
+          description: Restrict results to after the specified ID.
+        - name: path
+          in: query
+          type: string
+          description: Show redirects with a given path.
+        - name: target
+          in: query
+          type: string
+          description: Show redirects with a given target.
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+    - name: admin-api-unstable-redirects-count.json
+      path: /admin/api/unstable/redirects/count.json
+      operations:
+      - name: deprecatedunstablegetredirectscount
+        method: GET
+        description: Shopify Retrieves A Count Of Url Redirects
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: path
+          in: query
+          type: string
+          description: Count redirects with given path.
+        - name: target
+          in: query
+          type: string
+          description: Count redirects with given target.
+  exposes:
+  - type: rest
+    namespace: shopify-redirects-rest
+    port: 8080
+    description: REST adapter for Shopify  API — Redirects. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/admin/api/2020-01/redirects-json
+      name: admin-api-2020-01-redirects-json
+      description: REST surface for admin-api-2020-01-redirects.json.
+      operations:
+      - method: GET
+        name: deprecated202001getredirects
+        description: Shopify Retrieves A List Of Url Redirects
+        call: shopify-redirects.deprecated202001getredirects
+        with:
+          limit: rest.limit
+          since_id: rest.since_id
+          path: rest.path
+          target: rest.target
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-01/redirects/count-json
+      name: admin-api-2020-01-redirects-count-json
+      description: REST surface for admin-api-2020-01-redirects-count.json.
+      operations:
+      - method: GET
+        name: deprecated202001getredirectscount
+        description: Shopify Retrieves A Count Of Url Redirects
+        call: shopify-redirects.deprecated202001getredirectscount
+        with:
+          path: rest.path
+          target: rest.target
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/redirects-json
+      name: admin-api-2020-04-redirects-json
+      description: REST surface for admin-api-2020-04-redirects.json.
+      operations:
+      - method: GET
+        name: deprecated202004getredirects
+        description: Shopify Retrieves A List Of Url Redirects
+        call: shopify-redirects.deprecated202004getredirects
+        with:
+          limit: rest.limit
+          since_id: rest.since_id
+          path: rest.path
+          target: rest.target
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/redirects/count-json
+      name: admin-api-2020-04-redirects-count-json
+      description: REST surface for admin-api-2020-04-redirects-count.json.
+      operations:
+      - method: GET
+        name: deprecated202004getredirectscount
+        description: Shopify Retrieves A Count Of Url Redirects
+        call: shopify-redirects.deprecated202004getredirectscount
+        with:
+          path: rest.path
+          target: rest.target
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/redirects-json
+      name: admin-api-2020-07-redirects-json
+      description: REST surface for admin-api-2020-07-redirects.json.
+      operations:
+      - method: GET
+        name: deprecated202007getredirects
+        description: Shopify Retrieves A List Of Url Redirects
+        call: shopify-redirects.deprecated202007getredirects
+        with:
+          limit: rest.limit
+          since_id: rest.since_id
+          path: rest.path
+          target: rest.target
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/redirects/count-json
+      name: admin-api-2020-07-redirects-count-json
+      description: REST surface for admin-api-2020-07-redirects-count.json.
+      operations:
+      - method: GET
+        name: deprecated202007getredirectscount
+        description: Shopify Retrieves A Count Of Url Redirects
+        call: shopify-redirects.deprecated202007getredirectscount
+        with:
+          path: rest.path
+          target: rest.target
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/redirects-json
+      name: admin-api-2020-10-redirects-json
+      description: REST surface for admin-api-2020-10-redirects.json.
+      operations:
+      - method: GET
+        name: getredirects
+        description: Shopify Retrieves A List Of Url Redirects
+        call: shopify-redirects.getredirects
+        with:
+          limit: rest.limit
+          since_id: rest.since_id
+          path: rest.path
+          target: rest.target
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/redirects/count-json
+      name: admin-api-2020-10-redirects-count-json
+      description: REST surface for admin-api-2020-10-redirects-count.json.
+      operations:
+      - method: GET
+        name: getredirectscount
+        description: Shopify Retrieves A Count Of Url Redirects
+        call: shopify-redirects.getredirectscount
+        with:
+          path: rest.path
+          target: rest.target
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/redirects-json
+      name: admin-api-2021-01-redirects-json
+      description: REST surface for admin-api-2021-01-redirects.json.
+      operations:
+      - method: GET
+        name: deprecated202101getredirects
+        description: Shopify Retrieves A List Of Url Redirects
+        call: shopify-redirects.deprecated202101getredirects
+        with:
+          limit: rest.limit
+          since_id: rest.since_id
+          path: rest.path
+          target: rest.target
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/redirects/count-json
+      name: admin-api-2021-01-redirects-count-json
+      description: REST surface for admin-api-2021-01-redirects-count.json.
+      operations:
+      - method: GET
+        name: deprecated202101getredirectscount
+        description: Shopify Retrieves A Count Of Url Redirects
+        call: shopify-redirects.deprecated202101getredirectscount
+        with:
+          path: rest.path
+          target: rest.target
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/redirects-json
+      name: admin-api-unstable-redirects-json
+      description: REST surface for admin-api-unstable-redirects.json.
+      operations:
+      - method: GET
+        name: deprecatedunstablegetredirects
+        description: Shopify Retrieves A List Of Url Redirects
+        call: shopify-redirects.deprecatedunstablegetredirects
+        with:
+          limit: rest.limit
+          since_id: rest.since_id
+          path: rest.path
+          target: rest.target
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/redirects/count-json
+      name: admin-api-unstable-redirects-count-json
+      description: REST surface for admin-api-unstable-redirects-count.json.
+      operations:
+      - method: GET
+        name: deprecatedunstablegetredirectscount
+        description: Shopify Retrieves A Count Of Url Redirects
+        call: shopify-redirects.deprecatedunstablegetredirectscount
+        with:
+          path: rest.path
+          target: rest.target
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: shopify-redirects-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Shopify  API — Redirects. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: shopify-retrieves-list-url-redirects
+      description: Shopify Retrieves A List Of Url Redirects
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-redirects.deprecated202001getredirects
+      with:
+        limit: tools.limit
+        since_id: tools.since_id
+        path: tools.path
+        target: tools.target
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-count-url-redirects
+      description: Shopify Retrieves A Count Of Url Redirects
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-redirects.deprecated202001getredirectscount
+      with:
+        path: tools.path
+        target: tools.target
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-url-redirects-2
+      description: Shopify Retrieves A List Of Url Redirects
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-redirects.deprecated202004getredirects
+      with:
+        limit: tools.limit
+        since_id: tools.since_id
+        path: tools.path
+        target: tools.target
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-count-url-redirects-2
+      description: Shopify Retrieves A Count Of Url Redirects
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-redirects.deprecated202004getredirectscount
+      with:
+        path: tools.path
+        target: tools.target
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-url-redirects-3
+      description: Shopify Retrieves A List Of Url Redirects
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-redirects.deprecated202007getredirects
+      with:
+        limit: tools.limit
+        since_id: tools.since_id
+        path: tools.path
+        target: tools.target
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-count-url-redirects-3
+      description: Shopify Retrieves A Count Of Url Redirects
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-redirects.deprecated202007getredirectscount
+      with:
+        path: tools.path
+        target: tools.target
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-url-redirects-4
+      description: Shopify Retrieves A List Of Url Redirects
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-redirects.getredirects
+      with:
+        limit: tools.limit
+        since_id: tools.since_id
+        path: tools.path
+        target: tools.target
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-count-url-redirects-4
+      description: Shopify Retrieves A Count Of Url Redirects
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-redirects.getredirectscount
+      with:
+        path: tools.path
+        target: tools.target
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-url-redirects-5
+      description: Shopify Retrieves A List Of Url Redirects
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-redirects.deprecated202101getredirects
+      with:
+        limit: tools.limit
+        since_id: tools.since_id
+        path: tools.path
+        target: tools.target
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-count-url-redirects-5
+      description: Shopify Retrieves A Count Of Url Redirects
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-redirects.deprecated202101getredirectscount
+      with:
+        path: tools.path
+        target: tools.target
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-url-redirects-6
+      description: Shopify Retrieves A List Of Url Redirects
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-redirects.deprecatedunstablegetredirects
+      with:
+        limit: tools.limit
+        since_id: tools.since_id
+        path: tools.path
+        target: tools.target
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-count-url-redirects-6
+      description: Shopify Retrieves A Count Of Url Redirects
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-redirects.deprecatedunstablegetredirectscount
+      with:
+        path: tools.path
+        target: tools.target
+      outputParameters:
+      - type: object
+        mapping: $.

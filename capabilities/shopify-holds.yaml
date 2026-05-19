@@ -1,0 +1,83 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Shopify  API — Holds
+  description: 'Shopify  API — Holds. 1 operations. Lead operation: Shopify Releases The Fulfillment Order Holds For A Specific
+    Order. Self-contained Naftiko capability covering one Shopify business surface.'
+  tags:
+  - Shopify
+  - Holds
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SHOPIFY_API_KEY: SHOPIFY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: shopify-holds
+    baseUri: ''
+    description: Shopify  API — Holds business capability. Self-contained, no shared references.
+    resources:
+    - name: admin-api-unstable-fulfillment_orders-release_hold.json
+      path: /admin/api/unstable/fulfillment_orders/release_hold.json
+      operations:
+      - name: deprecatedunstablecreatefulfillmentordersreleasehold
+        method: POST
+        description: Shopify Releases The Fulfillment Order Holds For A Specific Order
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: order_id
+          in: query
+          type: string
+          description: The ID of the order that is associated to the fulfillment orders.
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+  exposes:
+  - type: rest
+    namespace: shopify-holds-rest
+    port: 8080
+    description: REST adapter for Shopify  API — Holds. One Spectral-compliant resource per consumed operation, prefixed with
+      /v1.
+    resources:
+    - path: /v1/admin/api/unstable/fulfillment-orders/release-hold-json
+      name: admin-api-unstable-fulfillment-orders-release-hold-json
+      description: REST surface for admin-api-unstable-fulfillment_orders-release_hold.json.
+      operations:
+      - method: POST
+        name: deprecatedunstablecreatefulfillmentordersreleasehold
+        description: Shopify Releases The Fulfillment Order Holds For A Specific Order
+        call: shopify-holds.deprecatedunstablecreatefulfillmentordersreleasehold
+        with:
+          order_id: rest.order_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: shopify-holds-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Shopify  API — Holds. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: shopify-releases-fulfillment-order-holds
+      description: Shopify Releases The Fulfillment Order Holds For A Specific Order
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-holds.deprecatedunstablecreatefulfillmentordersreleasehold
+      with:
+        order_id: tools.order_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

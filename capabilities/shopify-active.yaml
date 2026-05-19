@@ -1,0 +1,323 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Shopify  API — Active
+  description: 'Shopify  API — Active. 6 operations. Lead operation: Shopify Updates The Capped Amount Of An Active Recurring
+    Application Charge. Self-contained Naftiko capability covering one Shopify business surface.'
+  tags:
+  - Shopify
+  - Active
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SHOPIFY_API_KEY: SHOPIFY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: shopify-active
+    baseUri: ''
+    description: Shopify  API — Active business capability. Self-contained, no shared references.
+    resources:
+    - name: admin-api-2020-01-recurring_application_charges-recurring_application_charge_id-
+      path: /admin/api/2020-01/recurring_application_charges/{recurring_application_charge_id}/customize.json
+      operations:
+      - name: deprecated202001updaterecurringapplicationchargesparamrecurringapplicationchargeidcustomize
+        method: PUT
+        description: Shopify Updates The Capped Amount Of An Active Recurring Application Charge
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: recurring_application_charge_id
+          in: path
+          type: string
+          description: recurring_application_charge_id
+          required: true
+        - name: recurring_application_charge[capped_amount]
+          in: query
+          type: integer
+          description: recurring_application_charge[capped_amount]
+    - name: admin-api-2020-04-recurring_application_charges-recurring_application_charge_id-
+      path: /admin/api/2020-04/recurring_application_charges/{recurring_application_charge_id}/customize.json
+      operations:
+      - name: deprecated202004updaterecurringapplicationchargesparamrecurringapplicationchargeidcustomize
+        method: PUT
+        description: Shopify Updates The Capped Amount Of An Active Recurring Application Charge
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: recurring_application_charge_id
+          in: path
+          type: string
+          description: recurring_application_charge_id
+          required: true
+        - name: recurring_application_charge[capped_amount]
+          in: query
+          type: integer
+          description: recurring_application_charge[capped_amount]
+    - name: admin-api-2020-07-recurring_application_charges-recurring_application_charge_id-
+      path: /admin/api/2020-07/recurring_application_charges/{recurring_application_charge_id}/customize.json
+      operations:
+      - name: deprecated202007updaterecurringapplicationchargesparamrecurringapplicationchargeidcustomize
+        method: PUT
+        description: Shopify Updates The Capped Amount Of An Active Recurring Application Charge
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: recurring_application_charge_id
+          in: path
+          type: string
+          description: recurring_application_charge_id
+          required: true
+        - name: recurring_application_charge[capped_amount]
+          in: query
+          type: integer
+          description: recurring_application_charge[capped_amount]
+    - name: admin-api-2020-10-recurring_application_charges-recurring_application_charge_id-
+      path: /admin/api/2020-10/recurring_application_charges/{recurring_application_charge_id}/customize.json
+      operations:
+      - name: updaterecurringapplicationchargesparamrecurringapplicationchargeidcustomize
+        method: PUT
+        description: Shopify Updates The Capped Amount Of An Active Recurring Application Charge
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: recurring_application_charge_id
+          in: path
+          type: string
+          description: recurring_application_charge_id
+          required: true
+        - name: recurring_application_charge[capped_amount]
+          in: query
+          type: integer
+          description: recurring_application_charge[capped_amount]
+    - name: admin-api-2021-01-recurring_application_charges-recurring_application_charge_id-
+      path: /admin/api/2021-01/recurring_application_charges/{recurring_application_charge_id}/customize.json
+      operations:
+      - name: deprecated202101updaterecurringapplicationchargesparamrecurringapplicationchargeidcustomize
+        method: PUT
+        description: Shopify Updates The Capped Amount Of An Active Recurring Application Charge
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: recurring_application_charge_id
+          in: path
+          type: string
+          description: recurring_application_charge_id
+          required: true
+        - name: recurring_application_charge[capped_amount]
+          in: query
+          type: integer
+          description: recurring_application_charge[capped_amount]
+    - name: admin-api-unstable-recurring_application_charges-recurring_application_charge_id
+      path: /admin/api/unstable/recurring_application_charges/{recurring_application_charge_id}/customize.json
+      operations:
+      - name: deprecatedunstableupdaterecurringapplicationchargesparamrecurringapplicationchargeidcustomize
+        method: PUT
+        description: Shopify Updates The Capped Amount Of An Active Recurring Application Charge
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: recurring_application_charge_id
+          in: path
+          type: string
+          description: recurring_application_charge_id
+          required: true
+        - name: recurring_application_charge[capped_amount]
+          in: query
+          type: integer
+          description: recurring_application_charge[capped_amount]
+  exposes:
+  - type: rest
+    namespace: shopify-active-rest
+    port: 8080
+    description: REST adapter for Shopify  API — Active. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/admin/api/2020-01/recurring-application-charges/{recurring-application-charge-id}/customize-json
+      name: admin-api-2020-01-recurring-application-charges-recurring-application-charge-id
+      description: REST surface for admin-api-2020-01-recurring_application_charges-recurring_application_charge_id-.
+      operations:
+      - method: PUT
+        name: deprecated202001updaterecurringapplicationchargesparamrecurringapplicationchargeidcustomize
+        description: Shopify Updates The Capped Amount Of An Active Recurring Application Charge
+        call: shopify-active.deprecated202001updaterecurringapplicationchargesparamrecurringapplicationchargeidcustomize
+        with:
+          recurring_application_charge_id: rest.recurring_application_charge_id
+          recurring_application_charge[capped_amount]: rest.recurring_application_charge[capped_amount]
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/recurring-application-charges/{recurring-application-charge-id}/customize-json
+      name: admin-api-2020-04-recurring-application-charges-recurring-application-charge-id
+      description: REST surface for admin-api-2020-04-recurring_application_charges-recurring_application_charge_id-.
+      operations:
+      - method: PUT
+        name: deprecated202004updaterecurringapplicationchargesparamrecurringapplicationchargeidcustomize
+        description: Shopify Updates The Capped Amount Of An Active Recurring Application Charge
+        call: shopify-active.deprecated202004updaterecurringapplicationchargesparamrecurringapplicationchargeidcustomize
+        with:
+          recurring_application_charge_id: rest.recurring_application_charge_id
+          recurring_application_charge[capped_amount]: rest.recurring_application_charge[capped_amount]
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/recurring-application-charges/{recurring-application-charge-id}/customize-json
+      name: admin-api-2020-07-recurring-application-charges-recurring-application-charge-id
+      description: REST surface for admin-api-2020-07-recurring_application_charges-recurring_application_charge_id-.
+      operations:
+      - method: PUT
+        name: deprecated202007updaterecurringapplicationchargesparamrecurringapplicationchargeidcustomize
+        description: Shopify Updates The Capped Amount Of An Active Recurring Application Charge
+        call: shopify-active.deprecated202007updaterecurringapplicationchargesparamrecurringapplicationchargeidcustomize
+        with:
+          recurring_application_charge_id: rest.recurring_application_charge_id
+          recurring_application_charge[capped_amount]: rest.recurring_application_charge[capped_amount]
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/recurring-application-charges/{recurring-application-charge-id}/customize-json
+      name: admin-api-2020-10-recurring-application-charges-recurring-application-charge-id
+      description: REST surface for admin-api-2020-10-recurring_application_charges-recurring_application_charge_id-.
+      operations:
+      - method: PUT
+        name: updaterecurringapplicationchargesparamrecurringapplicationchargeidcustomize
+        description: Shopify Updates The Capped Amount Of An Active Recurring Application Charge
+        call: shopify-active.updaterecurringapplicationchargesparamrecurringapplicationchargeidcustomize
+        with:
+          recurring_application_charge_id: rest.recurring_application_charge_id
+          recurring_application_charge[capped_amount]: rest.recurring_application_charge[capped_amount]
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/recurring-application-charges/{recurring-application-charge-id}/customize-json
+      name: admin-api-2021-01-recurring-application-charges-recurring-application-charge-id
+      description: REST surface for admin-api-2021-01-recurring_application_charges-recurring_application_charge_id-.
+      operations:
+      - method: PUT
+        name: deprecated202101updaterecurringapplicationchargesparamrecurringapplicationchargeidcustomize
+        description: Shopify Updates The Capped Amount Of An Active Recurring Application Charge
+        call: shopify-active.deprecated202101updaterecurringapplicationchargesparamrecurringapplicationchargeidcustomize
+        with:
+          recurring_application_charge_id: rest.recurring_application_charge_id
+          recurring_application_charge[capped_amount]: rest.recurring_application_charge[capped_amount]
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/recurring-application-charges/{recurring-application-charge-id}/customize-json
+      name: admin-api-unstable-recurring-application-charges-recurring-application-charge-id
+      description: REST surface for admin-api-unstable-recurring_application_charges-recurring_application_charge_id.
+      operations:
+      - method: PUT
+        name: deprecatedunstableupdaterecurringapplicationchargesparamrecurringapplicationchargeidcustomize
+        description: Shopify Updates The Capped Amount Of An Active Recurring Application Charge
+        call: shopify-active.deprecatedunstableupdaterecurringapplicationchargesparamrecurringapplicationchargeidcustomize
+        with:
+          recurring_application_charge_id: rest.recurring_application_charge_id
+          recurring_application_charge[capped_amount]: rest.recurring_application_charge[capped_amount]
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: shopify-active-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Shopify  API — Active. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: shopify-updates-capped-amount-active
+      description: Shopify Updates The Capped Amount Of An Active Recurring Application Charge
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-active.deprecated202001updaterecurringapplicationchargesparamrecurringapplicationchargeidcustomize
+      with:
+        recurring_application_charge_id: tools.recurring_application_charge_id
+        recurring_application_charge[capped_amount]: tools.recurring_application_charge[capped_amount]
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-updates-capped-amount-active-2
+      description: Shopify Updates The Capped Amount Of An Active Recurring Application Charge
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-active.deprecated202004updaterecurringapplicationchargesparamrecurringapplicationchargeidcustomize
+      with:
+        recurring_application_charge_id: tools.recurring_application_charge_id
+        recurring_application_charge[capped_amount]: tools.recurring_application_charge[capped_amount]
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-updates-capped-amount-active-3
+      description: Shopify Updates The Capped Amount Of An Active Recurring Application Charge
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-active.deprecated202007updaterecurringapplicationchargesparamrecurringapplicationchargeidcustomize
+      with:
+        recurring_application_charge_id: tools.recurring_application_charge_id
+        recurring_application_charge[capped_amount]: tools.recurring_application_charge[capped_amount]
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-updates-capped-amount-active-4
+      description: Shopify Updates The Capped Amount Of An Active Recurring Application Charge
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-active.updaterecurringapplicationchargesparamrecurringapplicationchargeidcustomize
+      with:
+        recurring_application_charge_id: tools.recurring_application_charge_id
+        recurring_application_charge[capped_amount]: tools.recurring_application_charge[capped_amount]
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-updates-capped-amount-active-5
+      description: Shopify Updates The Capped Amount Of An Active Recurring Application Charge
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-active.deprecated202101updaterecurringapplicationchargesparamrecurringapplicationchargeidcustomize
+      with:
+        recurring_application_charge_id: tools.recurring_application_charge_id
+        recurring_application_charge[capped_amount]: tools.recurring_application_charge[capped_amount]
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-updates-capped-amount-active-6
+      description: Shopify Updates The Capped Amount Of An Active Recurring Application Charge
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-active.deprecatedunstableupdaterecurringapplicationchargesparamrecurringapplicationchargeidcustomize
+      with:
+        recurring_application_charge_id: tools.recurring_application_charge_id
+        recurring_application_charge[capped_amount]: tools.recurring_application_charge[capped_amount]
+      outputParameters:
+      - type: object
+        mapping: $.

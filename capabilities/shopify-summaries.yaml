@@ -1,0 +1,1295 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Shopify  API — Summaries
+  description: 'Shopify  API — Summaries. 30 operations. Lead operation: Shopify Needs a summary. Self-contained Naftiko capability
+    covering one Shopify business surface.'
+  tags:
+  - Shopify
+  - Summaries
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SHOPIFY_API_KEY: SHOPIFY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: shopify-summaries
+    baseUri: ''
+    description: Shopify  API — Summaries business capability. Self-contained, no shared references.
+    resources:
+    - name: admin-api-2020-01-fulfillment_services.json
+      path: /admin/api/2020-01/fulfillment_services.json
+      operations:
+      - name: deprecated202001getfulfillmentservices
+        method: GET
+        description: Shopify Needs a summary
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: scope
+          in: query
+          type: string
+          description: 'current_client: Returns fulfillment providers that have been created by the app sending the request
+            (default)'
+    - name: admin-api-2020-01-fulfillment_services-fulfillment_service_id}.json
+      path: /admin/api/2020-01/fulfillment_services/{fulfillment_service_id}.json
+      operations:
+      - name: deprecated202001getfulfillmentservicesparamfulfillmentserviceid
+        method: GET
+        description: Shopify Needs a summary
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fulfillment_service_id
+          in: path
+          type: string
+          description: fulfillment_service_id
+          required: true
+      - name: deprecated202001updatefulfillmentservicesparamfulfillmentserviceid
+        method: PUT
+        description: Shopify Needs a summary
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fulfillment_service_id
+          in: path
+          type: string
+          description: fulfillment_service_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deprecated202001deletefulfillmentservicesparamfulfillmentserviceid
+        method: DELETE
+        description: Shopify Needs a summary
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fulfillment_service_id
+          in: path
+          type: string
+          description: fulfillment_service_id
+          required: true
+    - name: admin-api-2020-01-products-product_id-images-image_id}.json
+      path: /admin/api/2020-01/products/{product_id}/images/{image_id}.json
+      operations:
+      - name: deprecated202001deleteproductsparamproductidimagesparamimageid
+        method: DELETE
+        description: Shopify Needs a summary
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_id
+          in: path
+          type: string
+          description: product_id
+          required: true
+        - name: image_id
+          in: path
+          type: string
+          description: image_id
+          required: true
+    - name: admin-api-2020-04-fulfillment_services.json
+      path: /admin/api/2020-04/fulfillment_services.json
+      operations:
+      - name: deprecated202004getfulfillmentservices
+        method: GET
+        description: Shopify Needs a summary
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: scope
+          in: query
+          type: string
+          description: 'current_client: Returns fulfillment providers that have been created by the app sending the request
+            (default)'
+    - name: admin-api-2020-04-fulfillment_services-fulfillment_service_id}.json
+      path: /admin/api/2020-04/fulfillment_services/{fulfillment_service_id}.json
+      operations:
+      - name: deprecated202004getfulfillmentservicesparamfulfillmentserviceid
+        method: GET
+        description: Shopify Needs a summary
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fulfillment_service_id
+          in: path
+          type: string
+          description: fulfillment_service_id
+          required: true
+      - name: deprecated202004updatefulfillmentservicesparamfulfillmentserviceid
+        method: PUT
+        description: Shopify Needs a summary
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fulfillment_service_id
+          in: path
+          type: string
+          description: fulfillment_service_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deprecated202004deletefulfillmentservicesparamfulfillmentserviceid
+        method: DELETE
+        description: Shopify Needs a summary
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fulfillment_service_id
+          in: path
+          type: string
+          description: fulfillment_service_id
+          required: true
+    - name: admin-api-2020-04-products-product_id-images-image_id}.json
+      path: /admin/api/2020-04/products/{product_id}/images/{image_id}.json
+      operations:
+      - name: deprecated202004deleteproductsparamproductidimagesparamimageid
+        method: DELETE
+        description: Shopify Needs a summary
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_id
+          in: path
+          type: string
+          description: product_id
+          required: true
+        - name: image_id
+          in: path
+          type: string
+          description: image_id
+          required: true
+    - name: admin-api-2020-07-fulfillment_services.json
+      path: /admin/api/2020-07/fulfillment_services.json
+      operations:
+      - name: deprecated202007getfulfillmentservices
+        method: GET
+        description: Shopify Needs a summary
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: scope
+          in: query
+          type: string
+          description: 'current_client: Returns fulfillment providers that have been created by the app sending the request
+            (default)'
+    - name: admin-api-2020-07-fulfillment_services-fulfillment_service_id}.json
+      path: /admin/api/2020-07/fulfillment_services/{fulfillment_service_id}.json
+      operations:
+      - name: deprecated202007getfulfillmentservicesparamfulfillmentserviceid
+        method: GET
+        description: Shopify Needs a summary
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fulfillment_service_id
+          in: path
+          type: string
+          description: fulfillment_service_id
+          required: true
+      - name: deprecated202007updatefulfillmentservicesparamfulfillmentserviceid
+        method: PUT
+        description: Shopify Needs a summary
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fulfillment_service_id
+          in: path
+          type: string
+          description: fulfillment_service_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deprecated202007deletefulfillmentservicesparamfulfillmentserviceid
+        method: DELETE
+        description: Shopify Needs a summary
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fulfillment_service_id
+          in: path
+          type: string
+          description: fulfillment_service_id
+          required: true
+    - name: admin-api-2020-07-products-product_id-images-image_id}.json
+      path: /admin/api/2020-07/products/{product_id}/images/{image_id}.json
+      operations:
+      - name: deprecated202007deleteproductsparamproductidimagesparamimageid
+        method: DELETE
+        description: Shopify Needs a summary
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_id
+          in: path
+          type: string
+          description: product_id
+          required: true
+        - name: image_id
+          in: path
+          type: string
+          description: image_id
+          required: true
+    - name: admin-api-2020-10-fulfillment_services.json
+      path: /admin/api/2020-10/fulfillment_services.json
+      operations:
+      - name: getfulfillmentservices
+        method: GET
+        description: Shopify Needs a summary
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: scope
+          in: query
+          type: string
+          description: 'current_client: Returns fulfillment providers that have been created by the app sending the request
+            (default)'
+    - name: admin-api-2020-10-fulfillment_services-fulfillment_service_id}.json
+      path: /admin/api/2020-10/fulfillment_services/{fulfillment_service_id}.json
+      operations:
+      - name: getfulfillmentservicesparamfulfillmentserviceid
+        method: GET
+        description: Shopify Needs a summary
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fulfillment_service_id
+          in: path
+          type: string
+          description: fulfillment_service_id
+          required: true
+      - name: updatefulfillmentservicesparamfulfillmentserviceid
+        method: PUT
+        description: Shopify Needs a summary
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fulfillment_service_id
+          in: path
+          type: string
+          description: fulfillment_service_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deletefulfillmentservicesparamfulfillmentserviceid
+        method: DELETE
+        description: Shopify Needs a summary
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fulfillment_service_id
+          in: path
+          type: string
+          description: fulfillment_service_id
+          required: true
+    - name: admin-api-2020-10-products-product_id-images-image_id}.json
+      path: /admin/api/2020-10/products/{product_id}/images/{image_id}.json
+      operations:
+      - name: deleteproductsparamproductidimagesparamimageid
+        method: DELETE
+        description: Shopify Needs a summary
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_id
+          in: path
+          type: string
+          description: product_id
+          required: true
+        - name: image_id
+          in: path
+          type: string
+          description: image_id
+          required: true
+    - name: admin-api-2021-01-fulfillment_services.json
+      path: /admin/api/2021-01/fulfillment_services.json
+      operations:
+      - name: deprecated202101getfulfillmentservices
+        method: GET
+        description: Shopify Needs a summary
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: scope
+          in: query
+          type: string
+          description: 'current_client: Returns fulfillment providers that have been created by the app sending the request
+            (default)'
+    - name: admin-api-2021-01-fulfillment_services-fulfillment_service_id}.json
+      path: /admin/api/2021-01/fulfillment_services/{fulfillment_service_id}.json
+      operations:
+      - name: deprecated202101getfulfillmentservicesparamfulfillmentserviceid
+        method: GET
+        description: Shopify Needs a summary
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fulfillment_service_id
+          in: path
+          type: string
+          description: fulfillment_service_id
+          required: true
+      - name: deprecated202101updatefulfillmentservicesparamfulfillmentserviceid
+        method: PUT
+        description: Shopify Needs a summary
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fulfillment_service_id
+          in: path
+          type: string
+          description: fulfillment_service_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deprecated202101deletefulfillmentservicesparamfulfillmentserviceid
+        method: DELETE
+        description: Shopify Needs a summary
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fulfillment_service_id
+          in: path
+          type: string
+          description: fulfillment_service_id
+          required: true
+    - name: admin-api-2021-01-products-product_id-images-image_id}.json
+      path: /admin/api/2021-01/products/{product_id}/images/{image_id}.json
+      operations:
+      - name: deprecated202101deleteproductsparamproductidimagesparamimageid
+        method: DELETE
+        description: Shopify Needs a summary
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_id
+          in: path
+          type: string
+          description: product_id
+          required: true
+        - name: image_id
+          in: path
+          type: string
+          description: image_id
+          required: true
+    - name: admin-api-unstable-fulfillment_services.json
+      path: /admin/api/unstable/fulfillment_services.json
+      operations:
+      - name: deprecatedunstablegetfulfillmentservices
+        method: GET
+        description: Shopify Needs a summary
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: scope
+          in: query
+          type: string
+          description: 'current_client: Returns fulfillment providers that have been created by the app sending the request
+            (default)'
+    - name: admin-api-unstable-fulfillment_services-fulfillment_service_id}.json
+      path: /admin/api/unstable/fulfillment_services/{fulfillment_service_id}.json
+      operations:
+      - name: deprecatedunstablegetfulfillmentservicesparamfulfillmentserviceid
+        method: GET
+        description: Shopify Needs a summary
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fulfillment_service_id
+          in: path
+          type: string
+          description: fulfillment_service_id
+          required: true
+      - name: deprecatedunstableupdatefulfillmentservicesparamfulfillmentserviceid
+        method: PUT
+        description: Shopify Needs a summary
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fulfillment_service_id
+          in: path
+          type: string
+          description: fulfillment_service_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deprecatedunstabledeletefulfillmentservicesparamfulfillmentserviceid
+        method: DELETE
+        description: Shopify Needs a summary
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fulfillment_service_id
+          in: path
+          type: string
+          description: fulfillment_service_id
+          required: true
+    - name: admin-api-unstable-products-product_id-images-image_id}.json
+      path: /admin/api/unstable/products/{product_id}/images/{image_id}.json
+      operations:
+      - name: deprecatedunstabledeleteproductsparamproductidimagesparamimageid
+        method: DELETE
+        description: Shopify Needs a summary
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_id
+          in: path
+          type: string
+          description: product_id
+          required: true
+        - name: image_id
+          in: path
+          type: string
+          description: image_id
+          required: true
+  exposes:
+  - type: rest
+    namespace: shopify-summaries-rest
+    port: 8080
+    description: REST adapter for Shopify  API — Summaries. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/admin/api/2020-01/fulfillment-services-json
+      name: admin-api-2020-01-fulfillment-services-json
+      description: REST surface for admin-api-2020-01-fulfillment_services.json.
+      operations:
+      - method: GET
+        name: deprecated202001getfulfillmentservices
+        description: Shopify Needs a summary
+        call: shopify-summaries.deprecated202001getfulfillmentservices
+        with:
+          scope: rest.scope
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-01/fulfillment-services/fulfillment-service-id-json
+      name: admin-api-2020-01-fulfillment-services-fulfillment-service-id-json
+      description: REST surface for admin-api-2020-01-fulfillment_services-fulfillment_service_id}.json.
+      operations:
+      - method: GET
+        name: deprecated202001getfulfillmentservicesparamfulfillmentserviceid
+        description: Shopify Needs a summary
+        call: shopify-summaries.deprecated202001getfulfillmentservicesparamfulfillmentserviceid
+        with:
+          fulfillment_service_id: rest.fulfillment_service_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: deprecated202001updatefulfillmentservicesparamfulfillmentserviceid
+        description: Shopify Needs a summary
+        call: shopify-summaries.deprecated202001updatefulfillmentservicesparamfulfillmentserviceid
+        with:
+          fulfillment_service_id: rest.fulfillment_service_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deprecated202001deletefulfillmentservicesparamfulfillmentserviceid
+        description: Shopify Needs a summary
+        call: shopify-summaries.deprecated202001deletefulfillmentservicesparamfulfillmentserviceid
+        with:
+          fulfillment_service_id: rest.fulfillment_service_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-01/products/{product-id}/images/image-id-json
+      name: admin-api-2020-01-products-product-id-images-image-id-json
+      description: REST surface for admin-api-2020-01-products-product_id-images-image_id}.json.
+      operations:
+      - method: DELETE
+        name: deprecated202001deleteproductsparamproductidimagesparamimageid
+        description: Shopify Needs a summary
+        call: shopify-summaries.deprecated202001deleteproductsparamproductidimagesparamimageid
+        with:
+          product_id: rest.product_id
+          image_id: rest.image_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/fulfillment-services-json
+      name: admin-api-2020-04-fulfillment-services-json
+      description: REST surface for admin-api-2020-04-fulfillment_services.json.
+      operations:
+      - method: GET
+        name: deprecated202004getfulfillmentservices
+        description: Shopify Needs a summary
+        call: shopify-summaries.deprecated202004getfulfillmentservices
+        with:
+          scope: rest.scope
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/fulfillment-services/fulfillment-service-id-json
+      name: admin-api-2020-04-fulfillment-services-fulfillment-service-id-json
+      description: REST surface for admin-api-2020-04-fulfillment_services-fulfillment_service_id}.json.
+      operations:
+      - method: GET
+        name: deprecated202004getfulfillmentservicesparamfulfillmentserviceid
+        description: Shopify Needs a summary
+        call: shopify-summaries.deprecated202004getfulfillmentservicesparamfulfillmentserviceid
+        with:
+          fulfillment_service_id: rest.fulfillment_service_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: deprecated202004updatefulfillmentservicesparamfulfillmentserviceid
+        description: Shopify Needs a summary
+        call: shopify-summaries.deprecated202004updatefulfillmentservicesparamfulfillmentserviceid
+        with:
+          fulfillment_service_id: rest.fulfillment_service_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deprecated202004deletefulfillmentservicesparamfulfillmentserviceid
+        description: Shopify Needs a summary
+        call: shopify-summaries.deprecated202004deletefulfillmentservicesparamfulfillmentserviceid
+        with:
+          fulfillment_service_id: rest.fulfillment_service_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/products/{product-id}/images/image-id-json
+      name: admin-api-2020-04-products-product-id-images-image-id-json
+      description: REST surface for admin-api-2020-04-products-product_id-images-image_id}.json.
+      operations:
+      - method: DELETE
+        name: deprecated202004deleteproductsparamproductidimagesparamimageid
+        description: Shopify Needs a summary
+        call: shopify-summaries.deprecated202004deleteproductsparamproductidimagesparamimageid
+        with:
+          product_id: rest.product_id
+          image_id: rest.image_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/fulfillment-services-json
+      name: admin-api-2020-07-fulfillment-services-json
+      description: REST surface for admin-api-2020-07-fulfillment_services.json.
+      operations:
+      - method: GET
+        name: deprecated202007getfulfillmentservices
+        description: Shopify Needs a summary
+        call: shopify-summaries.deprecated202007getfulfillmentservices
+        with:
+          scope: rest.scope
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/fulfillment-services/fulfillment-service-id-json
+      name: admin-api-2020-07-fulfillment-services-fulfillment-service-id-json
+      description: REST surface for admin-api-2020-07-fulfillment_services-fulfillment_service_id}.json.
+      operations:
+      - method: GET
+        name: deprecated202007getfulfillmentservicesparamfulfillmentserviceid
+        description: Shopify Needs a summary
+        call: shopify-summaries.deprecated202007getfulfillmentservicesparamfulfillmentserviceid
+        with:
+          fulfillment_service_id: rest.fulfillment_service_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: deprecated202007updatefulfillmentservicesparamfulfillmentserviceid
+        description: Shopify Needs a summary
+        call: shopify-summaries.deprecated202007updatefulfillmentservicesparamfulfillmentserviceid
+        with:
+          fulfillment_service_id: rest.fulfillment_service_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deprecated202007deletefulfillmentservicesparamfulfillmentserviceid
+        description: Shopify Needs a summary
+        call: shopify-summaries.deprecated202007deletefulfillmentservicesparamfulfillmentserviceid
+        with:
+          fulfillment_service_id: rest.fulfillment_service_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/products/{product-id}/images/image-id-json
+      name: admin-api-2020-07-products-product-id-images-image-id-json
+      description: REST surface for admin-api-2020-07-products-product_id-images-image_id}.json.
+      operations:
+      - method: DELETE
+        name: deprecated202007deleteproductsparamproductidimagesparamimageid
+        description: Shopify Needs a summary
+        call: shopify-summaries.deprecated202007deleteproductsparamproductidimagesparamimageid
+        with:
+          product_id: rest.product_id
+          image_id: rest.image_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/fulfillment-services-json
+      name: admin-api-2020-10-fulfillment-services-json
+      description: REST surface for admin-api-2020-10-fulfillment_services.json.
+      operations:
+      - method: GET
+        name: getfulfillmentservices
+        description: Shopify Needs a summary
+        call: shopify-summaries.getfulfillmentservices
+        with:
+          scope: rest.scope
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/fulfillment-services/fulfillment-service-id-json
+      name: admin-api-2020-10-fulfillment-services-fulfillment-service-id-json
+      description: REST surface for admin-api-2020-10-fulfillment_services-fulfillment_service_id}.json.
+      operations:
+      - method: GET
+        name: getfulfillmentservicesparamfulfillmentserviceid
+        description: Shopify Needs a summary
+        call: shopify-summaries.getfulfillmentservicesparamfulfillmentserviceid
+        with:
+          fulfillment_service_id: rest.fulfillment_service_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updatefulfillmentservicesparamfulfillmentserviceid
+        description: Shopify Needs a summary
+        call: shopify-summaries.updatefulfillmentservicesparamfulfillmentserviceid
+        with:
+          fulfillment_service_id: rest.fulfillment_service_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletefulfillmentservicesparamfulfillmentserviceid
+        description: Shopify Needs a summary
+        call: shopify-summaries.deletefulfillmentservicesparamfulfillmentserviceid
+        with:
+          fulfillment_service_id: rest.fulfillment_service_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/products/{product-id}/images/image-id-json
+      name: admin-api-2020-10-products-product-id-images-image-id-json
+      description: REST surface for admin-api-2020-10-products-product_id-images-image_id}.json.
+      operations:
+      - method: DELETE
+        name: deleteproductsparamproductidimagesparamimageid
+        description: Shopify Needs a summary
+        call: shopify-summaries.deleteproductsparamproductidimagesparamimageid
+        with:
+          product_id: rest.product_id
+          image_id: rest.image_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/fulfillment-services-json
+      name: admin-api-2021-01-fulfillment-services-json
+      description: REST surface for admin-api-2021-01-fulfillment_services.json.
+      operations:
+      - method: GET
+        name: deprecated202101getfulfillmentservices
+        description: Shopify Needs a summary
+        call: shopify-summaries.deprecated202101getfulfillmentservices
+        with:
+          scope: rest.scope
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/fulfillment-services/fulfillment-service-id-json
+      name: admin-api-2021-01-fulfillment-services-fulfillment-service-id-json
+      description: REST surface for admin-api-2021-01-fulfillment_services-fulfillment_service_id}.json.
+      operations:
+      - method: GET
+        name: deprecated202101getfulfillmentservicesparamfulfillmentserviceid
+        description: Shopify Needs a summary
+        call: shopify-summaries.deprecated202101getfulfillmentservicesparamfulfillmentserviceid
+        with:
+          fulfillment_service_id: rest.fulfillment_service_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: deprecated202101updatefulfillmentservicesparamfulfillmentserviceid
+        description: Shopify Needs a summary
+        call: shopify-summaries.deprecated202101updatefulfillmentservicesparamfulfillmentserviceid
+        with:
+          fulfillment_service_id: rest.fulfillment_service_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deprecated202101deletefulfillmentservicesparamfulfillmentserviceid
+        description: Shopify Needs a summary
+        call: shopify-summaries.deprecated202101deletefulfillmentservicesparamfulfillmentserviceid
+        with:
+          fulfillment_service_id: rest.fulfillment_service_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/products/{product-id}/images/image-id-json
+      name: admin-api-2021-01-products-product-id-images-image-id-json
+      description: REST surface for admin-api-2021-01-products-product_id-images-image_id}.json.
+      operations:
+      - method: DELETE
+        name: deprecated202101deleteproductsparamproductidimagesparamimageid
+        description: Shopify Needs a summary
+        call: shopify-summaries.deprecated202101deleteproductsparamproductidimagesparamimageid
+        with:
+          product_id: rest.product_id
+          image_id: rest.image_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/fulfillment-services-json
+      name: admin-api-unstable-fulfillment-services-json
+      description: REST surface for admin-api-unstable-fulfillment_services.json.
+      operations:
+      - method: GET
+        name: deprecatedunstablegetfulfillmentservices
+        description: Shopify Needs a summary
+        call: shopify-summaries.deprecatedunstablegetfulfillmentservices
+        with:
+          scope: rest.scope
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/fulfillment-services/fulfillment-service-id-json
+      name: admin-api-unstable-fulfillment-services-fulfillment-service-id-json
+      description: REST surface for admin-api-unstable-fulfillment_services-fulfillment_service_id}.json.
+      operations:
+      - method: GET
+        name: deprecatedunstablegetfulfillmentservicesparamfulfillmentserviceid
+        description: Shopify Needs a summary
+        call: shopify-summaries.deprecatedunstablegetfulfillmentservicesparamfulfillmentserviceid
+        with:
+          fulfillment_service_id: rest.fulfillment_service_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: deprecatedunstableupdatefulfillmentservicesparamfulfillmentserviceid
+        description: Shopify Needs a summary
+        call: shopify-summaries.deprecatedunstableupdatefulfillmentservicesparamfulfillmentserviceid
+        with:
+          fulfillment_service_id: rest.fulfillment_service_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deprecatedunstabledeletefulfillmentservicesparamfulfillmentserviceid
+        description: Shopify Needs a summary
+        call: shopify-summaries.deprecatedunstabledeletefulfillmentservicesparamfulfillmentserviceid
+        with:
+          fulfillment_service_id: rest.fulfillment_service_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/products/{product-id}/images/image-id-json
+      name: admin-api-unstable-products-product-id-images-image-id-json
+      description: REST surface for admin-api-unstable-products-product_id-images-image_id}.json.
+      operations:
+      - method: DELETE
+        name: deprecatedunstabledeleteproductsparamproductidimagesparamimageid
+        description: Shopify Needs a summary
+        call: shopify-summaries.deprecatedunstabledeleteproductsparamproductidimagesparamimageid
+        with:
+          product_id: rest.product_id
+          image_id: rest.image_id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: shopify-summaries-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Shopify  API — Summaries. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: shopify-needs-summary
+      description: Shopify Needs a summary
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-summaries.deprecated202001getfulfillmentservices
+      with:
+        scope: tools.scope
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-needs-summary-2
+      description: Shopify Needs a summary
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-summaries.deprecated202001getfulfillmentservicesparamfulfillmentserviceid
+      with:
+        fulfillment_service_id: tools.fulfillment_service_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-needs-summary-3
+      description: Shopify Needs a summary
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-summaries.deprecated202001updatefulfillmentservicesparamfulfillmentserviceid
+      with:
+        fulfillment_service_id: tools.fulfillment_service_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-needs-summary-4
+      description: Shopify Needs a summary
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-summaries.deprecated202001deletefulfillmentservicesparamfulfillmentserviceid
+      with:
+        fulfillment_service_id: tools.fulfillment_service_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-needs-summary-5
+      description: Shopify Needs a summary
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-summaries.deprecated202001deleteproductsparamproductidimagesparamimageid
+      with:
+        product_id: tools.product_id
+        image_id: tools.image_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-needs-summary-6
+      description: Shopify Needs a summary
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-summaries.deprecated202004getfulfillmentservices
+      with:
+        scope: tools.scope
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-needs-summary-7
+      description: Shopify Needs a summary
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-summaries.deprecated202004getfulfillmentservicesparamfulfillmentserviceid
+      with:
+        fulfillment_service_id: tools.fulfillment_service_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-needs-summary-8
+      description: Shopify Needs a summary
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-summaries.deprecated202004updatefulfillmentservicesparamfulfillmentserviceid
+      with:
+        fulfillment_service_id: tools.fulfillment_service_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-needs-summary-9
+      description: Shopify Needs a summary
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-summaries.deprecated202004deletefulfillmentservicesparamfulfillmentserviceid
+      with:
+        fulfillment_service_id: tools.fulfillment_service_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-needs-summary-10
+      description: Shopify Needs a summary
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-summaries.deprecated202004deleteproductsparamproductidimagesparamimageid
+      with:
+        product_id: tools.product_id
+        image_id: tools.image_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-needs-summary-11
+      description: Shopify Needs a summary
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-summaries.deprecated202007getfulfillmentservices
+      with:
+        scope: tools.scope
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-needs-summary-12
+      description: Shopify Needs a summary
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-summaries.deprecated202007getfulfillmentservicesparamfulfillmentserviceid
+      with:
+        fulfillment_service_id: tools.fulfillment_service_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-needs-summary-13
+      description: Shopify Needs a summary
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-summaries.deprecated202007updatefulfillmentservicesparamfulfillmentserviceid
+      with:
+        fulfillment_service_id: tools.fulfillment_service_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-needs-summary-14
+      description: Shopify Needs a summary
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-summaries.deprecated202007deletefulfillmentservicesparamfulfillmentserviceid
+      with:
+        fulfillment_service_id: tools.fulfillment_service_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-needs-summary-15
+      description: Shopify Needs a summary
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-summaries.deprecated202007deleteproductsparamproductidimagesparamimageid
+      with:
+        product_id: tools.product_id
+        image_id: tools.image_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-needs-summary-16
+      description: Shopify Needs a summary
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-summaries.getfulfillmentservices
+      with:
+        scope: tools.scope
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-needs-summary-17
+      description: Shopify Needs a summary
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-summaries.getfulfillmentservicesparamfulfillmentserviceid
+      with:
+        fulfillment_service_id: tools.fulfillment_service_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-needs-summary-18
+      description: Shopify Needs a summary
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-summaries.updatefulfillmentservicesparamfulfillmentserviceid
+      with:
+        fulfillment_service_id: tools.fulfillment_service_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-needs-summary-19
+      description: Shopify Needs a summary
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-summaries.deletefulfillmentservicesparamfulfillmentserviceid
+      with:
+        fulfillment_service_id: tools.fulfillment_service_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-needs-summary-20
+      description: Shopify Needs a summary
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-summaries.deleteproductsparamproductidimagesparamimageid
+      with:
+        product_id: tools.product_id
+        image_id: tools.image_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-needs-summary-21
+      description: Shopify Needs a summary
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-summaries.deprecated202101getfulfillmentservices
+      with:
+        scope: tools.scope
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-needs-summary-22
+      description: Shopify Needs a summary
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-summaries.deprecated202101getfulfillmentservicesparamfulfillmentserviceid
+      with:
+        fulfillment_service_id: tools.fulfillment_service_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-needs-summary-23
+      description: Shopify Needs a summary
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-summaries.deprecated202101updatefulfillmentservicesparamfulfillmentserviceid
+      with:
+        fulfillment_service_id: tools.fulfillment_service_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-needs-summary-24
+      description: Shopify Needs a summary
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-summaries.deprecated202101deletefulfillmentservicesparamfulfillmentserviceid
+      with:
+        fulfillment_service_id: tools.fulfillment_service_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-needs-summary-25
+      description: Shopify Needs a summary
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-summaries.deprecated202101deleteproductsparamproductidimagesparamimageid
+      with:
+        product_id: tools.product_id
+        image_id: tools.image_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-needs-summary-26
+      description: Shopify Needs a summary
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-summaries.deprecatedunstablegetfulfillmentservices
+      with:
+        scope: tools.scope
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-needs-summary-27
+      description: Shopify Needs a summary
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-summaries.deprecatedunstablegetfulfillmentservicesparamfulfillmentserviceid
+      with:
+        fulfillment_service_id: tools.fulfillment_service_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-needs-summary-28
+      description: Shopify Needs a summary
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-summaries.deprecatedunstableupdatefulfillmentservicesparamfulfillmentserviceid
+      with:
+        fulfillment_service_id: tools.fulfillment_service_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-needs-summary-29
+      description: Shopify Needs a summary
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-summaries.deprecatedunstabledeletefulfillmentservicesparamfulfillmentserviceid
+      with:
+        fulfillment_service_id: tools.fulfillment_service_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-needs-summary-30
+      description: Shopify Needs a summary
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-summaries.deprecatedunstabledeleteproductsparamproductidimagesparamimageid
+      with:
+        product_id: tools.product_id
+        image_id: tools.image_id
+      outputParameters:
+      - type: object
+        mapping: $.

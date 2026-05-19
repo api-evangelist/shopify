@@ -1,0 +1,545 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Shopify  API — Shop
+  description: 'Shopify  API — Shop. 12 operations. Lead operation: Shopify Retrieves A List Of Fulfillment Orders On A Shop
+    For A Specific App. Self-contained Naftiko capability covering one Shopify business surface.'
+  tags:
+  - Shopify
+  - Shop
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SHOPIFY_API_KEY: SHOPIFY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: shopify-shop
+    baseUri: ''
+    description: Shopify  API — Shop business capability. Self-contained, no shared references.
+    resources:
+    - name: admin-api-2020-01-assigned_fulfillment_orders.json
+      path: /admin/api/2020-01/assigned_fulfillment_orders.json
+      operations:
+      - name: deprecated202001getassignedfulfillmentorders
+        method: GET
+        description: Shopify Retrieves A List Of Fulfillment Orders On A Shop For A Specific App
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: assignment_status
+          in: query
+          type: string
+          description: 'The assigment status of the fulfillment orders that should be returned:'
+        - name: location_ids
+          in: query
+          type: string
+          description: The IDs of the assigned locations of the fulfillment orders that should be returned.
+        - name: location_ids[]
+          in: query
+          type: integer
+          description: location_ids[]
+    - name: admin-api-2020-01-currencies.json
+      path: /admin/api/2020-01/currencies.json
+      operations:
+      - name: deprecated202001getcurrencies
+        method: GET
+        description: Shopify Retrieves A List Of Currencies Enabled On A Shop
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: admin-api-2020-04-assigned_fulfillment_orders.json
+      path: /admin/api/2020-04/assigned_fulfillment_orders.json
+      operations:
+      - name: deprecated202004getassignedfulfillmentorders
+        method: GET
+        description: Shopify Retrieves A List Of Fulfillment Orders On A Shop For A Specific App
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: assignment_status
+          in: query
+          type: string
+          description: 'The assigment status of the fulfillment orders that should be returned:'
+        - name: location_ids
+          in: query
+          type: string
+          description: The IDs of the assigned locations of the fulfillment orders that should be returned.
+        - name: location_ids[]
+          in: query
+          type: integer
+          description: location_ids[]
+    - name: admin-api-2020-04-currencies.json
+      path: /admin/api/2020-04/currencies.json
+      operations:
+      - name: deprecated202004getcurrencies
+        method: GET
+        description: Shopify Retrieves A List Of Currencies Enabled On A Shop
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: admin-api-2020-07-assigned_fulfillment_orders.json
+      path: /admin/api/2020-07/assigned_fulfillment_orders.json
+      operations:
+      - name: deprecated202007getassignedfulfillmentorders
+        method: GET
+        description: Shopify Retrieves A List Of Fulfillment Orders On A Shop For A Specific App
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: assignment_status
+          in: query
+          type: string
+          description: 'The assigment status of the fulfillment orders that should be returned:'
+        - name: location_ids
+          in: query
+          type: string
+          description: The IDs of the assigned locations of the fulfillment orders that should be returned.
+        - name: location_ids[]
+          in: query
+          type: integer
+          description: location_ids[]
+    - name: admin-api-2020-07-currencies.json
+      path: /admin/api/2020-07/currencies.json
+      operations:
+      - name: deprecated202007getcurrencies
+        method: GET
+        description: Shopify Retrieves A List Of Currencies Enabled On A Shop
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: admin-api-2020-10-assigned_fulfillment_orders.json
+      path: /admin/api/2020-10/assigned_fulfillment_orders.json
+      operations:
+      - name: getassignedfulfillmentorders
+        method: GET
+        description: Shopify Retrieves A List Of Fulfillment Orders On A Shop For A Specific App
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: assignment_status
+          in: query
+          type: string
+          description: 'The assigment status of the fulfillment orders that should be returned:'
+        - name: location_ids
+          in: query
+          type: string
+          description: The IDs of the assigned locations of the fulfillment orders that should be returned.
+        - name: location_ids[]
+          in: query
+          type: integer
+          description: location_ids[]
+    - name: admin-api-2020-10-currencies.json
+      path: /admin/api/2020-10/currencies.json
+      operations:
+      - name: getcurrencies
+        method: GET
+        description: Shopify Retrieves A List Of Currencies Enabled On A Shop
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: admin-api-2021-01-assigned_fulfillment_orders.json
+      path: /admin/api/2021-01/assigned_fulfillment_orders.json
+      operations:
+      - name: deprecated202101getassignedfulfillmentorders
+        method: GET
+        description: Shopify Retrieves A List Of Fulfillment Orders On A Shop For A Specific App
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: assignment_status
+          in: query
+          type: string
+          description: 'The assigment status of the fulfillment orders that should be returned:'
+        - name: location_ids
+          in: query
+          type: string
+          description: The IDs of the assigned locations of the fulfillment orders that should be returned.
+        - name: location_ids[]
+          in: query
+          type: integer
+          description: location_ids[]
+    - name: admin-api-2021-01-currencies.json
+      path: /admin/api/2021-01/currencies.json
+      operations:
+      - name: deprecated202101getcurrencies
+        method: GET
+        description: Shopify Retrieves A List Of Currencies Enabled On A Shop
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: admin-api-unstable-assigned_fulfillment_orders.json
+      path: /admin/api/unstable/assigned_fulfillment_orders.json
+      operations:
+      - name: deprecatedunstablegetassignedfulfillmentorders
+        method: GET
+        description: Shopify Retrieves A List Of Fulfillment Orders On A Shop For A Specific App
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: assignment_status
+          in: query
+          type: string
+          description: 'The assigment status of the fulfillment orders that should be returned:'
+        - name: location_ids
+          in: query
+          type: string
+          description: The IDs of the assigned locations of the fulfillment orders that should be returned.
+        - name: location_ids[]
+          in: query
+          type: integer
+          description: location_ids[]
+    - name: admin-api-unstable-currencies.json
+      path: /admin/api/unstable/currencies.json
+      operations:
+      - name: deprecatedunstablegetcurrencies
+        method: GET
+        description: Shopify Retrieves A List Of Currencies Enabled On A Shop
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    namespace: shopify-shop-rest
+    port: 8080
+    description: REST adapter for Shopify  API — Shop. One Spectral-compliant resource per consumed operation, prefixed with
+      /v1.
+    resources:
+    - path: /v1/admin/api/2020-01/assigned-fulfillment-orders-json
+      name: admin-api-2020-01-assigned-fulfillment-orders-json
+      description: REST surface for admin-api-2020-01-assigned_fulfillment_orders.json.
+      operations:
+      - method: GET
+        name: deprecated202001getassignedfulfillmentorders
+        description: Shopify Retrieves A List Of Fulfillment Orders On A Shop For A Specific App
+        call: shopify-shop.deprecated202001getassignedfulfillmentorders
+        with:
+          assignment_status: rest.assignment_status
+          location_ids: rest.location_ids
+          location_ids[]: rest.location_ids[]
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-01/currencies-json
+      name: admin-api-2020-01-currencies-json
+      description: REST surface for admin-api-2020-01-currencies.json.
+      operations:
+      - method: GET
+        name: deprecated202001getcurrencies
+        description: Shopify Retrieves A List Of Currencies Enabled On A Shop
+        call: shopify-shop.deprecated202001getcurrencies
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/assigned-fulfillment-orders-json
+      name: admin-api-2020-04-assigned-fulfillment-orders-json
+      description: REST surface for admin-api-2020-04-assigned_fulfillment_orders.json.
+      operations:
+      - method: GET
+        name: deprecated202004getassignedfulfillmentorders
+        description: Shopify Retrieves A List Of Fulfillment Orders On A Shop For A Specific App
+        call: shopify-shop.deprecated202004getassignedfulfillmentorders
+        with:
+          assignment_status: rest.assignment_status
+          location_ids: rest.location_ids
+          location_ids[]: rest.location_ids[]
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/currencies-json
+      name: admin-api-2020-04-currencies-json
+      description: REST surface for admin-api-2020-04-currencies.json.
+      operations:
+      - method: GET
+        name: deprecated202004getcurrencies
+        description: Shopify Retrieves A List Of Currencies Enabled On A Shop
+        call: shopify-shop.deprecated202004getcurrencies
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/assigned-fulfillment-orders-json
+      name: admin-api-2020-07-assigned-fulfillment-orders-json
+      description: REST surface for admin-api-2020-07-assigned_fulfillment_orders.json.
+      operations:
+      - method: GET
+        name: deprecated202007getassignedfulfillmentorders
+        description: Shopify Retrieves A List Of Fulfillment Orders On A Shop For A Specific App
+        call: shopify-shop.deprecated202007getassignedfulfillmentorders
+        with:
+          assignment_status: rest.assignment_status
+          location_ids: rest.location_ids
+          location_ids[]: rest.location_ids[]
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/currencies-json
+      name: admin-api-2020-07-currencies-json
+      description: REST surface for admin-api-2020-07-currencies.json.
+      operations:
+      - method: GET
+        name: deprecated202007getcurrencies
+        description: Shopify Retrieves A List Of Currencies Enabled On A Shop
+        call: shopify-shop.deprecated202007getcurrencies
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/assigned-fulfillment-orders-json
+      name: admin-api-2020-10-assigned-fulfillment-orders-json
+      description: REST surface for admin-api-2020-10-assigned_fulfillment_orders.json.
+      operations:
+      - method: GET
+        name: getassignedfulfillmentorders
+        description: Shopify Retrieves A List Of Fulfillment Orders On A Shop For A Specific App
+        call: shopify-shop.getassignedfulfillmentorders
+        with:
+          assignment_status: rest.assignment_status
+          location_ids: rest.location_ids
+          location_ids[]: rest.location_ids[]
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/currencies-json
+      name: admin-api-2020-10-currencies-json
+      description: REST surface for admin-api-2020-10-currencies.json.
+      operations:
+      - method: GET
+        name: getcurrencies
+        description: Shopify Retrieves A List Of Currencies Enabled On A Shop
+        call: shopify-shop.getcurrencies
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/assigned-fulfillment-orders-json
+      name: admin-api-2021-01-assigned-fulfillment-orders-json
+      description: REST surface for admin-api-2021-01-assigned_fulfillment_orders.json.
+      operations:
+      - method: GET
+        name: deprecated202101getassignedfulfillmentorders
+        description: Shopify Retrieves A List Of Fulfillment Orders On A Shop For A Specific App
+        call: shopify-shop.deprecated202101getassignedfulfillmentorders
+        with:
+          assignment_status: rest.assignment_status
+          location_ids: rest.location_ids
+          location_ids[]: rest.location_ids[]
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/currencies-json
+      name: admin-api-2021-01-currencies-json
+      description: REST surface for admin-api-2021-01-currencies.json.
+      operations:
+      - method: GET
+        name: deprecated202101getcurrencies
+        description: Shopify Retrieves A List Of Currencies Enabled On A Shop
+        call: shopify-shop.deprecated202101getcurrencies
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/assigned-fulfillment-orders-json
+      name: admin-api-unstable-assigned-fulfillment-orders-json
+      description: REST surface for admin-api-unstable-assigned_fulfillment_orders.json.
+      operations:
+      - method: GET
+        name: deprecatedunstablegetassignedfulfillmentorders
+        description: Shopify Retrieves A List Of Fulfillment Orders On A Shop For A Specific App
+        call: shopify-shop.deprecatedunstablegetassignedfulfillmentorders
+        with:
+          assignment_status: rest.assignment_status
+          location_ids: rest.location_ids
+          location_ids[]: rest.location_ids[]
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/currencies-json
+      name: admin-api-unstable-currencies-json
+      description: REST surface for admin-api-unstable-currencies.json.
+      operations:
+      - method: GET
+        name: deprecatedunstablegetcurrencies
+        description: Shopify Retrieves A List Of Currencies Enabled On A Shop
+        call: shopify-shop.deprecatedunstablegetcurrencies
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: shopify-shop-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Shopify  API — Shop. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: shopify-retrieves-list-fulfillment-orders
+      description: Shopify Retrieves A List Of Fulfillment Orders On A Shop For A Specific App
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-shop.deprecated202001getassignedfulfillmentorders
+      with:
+        assignment_status: tools.assignment_status
+        location_ids: tools.location_ids
+        location_ids[]: tools.location_ids[]
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-currencies-enabled
+      description: Shopify Retrieves A List Of Currencies Enabled On A Shop
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-shop.deprecated202001getcurrencies
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-fulfillment-orders-2
+      description: Shopify Retrieves A List Of Fulfillment Orders On A Shop For A Specific App
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-shop.deprecated202004getassignedfulfillmentorders
+      with:
+        assignment_status: tools.assignment_status
+        location_ids: tools.location_ids
+        location_ids[]: tools.location_ids[]
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-currencies-enabled-2
+      description: Shopify Retrieves A List Of Currencies Enabled On A Shop
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-shop.deprecated202004getcurrencies
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-fulfillment-orders-3
+      description: Shopify Retrieves A List Of Fulfillment Orders On A Shop For A Specific App
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-shop.deprecated202007getassignedfulfillmentorders
+      with:
+        assignment_status: tools.assignment_status
+        location_ids: tools.location_ids
+        location_ids[]: tools.location_ids[]
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-currencies-enabled-3
+      description: Shopify Retrieves A List Of Currencies Enabled On A Shop
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-shop.deprecated202007getcurrencies
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-fulfillment-orders-4
+      description: Shopify Retrieves A List Of Fulfillment Orders On A Shop For A Specific App
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-shop.getassignedfulfillmentorders
+      with:
+        assignment_status: tools.assignment_status
+        location_ids: tools.location_ids
+        location_ids[]: tools.location_ids[]
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-currencies-enabled-4
+      description: Shopify Retrieves A List Of Currencies Enabled On A Shop
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-shop.getcurrencies
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-fulfillment-orders-5
+      description: Shopify Retrieves A List Of Fulfillment Orders On A Shop For A Specific App
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-shop.deprecated202101getassignedfulfillmentorders
+      with:
+        assignment_status: tools.assignment_status
+        location_ids: tools.location_ids
+        location_ids[]: tools.location_ids[]
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-currencies-enabled-5
+      description: Shopify Retrieves A List Of Currencies Enabled On A Shop
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-shop.deprecated202101getcurrencies
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-fulfillment-orders-6
+      description: Shopify Retrieves A List Of Fulfillment Orders On A Shop For A Specific App
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-shop.deprecatedunstablegetassignedfulfillmentorders
+      with:
+        assignment_status: tools.assignment_status
+        location_ids: tools.location_ids
+        location_ids[]: tools.location_ids[]
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-list-currencies-enabled-6
+      description: Shopify Retrieves A List Of Currencies Enabled On A Shop
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-shop.deprecatedunstablegetcurrencies
+      outputParameters:
+      - type: object
+        mapping: $.

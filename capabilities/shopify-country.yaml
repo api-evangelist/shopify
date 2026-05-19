@@ -1,0 +1,869 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Shopify  API — Country
+  description: 'Shopify  API — Country. 18 operations. Lead operation: Shopify Deletes A Country. Self-contained Naftiko capability
+    covering one Shopify business surface.'
+  tags:
+  - Shopify
+  - Country
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SHOPIFY_API_KEY: SHOPIFY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: shopify-country
+    baseUri: ''
+    description: Shopify  API — Country business capability. Self-contained, no shared references.
+    resources:
+    - name: admin-api-2020-01-countries-country_id}.json
+      path: /admin/api/2020-01/countries/{country_id}.json
+      operations:
+      - name: deprecated202001deletecountriesparamcountryid
+        method: DELETE
+        description: Shopify Deletes A Country
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: country_id
+          in: path
+          type: string
+          description: country_id
+          required: true
+    - name: admin-api-2020-01-countries-country_id-provinces-count.json
+      path: /admin/api/2020-01/countries/{country_id}/provinces/count.json
+      operations:
+      - name: deprecated202001getcountriesparamcountryidprovincescount
+        method: GET
+        description: Shopify Retrieves A Count Of Provinces For A Country
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: country_id
+          in: path
+          type: string
+          description: country_id
+          required: true
+    - name: admin-api-2020-01-countries-country_id-provinces-province_id}.json
+      path: /admin/api/2020-01/countries/{country_id}/provinces/{province_id}.json
+      operations:
+      - name: deprecated202001getcountriesparamcountryidprovincesparamprovinceid
+        method: GET
+        description: Shopify Retrieves A Single Province For A Country
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: country_id
+          in: path
+          type: string
+          description: country_id
+          required: true
+        - name: province_id
+          in: path
+          type: string
+          description: province_id
+          required: true
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+    - name: admin-api-2020-04-countries-country_id}.json
+      path: /admin/api/2020-04/countries/{country_id}.json
+      operations:
+      - name: deprecated202004deletecountriesparamcountryid
+        method: DELETE
+        description: Shopify Deletes A Country
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: country_id
+          in: path
+          type: string
+          description: country_id
+          required: true
+    - name: admin-api-2020-04-countries-country_id-provinces-count.json
+      path: /admin/api/2020-04/countries/{country_id}/provinces/count.json
+      operations:
+      - name: deprecated202004getcountriesparamcountryidprovincescount
+        method: GET
+        description: Shopify Retrieves A Count Of Provinces For A Country
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: country_id
+          in: path
+          type: string
+          description: country_id
+          required: true
+    - name: admin-api-2020-04-countries-country_id-provinces-province_id}.json
+      path: /admin/api/2020-04/countries/{country_id}/provinces/{province_id}.json
+      operations:
+      - name: deprecated202004getcountriesparamcountryidprovincesparamprovinceid
+        method: GET
+        description: Shopify Retrieves A Single Province For A Country
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: country_id
+          in: path
+          type: string
+          description: country_id
+          required: true
+        - name: province_id
+          in: path
+          type: string
+          description: province_id
+          required: true
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+    - name: admin-api-2020-07-countries-country_id}.json
+      path: /admin/api/2020-07/countries/{country_id}.json
+      operations:
+      - name: deprecated202007deletecountriesparamcountryid
+        method: DELETE
+        description: Shopify Deletes A Country
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: country_id
+          in: path
+          type: string
+          description: country_id
+          required: true
+    - name: admin-api-2020-07-countries-country_id-provinces-count.json
+      path: /admin/api/2020-07/countries/{country_id}/provinces/count.json
+      operations:
+      - name: deprecated202007getcountriesparamcountryidprovincescount
+        method: GET
+        description: Shopify Retrieves A Count Of Provinces For A Country
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: country_id
+          in: path
+          type: string
+          description: country_id
+          required: true
+    - name: admin-api-2020-07-countries-country_id-provinces-province_id}.json
+      path: /admin/api/2020-07/countries/{country_id}/provinces/{province_id}.json
+      operations:
+      - name: deprecated202007getcountriesparamcountryidprovincesparamprovinceid
+        method: GET
+        description: Shopify Retrieves A Single Province For A Country
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: country_id
+          in: path
+          type: string
+          description: country_id
+          required: true
+        - name: province_id
+          in: path
+          type: string
+          description: province_id
+          required: true
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+    - name: admin-api-2020-10-countries-country_id}.json
+      path: /admin/api/2020-10/countries/{country_id}.json
+      operations:
+      - name: deletecountriesparamcountryid
+        method: DELETE
+        description: Shopify Deletes A Country
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: country_id
+          in: path
+          type: string
+          description: country_id
+          required: true
+    - name: admin-api-2020-10-countries-country_id-provinces-count.json
+      path: /admin/api/2020-10/countries/{country_id}/provinces/count.json
+      operations:
+      - name: getcountriesparamcountryidprovincescount
+        method: GET
+        description: Shopify Retrieves A Count Of Provinces For A Country
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: country_id
+          in: path
+          type: string
+          description: country_id
+          required: true
+    - name: admin-api-2020-10-countries-country_id-provinces-province_id}.json
+      path: /admin/api/2020-10/countries/{country_id}/provinces/{province_id}.json
+      operations:
+      - name: getcountriesparamcountryidprovincesparamprovinceid
+        method: GET
+        description: Shopify Retrieves A Single Province For A Country
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: country_id
+          in: path
+          type: string
+          description: country_id
+          required: true
+        - name: province_id
+          in: path
+          type: string
+          description: province_id
+          required: true
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+    - name: admin-api-2021-01-countries-country_id}.json
+      path: /admin/api/2021-01/countries/{country_id}.json
+      operations:
+      - name: deprecated202101deletecountriesparamcountryid
+        method: DELETE
+        description: Shopify Deletes A Country
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: country_id
+          in: path
+          type: string
+          description: country_id
+          required: true
+    - name: admin-api-2021-01-countries-country_id-provinces-count.json
+      path: /admin/api/2021-01/countries/{country_id}/provinces/count.json
+      operations:
+      - name: deprecated202101getcountriesparamcountryidprovincescount
+        method: GET
+        description: Shopify Retrieves A Count Of Provinces For A Country
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: country_id
+          in: path
+          type: string
+          description: country_id
+          required: true
+    - name: admin-api-2021-01-countries-country_id-provinces-province_id}.json
+      path: /admin/api/2021-01/countries/{country_id}/provinces/{province_id}.json
+      operations:
+      - name: deprecated202101getcountriesparamcountryidprovincesparamprovinceid
+        method: GET
+        description: Shopify Retrieves A Single Province For A Country
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: country_id
+          in: path
+          type: string
+          description: country_id
+          required: true
+        - name: province_id
+          in: path
+          type: string
+          description: province_id
+          required: true
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+    - name: admin-api-unstable-countries-country_id}.json
+      path: /admin/api/unstable/countries/{country_id}.json
+      operations:
+      - name: deprecatedunstabledeletecountriesparamcountryid
+        method: DELETE
+        description: Shopify Deletes A Country
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: country_id
+          in: path
+          type: string
+          description: country_id
+          required: true
+    - name: admin-api-unstable-countries-country_id-provinces-count.json
+      path: /admin/api/unstable/countries/{country_id}/provinces/count.json
+      operations:
+      - name: deprecatedunstablegetcountriesparamcountryidprovincescount
+        method: GET
+        description: Shopify Retrieves A Count Of Provinces For A Country
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: country_id
+          in: path
+          type: string
+          description: country_id
+          required: true
+    - name: admin-api-unstable-countries-country_id-provinces-province_id}.json
+      path: /admin/api/unstable/countries/{country_id}/provinces/{province_id}.json
+      operations:
+      - name: deprecatedunstablegetcountriesparamcountryidprovincesparamprovinceid
+        method: GET
+        description: Shopify Retrieves A Single Province For A Country
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: country_id
+          in: path
+          type: string
+          description: country_id
+          required: true
+        - name: province_id
+          in: path
+          type: string
+          description: province_id
+          required: true
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+  exposes:
+  - type: rest
+    namespace: shopify-country-rest
+    port: 8080
+    description: REST adapter for Shopify  API — Country. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/admin/api/2020-01/countries/country-id-json
+      name: admin-api-2020-01-countries-country-id-json
+      description: REST surface for admin-api-2020-01-countries-country_id}.json.
+      operations:
+      - method: DELETE
+        name: deprecated202001deletecountriesparamcountryid
+        description: Shopify Deletes A Country
+        call: shopify-country.deprecated202001deletecountriesparamcountryid
+        with:
+          country_id: rest.country_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-01/countries/{country-id}/provinces/count-json
+      name: admin-api-2020-01-countries-country-id-provinces-count-json
+      description: REST surface for admin-api-2020-01-countries-country_id-provinces-count.json.
+      operations:
+      - method: GET
+        name: deprecated202001getcountriesparamcountryidprovincescount
+        description: Shopify Retrieves A Count Of Provinces For A Country
+        call: shopify-country.deprecated202001getcountriesparamcountryidprovincescount
+        with:
+          country_id: rest.country_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-01/countries/{country-id}/provinces/province-id-json
+      name: admin-api-2020-01-countries-country-id-provinces-province-id-json
+      description: REST surface for admin-api-2020-01-countries-country_id-provinces-province_id}.json.
+      operations:
+      - method: GET
+        name: deprecated202001getcountriesparamcountryidprovincesparamprovinceid
+        description: Shopify Retrieves A Single Province For A Country
+        call: shopify-country.deprecated202001getcountriesparamcountryidprovincesparamprovinceid
+        with:
+          country_id: rest.country_id
+          province_id: rest.province_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/countries/country-id-json
+      name: admin-api-2020-04-countries-country-id-json
+      description: REST surface for admin-api-2020-04-countries-country_id}.json.
+      operations:
+      - method: DELETE
+        name: deprecated202004deletecountriesparamcountryid
+        description: Shopify Deletes A Country
+        call: shopify-country.deprecated202004deletecountriesparamcountryid
+        with:
+          country_id: rest.country_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/countries/{country-id}/provinces/count-json
+      name: admin-api-2020-04-countries-country-id-provinces-count-json
+      description: REST surface for admin-api-2020-04-countries-country_id-provinces-count.json.
+      operations:
+      - method: GET
+        name: deprecated202004getcountriesparamcountryidprovincescount
+        description: Shopify Retrieves A Count Of Provinces For A Country
+        call: shopify-country.deprecated202004getcountriesparamcountryidprovincescount
+        with:
+          country_id: rest.country_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/countries/{country-id}/provinces/province-id-json
+      name: admin-api-2020-04-countries-country-id-provinces-province-id-json
+      description: REST surface for admin-api-2020-04-countries-country_id-provinces-province_id}.json.
+      operations:
+      - method: GET
+        name: deprecated202004getcountriesparamcountryidprovincesparamprovinceid
+        description: Shopify Retrieves A Single Province For A Country
+        call: shopify-country.deprecated202004getcountriesparamcountryidprovincesparamprovinceid
+        with:
+          country_id: rest.country_id
+          province_id: rest.province_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/countries/country-id-json
+      name: admin-api-2020-07-countries-country-id-json
+      description: REST surface for admin-api-2020-07-countries-country_id}.json.
+      operations:
+      - method: DELETE
+        name: deprecated202007deletecountriesparamcountryid
+        description: Shopify Deletes A Country
+        call: shopify-country.deprecated202007deletecountriesparamcountryid
+        with:
+          country_id: rest.country_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/countries/{country-id}/provinces/count-json
+      name: admin-api-2020-07-countries-country-id-provinces-count-json
+      description: REST surface for admin-api-2020-07-countries-country_id-provinces-count.json.
+      operations:
+      - method: GET
+        name: deprecated202007getcountriesparamcountryidprovincescount
+        description: Shopify Retrieves A Count Of Provinces For A Country
+        call: shopify-country.deprecated202007getcountriesparamcountryidprovincescount
+        with:
+          country_id: rest.country_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/countries/{country-id}/provinces/province-id-json
+      name: admin-api-2020-07-countries-country-id-provinces-province-id-json
+      description: REST surface for admin-api-2020-07-countries-country_id-provinces-province_id}.json.
+      operations:
+      - method: GET
+        name: deprecated202007getcountriesparamcountryidprovincesparamprovinceid
+        description: Shopify Retrieves A Single Province For A Country
+        call: shopify-country.deprecated202007getcountriesparamcountryidprovincesparamprovinceid
+        with:
+          country_id: rest.country_id
+          province_id: rest.province_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/countries/country-id-json
+      name: admin-api-2020-10-countries-country-id-json
+      description: REST surface for admin-api-2020-10-countries-country_id}.json.
+      operations:
+      - method: DELETE
+        name: deletecountriesparamcountryid
+        description: Shopify Deletes A Country
+        call: shopify-country.deletecountriesparamcountryid
+        with:
+          country_id: rest.country_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/countries/{country-id}/provinces/count-json
+      name: admin-api-2020-10-countries-country-id-provinces-count-json
+      description: REST surface for admin-api-2020-10-countries-country_id-provinces-count.json.
+      operations:
+      - method: GET
+        name: getcountriesparamcountryidprovincescount
+        description: Shopify Retrieves A Count Of Provinces For A Country
+        call: shopify-country.getcountriesparamcountryidprovincescount
+        with:
+          country_id: rest.country_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/countries/{country-id}/provinces/province-id-json
+      name: admin-api-2020-10-countries-country-id-provinces-province-id-json
+      description: REST surface for admin-api-2020-10-countries-country_id-provinces-province_id}.json.
+      operations:
+      - method: GET
+        name: getcountriesparamcountryidprovincesparamprovinceid
+        description: Shopify Retrieves A Single Province For A Country
+        call: shopify-country.getcountriesparamcountryidprovincesparamprovinceid
+        with:
+          country_id: rest.country_id
+          province_id: rest.province_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/countries/country-id-json
+      name: admin-api-2021-01-countries-country-id-json
+      description: REST surface for admin-api-2021-01-countries-country_id}.json.
+      operations:
+      - method: DELETE
+        name: deprecated202101deletecountriesparamcountryid
+        description: Shopify Deletes A Country
+        call: shopify-country.deprecated202101deletecountriesparamcountryid
+        with:
+          country_id: rest.country_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/countries/{country-id}/provinces/count-json
+      name: admin-api-2021-01-countries-country-id-provinces-count-json
+      description: REST surface for admin-api-2021-01-countries-country_id-provinces-count.json.
+      operations:
+      - method: GET
+        name: deprecated202101getcountriesparamcountryidprovincescount
+        description: Shopify Retrieves A Count Of Provinces For A Country
+        call: shopify-country.deprecated202101getcountriesparamcountryidprovincescount
+        with:
+          country_id: rest.country_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/countries/{country-id}/provinces/province-id-json
+      name: admin-api-2021-01-countries-country-id-provinces-province-id-json
+      description: REST surface for admin-api-2021-01-countries-country_id-provinces-province_id}.json.
+      operations:
+      - method: GET
+        name: deprecated202101getcountriesparamcountryidprovincesparamprovinceid
+        description: Shopify Retrieves A Single Province For A Country
+        call: shopify-country.deprecated202101getcountriesparamcountryidprovincesparamprovinceid
+        with:
+          country_id: rest.country_id
+          province_id: rest.province_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/countries/country-id-json
+      name: admin-api-unstable-countries-country-id-json
+      description: REST surface for admin-api-unstable-countries-country_id}.json.
+      operations:
+      - method: DELETE
+        name: deprecatedunstabledeletecountriesparamcountryid
+        description: Shopify Deletes A Country
+        call: shopify-country.deprecatedunstabledeletecountriesparamcountryid
+        with:
+          country_id: rest.country_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/countries/{country-id}/provinces/count-json
+      name: admin-api-unstable-countries-country-id-provinces-count-json
+      description: REST surface for admin-api-unstable-countries-country_id-provinces-count.json.
+      operations:
+      - method: GET
+        name: deprecatedunstablegetcountriesparamcountryidprovincescount
+        description: Shopify Retrieves A Count Of Provinces For A Country
+        call: shopify-country.deprecatedunstablegetcountriesparamcountryidprovincescount
+        with:
+          country_id: rest.country_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/countries/{country-id}/provinces/province-id-json
+      name: admin-api-unstable-countries-country-id-provinces-province-id-json
+      description: REST surface for admin-api-unstable-countries-country_id-provinces-province_id}.json.
+      operations:
+      - method: GET
+        name: deprecatedunstablegetcountriesparamcountryidprovincesparamprovinceid
+        description: Shopify Retrieves A Single Province For A Country
+        call: shopify-country.deprecatedunstablegetcountriesparamcountryidprovincesparamprovinceid
+        with:
+          country_id: rest.country_id
+          province_id: rest.province_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: shopify-country-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Shopify  API — Country. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: shopify-deletes-country
+      description: Shopify Deletes A Country
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-country.deprecated202001deletecountriesparamcountryid
+      with:
+        country_id: tools.country_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-count-provinces-country
+      description: Shopify Retrieves A Count Of Provinces For A Country
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-country.deprecated202001getcountriesparamcountryidprovincescount
+      with:
+        country_id: tools.country_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-single-province-country
+      description: Shopify Retrieves A Single Province For A Country
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-country.deprecated202001getcountriesparamcountryidprovincesparamprovinceid
+      with:
+        country_id: tools.country_id
+        province_id: tools.province_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-deletes-country-2
+      description: Shopify Deletes A Country
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-country.deprecated202004deletecountriesparamcountryid
+      with:
+        country_id: tools.country_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-count-provinces-country-2
+      description: Shopify Retrieves A Count Of Provinces For A Country
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-country.deprecated202004getcountriesparamcountryidprovincescount
+      with:
+        country_id: tools.country_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-single-province-country-2
+      description: Shopify Retrieves A Single Province For A Country
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-country.deprecated202004getcountriesparamcountryidprovincesparamprovinceid
+      with:
+        country_id: tools.country_id
+        province_id: tools.province_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-deletes-country-3
+      description: Shopify Deletes A Country
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-country.deprecated202007deletecountriesparamcountryid
+      with:
+        country_id: tools.country_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-count-provinces-country-3
+      description: Shopify Retrieves A Count Of Provinces For A Country
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-country.deprecated202007getcountriesparamcountryidprovincescount
+      with:
+        country_id: tools.country_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-single-province-country-3
+      description: Shopify Retrieves A Single Province For A Country
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-country.deprecated202007getcountriesparamcountryidprovincesparamprovinceid
+      with:
+        country_id: tools.country_id
+        province_id: tools.province_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-deletes-country-4
+      description: Shopify Deletes A Country
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-country.deletecountriesparamcountryid
+      with:
+        country_id: tools.country_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-count-provinces-country-4
+      description: Shopify Retrieves A Count Of Provinces For A Country
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-country.getcountriesparamcountryidprovincescount
+      with:
+        country_id: tools.country_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-single-province-country-4
+      description: Shopify Retrieves A Single Province For A Country
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-country.getcountriesparamcountryidprovincesparamprovinceid
+      with:
+        country_id: tools.country_id
+        province_id: tools.province_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-deletes-country-5
+      description: Shopify Deletes A Country
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-country.deprecated202101deletecountriesparamcountryid
+      with:
+        country_id: tools.country_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-count-provinces-country-5
+      description: Shopify Retrieves A Count Of Provinces For A Country
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-country.deprecated202101getcountriesparamcountryidprovincescount
+      with:
+        country_id: tools.country_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-single-province-country-5
+      description: Shopify Retrieves A Single Province For A Country
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-country.deprecated202101getcountriesparamcountryidprovincesparamprovinceid
+      with:
+        country_id: tools.country_id
+        province_id: tools.province_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-deletes-country-6
+      description: Shopify Deletes A Country
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-country.deprecatedunstabledeletecountriesparamcountryid
+      with:
+        country_id: tools.country_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-count-provinces-country-6
+      description: Shopify Retrieves A Count Of Provinces For A Country
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-country.deprecatedunstablegetcountriesparamcountryidprovincescount
+      with:
+        country_id: tools.country_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-single-province-country-6
+      description: Shopify Retrieves A Single Province For A Country
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-country.deprecatedunstablegetcountriesparamcountryidprovincesparamprovinceid
+      with:
+        country_id: tools.country_id
+        province_id: tools.province_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.

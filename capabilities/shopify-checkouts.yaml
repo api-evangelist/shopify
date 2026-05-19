@@ -1,0 +1,461 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Shopify  API — Checkouts
+  description: 'Shopify  API — Checkouts. 6 operations. Lead operation: Shopify Retrieves A Count Of Checkouts From The Past
+    90 Days. Self-contained Naftiko capability covering one Shopify business surface.'
+  tags:
+  - Shopify
+  - Checkouts
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SHOPIFY_API_KEY: SHOPIFY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: shopify-checkouts
+    baseUri: ''
+    description: Shopify  API — Checkouts business capability. Self-contained, no shared references.
+    resources:
+    - name: admin-api-2020-01-checkouts-count.json
+      path: /admin/api/2020-01/checkouts/count.json
+      operations:
+      - name: deprecated202001getcheckoutscount
+        method: GET
+        description: Shopify Retrieves A Count Of Checkouts From The Past 90 Days
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: since_id
+          in: query
+          type: string
+          description: Restrict results to after the specified ID.
+        - name: created_at_min
+          in: query
+          type: string
+          description: 'Count checkouts created after the specified date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: created_at_max
+          in: query
+          type: string
+          description: 'Count checkouts created before the specified date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: updated_at_min
+          in: query
+          type: string
+          description: 'Count checkouts last updated after the specified date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: updated_at_max
+          in: query
+          type: string
+          description: 'Count checkouts last updated before the specified date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: status
+          in: query
+          type: string
+          description: Count checkouts with a given status.
+    - name: admin-api-2020-04-checkouts-count.json
+      path: /admin/api/2020-04/checkouts/count.json
+      operations:
+      - name: deprecated202004getcheckoutscount
+        method: GET
+        description: Shopify Retrieves A Count Of Checkouts From The Past 90 Days
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: since_id
+          in: query
+          type: string
+          description: Restrict results to after the specified ID.
+        - name: created_at_min
+          in: query
+          type: string
+          description: 'Count checkouts created after the specified date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: created_at_max
+          in: query
+          type: string
+          description: 'Count checkouts created before the specified date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: updated_at_min
+          in: query
+          type: string
+          description: 'Count checkouts last updated after the specified date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: updated_at_max
+          in: query
+          type: string
+          description: 'Count checkouts last updated before the specified date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: status
+          in: query
+          type: string
+          description: Count checkouts with a given status.
+    - name: admin-api-2020-07-checkouts-count.json
+      path: /admin/api/2020-07/checkouts/count.json
+      operations:
+      - name: deprecated202007getcheckoutscount
+        method: GET
+        description: Shopify Retrieves A Count Of Checkouts From The Past 90 Days
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: since_id
+          in: query
+          type: string
+          description: Restrict results to after the specified ID.
+        - name: created_at_min
+          in: query
+          type: string
+          description: 'Count checkouts created after the specified date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: created_at_max
+          in: query
+          type: string
+          description: 'Count checkouts created before the specified date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: updated_at_min
+          in: query
+          type: string
+          description: 'Count checkouts last updated after the specified date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: updated_at_max
+          in: query
+          type: string
+          description: 'Count checkouts last updated before the specified date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: status
+          in: query
+          type: string
+          description: Count checkouts with a given status.
+    - name: admin-api-2020-10-checkouts-count.json
+      path: /admin/api/2020-10/checkouts/count.json
+      operations:
+      - name: getcheckoutscount
+        method: GET
+        description: Shopify Retrieves A Count Of Checkouts From The Past 90 Days
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: since_id
+          in: query
+          type: string
+          description: Restrict results to after the specified ID.
+        - name: created_at_min
+          in: query
+          type: string
+          description: 'Count checkouts created after the specified date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: created_at_max
+          in: query
+          type: string
+          description: 'Count checkouts created before the specified date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: updated_at_min
+          in: query
+          type: string
+          description: 'Count checkouts last updated after the specified date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: updated_at_max
+          in: query
+          type: string
+          description: 'Count checkouts last updated before the specified date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: status
+          in: query
+          type: string
+          description: Count checkouts with a given status.
+    - name: admin-api-2021-01-checkouts-count.json
+      path: /admin/api/2021-01/checkouts/count.json
+      operations:
+      - name: deprecated202101getcheckoutscount
+        method: GET
+        description: Shopify Retrieves A Count Of Checkouts From The Past 90 Days
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: since_id
+          in: query
+          type: string
+          description: Restrict results to after the specified ID.
+        - name: created_at_min
+          in: query
+          type: string
+          description: 'Count checkouts created after the specified date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: created_at_max
+          in: query
+          type: string
+          description: 'Count checkouts created before the specified date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: updated_at_min
+          in: query
+          type: string
+          description: 'Count checkouts last updated after the specified date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: updated_at_max
+          in: query
+          type: string
+          description: 'Count checkouts last updated before the specified date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: status
+          in: query
+          type: string
+          description: Count checkouts with a given status.
+    - name: admin-api-unstable-checkouts-count.json
+      path: /admin/api/unstable/checkouts/count.json
+      operations:
+      - name: deprecatedunstablegetcheckoutscount
+        method: GET
+        description: Shopify Retrieves A Count Of Checkouts From The Past 90 Days
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: since_id
+          in: query
+          type: string
+          description: Restrict results to after the specified ID.
+        - name: created_at_min
+          in: query
+          type: string
+          description: 'Count checkouts created after the specified date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: created_at_max
+          in: query
+          type: string
+          description: 'Count checkouts created before the specified date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: updated_at_min
+          in: query
+          type: string
+          description: 'Count checkouts last updated after the specified date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: updated_at_max
+          in: query
+          type: string
+          description: 'Count checkouts last updated before the specified date. (format: 2014-04-25T16:15:47-04:00)'
+        - name: status
+          in: query
+          type: string
+          description: Count checkouts with a given status.
+  exposes:
+  - type: rest
+    namespace: shopify-checkouts-rest
+    port: 8080
+    description: REST adapter for Shopify  API — Checkouts. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/admin/api/2020-01/checkouts/count-json
+      name: admin-api-2020-01-checkouts-count-json
+      description: REST surface for admin-api-2020-01-checkouts-count.json.
+      operations:
+      - method: GET
+        name: deprecated202001getcheckoutscount
+        description: Shopify Retrieves A Count Of Checkouts From The Past 90 Days
+        call: shopify-checkouts.deprecated202001getcheckoutscount
+        with:
+          since_id: rest.since_id
+          created_at_min: rest.created_at_min
+          created_at_max: rest.created_at_max
+          updated_at_min: rest.updated_at_min
+          updated_at_max: rest.updated_at_max
+          status: rest.status
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/checkouts/count-json
+      name: admin-api-2020-04-checkouts-count-json
+      description: REST surface for admin-api-2020-04-checkouts-count.json.
+      operations:
+      - method: GET
+        name: deprecated202004getcheckoutscount
+        description: Shopify Retrieves A Count Of Checkouts From The Past 90 Days
+        call: shopify-checkouts.deprecated202004getcheckoutscount
+        with:
+          since_id: rest.since_id
+          created_at_min: rest.created_at_min
+          created_at_max: rest.created_at_max
+          updated_at_min: rest.updated_at_min
+          updated_at_max: rest.updated_at_max
+          status: rest.status
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/checkouts/count-json
+      name: admin-api-2020-07-checkouts-count-json
+      description: REST surface for admin-api-2020-07-checkouts-count.json.
+      operations:
+      - method: GET
+        name: deprecated202007getcheckoutscount
+        description: Shopify Retrieves A Count Of Checkouts From The Past 90 Days
+        call: shopify-checkouts.deprecated202007getcheckoutscount
+        with:
+          since_id: rest.since_id
+          created_at_min: rest.created_at_min
+          created_at_max: rest.created_at_max
+          updated_at_min: rest.updated_at_min
+          updated_at_max: rest.updated_at_max
+          status: rest.status
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/checkouts/count-json
+      name: admin-api-2020-10-checkouts-count-json
+      description: REST surface for admin-api-2020-10-checkouts-count.json.
+      operations:
+      - method: GET
+        name: getcheckoutscount
+        description: Shopify Retrieves A Count Of Checkouts From The Past 90 Days
+        call: shopify-checkouts.getcheckoutscount
+        with:
+          since_id: rest.since_id
+          created_at_min: rest.created_at_min
+          created_at_max: rest.created_at_max
+          updated_at_min: rest.updated_at_min
+          updated_at_max: rest.updated_at_max
+          status: rest.status
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/checkouts/count-json
+      name: admin-api-2021-01-checkouts-count-json
+      description: REST surface for admin-api-2021-01-checkouts-count.json.
+      operations:
+      - method: GET
+        name: deprecated202101getcheckoutscount
+        description: Shopify Retrieves A Count Of Checkouts From The Past 90 Days
+        call: shopify-checkouts.deprecated202101getcheckoutscount
+        with:
+          since_id: rest.since_id
+          created_at_min: rest.created_at_min
+          created_at_max: rest.created_at_max
+          updated_at_min: rest.updated_at_min
+          updated_at_max: rest.updated_at_max
+          status: rest.status
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/checkouts/count-json
+      name: admin-api-unstable-checkouts-count-json
+      description: REST surface for admin-api-unstable-checkouts-count.json.
+      operations:
+      - method: GET
+        name: deprecatedunstablegetcheckoutscount
+        description: Shopify Retrieves A Count Of Checkouts From The Past 90 Days
+        call: shopify-checkouts.deprecatedunstablegetcheckoutscount
+        with:
+          since_id: rest.since_id
+          created_at_min: rest.created_at_min
+          created_at_max: rest.created_at_max
+          updated_at_min: rest.updated_at_min
+          updated_at_max: rest.updated_at_max
+          status: rest.status
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: shopify-checkouts-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Shopify  API — Checkouts. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: shopify-retrieves-count-checkouts-past
+      description: Shopify Retrieves A Count Of Checkouts From The Past 90 Days
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-checkouts.deprecated202001getcheckoutscount
+      with:
+        since_id: tools.since_id
+        created_at_min: tools.created_at_min
+        created_at_max: tools.created_at_max
+        updated_at_min: tools.updated_at_min
+        updated_at_max: tools.updated_at_max
+        status: tools.status
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-count-checkouts-past-2
+      description: Shopify Retrieves A Count Of Checkouts From The Past 90 Days
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-checkouts.deprecated202004getcheckoutscount
+      with:
+        since_id: tools.since_id
+        created_at_min: tools.created_at_min
+        created_at_max: tools.created_at_max
+        updated_at_min: tools.updated_at_min
+        updated_at_max: tools.updated_at_max
+        status: tools.status
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-count-checkouts-past-3
+      description: Shopify Retrieves A Count Of Checkouts From The Past 90 Days
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-checkouts.deprecated202007getcheckoutscount
+      with:
+        since_id: tools.since_id
+        created_at_min: tools.created_at_min
+        created_at_max: tools.created_at_max
+        updated_at_min: tools.updated_at_min
+        updated_at_max: tools.updated_at_max
+        status: tools.status
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-count-checkouts-past-4
+      description: Shopify Retrieves A Count Of Checkouts From The Past 90 Days
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-checkouts.getcheckoutscount
+      with:
+        since_id: tools.since_id
+        created_at_min: tools.created_at_min
+        created_at_max: tools.created_at_max
+        updated_at_min: tools.updated_at_min
+        updated_at_max: tools.updated_at_max
+        status: tools.status
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-count-checkouts-past-5
+      description: Shopify Retrieves A Count Of Checkouts From The Past 90 Days
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-checkouts.deprecated202101getcheckoutscount
+      with:
+        since_id: tools.since_id
+        created_at_min: tools.created_at_min
+        created_at_max: tools.created_at_max
+        updated_at_min: tools.updated_at_min
+        updated_at_max: tools.updated_at_max
+        status: tools.status
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-count-checkouts-past-6
+      description: Shopify Retrieves A Count Of Checkouts From The Past 90 Days
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-checkouts.deprecatedunstablegetcheckoutscount
+      with:
+        since_id: tools.since_id
+        created_at_min: tools.created_at_min
+        created_at_max: tools.created_at_max
+        updated_at_min: tools.updated_at_min
+        updated_at_max: tools.updated_at_max
+        status: tools.status
+      outputParameters:
+      - type: object
+        mapping: $.

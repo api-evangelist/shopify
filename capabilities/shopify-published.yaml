@@ -1,0 +1,1361 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Shopify  API — Published
+  description: 'Shopify  API — Published. 30 operations. Lead operation: Shopify Retrieve Collection Listings That Are Published
+    To Your App. Self-contained Naftiko capability covering one Shopify business surface.'
+  tags:
+  - Shopify
+  - Published
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SHOPIFY_API_KEY: SHOPIFY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: shopify-published
+    baseUri: ''
+    description: Shopify  API — Published business capability. Self-contained, no shared references.
+    resources:
+    - name: admin-api-2020-01-collection_listings.json
+      path: /admin/api/2020-01/collection_listings.json
+      operations:
+      - name: deprecated202001getcollectionlistings
+        method: GET
+        description: Shopify Retrieve Collection Listings That Are Published To Your App
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: string
+          description: Amount of results
+    - name: admin-api-2020-01-collection_listings-collection_listing_id}.json
+      path: /admin/api/2020-01/collection_listings/{collection_listing_id}.json
+      operations:
+      - name: deprecated202001getcollectionlistingsparamcollectionlistingid
+        method: GET
+        description: Shopify Retrieve A Specific Collection Listing That Is Published To Your App
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: collection_listing_id
+          in: path
+          type: string
+          description: collection_listing_id
+          required: true
+    - name: admin-api-2020-01-collection_listings-collection_listing_id-product_ids.json
+      path: /admin/api/2020-01/collection_listings/{collection_listing_id}/product_ids.json
+      operations:
+      - name: deprecated202001getcollectionlistingsparamcollectionlistingidproductids
+        method: GET
+        description: Shopify Retrieve Product_ids That Are Published To A Collection_id
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: collection_listing_id
+          in: path
+          type: string
+          description: collection_listing_id
+          required: true
+        - name: limit
+          in: query
+          type: string
+          description: Amount of results
+    - name: admin-api-2020-01-product_listings.json
+      path: /admin/api/2020-01/product_listings.json
+      operations:
+      - name: deprecated202001getproductlistings
+        method: GET
+        description: Shopify Retrieve Product Listings That Are Published To Your App
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_ids
+          in: query
+          type: string
+          description: A comma-separated list of product ids
+        - name: limit
+          in: query
+          type: string
+          description: Amount of results
+        - name: collection_id
+          in: query
+          type: string
+          description: Filter by products belonging to a particular collection
+        - name: updated_at_min
+          in: query
+          type: string
+          description: Filter by products last updated after a certain date and time (formatted in ISO 8601)
+        - name: handle
+          in: query
+          type: string
+          description: Filter by product handle
+    - name: admin-api-2020-01-product_listings-count.json
+      path: /admin/api/2020-01/product_listings/count.json
+      operations:
+      - name: deprecated202001getproductlistingscount
+        method: GET
+        description: Shopify Retrieve A Count Of Products That Are Published To Your App
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: admin-api-2020-01-product_listings-product_ids.json
+      path: /admin/api/2020-01/product_listings/product_ids.json
+      operations:
+      - name: deprecated202001getproductlistingsproductids
+        method: GET
+        description: Shopify Retrieve Product_ids That Are Published To Your App
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: string
+          description: Amount of results
+    - name: admin-api-2020-01-product_listings-product_listing_id}.json
+      path: /admin/api/2020-01/product_listings/{product_listing_id}.json
+      operations:
+      - name: deprecated202001getproductlistingsparamproductlistingid
+        method: GET
+        description: Shopify Retrieve A Specific Product Listing That Is Published To Your App
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_listing_id
+          in: path
+          type: string
+          description: product_listing_id
+          required: true
+    - name: admin-api-2020-04-collection_listings.json
+      path: /admin/api/2020-04/collection_listings.json
+      operations:
+      - name: deprecated202004getcollectionlistings
+        method: GET
+        description: Shopify Retrieve Collection Listings That Are Published To Your App
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: string
+          description: Amount of results
+    - name: admin-api-2020-04-collection_listings-collection_listing_id}.json
+      path: /admin/api/2020-04/collection_listings/{collection_listing_id}.json
+      operations:
+      - name: deprecated202004getcollectionlistingsparamcollectionlistingid
+        method: GET
+        description: Shopify Retrieve A Specific Collection Listing That Is Published To Your App
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: collection_listing_id
+          in: path
+          type: string
+          description: collection_listing_id
+          required: true
+    - name: admin-api-2020-04-collection_listings-collection_listing_id-product_ids.json
+      path: /admin/api/2020-04/collection_listings/{collection_listing_id}/product_ids.json
+      operations:
+      - name: deprecated202004getcollectionlistingsparamcollectionlistingidproductids
+        method: GET
+        description: Shopify Retrieve Product_ids That Are Published To A Collection_id
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: collection_listing_id
+          in: path
+          type: string
+          description: collection_listing_id
+          required: true
+        - name: limit
+          in: query
+          type: string
+          description: Amount of results
+    - name: admin-api-2020-04-product_listings.json
+      path: /admin/api/2020-04/product_listings.json
+      operations:
+      - name: deprecated202004getproductlistings
+        method: GET
+        description: Shopify Retrieve Product Listings That Are Published To Your App
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_ids
+          in: query
+          type: string
+          description: A comma-separated list of product ids
+        - name: limit
+          in: query
+          type: string
+          description: Amount of results
+        - name: collection_id
+          in: query
+          type: string
+          description: Filter by products belonging to a particular collection
+        - name: updated_at_min
+          in: query
+          type: string
+          description: Filter by products last updated after a certain date and time (formatted in ISO 8601)
+        - name: handle
+          in: query
+          type: string
+          description: Filter by product handle
+    - name: admin-api-2020-04-product_listings-count.json
+      path: /admin/api/2020-04/product_listings/count.json
+      operations:
+      - name: deprecated202004getproductlistingscount
+        method: GET
+        description: Shopify Retrieve A Count Of Products That Are Published To Your App
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: admin-api-2020-04-product_listings-product_ids.json
+      path: /admin/api/2020-04/product_listings/product_ids.json
+      operations:
+      - name: deprecated202004getproductlistingsproductids
+        method: GET
+        description: Shopify Retrieve Product_ids That Are Published To Your App
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: string
+          description: Amount of results
+    - name: admin-api-2020-04-product_listings-product_listing_id}.json
+      path: /admin/api/2020-04/product_listings/{product_listing_id}.json
+      operations:
+      - name: deprecated202004getproductlistingsparamproductlistingid
+        method: GET
+        description: Shopify Retrieve A Specific Product Listing That Is Published To Your App
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_listing_id
+          in: path
+          type: string
+          description: product_listing_id
+          required: true
+    - name: admin-api-2020-07-collection_listings.json
+      path: /admin/api/2020-07/collection_listings.json
+      operations:
+      - name: deprecated202007getcollectionlistings
+        method: GET
+        description: Shopify Retrieve Collection Listings That Are Published To Your App
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: string
+          description: Amount of results
+    - name: admin-api-2020-07-collection_listings-collection_listing_id}.json
+      path: /admin/api/2020-07/collection_listings/{collection_listing_id}.json
+      operations:
+      - name: deprecated202007getcollectionlistingsparamcollectionlistingid
+        method: GET
+        description: Shopify Retrieve A Specific Collection Listing That Is Published To Your App
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: collection_listing_id
+          in: path
+          type: string
+          description: collection_listing_id
+          required: true
+    - name: admin-api-2020-07-collection_listings-collection_listing_id-product_ids.json
+      path: /admin/api/2020-07/collection_listings/{collection_listing_id}/product_ids.json
+      operations:
+      - name: deprecated202007getcollectionlistingsparamcollectionlistingidproductids
+        method: GET
+        description: Shopify Retrieve Product_ids That Are Published To A Collection_id
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: collection_listing_id
+          in: path
+          type: string
+          description: collection_listing_id
+          required: true
+        - name: limit
+          in: query
+          type: string
+          description: Amount of results
+    - name: admin-api-2020-07-product_listings.json
+      path: /admin/api/2020-07/product_listings.json
+      operations:
+      - name: deprecated202007getproductlistings
+        method: GET
+        description: Shopify Retrieve Product Listings That Are Published To Your App
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_ids
+          in: query
+          type: string
+          description: A comma-separated list of product ids
+        - name: limit
+          in: query
+          type: string
+          description: Amount of results
+        - name: collection_id
+          in: query
+          type: string
+          description: Filter by products belonging to a particular collection
+        - name: updated_at_min
+          in: query
+          type: string
+          description: Filter by products last updated after a certain date and time (formatted in ISO 8601)
+        - name: handle
+          in: query
+          type: string
+          description: Filter by product handle
+    - name: admin-api-2020-07-product_listings-count.json
+      path: /admin/api/2020-07/product_listings/count.json
+      operations:
+      - name: deprecated202007getproductlistingscount
+        method: GET
+        description: Shopify Retrieve A Count Of Products That Are Published To Your App
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: admin-api-2020-07-product_listings-product_ids.json
+      path: /admin/api/2020-07/product_listings/product_ids.json
+      operations:
+      - name: deprecated202007getproductlistingsproductids
+        method: GET
+        description: Shopify Retrieve Product_ids That Are Published To Your App
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: string
+          description: Amount of results
+    - name: admin-api-2020-07-product_listings-product_listing_id}.json
+      path: /admin/api/2020-07/product_listings/{product_listing_id}.json
+      operations:
+      - name: deprecated202007getproductlistingsparamproductlistingid
+        method: GET
+        description: Shopify Retrieve A Specific Product Listing That Is Published To Your App
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: product_listing_id
+          in: path
+          type: string
+          description: product_listing_id
+          required: true
+    - name: admin-api-2020-10-collection_listings.json
+      path: /admin/api/2020-10/collection_listings.json
+      operations:
+      - name: getcollectionlistings
+        method: GET
+        description: Shopify Retrieve Collection Listings That Are Published To Your App
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: string
+          description: Amount of results
+    - name: admin-api-2020-10-collection_listings-collection_listing_id}.json
+      path: /admin/api/2020-10/collection_listings/{collection_listing_id}.json
+      operations:
+      - name: getcollectionlistingsparamcollectionlistingid
+        method: GET
+        description: Shopify Retrieve A Specific Collection Listing That Is Published To Your App
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: collection_listing_id
+          in: path
+          type: string
+          description: collection_listing_id
+          required: true
+    - name: admin-api-2020-10-collection_listings-collection_listing_id-product_ids.json
+      path: /admin/api/2020-10/collection_listings/{collection_listing_id}/product_ids.json
+      operations:
+      - name: getcollectionlistingsparamcollectionlistingidproductids
+        method: GET
+        description: Shopify Retrieve Product_ids That Are Published To A Collection_id
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: collection_listing_id
+          in: path
+          type: string
+          description: collection_listing_id
+          required: true
+        - name: limit
+          in: query
+          type: string
+          description: Amount of results
+    - name: admin-api-2021-01-collection_listings.json
+      path: /admin/api/2021-01/collection_listings.json
+      operations:
+      - name: deprecated202101getcollectionlistings
+        method: GET
+        description: Shopify Retrieve Collection Listings That Are Published To Your App
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: string
+          description: Amount of results
+    - name: admin-api-2021-01-collection_listings-collection_listing_id}.json
+      path: /admin/api/2021-01/collection_listings/{collection_listing_id}.json
+      operations:
+      - name: deprecated202101getcollectionlistingsparamcollectionlistingid
+        method: GET
+        description: Shopify Retrieve A Specific Collection Listing That Is Published To Your App
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: collection_listing_id
+          in: path
+          type: string
+          description: collection_listing_id
+          required: true
+    - name: admin-api-2021-01-collection_listings-collection_listing_id-product_ids.json
+      path: /admin/api/2021-01/collection_listings/{collection_listing_id}/product_ids.json
+      operations:
+      - name: deprecated202101getcollectionlistingsparamcollectionlistingidproductids
+        method: GET
+        description: Shopify Retrieve Product_ids That Are Published To A Collection_id
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: collection_listing_id
+          in: path
+          type: string
+          description: collection_listing_id
+          required: true
+        - name: limit
+          in: query
+          type: string
+          description: Amount of results
+    - name: admin-api-unstable-collection_listings.json
+      path: /admin/api/unstable/collection_listings.json
+      operations:
+      - name: deprecatedunstablegetcollectionlistings
+        method: GET
+        description: Shopify Retrieve Collection Listings That Are Published To Your App
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: string
+          description: Amount of results
+    - name: admin-api-unstable-collection_listings-collection_listing_id}.json
+      path: /admin/api/unstable/collection_listings/{collection_listing_id}.json
+      operations:
+      - name: deprecatedunstablegetcollectionlistingsparamcollectionlistingid
+        method: GET
+        description: Shopify Retrieve A Specific Collection Listing That Is Published To Your App
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: collection_listing_id
+          in: path
+          type: string
+          description: collection_listing_id
+          required: true
+    - name: admin-api-unstable-collection_listings-collection_listing_id-product_ids.json
+      path: /admin/api/unstable/collection_listings/{collection_listing_id}/product_ids.json
+      operations:
+      - name: deprecatedunstablegetcollectionlistingsparamcollectionlistingidproductids
+        method: GET
+        description: Shopify Retrieve Product_ids That Are Published To A Collection_id
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: collection_listing_id
+          in: path
+          type: string
+          description: collection_listing_id
+          required: true
+        - name: limit
+          in: query
+          type: string
+          description: Amount of results
+  exposes:
+  - type: rest
+    namespace: shopify-published-rest
+    port: 8080
+    description: REST adapter for Shopify  API — Published. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/admin/api/2020-01/collection-listings-json
+      name: admin-api-2020-01-collection-listings-json
+      description: REST surface for admin-api-2020-01-collection_listings.json.
+      operations:
+      - method: GET
+        name: deprecated202001getcollectionlistings
+        description: Shopify Retrieve Collection Listings That Are Published To Your App
+        call: shopify-published.deprecated202001getcollectionlistings
+        with:
+          limit: rest.limit
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-01/collection-listings/collection-listing-id-json
+      name: admin-api-2020-01-collection-listings-collection-listing-id-json
+      description: REST surface for admin-api-2020-01-collection_listings-collection_listing_id}.json.
+      operations:
+      - method: GET
+        name: deprecated202001getcollectionlistingsparamcollectionlistingid
+        description: Shopify Retrieve A Specific Collection Listing That Is Published To Your App
+        call: shopify-published.deprecated202001getcollectionlistingsparamcollectionlistingid
+        with:
+          collection_listing_id: rest.collection_listing_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-01/collection-listings/{collection-listing-id}/product-ids-json
+      name: admin-api-2020-01-collection-listings-collection-listing-id-product-ids-json
+      description: REST surface for admin-api-2020-01-collection_listings-collection_listing_id-product_ids.json.
+      operations:
+      - method: GET
+        name: deprecated202001getcollectionlistingsparamcollectionlistingidproductids
+        description: Shopify Retrieve Product_ids That Are Published To A Collection_id
+        call: shopify-published.deprecated202001getcollectionlistingsparamcollectionlistingidproductids
+        with:
+          collection_listing_id: rest.collection_listing_id
+          limit: rest.limit
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-01/product-listings-json
+      name: admin-api-2020-01-product-listings-json
+      description: REST surface for admin-api-2020-01-product_listings.json.
+      operations:
+      - method: GET
+        name: deprecated202001getproductlistings
+        description: Shopify Retrieve Product Listings That Are Published To Your App
+        call: shopify-published.deprecated202001getproductlistings
+        with:
+          product_ids: rest.product_ids
+          limit: rest.limit
+          collection_id: rest.collection_id
+          updated_at_min: rest.updated_at_min
+          handle: rest.handle
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-01/product-listings/count-json
+      name: admin-api-2020-01-product-listings-count-json
+      description: REST surface for admin-api-2020-01-product_listings-count.json.
+      operations:
+      - method: GET
+        name: deprecated202001getproductlistingscount
+        description: Shopify Retrieve A Count Of Products That Are Published To Your App
+        call: shopify-published.deprecated202001getproductlistingscount
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-01/product-listings/product-ids-json
+      name: admin-api-2020-01-product-listings-product-ids-json
+      description: REST surface for admin-api-2020-01-product_listings-product_ids.json.
+      operations:
+      - method: GET
+        name: deprecated202001getproductlistingsproductids
+        description: Shopify Retrieve Product_ids That Are Published To Your App
+        call: shopify-published.deprecated202001getproductlistingsproductids
+        with:
+          limit: rest.limit
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-01/product-listings/product-listing-id-json
+      name: admin-api-2020-01-product-listings-product-listing-id-json
+      description: REST surface for admin-api-2020-01-product_listings-product_listing_id}.json.
+      operations:
+      - method: GET
+        name: deprecated202001getproductlistingsparamproductlistingid
+        description: Shopify Retrieve A Specific Product Listing That Is Published To Your App
+        call: shopify-published.deprecated202001getproductlistingsparamproductlistingid
+        with:
+          product_listing_id: rest.product_listing_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/collection-listings-json
+      name: admin-api-2020-04-collection-listings-json
+      description: REST surface for admin-api-2020-04-collection_listings.json.
+      operations:
+      - method: GET
+        name: deprecated202004getcollectionlistings
+        description: Shopify Retrieve Collection Listings That Are Published To Your App
+        call: shopify-published.deprecated202004getcollectionlistings
+        with:
+          limit: rest.limit
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/collection-listings/collection-listing-id-json
+      name: admin-api-2020-04-collection-listings-collection-listing-id-json
+      description: REST surface for admin-api-2020-04-collection_listings-collection_listing_id}.json.
+      operations:
+      - method: GET
+        name: deprecated202004getcollectionlistingsparamcollectionlistingid
+        description: Shopify Retrieve A Specific Collection Listing That Is Published To Your App
+        call: shopify-published.deprecated202004getcollectionlistingsparamcollectionlistingid
+        with:
+          collection_listing_id: rest.collection_listing_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/collection-listings/{collection-listing-id}/product-ids-json
+      name: admin-api-2020-04-collection-listings-collection-listing-id-product-ids-json
+      description: REST surface for admin-api-2020-04-collection_listings-collection_listing_id-product_ids.json.
+      operations:
+      - method: GET
+        name: deprecated202004getcollectionlistingsparamcollectionlistingidproductids
+        description: Shopify Retrieve Product_ids That Are Published To A Collection_id
+        call: shopify-published.deprecated202004getcollectionlistingsparamcollectionlistingidproductids
+        with:
+          collection_listing_id: rest.collection_listing_id
+          limit: rest.limit
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/product-listings-json
+      name: admin-api-2020-04-product-listings-json
+      description: REST surface for admin-api-2020-04-product_listings.json.
+      operations:
+      - method: GET
+        name: deprecated202004getproductlistings
+        description: Shopify Retrieve Product Listings That Are Published To Your App
+        call: shopify-published.deprecated202004getproductlistings
+        with:
+          product_ids: rest.product_ids
+          limit: rest.limit
+          collection_id: rest.collection_id
+          updated_at_min: rest.updated_at_min
+          handle: rest.handle
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/product-listings/count-json
+      name: admin-api-2020-04-product-listings-count-json
+      description: REST surface for admin-api-2020-04-product_listings-count.json.
+      operations:
+      - method: GET
+        name: deprecated202004getproductlistingscount
+        description: Shopify Retrieve A Count Of Products That Are Published To Your App
+        call: shopify-published.deprecated202004getproductlistingscount
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/product-listings/product-ids-json
+      name: admin-api-2020-04-product-listings-product-ids-json
+      description: REST surface for admin-api-2020-04-product_listings-product_ids.json.
+      operations:
+      - method: GET
+        name: deprecated202004getproductlistingsproductids
+        description: Shopify Retrieve Product_ids That Are Published To Your App
+        call: shopify-published.deprecated202004getproductlistingsproductids
+        with:
+          limit: rest.limit
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/product-listings/product-listing-id-json
+      name: admin-api-2020-04-product-listings-product-listing-id-json
+      description: REST surface for admin-api-2020-04-product_listings-product_listing_id}.json.
+      operations:
+      - method: GET
+        name: deprecated202004getproductlistingsparamproductlistingid
+        description: Shopify Retrieve A Specific Product Listing That Is Published To Your App
+        call: shopify-published.deprecated202004getproductlistingsparamproductlistingid
+        with:
+          product_listing_id: rest.product_listing_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/collection-listings-json
+      name: admin-api-2020-07-collection-listings-json
+      description: REST surface for admin-api-2020-07-collection_listings.json.
+      operations:
+      - method: GET
+        name: deprecated202007getcollectionlistings
+        description: Shopify Retrieve Collection Listings That Are Published To Your App
+        call: shopify-published.deprecated202007getcollectionlistings
+        with:
+          limit: rest.limit
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/collection-listings/collection-listing-id-json
+      name: admin-api-2020-07-collection-listings-collection-listing-id-json
+      description: REST surface for admin-api-2020-07-collection_listings-collection_listing_id}.json.
+      operations:
+      - method: GET
+        name: deprecated202007getcollectionlistingsparamcollectionlistingid
+        description: Shopify Retrieve A Specific Collection Listing That Is Published To Your App
+        call: shopify-published.deprecated202007getcollectionlistingsparamcollectionlistingid
+        with:
+          collection_listing_id: rest.collection_listing_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/collection-listings/{collection-listing-id}/product-ids-json
+      name: admin-api-2020-07-collection-listings-collection-listing-id-product-ids-json
+      description: REST surface for admin-api-2020-07-collection_listings-collection_listing_id-product_ids.json.
+      operations:
+      - method: GET
+        name: deprecated202007getcollectionlistingsparamcollectionlistingidproductids
+        description: Shopify Retrieve Product_ids That Are Published To A Collection_id
+        call: shopify-published.deprecated202007getcollectionlistingsparamcollectionlistingidproductids
+        with:
+          collection_listing_id: rest.collection_listing_id
+          limit: rest.limit
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/product-listings-json
+      name: admin-api-2020-07-product-listings-json
+      description: REST surface for admin-api-2020-07-product_listings.json.
+      operations:
+      - method: GET
+        name: deprecated202007getproductlistings
+        description: Shopify Retrieve Product Listings That Are Published To Your App
+        call: shopify-published.deprecated202007getproductlistings
+        with:
+          product_ids: rest.product_ids
+          limit: rest.limit
+          collection_id: rest.collection_id
+          updated_at_min: rest.updated_at_min
+          handle: rest.handle
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/product-listings/count-json
+      name: admin-api-2020-07-product-listings-count-json
+      description: REST surface for admin-api-2020-07-product_listings-count.json.
+      operations:
+      - method: GET
+        name: deprecated202007getproductlistingscount
+        description: Shopify Retrieve A Count Of Products That Are Published To Your App
+        call: shopify-published.deprecated202007getproductlistingscount
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/product-listings/product-ids-json
+      name: admin-api-2020-07-product-listings-product-ids-json
+      description: REST surface for admin-api-2020-07-product_listings-product_ids.json.
+      operations:
+      - method: GET
+        name: deprecated202007getproductlistingsproductids
+        description: Shopify Retrieve Product_ids That Are Published To Your App
+        call: shopify-published.deprecated202007getproductlistingsproductids
+        with:
+          limit: rest.limit
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/product-listings/product-listing-id-json
+      name: admin-api-2020-07-product-listings-product-listing-id-json
+      description: REST surface for admin-api-2020-07-product_listings-product_listing_id}.json.
+      operations:
+      - method: GET
+        name: deprecated202007getproductlistingsparamproductlistingid
+        description: Shopify Retrieve A Specific Product Listing That Is Published To Your App
+        call: shopify-published.deprecated202007getproductlistingsparamproductlistingid
+        with:
+          product_listing_id: rest.product_listing_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/collection-listings-json
+      name: admin-api-2020-10-collection-listings-json
+      description: REST surface for admin-api-2020-10-collection_listings.json.
+      operations:
+      - method: GET
+        name: getcollectionlistings
+        description: Shopify Retrieve Collection Listings That Are Published To Your App
+        call: shopify-published.getcollectionlistings
+        with:
+          limit: rest.limit
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/collection-listings/collection-listing-id-json
+      name: admin-api-2020-10-collection-listings-collection-listing-id-json
+      description: REST surface for admin-api-2020-10-collection_listings-collection_listing_id}.json.
+      operations:
+      - method: GET
+        name: getcollectionlistingsparamcollectionlistingid
+        description: Shopify Retrieve A Specific Collection Listing That Is Published To Your App
+        call: shopify-published.getcollectionlistingsparamcollectionlistingid
+        with:
+          collection_listing_id: rest.collection_listing_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/collection-listings/{collection-listing-id}/product-ids-json
+      name: admin-api-2020-10-collection-listings-collection-listing-id-product-ids-json
+      description: REST surface for admin-api-2020-10-collection_listings-collection_listing_id-product_ids.json.
+      operations:
+      - method: GET
+        name: getcollectionlistingsparamcollectionlistingidproductids
+        description: Shopify Retrieve Product_ids That Are Published To A Collection_id
+        call: shopify-published.getcollectionlistingsparamcollectionlistingidproductids
+        with:
+          collection_listing_id: rest.collection_listing_id
+          limit: rest.limit
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/collection-listings-json
+      name: admin-api-2021-01-collection-listings-json
+      description: REST surface for admin-api-2021-01-collection_listings.json.
+      operations:
+      - method: GET
+        name: deprecated202101getcollectionlistings
+        description: Shopify Retrieve Collection Listings That Are Published To Your App
+        call: shopify-published.deprecated202101getcollectionlistings
+        with:
+          limit: rest.limit
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/collection-listings/collection-listing-id-json
+      name: admin-api-2021-01-collection-listings-collection-listing-id-json
+      description: REST surface for admin-api-2021-01-collection_listings-collection_listing_id}.json.
+      operations:
+      - method: GET
+        name: deprecated202101getcollectionlistingsparamcollectionlistingid
+        description: Shopify Retrieve A Specific Collection Listing That Is Published To Your App
+        call: shopify-published.deprecated202101getcollectionlistingsparamcollectionlistingid
+        with:
+          collection_listing_id: rest.collection_listing_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/collection-listings/{collection-listing-id}/product-ids-json
+      name: admin-api-2021-01-collection-listings-collection-listing-id-product-ids-json
+      description: REST surface for admin-api-2021-01-collection_listings-collection_listing_id-product_ids.json.
+      operations:
+      - method: GET
+        name: deprecated202101getcollectionlistingsparamcollectionlistingidproductids
+        description: Shopify Retrieve Product_ids That Are Published To A Collection_id
+        call: shopify-published.deprecated202101getcollectionlistingsparamcollectionlistingidproductids
+        with:
+          collection_listing_id: rest.collection_listing_id
+          limit: rest.limit
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/collection-listings-json
+      name: admin-api-unstable-collection-listings-json
+      description: REST surface for admin-api-unstable-collection_listings.json.
+      operations:
+      - method: GET
+        name: deprecatedunstablegetcollectionlistings
+        description: Shopify Retrieve Collection Listings That Are Published To Your App
+        call: shopify-published.deprecatedunstablegetcollectionlistings
+        with:
+          limit: rest.limit
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/collection-listings/collection-listing-id-json
+      name: admin-api-unstable-collection-listings-collection-listing-id-json
+      description: REST surface for admin-api-unstable-collection_listings-collection_listing_id}.json.
+      operations:
+      - method: GET
+        name: deprecatedunstablegetcollectionlistingsparamcollectionlistingid
+        description: Shopify Retrieve A Specific Collection Listing That Is Published To Your App
+        call: shopify-published.deprecatedunstablegetcollectionlistingsparamcollectionlistingid
+        with:
+          collection_listing_id: rest.collection_listing_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/collection-listings/{collection-listing-id}/product-ids-json
+      name: admin-api-unstable-collection-listings-collection-listing-id-product-ids-json
+      description: REST surface for admin-api-unstable-collection_listings-collection_listing_id-product_ids.json.
+      operations:
+      - method: GET
+        name: deprecatedunstablegetcollectionlistingsparamcollectionlistingidproductids
+        description: Shopify Retrieve Product_ids That Are Published To A Collection_id
+        call: shopify-published.deprecatedunstablegetcollectionlistingsparamcollectionlistingidproductids
+        with:
+          collection_listing_id: rest.collection_listing_id
+          limit: rest.limit
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: shopify-published-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Shopify  API — Published. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: shopify-retrieve-collection-listings-that
+      description: Shopify Retrieve Collection Listings That Are Published To Your App
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-published.deprecated202001getcollectionlistings
+      with:
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieve-specific-collection-listing
+      description: Shopify Retrieve A Specific Collection Listing That Is Published To Your App
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-published.deprecated202001getcollectionlistingsparamcollectionlistingid
+      with:
+        collection_listing_id: tools.collection_listing_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieve-product-ids-that
+      description: Shopify Retrieve Product_ids That Are Published To A Collection_id
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-published.deprecated202001getcollectionlistingsparamcollectionlistingidproductids
+      with:
+        collection_listing_id: tools.collection_listing_id
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieve-product-listings-that
+      description: Shopify Retrieve Product Listings That Are Published To Your App
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-published.deprecated202001getproductlistings
+      with:
+        product_ids: tools.product_ids
+        limit: tools.limit
+        collection_id: tools.collection_id
+        updated_at_min: tools.updated_at_min
+        handle: tools.handle
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieve-count-products-that
+      description: Shopify Retrieve A Count Of Products That Are Published To Your App
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-published.deprecated202001getproductlistingscount
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieve-product-ids-that-2
+      description: Shopify Retrieve Product_ids That Are Published To Your App
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-published.deprecated202001getproductlistingsproductids
+      with:
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieve-specific-product-listing
+      description: Shopify Retrieve A Specific Product Listing That Is Published To Your App
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-published.deprecated202001getproductlistingsparamproductlistingid
+      with:
+        product_listing_id: tools.product_listing_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieve-collection-listings-that-2
+      description: Shopify Retrieve Collection Listings That Are Published To Your App
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-published.deprecated202004getcollectionlistings
+      with:
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieve-specific-collection-listing-2
+      description: Shopify Retrieve A Specific Collection Listing That Is Published To Your App
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-published.deprecated202004getcollectionlistingsparamcollectionlistingid
+      with:
+        collection_listing_id: tools.collection_listing_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieve-product-ids-that-3
+      description: Shopify Retrieve Product_ids That Are Published To A Collection_id
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-published.deprecated202004getcollectionlistingsparamcollectionlistingidproductids
+      with:
+        collection_listing_id: tools.collection_listing_id
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieve-product-listings-that-2
+      description: Shopify Retrieve Product Listings That Are Published To Your App
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-published.deprecated202004getproductlistings
+      with:
+        product_ids: tools.product_ids
+        limit: tools.limit
+        collection_id: tools.collection_id
+        updated_at_min: tools.updated_at_min
+        handle: tools.handle
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieve-count-products-that-2
+      description: Shopify Retrieve A Count Of Products That Are Published To Your App
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-published.deprecated202004getproductlistingscount
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieve-product-ids-that-4
+      description: Shopify Retrieve Product_ids That Are Published To Your App
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-published.deprecated202004getproductlistingsproductids
+      with:
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieve-specific-product-listing-2
+      description: Shopify Retrieve A Specific Product Listing That Is Published To Your App
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-published.deprecated202004getproductlistingsparamproductlistingid
+      with:
+        product_listing_id: tools.product_listing_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieve-collection-listings-that-3
+      description: Shopify Retrieve Collection Listings That Are Published To Your App
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-published.deprecated202007getcollectionlistings
+      with:
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieve-specific-collection-listing-3
+      description: Shopify Retrieve A Specific Collection Listing That Is Published To Your App
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-published.deprecated202007getcollectionlistingsparamcollectionlistingid
+      with:
+        collection_listing_id: tools.collection_listing_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieve-product-ids-that-5
+      description: Shopify Retrieve Product_ids That Are Published To A Collection_id
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-published.deprecated202007getcollectionlistingsparamcollectionlistingidproductids
+      with:
+        collection_listing_id: tools.collection_listing_id
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieve-product-listings-that-3
+      description: Shopify Retrieve Product Listings That Are Published To Your App
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-published.deprecated202007getproductlistings
+      with:
+        product_ids: tools.product_ids
+        limit: tools.limit
+        collection_id: tools.collection_id
+        updated_at_min: tools.updated_at_min
+        handle: tools.handle
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieve-count-products-that-3
+      description: Shopify Retrieve A Count Of Products That Are Published To Your App
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-published.deprecated202007getproductlistingscount
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieve-product-ids-that-6
+      description: Shopify Retrieve Product_ids That Are Published To Your App
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-published.deprecated202007getproductlistingsproductids
+      with:
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieve-specific-product-listing-3
+      description: Shopify Retrieve A Specific Product Listing That Is Published To Your App
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-published.deprecated202007getproductlistingsparamproductlistingid
+      with:
+        product_listing_id: tools.product_listing_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieve-collection-listings-that-4
+      description: Shopify Retrieve Collection Listings That Are Published To Your App
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-published.getcollectionlistings
+      with:
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieve-specific-collection-listing-4
+      description: Shopify Retrieve A Specific Collection Listing That Is Published To Your App
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-published.getcollectionlistingsparamcollectionlistingid
+      with:
+        collection_listing_id: tools.collection_listing_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieve-product-ids-that-7
+      description: Shopify Retrieve Product_ids That Are Published To A Collection_id
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-published.getcollectionlistingsparamcollectionlistingidproductids
+      with:
+        collection_listing_id: tools.collection_listing_id
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieve-collection-listings-that-5
+      description: Shopify Retrieve Collection Listings That Are Published To Your App
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-published.deprecated202101getcollectionlistings
+      with:
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieve-specific-collection-listing-5
+      description: Shopify Retrieve A Specific Collection Listing That Is Published To Your App
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-published.deprecated202101getcollectionlistingsparamcollectionlistingid
+      with:
+        collection_listing_id: tools.collection_listing_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieve-product-ids-that-8
+      description: Shopify Retrieve Product_ids That Are Published To A Collection_id
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-published.deprecated202101getcollectionlistingsparamcollectionlistingidproductids
+      with:
+        collection_listing_id: tools.collection_listing_id
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieve-collection-listings-that-6
+      description: Shopify Retrieve Collection Listings That Are Published To Your App
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-published.deprecatedunstablegetcollectionlistings
+      with:
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieve-specific-collection-listing-6
+      description: Shopify Retrieve A Specific Collection Listing That Is Published To Your App
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-published.deprecatedunstablegetcollectionlistingsparamcollectionlistingid
+      with:
+        collection_listing_id: tools.collection_listing_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieve-product-ids-that-9
+      description: Shopify Retrieve Product_ids That Are Published To A Collection_id
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-published.deprecatedunstablegetcollectionlistingsparamcollectionlistingidproductids
+      with:
+        collection_listing_id: tools.collection_listing_id
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.

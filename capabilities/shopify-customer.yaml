@@ -1,0 +1,1877 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Shopify  API — Customer
+  description: 'Shopify  API — Customer. 42 operations. Lead operation: Shopify Creates A Customer. Self-contained Naftiko
+    capability covering one Shopify business surface.'
+  tags:
+  - Shopify
+  - Customer
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SHOPIFY_API_KEY: SHOPIFY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: shopify-customer
+    baseUri: ''
+    description: Shopify  API — Customer business capability. Self-contained, no shared references.
+    resources:
+    - name: admin-api-2020-01-customers.json
+      path: /admin/api/2020-01/customers.json
+      operations:
+      - name: deprecated202001createcustomers
+        method: POST
+        description: Shopify Creates A Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-01-customers-customer_id}.json
+      path: /admin/api/2020-01/customers/{customer_id}.json
+      operations:
+      - name: deprecated202001getcustomersparamcustomerid
+        method: GET
+        description: Shopify Retrieves A Single Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+      - name: deprecated202001updatecustomersparamcustomerid
+        method: PUT
+        description: Shopify Updates A Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deprecated202001deletecustomersparamcustomerid
+        method: DELETE
+        description: Shopify Deletes A Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+    - name: admin-api-2020-01-customers-customer_id-account_activation_url.json
+      path: /admin/api/2020-01/customers/{customer_id}/account_activation_url.json
+      operations:
+      - name: deprecated202001createcustomersparamcustomeridaccountactivationurl
+        method: POST
+        description: Shopify Generate An Account Activation Url For A Customer Whose Account Is Not Yet Enabled
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-01-customers-customer_id-orders.json
+      path: /admin/api/2020-01/customers/{customer_id}/orders.json
+      operations:
+      - name: deprecated202001getcustomersparamcustomeridorders
+        method: GET
+        description: Shopify Retrieves All Orders Belonging To A Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+    - name: admin-api-2020-01-customers-customer_id-send_invite.json
+      path: /admin/api/2020-01/customers/{customer_id}/send_invite.json
+      operations:
+      - name: deprecated202001createcustomersparamcustomeridsendinvite
+        method: POST
+        description: Shopify Sends An Account Invite To A Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-04-customers.json
+      path: /admin/api/2020-04/customers.json
+      operations:
+      - name: deprecated202004createcustomers
+        method: POST
+        description: Shopify Creates A Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-04-customers-customer_id}.json
+      path: /admin/api/2020-04/customers/{customer_id}.json
+      operations:
+      - name: deprecated202004getcustomersparamcustomerid
+        method: GET
+        description: Shopify Retrieves A Single Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+      - name: deprecated202004updatecustomersparamcustomerid
+        method: PUT
+        description: Shopify Updates A Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deprecated202004deletecustomersparamcustomerid
+        method: DELETE
+        description: Shopify Deletes A Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+    - name: admin-api-2020-04-customers-customer_id-account_activation_url.json
+      path: /admin/api/2020-04/customers/{customer_id}/account_activation_url.json
+      operations:
+      - name: deprecated202004createcustomersparamcustomeridaccountactivationurl
+        method: POST
+        description: Shopify Generate An Account Activation Url For A Customer Whose Account Is Not Yet Enabled
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-04-customers-customer_id-orders.json
+      path: /admin/api/2020-04/customers/{customer_id}/orders.json
+      operations:
+      - name: deprecated202004getcustomersparamcustomeridorders
+        method: GET
+        description: Shopify Retrieves All Orders Belonging To A Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+    - name: admin-api-2020-04-customers-customer_id-send_invite.json
+      path: /admin/api/2020-04/customers/{customer_id}/send_invite.json
+      operations:
+      - name: deprecated202004createcustomersparamcustomeridsendinvite
+        method: POST
+        description: Shopify Sends An Account Invite To A Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-07-customers.json
+      path: /admin/api/2020-07/customers.json
+      operations:
+      - name: deprecated202007createcustomers
+        method: POST
+        description: Shopify Creates A Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-07-customers-customer_id}.json
+      path: /admin/api/2020-07/customers/{customer_id}.json
+      operations:
+      - name: deprecated202007getcustomersparamcustomerid
+        method: GET
+        description: Shopify Retrieves A Single Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+      - name: deprecated202007updatecustomersparamcustomerid
+        method: PUT
+        description: Shopify Updates A Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deprecated202007deletecustomersparamcustomerid
+        method: DELETE
+        description: Shopify Deletes A Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+    - name: admin-api-2020-07-customers-customer_id-account_activation_url.json
+      path: /admin/api/2020-07/customers/{customer_id}/account_activation_url.json
+      operations:
+      - name: deprecated202007createcustomersparamcustomeridaccountactivationurl
+        method: POST
+        description: Shopify Generate An Account Activation Url For A Customer Whose Account Is Not Yet Enabled
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-07-customers-customer_id-orders.json
+      path: /admin/api/2020-07/customers/{customer_id}/orders.json
+      operations:
+      - name: deprecated202007getcustomersparamcustomeridorders
+        method: GET
+        description: Shopify Retrieves All Orders Belonging To A Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+    - name: admin-api-2020-07-customers-customer_id-send_invite.json
+      path: /admin/api/2020-07/customers/{customer_id}/send_invite.json
+      operations:
+      - name: deprecated202007createcustomersparamcustomeridsendinvite
+        method: POST
+        description: Shopify Sends An Account Invite To A Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-10-customers.json
+      path: /admin/api/2020-10/customers.json
+      operations:
+      - name: createcustomers
+        method: POST
+        description: Shopify Creates A Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-10-customers-customer_id}.json
+      path: /admin/api/2020-10/customers/{customer_id}.json
+      operations:
+      - name: getcustomersparamcustomerid
+        method: GET
+        description: Shopify Retrieves A Single Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+      - name: updatecustomersparamcustomerid
+        method: PUT
+        description: Shopify Updates A Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deletecustomersparamcustomerid
+        method: DELETE
+        description: Shopify Deletes A Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+    - name: admin-api-2020-10-customers-customer_id-account_activation_url.json
+      path: /admin/api/2020-10/customers/{customer_id}/account_activation_url.json
+      operations:
+      - name: createcustomersparamcustomeridaccountactivationurl
+        method: POST
+        description: Shopify Generate An Account Activation Url For A Customer Whose Account Is Not Yet Enabled
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2020-10-customers-customer_id-orders.json
+      path: /admin/api/2020-10/customers/{customer_id}/orders.json
+      operations:
+      - name: getcustomersparamcustomeridorders
+        method: GET
+        description: Shopify Retrieves All Orders Belonging To A Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+    - name: admin-api-2020-10-customers-customer_id-send_invite.json
+      path: /admin/api/2020-10/customers/{customer_id}/send_invite.json
+      operations:
+      - name: createcustomersparamcustomeridsendinvite
+        method: POST
+        description: Shopify Sends An Account Invite To A Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2021-01-customers.json
+      path: /admin/api/2021-01/customers.json
+      operations:
+      - name: deprecated202101createcustomers
+        method: POST
+        description: Shopify Creates A Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2021-01-customers-customer_id}.json
+      path: /admin/api/2021-01/customers/{customer_id}.json
+      operations:
+      - name: deprecated202101getcustomersparamcustomerid
+        method: GET
+        description: Shopify Retrieves A Single Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+      - name: deprecated202101updatecustomersparamcustomerid
+        method: PUT
+        description: Shopify Updates A Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deprecated202101deletecustomersparamcustomerid
+        method: DELETE
+        description: Shopify Deletes A Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+    - name: admin-api-2021-01-customers-customer_id-account_activation_url.json
+      path: /admin/api/2021-01/customers/{customer_id}/account_activation_url.json
+      operations:
+      - name: deprecated202101createcustomersparamcustomeridaccountactivationurl
+        method: POST
+        description: Shopify Generate An Account Activation Url For A Customer Whose Account Is Not Yet Enabled
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-2021-01-customers-customer_id-orders.json
+      path: /admin/api/2021-01/customers/{customer_id}/orders.json
+      operations:
+      - name: deprecated202101getcustomersparamcustomeridorders
+        method: GET
+        description: Shopify Retrieves All Orders Belonging To A Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+    - name: admin-api-2021-01-customers-customer_id-send_invite.json
+      path: /admin/api/2021-01/customers/{customer_id}/send_invite.json
+      operations:
+      - name: deprecated202101createcustomersparamcustomeridsendinvite
+        method: POST
+        description: Shopify Sends An Account Invite To A Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-unstable-customers.json
+      path: /admin/api/unstable/customers.json
+      operations:
+      - name: deprecatedunstablecreatecustomers
+        method: POST
+        description: Shopify Creates A Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-unstable-customers-customer_id}.json
+      path: /admin/api/unstable/customers/{customer_id}.json
+      operations:
+      - name: deprecatedunstablegetcustomersparamcustomerid
+        method: GET
+        description: Shopify Retrieves A Single Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: fields
+          in: query
+          type: string
+          description: Show only certain fields, specified by a comma-separated list of field names.
+      - name: deprecatedunstableupdatecustomersparamcustomerid
+        method: PUT
+        description: Shopify Updates A Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deprecatedunstabledeletecustomersparamcustomerid
+        method: DELETE
+        description: Shopify Deletes A Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+    - name: admin-api-unstable-customers-customer_id-account_activation_url.json
+      path: /admin/api/unstable/customers/{customer_id}/account_activation_url.json
+      operations:
+      - name: deprecatedunstablecreatecustomersparamcustomeridaccountactivationurl
+        method: POST
+        description: Shopify Generate An Account Activation Url For A Customer Whose Account Is Not Yet Enabled
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: admin-api-unstable-customers-customer_id-orders.json
+      path: /admin/api/unstable/customers/{customer_id}/orders.json
+      operations:
+      - name: deprecatedunstablegetcustomersparamcustomeridorders
+        method: GET
+        description: Shopify Retrieves All Orders Belonging To A Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+    - name: admin-api-unstable-customers-customer_id-send_invite.json
+      path: /admin/api/unstable/customers/{customer_id}/send_invite.json
+      operations:
+      - name: deprecatedunstablecreatecustomersparamcustomeridsendinvite
+        method: POST
+        description: Shopify Sends An Account Invite To A Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customer_id
+          in: path
+          type: string
+          description: customer_id
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+  exposes:
+  - type: rest
+    namespace: shopify-customer-rest
+    port: 8080
+    description: REST adapter for Shopify  API — Customer. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/admin/api/2020-01/customers-json
+      name: admin-api-2020-01-customers-json
+      description: REST surface for admin-api-2020-01-customers.json.
+      operations:
+      - method: POST
+        name: deprecated202001createcustomers
+        description: Shopify Creates A Customer
+        call: shopify-customer.deprecated202001createcustomers
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-01/customers/customer-id-json
+      name: admin-api-2020-01-customers-customer-id-json
+      description: REST surface for admin-api-2020-01-customers-customer_id}.json.
+      operations:
+      - method: GET
+        name: deprecated202001getcustomersparamcustomerid
+        description: Shopify Retrieves A Single Customer
+        call: shopify-customer.deprecated202001getcustomersparamcustomerid
+        with:
+          customer_id: rest.customer_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: deprecated202001updatecustomersparamcustomerid
+        description: Shopify Updates A Customer
+        call: shopify-customer.deprecated202001updatecustomersparamcustomerid
+        with:
+          customer_id: rest.customer_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deprecated202001deletecustomersparamcustomerid
+        description: Shopify Deletes A Customer
+        call: shopify-customer.deprecated202001deletecustomersparamcustomerid
+        with:
+          customer_id: rest.customer_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-01/customers/{customer-id}/account-activation-url-json
+      name: admin-api-2020-01-customers-customer-id-account-activation-url-json
+      description: REST surface for admin-api-2020-01-customers-customer_id-account_activation_url.json.
+      operations:
+      - method: POST
+        name: deprecated202001createcustomersparamcustomeridaccountactivationurl
+        description: Shopify Generate An Account Activation Url For A Customer Whose Account Is Not Yet Enabled
+        call: shopify-customer.deprecated202001createcustomersparamcustomeridaccountactivationurl
+        with:
+          customer_id: rest.customer_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-01/customers/{customer-id}/orders-json
+      name: admin-api-2020-01-customers-customer-id-orders-json
+      description: REST surface for admin-api-2020-01-customers-customer_id-orders.json.
+      operations:
+      - method: GET
+        name: deprecated202001getcustomersparamcustomeridorders
+        description: Shopify Retrieves All Orders Belonging To A Customer
+        call: shopify-customer.deprecated202001getcustomersparamcustomeridorders
+        with:
+          customer_id: rest.customer_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-01/customers/{customer-id}/send-invite-json
+      name: admin-api-2020-01-customers-customer-id-send-invite-json
+      description: REST surface for admin-api-2020-01-customers-customer_id-send_invite.json.
+      operations:
+      - method: POST
+        name: deprecated202001createcustomersparamcustomeridsendinvite
+        description: Shopify Sends An Account Invite To A Customer
+        call: shopify-customer.deprecated202001createcustomersparamcustomeridsendinvite
+        with:
+          customer_id: rest.customer_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/customers-json
+      name: admin-api-2020-04-customers-json
+      description: REST surface for admin-api-2020-04-customers.json.
+      operations:
+      - method: POST
+        name: deprecated202004createcustomers
+        description: Shopify Creates A Customer
+        call: shopify-customer.deprecated202004createcustomers
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/customers/customer-id-json
+      name: admin-api-2020-04-customers-customer-id-json
+      description: REST surface for admin-api-2020-04-customers-customer_id}.json.
+      operations:
+      - method: GET
+        name: deprecated202004getcustomersparamcustomerid
+        description: Shopify Retrieves A Single Customer
+        call: shopify-customer.deprecated202004getcustomersparamcustomerid
+        with:
+          customer_id: rest.customer_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: deprecated202004updatecustomersparamcustomerid
+        description: Shopify Updates A Customer
+        call: shopify-customer.deprecated202004updatecustomersparamcustomerid
+        with:
+          customer_id: rest.customer_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deprecated202004deletecustomersparamcustomerid
+        description: Shopify Deletes A Customer
+        call: shopify-customer.deprecated202004deletecustomersparamcustomerid
+        with:
+          customer_id: rest.customer_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/customers/{customer-id}/account-activation-url-json
+      name: admin-api-2020-04-customers-customer-id-account-activation-url-json
+      description: REST surface for admin-api-2020-04-customers-customer_id-account_activation_url.json.
+      operations:
+      - method: POST
+        name: deprecated202004createcustomersparamcustomeridaccountactivationurl
+        description: Shopify Generate An Account Activation Url For A Customer Whose Account Is Not Yet Enabled
+        call: shopify-customer.deprecated202004createcustomersparamcustomeridaccountactivationurl
+        with:
+          customer_id: rest.customer_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/customers/{customer-id}/orders-json
+      name: admin-api-2020-04-customers-customer-id-orders-json
+      description: REST surface for admin-api-2020-04-customers-customer_id-orders.json.
+      operations:
+      - method: GET
+        name: deprecated202004getcustomersparamcustomeridorders
+        description: Shopify Retrieves All Orders Belonging To A Customer
+        call: shopify-customer.deprecated202004getcustomersparamcustomeridorders
+        with:
+          customer_id: rest.customer_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-04/customers/{customer-id}/send-invite-json
+      name: admin-api-2020-04-customers-customer-id-send-invite-json
+      description: REST surface for admin-api-2020-04-customers-customer_id-send_invite.json.
+      operations:
+      - method: POST
+        name: deprecated202004createcustomersparamcustomeridsendinvite
+        description: Shopify Sends An Account Invite To A Customer
+        call: shopify-customer.deprecated202004createcustomersparamcustomeridsendinvite
+        with:
+          customer_id: rest.customer_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/customers-json
+      name: admin-api-2020-07-customers-json
+      description: REST surface for admin-api-2020-07-customers.json.
+      operations:
+      - method: POST
+        name: deprecated202007createcustomers
+        description: Shopify Creates A Customer
+        call: shopify-customer.deprecated202007createcustomers
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/customers/customer-id-json
+      name: admin-api-2020-07-customers-customer-id-json
+      description: REST surface for admin-api-2020-07-customers-customer_id}.json.
+      operations:
+      - method: GET
+        name: deprecated202007getcustomersparamcustomerid
+        description: Shopify Retrieves A Single Customer
+        call: shopify-customer.deprecated202007getcustomersparamcustomerid
+        with:
+          customer_id: rest.customer_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: deprecated202007updatecustomersparamcustomerid
+        description: Shopify Updates A Customer
+        call: shopify-customer.deprecated202007updatecustomersparamcustomerid
+        with:
+          customer_id: rest.customer_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deprecated202007deletecustomersparamcustomerid
+        description: Shopify Deletes A Customer
+        call: shopify-customer.deprecated202007deletecustomersparamcustomerid
+        with:
+          customer_id: rest.customer_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/customers/{customer-id}/account-activation-url-json
+      name: admin-api-2020-07-customers-customer-id-account-activation-url-json
+      description: REST surface for admin-api-2020-07-customers-customer_id-account_activation_url.json.
+      operations:
+      - method: POST
+        name: deprecated202007createcustomersparamcustomeridaccountactivationurl
+        description: Shopify Generate An Account Activation Url For A Customer Whose Account Is Not Yet Enabled
+        call: shopify-customer.deprecated202007createcustomersparamcustomeridaccountactivationurl
+        with:
+          customer_id: rest.customer_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/customers/{customer-id}/orders-json
+      name: admin-api-2020-07-customers-customer-id-orders-json
+      description: REST surface for admin-api-2020-07-customers-customer_id-orders.json.
+      operations:
+      - method: GET
+        name: deprecated202007getcustomersparamcustomeridorders
+        description: Shopify Retrieves All Orders Belonging To A Customer
+        call: shopify-customer.deprecated202007getcustomersparamcustomeridorders
+        with:
+          customer_id: rest.customer_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-07/customers/{customer-id}/send-invite-json
+      name: admin-api-2020-07-customers-customer-id-send-invite-json
+      description: REST surface for admin-api-2020-07-customers-customer_id-send_invite.json.
+      operations:
+      - method: POST
+        name: deprecated202007createcustomersparamcustomeridsendinvite
+        description: Shopify Sends An Account Invite To A Customer
+        call: shopify-customer.deprecated202007createcustomersparamcustomeridsendinvite
+        with:
+          customer_id: rest.customer_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/customers-json
+      name: admin-api-2020-10-customers-json
+      description: REST surface for admin-api-2020-10-customers.json.
+      operations:
+      - method: POST
+        name: createcustomers
+        description: Shopify Creates A Customer
+        call: shopify-customer.createcustomers
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/customers/customer-id-json
+      name: admin-api-2020-10-customers-customer-id-json
+      description: REST surface for admin-api-2020-10-customers-customer_id}.json.
+      operations:
+      - method: GET
+        name: getcustomersparamcustomerid
+        description: Shopify Retrieves A Single Customer
+        call: shopify-customer.getcustomersparamcustomerid
+        with:
+          customer_id: rest.customer_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updatecustomersparamcustomerid
+        description: Shopify Updates A Customer
+        call: shopify-customer.updatecustomersparamcustomerid
+        with:
+          customer_id: rest.customer_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletecustomersparamcustomerid
+        description: Shopify Deletes A Customer
+        call: shopify-customer.deletecustomersparamcustomerid
+        with:
+          customer_id: rest.customer_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/customers/{customer-id}/account-activation-url-json
+      name: admin-api-2020-10-customers-customer-id-account-activation-url-json
+      description: REST surface for admin-api-2020-10-customers-customer_id-account_activation_url.json.
+      operations:
+      - method: POST
+        name: createcustomersparamcustomeridaccountactivationurl
+        description: Shopify Generate An Account Activation Url For A Customer Whose Account Is Not Yet Enabled
+        call: shopify-customer.createcustomersparamcustomeridaccountactivationurl
+        with:
+          customer_id: rest.customer_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/customers/{customer-id}/orders-json
+      name: admin-api-2020-10-customers-customer-id-orders-json
+      description: REST surface for admin-api-2020-10-customers-customer_id-orders.json.
+      operations:
+      - method: GET
+        name: getcustomersparamcustomeridorders
+        description: Shopify Retrieves All Orders Belonging To A Customer
+        call: shopify-customer.getcustomersparamcustomeridorders
+        with:
+          customer_id: rest.customer_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2020-10/customers/{customer-id}/send-invite-json
+      name: admin-api-2020-10-customers-customer-id-send-invite-json
+      description: REST surface for admin-api-2020-10-customers-customer_id-send_invite.json.
+      operations:
+      - method: POST
+        name: createcustomersparamcustomeridsendinvite
+        description: Shopify Sends An Account Invite To A Customer
+        call: shopify-customer.createcustomersparamcustomeridsendinvite
+        with:
+          customer_id: rest.customer_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/customers-json
+      name: admin-api-2021-01-customers-json
+      description: REST surface for admin-api-2021-01-customers.json.
+      operations:
+      - method: POST
+        name: deprecated202101createcustomers
+        description: Shopify Creates A Customer
+        call: shopify-customer.deprecated202101createcustomers
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/customers/customer-id-json
+      name: admin-api-2021-01-customers-customer-id-json
+      description: REST surface for admin-api-2021-01-customers-customer_id}.json.
+      operations:
+      - method: GET
+        name: deprecated202101getcustomersparamcustomerid
+        description: Shopify Retrieves A Single Customer
+        call: shopify-customer.deprecated202101getcustomersparamcustomerid
+        with:
+          customer_id: rest.customer_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: deprecated202101updatecustomersparamcustomerid
+        description: Shopify Updates A Customer
+        call: shopify-customer.deprecated202101updatecustomersparamcustomerid
+        with:
+          customer_id: rest.customer_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deprecated202101deletecustomersparamcustomerid
+        description: Shopify Deletes A Customer
+        call: shopify-customer.deprecated202101deletecustomersparamcustomerid
+        with:
+          customer_id: rest.customer_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/customers/{customer-id}/account-activation-url-json
+      name: admin-api-2021-01-customers-customer-id-account-activation-url-json
+      description: REST surface for admin-api-2021-01-customers-customer_id-account_activation_url.json.
+      operations:
+      - method: POST
+        name: deprecated202101createcustomersparamcustomeridaccountactivationurl
+        description: Shopify Generate An Account Activation Url For A Customer Whose Account Is Not Yet Enabled
+        call: shopify-customer.deprecated202101createcustomersparamcustomeridaccountactivationurl
+        with:
+          customer_id: rest.customer_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/customers/{customer-id}/orders-json
+      name: admin-api-2021-01-customers-customer-id-orders-json
+      description: REST surface for admin-api-2021-01-customers-customer_id-orders.json.
+      operations:
+      - method: GET
+        name: deprecated202101getcustomersparamcustomeridorders
+        description: Shopify Retrieves All Orders Belonging To A Customer
+        call: shopify-customer.deprecated202101getcustomersparamcustomeridorders
+        with:
+          customer_id: rest.customer_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/2021-01/customers/{customer-id}/send-invite-json
+      name: admin-api-2021-01-customers-customer-id-send-invite-json
+      description: REST surface for admin-api-2021-01-customers-customer_id-send_invite.json.
+      operations:
+      - method: POST
+        name: deprecated202101createcustomersparamcustomeridsendinvite
+        description: Shopify Sends An Account Invite To A Customer
+        call: shopify-customer.deprecated202101createcustomersparamcustomeridsendinvite
+        with:
+          customer_id: rest.customer_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/customers-json
+      name: admin-api-unstable-customers-json
+      description: REST surface for admin-api-unstable-customers.json.
+      operations:
+      - method: POST
+        name: deprecatedunstablecreatecustomers
+        description: Shopify Creates A Customer
+        call: shopify-customer.deprecatedunstablecreatecustomers
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/customers/customer-id-json
+      name: admin-api-unstable-customers-customer-id-json
+      description: REST surface for admin-api-unstable-customers-customer_id}.json.
+      operations:
+      - method: GET
+        name: deprecatedunstablegetcustomersparamcustomerid
+        description: Shopify Retrieves A Single Customer
+        call: shopify-customer.deprecatedunstablegetcustomersparamcustomerid
+        with:
+          customer_id: rest.customer_id
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: deprecatedunstableupdatecustomersparamcustomerid
+        description: Shopify Updates A Customer
+        call: shopify-customer.deprecatedunstableupdatecustomersparamcustomerid
+        with:
+          customer_id: rest.customer_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deprecatedunstabledeletecustomersparamcustomerid
+        description: Shopify Deletes A Customer
+        call: shopify-customer.deprecatedunstabledeletecustomersparamcustomerid
+        with:
+          customer_id: rest.customer_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/customers/{customer-id}/account-activation-url-json
+      name: admin-api-unstable-customers-customer-id-account-activation-url-json
+      description: REST surface for admin-api-unstable-customers-customer_id-account_activation_url.json.
+      operations:
+      - method: POST
+        name: deprecatedunstablecreatecustomersparamcustomeridaccountactivationurl
+        description: Shopify Generate An Account Activation Url For A Customer Whose Account Is Not Yet Enabled
+        call: shopify-customer.deprecatedunstablecreatecustomersparamcustomeridaccountactivationurl
+        with:
+          customer_id: rest.customer_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/customers/{customer-id}/orders-json
+      name: admin-api-unstable-customers-customer-id-orders-json
+      description: REST surface for admin-api-unstable-customers-customer_id-orders.json.
+      operations:
+      - method: GET
+        name: deprecatedunstablegetcustomersparamcustomeridorders
+        description: Shopify Retrieves All Orders Belonging To A Customer
+        call: shopify-customer.deprecatedunstablegetcustomersparamcustomeridorders
+        with:
+          customer_id: rest.customer_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/api/unstable/customers/{customer-id}/send-invite-json
+      name: admin-api-unstable-customers-customer-id-send-invite-json
+      description: REST surface for admin-api-unstable-customers-customer_id-send_invite.json.
+      operations:
+      - method: POST
+        name: deprecatedunstablecreatecustomersparamcustomeridsendinvite
+        description: Shopify Sends An Account Invite To A Customer
+        call: shopify-customer.deprecatedunstablecreatecustomersparamcustomeridsendinvite
+        with:
+          customer_id: rest.customer_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: shopify-customer-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Shopify  API — Customer. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: shopify-creates-customer
+      description: Shopify Creates A Customer
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-customer.deprecated202001createcustomers
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-single-customer
+      description: Shopify Retrieves A Single Customer
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-customer.deprecated202001getcustomersparamcustomerid
+      with:
+        customer_id: tools.customer_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-updates-customer
+      description: Shopify Updates A Customer
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-customer.deprecated202001updatecustomersparamcustomerid
+      with:
+        customer_id: tools.customer_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-deletes-customer
+      description: Shopify Deletes A Customer
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-customer.deprecated202001deletecustomersparamcustomerid
+      with:
+        customer_id: tools.customer_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-generate-account-activation-url
+      description: Shopify Generate An Account Activation Url For A Customer Whose Account Is Not Yet Enabled
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-customer.deprecated202001createcustomersparamcustomeridaccountactivationurl
+      with:
+        customer_id: tools.customer_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-all-orders-belonging
+      description: Shopify Retrieves All Orders Belonging To A Customer
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-customer.deprecated202001getcustomersparamcustomeridorders
+      with:
+        customer_id: tools.customer_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-sends-account-invite-customer
+      description: Shopify Sends An Account Invite To A Customer
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-customer.deprecated202001createcustomersparamcustomeridsendinvite
+      with:
+        customer_id: tools.customer_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-creates-customer-2
+      description: Shopify Creates A Customer
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-customer.deprecated202004createcustomers
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-single-customer-2
+      description: Shopify Retrieves A Single Customer
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-customer.deprecated202004getcustomersparamcustomerid
+      with:
+        customer_id: tools.customer_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-updates-customer-2
+      description: Shopify Updates A Customer
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-customer.deprecated202004updatecustomersparamcustomerid
+      with:
+        customer_id: tools.customer_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-deletes-customer-2
+      description: Shopify Deletes A Customer
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-customer.deprecated202004deletecustomersparamcustomerid
+      with:
+        customer_id: tools.customer_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-generate-account-activation-url-2
+      description: Shopify Generate An Account Activation Url For A Customer Whose Account Is Not Yet Enabled
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-customer.deprecated202004createcustomersparamcustomeridaccountactivationurl
+      with:
+        customer_id: tools.customer_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-all-orders-belonging-2
+      description: Shopify Retrieves All Orders Belonging To A Customer
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-customer.deprecated202004getcustomersparamcustomeridorders
+      with:
+        customer_id: tools.customer_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-sends-account-invite-customer-2
+      description: Shopify Sends An Account Invite To A Customer
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-customer.deprecated202004createcustomersparamcustomeridsendinvite
+      with:
+        customer_id: tools.customer_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-creates-customer-3
+      description: Shopify Creates A Customer
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-customer.deprecated202007createcustomers
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-single-customer-3
+      description: Shopify Retrieves A Single Customer
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-customer.deprecated202007getcustomersparamcustomerid
+      with:
+        customer_id: tools.customer_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-updates-customer-3
+      description: Shopify Updates A Customer
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-customer.deprecated202007updatecustomersparamcustomerid
+      with:
+        customer_id: tools.customer_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-deletes-customer-3
+      description: Shopify Deletes A Customer
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-customer.deprecated202007deletecustomersparamcustomerid
+      with:
+        customer_id: tools.customer_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-generate-account-activation-url-3
+      description: Shopify Generate An Account Activation Url For A Customer Whose Account Is Not Yet Enabled
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-customer.deprecated202007createcustomersparamcustomeridaccountactivationurl
+      with:
+        customer_id: tools.customer_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-all-orders-belonging-3
+      description: Shopify Retrieves All Orders Belonging To A Customer
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-customer.deprecated202007getcustomersparamcustomeridorders
+      with:
+        customer_id: tools.customer_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-sends-account-invite-customer-3
+      description: Shopify Sends An Account Invite To A Customer
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-customer.deprecated202007createcustomersparamcustomeridsendinvite
+      with:
+        customer_id: tools.customer_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-creates-customer-4
+      description: Shopify Creates A Customer
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-customer.createcustomers
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-single-customer-4
+      description: Shopify Retrieves A Single Customer
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-customer.getcustomersparamcustomerid
+      with:
+        customer_id: tools.customer_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-updates-customer-4
+      description: Shopify Updates A Customer
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-customer.updatecustomersparamcustomerid
+      with:
+        customer_id: tools.customer_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-deletes-customer-4
+      description: Shopify Deletes A Customer
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-customer.deletecustomersparamcustomerid
+      with:
+        customer_id: tools.customer_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-generate-account-activation-url-4
+      description: Shopify Generate An Account Activation Url For A Customer Whose Account Is Not Yet Enabled
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-customer.createcustomersparamcustomeridaccountactivationurl
+      with:
+        customer_id: tools.customer_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-all-orders-belonging-4
+      description: Shopify Retrieves All Orders Belonging To A Customer
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-customer.getcustomersparamcustomeridorders
+      with:
+        customer_id: tools.customer_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-sends-account-invite-customer-4
+      description: Shopify Sends An Account Invite To A Customer
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-customer.createcustomersparamcustomeridsendinvite
+      with:
+        customer_id: tools.customer_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-creates-customer-5
+      description: Shopify Creates A Customer
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-customer.deprecated202101createcustomers
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-single-customer-5
+      description: Shopify Retrieves A Single Customer
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-customer.deprecated202101getcustomersparamcustomerid
+      with:
+        customer_id: tools.customer_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-updates-customer-5
+      description: Shopify Updates A Customer
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-customer.deprecated202101updatecustomersparamcustomerid
+      with:
+        customer_id: tools.customer_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-deletes-customer-5
+      description: Shopify Deletes A Customer
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-customer.deprecated202101deletecustomersparamcustomerid
+      with:
+        customer_id: tools.customer_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-generate-account-activation-url-5
+      description: Shopify Generate An Account Activation Url For A Customer Whose Account Is Not Yet Enabled
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-customer.deprecated202101createcustomersparamcustomeridaccountactivationurl
+      with:
+        customer_id: tools.customer_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-all-orders-belonging-5
+      description: Shopify Retrieves All Orders Belonging To A Customer
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-customer.deprecated202101getcustomersparamcustomeridorders
+      with:
+        customer_id: tools.customer_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-sends-account-invite-customer-5
+      description: Shopify Sends An Account Invite To A Customer
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-customer.deprecated202101createcustomersparamcustomeridsendinvite
+      with:
+        customer_id: tools.customer_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-creates-customer-6
+      description: Shopify Creates A Customer
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-customer.deprecatedunstablecreatecustomers
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-single-customer-6
+      description: Shopify Retrieves A Single Customer
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-customer.deprecatedunstablegetcustomersparamcustomerid
+      with:
+        customer_id: tools.customer_id
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-updates-customer-6
+      description: Shopify Updates A Customer
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shopify-customer.deprecatedunstableupdatecustomersparamcustomerid
+      with:
+        customer_id: tools.customer_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-deletes-customer-6
+      description: Shopify Deletes A Customer
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shopify-customer.deprecatedunstabledeletecustomersparamcustomerid
+      with:
+        customer_id: tools.customer_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-generate-account-activation-url-6
+      description: Shopify Generate An Account Activation Url For A Customer Whose Account Is Not Yet Enabled
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-customer.deprecatedunstablecreatecustomersparamcustomeridaccountactivationurl
+      with:
+        customer_id: tools.customer_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-retrieves-all-orders-belonging-6
+      description: Shopify Retrieves All Orders Belonging To A Customer
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shopify-customer.deprecatedunstablegetcustomersparamcustomeridorders
+      with:
+        customer_id: tools.customer_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: shopify-sends-account-invite-customer-6
+      description: Shopify Sends An Account Invite To A Customer
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shopify-customer.deprecatedunstablecreatecustomersparamcustomeridsendinvite
+      with:
+        customer_id: tools.customer_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,72 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Shopify Admin REST API — Fulfillment Orders
+  description: 'Shopify Admin REST API — Fulfillment Orders. 1 operations. Lead operation: Shopify Retrieve fulfillment orders
+    for an order. Self-contained Naftiko capability covering one Shopify business surface.'
+  tags:
+  - Shopify
+  - Fulfillment Orders
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SHOPIFY_API_KEY: SHOPIFY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: admin-rest-fulfillment-orders
+    baseUri: https://{store}.myshopify.com/admin/api/2025-01
+    description: Shopify Admin REST API — Fulfillment Orders business capability. Self-contained, no shared references.
+    resources:
+    - name: orders-order_id-fulfillment_orders.json
+      path: /orders/{order_id}/fulfillment_orders.json
+      operations:
+      - name: listorderfulfillmentorders
+        method: GET
+        description: Shopify Retrieve fulfillment orders for an order
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: X-Shopify-Access-Token
+      value: '{{env.SHOPIFY_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: admin-rest-fulfillment-orders-rest
+    port: 8080
+    description: REST adapter for Shopify Admin REST API — Fulfillment Orders. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/orders/{order-id}/fulfillment-orders-json
+      name: orders-order-id-fulfillment-orders-json
+      description: REST surface for orders-order_id-fulfillment_orders.json.
+      operations:
+      - method: GET
+        name: listorderfulfillmentorders
+        description: Shopify Retrieve fulfillment orders for an order
+        call: admin-rest-fulfillment-orders.listorderfulfillmentorders
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: admin-rest-fulfillment-orders-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Shopify Admin REST API — Fulfillment Orders. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: shopify-retrieve-fulfillment-orders-order
+      description: Shopify Retrieve fulfillment orders for an order
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: admin-rest-fulfillment-orders.listorderfulfillmentorders
+      outputParameters:
+      - type: object
+        mapping: $.
