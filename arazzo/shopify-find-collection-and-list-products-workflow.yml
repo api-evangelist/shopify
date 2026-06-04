@@ -1,0 +1,83 @@
+arazzo: 1.0.1
+info:
+  title: Shopify Find Collection and List Its Products
+  summary: Find a custom collection by title, then list the products it contains.
+  description: >-
+    A storefront merchandising read flow. The workflow searches custom
+    collections by title and branches: when a collection matches it lists the
+    products that belong to that collection, and when none matches it ends
+    cleanly. This lets a caller resolve a human-friendly collection name into
+    the products that should be displayed for it. Every step spells out its
+    request inline so the flow can be read and executed without opening the
+    underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: shopifyAdminRestApi
+  url: ../openapi/shopify-admin-rest-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: find-collection-and-list-products
+  summary: Resolve a collection by title and list the products inside it.
+  description: >-
+    Searches custom collections by title and, when found, lists the products in
+    the matched collection.
+  inputs:
+    type: object
+    required:
+    - title
+    properties:
+      title:
+        type: string
+        description: The collection title to resolve.
+      limit:
+        type: integer
+        description: Maximum number of products to return.
+        default: 50
+  steps:
+  - stepId: findCollection
+    description: >-
+      Search custom collections filtered by the supplied title, returning at
+      most one candidate match.
+    operationId: listCustomCollections
+    parameters:
+    - name: title
+      in: query
+      value: $inputs.title
+    - name: limit
+      in: query
+      value: 1
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      collectionId: $response.body#/custom_collections/0/id
+    onSuccess:
+    - name: collectionFound
+      type: goto
+      stepId: listProducts
+      criteria:
+      - context: $response.body
+        condition: $.custom_collections.length > 0
+        type: jsonpath
+    - name: collectionMissing
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.custom_collections.length == 0
+        type: jsonpath
+  - stepId: listProducts
+    description: List the products that belong to the matched collection.
+    operationId: listCollectionProducts
+    parameters:
+    - name: collection_id
+      in: path
+      value: $steps.findCollection.outputs.collectionId
+    - name: limit
+      in: query
+      value: $inputs.limit
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      products: $response.body#/products
+  outputs:
+    collectionId: $steps.findCollection.outputs.collectionId
+    products: $steps.listProducts.outputs.products

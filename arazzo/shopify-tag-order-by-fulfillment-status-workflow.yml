@@ -1,0 +1,109 @@
+arazzo: 1.0.1
+info:
+  title: Shopify Tag an Order by Fulfillment Status
+  summary: Read an order and branch on its fulfillment status to apply the appropriate tag.
+  description: >-
+    Routes an order into an operational queue based on whether it has shipped.
+    The workflow reads the order and branches on its fulfillment status: a
+    fulfilled order is tagged as shipped, while an unfulfilled order is tagged as
+    awaiting shipment. Each branch updates the order with the matching tag so
+    downstream tooling can filter on it. Every step spells out its request inline
+    so the flow can be read and executed without opening the underlying OpenAPI
+    description.
+  version: 1.0.0
+sourceDescriptions:
+- name: shopifyAdminRestApi
+  url: ../openapi/shopify-admin-rest-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: tag-order-by-fulfillment-status
+  summary: Branch on an order's fulfillment status and apply the matching tag.
+  description: >-
+    Reads the order and, depending on whether it is fulfilled, applies either a
+    shipped tag or an awaiting-shipment tag.
+  inputs:
+    type: object
+    required:
+    - orderId
+    properties:
+      orderId:
+        type: integer
+        description: The ID of the order to evaluate and tag.
+      shippedTag:
+        type: string
+        description: Tag to apply when the order is fulfilled.
+        default: shipped
+      awaitingTag:
+        type: string
+        description: Tag to apply when the order is not yet fulfilled.
+        default: awaiting-shipment
+  steps:
+  - stepId: getOrder
+    description: >-
+      Read the order and branch on its fulfillment status to choose which tag to
+      apply.
+    operationId: getOrder
+    parameters:
+    - name: order_id
+      in: path
+      value: $inputs.orderId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      orderId: $response.body#/order/id
+      fulfillmentStatus: $response.body#/order/fulfillment_status
+    onSuccess:
+    - name: isFulfilled
+      type: goto
+      stepId: tagShipped
+      criteria:
+      - context: $response.body
+        condition: $.order.fulfillment_status == "fulfilled"
+        type: jsonpath
+    - name: notFulfilled
+      type: goto
+      stepId: tagAwaiting
+      criteria:
+      - context: $response.body
+        condition: $.order.fulfillment_status != "fulfilled"
+        type: jsonpath
+  - stepId: tagShipped
+    description: Tag the fulfilled order as shipped.
+    operationId: updateOrder
+    parameters:
+    - name: order_id
+      in: path
+      value: $steps.getOrder.outputs.orderId
+    requestBody:
+      contentType: application/json
+      payload:
+        order:
+          tags: $inputs.shippedTag
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      appliedTag: $response.body#/order/tags
+    onSuccess:
+    - name: done
+      type: end
+  - stepId: tagAwaiting
+    description: Tag the unfulfilled order as awaiting shipment.
+    operationId: updateOrder
+    parameters:
+    - name: order_id
+      in: path
+      value: $steps.getOrder.outputs.orderId
+    requestBody:
+      contentType: application/json
+      payload:
+        order:
+          tags: $inputs.awaitingTag
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      appliedTag: $response.body#/order/tags
+  outputs:
+    orderId: $steps.getOrder.outputs.orderId
+    fulfillmentStatus: $steps.getOrder.outputs.fulfillmentStatus
+    shippedTag: $steps.tagShipped.outputs.appliedTag
+    awaitingTag: $steps.tagAwaiting.outputs.appliedTag

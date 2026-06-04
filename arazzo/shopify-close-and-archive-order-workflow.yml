@@ -1,0 +1,76 @@
+arazzo: 1.0.1
+info:
+  title: Shopify Tag and Close an Order
+  summary: Tag an order, close it to mark it completed, then read the closed order back.
+  description: >-
+    Wraps up a finished order. The workflow applies a tag to the order (for
+    example to mark it archived or reconciled), closes the order to mark it as
+    completed, and then reads it back so the caller can confirm the closed
+    timestamp. Every step spells out its request inline so the flow can be read
+    and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: shopifyAdminRestApi
+  url: ../openapi/shopify-admin-rest-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: tag-and-close-order
+  summary: Tag an order then close it and confirm the closed timestamp.
+  description: >-
+    Applies a tag to the order, closes it to mark completion, and reads it back
+    to confirm the closed_at timestamp.
+  inputs:
+    type: object
+    required:
+    - orderId
+    properties:
+      orderId:
+        type: integer
+        description: The ID of the order to tag and close.
+      tags:
+        type: string
+        description: Comma-separated tags to apply before closing (e.g. "reconciled").
+  steps:
+  - stepId: tagOrder
+    description: Apply the supplied tags to the order before closing it.
+    operationId: updateOrder
+    parameters:
+    - name: order_id
+      in: path
+      value: $inputs.orderId
+    requestBody:
+      contentType: application/json
+      payload:
+        order:
+          tags: $inputs.tags
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      orderId: $response.body#/order/id
+  - stepId: closeOrder
+    description: Close the order, marking it as completed.
+    operationId: closeOrder
+    parameters:
+    - name: order_id
+      in: path
+      value: $steps.tagOrder.outputs.orderId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      closedAt: $response.body#/order/closed_at
+  - stepId: getOrder
+    description: Read the order back to confirm it is closed.
+    operationId: getOrder
+    parameters:
+    - name: order_id
+      in: path
+      value: $inputs.orderId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      closedAt: $response.body#/order/closed_at
+      order: $response.body#/order
+  outputs:
+    orderId: $steps.tagOrder.outputs.orderId
+    closedAt: $steps.getOrder.outputs.closedAt
+    order: $steps.getOrder.outputs.order

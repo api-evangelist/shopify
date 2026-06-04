@@ -1,0 +1,83 @@
+arazzo: 1.0.1
+info:
+  title: Shopify Update an Inventory Item Cost
+  summary: Read an inventory item, update its unit cost and tracking flag, then read it back.
+  description: >-
+    Keeps cost-of-goods data accurate for an inventory item. The workflow reads
+    the inventory item to confirm it exists, updates its unit cost and whether it
+    is inventory-tracked, and reads it back so the caller can confirm the change.
+    Every step spells out its request inline so the flow can be read and executed
+    without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: shopifyAdminRestApi
+  url: ../openapi/shopify-admin-rest-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: update-inventory-item-cost
+  summary: Update an inventory item's unit cost and tracking flag, confirming the result.
+  description: >-
+    Confirms the inventory item, updates its cost and tracked flag, and reads it
+    back to confirm.
+  inputs:
+    type: object
+    required:
+    - inventoryItemId
+    - cost
+    properties:
+      inventoryItemId:
+        type: integer
+        description: The inventory item ID to update.
+      cost:
+        type: string
+        description: The unit cost as a decimal string (e.g. "12.50").
+      tracked:
+        type: boolean
+        description: Whether Shopify should track inventory for this item.
+        default: true
+  steps:
+  - stepId: getItem
+    description: Read the inventory item to confirm it exists before updating.
+    operationId: getInventoryItem
+    parameters:
+    - name: inventory_item_id
+      in: path
+      value: $inputs.inventoryItemId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      inventoryItemId: $response.body#/inventory_item/id
+  - stepId: updateItem
+    description: Update the inventory item's unit cost and tracking flag.
+    operationId: updateInventoryItem
+    parameters:
+    - name: inventory_item_id
+      in: path
+      value: $steps.getItem.outputs.inventoryItemId
+    requestBody:
+      contentType: application/json
+      payload:
+        inventory_item:
+          cost: $inputs.cost
+          tracked: $inputs.tracked
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      cost: $response.body#/inventory_item/cost
+  - stepId: confirmItem
+    description: Read the inventory item back to confirm the updated cost.
+    operationId: getInventoryItem
+    parameters:
+    - name: inventory_item_id
+      in: path
+      value: $inputs.inventoryItemId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      cost: $response.body#/inventory_item/cost
+      tracked: $response.body#/inventory_item/tracked
+      inventoryItem: $response.body#/inventory_item
+  outputs:
+    inventoryItemId: $steps.getItem.outputs.inventoryItemId
+    cost: $steps.confirmItem.outputs.cost
+    inventoryItem: $steps.confirmItem.outputs.inventoryItem

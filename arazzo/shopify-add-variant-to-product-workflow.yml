@@ -1,0 +1,90 @@
+arazzo: 1.0.1
+info:
+  title: Shopify Add a Variant to an Existing Product
+  summary: Confirm a product exists, add a new variant to it, then read the variant list back.
+  description: >-
+    Extends an existing product with a new purchasable option. The workflow
+    first reads the target product to confirm it exists, adds a new variant with
+    its own price, SKU, and option value, and then lists the product's variants
+    so the caller can confirm the addition. Every step spells out its request
+    inline so the flow can be read and executed without opening the underlying
+    OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: shopifyAdminRestApi
+  url: ../openapi/shopify-admin-rest-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: add-variant-to-product
+  summary: Add a new variant to an existing product and confirm via the variant list.
+  description: >-
+    Confirms the product, appends a new variant carrying price and option
+    values, and reads the variant list back to verify the addition.
+  inputs:
+    type: object
+    required:
+    - productId
+    - optionValue
+    - price
+    properties:
+      productId:
+        type: integer
+        description: The ID of the product to add the variant to.
+      optionValue:
+        type: string
+        description: The value for option1 (e.g. a size or color).
+      price:
+        type: string
+        description: The variant price as a decimal string.
+      sku:
+        type: string
+        description: Stock keeping unit for the new variant.
+  steps:
+  - stepId: confirmProduct
+    description: Read the target product to confirm it exists before adding a variant.
+    operationId: getProduct
+    parameters:
+    - name: product_id
+      in: path
+      value: $inputs.productId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      productId: $response.body#/product/id
+  - stepId: addVariant
+    description: >-
+      Add a new variant to the confirmed product with its own price, SKU, and
+      option value.
+    operationId: createProductVariant
+    parameters:
+    - name: product_id
+      in: path
+      value: $steps.confirmProduct.outputs.productId
+    requestBody:
+      contentType: application/json
+      payload:
+        variant:
+          option1: $inputs.optionValue
+          price: $inputs.price
+          sku: $inputs.sku
+          inventory_policy: deny
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      variantId: $response.body#/variant/id
+      inventoryItemId: $response.body#/variant/inventory_item_id
+  - stepId: listVariants
+    description: List the product's variants to confirm the new variant was added.
+    operationId: listProductVariants
+    parameters:
+    - name: product_id
+      in: path
+      value: $steps.confirmProduct.outputs.productId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      variants: $response.body#/variants
+  outputs:
+    variantId: $steps.addVariant.outputs.variantId
+    inventoryItemId: $steps.addVariant.outputs.inventoryItemId
+    variants: $steps.listVariants.outputs.variants

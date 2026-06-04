@@ -1,0 +1,75 @@
+arazzo: 1.0.1
+info:
+  title: Shopify Set Inventory at a Location
+  summary: Resolve the primary location, set an item's available quantity there, then verify the new level.
+  description: >-
+    Adjusts stock for an inventory item at a store location to a known absolute
+    value. The workflow lists locations to resolve the target location, sets the
+    available quantity for the inventory item at that location, and reads the
+    location's inventory levels back to verify the new value. Setting an
+    absolute available quantity is used here in place of a relative adjustment.
+    Every step spells out its request inline so the flow can be read and executed
+    without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: shopifyAdminRestApi
+  url: ../openapi/shopify-admin-rest-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: set-inventory-at-location
+  summary: Set an inventory item's available quantity at the primary location and verify.
+  description: >-
+    Resolves the first store location, sets the inventory item's available
+    quantity there, and reads the location's levels back to verify.
+  inputs:
+    type: object
+    required:
+    - inventoryItemId
+    - available
+    properties:
+      inventoryItemId:
+        type: integer
+        description: The inventory item ID whose available quantity is being set.
+      available:
+        type: integer
+        description: The absolute available quantity to set at the location.
+  steps:
+  - stepId: resolveLocation
+    description: >-
+      List the store's locations and use the first active location as the
+      target for the inventory level update.
+    operationId: listLocations
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      locationId: $response.body#/locations/0/id
+  - stepId: setLevel
+    description: >-
+      Set the available quantity for the inventory item at the resolved
+      location to the supplied absolute value.
+    operationId: setInventoryLevel
+    requestBody:
+      contentType: application/json
+      payload:
+        inventory_item_id: $inputs.inventoryItemId
+        location_id: $steps.resolveLocation.outputs.locationId
+        available: $inputs.available
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      available: $response.body#/inventory_level/available
+  - stepId: verifyLevel
+    description: Read the location's inventory levels back to verify the new quantity.
+    operationId: listLocationInventoryLevels
+    parameters:
+    - name: location_id
+      in: path
+      value: $steps.resolveLocation.outputs.locationId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      inventoryLevels: $response.body#/inventory_levels
+  outputs:
+    locationId: $steps.resolveLocation.outputs.locationId
+    available: $steps.setLevel.outputs.available
+    inventoryLevels: $steps.verifyLevel.outputs.inventoryLevels

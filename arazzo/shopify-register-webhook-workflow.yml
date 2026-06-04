@@ -1,0 +1,75 @@
+arazzo: 1.0.1
+info:
+  title: Shopify Register a Webhook Subscription
+  summary: Create a webhook subscription for a topic, then read it back to confirm registration.
+  description: >-
+    Wires up an event subscription so an app receives real-time notifications.
+    The workflow creates a webhook subscription for a topic and callback
+    address, then reads the subscription back so the caller can confirm the
+    topic, address, and API version that Shopify recorded. Every step spells out
+    its request inline so the flow can be read and executed without opening the
+    underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: shopifyWebhooksApi
+  url: ../openapi/shopify-webhooks-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: register-webhook
+  summary: Create a webhook subscription and confirm it by reading it back.
+  description: >-
+    Creates a webhook subscription for the supplied topic and callback address,
+    then retrieves it to confirm the registration.
+  inputs:
+    type: object
+    required:
+    - topic
+    - address
+    properties:
+      topic:
+        type: string
+        description: The event topic to subscribe to (e.g. "orders/create").
+      address:
+        type: string
+        description: The HTTPS callback URL Shopify will POST events to.
+      format:
+        type: string
+        description: Payload format, json or xml.
+        default: json
+  steps:
+  - stepId: createWebhook
+    description: >-
+      Create the webhook subscription so Shopify will POST the topic's events to
+      the supplied callback address.
+    operationId: createWebhookSubscription
+    requestBody:
+      contentType: application/json
+      payload:
+        webhook:
+          topic: $inputs.topic
+          address: $inputs.address
+          format: $inputs.format
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      webhookId: $response.body#/webhook/id
+  - stepId: getWebhook
+    description: >-
+      Read the webhook subscription back to confirm the recorded topic, address,
+      and API version.
+    operationId: getWebhookSubscription
+    parameters:
+    - name: webhook_id
+      in: path
+      value: $steps.createWebhook.outputs.webhookId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      topic: $response.body#/webhook/topic
+      address: $response.body#/webhook/address
+      apiVersion: $response.body#/webhook/api_version
+      webhook: $response.body#/webhook
+  outputs:
+    webhookId: $steps.createWebhook.outputs.webhookId
+    topic: $steps.getWebhook.outputs.topic
+    webhook: $steps.getWebhook.outputs.webhook

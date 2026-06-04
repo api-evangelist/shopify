@@ -1,0 +1,91 @@
+arazzo: 1.0.1
+info:
+  title: Shopify Archive a Stale Product
+  summary: Read a product and branch on its status, archiving it only when it is still active.
+  description: >-
+    Retires a product from the active catalog idempotently. The workflow reads
+    the product and branches on its status: an active product is archived (status
+    set to archived) and read back, while an already-archived product short
+    circuits so the operation is safe to re-run. Every step spells out its
+    request inline so the flow can be read and executed without opening the
+    underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: shopifyAdminRestApi
+  url: ../openapi/shopify-admin-rest-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: archive-stale-product
+  summary: Archive a product only if it is currently active, otherwise short circuit.
+  description: >-
+    Reads the product, archives it when active, and reads it back; ends cleanly
+    when the product is already archived.
+  inputs:
+    type: object
+    required:
+    - productId
+    properties:
+      productId:
+        type: integer
+        description: The ID of the product to archive.
+  steps:
+  - stepId: getProduct
+    description: >-
+      Read the product and branch on its status so an already-archived product
+      is left untouched.
+    operationId: getProduct
+    parameters:
+    - name: product_id
+      in: path
+      value: $inputs.productId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      productId: $response.body#/product/id
+      status: $response.body#/product/status
+    onSuccess:
+    - name: isActive
+      type: goto
+      stepId: archiveProduct
+      criteria:
+      - context: $response.body
+        condition: $.product.status == "active"
+        type: jsonpath
+    - name: alreadyArchived
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.product.status != "active"
+        type: jsonpath
+  - stepId: archiveProduct
+    description: Set the active product's status to archived.
+    operationId: updateProduct
+    parameters:
+    - name: product_id
+      in: path
+      value: $steps.getProduct.outputs.productId
+    requestBody:
+      contentType: application/json
+      payload:
+        product:
+          status: archived
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/product/status
+  - stepId: confirmProduct
+    description: Read the product back to confirm it is archived.
+    operationId: getProduct
+    parameters:
+    - name: product_id
+      in: path
+      value: $inputs.productId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/product/status
+      product: $response.body#/product
+  outputs:
+    productId: $steps.getProduct.outputs.productId
+    status: $steps.confirmProduct.outputs.status
+    product: $steps.confirmProduct.outputs.product

@@ -1,0 +1,88 @@
+arazzo: 1.0.1
+info:
+  title: Shopify Create Collection With a Product
+  summary: Create a custom collection, confirm a product, then read the collection back.
+  description: >-
+    Stands up a manual (custom) collection for merchandising. The workflow
+    creates the custom collection, confirms that the product intended for it
+    exists, and reads the collection back so the caller receives its identifier
+    and handle. Because the published REST description used here does not expose
+    a write endpoint for adding a product to a custom collection, the product is
+    confirmed rather than attached, and that adaptation is noted. Every step
+    spells out its request inline so the flow can be read and executed without
+    opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: shopifyAdminRestApi
+  url: ../openapi/shopify-admin-rest-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: create-collection-with-product
+  summary: Create a custom collection and confirm the product intended for it.
+  description: >-
+    Creates a custom collection, confirms the target product exists, and reads
+    the collection back for its identifier and handle.
+  inputs:
+    type: object
+    required:
+    - title
+    - productId
+    properties:
+      title:
+        type: string
+        description: The collection title.
+      bodyHtml:
+        type: string
+        description: The collection description in HTML.
+      productId:
+        type: integer
+        description: The product intended to be merchandised in the collection.
+      published:
+        type: boolean
+        description: Whether the collection is published to the online store.
+        default: true
+  steps:
+  - stepId: createCollection
+    description: Create the custom (manual) collection with its title and description.
+    operationId: createCustomCollection
+    requestBody:
+      contentType: application/json
+      payload:
+        custom_collection:
+          title: $inputs.title
+          body_html: $inputs.bodyHtml
+          published: $inputs.published
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      collectionId: $response.body#/custom_collection/id
+      handle: $response.body#/custom_collection/handle
+  - stepId: confirmProduct
+    description: >-
+      Confirm the product intended for the collection exists before the
+      collection is reported as ready.
+    operationId: getProduct
+    parameters:
+    - name: product_id
+      in: path
+      value: $inputs.productId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      productId: $response.body#/product/id
+  - stepId: getCollection
+    description: Read the collection back so callers receive its full record.
+    operationId: getCollection
+    parameters:
+    - name: collection_id
+      in: path
+      value: $steps.createCollection.outputs.collectionId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      collection: $response.body#/collection
+  outputs:
+    collectionId: $steps.createCollection.outputs.collectionId
+    handle: $steps.createCollection.outputs.handle
+    productId: $steps.confirmProduct.outputs.productId
+    collection: $steps.getCollection.outputs.collection

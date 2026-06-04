@@ -1,0 +1,109 @@
+arazzo: 1.0.1
+info:
+  title: Shopify Create Customer With Address
+  summary: Create a customer record, attach a mailing address, then read the customer back.
+  description: >-
+    Onboards a new customer with a shipping or billing address in a single flow.
+    The workflow creates the customer, adds a mailing address to that customer,
+    and reads the customer back so callers receive the complete record including
+    the address identifier. Every step spells out its request inline so the flow
+    can be read and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: shopifyAdminRestApi
+  url: ../openapi/shopify-admin-rest-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: create-customer-with-address
+  summary: Create a customer and attach a mailing address, returning the full record.
+  description: >-
+    Creates a customer record, adds an address to it, and reads the customer
+    back so the customer and address identifiers are available downstream.
+  inputs:
+    type: object
+    required:
+    - email
+    - firstName
+    - lastName
+    properties:
+      email:
+        type: string
+        description: Customer email address.
+      firstName:
+        type: string
+        description: Customer first name.
+      lastName:
+        type: string
+        description: Customer last name.
+      phone:
+        type: string
+        description: Phone number in E.164 format.
+      address1:
+        type: string
+        description: Street address line 1.
+      city:
+        type: string
+        description: City.
+      province:
+        type: string
+        description: State or province.
+      country:
+        type: string
+        description: Country.
+      zip:
+        type: string
+        description: Postal or ZIP code.
+  steps:
+  - stepId: createCustomer
+    description: Create the customer record with name, email, and phone.
+    operationId: createCustomer
+    requestBody:
+      contentType: application/json
+      payload:
+        customer:
+          first_name: $inputs.firstName
+          last_name: $inputs.lastName
+          email: $inputs.email
+          phone: $inputs.phone
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      customerId: $response.body#/customer/id
+  - stepId: addAddress
+    description: Attach a mailing address to the newly created customer.
+    operationId: createCustomerAddress
+    parameters:
+    - name: customer_id
+      in: path
+      value: $steps.createCustomer.outputs.customerId
+    requestBody:
+      contentType: application/json
+      payload:
+        address:
+          first_name: $inputs.firstName
+          last_name: $inputs.lastName
+          address1: $inputs.address1
+          city: $inputs.city
+          province: $inputs.province
+          country: $inputs.country
+          zip: $inputs.zip
+          phone: $inputs.phone
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      addressId: $response.body#/customer_address/id
+  - stepId: getCustomer
+    description: Read the customer back so callers receive the full record with addresses.
+    operationId: getCustomer
+    parameters:
+    - name: customer_id
+      in: path
+      value: $steps.createCustomer.outputs.customerId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      customer: $response.body#/customer
+  outputs:
+    customerId: $steps.createCustomer.outputs.customerId
+    addressId: $steps.addAddress.outputs.addressId
+    customer: $steps.getCustomer.outputs.customer

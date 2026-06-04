@@ -1,0 +1,92 @@
+arazzo: 1.0.1
+info:
+  title: Shopify Update Fulfillment Tracking
+  summary: Confirm an order, update a fulfillment's tracking details, then read the order back.
+  description: >-
+    Corrects or attaches carrier tracking after a shipment exists. The workflow
+    confirms the order, updates the tracking number, URL, and company on the
+    fulfillment, and reads the order back so the caller can confirm the change
+    propagated. Every step spells out its request inline so the flow can be read
+    and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: shopifyAdminRestApi
+  url: ../openapi/shopify-admin-rest-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: update-fulfillment-tracking
+  summary: Update a fulfillment's tracking information and confirm via the order.
+  description: >-
+    Confirms the order, updates the fulfillment's tracking details, and reads
+    the order back to confirm.
+  inputs:
+    type: object
+    required:
+    - orderId
+    - fulfillmentId
+    - trackingNumber
+    properties:
+      orderId:
+        type: integer
+        description: The order the fulfillment belongs to.
+      fulfillmentId:
+        type: integer
+        description: The ID of the fulfillment to update.
+      trackingNumber:
+        type: string
+        description: The carrier tracking number.
+      trackingUrl:
+        type: string
+        description: The carrier tracking URL.
+      trackingCompany:
+        type: string
+        description: The shipping company name.
+  steps:
+  - stepId: confirmOrder
+    description: Read the order to confirm it exists before updating tracking.
+    operationId: getOrder
+    parameters:
+    - name: order_id
+      in: path
+      value: $inputs.orderId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      orderId: $response.body#/order/id
+  - stepId: updateTracking
+    description: >-
+      Update the fulfillment's tracking number, URL, and company so the customer
+      sees current shipment information.
+    operationId: updateFulfillmentTracking
+    parameters:
+    - name: fulfillment_id
+      in: path
+      value: $inputs.fulfillmentId
+    requestBody:
+      contentType: application/json
+      payload:
+        fulfillment:
+          tracking_info:
+            number: $inputs.trackingNumber
+            url: $inputs.trackingUrl
+            company: $inputs.trackingCompany
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      trackingNumber: $response.body#/fulfillment/tracking_number
+      fulfillmentStatus: $response.body#/fulfillment/status
+  - stepId: getOrder
+    description: Read the order back to confirm the tracking update is reflected.
+    operationId: getOrder
+    parameters:
+    - name: order_id
+      in: path
+      value: $inputs.orderId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      order: $response.body#/order
+  outputs:
+    orderId: $steps.confirmOrder.outputs.orderId
+    trackingNumber: $steps.updateTracking.outputs.trackingNumber
+    order: $steps.getOrder.outputs.order

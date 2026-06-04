@@ -1,0 +1,122 @@
+arazzo: 1.0.1
+info:
+  title: Shopify Upsert a Product by Title
+  summary: Find a product by exact title and update it if it exists, otherwise create it.
+  description: >-
+    A common catalog synchronization pattern. The workflow searches the product
+    list using the title filter, then branches: when a matching product is found
+    it updates that product in place, and when none is found it creates a new
+    product. This keeps an external catalog idempotently in sync with Shopify
+    without creating duplicates. Every step spells out its request inline so the
+    flow can be read and executed without opening the underlying OpenAPI
+    description.
+  version: 1.0.0
+sourceDescriptions:
+- name: shopifyAdminRestApi
+  url: ../openapi/shopify-admin-rest-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: upsert-product-by-title
+  summary: Upsert a single product keyed on its exact title.
+  description: >-
+    Looks for an existing product whose title matches the supplied value and
+    either updates the matched product or creates a new one.
+  inputs:
+    type: object
+    required:
+    - title
+    properties:
+      title:
+        type: string
+        description: The product title used as the upsert key.
+      bodyHtml:
+        type: string
+        description: Product description in HTML.
+      vendor:
+        type: string
+        description: The product vendor.
+      productType:
+        type: string
+        description: A categorization for the product.
+      status:
+        type: string
+        description: Product status (active, archived, or draft).
+        default: active
+  steps:
+  - stepId: findProduct
+    description: >-
+      Search the product list filtered by the exact title, returning at most one
+      candidate match.
+    operationId: listProducts
+    parameters:
+    - name: title
+      in: query
+      value: $inputs.title
+    - name: limit
+      in: query
+      value: 1
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      matchedProductId: $response.body#/products/0/id
+    onSuccess:
+    - name: productExists
+      type: goto
+      stepId: updateExisting
+      criteria:
+      - context: $response.body
+        condition: $.products.length > 0
+        type: jsonpath
+    - name: productMissing
+      type: goto
+      stepId: createNew
+      criteria:
+      - context: $response.body
+        condition: $.products.length == 0
+        type: jsonpath
+  - stepId: updateExisting
+    description: >-
+      Update the matched product with the supplied descriptive fields, leaving
+      its variants and images intact.
+    operationId: updateProduct
+    parameters:
+    - name: product_id
+      in: path
+      value: $steps.findProduct.outputs.matchedProductId
+    requestBody:
+      contentType: application/json
+      payload:
+        product:
+          title: $inputs.title
+          body_html: $inputs.bodyHtml
+          vendor: $inputs.vendor
+          product_type: $inputs.productType
+          status: $inputs.status
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      productId: $response.body#/product/id
+    onSuccess:
+    - name: done
+      type: end
+  - stepId: createNew
+    description: >-
+      Create a new product using the supplied fields when no existing product
+      matched the title.
+    operationId: createProduct
+    requestBody:
+      contentType: application/json
+      payload:
+        product:
+          title: $inputs.title
+          body_html: $inputs.bodyHtml
+          vendor: $inputs.vendor
+          product_type: $inputs.productType
+          status: $inputs.status
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      productId: $response.body#/product/id
+  outputs:
+    updatedProductId: $steps.updateExisting.outputs.productId
+    createdProductId: $steps.createNew.outputs.productId

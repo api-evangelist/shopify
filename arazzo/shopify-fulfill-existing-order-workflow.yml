@@ -1,0 +1,105 @@
+arazzo: 1.0.1
+info:
+  title: Shopify Fulfill an Existing Order
+  summary: Resolve an order's fulfillment order, create a fulfillment with tracking, and confirm the result.
+  description: >-
+    Ships an order that already exists. The workflow retrieves the fulfillment
+    order for the supplied order, creates a fulfillment covering all of its line
+    items with tracking information attached, and then reads the order back so
+    the caller can confirm the fulfillment status changed. Every step spells out
+    its request inline so the flow can be read and executed without opening the
+    underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: shopifyAdminRestApi
+  url: ../openapi/shopify-admin-rest-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: fulfill-existing-order
+  summary: Fulfill an existing order with tracking and confirm the status change.
+  description: >-
+    Resolves the fulfillment order for an existing order, creates a fulfillment
+    with tracking, and reads the order back to confirm fulfillment.
+  inputs:
+    type: object
+    required:
+    - orderId
+    properties:
+      orderId:
+        type: integer
+        description: The ID of the order to fulfill.
+      trackingNumber:
+        type: string
+        description: Carrier tracking number for the fulfillment.
+      trackingUrl:
+        type: string
+        description: Carrier tracking URL for the fulfillment.
+      trackingCompany:
+        type: string
+        description: Shipping company name (e.g. "FedEx").
+  steps:
+  - stepId: getFulfillmentOrder
+    description: >-
+      Retrieve the fulfillment order associated with the supplied order so its
+      id can drive the fulfillment.
+    operationId: listOrderFulfillmentOrders
+    parameters:
+    - name: order_id
+      in: path
+      value: $inputs.orderId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      fulfillmentOrderId: $response.body#/fulfillment_orders/0/id
+      fulfillmentOrderStatus: $response.body#/fulfillment_orders/0/status
+    onSuccess:
+    - name: hasFulfillmentOrder
+      type: goto
+      stepId: createFulfillment
+      criteria:
+      - context: $response.body
+        condition: $.fulfillment_orders.length > 0
+        type: jsonpath
+    - name: nothingToFulfill
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.fulfillment_orders.length == 0
+        type: jsonpath
+  - stepId: createFulfillment
+    description: >-
+      Create a fulfillment for the fulfillment order, fulfilling all of its line
+      items and attaching carrier tracking. The customer is notified.
+    operationId: createFulfillment
+    requestBody:
+      contentType: application/json
+      payload:
+        fulfillment:
+          line_items_by_fulfillment_order:
+          - fulfillment_order_id: $steps.getFulfillmentOrder.outputs.fulfillmentOrderId
+          tracking_info:
+            number: $inputs.trackingNumber
+            url: $inputs.trackingUrl
+            company: $inputs.trackingCompany
+          notify_customer: true
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      fulfillmentId: $response.body#/fulfillment/id
+      fulfillmentStatus: $response.body#/fulfillment/status
+  - stepId: getOrder
+    description: Read the order back to confirm the fulfillment status changed.
+    operationId: getOrder
+    parameters:
+    - name: order_id
+      in: path
+      value: $inputs.orderId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      fulfillmentStatus: $response.body#/order/fulfillment_status
+      order: $response.body#/order
+  outputs:
+    fulfillmentId: $steps.createFulfillment.outputs.fulfillmentId
+    fulfillmentStatus: $steps.getOrder.outputs.fulfillmentStatus
+    order: $steps.getOrder.outputs.order

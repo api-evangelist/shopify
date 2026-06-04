@@ -1,0 +1,111 @@
+arazzo: 1.0.1
+info:
+  title: Shopify Launch a Product With Stock
+  summary: Create a product, add a variant, resolve a location, and set its starting inventory.
+  description: >-
+    A full product launch flow from catalog to stock. The workflow creates the
+    product, adds a priced variant carrying an inventory item, resolves the
+    primary store location, and sets the variant's starting available quantity
+    at that location. The caller gets a sellable, stocked product in one pass.
+    Every step spells out its request inline so the flow can be read and executed
+    without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: shopifyAdminRestApi
+  url: ../openapi/shopify-admin-rest-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: launch-product-with-stock
+  summary: Create a product with a variant and set its starting inventory at the primary location.
+  description: >-
+    Creates a product, adds a priced variant, resolves the primary location,
+    and sets the variant's starting available quantity there.
+  inputs:
+    type: object
+    required:
+    - title
+    - price
+    - startingQuantity
+    properties:
+      title:
+        type: string
+        description: The product title.
+      vendor:
+        type: string
+        description: The product vendor.
+      variantTitle:
+        type: string
+        description: The variant option value.
+        default: Default Title
+      price:
+        type: string
+        description: The variant price as a decimal string.
+      sku:
+        type: string
+        description: Stock keeping unit for the variant.
+      startingQuantity:
+        type: integer
+        description: The starting available inventory quantity to set.
+  steps:
+  - stepId: createProduct
+    description: Create the product shell.
+    operationId: createProduct
+    requestBody:
+      contentType: application/json
+      payload:
+        product:
+          title: $inputs.title
+          vendor: $inputs.vendor
+          status: active
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      productId: $response.body#/product/id
+  - stepId: addVariant
+    description: >-
+      Add a priced variant tracked by Shopify so it carries an inventory item
+      that can be stocked.
+    operationId: createProductVariant
+    parameters:
+    - name: product_id
+      in: path
+      value: $steps.createProduct.outputs.productId
+    requestBody:
+      contentType: application/json
+      payload:
+        variant:
+          option1: $inputs.variantTitle
+          price: $inputs.price
+          sku: $inputs.sku
+          inventory_policy: deny
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      variantId: $response.body#/variant/id
+      inventoryItemId: $response.body#/variant/inventory_item_id
+  - stepId: resolveLocation
+    description: List the store's locations and use the first location for stock.
+    operationId: listLocations
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      locationId: $response.body#/locations/0/id
+  - stepId: setStock
+    description: >-
+      Set the variant's starting available quantity at the resolved location.
+    operationId: setInventoryLevel
+    requestBody:
+      contentType: application/json
+      payload:
+        inventory_item_id: $steps.addVariant.outputs.inventoryItemId
+        location_id: $steps.resolveLocation.outputs.locationId
+        available: $inputs.startingQuantity
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      available: $response.body#/inventory_level/available
+  outputs:
+    productId: $steps.createProduct.outputs.productId
+    variantId: $steps.addVariant.outputs.variantId
+    inventoryItemId: $steps.addVariant.outputs.inventoryItemId
+    available: $steps.setStock.outputs.available

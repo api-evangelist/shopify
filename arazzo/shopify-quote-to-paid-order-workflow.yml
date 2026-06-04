@@ -1,0 +1,100 @@
+arazzo: 1.0.1
+info:
+  title: Shopify Quote to Paid Order
+  summary: Create a pending (quote-style) order, mark it paid, then read the completed order back.
+  description: >-
+    Models the draft-order-to-completed-order pattern. Because the published
+    Shopify REST description used here does not expose the dedicated DraftOrder
+    resource, this flow adapts the pattern: it creates an order in a pending
+    financial state (acting as the quote/draft), updates that order to a paid
+    financial status to complete it, and then reads the order back so the caller
+    can confirm the totals and paid status. Every step spells out its request
+    inline so the flow can be read and executed without opening the underlying
+    OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: shopifyAdminRestApi
+  url: ../openapi/shopify-admin-rest-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: quote-to-paid-order
+  summary: Create a pending order acting as a quote, then complete it as paid.
+  description: >-
+    Creates a pending order (the quote/draft equivalent), marks it paid to
+    complete it, and reads it back to confirm the financial status and totals.
+  inputs:
+    type: object
+    required:
+    - email
+    - variantId
+    - quantity
+    properties:
+      email:
+        type: string
+        description: Customer email for the order.
+      variantId:
+        type: integer
+        description: The product variant ID to add as a line item.
+      quantity:
+        type: integer
+        description: Quantity of the variant.
+      note:
+        type: string
+        description: An internal note describing the quote.
+  steps:
+  - stepId: createPendingOrder
+    description: >-
+      Create the order in a pending financial state, standing in for a draft
+      order or quote awaiting completion.
+    operationId: createOrder
+    requestBody:
+      contentType: application/json
+      payload:
+        order:
+          email: $inputs.email
+          financial_status: pending
+          note: $inputs.note
+          line_items:
+          - variant_id: $inputs.variantId
+            quantity: $inputs.quantity
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      orderId: $response.body#/order/id
+      totalPrice: $response.body#/order/total_price
+  - stepId: markPaid
+    description: >-
+      Complete the quote by updating the order's financial status to paid,
+      mirroring a draft order being converted into a real order.
+    operationId: updateOrder
+    parameters:
+    - name: order_id
+      in: path
+      value: $steps.createPendingOrder.outputs.orderId
+    requestBody:
+      contentType: application/json
+      payload:
+        order:
+          financial_status: paid
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      orderId: $response.body#/order/id
+  - stepId: getOrder
+    description: Read the completed order back to confirm the paid status and totals.
+    operationId: getOrder
+    parameters:
+    - name: order_id
+      in: path
+      value: $steps.createPendingOrder.outputs.orderId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      financialStatus: $response.body#/order/financial_status
+      totalPrice: $response.body#/order/total_price
+      order: $response.body#/order
+  outputs:
+    orderId: $steps.createPendingOrder.outputs.orderId
+    financialStatus: $steps.getOrder.outputs.financialStatus
+    totalPrice: $steps.getOrder.outputs.totalPrice
+    order: $steps.getOrder.outputs.order

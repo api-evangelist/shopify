@@ -1,0 +1,114 @@
+arazzo: 1.0.1
+info:
+  title: Shopify Create Product With Variant
+  summary: Create a product, add a priced variant to it, then read the finished product back.
+  description: >-
+    A foundational catalog flow. The workflow creates a new product, appends a
+    sellable variant (price, SKU, and inventory policy) to that product, and
+    then retrieves the product so the caller receives the fully assembled record
+    including the generated variant and inventory item identifiers. Every step
+    spells out its request inline so the flow can be read and executed without
+    opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: shopifyAdminRestApi
+  url: ../openapi/shopify-admin-rest-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: create-product-with-variant
+  summary: Create a product and attach a sellable variant, returning the assembled product.
+  description: >-
+    Creates a product shell, adds a variant carrying price and SKU, and reads
+    the product back so the variant and inventory item identifiers are available
+    to downstream callers.
+  inputs:
+    type: object
+    required:
+    - title
+    - price
+    properties:
+      title:
+        type: string
+        description: The product title (e.g. "Merino Wool Beanie").
+      bodyHtml:
+        type: string
+        description: Product description in HTML.
+      vendor:
+        type: string
+        description: The product vendor.
+      productType:
+        type: string
+        description: A categorization for the product.
+      status:
+        type: string
+        description: Product status (active, archived, or draft).
+        default: active
+      variantTitle:
+        type: string
+        description: The variant title or option value (e.g. "Default", "Large").
+        default: Default Title
+      price:
+        type: string
+        description: The variant price as a decimal string (e.g. "24.99").
+      sku:
+        type: string
+        description: Stock keeping unit for the variant.
+  steps:
+  - stepId: createProduct
+    description: >-
+      Create the product shell with its descriptive fields. Shopify auto-creates
+      a default variant which the next step supplements.
+    operationId: createProduct
+    requestBody:
+      contentType: application/json
+      payload:
+        product:
+          title: $inputs.title
+          body_html: $inputs.bodyHtml
+          vendor: $inputs.vendor
+          product_type: $inputs.productType
+          status: $inputs.status
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      productId: $response.body#/product/id
+  - stepId: addVariant
+    description: >-
+      Add a priced, SKU-bearing variant to the newly created product so it can
+      be sold and inventory-tracked.
+    operationId: createProductVariant
+    parameters:
+    - name: product_id
+      in: path
+      value: $steps.createProduct.outputs.productId
+    requestBody:
+      contentType: application/json
+      payload:
+        variant:
+          option1: $inputs.variantTitle
+          price: $inputs.price
+          sku: $inputs.sku
+          inventory_policy: deny
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      variantId: $response.body#/variant/id
+      inventoryItemId: $response.body#/variant/inventory_item_id
+  - stepId: getProduct
+    description: >-
+      Read the finished product back so callers receive the complete record
+      including all variants and images.
+    operationId: getProduct
+    parameters:
+    - name: product_id
+      in: path
+      value: $steps.createProduct.outputs.productId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      product: $response.body#/product
+  outputs:
+    productId: $steps.createProduct.outputs.productId
+    variantId: $steps.addVariant.outputs.variantId
+    inventoryItemId: $steps.addVariant.outputs.inventoryItemId
+    product: $steps.getProduct.outputs.product

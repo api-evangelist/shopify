@@ -1,0 +1,91 @@
+arazzo: 1.0.1
+info:
+  title: Shopify Cancel and Restock an Order
+  summary: Confirm an order, cancel it with a reason and restock, then read the cancelled order back.
+  description: >-
+    Handles an order cancellation cleanly. The workflow reads the order to
+    confirm it exists and is cancellable, cancels it with a documented reason
+    while restocking items and emailing the customer, and then reads the order
+    back so the caller can confirm the cancellation timestamp and reason. Every
+    step spells out its request inline so the flow can be read and executed
+    without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: shopifyAdminRestApi
+  url: ../openapi/shopify-admin-rest-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: cancel-and-restock-order
+  summary: Cancel an order with restock and confirm the cancellation.
+  description: >-
+    Confirms the order, cancels it with a reason and restock, and reads the
+    order back to confirm the cancellation.
+  inputs:
+    type: object
+    required:
+    - orderId
+    properties:
+      orderId:
+        type: integer
+        description: The ID of the order to cancel.
+      reason:
+        type: string
+        description: Cancellation reason (customer, fraud, inventory, declined, or other).
+        default: customer
+      email:
+        type: boolean
+        description: Whether to send a cancellation email to the customer.
+        default: true
+      restock:
+        type: boolean
+        description: Whether to restock the order's items.
+        default: true
+  steps:
+  - stepId: confirmOrder
+    description: Read the order to confirm it exists before cancelling.
+    operationId: getOrder
+    parameters:
+    - name: order_id
+      in: path
+      value: $inputs.orderId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      orderId: $response.body#/order/id
+      cancelledAt: $response.body#/order/cancelled_at
+  - stepId: cancelOrder
+    description: >-
+      Cancel the order with a documented reason, restocking items and emailing
+      the customer per the supplied flags.
+    operationId: cancelOrder
+    parameters:
+    - name: order_id
+      in: path
+      value: $steps.confirmOrder.outputs.orderId
+    requestBody:
+      contentType: application/json
+      payload:
+        reason: $inputs.reason
+        email: $inputs.email
+        restock: $inputs.restock
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      cancelledOrderId: $response.body#/order/id
+  - stepId: getOrder
+    description: Read the order back to confirm the cancellation reason and timestamp.
+    operationId: getOrder
+    parameters:
+    - name: order_id
+      in: path
+      value: $inputs.orderId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      cancelledAt: $response.body#/order/cancelled_at
+      cancelReason: $response.body#/order/cancel_reason
+      order: $response.body#/order
+  outputs:
+    orderId: $steps.confirmOrder.outputs.orderId
+    cancelledAt: $steps.getOrder.outputs.cancelledAt
+    cancelReason: $steps.getOrder.outputs.cancelReason

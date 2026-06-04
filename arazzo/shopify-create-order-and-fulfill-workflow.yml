@@ -1,0 +1,114 @@
+arazzo: 1.0.1
+info:
+  title: Shopify Create Order and Fulfill
+  summary: Place an order, locate its fulfillment order, create a fulfillment with tracking, and read the order back.
+  description: >-
+    An end-to-end sale-to-shipment flow. The workflow places an order with a
+    variant line item, retrieves the fulfillment order that Shopify generates
+    for it, creates a fulfillment for every line of that fulfillment order with
+    tracking information attached, and finally reads the order back so the
+    caller can confirm the fulfillment status. Every step spells out its request
+    inline so the flow can be read and executed without opening the underlying
+    OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: shopifyAdminRestApi
+  url: ../openapi/shopify-admin-rest-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: create-order-and-fulfill
+  summary: Create an order then fulfill it with tracking in a single chained flow.
+  description: >-
+    Places an order, resolves its fulfillment order, creates a fulfillment with
+    tracking, and reads the order back to confirm the fulfillment status.
+  inputs:
+    type: object
+    required:
+    - email
+    - variantId
+    - quantity
+    properties:
+      email:
+        type: string
+        description: Customer email for the order.
+      variantId:
+        type: integer
+        description: The product variant ID to add as a line item.
+      quantity:
+        type: integer
+        description: Quantity of the variant to order.
+      trackingNumber:
+        type: string
+        description: Carrier tracking number for the fulfillment.
+      trackingUrl:
+        type: string
+        description: Carrier tracking URL for the fulfillment.
+      trackingCompany:
+        type: string
+        description: Shipping company name (e.g. "UPS").
+  steps:
+  - stepId: createOrder
+    description: Place an order containing a single variant line item.
+    operationId: createOrder
+    requestBody:
+      contentType: application/json
+      payload:
+        order:
+          email: $inputs.email
+          financial_status: paid
+          line_items:
+          - variant_id: $inputs.variantId
+            quantity: $inputs.quantity
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      orderId: $response.body#/order/id
+  - stepId: getFulfillmentOrder
+    description: >-
+      Retrieve the fulfillment order Shopify generated for the order so its id
+      and assigned location can drive the fulfillment.
+    operationId: listOrderFulfillmentOrders
+    parameters:
+    - name: order_id
+      in: path
+      value: $steps.createOrder.outputs.orderId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      fulfillmentOrderId: $response.body#/fulfillment_orders/0/id
+  - stepId: createFulfillment
+    description: >-
+      Create a fulfillment for the fulfillment order, fulfilling all of its
+      line items and attaching carrier tracking. The customer is notified.
+    operationId: createFulfillment
+    requestBody:
+      contentType: application/json
+      payload:
+        fulfillment:
+          line_items_by_fulfillment_order:
+          - fulfillment_order_id: $steps.getFulfillmentOrder.outputs.fulfillmentOrderId
+          tracking_info:
+            number: $inputs.trackingNumber
+            url: $inputs.trackingUrl
+            company: $inputs.trackingCompany
+          notify_customer: true
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      fulfillmentId: $response.body#/fulfillment/id
+      fulfillmentStatus: $response.body#/fulfillment/status
+  - stepId: getOrder
+    description: Read the order back to confirm the fulfillment status.
+    operationId: getOrder
+    parameters:
+    - name: order_id
+      in: path
+      value: $steps.createOrder.outputs.orderId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      order: $response.body#/order
+  outputs:
+    orderId: $steps.createOrder.outputs.orderId
+    fulfillmentId: $steps.createFulfillment.outputs.fulfillmentId
+    order: $steps.getOrder.outputs.order

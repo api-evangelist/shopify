@@ -1,0 +1,111 @@
+arazzo: 1.0.1
+info:
+  title: Shopify Upsert a Webhook by Topic
+  summary: Find a webhook subscription for a topic and update its address if it exists, otherwise create it.
+  description: >-
+    Keeps a single webhook subscription per topic pointed at the current callback
+    URL. The workflow lists webhook subscriptions filtered by topic and branches:
+    when a subscription already exists for the topic it updates that
+    subscription's callback address, and when none exists it creates a new one.
+    This prevents duplicate subscriptions when re-running app setup. Every step
+    spells out its request inline so the flow can be read and executed without
+    opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: shopifyWebhooksApi
+  url: ../openapi/shopify-webhooks-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: upsert-webhook-by-topic
+  summary: Upsert a single webhook subscription keyed on its topic.
+  description: >-
+    Looks for an existing webhook subscription for the supplied topic and either
+    updates its address or creates a new subscription.
+  inputs:
+    type: object
+    required:
+    - topic
+    - address
+    properties:
+      topic:
+        type: string
+        description: The event topic used as the upsert key (e.g. "orders/create").
+      address:
+        type: string
+        description: The HTTPS callback URL Shopify will POST events to.
+      format:
+        type: string
+        description: Payload format, json or xml.
+        default: json
+  steps:
+  - stepId: findWebhook
+    description: >-
+      List webhook subscriptions filtered by the topic, returning at most one
+      candidate match.
+    operationId: listWebhookSubscriptions
+    parameters:
+    - name: topic
+      in: query
+      value: $inputs.topic
+    - name: limit
+      in: query
+      value: 1
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      matchedWebhookId: $response.body#/webhooks/0/id
+    onSuccess:
+    - name: webhookExists
+      type: goto
+      stepId: updateExisting
+      criteria:
+      - context: $response.body
+        condition: $.webhooks.length > 0
+        type: jsonpath
+    - name: webhookMissing
+      type: goto
+      stepId: createNew
+      criteria:
+      - context: $response.body
+        condition: $.webhooks.length == 0
+        type: jsonpath
+  - stepId: updateExisting
+    description: >-
+      Update the matched subscription's callback address and format. The topic
+      cannot be changed on an existing subscription.
+    operationId: updateWebhookSubscription
+    parameters:
+    - name: webhook_id
+      in: path
+      value: $steps.findWebhook.outputs.matchedWebhookId
+    requestBody:
+      contentType: application/json
+      payload:
+        webhook:
+          address: $inputs.address
+          format: $inputs.format
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      webhookId: $response.body#/webhook/id
+    onSuccess:
+    - name: done
+      type: end
+  - stepId: createNew
+    description: >-
+      Create a new webhook subscription for the topic when none existed.
+    operationId: createWebhookSubscription
+    requestBody:
+      contentType: application/json
+      payload:
+        webhook:
+          topic: $inputs.topic
+          address: $inputs.address
+          format: $inputs.format
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      webhookId: $response.body#/webhook/id
+  outputs:
+    updatedWebhookId: $steps.updateExisting.outputs.webhookId
+    createdWebhookId: $steps.createNew.outputs.webhookId
