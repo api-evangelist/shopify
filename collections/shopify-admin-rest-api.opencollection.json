@@ -1,0 +1,1648 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Shopify Admin REST API",
+    "version": "2025-01"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Shopify-Access-Token",
+      "value": "{{X-Shopify-Access-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Products",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Shopify Retrieve a list of products",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/products.json",
+            "params": [
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of product IDs to retrieve"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return (max 250, default 50)"
+              },
+              {
+                "name": "since_id",
+                "value": "",
+                "type": "query",
+                "description": "Return products after the specified ID"
+              },
+              {
+                "name": "title",
+                "value": "",
+                "type": "query",
+                "description": "Filter by product title"
+              },
+              {
+                "name": "vendor",
+                "value": "",
+                "type": "query",
+                "description": "Filter by product vendor"
+              },
+              {
+                "name": "product_type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by product type"
+              },
+              {
+                "name": "collection_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by collection ID"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by product status"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to include in the response"
+              },
+              {
+                "name": "created_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show products created after this date (ISO 8601)"
+              },
+              {
+                "name": "created_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show products created before this date (ISO 8601)"
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show products updated after this date (ISO 8601)"
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show products updated before this date (ISO 8601)"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of products. Results can be filtered by collection, product type, vendor, creation date, update date, publication status, and other criteria. Returns up to 250 products per page."
+        },
+        {
+          "info": {
+            "name": "Shopify Create a new product",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/products.json",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new product. You can include product variants and images in the same request. If no variants are specified a default variant is created automatically."
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieve a count of products",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/products/count.json",
+            "params": [
+              {
+                "name": "vendor",
+                "value": "",
+                "type": "query",
+                "description": "Filter by product vendor"
+              },
+              {
+                "name": "product_type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by product type"
+              },
+              {
+                "name": "collection_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by collection ID"
+              },
+              {
+                "name": "created_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Count products created after this date"
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Count products updated after this date"
+              }
+            ]
+          },
+          "docs": "Retrieves a count of products matching the specified criteria."
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieve a single product",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/products/:product_id.json",
+            "params": [
+              {
+                "name": "product_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the product"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to include"
+              }
+            ]
+          },
+          "docs": "Retrieves a single product by its ID, including variants, images, and options."
+        },
+        {
+          "info": {
+            "name": "Shopify Update a product",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/products/:product_id.json",
+            "params": [
+              {
+                "name": "product_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the product"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing product and any of its variants and images."
+        },
+        {
+          "info": {
+            "name": "Shopify Delete a product",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/products/:product_id.json",
+            "params": [
+              {
+                "name": "product_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the product"
+              }
+            ]
+          },
+          "docs": "Deletes a product and all associated variants and images."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Product Images",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Shopify Retrieve a list of product images",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/products/:product_id/images.json",
+            "params": [
+              {
+                "name": "product_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the product"
+              },
+              {
+                "name": "since_id",
+                "value": "",
+                "type": "query",
+                "description": "Return images after the specified ID"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to include"
+              }
+            ]
+          },
+          "docs": "Retrieves all images for a given product."
+        },
+        {
+          "info": {
+            "name": "Shopify Create a product image",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/products/:product_id/images.json",
+            "params": [
+              {
+                "name": "product_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the product"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new image for a product. Images can be provided as a URL or a base64-encoded attachment."
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieve a count of product images",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/products/:product_id/images/count.json",
+            "params": [
+              {
+                "name": "product_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the product"
+              }
+            ]
+          },
+          "docs": "Retrieves a count of images for a given product."
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieve a single product image",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/products/:product_id/images/:image_id.json",
+            "params": [
+              {
+                "name": "product_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the product"
+              },
+              {
+                "name": "image_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the image"
+              }
+            ]
+          },
+          "docs": "Retrieves a single image for a product by its ID."
+        },
+        {
+          "info": {
+            "name": "Shopify Update a product image",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/products/:product_id/images/:image_id.json",
+            "params": [
+              {
+                "name": "product_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the product"
+              },
+              {
+                "name": "image_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the image"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing product image. Can update position, alt text, and variant associations."
+        },
+        {
+          "info": {
+            "name": "Shopify Delete a product image",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/products/:product_id/images/:image_id.json",
+            "params": [
+              {
+                "name": "product_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the product"
+              },
+              {
+                "name": "image_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the image"
+              }
+            ]
+          },
+          "docs": "Deletes an image from a product."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Product Variants",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Shopify Retrieve a list of product variants",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/products/:product_id/variants.json",
+            "params": [
+              {
+                "name": "product_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the product"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results (max 250, default 50)"
+              },
+              {
+                "name": "since_id",
+                "value": "",
+                "type": "query",
+                "description": "Return variants after the specified ID"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to include"
+              }
+            ]
+          },
+          "docs": "Retrieves all variants for a given product."
+        },
+        {
+          "info": {
+            "name": "Shopify Create a product variant",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/products/:product_id/variants.json",
+            "params": [
+              {
+                "name": "product_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the product"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new variant for a product."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Customers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Shopify Retrieve a list of customers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/customers.json",
+            "params": [
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of customer IDs"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results (max 250, default 50)"
+              },
+              {
+                "name": "since_id",
+                "value": "",
+                "type": "query",
+                "description": "Return customers after the specified ID"
+              },
+              {
+                "name": "created_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show customers created after this date"
+              },
+              {
+                "name": "created_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show customers created before this date"
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show customers updated after this date"
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show customers updated before this date"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to include"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of customers. Results can be filtered by creation date, update date, and other criteria. Returns up to 250 customers."
+        },
+        {
+          "info": {
+            "name": "Shopify Create a customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/customers.json",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new customer record. Sends a welcome email if send_email_welcome is true."
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieve a count of customers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/customers/count.json"
+          },
+          "docs": "Retrieves a count of all customers."
+        },
+        {
+          "info": {
+            "name": "Shopify Search for customers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/customers/search.json",
+            "params": [
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "Search query (e.g. email:user@example.com)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results (max 250, default 50)"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to include"
+              }
+            ]
+          },
+          "docs": "Searches for customers matching a supplied query. Supports searching by name, email, phone, and other fields."
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieve a single customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/customers/:customer_id.json",
+            "params": [
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the customer"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to include"
+              }
+            ]
+          },
+          "docs": "Retrieves a single customer by ID."
+        },
+        {
+          "info": {
+            "name": "Shopify Update a customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/customers/:customer_id.json",
+            "params": [
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the customer"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing customer record."
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieve orders for a customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/customers/:customer_id/orders.json",
+            "params": [
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the customer"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by order status"
+              }
+            ]
+          },
+          "docs": "Retrieves all orders belonging to a specific customer."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Customer Addresses",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Shopify Retrieve addresses for a customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/customers/:customer_id/addresses.json",
+            "params": [
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the customer"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results (max 250, default 50)"
+              }
+            ]
+          },
+          "docs": "Retrieves all addresses for a customer."
+        },
+        {
+          "info": {
+            "name": "Shopify Create a customer address",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/customers/:customer_id/addresses.json",
+            "params": [
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the customer"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new address for a customer."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Orders",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Shopify Retrieve a list of orders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/orders.json",
+            "params": [
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of order IDs"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results (max 250, default 50)"
+              },
+              {
+                "name": "since_id",
+                "value": "",
+                "type": "query",
+                "description": "Return orders after the specified ID"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by order status"
+              },
+              {
+                "name": "financial_status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by financial status"
+              },
+              {
+                "name": "fulfillment_status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by fulfillment status"
+              },
+              {
+                "name": "created_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show orders created after this date"
+              },
+              {
+                "name": "created_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show orders created before this date"
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show orders updated after this date"
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show orders updated before this date"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to include"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of orders. By default only orders from the last 60 days are returned. Use status=any to include all statuses."
+        },
+        {
+          "info": {
+            "name": "Shopify Create an order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/orders.json",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates an order. Orders created via the API do not trigger payment processing. Use the order to represent sales from external channels."
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieve a count of orders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/orders/count.json",
+            "params": [
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by order status"
+              },
+              {
+                "name": "financial_status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by financial status"
+              },
+              {
+                "name": "fulfillment_status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by fulfillment status"
+              },
+              {
+                "name": "created_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Count orders created after this date"
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Count orders updated after this date"
+              }
+            ]
+          },
+          "docs": "Retrieves a count of orders matching the given criteria."
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieve a single order",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/orders/:order_id.json",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the order"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to include"
+              }
+            ]
+          },
+          "docs": "Retrieves a single order by ID including line items and details."
+        },
+        {
+          "info": {
+            "name": "Shopify Update an order",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/orders/:order_id.json",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the order"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing order. Note, tags, email, phone, shipping address, and metafields can be updated."
+        },
+        {
+          "info": {
+            "name": "Shopify Delete an order",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/orders/:order_id.json",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the order"
+              }
+            ]
+          },
+          "docs": "Deletes an order. Orders that interact with an online gateway cannot be deleted."
+        },
+        {
+          "info": {
+            "name": "Shopify Cancel an order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/orders/:order_id/cancel.json",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the order"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Cancels an order. Optionally refunds payment and restocks items."
+        },
+        {
+          "info": {
+            "name": "Shopify Close an order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/orders/:order_id/close.json",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the order"
+              }
+            ]
+          },
+          "docs": "Closes an order, marking it as completed."
+        },
+        {
+          "info": {
+            "name": "Shopify Re-open a closed order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/orders/:order_id/open.json",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the order"
+              }
+            ]
+          },
+          "docs": "Re-opens a previously closed order."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Fulfillment Orders",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Shopify Retrieve fulfillment orders for an order",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/orders/:order_id/fulfillment_orders.json",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the order"
+              }
+            ]
+          },
+          "docs": "Retrieves all fulfillment orders associated with a given order."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Fulfillments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Shopify Create a fulfillment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/fulfillments.json",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a fulfillment for one or more fulfillment orders."
+        },
+        {
+          "info": {
+            "name": "Shopify Update tracking information for a fulfillment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/fulfillments/:fulfillment_id/update_tracking.json",
+            "params": [
+              {
+                "name": "fulfillment_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the fulfillment"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the tracking information for a fulfillment."
+        },
+        {
+          "info": {
+            "name": "Shopify Cancel a fulfillment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/fulfillments/:fulfillment_id/cancel.json",
+            "params": [
+              {
+                "name": "fulfillment_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the fulfillment"
+              }
+            ]
+          },
+          "docs": "Cancels a fulfillment."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Inventory Items",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Shopify Retrieve a list of inventory items",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/inventory_items.json",
+            "params": [
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of inventory item IDs"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results (max 250, default 50)"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of inventory items. Items must be fetched by IDs."
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieve a single inventory item",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/inventory_items/:inventory_item_id.json",
+            "params": [
+              {
+                "name": "inventory_item_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the inventory item"
+              }
+            ]
+          },
+          "docs": "Retrieves a single inventory item by ID."
+        },
+        {
+          "info": {
+            "name": "Shopify Update an inventory item",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/inventory_items/:inventory_item_id.json",
+            "params": [
+              {
+                "name": "inventory_item_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the inventory item"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing inventory item."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Inventory Levels",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Shopify Retrieve inventory levels",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/inventory_levels.json",
+            "params": [
+              {
+                "name": "inventory_item_ids",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated inventory item IDs"
+              },
+              {
+                "name": "location_ids",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated location IDs"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results (max 250, default 50)"
+              }
+            ]
+          },
+          "docs": "Retrieves inventory levels for items at locations. Filter by inventory_item_ids or location_ids."
+        },
+        {
+          "info": {
+            "name": "Shopify Set inventory level for an item at a location",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/inventory_levels/set.json",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sets the inventory level for an inventory item at a location."
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieve inventory levels for a location",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/locations/:location_id/inventory_levels.json",
+            "params": [
+              {
+                "name": "location_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the location"
+              }
+            ]
+          },
+          "docs": "Retrieves all inventory levels at a specific location."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Locations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Shopify Retrieve a list of locations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/locations.json"
+          },
+          "docs": "Retrieves a list of all locations for a shop."
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieve a count of locations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/locations/count.json"
+          },
+          "docs": "Retrieves a count of locations for a shop."
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieve a single location",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/locations/:location_id.json",
+            "params": [
+              {
+                "name": "location_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the location"
+              }
+            ]
+          },
+          "docs": "Retrieves a single location by ID."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Collections",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Shopify Retrieve a single collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/collections/:collection_id.json",
+            "params": [
+              {
+                "name": "collection_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the collection"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to include"
+              }
+            ]
+          },
+          "docs": "Retrieves a single collection by ID including its metadata."
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieve products in a collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/collections/:collection_id/products.json",
+            "params": [
+              {
+                "name": "collection_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the collection"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results (max 250, default 50)"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of products belonging to a collection."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Custom Collections",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Shopify Retrieve a list of custom collections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/custom_collections.json",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results (max 250, default 50)"
+              },
+              {
+                "name": "since_id",
+                "value": "",
+                "type": "query",
+                "description": "Return collections after the specified ID"
+              },
+              {
+                "name": "title",
+                "value": "",
+                "type": "query",
+                "description": "Filter by collection title"
+              },
+              {
+                "name": "product_id",
+                "value": "",
+                "type": "query",
+                "description": "Show collections containing this product"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to include"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of custom (manual) collections."
+        },
+        {
+          "info": {
+            "name": "Shopify Create a custom collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/custom_collections.json",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new custom (manual) collection."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Smart Collections",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Shopify Retrieve a list of smart collections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/smart_collections.json",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results (max 250, default 50)"
+              },
+              {
+                "name": "since_id",
+                "value": "",
+                "type": "query",
+                "description": "Return collections after the specified ID"
+              },
+              {
+                "name": "title",
+                "value": "",
+                "type": "query",
+                "description": "Filter by collection title"
+              },
+              {
+                "name": "product_id",
+                "value": "",
+                "type": "query",
+                "description": "Show collections containing this product"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to include"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of smart (automated) collections."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Webhooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Shopify Retrieve a list of webhooks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/webhooks.json",
+            "params": [
+              {
+                "name": "topic",
+                "value": "",
+                "type": "query",
+                "description": "Filter by webhook topic"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results (max 250, default 50)"
+              },
+              {
+                "name": "since_id",
+                "value": "",
+                "type": "query",
+                "description": "Return webhooks after the specified ID"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to include"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of webhook subscriptions for the app."
+        },
+        {
+          "info": {
+            "name": "Shopify Create a webhook subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/webhooks.json",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new webhook subscription. When the specified event occurs Shopify sends an HTTP POST to the provided address."
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieve a count of webhooks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/webhooks/count.json",
+            "params": [
+              {
+                "name": "topic",
+                "value": "",
+                "type": "query",
+                "description": "Count webhooks for a specific topic"
+              }
+            ]
+          },
+          "docs": "Retrieves a count of existing webhook subscriptions."
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieve a single webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/webhooks/:webhook_id.json",
+            "params": [
+              {
+                "name": "webhook_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the webhook"
+              }
+            ]
+          },
+          "docs": "Retrieves a single webhook subscription by ID."
+        },
+        {
+          "info": {
+            "name": "Shopify Update a webhook subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/webhooks/:webhook_id.json",
+            "params": [
+              {
+                "name": "webhook_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the webhook"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing webhook subscription."
+        },
+        {
+          "info": {
+            "name": "Shopify Delete a webhook subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/webhooks/:webhook_id.json",
+            "params": [
+              {
+                "name": "webhook_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the webhook"
+              }
+            ]
+          },
+          "docs": "Deletes a webhook subscription."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Shop",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Shopify Retrieve shop configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/shop.json",
+            "params": [
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to include"
+              }
+            ]
+          },
+          "docs": "Retrieves the shop's configuration including name, domain, currency, timezone, plan, and address information."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Access",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Shopify Retrieve access scopes for the access token",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/oauth/access_scopes.json"
+          },
+          "docs": "Retrieves a list of access scopes associated with the current access token."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

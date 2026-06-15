@@ -1,0 +1,1002 @@
+{
+  "item": [
+    {
+      "id": "6de5a105-e6f7-4756-92fb-9f97507be568",
+      "name": "Webhook Subscriptions",
+      "description": {
+        "content": "Create and manage webhook subscriptions",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "16b469d0-7956-4fa0-8ed8-28c0d7126c4c",
+          "name": "Shopify Retrieve a list of webhook subscriptions",
+          "request": {
+            "name": "Shopify Retrieve a list of webhook subscriptions",
+            "description": {
+              "content": "Retrieves a list of webhooks for the authenticated app. Filter by topic, creation date, or other criteria.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "webhooks.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "topic",
+                  "value": "<string>",
+                  "description": "Filter by webhook topic (e.g. orders/create)"
+                },
+                {
+                  "disabled": false,
+                  "key": "address",
+                  "value": "<string>",
+                  "description": "Filter by callback address"
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at_min",
+                  "value": "<dateTime>",
+                  "description": "Show webhooks created after this date"
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at_max",
+                  "value": "<dateTime>",
+                  "description": "Show webhooks created before this date"
+                },
+                {
+                  "disabled": false,
+                  "key": "updated_at_min",
+                  "value": "<dateTime>",
+                  "description": "Show webhooks updated after this date"
+                },
+                {
+                  "disabled": false,
+                  "key": "updated_at_max",
+                  "value": "<dateTime>",
+                  "description": "Show webhooks updated before this date"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "50",
+                  "description": "Maximum number of results (max 250, default 50)"
+                },
+                {
+                  "disabled": false,
+                  "key": "since_id",
+                  "value": "<integer>",
+                  "description": "Return webhooks after the specified ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "Comma-separated list of fields to include"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The Shopify store subdomain",
+                  "type": "any",
+                  "value": "{{store}}",
+                  "key": "store"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c6c0f7f7-7db8-4683-870d-752ebb1202b8",
+              "name": "A list of webhook subscriptions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "webhooks.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "topic",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "address",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at_min",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "created_at_max",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "updated_at_min",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "updated_at_max",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "since_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Shopify store subdomain",
+                      "type": "any",
+                      "value": "{{store}}",
+                      "key": "store"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Shopify-Access-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"webhooks\": [\n    {\n      \"id\": 2361,\n      \"address\": \"http://bmSfdGKwjwXKulnFfGUYxTCKOQE.dyjxydFR,UpsFRwLTM+XZ6KN689QSLK3L0GddexbysTOWa58Rd4iZYvD,asgLw4RPiaX8IU58U\",\n      \"topic\": \"orders/cancelled\",\n      \"format\": \"xml\",\n      \"fields\": [\n        \"string\",\n        \"string\"\n      ],\n      \"metafield_namespaces\": [\n        \"string\",\n        \"string\"\n      ],\n      \"api_version\": \"string\",\n      \"created_at\": \"2013-08-27T07:39:37.603Z\",\n      \"updated_at\": \"1974-08-29T06:29:45.836Z\",\n      \"admin_graphql_api_id\": \"string\"\n    },\n    {\n      \"id\": 8092,\n      \"address\": \"https://cd.mpwyeff6rM3zqFVguYIHK8C50HpEUcUIrGb4G+KBVygDUyO6d.aI8Zulm-Bg4Q3\",\n      \"topic\": \"customers/disable\",\n      \"format\": \"json\",\n      \"fields\": [\n        \"string\",\n        \"string\"\n      ],\n      \"metafield_namespaces\": [\n        \"string\",\n        \"string\"\n      ],\n      \"api_version\": \"string\",\n      \"created_at\": \"2010-10-30T18:59:05.321Z\",\n      \"updated_at\": \"1969-06-02T12:01:13.630Z\",\n      \"admin_graphql_api_id\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7dda81f9-d73a-42f6-9323-142da93eaf44",
+          "name": "Shopify Create a webhook subscription",
+          "request": {
+            "name": "Shopify Create a webhook subscription",
+            "description": {
+              "content": "Creates a new webhook subscription. When the specified event occurs Shopify sends an HTTP POST to the provided callback address with the event payload in JSON or XML format.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "webhooks.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Shopify store subdomain",
+                  "type": "any",
+                  "value": "{{store}}",
+                  "key": "store"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"webhook\": {\n    \"topic\": \"<string>\",\n    \"address\": \"<uri>\",\n    \"format\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"metafield_namespaces\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5d35122a-cf4c-4d0f-ad54-01280531c783",
+              "name": "The created webhook subscription",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "webhooks.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Shopify store subdomain",
+                      "type": "any",
+                      "value": "{{store}}",
+                      "key": "store"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Shopify-Access-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"webhook\": {\n    \"topic\": \"string\",\n    \"address\": \"https://hCqo.cfgfVcNWRB+ONBIxXGvcRk-iFPXGWyBLvezulWsjG7in07g+gzOgVXvr\",\n    \"format\": \"xml\",\n    \"fields\": [\n      \"string\",\n      \"string\"\n    ],\n    \"metafield_namespaces\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"webhook\": {\n    \"id\": 4624,\n    \"address\": \"http://rpbukaUwXOfGxKYncwYvWNbmwWv.yuqyg8AVqJWRoleQKKmIbZNB+xgf\",\n    \"topic\": \"inventory_items/delete\",\n    \"format\": \"xml\",\n    \"fields\": [\n      \"string\",\n      \"string\"\n    ],\n    \"metafield_namespaces\": [\n      \"string\",\n      \"string\"\n    ],\n    \"api_version\": \"string\",\n    \"created_at\": \"1972-12-01T09:15:43.013Z\",\n    \"updated_at\": \"2008-03-10T14:10:25.727Z\",\n    \"admin_graphql_api_id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "98051fa9-00c1-49b1-9c4f-a3a76e934b0e",
+              "name": "Validation error (invalid topic or address)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "webhooks.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Shopify store subdomain",
+                      "type": "any",
+                      "value": "{{store}}",
+                      "key": "store"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Shopify-Access-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"webhook\": {\n    \"topic\": \"string\",\n    \"address\": \"https://hCqo.cfgfVcNWRB+ONBIxXGvcRk-iFPXGWyBLvezulWsjG7in07g+gzOgVXvr\",\n    \"format\": \"xml\",\n    \"fields\": [\n      \"string\",\n      \"string\"\n    ],\n    \"metafield_namespaces\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9d54c573-d697-46b9-83e5-41e910f97fb6",
+          "name": "Shopify Retrieve a count of webhook subscriptions",
+          "request": {
+            "name": "Shopify Retrieve a count of webhook subscriptions",
+            "description": {
+              "content": "Retrieves a count of webhook subscriptions for the authenticated app.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "webhooks",
+                "count.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "topic",
+                  "value": "<string>",
+                  "description": "Count webhooks for a specific topic"
+                },
+                {
+                  "disabled": false,
+                  "key": "address",
+                  "value": "<string>",
+                  "description": "Count webhooks for a specific address"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The Shopify store subdomain",
+                  "type": "any",
+                  "value": "{{store}}",
+                  "key": "store"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "27cd449d-d6c5-4ca6-8716-aa0108865f0d",
+              "name": "The webhook count",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "webhooks",
+                    "count.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "topic",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "address",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Shopify store subdomain",
+                      "type": "any",
+                      "value": "{{store}}",
+                      "key": "store"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Shopify-Access-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 6581\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f9732eec-ea27-4760-957d-e22b1f37cb71",
+          "name": "Shopify Retrieve a single webhook subscription",
+          "request": {
+            "name": "Shopify Retrieve a single webhook subscription",
+            "description": {
+              "content": "Retrieves a webhook subscription by its ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "webhooks",
+                "{{webhook_id}}.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "Comma-separated list of fields to include"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The Shopify store subdomain",
+                  "type": "any",
+                  "value": "{{store}}",
+                  "key": "store"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e91c52d1-765b-443b-ba87-a862ca76703d",
+              "name": "The webhook subscription",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "webhooks",
+                    "{{webhook_id}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Shopify store subdomain",
+                      "type": "any",
+                      "value": "{{store}}",
+                      "key": "store"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Shopify-Access-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"webhook\": {\n    \"id\": 4624,\n    \"address\": \"http://rpbukaUwXOfGxKYncwYvWNbmwWv.yuqyg8AVqJWRoleQKKmIbZNB+xgf\",\n    \"topic\": \"inventory_items/delete\",\n    \"format\": \"xml\",\n    \"fields\": [\n      \"string\",\n      \"string\"\n    ],\n    \"metafield_namespaces\": [\n      \"string\",\n      \"string\"\n    ],\n    \"api_version\": \"string\",\n    \"created_at\": \"1972-12-01T09:15:43.013Z\",\n    \"updated_at\": \"2008-03-10T14:10:25.727Z\",\n    \"admin_graphql_api_id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "01764042-45f9-49cf-b675-1b311d0e991e",
+              "name": "Webhook not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "webhooks",
+                    "{{webhook_id}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Shopify store subdomain",
+                      "type": "any",
+                      "value": "{{store}}",
+                      "key": "store"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Shopify-Access-Token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1126d7c8-af7f-4594-9ee2-4c596dcf66c4",
+          "name": "Shopify Update a webhook subscription",
+          "request": {
+            "name": "Shopify Update a webhook subscription",
+            "description": {
+              "content": "Updates an existing webhook subscription. The address and fields can be modified but the topic cannot be changed.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "webhooks",
+                "{{webhook_id}}.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Shopify store subdomain",
+                  "type": "any",
+                  "value": "{{store}}",
+                  "key": "store"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"webhook\": {\n    \"topic\": \"<string>\",\n    \"address\": \"<uri>\",\n    \"format\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"metafield_namespaces\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "73698e35-7f16-40e9-8ee3-ebf385803234",
+              "name": "The updated webhook subscription",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "webhooks",
+                    "{{webhook_id}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Shopify store subdomain",
+                      "type": "any",
+                      "value": "{{store}}",
+                      "key": "store"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Shopify-Access-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"webhook\": {\n    \"topic\": \"string\",\n    \"address\": \"https://hCqo.cfgfVcNWRB+ONBIxXGvcRk-iFPXGWyBLvezulWsjG7in07g+gzOgVXvr\",\n    \"format\": \"xml\",\n    \"fields\": [\n      \"string\",\n      \"string\"\n    ],\n    \"metafield_namespaces\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"webhook\": {\n    \"id\": 4624,\n    \"address\": \"http://rpbukaUwXOfGxKYncwYvWNbmwWv.yuqyg8AVqJWRoleQKKmIbZNB+xgf\",\n    \"topic\": \"inventory_items/delete\",\n    \"format\": \"xml\",\n    \"fields\": [\n      \"string\",\n      \"string\"\n    ],\n    \"metafield_namespaces\": [\n      \"string\",\n      \"string\"\n    ],\n    \"api_version\": \"string\",\n    \"created_at\": \"1972-12-01T09:15:43.013Z\",\n    \"updated_at\": \"2008-03-10T14:10:25.727Z\",\n    \"admin_graphql_api_id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "651e756d-311a-44ab-a0ba-f1d67605c301",
+              "name": "Validation error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "webhooks",
+                    "{{webhook_id}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Shopify store subdomain",
+                      "type": "any",
+                      "value": "{{store}}",
+                      "key": "store"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Shopify-Access-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"webhook\": {\n    \"topic\": \"string\",\n    \"address\": \"https://hCqo.cfgfVcNWRB+ONBIxXGvcRk-iFPXGWyBLvezulWsjG7in07g+gzOgVXvr\",\n    \"format\": \"xml\",\n    \"fields\": [\n      \"string\",\n      \"string\"\n    ],\n    \"metafield_namespaces\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "89b3dc01-506c-4a45-92d1-39428805968e",
+          "name": "Shopify Delete a webhook subscription",
+          "request": {
+            "name": "Shopify Delete a webhook subscription",
+            "description": {
+              "content": "Deletes a webhook subscription by its ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "webhooks",
+                "{{webhook_id}}.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Shopify store subdomain",
+                  "type": "any",
+                  "value": "{{store}}",
+                  "key": "store"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4a3a789a-deb6-47eb-bbe9-eb32562f3816",
+              "name": "Webhook deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "webhooks",
+                    "{{webhook_id}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Shopify store subdomain",
+                      "type": "any",
+                      "value": "{{store}}",
+                      "key": "store"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Shopify-Access-Token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ca7a2d76-a36c-43f5-beb8-feb530c54f7a",
+              "name": "Webhook not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "webhooks",
+                    "{{webhook_id}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Shopify store subdomain",
+                      "type": "any",
+                      "value": "{{store}}",
+                      "key": "store"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Shopify-Access-Token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The Shopify store subdomain",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "my-store",
+      "key": "store"
+    },
+    {
+      "type": "string",
+      "value": "https://{{store}}.myshopify.com/admin/api/2025-01",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) The ID of the webhook subscription",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<integer>",
+      "key": "webhook_id"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Shopify-Access-Token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "bac2efc3-41d3-4cca-bb76-cfe62dc4e1ba",
+    "name": "Shopify Webhooks API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Shopify webhooks enable apps to receive real-time HTTP notifications when events occur in a shop. Apps subscribe to webhook topics and Shopify delivers POST requests with event payloads to the registered callback URL. This specification documents the webhook subscription management endpoints and the standard webhook event payload structures.\n\nContact Support:\n Name: Shopify\n Email: api@shopify.com",
+      "type": "text/plain"
+    }
+  }
+}

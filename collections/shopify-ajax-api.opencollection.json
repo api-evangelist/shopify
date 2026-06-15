@@ -1,0 +1,239 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Shopify Ajax API",
+    "version": "2025-01"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Cart",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Shopify Retrieve the current cart",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/cart.js"
+          },
+          "docs": "Retrieves the current cart contents as JSON, including all line items, totals, attributes, notes, and currency information."
+        },
+        {
+          "info": {
+            "name": "Shopify Add items to the cart",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/cart/add.js",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds one or more product variants to the cart. Each item requires a variant ID and quantity. Optional properties and selling plans can be attached to line items."
+        },
+        {
+          "info": {
+            "name": "Shopify Update the cart",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/cart/update.js",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates cart line item quantities, cart note, cart attributes, or applies a discount code. Quantities can be updated using a map of variant ID to quantity or line number to quantity."
+        },
+        {
+          "info": {
+            "name": "Shopify Change a cart line item",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/cart/change.js",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Changes the quantity, properties, or selling plan of a single cart line item. Identify the item by line number (1-indexed) or by its key."
+        },
+        {
+          "info": {
+            "name": "Shopify Clear all items from the cart",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/cart/clear.js"
+          },
+          "docs": "Removes all line items from the cart, returning an empty cart object."
+        },
+        {
+          "info": {
+            "name": "Shopify Get estimated shipping rates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/cart/shipping_rates.json",
+            "params": [
+              {
+                "name": "shipping_address[zip]",
+                "value": "",
+                "type": "query",
+                "description": "Postal or zip code"
+              },
+              {
+                "name": "shipping_address[country]",
+                "value": "",
+                "type": "query",
+                "description": "Country name or ISO code"
+              },
+              {
+                "name": "shipping_address[province]",
+                "value": "",
+                "type": "query",
+                "description": "Province, state, or region"
+              }
+            ]
+          },
+          "docs": "Retrieves estimated shipping rates for the current cart based on the provided shipping address. May be throttled for repeated requests."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Products",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Shopify Retrieve a product by its handle",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/products/:handle.js",
+            "params": [
+              {
+                "name": "handle",
+                "value": "",
+                "type": "path",
+                "description": "The URL-friendly product handle"
+              }
+            ]
+          },
+          "docs": "Retrieves product information in JSON format using the product handle. Returns product metadata, pricing, variants (up to 250), images, options, and availability. Monetary values reflect the customer presentment currency."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Product Recommendations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Shopify Get product recommendations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/recommendations/products.json",
+            "params": [
+              {
+                "name": "product_id",
+                "value": "",
+                "type": "query",
+                "description": "The product ID to get recommendations for"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of recommendations (1-10, default 10)"
+              },
+              {
+                "name": "intent",
+                "value": "",
+                "type": "query",
+                "description": "The recommendation intent"
+              }
+            ]
+          },
+          "docs": "Retrieves product recommendations for a given product. Returns related or complementary products based on purchase history, product descriptions, and related collections."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Predictive Search",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Shopify Get predictive search results",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/search/suggest.json",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "The search query"
+              },
+              {
+                "name": "resources[type]",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated resource types to search (product, page, article, collection, query)"
+              },
+              {
+                "name": "resources[limit]",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per type (1-10, default 10)"
+              },
+              {
+                "name": "resources[limit_scope]",
+                "value": "",
+                "type": "query",
+                "description": "How the limit is distributed: all (shared across types) or each (per type)"
+              },
+              {
+                "name": "resources[options][unavailable_products]",
+                "value": "",
+                "type": "query",
+                "description": "How to handle unavailable products"
+              },
+              {
+                "name": "resources[options][fields]",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated fields to search within (title, product_type, vendor, tag, variants.title, variants.sku, body)"
+              }
+            ]
+          },
+          "docs": "Retrieves predictive search results for a query string. Returns matching products, collections, pages, articles, and query suggestions. Used for search-as-you-type experiences."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

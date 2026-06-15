@@ -1,0 +1,200 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Shopify Webhooks API",
+    "version": "2025-01"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Shopify-Access-Token",
+      "value": "{{X-Shopify-Access-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Webhook Subscriptions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Shopify Retrieve a list of webhook subscriptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/webhooks.json",
+            "params": [
+              {
+                "name": "topic",
+                "value": "",
+                "type": "query",
+                "description": "Filter by webhook topic (e.g. orders/create)"
+              },
+              {
+                "name": "address",
+                "value": "",
+                "type": "query",
+                "description": "Filter by callback address"
+              },
+              {
+                "name": "created_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show webhooks created after this date"
+              },
+              {
+                "name": "created_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show webhooks created before this date"
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show webhooks updated after this date"
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show webhooks updated before this date"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results (max 250, default 50)"
+              },
+              {
+                "name": "since_id",
+                "value": "",
+                "type": "query",
+                "description": "Return webhooks after the specified ID"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to include"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of webhooks for the authenticated app. Filter by topic, creation date, or other criteria."
+        },
+        {
+          "info": {
+            "name": "Shopify Create a webhook subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/webhooks.json",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new webhook subscription. When the specified event occurs Shopify sends an HTTP POST to the provided callback address with the event payload in JSON or XML format."
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieve a count of webhook subscriptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/webhooks/count.json",
+            "params": [
+              {
+                "name": "topic",
+                "value": "",
+                "type": "query",
+                "description": "Count webhooks for a specific topic"
+              },
+              {
+                "name": "address",
+                "value": "",
+                "type": "query",
+                "description": "Count webhooks for a specific address"
+              }
+            ]
+          },
+          "docs": "Retrieves a count of webhook subscriptions for the authenticated app."
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieve a single webhook subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/webhooks/:webhook_id.json",
+            "params": [
+              {
+                "name": "webhook_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the webhook subscription"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to include"
+              }
+            ]
+          },
+          "docs": "Retrieves a webhook subscription by its ID."
+        },
+        {
+          "info": {
+            "name": "Shopify Update a webhook subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/webhooks/:webhook_id.json",
+            "params": [
+              {
+                "name": "webhook_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the webhook subscription"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing webhook subscription. The address and fields can be modified but the topic cannot be changed."
+        },
+        {
+          "info": {
+            "name": "Shopify Delete a webhook subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/webhooks/:webhook_id.json",
+            "params": [
+              {
+                "name": "webhook_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the webhook subscription"
+              }
+            ]
+          },
+          "docs": "Deletes a webhook subscription by its ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
