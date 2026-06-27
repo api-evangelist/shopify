@@ -34,9 +34,9 @@ apis:
   - url: json-ld/shopify-context.jsonld
     type: JSONLD
   - url: examples/shopify-create-product-example.json
-    type: Example
+    type: Examples
   - url: examples/shopify-list-orders-example.json
-    type: Example
+    type: Examples
   - url: vocabulary/shopify-vocabulary.yml
     type: Vocabulary
   - url: rules/shopify-rules.yml
@@ -365,75 +365,72 @@ access: 3rd-Party
 common:
 - type: PostmanWorkspace
   url: https://www.postman.com/kinlaneapi/shopify/overview
-- type: ArazzoWorkflows
-  url: arazzo/
-  workflows:
-  - url: arazzo/shopify-add-variant-to-product-workflow.yml
-    name: Shopify Add a Variant to an Existing Product
-    summary: Confirm a product exists, add a new variant to it, then read the variant list back.
-  - url: arazzo/shopify-archive-stale-product-workflow.yml
-    name: Shopify Archive a Stale Product
-    summary: Read a product and branch on its status, archiving it only when it is still active.
-  - url: arazzo/shopify-cancel-and-refund-order-workflow.yml
-    name: Shopify Cancel and Restock an Order
-    summary: Confirm an order, cancel it with a reason and restock, then read the cancelled order back.
-  - url: arazzo/shopify-close-and-archive-order-workflow.yml
-    name: Shopify Tag and Close an Order
-    summary: Tag an order, close it to mark it completed, then read the closed order back.
-  - url: arazzo/shopify-create-collection-with-product-workflow.yml
-    name: Shopify Create Collection With a Product
-    summary: Create a custom collection, confirm a product, then read the collection back.
-  - url: arazzo/shopify-create-customer-with-address-workflow.yml
-    name: Shopify Create Customer With Address
-    summary: Create a customer record, attach a mailing address, then read the customer back.
-  - url: arazzo/shopify-create-order-and-fulfill-workflow.yml
-    name: Shopify Create Order and Fulfill
-    summary: Place an order, locate its fulfillment order, create a fulfillment with tracking, and read the order back.
-  - url: arazzo/shopify-create-product-with-variant-workflow.yml
-    name: Shopify Create Product With Variant
-    summary: Create a product, add a priced variant to it, then read the finished product back.
-  - url: arazzo/shopify-find-collection-and-list-products-workflow.yml
-    name: Shopify Find Collection and List Its Products
-    summary: Find a custom collection by title, then list the products it contains.
-  - url: arazzo/shopify-fulfill-existing-order-workflow.yml
-    name: Shopify Fulfill an Existing Order
-    summary: Resolve an order's fulfillment order, create a fulfillment with tracking, and confirm the result.
-  - url: arazzo/shopify-launch-product-with-stock-workflow.yml
-    name: Shopify Launch a Product With Stock
-    summary: Create a product, add a variant, resolve a location, and set its starting inventory.
-  - url: arazzo/shopify-quote-to-paid-order-workflow.yml
-    name: Shopify Quote to Paid Order
-    summary: Create a pending (quote-style) order, mark it paid, then read the completed order back.
-  - url: arazzo/shopify-register-webhook-workflow.yml
-    name: Shopify Register a Webhook Subscription
-    summary: Create a webhook subscription for a topic, then read it back to confirm registration.
-  - url: arazzo/shopify-restock-product-variant-workflow.yml
-    name: Shopify Restock a Product Variant
-    summary: Read a variant to find its inventory item, resolve a location, and set the available quantity.
-  - url: arazzo/shopify-set-inventory-at-location-workflow.yml
-    name: Shopify Set Inventory at a Location
-    summary: Resolve the primary location, set an item's available quantity there, then verify the new level.
-  - url: arazzo/shopify-tag-order-by-fulfillment-status-workflow.yml
-    name: Shopify Tag an Order by Fulfillment Status
-    summary: Read an order and branch on its fulfillment status to apply the appropriate tag.
-  - url: arazzo/shopify-update-fulfillment-tracking-workflow.yml
-    name: Shopify Update Fulfillment Tracking
-    summary: Confirm an order, update a fulfillment's tracking details, then read the order back.
-  - url: arazzo/shopify-update-inventory-item-cost-workflow.yml
-    name: Shopify Update an Inventory Item Cost
-    summary: Read an inventory item, update its unit cost and tracking flag, then read it back.
-  - url: arazzo/shopify-upsert-customer-by-email-workflow.yml
-    name: Shopify Upsert a Customer by Email
-    summary: Search for a customer by email and update it if it exists, otherwise create it.
-  - url: arazzo/shopify-upsert-customer-then-order-workflow.yml
-    name: Shopify Upsert Customer Then Place Order
-    summary: Find or create a customer by email, then place an order for that customer.
-  - url: arazzo/shopify-upsert-product-by-title-workflow.yml
-    name: Shopify Upsert a Product by Title
-    summary: Find a product by exact title and update it if it exists, otherwise create it.
-  - url: arazzo/shopify-upsert-webhook-by-topic-workflow.yml
-    name: Shopify Upsert a Webhook by Topic
-    summary: Find a webhook subscription for a topic and update its address if it exists, otherwise create it.
+- type: Arazzo
+  url: arazzo/shopify-add-variant-to-product-workflow.yml
+  name: Shopify Add a Variant to an Existing Product
+- type: Arazzo
+  url: arazzo/shopify-archive-stale-product-workflow.yml
+  name: Shopify Archive a Stale Product
+- type: Arazzo
+  url: arazzo/shopify-cancel-and-refund-order-workflow.yml
+  name: Shopify Cancel and Restock an Order
+- type: Arazzo
+  url: arazzo/shopify-close-and-archive-order-workflow.yml
+  name: Shopify Tag and Close an Order
+- type: Arazzo
+  url: arazzo/shopify-create-collection-with-product-workflow.yml
+  name: Shopify Create Collection With a Product
+- type: Arazzo
+  url: arazzo/shopify-create-customer-with-address-workflow.yml
+  name: Shopify Create Customer With Address
+- type: Arazzo
+  url: arazzo/shopify-create-order-and-fulfill-workflow.yml
+  name: Shopify Create Order and Fulfill
+- type: Arazzo
+  url: arazzo/shopify-create-product-with-variant-workflow.yml
+  name: Shopify Create Product With Variant
+- type: Arazzo
+  url: arazzo/shopify-find-collection-and-list-products-workflow.yml
+  name: Shopify Find Collection and List Its Products
+- type: Arazzo
+  url: arazzo/shopify-fulfill-existing-order-workflow.yml
+  name: Shopify Fulfill an Existing Order
+- type: Arazzo
+  url: arazzo/shopify-launch-product-with-stock-workflow.yml
+  name: Shopify Launch a Product With Stock
+- type: Arazzo
+  url: arazzo/shopify-quote-to-paid-order-workflow.yml
+  name: Shopify Quote to Paid Order
+- type: Arazzo
+  url: arazzo/shopify-register-webhook-workflow.yml
+  name: Shopify Register a Webhook Subscription
+- type: Arazzo
+  url: arazzo/shopify-restock-product-variant-workflow.yml
+  name: Shopify Restock a Product Variant
+- type: Arazzo
+  url: arazzo/shopify-set-inventory-at-location-workflow.yml
+  name: Shopify Set Inventory at a Location
+- type: Arazzo
+  url: arazzo/shopify-tag-order-by-fulfillment-status-workflow.yml
+  name: Shopify Tag an Order by Fulfillment Status
+- type: Arazzo
+  url: arazzo/shopify-update-fulfillment-tracking-workflow.yml
+  name: Shopify Update Fulfillment Tracking
+- type: Arazzo
+  url: arazzo/shopify-update-inventory-item-cost-workflow.yml
+  name: Shopify Update an Inventory Item Cost
+- type: Arazzo
+  url: arazzo/shopify-upsert-customer-by-email-workflow.yml
+  name: Shopify Upsert a Customer by Email
+- type: Arazzo
+  url: arazzo/shopify-upsert-customer-then-order-workflow.yml
+  name: Shopify Upsert Customer Then Place Order
+- type: Arazzo
+  url: arazzo/shopify-upsert-product-by-title-workflow.yml
+  name: Shopify Upsert a Product by Title
+- type: Arazzo
+  url: arazzo/shopify-upsert-webhook-by-topic-workflow.yml
+  name: Shopify Upsert a Webhook by Topic
 - type: LinkedIn
   url: https://www.linkedin.com/company/shopify
 - url: https://shopify.dev/docs
@@ -465,7 +462,7 @@ common:
 - url: https://shopify.dev/changelog
   type: ChangeLog
 - url: https://shopify.dev/docs/api/usage/versioning
-  type: API Versioning
+  type: Versioning
 - url: https://www.shopifystatus.com
   type: StatusPage
 - url: https://shopify.dev/docs/api/usage/support
@@ -475,7 +472,7 @@ common:
 - url: https://www.shopify.com/legal/privacy
   type: PrivacyPolicy
 - url: https://partners.shopify.com/signup
-  type: SignUp
+  type: Signup
 - url: https://shopify.dev/docs/apps/build/webhooks
   type: Webhooks
 - url: https://shopify.dev/docs/apps/build/authentication-authorization
@@ -483,7 +480,7 @@ common:
 - url: https://shopify.dev/docs/api/usage/access-scopes
   type: Access Scopes
 - url: https://community.shopify.dev/
-  type: Forum
+  type: Forums
 - url: https://github.com/Shopify
   type: GitHubOrganization
 - url: https://shopify.engineering/
@@ -540,7 +537,7 @@ common:
   sources:
   - https://www.shopify.com/pricing
   updated: '2026-05-04'
-- type: LLMsTxt
+- type: LlmsText
   url: https://shopify.dev/llms.txt
 created: '2024-04-14'
 modified: '2026-05-19'
