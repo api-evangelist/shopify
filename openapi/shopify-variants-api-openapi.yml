@@ -1,0 +1,752 @@
+openapi: 3.1.0
+info:
+  title: Shopify Admin REST About Variants API
+  description: The Shopify Admin REST API lets you build apps and integrations that extend and enhance the Shopify admin. Access products, customers, orders, inventory, fulfillment, and more. Endpoints are organized by resource type and versioned by release date.
+  version: 2025-01
+  contact:
+    name: Shopify
+    url: https://shopify.dev/docs/api/admin-rest
+    email: api@shopify.com
+  license:
+    name: Shopify API Terms
+    url: https://www.shopify.com/legal/api-terms
+  x-date: '2026-03-04'
+servers:
+- url: https://{store}.myshopify.com/admin/api/2025-01
+  description: Shopify Admin REST API
+  variables:
+    store:
+      default: my-store
+      description: The Shopify store subdomain
+security:
+- AccessToken: []
+tags:
+- name: Variants
+paths:
+  /admin/api/2020-01/products/{product_id}.json:
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  product:
+                    id: 632910392
+                    title: New product title
+                summary: Update a product's title
+              example2:
+                value:
+                  product:
+                    id: 632910392
+                    status: draft
+                summary: Update a product's status
+              example3:
+                value:
+                  product:
+                    id: 632910392
+                    tags: Barnes & Noble, John's Fav
+                summary: Update a product's tags
+              example4:
+                value:
+                  product:
+                    id: 632910392
+                    images: []
+                summary: Update a product by clearing product images
+              example5:
+                value:
+                  product:
+                    id: 632910392
+                    images:
+                    - id: 850703190
+                    - id: 562641783
+                    - src: http://example.com/rails_logo.gif
+                summary: Update a product by adding a new product image
+              example6:
+                value:
+                  product:
+                    id: 632910392
+                    images:
+                    - id: 850703190
+                      position: 2
+                    - id: 562641783
+                      position: 1
+                summary: Update a product by reordering product image
+              example7:
+                value:
+                  product:
+                    id: 632910392
+                    variants:
+                    - id: 457924702
+                    - id: 39072856
+                    - id: 49148385
+                    - id: 808950810
+                summary: Update a product by reordering the product variants
+              example8:
+                value:
+                  product:
+                    id: 632910392
+                    title: Updated Product Title
+                    variants:
+                    - id: 808950810
+                      price: '2000.00'
+                      sku: Updating the Product SKU
+                    - id: 49148385
+                    - id: 39072856
+                    - id: 457924702
+                summary: Update a product and one of its variants
+              example9:
+                value:
+                  product:
+                    id: 632910392
+                    metafields_global_title_tag: Brand new title
+                    metafields_global_description_tag: Brand new description
+                summary: Update a product's SEO title and description
+              example10:
+                value:
+                  product:
+                    id: 632910392
+                    published: true
+                summary: Show a hidden product by changing the published attribute to true
+              example11:
+                value:
+                  product:
+                    id: 632910392
+                    published: false
+                summary: Hide a published product by changing the published attribute to false
+              example12:
+                value:
+                  product:
+                    id: 632910392
+                    metafields:
+                    - key: new
+                      value: newvalue
+                      value_type: string
+                      namespace: global
+                summary: Add a metafield to an existing product
+      summary: Shopify Updates A Product And Its Variants And Images
+      description: https://shopify.dev/docs/admin-api/rest/reference/products/product#update-2020-01
+      parameters:
+      - in: path
+        name: product_id
+        required: true
+        schema:
+          type: string
+        description: product_id
+      tags:
+      - Variants
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_update_products_param_product_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/products/{product_id}.json:
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  product:
+                    id: 632910392
+                    title: New product title
+                summary: Update a product's title
+              example2:
+                value:
+                  product:
+                    id: 632910392
+                    status: draft
+                summary: Update a product's status
+              example3:
+                value:
+                  product:
+                    id: 632910392
+                    tags: Barnes & Noble, John's Fav
+                summary: Update a product's tags
+              example4:
+                value:
+                  product:
+                    id: 632910392
+                    images: []
+                summary: Update a product by clearing product images
+              example5:
+                value:
+                  product:
+                    id: 632910392
+                    images:
+                    - id: 850703190
+                    - id: 562641783
+                    - src: http://example.com/rails_logo.gif
+                summary: Update a product by adding a new product image
+              example6:
+                value:
+                  product:
+                    id: 632910392
+                    images:
+                    - id: 850703190
+                      position: 2
+                    - id: 562641783
+                      position: 1
+                summary: Update a product by reordering product image
+              example7:
+                value:
+                  product:
+                    id: 632910392
+                    variants:
+                    - id: 457924702
+                    - id: 39072856
+                    - id: 49148385
+                    - id: 808950810
+                summary: Update a product by reordering the product variants
+              example8:
+                value:
+                  product:
+                    id: 632910392
+                    title: Updated Product Title
+                    variants:
+                    - id: 808950810
+                      price: '2000.00'
+                      sku: Updating the Product SKU
+                    - id: 49148385
+                    - id: 39072856
+                    - id: 457924702
+                summary: Update a product and one of its variants
+              example9:
+                value:
+                  product:
+                    id: 632910392
+                    metafields_global_title_tag: Brand new title
+                    metafields_global_description_tag: Brand new description
+                summary: Update a product's SEO title and description
+              example10:
+                value:
+                  product:
+                    id: 632910392
+                    published: true
+                summary: Show a hidden product by changing the published attribute to true
+              example11:
+                value:
+                  product:
+                    id: 632910392
+                    published: false
+                summary: Hide a published product by changing the published attribute to false
+              example12:
+                value:
+                  product:
+                    id: 632910392
+                    metafields:
+                    - key: new
+                      value: newvalue
+                      value_type: string
+                      namespace: global
+                summary: Add a metafield to an existing product
+      summary: Shopify Updates A Product And Its Variants And Images
+      description: https://shopify.dev/docs/admin-api/rest/reference/products/product#update-2020-04
+      parameters:
+      - in: path
+        name: product_id
+        required: true
+        schema:
+          type: string
+        description: product_id
+      tags:
+      - Variants
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_update_products_param_product_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/products/{product_id}.json:
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  product:
+                    id: 632910392
+                    title: New product title
+                summary: Update a product's title
+              example2:
+                value:
+                  product:
+                    id: 632910392
+                    status: draft
+                summary: Update a product's status
+              example3:
+                value:
+                  product:
+                    id: 632910392
+                    tags: Barnes & Noble, John's Fav
+                summary: Update a product's tags
+              example4:
+                value:
+                  product:
+                    id: 632910392
+                    images: []
+                summary: Update a product by clearing product images
+              example5:
+                value:
+                  product:
+                    id: 632910392
+                    images:
+                    - id: 850703190
+                    - id: 562641783
+                    - src: http://example.com/rails_logo.gif
+                summary: Update a product by adding a new product image
+              example6:
+                value:
+                  product:
+                    id: 632910392
+                    images:
+                    - id: 850703190
+                      position: 2
+                    - id: 562641783
+                      position: 1
+                summary: Update a product by reordering product image
+              example7:
+                value:
+                  product:
+                    id: 632910392
+                    variants:
+                    - id: 457924702
+                    - id: 39072856
+                    - id: 49148385
+                    - id: 808950810
+                summary: Update a product by reordering the product variants
+              example8:
+                value:
+                  product:
+                    id: 632910392
+                    title: Updated Product Title
+                    variants:
+                    - id: 808950810
+                      price: '2000.00'
+                      sku: Updating the Product SKU
+                    - id: 49148385
+                    - id: 39072856
+                    - id: 457924702
+                summary: Update a product and one of its variants
+              example9:
+                value:
+                  product:
+                    id: 632910392
+                    metafields_global_title_tag: Brand new title
+                    metafields_global_description_tag: Brand new description
+                summary: Update a product's SEO title and description
+              example10:
+                value:
+                  product:
+                    id: 632910392
+                    published: true
+                summary: Show a hidden product by changing the published attribute to true
+              example11:
+                value:
+                  product:
+                    id: 632910392
+                    published: false
+                summary: Hide a published product by changing the published attribute to false
+              example12:
+                value:
+                  product:
+                    id: 632910392
+                    metafields:
+                    - key: new
+                      value: newvalue
+                      value_type: string
+                      namespace: global
+                summary: Add a metafield to an existing product
+      summary: Shopify Updates A Product And Its Variants And Images
+      description: https://shopify.dev/docs/admin-api/rest/reference/products/product#update-2020-07
+      parameters:
+      - in: path
+        name: product_id
+        required: true
+        schema:
+          type: string
+        description: product_id
+      tags:
+      - Variants
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_update_products_param_product_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/products/{product_id}.json:
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  product:
+                    id: 632910392
+                    title: New product title
+                summary: Update a product's title
+              example2:
+                value:
+                  product:
+                    id: 632910392
+                    status: draft
+                summary: Update a product's status
+              example3:
+                value:
+                  product:
+                    id: 632910392
+                    tags: Barnes & Noble, John's Fav
+                summary: Update a product's tags
+              example4:
+                value:
+                  product:
+                    id: 632910392
+                    images: []
+                summary: Update a product by clearing product images
+              example5:
+                value:
+                  product:
+                    id: 632910392
+                    images:
+                    - id: 850703190
+                    - id: 562641783
+                    - src: http://example.com/rails_logo.gif
+                summary: Update a product by adding a new product image
+              example6:
+                value:
+                  product:
+                    id: 632910392
+                    images:
+                    - id: 850703190
+                      position: 2
+                    - id: 562641783
+                      position: 1
+                summary: Update a product by reordering product image
+              example7:
+                value:
+                  product:
+                    id: 632910392
+                    variants:
+                    - id: 457924702
+                    - id: 39072856
+                    - id: 49148385
+                    - id: 808950810
+                summary: Update a product by reordering the product variants
+              example8:
+                value:
+                  product:
+                    id: 632910392
+                    title: Updated Product Title
+                    variants:
+                    - id: 808950810
+                      price: '2000.00'
+                      sku: Updating the Product SKU
+                    - id: 49148385
+                    - id: 39072856
+                    - id: 457924702
+                summary: Update a product and one of its variants
+              example9:
+                value:
+                  product:
+                    id: 632910392
+                    metafields_global_title_tag: Brand new title
+                    metafields_global_description_tag: Brand new description
+                summary: Update a product's SEO title and description
+              example10:
+                value:
+                  product:
+                    id: 632910392
+                    published: true
+                summary: Show a hidden product by changing the published attribute to true
+              example11:
+                value:
+                  product:
+                    id: 632910392
+                    published: false
+                summary: Hide a published product by changing the published attribute to false
+              example12:
+                value:
+                  product:
+                    id: 632910392
+                    metafields:
+                    - key: new
+                      value: newvalue
+                      value_type: string
+                      namespace: global
+                summary: Add a metafield to an existing product
+      summary: Shopify Updates A Product And Its Variants And Images
+      description: https://shopify.dev/docs/admin-api/rest/reference/products/product#update-2020-10
+      parameters:
+      - in: path
+        name: product_id
+        required: true
+        schema:
+          type: string
+        description: product_id
+      tags:
+      - Variants
+      responses:
+        '200':
+          description: ''
+      operationId: update_products_param_product_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/products/{product_id}.json:
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  product:
+                    id: 632910392
+                    title: New product title
+                summary: Update a product's title
+              example2:
+                value:
+                  product:
+                    id: 632910392
+                    status: draft
+                summary: Update a product's status
+              example3:
+                value:
+                  product:
+                    id: 632910392
+                    tags: Barnes & Noble, John's Fav
+                summary: Update a product's tags
+              example4:
+                value:
+                  product:
+                    id: 632910392
+                    images: []
+                summary: Update a product by clearing product images
+              example5:
+                value:
+                  product:
+                    id: 632910392
+                    images:
+                    - id: 850703190
+                    - id: 562641783
+                    - src: http://example.com/rails_logo.gif
+                summary: Update a product by adding a new product image
+              example6:
+                value:
+                  product:
+                    id: 632910392
+                    images:
+                    - id: 850703190
+                      position: 2
+                    - id: 562641783
+                      position: 1
+                summary: Update a product by reordering product image
+              example7:
+                value:
+                  product:
+                    id: 632910392
+                    variants:
+                    - id: 457924702
+                    - id: 39072856
+                    - id: 49148385
+                    - id: 808950810
+                summary: Update a product by reordering the product variants
+              example8:
+                value:
+                  product:
+                    id: 632910392
+                    title: Updated Product Title
+                    variants:
+                    - id: 808950810
+                      price: '2000.00'
+                      sku: Updating the Product SKU
+                    - id: 49148385
+                    - id: 39072856
+                    - id: 457924702
+                summary: Update a product and one of its variants
+              example9:
+                value:
+                  product:
+                    id: 632910392
+                    metafields_global_title_tag: Brand new title
+                    metafields_global_description_tag: Brand new description
+                summary: Update a product's SEO title and description
+              example10:
+                value:
+                  product:
+                    id: 632910392
+                    published: true
+                summary: Show a hidden product by changing the published attribute to true
+              example11:
+                value:
+                  product:
+                    id: 632910392
+                    published: false
+                summary: Hide a published product by changing the published attribute to false
+              example12:
+                value:
+                  product:
+                    id: 632910392
+                    metafields:
+                    - key: new
+                      value: newvalue
+                      value_type: string
+                      namespace: global
+                summary: Add a metafield to an existing product
+      summary: Shopify Updates A Product And Its Variants And Images
+      description: https://shopify.dev/docs/admin-api/rest/reference/products/product#update-2021-01
+      parameters:
+      - in: path
+        name: product_id
+        required: true
+        schema:
+          type: string
+        description: product_id
+      tags:
+      - Variants
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_update_products_param_product_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/products/{product_id}.json:
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  product:
+                    id: 632910392
+                    title: New product title
+                summary: Update a product's title
+              example2:
+                value:
+                  product:
+                    id: 632910392
+                    status: draft
+                summary: Update a product's status
+              example3:
+                value:
+                  product:
+                    id: 632910392
+                    tags: Barnes & Noble, John's Fav
+                summary: Update a product's tags
+              example4:
+                value:
+                  product:
+                    id: 632910392
+                    images: []
+                summary: Update a product by clearing product images
+              example5:
+                value:
+                  product:
+                    id: 632910392
+                    images:
+                    - id: 850703190
+                    - id: 562641783
+                    - src: http://example.com/rails_logo.gif
+                summary: Update a product by adding a new product image
+              example6:
+                value:
+                  product:
+                    id: 632910392
+                    images:
+                    - id: 850703190
+                      position: 2
+                    - id: 562641783
+                      position: 1
+                summary: Update a product by reordering product image
+              example7:
+                value:
+                  product:
+                    id: 632910392
+                    variants:
+                    - id: 457924702
+                    - id: 39072856
+                    - id: 49148385
+                    - id: 808950810
+                summary: Update a product by reordering the product variants
+              example8:
+                value:
+                  product:
+                    id: 632910392
+                    title: Updated Product Title
+                    variants:
+                    - id: 808950810
+                      price: '2000.00'
+                      sku: Updating the Product SKU
+                    - id: 49148385
+                    - id: 39072856
+                    - id: 457924702
+                summary: Update a product and one of its variants
+              example9:
+                value:
+                  product:
+                    id: 632910392
+                    metafields_global_title_tag: Brand new title
+                    metafields_global_description_tag: Brand new description
+                summary: Update a product's SEO title and description
+              example10:
+                value:
+                  product:
+                    id: 632910392
+                    published: true
+                summary: Show a hidden product by changing the published attribute to true
+              example11:
+                value:
+                  product:
+                    id: 632910392
+                    published: false
+                summary: Hide a published product by changing the published attribute to false
+              example12:
+                value:
+                  product:
+                    id: 632910392
+                    metafields:
+                    - key: new
+                      value: newvalue
+                      value_type: string
+                      namespace: global
+                summary: Add a metafield to an existing product
+      summary: Shopify Updates A Product And Its Variants And Images
+      description: https://shopify.dev/docs/admin-api/rest/reference/products/product#update-unstable
+      parameters:
+      - in: path
+        name: product_id
+        required: true
+        schema:
+          type: string
+        description: product_id
+      tags:
+      - Variants
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_update_products_param_product_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+components:
+  securitySchemes:
+    AccessToken:
+      type: apiKey
+      name: X-Shopify-Access-Token
+      in: header
+      description: Access token obtained via OAuth

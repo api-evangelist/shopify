@@ -1,0 +1,494 @@
+openapi: 3.1.0
+info:
+  title: Shopify Admin REST About Sets API
+  description: The Shopify Admin REST API lets you build apps and integrations that extend and enhance the Shopify admin. Access products, customers, orders, inventory, fulfillment, and more. Endpoints are organized by resource type and versioned by release date.
+  version: 2025-01
+  contact:
+    name: Shopify
+    url: https://shopify.dev/docs/api/admin-rest
+    email: api@shopify.com
+  license:
+    name: Shopify API Terms
+    url: https://www.shopify.com/legal/api-terms
+  x-date: '2026-03-04'
+servers:
+- url: https://{store}.myshopify.com/admin/api/2025-01
+  description: Shopify Admin REST API
+  variables:
+    store:
+      default: my-store
+      description: The Shopify store subdomain
+security:
+- AccessToken: []
+tags:
+- name: Sets
+paths:
+  /admin/api/2020-01/customers/{customer_id}/addresses/{address_id}/default.json:
+    put:
+      summary: Shopify Sets The Default Address For A Customer
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer-address#default-2020-01
+      parameters:
+      - in: path
+        name: customer_id
+        required: true
+        schema:
+          type: string
+        description: customer_id
+      - in: path
+        name: address_id
+        required: true
+        schema:
+          type: string
+        description: address_id
+      tags:
+      - Sets
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_update_customers_param_customer_id_addresses_param_address_id_default
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/customers/{customer_id}/addresses/{address_id}/default.json:
+    put:
+      summary: Shopify Sets The Default Address For A Customer
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer-address#default-2020-04
+      parameters:
+      - in: path
+        name: customer_id
+        required: true
+        schema:
+          type: string
+        description: customer_id
+      - in: path
+        name: address_id
+        required: true
+        schema:
+          type: string
+        description: address_id
+      tags:
+      - Sets
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_update_customers_param_customer_id_addresses_param_address_id_default
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/customers/{customer_id}/addresses/{address_id}/default.json:
+    put:
+      summary: Shopify Sets The Default Address For A Customer
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer-address#default-2020-07
+      parameters:
+      - in: path
+        name: customer_id
+        required: true
+        schema:
+          type: string
+        description: customer_id
+      - in: path
+        name: address_id
+        required: true
+        schema:
+          type: string
+        description: address_id
+      tags:
+      - Sets
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_update_customers_param_customer_id_addresses_param_address_id_default
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/customers/{customer_id}/addresses/{address_id}/default.json:
+    put:
+      summary: Shopify Sets The Default Address For A Customer
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer-address#default-2020-10
+      parameters:
+      - in: path
+        name: customer_id
+        required: true
+        schema:
+          type: string
+        description: customer_id
+      - in: path
+        name: address_id
+        required: true
+        schema:
+          type: string
+        description: address_id
+      tags:
+      - Sets
+      responses:
+        '200':
+          description: ''
+      operationId: update_customers_param_customer_id_addresses_param_address_id_default
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/customers/{customer_id}/addresses/{address_id}/default.json:
+    put:
+      summary: Shopify Sets The Default Address For A Customer
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer-address#default-2021-01
+      parameters:
+      - in: path
+        name: customer_id
+        required: true
+        schema:
+          type: string
+        description: customer_id
+      - in: path
+        name: address_id
+        required: true
+        schema:
+          type: string
+        description: address_id
+      tags:
+      - Sets
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_update_customers_param_customer_id_addresses_param_address_id_default
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/customers/{customer_id}/addresses/{address_id}/default.json:
+    put:
+      summary: Shopify Sets The Default Address For A Customer
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer-address#default-unstable
+      parameters:
+      - in: path
+        name: customer_id
+        required: true
+        schema:
+          type: string
+        description: customer_id
+      - in: path
+        name: address_id
+        required: true
+        schema:
+          type: string
+        description: address_id
+      tags:
+      - Sets
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_update_customers_param_customer_id_addresses_param_address_id_default
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-01/inventory_levels/set.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  location_id: 905684977
+                  inventory_item_id: 808950810
+                  available: 42
+                summary: Set the available inventory at a location
+              example2:
+                value:
+                  location_id: 61629186
+                  inventory_item_id: 808950810
+                  available: 42
+                summary: 'Setting an inventory item to a fulfillment service without "disconnect_if_necessary": true fails with a 422 error'
+      summary: Shopify Sets The Inventory Level For An Inventory Item At A Location
+      description: https://shopify.dev/docs/admin-api/rest/reference/inventory/inventorylevel#set-2020-01
+      parameters:
+      - in: query
+        name: "inventory_item_id\n                  required"
+        description: The ID for the inventory item.
+        schema: {}
+        required: false
+      - in: query
+        name: "location_id\n                  required"
+        description: The ID of the location that the inventory level belongs to. To find the ID of the location, use the Location resource.
+        schema: {}
+        required: false
+      - in: query
+        name: "available\n                  required"
+        description: Sets the available inventory quantity.
+        schema: {}
+        required: false
+      - in: query
+        name: disconnect_if_necessary
+        description: "Whether inventory for any previously connected locations will be set to 0 and the locations disconnected. This property is ignored when no fulfillment service  is involved. For more information, see Inventory levels and fulfillment service locations.\n                  (default: false)"
+        schema: {}
+        required: false
+      tags:
+      - Sets
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_create_inventory_levels_set
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/inventory_levels/set.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  location_id: 905684977
+                  inventory_item_id: 808950810
+                  available: 42
+                summary: Set the available inventory at a location
+              example2:
+                value:
+                  location_id: 61629186
+                  inventory_item_id: 808950810
+                  available: 42
+                summary: 'Setting an inventory item to a fulfillment service without "disconnect_if_necessary": true fails with a 422 error'
+      summary: Shopify Sets The Inventory Level For An Inventory Item At A Location
+      description: https://shopify.dev/docs/admin-api/rest/reference/inventory/inventorylevel#set-2020-04
+      parameters:
+      - in: query
+        name: "inventory_item_id\n                  required"
+        description: The ID for the inventory item.
+        schema: {}
+        required: false
+      - in: query
+        name: "location_id\n                  required"
+        description: The ID of the location that the inventory level belongs to. To find the ID of the location, use the Location resource.
+        schema: {}
+        required: false
+      - in: query
+        name: "available\n                  required"
+        description: Sets the available inventory quantity.
+        schema: {}
+        required: false
+      - in: query
+        name: disconnect_if_necessary
+        description: "Whether inventory for any previously connected locations will be set to 0 and the locations disconnected. This property is ignored when no fulfillment service  is involved. For more information, see Inventory levels and fulfillment service locations.\n                  (default: false)"
+        schema: {}
+        required: false
+      tags:
+      - Sets
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_create_inventory_levels_set
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/inventory_levels/set.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  location_id: 905684977
+                  inventory_item_id: 808950810
+                  available: 42
+                summary: Set the available inventory at a location
+              example2:
+                value:
+                  location_id: 61629186
+                  inventory_item_id: 808950810
+                  available: 42
+                summary: 'Setting an inventory item to a fulfillment service without "disconnect_if_necessary": true fails with a 422 error'
+      summary: Shopify Sets The Inventory Level For An Inventory Item At A Location
+      description: https://shopify.dev/docs/admin-api/rest/reference/inventory/inventorylevel#set-2020-07
+      parameters:
+      - in: query
+        name: "inventory_item_id\n                  required"
+        description: The ID for the inventory item.
+        schema: {}
+        required: false
+      - in: query
+        name: "location_id\n                  required"
+        description: The ID of the location that the inventory level belongs to. To find the ID of the location, use the Location resource.
+        schema: {}
+        required: false
+      - in: query
+        name: "available\n                  required"
+        description: Sets the available inventory quantity.
+        schema: {}
+        required: false
+      - in: query
+        name: disconnect_if_necessary
+        description: "Whether inventory for any previously connected locations will be set to 0 and the locations disconnected. This property is ignored when no fulfillment service  is involved. For more information, see Inventory levels and fulfillment service locations.\n                  (default: false)"
+        schema: {}
+        required: false
+      tags:
+      - Sets
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_create_inventory_levels_set
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/inventory_levels/set.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  location_id: 905684977
+                  inventory_item_id: 808950810
+                  available: 42
+                summary: Set the available inventory at a location
+              example2:
+                value:
+                  location_id: 61629186
+                  inventory_item_id: 808950810
+                  available: 42
+                summary: 'Setting an inventory item to a fulfillment service without "disconnect_if_necessary": true fails with a 422 error'
+      summary: Shopify Sets The Inventory Level For An Inventory Item At A Location
+      description: https://shopify.dev/docs/admin-api/rest/reference/inventory/inventorylevel#set-2020-10
+      parameters:
+      - in: query
+        name: "inventory_item_id\n                  required"
+        description: The ID for the inventory item.
+        schema: {}
+        required: false
+      - in: query
+        name: "location_id\n                  required"
+        description: The ID of the location that the inventory level belongs to. To find the ID of the location, use the Location resource.
+        schema: {}
+        required: false
+      - in: query
+        name: "available\n                  required"
+        description: Sets the available inventory quantity.
+        schema: {}
+        required: false
+      - in: query
+        name: disconnect_if_necessary
+        description: "Whether inventory for any previously connected locations will be set to 0 and the locations disconnected. This property is ignored when no fulfillment service  is involved. For more information, see Inventory levels and fulfillment service locations.\n                  (default: false)"
+        schema: {}
+        required: false
+      tags:
+      - Sets
+      responses:
+        '200':
+          description: ''
+      operationId: create_inventory_levels_set
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/inventory_levels/set.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  location_id: 905684977
+                  inventory_item_id: 808950810
+                  available: 42
+                summary: Set the available inventory at a location
+              example2:
+                value:
+                  location_id: 61629186
+                  inventory_item_id: 808950810
+                  available: 42
+                summary: 'Setting an inventory item to a fulfillment service without "disconnect_if_necessary": true fails with a 422 error'
+      summary: Shopify Sets The Inventory Level For An Inventory Item At A Location
+      description: https://shopify.dev/docs/admin-api/rest/reference/inventory/inventorylevel#set-2021-01
+      parameters:
+      - in: query
+        name: "inventory_item_id\n                  required"
+        description: The ID for the inventory item.
+        schema: {}
+        required: false
+      - in: query
+        name: "location_id\n                  required"
+        description: The ID of the location that the inventory level belongs to. To find the ID of the location, use the Location resource.
+        schema: {}
+        required: false
+      - in: query
+        name: "available\n                  required"
+        description: Sets the available inventory quantity.
+        schema: {}
+        required: false
+      - in: query
+        name: disconnect_if_necessary
+        description: "Whether inventory for any previously connected locations will be set to 0 and the locations disconnected. This property is ignored when no fulfillment service  is involved. For more information, see Inventory levels and fulfillment service locations.\n                  (default: false)"
+        schema: {}
+        required: false
+      tags:
+      - Sets
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_create_inventory_levels_set
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/inventory_levels/set.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  location_id: 905684977
+                  inventory_item_id: 808950810
+                  available: 42
+                summary: Set the available inventory at a location
+              example2:
+                value:
+                  location_id: 61629186
+                  inventory_item_id: 808950810
+                  available: 42
+                summary: 'Setting an inventory item to a fulfillment service without "disconnect_if_necessary": true fails with a 422 error'
+      summary: Shopify Sets The Inventory Level For An Inventory Item At A Location
+      description: https://shopify.dev/docs/admin-api/rest/reference/inventory/inventorylevel#set-unstable
+      parameters:
+      - in: query
+        name: "inventory_item_id\n                  required"
+        description: The ID for the inventory item.
+        schema: {}
+        required: false
+      - in: query
+        name: "location_id\n                  required"
+        description: The ID of the location that the inventory level belongs to. To find the ID of the location, use the Location resource.
+        schema: {}
+        required: false
+      - in: query
+        name: "available\n                  required"
+        description: Sets the available inventory quantity.
+        schema: {}
+        required: false
+      - in: query
+        name: disconnect_if_necessary
+        description: "Whether inventory for any previously connected locations will be set to 0 and the locations disconnected. This property is ignored when no fulfillment service  is involved. For more information, see Inventory levels and fulfillment service locations.\n                  (default: false)"
+        schema: {}
+        required: false
+      tags:
+      - Sets
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_create_inventory_levels_set
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+components:
+  securitySchemes:
+    AccessToken:
+      type: apiKey
+      name: X-Shopify-Access-Token
+      in: header
+      description: Access token obtained via OAuth

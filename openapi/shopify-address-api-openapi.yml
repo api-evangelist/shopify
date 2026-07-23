@@ -1,0 +1,1370 @@
+openapi: 3.1.0
+info:
+  title: Shopify Admin REST About Address API
+  description: The Shopify Admin REST API lets you build apps and integrations that extend and enhance the Shopify admin. Access products, customers, orders, inventory, fulfillment, and more. Endpoints are organized by resource type and versioned by release date.
+  version: 2025-01
+  contact:
+    name: Shopify
+    url: https://shopify.dev/docs/api/admin-rest
+    email: api@shopify.com
+  license:
+    name: Shopify API Terms
+    url: https://www.shopify.com/legal/api-terms
+  x-date: '2026-03-04'
+servers:
+- url: https://{store}.myshopify.com/admin/api/2025-01
+  description: Shopify Admin REST API
+  variables:
+    store:
+      default: my-store
+      description: The Shopify store subdomain
+security:
+- AccessToken: []
+tags:
+- name: Address
+paths:
+  /admin/api/2020-01/customers/{customer_id}/addresses.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  address:
+                    address1: 1 Rue des Carrieres
+                    address2: Suite 1234
+                    city: Montreal
+                    company: Fancy Co.
+                    first_name: Samuel
+                    last_name: de Champlain
+                    phone: 819-555-5555
+                    province: Quebec
+                    country: Canada
+                    zip: G1R 4P5
+                    name: Samuel de Champlain
+                    province_code: QC
+                    country_code: CA
+                    country_name: Canada
+                summary: Create a new address for a customer
+      summary: Shopify Creates A New Address For A Customer
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer-address#create-2020-01
+      parameters:
+      - in: path
+        name: customer_id
+        required: true
+        schema:
+          type: string
+        description: customer_id
+      tags:
+      - Address
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_create_customers_param_customer_id_addresses
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-01/customers/{customer_id}/addresses/{address_id}.json:
+    get:
+      summary: Shopify Retrieves Details A Single Customer Address
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer-address#show-2020-01
+      parameters:
+      - in: path
+        name: customer_id
+        required: true
+        schema:
+          type: string
+        description: customer_id
+      - in: path
+        name: address_id
+        required: true
+        schema:
+          type: string
+        description: address_id
+      tags:
+      - Address
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_get_customers_param_customer_id_addresses_param_address_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  address:
+                    id: 207119551
+                    zip: '90210'
+                summary: Update the postal code of a customer address
+      summary: Shopify Updates An Existing Customer Address
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer-address#update-2020-01
+      parameters:
+      - in: path
+        name: customer_id
+        required: true
+        schema:
+          type: string
+        description: customer_id
+      - in: path
+        name: address_id
+        required: true
+        schema:
+          type: string
+        description: address_id
+      tags:
+      - Address
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_update_customers_param_customer_id_addresses_param_address_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    delete:
+      summary: Shopify Removes An Address From A Customer’s Address List
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer-address#destroy-2020-01
+      parameters:
+      - in: path
+        name: customer_id
+        required: true
+        schema:
+          type: string
+        description: customer_id
+      - in: path
+        name: address_id
+        required: true
+        schema:
+          type: string
+        description: address_id
+      tags:
+      - Address
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_delete_customers_param_customer_id_addresses_param_address_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-01/customers/{customer_id}/addresses/{address_id}/default.json:
+    put:
+      summary: Shopify Sets The Default Address For A Customer
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer-address#default-2020-01
+      parameters:
+      - in: path
+        name: customer_id
+        required: true
+        schema:
+          type: string
+        description: customer_id
+      - in: path
+        name: address_id
+        required: true
+        schema:
+          type: string
+        description: address_id
+      tags:
+      - Address
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_update_customers_param_customer_id_addresses_param_address_id_default
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/customers/{customer_id}/addresses.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  address:
+                    address1: 1 Rue des Carrieres
+                    address2: Suite 1234
+                    city: Montreal
+                    company: Fancy Co.
+                    first_name: Samuel
+                    last_name: de Champlain
+                    phone: 819-555-5555
+                    province: Quebec
+                    country: Canada
+                    zip: G1R 4P5
+                    name: Samuel de Champlain
+                    province_code: QC
+                    country_code: CA
+                    country_name: Canada
+                summary: Create a new address for a customer
+      summary: Shopify Creates A New Address For A Customer
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer-address#create-2020-04
+      parameters:
+      - in: path
+        name: customer_id
+        required: true
+        schema:
+          type: string
+        description: customer_id
+      tags:
+      - Address
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_create_customers_param_customer_id_addresses
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/customers/{customer_id}/addresses/{address_id}.json:
+    get:
+      summary: Shopify Retrieves Details A Single Customer Address
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer-address#show-2020-04
+      parameters:
+      - in: path
+        name: customer_id
+        required: true
+        schema:
+          type: string
+        description: customer_id
+      - in: path
+        name: address_id
+        required: true
+        schema:
+          type: string
+        description: address_id
+      tags:
+      - Address
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_get_customers_param_customer_id_addresses_param_address_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  address:
+                    id: 207119551
+                    zip: '90210'
+                summary: Update the postal code of a customer address
+      summary: Shopify Updates An Existing Customer Address
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer-address#update-2020-04
+      parameters:
+      - in: path
+        name: customer_id
+        required: true
+        schema:
+          type: string
+        description: customer_id
+      - in: path
+        name: address_id
+        required: true
+        schema:
+          type: string
+        description: address_id
+      tags:
+      - Address
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_update_customers_param_customer_id_addresses_param_address_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    delete:
+      summary: Shopify Removes An Address From A Customer’s Address List
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer-address#destroy-2020-04
+      parameters:
+      - in: path
+        name: customer_id
+        required: true
+        schema:
+          type: string
+        description: customer_id
+      - in: path
+        name: address_id
+        required: true
+        schema:
+          type: string
+        description: address_id
+      tags:
+      - Address
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_delete_customers_param_customer_id_addresses_param_address_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/customers/{customer_id}/addresses/{address_id}/default.json:
+    put:
+      summary: Shopify Sets The Default Address For A Customer
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer-address#default-2020-04
+      parameters:
+      - in: path
+        name: customer_id
+        required: true
+        schema:
+          type: string
+        description: customer_id
+      - in: path
+        name: address_id
+        required: true
+        schema:
+          type: string
+        description: address_id
+      tags:
+      - Address
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_update_customers_param_customer_id_addresses_param_address_id_default
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/customers/{customer_id}/addresses.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  address:
+                    address1: 1 Rue des Carrieres
+                    address2: Suite 1234
+                    city: Montreal
+                    company: Fancy Co.
+                    first_name: Samuel
+                    last_name: de Champlain
+                    phone: 819-555-5555
+                    province: Quebec
+                    country: Canada
+                    zip: G1R 4P5
+                    name: Samuel de Champlain
+                    province_code: QC
+                    country_code: CA
+                    country_name: Canada
+                summary: Create a new address for a customer
+      summary: Shopify Creates A New Address For A Customer
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer-address#create-2020-07
+      parameters:
+      - in: path
+        name: customer_id
+        required: true
+        schema:
+          type: string
+        description: customer_id
+      tags:
+      - Address
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_create_customers_param_customer_id_addresses
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/customers/{customer_id}/addresses/{address_id}.json:
+    get:
+      summary: Shopify Retrieves Details A Single Customer Address
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer-address#show-2020-07
+      parameters:
+      - in: path
+        name: customer_id
+        required: true
+        schema:
+          type: string
+        description: customer_id
+      - in: path
+        name: address_id
+        required: true
+        schema:
+          type: string
+        description: address_id
+      tags:
+      - Address
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_get_customers_param_customer_id_addresses_param_address_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  address:
+                    id: 207119551
+                    zip: '90210'
+                summary: Update the postal code of a customer address
+      summary: Shopify Updates An Existing Customer Address
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer-address#update-2020-07
+      parameters:
+      - in: path
+        name: customer_id
+        required: true
+        schema:
+          type: string
+        description: customer_id
+      - in: path
+        name: address_id
+        required: true
+        schema:
+          type: string
+        description: address_id
+      tags:
+      - Address
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_update_customers_param_customer_id_addresses_param_address_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    delete:
+      summary: Shopify Removes An Address From A Customer’s Address List
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer-address#destroy-2020-07
+      parameters:
+      - in: path
+        name: customer_id
+        required: true
+        schema:
+          type: string
+        description: customer_id
+      - in: path
+        name: address_id
+        required: true
+        schema:
+          type: string
+        description: address_id
+      tags:
+      - Address
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_delete_customers_param_customer_id_addresses_param_address_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/customers/{customer_id}/addresses/{address_id}/default.json:
+    put:
+      summary: Shopify Sets The Default Address For A Customer
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer-address#default-2020-07
+      parameters:
+      - in: path
+        name: customer_id
+        required: true
+        schema:
+          type: string
+        description: customer_id
+      - in: path
+        name: address_id
+        required: true
+        schema:
+          type: string
+        description: address_id
+      tags:
+      - Address
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_update_customers_param_customer_id_addresses_param_address_id_default
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/customers/{customer_id}/addresses.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  address:
+                    address1: 1 Rue des Carrieres
+                    address2: Suite 1234
+                    city: Montreal
+                    company: Fancy Co.
+                    first_name: Samuel
+                    last_name: de Champlain
+                    phone: 819-555-5555
+                    province: Quebec
+                    country: Canada
+                    zip: G1R 4P5
+                    name: Samuel de Champlain
+                    province_code: QC
+                    country_code: CA
+                    country_name: Canada
+                summary: Create a new address for a customer
+      summary: Shopify Creates A New Address For A Customer
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer-address#create-2020-10
+      parameters:
+      - in: path
+        name: customer_id
+        required: true
+        schema:
+          type: string
+        description: customer_id
+      tags:
+      - Address
+      responses:
+        '200':
+          description: ''
+      operationId: create_customers_param_customer_id_addresses
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/customers/{customer_id}/addresses/{address_id}.json:
+    get:
+      summary: Shopify Retrieves Details A Single Customer Address
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer-address#show-2020-10
+      parameters:
+      - in: path
+        name: customer_id
+        required: true
+        schema:
+          type: string
+        description: customer_id
+      - in: path
+        name: address_id
+        required: true
+        schema:
+          type: string
+        description: address_id
+      tags:
+      - Address
+      responses:
+        '200':
+          description: ''
+      operationId: get_customers_param_customer_id_addresses_param_address_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  address:
+                    id: 207119551
+                    zip: '90210'
+                summary: Update the postal code of a customer address
+      summary: Shopify Updates An Existing Customer Address
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer-address#update-2020-10
+      parameters:
+      - in: path
+        name: customer_id
+        required: true
+        schema:
+          type: string
+        description: customer_id
+      - in: path
+        name: address_id
+        required: true
+        schema:
+          type: string
+        description: address_id
+      tags:
+      - Address
+      responses:
+        '200':
+          description: ''
+      operationId: update_customers_param_customer_id_addresses_param_address_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    delete:
+      summary: Shopify Removes An Address From A Customer’s Address List
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer-address#destroy-2020-10
+      parameters:
+      - in: path
+        name: customer_id
+        required: true
+        schema:
+          type: string
+        description: customer_id
+      - in: path
+        name: address_id
+        required: true
+        schema:
+          type: string
+        description: address_id
+      tags:
+      - Address
+      responses:
+        '200':
+          description: ''
+      operationId: delete_customers_param_customer_id_addresses_param_address_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/customers/{customer_id}/addresses/{address_id}/default.json:
+    put:
+      summary: Shopify Sets The Default Address For A Customer
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer-address#default-2020-10
+      parameters:
+      - in: path
+        name: customer_id
+        required: true
+        schema:
+          type: string
+        description: customer_id
+      - in: path
+        name: address_id
+        required: true
+        schema:
+          type: string
+        description: address_id
+      tags:
+      - Address
+      responses:
+        '200':
+          description: ''
+      operationId: update_customers_param_customer_id_addresses_param_address_id_default
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/customers/{customer_id}/addresses.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  address:
+                    address1: 1 Rue des Carrieres
+                    address2: Suite 1234
+                    city: Montreal
+                    company: Fancy Co.
+                    first_name: Samuel
+                    last_name: de Champlain
+                    phone: 819-555-5555
+                    province: Quebec
+                    country: Canada
+                    zip: G1R 4P5
+                    name: Samuel de Champlain
+                    province_code: QC
+                    country_code: CA
+                    country_name: Canada
+                summary: Create a new address for a customer
+      summary: Shopify Creates A New Address For A Customer
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer-address#create-2021-01
+      parameters:
+      - in: path
+        name: customer_id
+        required: true
+        schema:
+          type: string
+        description: customer_id
+      tags:
+      - Address
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_create_customers_param_customer_id_addresses
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/customers/{customer_id}/addresses/{address_id}.json:
+    get:
+      summary: Shopify Retrieves Details A Single Customer Address
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer-address#show-2021-01
+      parameters:
+      - in: path
+        name: customer_id
+        required: true
+        schema:
+          type: string
+        description: customer_id
+      - in: path
+        name: address_id
+        required: true
+        schema:
+          type: string
+        description: address_id
+      tags:
+      - Address
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_get_customers_param_customer_id_addresses_param_address_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  address:
+                    id: 207119551
+                    zip: '90210'
+                summary: Update the postal code of a customer address
+      summary: Shopify Updates An Existing Customer Address
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer-address#update-2021-01
+      parameters:
+      - in: path
+        name: customer_id
+        required: true
+        schema:
+          type: string
+        description: customer_id
+      - in: path
+        name: address_id
+        required: true
+        schema:
+          type: string
+        description: address_id
+      tags:
+      - Address
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_update_customers_param_customer_id_addresses_param_address_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    delete:
+      summary: Shopify Removes An Address From A Customer’s Address List
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer-address#destroy-2021-01
+      parameters:
+      - in: path
+        name: customer_id
+        required: true
+        schema:
+          type: string
+        description: customer_id
+      - in: path
+        name: address_id
+        required: true
+        schema:
+          type: string
+        description: address_id
+      tags:
+      - Address
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_delete_customers_param_customer_id_addresses_param_address_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/customers/{customer_id}/addresses/{address_id}/default.json:
+    put:
+      summary: Shopify Sets The Default Address For A Customer
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer-address#default-2021-01
+      parameters:
+      - in: path
+        name: customer_id
+        required: true
+        schema:
+          type: string
+        description: customer_id
+      - in: path
+        name: address_id
+        required: true
+        schema:
+          type: string
+        description: address_id
+      tags:
+      - Address
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_update_customers_param_customer_id_addresses_param_address_id_default
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/customers/{customer_id}/addresses.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  address:
+                    address1: 1 Rue des Carrieres
+                    address2: Suite 1234
+                    city: Montreal
+                    company: Fancy Co.
+                    first_name: Samuel
+                    last_name: de Champlain
+                    phone: 819-555-5555
+                    province: Quebec
+                    country: Canada
+                    zip: G1R 4P5
+                    name: Samuel de Champlain
+                    province_code: QC
+                    country_code: CA
+                    country_name: Canada
+                summary: Create a new address for a customer
+      summary: Shopify Creates A New Address For A Customer
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer-address#create-unstable
+      parameters:
+      - in: path
+        name: customer_id
+        required: true
+        schema:
+          type: string
+        description: customer_id
+      tags:
+      - Address
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_create_customers_param_customer_id_addresses
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/customers/{customer_id}/addresses/{address_id}.json:
+    get:
+      summary: Shopify Retrieves Details A Single Customer Address
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer-address#show-unstable
+      parameters:
+      - in: path
+        name: customer_id
+        required: true
+        schema:
+          type: string
+        description: customer_id
+      - in: path
+        name: address_id
+        required: true
+        schema:
+          type: string
+        description: address_id
+      tags:
+      - Address
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_get_customers_param_customer_id_addresses_param_address_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  address:
+                    id: 207119551
+                    zip: '90210'
+                summary: Update the postal code of a customer address
+      summary: Shopify Updates An Existing Customer Address
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer-address#update-unstable
+      parameters:
+      - in: path
+        name: customer_id
+        required: true
+        schema:
+          type: string
+        description: customer_id
+      - in: path
+        name: address_id
+        required: true
+        schema:
+          type: string
+        description: address_id
+      tags:
+      - Address
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_update_customers_param_customer_id_addresses_param_address_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    delete:
+      summary: Shopify Removes An Address From A Customer’s Address List
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer-address#destroy-unstable
+      parameters:
+      - in: path
+        name: customer_id
+        required: true
+        schema:
+          type: string
+        description: customer_id
+      - in: path
+        name: address_id
+        required: true
+        schema:
+          type: string
+        description: address_id
+      tags:
+      - Address
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_delete_customers_param_customer_id_addresses_param_address_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/customers/{customer_id}/addresses/{address_id}/default.json:
+    put:
+      summary: Shopify Sets The Default Address For A Customer
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer-address#default-unstable
+      parameters:
+      - in: path
+        name: customer_id
+        required: true
+        schema:
+          type: string
+        description: customer_id
+      - in: path
+        name: address_id
+        required: true
+        schema:
+          type: string
+        description: address_id
+      tags:
+      - Address
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_update_customers_param_customer_id_addresses_param_address_id_default
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-01/webhooks.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  webhook:
+                    topic: orders/create
+                    address: https://whatever.hostname.com/
+                    format: json
+                summary: Subscribe to order creation webhooks
+              example2:
+                value:
+                  webhook:
+                    body: foobar
+                summary: Trying to create a webhook subscription without an address and topic will return a 422 - Unprocessable Entity error
+      summary: Shopify Create A New Webhook Subscription By Specifying Both An Address And A Topic
+      description: https://shopify.dev/docs/admin-api/rest/reference/events/webhook#create-2020-01
+      parameters:
+      - in: query
+        name: format
+        description: "Use this parameter to select the data format for the payload. Valid values are json and xml.\n                  (default: json)"
+        schema: {}
+        required: false
+      tags:
+      - Address
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_create_webhooks
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-01/webhooks/{webhook_id}.json:
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  webhook:
+                    id: 4759306
+                    address: https://somewhere-else.com/
+                summary: Update a webhook subscription so that it POSTs to a different address
+      summary: Shopify Update A Webhook Subscription's Topic Or Address Uris
+      description: https://shopify.dev/docs/admin-api/rest/reference/events/webhook#update-2020-01
+      parameters:
+      - in: path
+        name: webhook_id
+        required: true
+        schema:
+          type: string
+        description: webhook_id
+      tags:
+      - Address
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_update_webhooks_param_webhook_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/webhooks.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  webhook:
+                    topic: orders/create
+                    address: https://whatever.hostname.com/
+                    format: json
+                summary: Subscribe to order creation webhooks
+              example2:
+                value:
+                  webhook:
+                    body: foobar
+                summary: Trying to create a webhook subscription without an address and topic will return a 422 - Unprocessable Entity error
+      summary: Shopify Create A New Webhook Subscription By Specifying Both An Address And A Topic
+      description: https://shopify.dev/docs/admin-api/rest/reference/events/webhook#create-2020-04
+      parameters:
+      - in: query
+        name: format
+        description: "Use this parameter to select the data format for the payload. Valid values are json and xml.\n                  (default: json)"
+        schema: {}
+        required: false
+      tags:
+      - Address
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_create_webhooks
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/webhooks/{webhook_id}.json:
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  webhook:
+                    id: 4759306
+                    address: https://somewhere-else.com/
+                summary: Update a webhook subscription so that it POSTs to a different address
+      summary: Shopify Update A Webhook Subscription's Topic Or Address Uris
+      description: https://shopify.dev/docs/admin-api/rest/reference/events/webhook#update-2020-04
+      parameters:
+      - in: path
+        name: webhook_id
+        required: true
+        schema:
+          type: string
+        description: webhook_id
+      tags:
+      - Address
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_update_webhooks_param_webhook_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/webhooks.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  webhook:
+                    topic: orders/create
+                    address: https://whatever.hostname.com/
+                    format: json
+                summary: Subscribe to order creation webhooks
+              example2:
+                value:
+                  webhook:
+                    body: foobar
+                summary: Trying to create a webhook subscription without an address and topic will return a 422 - Unprocessable Entity error
+      summary: Shopify Create A New Webhook Subscription By Specifying Both An Address And A Topic
+      description: https://shopify.dev/docs/admin-api/rest/reference/events/webhook#create-2020-07
+      parameters:
+      - in: query
+        name: format
+        description: "Use this parameter to select the data format for the payload. Valid values are json and xml.\n                  (default: json)"
+        schema: {}
+        required: false
+      tags:
+      - Address
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_create_webhooks
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/webhooks/{webhook_id}.json:
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  webhook:
+                    id: 4759306
+                    address: https://somewhere-else.com/
+                summary: Update a webhook subscription so that it POSTs to a different address
+      summary: Shopify Update A Webhook Subscription's Topic Or Address Uris
+      description: https://shopify.dev/docs/admin-api/rest/reference/events/webhook#update-2020-07
+      parameters:
+      - in: path
+        name: webhook_id
+        required: true
+        schema:
+          type: string
+        description: webhook_id
+      tags:
+      - Address
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_update_webhooks_param_webhook_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/webhooks.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  webhook:
+                    topic: orders/create
+                    address: https://whatever.hostname.com/
+                    format: json
+                summary: Subscribe to order creation webhooks
+              example2:
+                value:
+                  webhook:
+                    body: foobar
+                summary: Trying to create a webhook subscription without an address and topic will return a 422 - Unprocessable Entity error
+      summary: Shopify Create A New Webhook Subscription By Specifying Both An Address And A Topic
+      description: https://shopify.dev/docs/admin-api/rest/reference/events/webhook#create-2020-10
+      parameters:
+      - in: query
+        name: format
+        description: "Use this parameter to select the data format for the payload. Valid values are json and xml.\n                  (default: json)"
+        schema: {}
+        required: false
+      tags:
+      - Address
+      responses:
+        '200':
+          description: ''
+      operationId: create_webhooks
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/webhooks/{webhook_id}.json:
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  webhook:
+                    id: 4759306
+                    address: https://somewhere-else.com/
+                summary: Update a webhook subscription so that it POSTs to a different address
+      summary: Shopify Update A Webhook Subscription's Topic Or Address Uris
+      description: https://shopify.dev/docs/admin-api/rest/reference/events/webhook#update-2020-10
+      parameters:
+      - in: path
+        name: webhook_id
+        required: true
+        schema:
+          type: string
+        description: webhook_id
+      tags:
+      - Address
+      responses:
+        '200':
+          description: ''
+      operationId: update_webhooks_param_webhook_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/webhooks.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  webhook:
+                    topic: orders/create
+                    address: https://whatever.hostname.com/
+                    format: json
+                summary: Subscribe to order creation webhooks
+              example2:
+                value:
+                  webhook:
+                    body: foobar
+                summary: Trying to create a webhook subscription without an address and topic will return a 422 - Unprocessable Entity error
+      summary: Shopify Create A New Webhook Subscription By Specifying Both An Address And A Topic
+      description: https://shopify.dev/docs/admin-api/rest/reference/events/webhook#create-2021-01
+      parameters:
+      - in: query
+        name: format
+        description: "Use this parameter to select the data format for the payload. Valid values are json and xml.\n                  (default: json)"
+        schema: {}
+        required: false
+      tags:
+      - Address
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_create_webhooks
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/webhooks/{webhook_id}.json:
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  webhook:
+                    id: 4759306
+                    address: https://somewhere-else.com/
+                summary: Update a webhook subscription so that it POSTs to a different address
+      summary: Shopify Update A Webhook Subscription's Topic Or Address Uris
+      description: https://shopify.dev/docs/admin-api/rest/reference/events/webhook#update-2021-01
+      parameters:
+      - in: path
+        name: webhook_id
+        required: true
+        schema:
+          type: string
+        description: webhook_id
+      tags:
+      - Address
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_update_webhooks_param_webhook_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/webhooks.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  webhook:
+                    topic: orders/create
+                    address: https://whatever.hostname.com/
+                    format: json
+                summary: Subscribe to order creation webhooks
+              example2:
+                value:
+                  webhook:
+                    body: foobar
+                summary: Trying to create a webhook subscription without an address and topic will return a 422 - Unprocessable Entity error
+      summary: Shopify Create A New Webhook Subscription By Specifying Both An Address And A Topic
+      description: https://shopify.dev/docs/admin-api/rest/reference/events/webhook#create-unstable
+      parameters:
+      - in: query
+        name: format
+        description: "Use this parameter to select the data format for the payload. Valid values are json and xml.\n                  (default: json)"
+        schema: {}
+        required: false
+      tags:
+      - Address
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_create_webhooks
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/webhooks/{webhook_id}.json:
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  webhook:
+                    id: 4759306
+                    address: https://somewhere-else.com/
+                summary: Update a webhook subscription so that it POSTs to a different address
+      summary: Shopify Update A Webhook Subscription's Topic Or Address Uris
+      description: https://shopify.dev/docs/admin-api/rest/reference/events/webhook#update-unstable
+      parameters:
+      - in: path
+        name: webhook_id
+        required: true
+        schema:
+          type: string
+        description: webhook_id
+      tags:
+      - Address
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_update_webhooks_param_webhook_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+components:
+  securitySchemes:
+    AccessToken:
+      type: apiKey
+      name: X-Shopify-Access-Token
+      in: header
+      description: Access token obtained via OAuth

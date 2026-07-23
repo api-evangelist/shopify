@@ -1,0 +1,1072 @@
+openapi: 3.1.0
+info:
+  title: Shopify Admin REST About Associated API
+  description: The Shopify Admin REST API lets you build apps and integrations that extend and enhance the Shopify admin. Access products, customers, orders, inventory, fulfillment, and more. Endpoints are organized by resource type and versioned by release date.
+  version: 2025-01
+  contact:
+    name: Shopify
+    url: https://shopify.dev/docs/api/admin-rest
+    email: api@shopify.com
+  license:
+    name: Shopify API Terms
+    url: https://www.shopify.com/legal/api-terms
+  x-date: '2026-03-04'
+servers:
+- url: https://{store}.myshopify.com/admin/api/2025-01
+  description: Shopify Admin REST API
+  variables:
+    store:
+      default: my-store
+      description: The Shopify store subdomain
+security:
+- AccessToken: []
+tags:
+- name: Associated
+paths:
+  /admin/oauth/access_scopes.json:
+    get:
+      summary: Shopify Retrieves A List Of Access Scopes Associated To The Access Token
+      description: https://shopify.dev/docs/admin-api/rest/reference/access/accessscope#index-2020-10
+      parameters: []
+      tags:
+      - Associated
+      responses:
+        '200':
+          description: ''
+      operationId: get_admin_oauth_access_scopes
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-01/users/current.json:
+    get:
+      summary: Shopify Retrieves Information About The User Account Associated With The Access Token Used To Make This Api Request
+      description: https://shopify.dev/docs/admin-api/rest/reference/plus/user#current-2020-01
+      parameters: []
+      tags:
+      - Associated
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_get_users_current
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/users/current.json:
+    get:
+      summary: Shopify Retrieves Information About The User Account Associated With The Access Token Used To Make This Api Request
+      description: https://shopify.dev/docs/admin-api/rest/reference/plus/user#current-2020-04
+      parameters: []
+      tags:
+      - Associated
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_get_users_current
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/users/current.json:
+    get:
+      summary: Shopify Retrieves Information About The User Account Associated With The Access Token Used To Make This Api Request
+      description: https://shopify.dev/docs/admin-api/rest/reference/plus/user#current-2020-07
+      parameters: []
+      tags:
+      - Associated
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_get_users_current
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/users/current.json:
+    get:
+      summary: Shopify Retrieves Information About The User Account Associated With The Access Token Used To Make This Api Request
+      description: https://shopify.dev/docs/admin-api/rest/reference/plus/user#current-2020-10
+      parameters: []
+      tags:
+      - Associated
+      responses:
+        '200':
+          description: ''
+      operationId: get_users_current
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/users/current.json:
+    get:
+      summary: Shopify Retrieves Information About The User Account Associated With The Access Token Used To Make This Api Request
+      description: https://shopify.dev/docs/admin-api/rest/reference/plus/user#current-2021-01
+      parameters: []
+      tags:
+      - Associated
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_get_users_current
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/users/current.json:
+    get:
+      summary: Shopify Retrieves Information About The User Account Associated With The Access Token Used To Make This Api Request
+      description: https://shopify.dev/docs/admin-api/rest/reference/plus/user#current-unstable
+      parameters: []
+      tags:
+      - Associated
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_get_users_current
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-01/orders/{order_id}/fulfillments.json:
+    get:
+      summary: Shopify Retrieves Fulfillments Associated With An Order
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillment#index-2020-01
+      parameters:
+      - in: path
+        name: order_id
+        required: true
+        schema:
+          type: string
+        description: order_id
+      - in: query
+        name: created_at_max
+        description: 'Show fulfillments created before date (format: 2014-04-25T16:15:47-04:00).'
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_min
+        description: 'Show fulfillments created after date (format: 2014-04-25T16:15:47-04:00).'
+        schema: {}
+        required: false
+      - in: query
+        name: fields
+        description: A comma-separated list of fields to include in the response.
+        schema: {}
+        required: false
+      - in: query
+        name: limit
+        description: "Limit the amount of results.\n                  (default: 50, maximum: 250)"
+        schema: {}
+        required: false
+      - in: query
+        name: since_id
+        description: Restrict results to after the specified ID.
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_max
+        description: 'Show fulfillments last updated before date (format: 2014-04-25T16:15:47-04:00).'
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_min
+        description: 'Show fulfillments last updated after date (format: 2014-04-25T16:15:47-04:00).'
+        schema: {}
+        required: false
+      tags:
+      - Associated
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_get_orders_param_order_id_fulfillments
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-01/fulfillment_orders/{fulfillment_order_id}/fulfillments.json:
+    get:
+      summary: Shopify Retrieves Fulfillments Associated With A Fulfillment Order
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillment#indexV2-2020-01
+      parameters:
+      - in: path
+        name: fulfillment_order_id
+        required: true
+        schema:
+          type: string
+        description: fulfillment_order_id
+      - in: query
+        name: fulfillment_order_id
+        description: The ID of the fulfillment order that is associated with the fulfillments.
+        schema: {}
+        required: false
+      tags:
+      - Associated
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_get_fulfillment_orders_param_fulfillment_order_id_fulfillments
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-01/orders/{order_id}/fulfillments/count.json:
+    get:
+      summary: Shopify Retrieves A Count Of Fulfillments Associated With A Specific Order
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillment#count-2020-01
+      parameters:
+      - in: path
+        name: order_id
+        required: true
+        schema:
+          type: string
+        description: order_id
+      - in: query
+        name: created_at_min
+        description: 'Count fulfillments created after date (format: 2014-04-25T16:15:47-04:00).'
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_max
+        description: 'Count fulfillments created before date (format: 2014-04-25T16:15:47-04:00).'
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_min
+        description: 'Count fulfillments last updated after date (format: 2014-04-25T16:15:47-04:00).'
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_max
+        description: 'Count fulfillments last updated before date (format: 2014-04-25T16:15:47-04:00).'
+        schema: {}
+        required: false
+      tags:
+      - Associated
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_get_orders_param_order_id_fulfillments_count
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-01/orders/{order_id}/fulfillments/{fulfillment_id}.json:
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  fulfillment:
+                    tracking_number: '987654321'
+                    id: 255858046
+                summary: Update the tracking number for a fulfillment
+      summary: Shopify Update Information Associated With A Fulfillment
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillment#update-2020-01
+      parameters:
+      - in: path
+        name: order_id
+        required: true
+        schema:
+          type: string
+        description: order_id
+      - in: path
+        name: fulfillment_id
+        required: true
+        schema:
+          type: string
+        description: fulfillment_id
+      tags:
+      - Associated
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_update_orders_param_order_id_fulfillments_param_fulfillment_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/orders/{order_id}/fulfillments.json:
+    get:
+      summary: Shopify Retrieves Fulfillments Associated With An Order
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillment#index-2020-04
+      parameters:
+      - in: path
+        name: order_id
+        required: true
+        schema:
+          type: string
+        description: order_id
+      - in: query
+        name: created_at_max
+        description: 'Show fulfillments created before date (format: 2014-04-25T16:15:47-04:00).'
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_min
+        description: 'Show fulfillments created after date (format: 2014-04-25T16:15:47-04:00).'
+        schema: {}
+        required: false
+      - in: query
+        name: fields
+        description: A comma-separated list of fields to include in the response.
+        schema: {}
+        required: false
+      - in: query
+        name: limit
+        description: "Limit the amount of results.\n                  (default: 50, maximum: 250)"
+        schema: {}
+        required: false
+      - in: query
+        name: since_id
+        description: Restrict results to after the specified ID.
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_max
+        description: 'Show fulfillments last updated before date (format: 2014-04-25T16:15:47-04:00).'
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_min
+        description: 'Show fulfillments last updated after date (format: 2014-04-25T16:15:47-04:00).'
+        schema: {}
+        required: false
+      tags:
+      - Associated
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_get_orders_param_order_id_fulfillments
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/fulfillment_orders/{fulfillment_order_id}/fulfillments.json:
+    get:
+      summary: Shopify Retrieves Fulfillments Associated With A Fulfillment Order
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillment#indexV2-2020-04
+      parameters:
+      - in: path
+        name: fulfillment_order_id
+        required: true
+        schema:
+          type: string
+        description: fulfillment_order_id
+      - in: query
+        name: fulfillment_order_id
+        description: The ID of the fulfillment order that is associated with the fulfillments.
+        schema: {}
+        required: false
+      tags:
+      - Associated
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_get_fulfillment_orders_param_fulfillment_order_id_fulfillments
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/orders/{order_id}/fulfillments/count.json:
+    get:
+      summary: Shopify Retrieves A Count Of Fulfillments Associated With A Specific Order
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillment#count-2020-04
+      parameters:
+      - in: path
+        name: order_id
+        required: true
+        schema:
+          type: string
+        description: order_id
+      - in: query
+        name: created_at_min
+        description: 'Count fulfillments created after date (format: 2014-04-25T16:15:47-04:00).'
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_max
+        description: 'Count fulfillments created before date (format: 2014-04-25T16:15:47-04:00).'
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_min
+        description: 'Count fulfillments last updated after date (format: 2014-04-25T16:15:47-04:00).'
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_max
+        description: 'Count fulfillments last updated before date (format: 2014-04-25T16:15:47-04:00).'
+        schema: {}
+        required: false
+      tags:
+      - Associated
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_get_orders_param_order_id_fulfillments_count
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/orders/{order_id}/fulfillments/{fulfillment_id}.json:
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  fulfillment:
+                    tracking_number: '987654321'
+                    id: 255858046
+                summary: Update the tracking number for a fulfillment
+      summary: Shopify Update Information Associated With A Fulfillment
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillment#update-2020-04
+      parameters:
+      - in: path
+        name: order_id
+        required: true
+        schema:
+          type: string
+        description: order_id
+      - in: path
+        name: fulfillment_id
+        required: true
+        schema:
+          type: string
+        description: fulfillment_id
+      tags:
+      - Associated
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_update_orders_param_order_id_fulfillments_param_fulfillment_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/orders/{order_id}/fulfillments.json:
+    get:
+      summary: Shopify Retrieves Fulfillments Associated With An Order
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillment#index-2020-07
+      parameters:
+      - in: path
+        name: order_id
+        required: true
+        schema:
+          type: string
+        description: order_id
+      - in: query
+        name: created_at_max
+        description: 'Show fulfillments created before date (format: 2014-04-25T16:15:47-04:00).'
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_min
+        description: 'Show fulfillments created after date (format: 2014-04-25T16:15:47-04:00).'
+        schema: {}
+        required: false
+      - in: query
+        name: fields
+        description: A comma-separated list of fields to include in the response.
+        schema: {}
+        required: false
+      - in: query
+        name: limit
+        description: "Limit the amount of results.\n                  (default: 50, maximum: 250)"
+        schema: {}
+        required: false
+      - in: query
+        name: since_id
+        description: Restrict results to after the specified ID.
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_max
+        description: 'Show fulfillments last updated before date (format: 2014-04-25T16:15:47-04:00).'
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_min
+        description: 'Show fulfillments last updated after date (format: 2014-04-25T16:15:47-04:00).'
+        schema: {}
+        required: false
+      tags:
+      - Associated
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_get_orders_param_order_id_fulfillments
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/fulfillment_orders/{fulfillment_order_id}/fulfillments.json:
+    get:
+      summary: Shopify Retrieves Fulfillments Associated With A Fulfillment Order
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillment#indexV2-2020-07
+      parameters:
+      - in: path
+        name: fulfillment_order_id
+        required: true
+        schema:
+          type: string
+        description: fulfillment_order_id
+      - in: query
+        name: fulfillment_order_id
+        description: The ID of the fulfillment order that is associated with the fulfillments.
+        schema: {}
+        required: false
+      tags:
+      - Associated
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_get_fulfillment_orders_param_fulfillment_order_id_fulfillments
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/orders/{order_id}/fulfillments/count.json:
+    get:
+      summary: Shopify Retrieves A Count Of Fulfillments Associated With A Specific Order
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillment#count-2020-07
+      parameters:
+      - in: path
+        name: order_id
+        required: true
+        schema:
+          type: string
+        description: order_id
+      - in: query
+        name: created_at_min
+        description: 'Count fulfillments created after date (format: 2014-04-25T16:15:47-04:00).'
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_max
+        description: 'Count fulfillments created before date (format: 2014-04-25T16:15:47-04:00).'
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_min
+        description: 'Count fulfillments last updated after date (format: 2014-04-25T16:15:47-04:00).'
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_max
+        description: 'Count fulfillments last updated before date (format: 2014-04-25T16:15:47-04:00).'
+        schema: {}
+        required: false
+      tags:
+      - Associated
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_get_orders_param_order_id_fulfillments_count
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/orders/{order_id}/fulfillments/{fulfillment_id}.json:
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  fulfillment:
+                    tracking_number: '987654321'
+                    id: 255858046
+                summary: Update the tracking number for a fulfillment
+      summary: Shopify Update Information Associated With A Fulfillment
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillment#update-2020-07
+      parameters:
+      - in: path
+        name: order_id
+        required: true
+        schema:
+          type: string
+        description: order_id
+      - in: path
+        name: fulfillment_id
+        required: true
+        schema:
+          type: string
+        description: fulfillment_id
+      tags:
+      - Associated
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_update_orders_param_order_id_fulfillments_param_fulfillment_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/orders/{order_id}/fulfillments.json:
+    get:
+      summary: Shopify Retrieves Fulfillments Associated With An Order
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillment#index-2020-10
+      parameters:
+      - in: path
+        name: order_id
+        required: true
+        schema:
+          type: string
+        description: order_id
+      - in: query
+        name: created_at_max
+        description: 'Show fulfillments created before date (format: 2014-04-25T16:15:47-04:00).'
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_min
+        description: 'Show fulfillments created after date (format: 2014-04-25T16:15:47-04:00).'
+        schema: {}
+        required: false
+      - in: query
+        name: fields
+        description: A comma-separated list of fields to include in the response.
+        schema: {}
+        required: false
+      - in: query
+        name: limit
+        description: "Limit the amount of results.\n                  (default: 50, maximum: 250)"
+        schema: {}
+        required: false
+      - in: query
+        name: since_id
+        description: Restrict results to after the specified ID.
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_max
+        description: 'Show fulfillments last updated before date (format: 2014-04-25T16:15:47-04:00).'
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_min
+        description: 'Show fulfillments last updated after date (format: 2014-04-25T16:15:47-04:00).'
+        schema: {}
+        required: false
+      tags:
+      - Associated
+      responses:
+        '200':
+          description: ''
+      operationId: get_orders_param_order_id_fulfillments
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/fulfillment_orders/{fulfillment_order_id}/fulfillments.json:
+    get:
+      summary: Shopify Retrieves Fulfillments Associated With A Fulfillment Order
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillment#indexV2-2020-10
+      parameters:
+      - in: path
+        name: fulfillment_order_id
+        required: true
+        schema:
+          type: string
+        description: fulfillment_order_id
+      - in: query
+        name: fulfillment_order_id
+        description: The ID of the fulfillment order that is associated with the fulfillments.
+        schema: {}
+        required: false
+      tags:
+      - Associated
+      responses:
+        '200':
+          description: ''
+      operationId: get_fulfillment_orders_param_fulfillment_order_id_fulfillments
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/orders/{order_id}/fulfillments/count.json:
+    get:
+      summary: Shopify Retrieves A Count Of Fulfillments Associated With A Specific Order
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillment#count-2020-10
+      parameters:
+      - in: path
+        name: order_id
+        required: true
+        schema:
+          type: string
+        description: order_id
+      - in: query
+        name: created_at_min
+        description: 'Count fulfillments created after date (format: 2014-04-25T16:15:47-04:00).'
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_max
+        description: 'Count fulfillments created before date (format: 2014-04-25T16:15:47-04:00).'
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_min
+        description: 'Count fulfillments last updated after date (format: 2014-04-25T16:15:47-04:00).'
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_max
+        description: 'Count fulfillments last updated before date (format: 2014-04-25T16:15:47-04:00).'
+        schema: {}
+        required: false
+      tags:
+      - Associated
+      responses:
+        '200':
+          description: ''
+      operationId: get_orders_param_order_id_fulfillments_count
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/orders/{order_id}/fulfillments/{fulfillment_id}.json:
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  fulfillment:
+                    tracking_number: '987654321'
+                    id: 255858046
+                summary: Update the tracking number for a fulfillment
+      summary: Shopify Update Information Associated With A Fulfillment
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillment#update-2020-10
+      parameters:
+      - in: path
+        name: order_id
+        required: true
+        schema:
+          type: string
+        description: order_id
+      - in: path
+        name: fulfillment_id
+        required: true
+        schema:
+          type: string
+        description: fulfillment_id
+      tags:
+      - Associated
+      responses:
+        '200':
+          description: ''
+      operationId: update_orders_param_order_id_fulfillments_param_fulfillment_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/orders/{order_id}/fulfillments.json:
+    get:
+      summary: Shopify Retrieves Fulfillments Associated With An Order
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillment#index-2021-01
+      parameters:
+      - in: path
+        name: order_id
+        required: true
+        schema:
+          type: string
+        description: order_id
+      - in: query
+        name: created_at_max
+        description: 'Show fulfillments created before date (format: 2014-04-25T16:15:47-04:00).'
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_min
+        description: 'Show fulfillments created after date (format: 2014-04-25T16:15:47-04:00).'
+        schema: {}
+        required: false
+      - in: query
+        name: fields
+        description: A comma-separated list of fields to include in the response.
+        schema: {}
+        required: false
+      - in: query
+        name: limit
+        description: "Limit the amount of results.\n                  (default: 50, maximum: 250)"
+        schema: {}
+        required: false
+      - in: query
+        name: since_id
+        description: Restrict results to after the specified ID.
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_max
+        description: 'Show fulfillments last updated before date (format: 2014-04-25T16:15:47-04:00).'
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_min
+        description: 'Show fulfillments last updated after date (format: 2014-04-25T16:15:47-04:00).'
+        schema: {}
+        required: false
+      tags:
+      - Associated
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_get_orders_param_order_id_fulfillments
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/fulfillment_orders/{fulfillment_order_id}/fulfillments.json:
+    get:
+      summary: Shopify Retrieves Fulfillments Associated With A Fulfillment Order
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillment#indexV2-2021-01
+      parameters:
+      - in: path
+        name: fulfillment_order_id
+        required: true
+        schema:
+          type: string
+        description: fulfillment_order_id
+      - in: query
+        name: fulfillment_order_id
+        description: The ID of the fulfillment order that is associated with the fulfillments.
+        schema: {}
+        required: false
+      tags:
+      - Associated
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_get_fulfillment_orders_param_fulfillment_order_id_fulfillments
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/orders/{order_id}/fulfillments/count.json:
+    get:
+      summary: Shopify Retrieves A Count Of Fulfillments Associated With A Specific Order
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillment#count-2021-01
+      parameters:
+      - in: path
+        name: order_id
+        required: true
+        schema:
+          type: string
+        description: order_id
+      - in: query
+        name: created_at_min
+        description: 'Count fulfillments created after date (format: 2014-04-25T16:15:47-04:00).'
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_max
+        description: 'Count fulfillments created before date (format: 2014-04-25T16:15:47-04:00).'
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_min
+        description: 'Count fulfillments last updated after date (format: 2014-04-25T16:15:47-04:00).'
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_max
+        description: 'Count fulfillments last updated before date (format: 2014-04-25T16:15:47-04:00).'
+        schema: {}
+        required: false
+      tags:
+      - Associated
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_get_orders_param_order_id_fulfillments_count
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/orders/{order_id}/fulfillments/{fulfillment_id}.json:
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  fulfillment:
+                    tracking_number: '987654321'
+                    id: 255858046
+                summary: Update the tracking number for a fulfillment
+      summary: Shopify Update Information Associated With A Fulfillment
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillment#update-2021-01
+      parameters:
+      - in: path
+        name: order_id
+        required: true
+        schema:
+          type: string
+        description: order_id
+      - in: path
+        name: fulfillment_id
+        required: true
+        schema:
+          type: string
+        description: fulfillment_id
+      tags:
+      - Associated
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_update_orders_param_order_id_fulfillments_param_fulfillment_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/orders/{order_id}/fulfillments.json:
+    get:
+      summary: Shopify Retrieves Fulfillments Associated With An Order
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillment#index-unstable
+      parameters:
+      - in: path
+        name: order_id
+        required: true
+        schema:
+          type: string
+        description: order_id
+      - in: query
+        name: created_at_max
+        description: 'Show fulfillments created before date (format: 2014-04-25T16:15:47-04:00).'
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_min
+        description: 'Show fulfillments created after date (format: 2014-04-25T16:15:47-04:00).'
+        schema: {}
+        required: false
+      - in: query
+        name: fields
+        description: A comma-separated list of fields to include in the response.
+        schema: {}
+        required: false
+      - in: query
+        name: limit
+        description: "Limit the amount of results.\n                  (default: 50, maximum: 250)"
+        schema: {}
+        required: false
+      - in: query
+        name: since_id
+        description: Restrict results to after the specified ID.
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_max
+        description: 'Show fulfillments last updated before date (format: 2014-04-25T16:15:47-04:00).'
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_min
+        description: 'Show fulfillments last updated after date (format: 2014-04-25T16:15:47-04:00).'
+        schema: {}
+        required: false
+      tags:
+      - Associated
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_get_orders_param_order_id_fulfillments
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/fulfillment_orders/{fulfillment_order_id}/fulfillments.json:
+    get:
+      summary: Shopify Retrieves Fulfillments Associated With A Fulfillment Order
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillment#indexV2-unstable
+      parameters:
+      - in: path
+        name: fulfillment_order_id
+        required: true
+        schema:
+          type: string
+        description: fulfillment_order_id
+      - in: query
+        name: fulfillment_order_id
+        description: The ID of the fulfillment order that is associated with the fulfillments.
+        schema: {}
+        required: false
+      tags:
+      - Associated
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_get_fulfillment_orders_param_fulfillment_order_id_fulfillments
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/orders/{order_id}/fulfillments/count.json:
+    get:
+      summary: Shopify Retrieves A Count Of Fulfillments Associated With A Specific Order
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillment#count-unstable
+      parameters:
+      - in: path
+        name: order_id
+        required: true
+        schema:
+          type: string
+        description: order_id
+      - in: query
+        name: created_at_min
+        description: 'Count fulfillments created after date (format: 2014-04-25T16:15:47-04:00).'
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_max
+        description: 'Count fulfillments created before date (format: 2014-04-25T16:15:47-04:00).'
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_min
+        description: 'Count fulfillments last updated after date (format: 2014-04-25T16:15:47-04:00).'
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_max
+        description: 'Count fulfillments last updated before date (format: 2014-04-25T16:15:47-04:00).'
+        schema: {}
+        required: false
+      tags:
+      - Associated
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_get_orders_param_order_id_fulfillments_count
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/orders/{order_id}/fulfillments/{fulfillment_id}.json:
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  fulfillment:
+                    tracking_number: '987654321'
+                    id: 255858046
+                summary: Update the tracking number for a fulfillment
+      summary: Shopify Update Information Associated With A Fulfillment
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillment#update-unstable
+      parameters:
+      - in: path
+        name: order_id
+        required: true
+        schema:
+          type: string
+        description: order_id
+      - in: path
+        name: fulfillment_id
+        required: true
+        schema:
+          type: string
+        description: fulfillment_id
+      tags:
+      - Associated
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_update_orders_param_order_id_fulfillments_param_fulfillment_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+components:
+  securitySchemes:
+    AccessToken:
+      type: apiKey
+      name: X-Shopify-Access-Token
+      in: header
+      description: Access token obtained via OAuth

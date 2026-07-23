@@ -1,0 +1,1490 @@
+openapi: 3.1.0
+info:
+  title: Shopify Admin REST About Discount API
+  description: The Shopify Admin REST API lets you build apps and integrations that extend and enhance the Shopify admin. Access products, customers, orders, inventory, fulfillment, and more. Endpoints are organized by resource type and versioned by release date.
+  version: 2025-01
+  contact:
+    name: Shopify
+    url: https://shopify.dev/docs/api/admin-rest
+    email: api@shopify.com
+  license:
+    name: Shopify API Terms
+    url: https://www.shopify.com/legal/api-terms
+  x-date: '2026-03-04'
+servers:
+- url: https://{store}.myshopify.com/admin/api/2025-01
+  description: Shopify Admin REST API
+  variables:
+    store:
+      default: my-store
+      description: The Shopify store subdomain
+security:
+- AccessToken: []
+tags:
+- name: Discount
+paths:
+  /admin/api/2020-01/price_rules/{price_rule_id}/discount_codes.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  discount_code:
+                    code: SUMMERSALE10OFF
+                summary: Create a discount code
+      summary: Shopify Creates A Discount Code
+      description: https://shopify.dev/docs/admin-api/rest/reference/discounts/discountcode#create-2020-01
+      parameters:
+      - in: path
+        name: price_rule_id
+        required: true
+        schema:
+          type: string
+        description: price_rule_id
+      tags:
+      - Discount
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_create_price_rules_param_price_rule_id_discount_codes
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    get:
+      summary: Shopify Retrieve A List Of Discount Codes
+      description: https://shopify.dev/docs/admin-api/rest/reference/discounts/discountcode#index-2020-01
+      parameters:
+      - in: path
+        name: price_rule_id
+        required: true
+        schema:
+          type: string
+        description: price_rule_id
+      tags:
+      - Discount
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_get_price_rules_param_price_rule_id_discount_codes
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-01/price_rules/{price_rule_id}/discount_codes/{discount_code_id}.json:
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  discount_code:
+                    id: 507328175
+                    code: WINTERSALE20OFF
+                    usage_count: 0
+                    created_at: '2020-11-04T16:46:58-05:00'
+                    updated_at: '2020-11-04T16:46:58-05:00'
+                summary: Update the code for a discount
+      summary: Shopify Updates An Existing Discount Code
+      description: https://shopify.dev/docs/admin-api/rest/reference/discounts/discountcode#update-2020-01
+      parameters:
+      - in: path
+        name: price_rule_id
+        required: true
+        schema:
+          type: string
+        description: price_rule_id
+      - in: path
+        name: discount_code_id
+        required: true
+        schema:
+          type: string
+        description: discount_code_id
+      tags:
+      - Discount
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_update_price_rules_param_price_rule_id_discount_codes_param_discount_code_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    get:
+      summary: Shopify Retrieves A Single Discount Code
+      description: https://shopify.dev/docs/admin-api/rest/reference/discounts/discountcode#show-2020-01
+      parameters:
+      - in: path
+        name: price_rule_id
+        required: true
+        schema:
+          type: string
+        description: price_rule_id
+      - in: path
+        name: discount_code_id
+        required: true
+        schema:
+          type: string
+        description: discount_code_id
+      tags:
+      - Discount
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_get_price_rules_param_price_rule_id_discount_codes_param_discount_code_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    delete:
+      summary: Shopify Deletes A Discount Code
+      description: https://shopify.dev/docs/admin-api/rest/reference/discounts/discountcode#destroy-2020-01
+      parameters:
+      - in: path
+        name: price_rule_id
+        required: true
+        schema:
+          type: string
+        description: price_rule_id
+      - in: path
+        name: discount_code_id
+        required: true
+        schema:
+          type: string
+        description: discount_code_id
+      tags:
+      - Discount
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_delete_price_rules_param_price_rule_id_discount_codes_param_discount_code_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-01/discount_codes/lookup.json:
+    get:
+      summary: Shopify Retrieves The Location Of A Discount Code
+      description: https://shopify.dev/docs/admin-api/rest/reference/discounts/discountcode#lookup-2020-01
+      parameters:
+      - in: query
+        name: code
+        schema:
+          type: integer
+        description: code
+        required: false
+      tags:
+      - Discount
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_get_discount_codes_lookup
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-01/price_rules/{price_rule_id}/batch.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  discount_codes:
+                  - code: SUMMER1
+                  - code: SUMMER2
+                  - code: SUMMER3
+                summary: Create a discount code creation job
+      summary: Shopify Creates A Discount Code Creation Job
+      description: https://shopify.dev/docs/admin-api/rest/reference/discounts/discountcode#batch_create-2020-01
+      parameters:
+      - in: path
+        name: price_rule_id
+        required: true
+        schema:
+          type: string
+        description: price_rule_id
+      tags:
+      - Discount
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_create_price_rules_param_price_rule_id_batch
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-01/price_rules/{price_rule_id}/batch/{batch_id}.json:
+    get:
+      summary: Shopify Retrieves A Discount Code Creation Job
+      description: https://shopify.dev/docs/admin-api/rest/reference/discounts/discountcode#batch_show-2020-01
+      parameters:
+      - in: path
+        name: price_rule_id
+        required: true
+        schema:
+          type: string
+        description: price_rule_id
+      - in: path
+        name: batch_id
+        required: true
+        schema:
+          type: string
+        description: batch_id
+      tags:
+      - Discount
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_get_price_rules_param_price_rule_id_batch_param_batch_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-01/price_rules/{price_rule_id}/batch/{batch_id}/discount_codes.json:
+    get:
+      summary: Shopify Retrieves A List Of Discount Codes For A Discount Code Creation Job
+      description: https://shopify.dev/docs/admin-api/rest/reference/discounts/discountcode#batch_discount_codes_index-2020-01
+      parameters:
+      - in: path
+        name: price_rule_id
+        required: true
+        schema:
+          type: string
+        description: price_rule_id
+      - in: path
+        name: batch_id
+        required: true
+        schema:
+          type: string
+        description: batch_id
+      tags:
+      - Discount
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_get_price_rules_param_price_rule_id_batch_param_batch_id_discount_codes
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/price_rules/{price_rule_id}/discount_codes.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  discount_code:
+                    code: SUMMERSALE10OFF
+                summary: Create a discount code
+      summary: Shopify Creates A Discount Code
+      description: https://shopify.dev/docs/admin-api/rest/reference/discounts/discountcode#create-2020-04
+      parameters:
+      - in: path
+        name: price_rule_id
+        required: true
+        schema:
+          type: string
+        description: price_rule_id
+      tags:
+      - Discount
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_create_price_rules_param_price_rule_id_discount_codes
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    get:
+      summary: Shopify Retrieve A List Of Discount Codes
+      description: https://shopify.dev/docs/admin-api/rest/reference/discounts/discountcode#index-2020-04
+      parameters:
+      - in: path
+        name: price_rule_id
+        required: true
+        schema:
+          type: string
+        description: price_rule_id
+      tags:
+      - Discount
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_get_price_rules_param_price_rule_id_discount_codes
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/price_rules/{price_rule_id}/discount_codes/{discount_code_id}.json:
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  discount_code:
+                    id: 507328175
+                    code: WINTERSALE20OFF
+                    usage_count: 0
+                    created_at: '2020-11-04T16:46:58-05:00'
+                    updated_at: '2020-11-04T16:46:58-05:00'
+                summary: Update the code for a discount
+      summary: Shopify Updates An Existing Discount Code
+      description: https://shopify.dev/docs/admin-api/rest/reference/discounts/discountcode#update-2020-04
+      parameters:
+      - in: path
+        name: price_rule_id
+        required: true
+        schema:
+          type: string
+        description: price_rule_id
+      - in: path
+        name: discount_code_id
+        required: true
+        schema:
+          type: string
+        description: discount_code_id
+      tags:
+      - Discount
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_update_price_rules_param_price_rule_id_discount_codes_param_discount_code_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    get:
+      summary: Shopify Retrieves A Single Discount Code
+      description: https://shopify.dev/docs/admin-api/rest/reference/discounts/discountcode#show-2020-04
+      parameters:
+      - in: path
+        name: price_rule_id
+        required: true
+        schema:
+          type: string
+        description: price_rule_id
+      - in: path
+        name: discount_code_id
+        required: true
+        schema:
+          type: string
+        description: discount_code_id
+      tags:
+      - Discount
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_get_price_rules_param_price_rule_id_discount_codes_param_discount_code_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    delete:
+      summary: Shopify Deletes A Discount Code
+      description: https://shopify.dev/docs/admin-api/rest/reference/discounts/discountcode#destroy-2020-04
+      parameters:
+      - in: path
+        name: price_rule_id
+        required: true
+        schema:
+          type: string
+        description: price_rule_id
+      - in: path
+        name: discount_code_id
+        required: true
+        schema:
+          type: string
+        description: discount_code_id
+      tags:
+      - Discount
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_delete_price_rules_param_price_rule_id_discount_codes_param_discount_code_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/discount_codes/lookup.json:
+    get:
+      summary: Shopify Retrieves The Location Of A Discount Code
+      description: https://shopify.dev/docs/admin-api/rest/reference/discounts/discountcode#lookup-2020-04
+      parameters:
+      - in: query
+        name: code
+        schema:
+          type: integer
+        description: code
+        required: false
+      tags:
+      - Discount
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_get_discount_codes_lookup
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/price_rules/{price_rule_id}/batch.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  discount_codes:
+                  - code: SUMMER1
+                  - code: SUMMER2
+                  - code: SUMMER3
+                summary: Create a discount code creation job
+      summary: Shopify Creates A Discount Code Creation Job
+      description: https://shopify.dev/docs/admin-api/rest/reference/discounts/discountcode#batch_create-2020-04
+      parameters:
+      - in: path
+        name: price_rule_id
+        required: true
+        schema:
+          type: string
+        description: price_rule_id
+      tags:
+      - Discount
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_create_price_rules_param_price_rule_id_batch
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/price_rules/{price_rule_id}/batch/{batch_id}.json:
+    get:
+      summary: Shopify Retrieves A Discount Code Creation Job
+      description: https://shopify.dev/docs/admin-api/rest/reference/discounts/discountcode#batch_show-2020-04
+      parameters:
+      - in: path
+        name: price_rule_id
+        required: true
+        schema:
+          type: string
+        description: price_rule_id
+      - in: path
+        name: batch_id
+        required: true
+        schema:
+          type: string
+        description: batch_id
+      tags:
+      - Discount
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_get_price_rules_param_price_rule_id_batch_param_batch_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/price_rules/{price_rule_id}/batch/{batch_id}/discount_codes.json:
+    get:
+      summary: Shopify Retrieves A List Of Discount Codes For A Discount Code Creation Job
+      description: https://shopify.dev/docs/admin-api/rest/reference/discounts/discountcode#batch_discount_codes_index-2020-04
+      parameters:
+      - in: path
+        name: price_rule_id
+        required: true
+        schema:
+          type: string
+        description: price_rule_id
+      - in: path
+        name: batch_id
+        required: true
+        schema:
+          type: string
+        description: batch_id
+      tags:
+      - Discount
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_get_price_rules_param_price_rule_id_batch_param_batch_id_discount_codes
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/price_rules/{price_rule_id}/discount_codes.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  discount_code:
+                    code: SUMMERSALE10OFF
+                summary: Create a discount code
+      summary: Shopify Creates A Discount Code
+      description: https://shopify.dev/docs/admin-api/rest/reference/discounts/discountcode#create-2020-07
+      parameters:
+      - in: path
+        name: price_rule_id
+        required: true
+        schema:
+          type: string
+        description: price_rule_id
+      tags:
+      - Discount
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_create_price_rules_param_price_rule_id_discount_codes
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    get:
+      summary: Shopify Retrieve A List Of Discount Codes
+      description: https://shopify.dev/docs/admin-api/rest/reference/discounts/discountcode#index-2020-07
+      parameters:
+      - in: path
+        name: price_rule_id
+        required: true
+        schema:
+          type: string
+        description: price_rule_id
+      tags:
+      - Discount
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_get_price_rules_param_price_rule_id_discount_codes
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/price_rules/{price_rule_id}/discount_codes/{discount_code_id}.json:
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  discount_code:
+                    id: 507328175
+                    code: WINTERSALE20OFF
+                    usage_count: 0
+                    created_at: '2020-11-04T16:46:58-05:00'
+                    updated_at: '2020-11-04T16:46:58-05:00'
+                summary: Update the code for a discount
+      summary: Shopify Updates An Existing Discount Code
+      description: https://shopify.dev/docs/admin-api/rest/reference/discounts/discountcode#update-2020-07
+      parameters:
+      - in: path
+        name: price_rule_id
+        required: true
+        schema:
+          type: string
+        description: price_rule_id
+      - in: path
+        name: discount_code_id
+        required: true
+        schema:
+          type: string
+        description: discount_code_id
+      tags:
+      - Discount
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_update_price_rules_param_price_rule_id_discount_codes_param_discount_code_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    get:
+      summary: Shopify Retrieves A Single Discount Code
+      description: https://shopify.dev/docs/admin-api/rest/reference/discounts/discountcode#show-2020-07
+      parameters:
+      - in: path
+        name: price_rule_id
+        required: true
+        schema:
+          type: string
+        description: price_rule_id
+      - in: path
+        name: discount_code_id
+        required: true
+        schema:
+          type: string
+        description: discount_code_id
+      tags:
+      - Discount
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_get_price_rules_param_price_rule_id_discount_codes_param_discount_code_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    delete:
+      summary: Shopify Deletes A Discount Code
+      description: https://shopify.dev/docs/admin-api/rest/reference/discounts/discountcode#destroy-2020-07
+      parameters:
+      - in: path
+        name: price_rule_id
+        required: true
+        schema:
+          type: string
+        description: price_rule_id
+      - in: path
+        name: discount_code_id
+        required: true
+        schema:
+          type: string
+        description: discount_code_id
+      tags:
+      - Discount
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_delete_price_rules_param_price_rule_id_discount_codes_param_discount_code_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/discount_codes/lookup.json:
+    get:
+      summary: Shopify Retrieves The Location Of A Discount Code
+      description: https://shopify.dev/docs/admin-api/rest/reference/discounts/discountcode#lookup-2020-07
+      parameters:
+      - in: query
+        name: code
+        schema:
+          type: integer
+        description: code
+        required: false
+      tags:
+      - Discount
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_get_discount_codes_lookup
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/price_rules/{price_rule_id}/batch.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  discount_codes:
+                  - code: SUMMER1
+                  - code: SUMMER2
+                  - code: SUMMER3
+                summary: Create a discount code creation job
+      summary: Shopify Creates A Discount Code Creation Job
+      description: https://shopify.dev/docs/admin-api/rest/reference/discounts/discountcode#batch_create-2020-07
+      parameters:
+      - in: path
+        name: price_rule_id
+        required: true
+        schema:
+          type: string
+        description: price_rule_id
+      tags:
+      - Discount
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_create_price_rules_param_price_rule_id_batch
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/price_rules/{price_rule_id}/batch/{batch_id}.json:
+    get:
+      summary: Shopify Retrieves A Discount Code Creation Job
+      description: https://shopify.dev/docs/admin-api/rest/reference/discounts/discountcode#batch_show-2020-07
+      parameters:
+      - in: path
+        name: price_rule_id
+        required: true
+        schema:
+          type: string
+        description: price_rule_id
+      - in: path
+        name: batch_id
+        required: true
+        schema:
+          type: string
+        description: batch_id
+      tags:
+      - Discount
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_get_price_rules_param_price_rule_id_batch_param_batch_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/price_rules/{price_rule_id}/batch/{batch_id}/discount_codes.json:
+    get:
+      summary: Shopify Retrieves A List Of Discount Codes For A Discount Code Creation Job
+      description: https://shopify.dev/docs/admin-api/rest/reference/discounts/discountcode#batch_discount_codes_index-2020-07
+      parameters:
+      - in: path
+        name: price_rule_id
+        required: true
+        schema:
+          type: string
+        description: price_rule_id
+      - in: path
+        name: batch_id
+        required: true
+        schema:
+          type: string
+        description: batch_id
+      tags:
+      - Discount
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_get_price_rules_param_price_rule_id_batch_param_batch_id_discount_codes
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/price_rules/{price_rule_id}/discount_codes.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  discount_code:
+                    code: SUMMERSALE10OFF
+                summary: Create a discount code
+      summary: Shopify Creates A Discount Code
+      description: https://shopify.dev/docs/admin-api/rest/reference/discounts/discountcode#create-2020-10
+      parameters:
+      - in: path
+        name: price_rule_id
+        required: true
+        schema:
+          type: string
+        description: price_rule_id
+      tags:
+      - Discount
+      responses:
+        '200':
+          description: ''
+      operationId: create_price_rules_param_price_rule_id_discount_codes
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    get:
+      summary: Shopify Retrieve A List Of Discount Codes
+      description: https://shopify.dev/docs/admin-api/rest/reference/discounts/discountcode#index-2020-10
+      parameters:
+      - in: path
+        name: price_rule_id
+        required: true
+        schema:
+          type: string
+        description: price_rule_id
+      tags:
+      - Discount
+      responses:
+        '200':
+          description: ''
+      operationId: get_price_rules_param_price_rule_id_discount_codes
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/price_rules/{price_rule_id}/discount_codes/{discount_code_id}.json:
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  discount_code:
+                    id: 507328175
+                    code: WINTERSALE20OFF
+                    usage_count: 0
+                    created_at: '2020-11-04T16:46:58-05:00'
+                    updated_at: '2020-11-04T16:46:58-05:00'
+                summary: Update the code for a discount
+      summary: Shopify Updates An Existing Discount Code
+      description: https://shopify.dev/docs/admin-api/rest/reference/discounts/discountcode#update-2020-10
+      parameters:
+      - in: path
+        name: price_rule_id
+        required: true
+        schema:
+          type: string
+        description: price_rule_id
+      - in: path
+        name: discount_code_id
+        required: true
+        schema:
+          type: string
+        description: discount_code_id
+      tags:
+      - Discount
+      responses:
+        '200':
+          description: ''
+      operationId: update_price_rules_param_price_rule_id_discount_codes_param_discount_code_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    get:
+      summary: Shopify Retrieves A Single Discount Code
+      description: https://shopify.dev/docs/admin-api/rest/reference/discounts/discountcode#show-2020-10
+      parameters:
+      - in: path
+        name: price_rule_id
+        required: true
+        schema:
+          type: string
+        description: price_rule_id
+      - in: path
+        name: discount_code_id
+        required: true
+        schema:
+          type: string
+        description: discount_code_id
+      tags:
+      - Discount
+      responses:
+        '200':
+          description: ''
+      operationId: get_price_rules_param_price_rule_id_discount_codes_param_discount_code_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    delete:
+      summary: Shopify Deletes A Discount Code
+      description: https://shopify.dev/docs/admin-api/rest/reference/discounts/discountcode#destroy-2020-10
+      parameters:
+      - in: path
+        name: price_rule_id
+        required: true
+        schema:
+          type: string
+        description: price_rule_id
+      - in: path
+        name: discount_code_id
+        required: true
+        schema:
+          type: string
+        description: discount_code_id
+      tags:
+      - Discount
+      responses:
+        '200':
+          description: ''
+      operationId: delete_price_rules_param_price_rule_id_discount_codes_param_discount_code_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/discount_codes/lookup.json:
+    get:
+      summary: Shopify Retrieves The Location Of A Discount Code
+      description: https://shopify.dev/docs/admin-api/rest/reference/discounts/discountcode#lookup-2020-10
+      parameters:
+      - in: query
+        name: code
+        schema:
+          type: integer
+        description: code
+        required: false
+      tags:
+      - Discount
+      responses:
+        '200':
+          description: ''
+      operationId: get_discount_codes_lookup
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/price_rules/{price_rule_id}/batch.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  discount_codes:
+                  - code: SUMMER1
+                  - code: SUMMER2
+                  - code: SUMMER3
+                summary: Create a discount code creation job
+      summary: Shopify Creates A Discount Code Creation Job
+      description: https://shopify.dev/docs/admin-api/rest/reference/discounts/discountcode#batch_create-2020-10
+      parameters:
+      - in: path
+        name: price_rule_id
+        required: true
+        schema:
+          type: string
+        description: price_rule_id
+      tags:
+      - Discount
+      responses:
+        '200':
+          description: ''
+      operationId: create_price_rules_param_price_rule_id_batch
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/price_rules/{price_rule_id}/batch/{batch_id}.json:
+    get:
+      summary: Shopify Retrieves A Discount Code Creation Job
+      description: https://shopify.dev/docs/admin-api/rest/reference/discounts/discountcode#batch_show-2020-10
+      parameters:
+      - in: path
+        name: price_rule_id
+        required: true
+        schema:
+          type: string
+        description: price_rule_id
+      - in: path
+        name: batch_id
+        required: true
+        schema:
+          type: string
+        description: batch_id
+      tags:
+      - Discount
+      responses:
+        '200':
+          description: ''
+      operationId: get_price_rules_param_price_rule_id_batch_param_batch_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/price_rules/{price_rule_id}/batch/{batch_id}/discount_codes.json:
+    get:
+      summary: Shopify Retrieves A List Of Discount Codes For A Discount Code Creation Job
+      description: https://shopify.dev/docs/admin-api/rest/reference/discounts/discountcode#batch_discount_codes_index-2020-10
+      parameters:
+      - in: path
+        name: price_rule_id
+        required: true
+        schema:
+          type: string
+        description: price_rule_id
+      - in: path
+        name: batch_id
+        required: true
+        schema:
+          type: string
+        description: batch_id
+      tags:
+      - Discount
+      responses:
+        '200':
+          description: ''
+      operationId: get_price_rules_param_price_rule_id_batch_param_batch_id_discount_codes
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/price_rules/{price_rule_id}/discount_codes.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  discount_code:
+                    code: SUMMERSALE10OFF
+                summary: Create a discount code
+      summary: Shopify Creates A Discount Code
+      description: https://shopify.dev/docs/admin-api/rest/reference/discounts/discountcode#create-2021-01
+      parameters:
+      - in: path
+        name: price_rule_id
+        required: true
+        schema:
+          type: string
+        description: price_rule_id
+      tags:
+      - Discount
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_create_price_rules_param_price_rule_id_discount_codes
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    get:
+      summary: Shopify Retrieve A List Of Discount Codes
+      description: https://shopify.dev/docs/admin-api/rest/reference/discounts/discountcode#index-2021-01
+      parameters:
+      - in: path
+        name: price_rule_id
+        required: true
+        schema:
+          type: string
+        description: price_rule_id
+      tags:
+      - Discount
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_get_price_rules_param_price_rule_id_discount_codes
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/price_rules/{price_rule_id}/discount_codes/{discount_code_id}.json:
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  discount_code:
+                    id: 507328175
+                    code: WINTERSALE20OFF
+                    usage_count: 0
+                    created_at: '2020-11-04T16:46:58-05:00'
+                    updated_at: '2020-11-04T16:46:58-05:00'
+                summary: Update the code for a discount
+      summary: Shopify Updates An Existing Discount Code
+      description: https://shopify.dev/docs/admin-api/rest/reference/discounts/discountcode#update-2021-01
+      parameters:
+      - in: path
+        name: price_rule_id
+        required: true
+        schema:
+          type: string
+        description: price_rule_id
+      - in: path
+        name: discount_code_id
+        required: true
+        schema:
+          type: string
+        description: discount_code_id
+      tags:
+      - Discount
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_update_price_rules_param_price_rule_id_discount_codes_param_discount_code_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    get:
+      summary: Shopify Retrieves A Single Discount Code
+      description: https://shopify.dev/docs/admin-api/rest/reference/discounts/discountcode#show-2021-01
+      parameters:
+      - in: path
+        name: price_rule_id
+        required: true
+        schema:
+          type: string
+        description: price_rule_id
+      - in: path
+        name: discount_code_id
+        required: true
+        schema:
+          type: string
+        description: discount_code_id
+      tags:
+      - Discount
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_get_price_rules_param_price_rule_id_discount_codes_param_discount_code_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    delete:
+      summary: Shopify Deletes A Discount Code
+      description: https://shopify.dev/docs/admin-api/rest/reference/discounts/discountcode#destroy-2021-01
+      parameters:
+      - in: path
+        name: price_rule_id
+        required: true
+        schema:
+          type: string
+        description: price_rule_id
+      - in: path
+        name: discount_code_id
+        required: true
+        schema:
+          type: string
+        description: discount_code_id
+      tags:
+      - Discount
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_delete_price_rules_param_price_rule_id_discount_codes_param_discount_code_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/discount_codes/lookup.json:
+    get:
+      summary: Shopify Retrieves The Location Of A Discount Code
+      description: https://shopify.dev/docs/admin-api/rest/reference/discounts/discountcode#lookup-2021-01
+      parameters:
+      - in: query
+        name: code
+        schema:
+          type: integer
+        description: code
+        required: false
+      tags:
+      - Discount
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_get_discount_codes_lookup
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/price_rules/{price_rule_id}/batch.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  discount_codes:
+                  - code: SUMMER1
+                  - code: SUMMER2
+                  - code: SUMMER3
+                summary: Create a discount code creation job
+      summary: Shopify Creates A Discount Code Creation Job
+      description: https://shopify.dev/docs/admin-api/rest/reference/discounts/discountcode#batch_create-2021-01
+      parameters:
+      - in: path
+        name: price_rule_id
+        required: true
+        schema:
+          type: string
+        description: price_rule_id
+      tags:
+      - Discount
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_create_price_rules_param_price_rule_id_batch
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/price_rules/{price_rule_id}/batch/{batch_id}.json:
+    get:
+      summary: Shopify Retrieves A Discount Code Creation Job
+      description: https://shopify.dev/docs/admin-api/rest/reference/discounts/discountcode#batch_show-2021-01
+      parameters:
+      - in: path
+        name: price_rule_id
+        required: true
+        schema:
+          type: string
+        description: price_rule_id
+      - in: path
+        name: batch_id
+        required: true
+        schema:
+          type: string
+        description: batch_id
+      tags:
+      - Discount
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_get_price_rules_param_price_rule_id_batch_param_batch_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/price_rules/{price_rule_id}/batch/{batch_id}/discount_codes.json:
+    get:
+      summary: Shopify Retrieves A List Of Discount Codes For A Discount Code Creation Job
+      description: https://shopify.dev/docs/admin-api/rest/reference/discounts/discountcode#batch_discount_codes_index-2021-01
+      parameters:
+      - in: path
+        name: price_rule_id
+        required: true
+        schema:
+          type: string
+        description: price_rule_id
+      - in: path
+        name: batch_id
+        required: true
+        schema:
+          type: string
+        description: batch_id
+      tags:
+      - Discount
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_get_price_rules_param_price_rule_id_batch_param_batch_id_discount_codes
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/price_rules/{price_rule_id}/discount_codes.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  discount_code:
+                    code: SUMMERSALE10OFF
+                summary: Create a discount code
+      summary: Shopify Creates A Discount Code
+      description: https://shopify.dev/docs/admin-api/rest/reference/discounts/discountcode#create-unstable
+      parameters:
+      - in: path
+        name: price_rule_id
+        required: true
+        schema:
+          type: string
+        description: price_rule_id
+      tags:
+      - Discount
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_create_price_rules_param_price_rule_id_discount_codes
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    get:
+      summary: Shopify Retrieve A List Of Discount Codes
+      description: https://shopify.dev/docs/admin-api/rest/reference/discounts/discountcode#index-unstable
+      parameters:
+      - in: path
+        name: price_rule_id
+        required: true
+        schema:
+          type: string
+        description: price_rule_id
+      tags:
+      - Discount
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_get_price_rules_param_price_rule_id_discount_codes
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/price_rules/{price_rule_id}/discount_codes/{discount_code_id}.json:
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  discount_code:
+                    id: 507328175
+                    code: WINTERSALE20OFF
+                    usage_count: 0
+                    created_at: '2020-11-04T16:46:58-05:00'
+                    updated_at: '2020-11-04T16:46:58-05:00'
+                summary: Update the code for a discount
+      summary: Shopify Updates An Existing Discount Code
+      description: https://shopify.dev/docs/admin-api/rest/reference/discounts/discountcode#update-unstable
+      parameters:
+      - in: path
+        name: price_rule_id
+        required: true
+        schema:
+          type: string
+        description: price_rule_id
+      - in: path
+        name: discount_code_id
+        required: true
+        schema:
+          type: string
+        description: discount_code_id
+      tags:
+      - Discount
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_update_price_rules_param_price_rule_id_discount_codes_param_discount_code_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    get:
+      summary: Shopify Retrieves A Single Discount Code
+      description: https://shopify.dev/docs/admin-api/rest/reference/discounts/discountcode#show-unstable
+      parameters:
+      - in: path
+        name: price_rule_id
+        required: true
+        schema:
+          type: string
+        description: price_rule_id
+      - in: path
+        name: discount_code_id
+        required: true
+        schema:
+          type: string
+        description: discount_code_id
+      tags:
+      - Discount
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_get_price_rules_param_price_rule_id_discount_codes_param_discount_code_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    delete:
+      summary: Shopify Deletes A Discount Code
+      description: https://shopify.dev/docs/admin-api/rest/reference/discounts/discountcode#destroy-unstable
+      parameters:
+      - in: path
+        name: price_rule_id
+        required: true
+        schema:
+          type: string
+        description: price_rule_id
+      - in: path
+        name: discount_code_id
+        required: true
+        schema:
+          type: string
+        description: discount_code_id
+      tags:
+      - Discount
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_delete_price_rules_param_price_rule_id_discount_codes_param_discount_code_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/discount_codes/lookup.json:
+    get:
+      summary: Shopify Retrieves The Location Of A Discount Code
+      description: https://shopify.dev/docs/admin-api/rest/reference/discounts/discountcode#lookup-unstable
+      parameters:
+      - in: query
+        name: code
+        schema:
+          type: integer
+        description: code
+        required: false
+      tags:
+      - Discount
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_get_discount_codes_lookup
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/price_rules/{price_rule_id}/batch.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  discount_codes:
+                  - code: SUMMER1
+                  - code: SUMMER2
+                  - code: SUMMER3
+                summary: Create a discount code creation job
+      summary: Shopify Creates A Discount Code Creation Job
+      description: https://shopify.dev/docs/admin-api/rest/reference/discounts/discountcode#batch_create-unstable
+      parameters:
+      - in: path
+        name: price_rule_id
+        required: true
+        schema:
+          type: string
+        description: price_rule_id
+      tags:
+      - Discount
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_create_price_rules_param_price_rule_id_batch
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/price_rules/{price_rule_id}/batch/{batch_id}.json:
+    get:
+      summary: Shopify Retrieves A Discount Code Creation Job
+      description: https://shopify.dev/docs/admin-api/rest/reference/discounts/discountcode#batch_show-unstable
+      parameters:
+      - in: path
+        name: price_rule_id
+        required: true
+        schema:
+          type: string
+        description: price_rule_id
+      - in: path
+        name: batch_id
+        required: true
+        schema:
+          type: string
+        description: batch_id
+      tags:
+      - Discount
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_get_price_rules_param_price_rule_id_batch_param_batch_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/price_rules/{price_rule_id}/batch/{batch_id}/discount_codes.json:
+    get:
+      summary: Shopify Retrieves A List Of Discount Codes For A Discount Code Creation Job
+      description: https://shopify.dev/docs/admin-api/rest/reference/discounts/discountcode#batch_discount_codes_index-unstable
+      parameters:
+      - in: path
+        name: price_rule_id
+        required: true
+        schema:
+          type: string
+        description: price_rule_id
+      - in: path
+        name: batch_id
+        required: true
+        schema:
+          type: string
+        description: batch_id
+      tags:
+      - Discount
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_get_price_rules_param_price_rule_id_batch_param_batch_id_discount_codes
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+components:
+  securitySchemes:
+    AccessToken:
+      type: apiKey
+      name: X-Shopify-Access-Token
+      in: header
+      description: Access token obtained via OAuth

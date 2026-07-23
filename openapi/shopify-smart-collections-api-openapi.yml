@@ -1,0 +1,156 @@
+openapi: 3.1.0
+info:
+  title: Shopify Admin REST About Smart Collections API
+  description: The Shopify Admin REST API lets you build apps and integrations that extend and enhance the Shopify admin. Access products, customers, orders, inventory, fulfillment, and more. Endpoints are organized by resource type and versioned by release date.
+  version: 2025-01
+  contact:
+    name: Shopify
+    url: https://shopify.dev/docs/api/admin-rest
+    email: api@shopify.com
+  license:
+    name: Shopify API Terms
+    url: https://www.shopify.com/legal/api-terms
+  x-date: '2026-03-04'
+servers:
+- url: https://{store}.myshopify.com/admin/api/2025-01
+  description: Shopify Admin REST API
+  variables:
+    store:
+      default: my-store
+      description: The Shopify store subdomain
+security:
+- AccessToken: []
+tags:
+- name: Smart Collections
+  description: Manage automated collections
+paths:
+  /smart_collections.json:
+    get:
+      operationId: listSmartCollections
+      summary: Shopify Retrieve a list of smart collections
+      description: Retrieves a list of smart (automated) collections.
+      tags:
+      - Smart Collections
+      parameters:
+      - name: limit
+        in: query
+        description: Maximum number of results (max 250, default 50)
+        schema:
+          type: integer
+          default: 50
+          maximum: 250
+      - name: since_id
+        in: query
+        description: Return collections after the specified ID
+        schema:
+          type: integer
+      - name: title
+        in: query
+        description: Filter by collection title
+        schema:
+          type: string
+      - name: product_id
+        in: query
+        description: Show collections containing this product
+        schema:
+          type: integer
+      - name: fields
+        in: query
+        description: Comma-separated list of fields to include
+        schema:
+          type: string
+      responses:
+        '200':
+          description: A list of smart collections
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  smart_collections:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Collection'
+components:
+  schemas:
+    Collection:
+      type: object
+      description: A product collection
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+          description: The collection title
+        handle:
+          type: string
+          description: URL-friendly title
+        body_html:
+          type:
+          - string
+          - 'null'
+          description: Description in HTML
+        published_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        sort_order:
+          type: string
+          description: Sort order for products
+        template_suffix:
+          type:
+          - string
+          - 'null'
+        published_scope:
+          type: string
+        updated_at:
+          type: string
+          format: date-time
+        image:
+          $ref: '#/components/schemas/Image'
+        admin_graphql_api_id:
+          type: string
+    Image:
+      type: object
+      description: A product image
+      properties:
+        id:
+          type: integer
+        product_id:
+          type: integer
+        position:
+          type: integer
+          description: Position in the image list
+        alt:
+          type:
+          - string
+          - 'null'
+          description: Alt text for the image
+        width:
+          type: integer
+        height:
+          type: integer
+        src:
+          type: string
+          format: uri
+          description: The image URL
+        variant_ids:
+          type: array
+          description: Variant IDs associated with this image
+          items:
+            type: integer
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        admin_graphql_api_id:
+          type: string
+  securitySchemes:
+    AccessToken:
+      type: apiKey
+      name: X-Shopify-Access-Token
+      in: header
+      description: Access token obtained via OAuth

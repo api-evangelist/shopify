@@ -1,0 +1,1394 @@
+openapi: 3.1.0
+info:
+  title: Shopify Admin REST About Theme API
+  description: The Shopify Admin REST API lets you build apps and integrations that extend and enhance the Shopify admin. Access products, customers, orders, inventory, fulfillment, and more. Endpoints are organized by resource type and versioned by release date.
+  version: 2025-01
+  contact:
+    name: Shopify
+    url: https://shopify.dev/docs/api/admin-rest
+    email: api@shopify.com
+  license:
+    name: Shopify API Terms
+    url: https://www.shopify.com/legal/api-terms
+  x-date: '2026-03-04'
+servers:
+- url: https://{store}.myshopify.com/admin/api/2025-01
+  description: Shopify Admin REST API
+  variables:
+    store:
+      default: my-store
+      description: The Shopify store subdomain
+security:
+- AccessToken: []
+tags:
+- name: Theme
+paths:
+  /admin/api/2020-01/themes/{theme_id}/assets.json:
+    get:
+      summary: Shopify Retrieves A Single Asset For A Theme By Its Key
+      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/asset#show-2020-01
+      parameters:
+      - in: path
+        name: theme_id
+        required: true
+        schema:
+          type: string
+        description: theme_id
+      - in: query
+        name: fields
+        description: Show only certain fields, specified by a comma-separated list of field names
+        schema: {}
+        required: false
+      - in: query
+        name: asset[key]
+        schema:
+          type: string
+        description: asset[key]
+        required: false
+      tags:
+      - Theme
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_get_themes_param_theme_id_assets
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  asset:
+                    key: templates/index.liquid
+                    value: <img src='backsoon-postit.png'><p>We are busy updating the store for you and will be back within the hour.</p>
+                summary: Change an existing Liquid template's value
+              example2:
+                value:
+                  asset:
+                    key: assets/empty.gif
+                    attachment: 'R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==
+
+                      '
+                summary: Create an image asset by providing a base64-encoded attachment
+              example3:
+                value:
+                  asset:
+                    key: assets/bg-body.gif
+                    src: http://apple.com/new_bg.gif
+                summary: Create an image asset by providing a source URL from which to upload the image
+              example4:
+                value:
+                  asset:
+                    key: layout/alternate.liquid
+                    source_key: layout/theme.liquid
+                summary: Duplicate an existing asset by providing a source key
+      summary: Shopify Creates Or Updates An Asset For A Theme
+      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/asset#update-2020-01
+      parameters:
+      - in: path
+        name: theme_id
+        required: true
+        schema:
+          type: string
+        description: theme_id
+      - in: query
+        name: src
+        description: The source URL of an image. Include in the body of the PUT request to upload the image to Shopify.
+        schema: {}
+        required: false
+      - in: query
+        name: source_key
+        description: The path within the theme to an existing asset. Include in the body of the PUT request to create a duplicate asset.
+        schema: {}
+        required: false
+      tags:
+      - Theme
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_update_themes_param_theme_id_assets
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    delete:
+      summary: Shopify Deletes An Asset From A Theme
+      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/asset#destroy-2020-01
+      parameters:
+      - in: path
+        name: theme_id
+        required: true
+        schema:
+          type: string
+        description: theme_id
+      - in: query
+        name: asset[key]
+        schema:
+          type: string
+        description: asset[key]
+        required: false
+      tags:
+      - Theme
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_delete_themes_param_theme_id_assets
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/themes/{theme_id}/assets.json:
+    get:
+      summary: Shopify Retrieves A Single Asset For A Theme By Its Key
+      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/asset#show-2020-04
+      parameters:
+      - in: path
+        name: theme_id
+        required: true
+        schema:
+          type: string
+        description: theme_id
+      - in: query
+        name: fields
+        description: Show only certain fields, specified by a comma-separated list of field names
+        schema: {}
+        required: false
+      - in: query
+        name: asset[key]
+        schema:
+          type: string
+        description: asset[key]
+        required: false
+      tags:
+      - Theme
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_get_themes_param_theme_id_assets
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  asset:
+                    key: templates/index.liquid
+                    value: <img src='backsoon-postit.png'><p>We are busy updating the store for you and will be back within the hour.</p>
+                summary: Change an existing Liquid template's value
+              example2:
+                value:
+                  asset:
+                    key: assets/empty.gif
+                    attachment: 'R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==
+
+                      '
+                summary: Create an image asset by providing a base64-encoded attachment
+              example3:
+                value:
+                  asset:
+                    key: assets/bg-body.gif
+                    src: http://apple.com/new_bg.gif
+                summary: Create an image asset by providing a source URL from which to upload the image
+              example4:
+                value:
+                  asset:
+                    key: layout/alternate.liquid
+                    source_key: layout/theme.liquid
+                summary: Duplicate an existing asset by providing a source key
+      summary: Shopify Creates Or Updates An Asset For A Theme
+      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/asset#update-2020-04
+      parameters:
+      - in: path
+        name: theme_id
+        required: true
+        schema:
+          type: string
+        description: theme_id
+      - in: query
+        name: src
+        description: The source URL of an image. Include in the body of the PUT request to upload the image to Shopify.
+        schema: {}
+        required: false
+      - in: query
+        name: source_key
+        description: The path within the theme to an existing asset. Include in the body of the PUT request to create a duplicate asset.
+        schema: {}
+        required: false
+      tags:
+      - Theme
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_update_themes_param_theme_id_assets
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    delete:
+      summary: Shopify Deletes An Asset From A Theme
+      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/asset#destroy-2020-04
+      parameters:
+      - in: path
+        name: theme_id
+        required: true
+        schema:
+          type: string
+        description: theme_id
+      - in: query
+        name: asset[key]
+        schema:
+          type: string
+        description: asset[key]
+        required: false
+      tags:
+      - Theme
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_delete_themes_param_theme_id_assets
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/themes/{theme_id}/assets.json:
+    get:
+      summary: Shopify Retrieves A Single Asset For A Theme By Its Key
+      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/asset#show-2020-07
+      parameters:
+      - in: path
+        name: theme_id
+        required: true
+        schema:
+          type: string
+        description: theme_id
+      - in: query
+        name: fields
+        description: Show only certain fields, specified by a comma-separated list of field names
+        schema: {}
+        required: false
+      - in: query
+        name: asset[key]
+        schema:
+          type: string
+        description: asset[key]
+        required: false
+      tags:
+      - Theme
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_get_themes_param_theme_id_assets
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  asset:
+                    key: templates/index.liquid
+                    value: <img src='backsoon-postit.png'><p>We are busy updating the store for you and will be back within the hour.</p>
+                summary: Change an existing Liquid template's value
+              example2:
+                value:
+                  asset:
+                    key: assets/empty.gif
+                    attachment: 'R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==
+
+                      '
+                summary: Create an image asset by providing a base64-encoded attachment
+              example3:
+                value:
+                  asset:
+                    key: assets/bg-body.gif
+                    src: http://apple.com/new_bg.gif
+                summary: Create an image asset by providing a source URL from which to upload the image
+              example4:
+                value:
+                  asset:
+                    key: layout/alternate.liquid
+                    source_key: layout/theme.liquid
+                summary: Duplicate an existing asset by providing a source key
+      summary: Shopify Creates Or Updates An Asset For A Theme
+      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/asset#update-2020-07
+      parameters:
+      - in: path
+        name: theme_id
+        required: true
+        schema:
+          type: string
+        description: theme_id
+      - in: query
+        name: src
+        description: The source URL of an image. Include in the body of the PUT request to upload the image to Shopify.
+        schema: {}
+        required: false
+      - in: query
+        name: source_key
+        description: The path within the theme to an existing asset. Include in the body of the PUT request to create a duplicate asset.
+        schema: {}
+        required: false
+      tags:
+      - Theme
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_update_themes_param_theme_id_assets
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    delete:
+      summary: Shopify Deletes An Asset From A Theme
+      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/asset#destroy-2020-07
+      parameters:
+      - in: path
+        name: theme_id
+        required: true
+        schema:
+          type: string
+        description: theme_id
+      - in: query
+        name: asset[key]
+        schema:
+          type: string
+        description: asset[key]
+        required: false
+      tags:
+      - Theme
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_delete_themes_param_theme_id_assets
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/themes/{theme_id}/assets.json:
+    get:
+      summary: Shopify Retrieves A Single Asset For A Theme By Its Key
+      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/asset#show-2020-10
+      parameters:
+      - in: path
+        name: theme_id
+        required: true
+        schema:
+          type: string
+        description: theme_id
+      - in: query
+        name: fields
+        description: Show only certain fields, specified by a comma-separated list of field names
+        schema: {}
+        required: false
+      - in: query
+        name: asset[key]
+        schema:
+          type: string
+        description: asset[key]
+        required: false
+      tags:
+      - Theme
+      responses:
+        '200':
+          description: ''
+      operationId: get_themes_param_theme_id_assets
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  asset:
+                    key: templates/index.liquid
+                    value: <img src='backsoon-postit.png'><p>We are busy updating the store for you and will be back within the hour.</p>
+                summary: Change an existing Liquid template's value
+              example2:
+                value:
+                  asset:
+                    key: assets/empty.gif
+                    attachment: 'R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==
+
+                      '
+                summary: Create an image asset by providing a base64-encoded attachment
+              example3:
+                value:
+                  asset:
+                    key: assets/bg-body.gif
+                    src: http://apple.com/new_bg.gif
+                summary: Create an image asset by providing a source URL from which to upload the image
+              example4:
+                value:
+                  asset:
+                    key: layout/alternate.liquid
+                    source_key: layout/theme.liquid
+                summary: Duplicate an existing asset by providing a source key
+      summary: Shopify Creates Or Updates An Asset For A Theme
+      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/asset#update-2020-10
+      parameters:
+      - in: path
+        name: theme_id
+        required: true
+        schema:
+          type: string
+        description: theme_id
+      - in: query
+        name: src
+        description: The source URL of an image. Include in the body of the PUT request to upload the image to Shopify.
+        schema: {}
+        required: false
+      - in: query
+        name: source_key
+        description: The path within the theme to an existing asset. Include in the body of the PUT request to create a duplicate asset.
+        schema: {}
+        required: false
+      tags:
+      - Theme
+      responses:
+        '200':
+          description: ''
+      operationId: update_themes_param_theme_id_assets
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    delete:
+      summary: Shopify Deletes An Asset From A Theme
+      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/asset#destroy-2020-10
+      parameters:
+      - in: path
+        name: theme_id
+        required: true
+        schema:
+          type: string
+        description: theme_id
+      - in: query
+        name: asset[key]
+        schema:
+          type: string
+        description: asset[key]
+        required: false
+      tags:
+      - Theme
+      responses:
+        '200':
+          description: ''
+      operationId: delete_themes_param_theme_id_assets
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/themes/{theme_id}/assets.json:
+    get:
+      summary: Shopify Retrieves A Single Asset For A Theme By Its Key
+      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/asset#show-2021-01
+      parameters:
+      - in: path
+        name: theme_id
+        required: true
+        schema:
+          type: string
+        description: theme_id
+      - in: query
+        name: fields
+        description: Show only certain fields, specified by a comma-separated list of field names
+        schema: {}
+        required: false
+      - in: query
+        name: asset[key]
+        schema:
+          type: string
+        description: asset[key]
+        required: false
+      tags:
+      - Theme
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_get_themes_param_theme_id_assets
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  asset:
+                    key: templates/index.liquid
+                    value: <img src='backsoon-postit.png'><p>We are busy updating the store for you and will be back within the hour.</p>
+                summary: Change an existing Liquid template's value
+              example2:
+                value:
+                  asset:
+                    key: assets/empty.gif
+                    attachment: 'R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==
+
+                      '
+                summary: Create an image asset by providing a base64-encoded attachment
+              example3:
+                value:
+                  asset:
+                    key: assets/bg-body.gif
+                    src: http://apple.com/new_bg.gif
+                summary: Create an image asset by providing a source URL from which to upload the image
+              example4:
+                value:
+                  asset:
+                    key: layout/alternate.liquid
+                    source_key: layout/theme.liquid
+                summary: Duplicate an existing asset by providing a source key
+      summary: Shopify Creates Or Updates An Asset For A Theme
+      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/asset#update-2021-01
+      parameters:
+      - in: path
+        name: theme_id
+        required: true
+        schema:
+          type: string
+        description: theme_id
+      - in: query
+        name: src
+        description: The source URL of an image. Include in the body of the PUT request to upload the image to Shopify.
+        schema: {}
+        required: false
+      - in: query
+        name: source_key
+        description: The path within the theme to an existing asset. Include in the body of the PUT request to create a duplicate asset.
+        schema: {}
+        required: false
+      tags:
+      - Theme
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_update_themes_param_theme_id_assets
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    delete:
+      summary: Shopify Deletes An Asset From A Theme
+      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/asset#destroy-2021-01
+      parameters:
+      - in: path
+        name: theme_id
+        required: true
+        schema:
+          type: string
+        description: theme_id
+      - in: query
+        name: asset[key]
+        schema:
+          type: string
+        description: asset[key]
+        required: false
+      tags:
+      - Theme
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_delete_themes_param_theme_id_assets
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/themes/{theme_id}/assets.json:
+    get:
+      summary: Shopify Retrieves A Single Asset For A Theme By Its Key
+      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/asset#show-unstable
+      parameters:
+      - in: path
+        name: theme_id
+        required: true
+        schema:
+          type: string
+        description: theme_id
+      - in: query
+        name: fields
+        description: Show only certain fields, specified by a comma-separated list of field names
+        schema: {}
+        required: false
+      - in: query
+        name: asset[key]
+        schema:
+          type: string
+        description: asset[key]
+        required: false
+      tags:
+      - Theme
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_get_themes_param_theme_id_assets
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  asset:
+                    key: templates/index.liquid
+                    value: <img src='backsoon-postit.png'><p>We are busy updating the store for you and will be back within the hour.</p>
+                summary: Change an existing Liquid template's value
+              example2:
+                value:
+                  asset:
+                    key: assets/empty.gif
+                    attachment: 'R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==
+
+                      '
+                summary: Create an image asset by providing a base64-encoded attachment
+              example3:
+                value:
+                  asset:
+                    key: assets/bg-body.gif
+                    src: http://apple.com/new_bg.gif
+                summary: Create an image asset by providing a source URL from which to upload the image
+              example4:
+                value:
+                  asset:
+                    key: layout/alternate.liquid
+                    source_key: layout/theme.liquid
+                summary: Duplicate an existing asset by providing a source key
+      summary: Shopify Creates Or Updates An Asset For A Theme
+      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/asset#update-unstable
+      parameters:
+      - in: path
+        name: theme_id
+        required: true
+        schema:
+          type: string
+        description: theme_id
+      - in: query
+        name: src
+        description: The source URL of an image. Include in the body of the PUT request to upload the image to Shopify.
+        schema: {}
+        required: false
+      - in: query
+        name: source_key
+        description: The path within the theme to an existing asset. Include in the body of the PUT request to create a duplicate asset.
+        schema: {}
+        required: false
+      tags:
+      - Theme
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_update_themes_param_theme_id_assets
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    delete:
+      summary: Shopify Deletes An Asset From A Theme
+      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/asset#destroy-unstable
+      parameters:
+      - in: path
+        name: theme_id
+        required: true
+        schema:
+          type: string
+        description: theme_id
+      - in: query
+        name: asset[key]
+        schema:
+          type: string
+        description: asset[key]
+        required: false
+      tags:
+      - Theme
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_delete_themes_param_theme_id_assets
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-01/themes.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  theme:
+                    name: Lemongrass
+                    src: http://themes.shopify.com/theme.zip
+                    role: main
+                summary: Create a theme that has a custom name and is published
+              example2:
+                value:
+                  theme:
+                    body: foobar
+                summary: Creating a theme without a name fails and returns an error
+      summary: Shopify Creates A Theme By Providing The Public Url Of A Zip File That Contains The Theme
+      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/theme#create-2020-01
+      parameters: []
+      tags:
+      - Theme
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_create_themes
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-01/themes/{theme_id}.json:
+    get:
+      summary: Shopify Retrieves A Single Theme
+      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/theme#show-2020-01
+      parameters:
+      - in: path
+        name: theme_id
+        required: true
+        schema:
+          type: string
+        description: theme_id
+      - in: query
+        name: fields
+        description: Show only certain fields, specified by a comma-separated list of field names.
+        schema: {}
+        required: false
+      tags:
+      - Theme
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_get_themes_param_theme_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  theme:
+                    id: 752253240
+                    name: Experimental
+                summary: Update a theme's name
+              example2:
+                value:
+                  theme:
+                    id: 752253240
+                    role: main
+                summary: Publish an unpublished theme
+      summary: Shopify Updates An Existing Theme
+      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/theme#update-2020-01
+      parameters:
+      - in: path
+        name: theme_id
+        required: true
+        schema:
+          type: string
+        description: theme_id
+      tags:
+      - Theme
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_update_themes_param_theme_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    delete:
+      summary: Shopify Deletes A Theme
+      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/theme#destroy-2020-01
+      parameters:
+      - in: path
+        name: theme_id
+        required: true
+        schema:
+          type: string
+        description: theme_id
+      tags:
+      - Theme
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_delete_themes_param_theme_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/themes.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  theme:
+                    name: Lemongrass
+                    src: http://themes.shopify.com/theme.zip
+                    role: main
+                summary: Create a theme that has a custom name and is published
+              example2:
+                value:
+                  theme:
+                    body: foobar
+                summary: Creating a theme without a name fails and returns an error
+      summary: Shopify Creates A Theme By Providing The Public Url Of A Zip File That Contains The Theme
+      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/theme#create-2020-04
+      parameters: []
+      tags:
+      - Theme
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_create_themes
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/themes/{theme_id}.json:
+    get:
+      summary: Shopify Retrieves A Single Theme
+      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/theme#show-2020-04
+      parameters:
+      - in: path
+        name: theme_id
+        required: true
+        schema:
+          type: string
+        description: theme_id
+      - in: query
+        name: fields
+        description: Show only certain fields, specified by a comma-separated list of field names.
+        schema: {}
+        required: false
+      tags:
+      - Theme
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_get_themes_param_theme_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  theme:
+                    id: 752253240
+                    name: Experimental
+                summary: Update a theme's name
+              example2:
+                value:
+                  theme:
+                    id: 752253240
+                    role: main
+                summary: Publish an unpublished theme
+      summary: Shopify Updates An Existing Theme
+      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/theme#update-2020-04
+      parameters:
+      - in: path
+        name: theme_id
+        required: true
+        schema:
+          type: string
+        description: theme_id
+      tags:
+      - Theme
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_update_themes_param_theme_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    delete:
+      summary: Shopify Deletes A Theme
+      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/theme#destroy-2020-04
+      parameters:
+      - in: path
+        name: theme_id
+        required: true
+        schema:
+          type: string
+        description: theme_id
+      tags:
+      - Theme
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_delete_themes_param_theme_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/themes.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  theme:
+                    name: Lemongrass
+                    src: http://themes.shopify.com/theme.zip
+                    role: main
+                summary: Create a theme that has a custom name and is published
+              example2:
+                value:
+                  theme:
+                    body: foobar
+                summary: Creating a theme without a name fails and returns an error
+      summary: Shopify Creates A Theme By Providing The Public Url Of A Zip File That Contains The Theme
+      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/theme#create-2020-07
+      parameters: []
+      tags:
+      - Theme
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_create_themes
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/themes/{theme_id}.json:
+    get:
+      summary: Shopify Retrieves A Single Theme
+      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/theme#show-2020-07
+      parameters:
+      - in: path
+        name: theme_id
+        required: true
+        schema:
+          type: string
+        description: theme_id
+      - in: query
+        name: fields
+        description: Show only certain fields, specified by a comma-separated list of field names.
+        schema: {}
+        required: false
+      tags:
+      - Theme
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_get_themes_param_theme_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  theme:
+                    id: 752253240
+                    name: Experimental
+                summary: Update a theme's name
+              example2:
+                value:
+                  theme:
+                    id: 752253240
+                    role: main
+                summary: Publish an unpublished theme
+      summary: Shopify Updates An Existing Theme
+      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/theme#update-2020-07
+      parameters:
+      - in: path
+        name: theme_id
+        required: true
+        schema:
+          type: string
+        description: theme_id
+      tags:
+      - Theme
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_update_themes_param_theme_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    delete:
+      summary: Shopify Deletes A Theme
+      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/theme#destroy-2020-07
+      parameters:
+      - in: path
+        name: theme_id
+        required: true
+        schema:
+          type: string
+        description: theme_id
+      tags:
+      - Theme
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_delete_themes_param_theme_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/themes.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  theme:
+                    name: Lemongrass
+                    src: http://themes.shopify.com/theme.zip
+                    role: main
+                summary: Create a theme that has a custom name and is published
+              example2:
+                value:
+                  theme:
+                    body: foobar
+                summary: Creating a theme without a name fails and returns an error
+      summary: Shopify Creates A Theme By Providing The Public Url Of A Zip File That Contains The Theme
+      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/theme#create-2020-10
+      parameters: []
+      tags:
+      - Theme
+      responses:
+        '200':
+          description: ''
+      operationId: create_themes
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/themes/{theme_id}.json:
+    get:
+      summary: Shopify Retrieves A Single Theme
+      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/theme#show-2020-10
+      parameters:
+      - in: path
+        name: theme_id
+        required: true
+        schema:
+          type: string
+        description: theme_id
+      - in: query
+        name: fields
+        description: Show only certain fields, specified by a comma-separated list of field names.
+        schema: {}
+        required: false
+      tags:
+      - Theme
+      responses:
+        '200':
+          description: ''
+      operationId: get_themes_param_theme_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  theme:
+                    id: 752253240
+                    name: Experimental
+                summary: Update a theme's name
+              example2:
+                value:
+                  theme:
+                    id: 752253240
+                    role: main
+                summary: Publish an unpublished theme
+      summary: Shopify Updates An Existing Theme
+      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/theme#update-2020-10
+      parameters:
+      - in: path
+        name: theme_id
+        required: true
+        schema:
+          type: string
+        description: theme_id
+      tags:
+      - Theme
+      responses:
+        '200':
+          description: ''
+      operationId: update_themes_param_theme_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    delete:
+      summary: Shopify Deletes A Theme
+      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/theme#destroy-2020-10
+      parameters:
+      - in: path
+        name: theme_id
+        required: true
+        schema:
+          type: string
+        description: theme_id
+      tags:
+      - Theme
+      responses:
+        '200':
+          description: ''
+      operationId: delete_themes_param_theme_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/themes.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  theme:
+                    name: Lemongrass
+                    src: http://themes.shopify.com/theme.zip
+                    role: main
+                summary: Create a theme that has a custom name and is published
+              example2:
+                value:
+                  theme:
+                    body: foobar
+                summary: Creating a theme without a name fails and returns an error
+      summary: Shopify Creates A Theme By Providing The Public Url Of A Zip File That Contains The Theme
+      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/theme#create-2021-01
+      parameters: []
+      tags:
+      - Theme
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_create_themes
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/themes/{theme_id}.json:
+    get:
+      summary: Shopify Retrieves A Single Theme
+      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/theme#show-2021-01
+      parameters:
+      - in: path
+        name: theme_id
+        required: true
+        schema:
+          type: string
+        description: theme_id
+      - in: query
+        name: fields
+        description: Show only certain fields, specified by a comma-separated list of field names.
+        schema: {}
+        required: false
+      tags:
+      - Theme
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_get_themes_param_theme_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  theme:
+                    id: 752253240
+                    name: Experimental
+                summary: Update a theme's name
+              example2:
+                value:
+                  theme:
+                    id: 752253240
+                    role: main
+                summary: Publish an unpublished theme
+      summary: Shopify Updates An Existing Theme
+      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/theme#update-2021-01
+      parameters:
+      - in: path
+        name: theme_id
+        required: true
+        schema:
+          type: string
+        description: theme_id
+      tags:
+      - Theme
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_update_themes_param_theme_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    delete:
+      summary: Shopify Deletes A Theme
+      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/theme#destroy-2021-01
+      parameters:
+      - in: path
+        name: theme_id
+        required: true
+        schema:
+          type: string
+        description: theme_id
+      tags:
+      - Theme
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_delete_themes_param_theme_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/themes.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  theme:
+                    name: Lemongrass
+                    src: http://themes.shopify.com/theme.zip
+                    role: main
+                summary: Create a theme that has a custom name and is published
+              example2:
+                value:
+                  theme:
+                    body: foobar
+                summary: Creating a theme without a name fails and returns an error
+      summary: Shopify Creates A Theme By Providing The Public Url Of A Zip File That Contains The Theme
+      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/theme#create-unstable
+      parameters: []
+      tags:
+      - Theme
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_create_themes
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/themes/{theme_id}.json:
+    get:
+      summary: Shopify Retrieves A Single Theme
+      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/theme#show-unstable
+      parameters:
+      - in: path
+        name: theme_id
+        required: true
+        schema:
+          type: string
+        description: theme_id
+      - in: query
+        name: fields
+        description: Show only certain fields, specified by a comma-separated list of field names.
+        schema: {}
+        required: false
+      tags:
+      - Theme
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_get_themes_param_theme_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  theme:
+                    id: 752253240
+                    name: Experimental
+                summary: Update a theme's name
+              example2:
+                value:
+                  theme:
+                    id: 752253240
+                    role: main
+                summary: Publish an unpublished theme
+      summary: Shopify Updates An Existing Theme
+      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/theme#update-unstable
+      parameters:
+      - in: path
+        name: theme_id
+        required: true
+        schema:
+          type: string
+        description: theme_id
+      tags:
+      - Theme
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_update_themes_param_theme_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    delete:
+      summary: Shopify Deletes A Theme
+      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/theme#destroy-unstable
+      parameters:
+      - in: path
+        name: theme_id
+        required: true
+        schema:
+          type: string
+        description: theme_id
+      tags:
+      - Theme
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_delete_themes_param_theme_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+components:
+  securitySchemes:
+    AccessToken:
+      type: apiKey
+      name: X-Shopify-Access-Token
+      in: header
+      description: Access token obtained via OAuth

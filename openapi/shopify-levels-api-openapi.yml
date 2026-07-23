@@ -1,0 +1,1542 @@
+openapi: 3.1.0
+info:
+  title: Shopify Admin REST About Levels API
+  description: The Shopify Admin REST API lets you build apps and integrations that extend and enhance the Shopify admin. Access products, customers, orders, inventory, fulfillment, and more. Endpoints are organized by resource type and versioned by release date.
+  version: 2025-01
+  contact:
+    name: Shopify
+    url: https://shopify.dev/docs/api/admin-rest
+    email: api@shopify.com
+  license:
+    name: Shopify API Terms
+    url: https://www.shopify.com/legal/api-terms
+  x-date: '2026-03-04'
+servers:
+- url: https://{store}.myshopify.com/admin/api/2025-01
+  description: Shopify Admin REST API
+  variables:
+    store:
+      default: my-store
+      description: The Shopify store subdomain
+security:
+- AccessToken: []
+tags:
+- name: Levels
+paths:
+  /admin/api/2020-01/inventory_levels.json:
+    get:
+      summary: Shopify Retrieves A List Of Inventory Levels
+      description: https://shopify.dev/docs/admin-api/rest/reference/inventory/inventorylevel#index-2020-01
+      parameters:
+      - in: query
+        name: inventory_item_ids
+        description: "A comma-separated list of inventory item IDs.\n                  (maximum: 50)"
+        schema: {}
+        required: false
+      - in: query
+        name: location_ids
+        description: "A comma-separated list of location IDs. To find the ID of a location, use the Location resource.\n                  (maximum: 50)"
+        schema: {}
+        required: false
+      - in: query
+        name: limit
+        description: "The maximum number of results to show.\n                  (default: 50, maximum: 250)"
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_min
+        description: 'Show inventory levels updated at or after date (format: 2019-03-19T01:21:44-04:00).'
+        schema: {}
+        required: false
+      tags:
+      - Levels
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_get_inventory_levels
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    delete:
+      summary: Shopify Deletes An Inventory Level Of An Inventory Item At A Location
+      description: https://shopify.dev/docs/admin-api/rest/reference/inventory/inventorylevel#destroy-2020-01
+      parameters:
+      - in: query
+        name: "inventory_item_id\n                  required"
+        description: The ID for the inventory item.
+        schema: {}
+        required: false
+      - in: query
+        name: "location_id\n                  required"
+        description: The ID of the location that the inventory level belongs to. To find the ID of the location, use the Location resource.
+        schema: {}
+        required: false
+      - in: query
+        name: inventory_item_id
+        schema:
+          type: integer
+        description: inventory_item_id
+        required: false
+      - in: query
+        name: location_id
+        schema:
+          type: integer
+        description: location_id
+        required: false
+      tags:
+      - Levels
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_delete_inventory_levels
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-01/inventory_levels/adjust.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  location_id: 905684977
+                  inventory_item_id: 808950810
+                  available_adjustment: 5
+                summary: Adjust the available quantity of an inventory item by 5 at a single location
+              example2:
+                value:
+                  location_id: 905684977
+                  inventory_item_id: 808950810
+                  available_adjustment: 5
+                summary: Adjusting inventory levels at a non-existent location fails and returns an error
+              example3:
+                value:
+                  location_id: 905684977
+                  inventory_item_id: 808950810
+                  available_adjustment: 5
+                summary: Adjusting inventory levels for an inventory item that is untracked fails and returns an error
+      summary: Shopify Adjusts The Inventory Level Of An Inventory Item At A Single Location
+      description: https://shopify.dev/docs/admin-api/rest/reference/inventory/inventorylevel#adjust-2020-01
+      parameters:
+      - in: query
+        name: "inventory_item_id\n                  required"
+        description: The ID of the inventory item.
+        schema: {}
+        required: false
+      - in: query
+        name: "location_id\n                  required"
+        description: The ID of the location that the inventory level belongs to. To find the ID of the location, use the Location resource.
+        schema: {}
+        required: false
+      - in: query
+        name: "available_adjustment\n                  required"
+        description: 'The amount to adjust the available inventory quantity. Send negative values to subtract from the current available quantity. For example, "available_adjustment": 2 increases the current available quantity by 2, and "available_adjustment": -3decreases the current available quantity by 3.'
+        schema: {}
+        required: false
+      tags:
+      - Levels
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_create_inventory_levels_adjust
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-01/inventory_levels/connect.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  location_id: 192722535
+                  inventory_item_id: 457924702
+                summary: Connect an inventory item to a location
+              example2:
+                value:
+                  location_id: 123
+                  inventory_item_id: 457924702
+                summary: Connecting an inventory item to a non-existent location fails and returns an error
+              example3:
+                value:
+                  location_id: 48752903
+                  inventory_item_id: 808950810
+                summary: 'Connecting an inventory item to a fulfillment service location without "relocate_if_necessary": true fails with a 422 error'
+              example4:
+                value:
+                  location_id: 192722535
+                  inventory_item_id: 457924702
+                summary: Connecting an inventory item to a location when the store hasn't enabled multiple locations fails with a 403 error
+      summary: Shopify Connects An Inventory Item To A Location By Creating An Inventory Level At That Location
+      description: https://shopify.dev/docs/admin-api/rest/reference/inventory/inventorylevel#connect-2020-01
+      parameters:
+      - in: query
+        name: "inventory_item_id\n                  required"
+        description: The ID of the inventory item.
+        schema: {}
+        required: false
+      - in: query
+        name: "location_id\n                  required"
+        description: The ID of the location that the inventory level belongs to. To find the ID of the location, use the Location resource.
+        schema: {}
+        required: false
+      - in: query
+        name: relocate_if_necessary
+        description: "Whether inventory for any previously connected locations will be relocated. This property is ignored when no fulfillment service location is involved. For more information, see Inventory levels and fulfillment service locations.\n                  (default: false)"
+        schema: {}
+        required: false
+      tags:
+      - Levels
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_create_inventory_levels_connect
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-01/inventory_levels/set.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  location_id: 905684977
+                  inventory_item_id: 808950810
+                  available: 42
+                summary: Set the available inventory at a location
+              example2:
+                value:
+                  location_id: 61629186
+                  inventory_item_id: 808950810
+                  available: 42
+                summary: 'Setting an inventory item to a fulfillment service without "disconnect_if_necessary": true fails with a 422 error'
+      summary: Shopify Sets The Inventory Level For An Inventory Item At A Location
+      description: https://shopify.dev/docs/admin-api/rest/reference/inventory/inventorylevel#set-2020-01
+      parameters:
+      - in: query
+        name: "inventory_item_id\n                  required"
+        description: The ID for the inventory item.
+        schema: {}
+        required: false
+      - in: query
+        name: "location_id\n                  required"
+        description: The ID of the location that the inventory level belongs to. To find the ID of the location, use the Location resource.
+        schema: {}
+        required: false
+      - in: query
+        name: "available\n                  required"
+        description: Sets the available inventory quantity.
+        schema: {}
+        required: false
+      - in: query
+        name: disconnect_if_necessary
+        description: "Whether inventory for any previously connected locations will be set to 0 and the locations disconnected. This property is ignored when no fulfillment service  is involved. For more information, see Inventory levels and fulfillment service locations.\n                  (default: false)"
+        schema: {}
+        required: false
+      tags:
+      - Levels
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_create_inventory_levels_set
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/inventory_levels.json:
+    get:
+      summary: Shopify Retrieves A List Of Inventory Levels
+      description: https://shopify.dev/docs/admin-api/rest/reference/inventory/inventorylevel#index-2020-04
+      parameters:
+      - in: query
+        name: inventory_item_ids
+        description: "A comma-separated list of inventory item IDs.\n                  (maximum: 50)"
+        schema: {}
+        required: false
+      - in: query
+        name: location_ids
+        description: "A comma-separated list of location IDs. To find the ID of a location, use the Location resource.\n                  (maximum: 50)"
+        schema: {}
+        required: false
+      - in: query
+        name: limit
+        description: "The maximum number of results to show.\n                  (default: 50, maximum: 250)"
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_min
+        description: 'Show inventory levels updated at or after date (format: 2019-03-19T01:21:44-04:00).'
+        schema: {}
+        required: false
+      tags:
+      - Levels
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_get_inventory_levels
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    delete:
+      summary: Shopify Deletes An Inventory Level Of An Inventory Item At A Location
+      description: https://shopify.dev/docs/admin-api/rest/reference/inventory/inventorylevel#destroy-2020-04
+      parameters:
+      - in: query
+        name: "inventory_item_id\n                  required"
+        description: The ID for the inventory item.
+        schema: {}
+        required: false
+      - in: query
+        name: "location_id\n                  required"
+        description: The ID of the location that the inventory level belongs to. To find the ID of the location, use the Location resource.
+        schema: {}
+        required: false
+      - in: query
+        name: inventory_item_id
+        schema:
+          type: integer
+        description: inventory_item_id
+        required: false
+      - in: query
+        name: location_id
+        schema:
+          type: integer
+        description: location_id
+        required: false
+      tags:
+      - Levels
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_delete_inventory_levels
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/inventory_levels/adjust.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  location_id: 905684977
+                  inventory_item_id: 808950810
+                  available_adjustment: 5
+                summary: Adjust the available quantity of an inventory item by 5 at a single location
+              example2:
+                value:
+                  location_id: 905684977
+                  inventory_item_id: 808950810
+                  available_adjustment: 5
+                summary: Adjusting inventory levels at a non-existent location fails and returns an error
+              example3:
+                value:
+                  location_id: 905684977
+                  inventory_item_id: 808950810
+                  available_adjustment: 5
+                summary: Adjusting inventory levels for an inventory item that is untracked fails and returns an error
+      summary: Shopify Adjusts The Inventory Level Of An Inventory Item At A Single Location
+      description: https://shopify.dev/docs/admin-api/rest/reference/inventory/inventorylevel#adjust-2020-04
+      parameters:
+      - in: query
+        name: "inventory_item_id\n                  required"
+        description: The ID of the inventory item.
+        schema: {}
+        required: false
+      - in: query
+        name: "location_id\n                  required"
+        description: The ID of the location that the inventory level belongs to. To find the ID of the location, use the Location resource.
+        schema: {}
+        required: false
+      - in: query
+        name: "available_adjustment\n                  required"
+        description: 'The amount to adjust the available inventory quantity. Send negative values to subtract from the current available quantity. For example, "available_adjustment": 2 increases the current available quantity by 2, and "available_adjustment": -3decreases the current available quantity by 3.'
+        schema: {}
+        required: false
+      tags:
+      - Levels
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_create_inventory_levels_adjust
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/inventory_levels/connect.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  location_id: 192722535
+                  inventory_item_id: 457924702
+                summary: Connect an inventory item to a location
+              example2:
+                value:
+                  location_id: 123
+                  inventory_item_id: 457924702
+                summary: Connecting an inventory item to a non-existent location fails and returns an error
+              example3:
+                value:
+                  location_id: 48752903
+                  inventory_item_id: 808950810
+                summary: 'Connecting an inventory item to a fulfillment service location without "relocate_if_necessary": true fails with a 422 error'
+              example4:
+                value:
+                  location_id: 192722535
+                  inventory_item_id: 457924702
+                summary: Connecting an inventory item to a location when the store hasn't enabled multiple locations fails with a 403 error
+      summary: Shopify Connects An Inventory Item To A Location By Creating An Inventory Level At That Location
+      description: https://shopify.dev/docs/admin-api/rest/reference/inventory/inventorylevel#connect-2020-04
+      parameters:
+      - in: query
+        name: "inventory_item_id\n                  required"
+        description: The ID of the inventory item.
+        schema: {}
+        required: false
+      - in: query
+        name: "location_id\n                  required"
+        description: The ID of the location that the inventory level belongs to. To find the ID of the location, use the Location resource.
+        schema: {}
+        required: false
+      - in: query
+        name: relocate_if_necessary
+        description: "Whether inventory for any previously connected locations will be relocated. This property is ignored when no fulfillment service location is involved. For more information, see Inventory levels and fulfillment service locations.\n                  (default: false)"
+        schema: {}
+        required: false
+      tags:
+      - Levels
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_create_inventory_levels_connect
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/inventory_levels/set.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  location_id: 905684977
+                  inventory_item_id: 808950810
+                  available: 42
+                summary: Set the available inventory at a location
+              example2:
+                value:
+                  location_id: 61629186
+                  inventory_item_id: 808950810
+                  available: 42
+                summary: 'Setting an inventory item to a fulfillment service without "disconnect_if_necessary": true fails with a 422 error'
+      summary: Shopify Sets The Inventory Level For An Inventory Item At A Location
+      description: https://shopify.dev/docs/admin-api/rest/reference/inventory/inventorylevel#set-2020-04
+      parameters:
+      - in: query
+        name: "inventory_item_id\n                  required"
+        description: The ID for the inventory item.
+        schema: {}
+        required: false
+      - in: query
+        name: "location_id\n                  required"
+        description: The ID of the location that the inventory level belongs to. To find the ID of the location, use the Location resource.
+        schema: {}
+        required: false
+      - in: query
+        name: "available\n                  required"
+        description: Sets the available inventory quantity.
+        schema: {}
+        required: false
+      - in: query
+        name: disconnect_if_necessary
+        description: "Whether inventory for any previously connected locations will be set to 0 and the locations disconnected. This property is ignored when no fulfillment service  is involved. For more information, see Inventory levels and fulfillment service locations.\n                  (default: false)"
+        schema: {}
+        required: false
+      tags:
+      - Levels
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_create_inventory_levels_set
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/inventory_levels.json:
+    get:
+      summary: Shopify Retrieves A List Of Inventory Levels
+      description: https://shopify.dev/docs/admin-api/rest/reference/inventory/inventorylevel#index-2020-07
+      parameters:
+      - in: query
+        name: inventory_item_ids
+        description: "A comma-separated list of inventory item IDs.\n                  (maximum: 50)"
+        schema: {}
+        required: false
+      - in: query
+        name: location_ids
+        description: "A comma-separated list of location IDs. To find the ID of a location, use the Location resource.\n                  (maximum: 50)"
+        schema: {}
+        required: false
+      - in: query
+        name: limit
+        description: "The maximum number of results to show.\n                  (default: 50, maximum: 250)"
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_min
+        description: 'Show inventory levels updated at or after date (format: 2019-03-19T01:21:44-04:00).'
+        schema: {}
+        required: false
+      tags:
+      - Levels
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_get_inventory_levels
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    delete:
+      summary: Shopify Deletes An Inventory Level Of An Inventory Item At A Location
+      description: https://shopify.dev/docs/admin-api/rest/reference/inventory/inventorylevel#destroy-2020-07
+      parameters:
+      - in: query
+        name: "inventory_item_id\n                  required"
+        description: The ID for the inventory item.
+        schema: {}
+        required: false
+      - in: query
+        name: "location_id\n                  required"
+        description: The ID of the location that the inventory level belongs to. To find the ID of the location, use the Location resource.
+        schema: {}
+        required: false
+      - in: query
+        name: inventory_item_id
+        schema:
+          type: integer
+        description: inventory_item_id
+        required: false
+      - in: query
+        name: location_id
+        schema:
+          type: integer
+        description: location_id
+        required: false
+      tags:
+      - Levels
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_delete_inventory_levels
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/inventory_levels/adjust.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  location_id: 905684977
+                  inventory_item_id: 808950810
+                  available_adjustment: 5
+                summary: Adjust the available quantity of an inventory item by 5 at a single location
+              example2:
+                value:
+                  location_id: 905684977
+                  inventory_item_id: 808950810
+                  available_adjustment: 5
+                summary: Adjusting inventory levels at a non-existent location fails and returns an error
+              example3:
+                value:
+                  location_id: 905684977
+                  inventory_item_id: 808950810
+                  available_adjustment: 5
+                summary: Adjusting inventory levels for an inventory item that is untracked fails and returns an error
+      summary: Shopify Adjusts The Inventory Level Of An Inventory Item At A Single Location
+      description: https://shopify.dev/docs/admin-api/rest/reference/inventory/inventorylevel#adjust-2020-07
+      parameters:
+      - in: query
+        name: "inventory_item_id\n                  required"
+        description: The ID of the inventory item.
+        schema: {}
+        required: false
+      - in: query
+        name: "location_id\n                  required"
+        description: The ID of the location that the inventory level belongs to. To find the ID of the location, use the Location resource.
+        schema: {}
+        required: false
+      - in: query
+        name: "available_adjustment\n                  required"
+        description: 'The amount to adjust the available inventory quantity. Send negative values to subtract from the current available quantity. For example, "available_adjustment": 2 increases the current available quantity by 2, and "available_adjustment": -3decreases the current available quantity by 3.'
+        schema: {}
+        required: false
+      tags:
+      - Levels
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_create_inventory_levels_adjust
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/inventory_levels/connect.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  location_id: 192722535
+                  inventory_item_id: 457924702
+                summary: Connect an inventory item to a location
+              example2:
+                value:
+                  location_id: 123
+                  inventory_item_id: 457924702
+                summary: Connecting an inventory item to a non-existent location fails and returns an error
+              example3:
+                value:
+                  location_id: 48752903
+                  inventory_item_id: 808950810
+                summary: 'Connecting an inventory item to a fulfillment service location without "relocate_if_necessary": true fails with a 422 error'
+              example4:
+                value:
+                  location_id: 192722535
+                  inventory_item_id: 457924702
+                summary: Connecting an inventory item to a location when the store hasn't enabled multiple locations fails with a 403 error
+      summary: Shopify Connects An Inventory Item To A Location By Creating An Inventory Level At That Location
+      description: https://shopify.dev/docs/admin-api/rest/reference/inventory/inventorylevel#connect-2020-07
+      parameters:
+      - in: query
+        name: "inventory_item_id\n                  required"
+        description: The ID of the inventory item.
+        schema: {}
+        required: false
+      - in: query
+        name: "location_id\n                  required"
+        description: The ID of the location that the inventory level belongs to. To find the ID of the location, use the Location resource.
+        schema: {}
+        required: false
+      - in: query
+        name: relocate_if_necessary
+        description: "Whether inventory for any previously connected locations will be relocated. This property is ignored when no fulfillment service location is involved. For more information, see Inventory levels and fulfillment service locations.\n                  (default: false)"
+        schema: {}
+        required: false
+      tags:
+      - Levels
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_create_inventory_levels_connect
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/inventory_levels/set.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  location_id: 905684977
+                  inventory_item_id: 808950810
+                  available: 42
+                summary: Set the available inventory at a location
+              example2:
+                value:
+                  location_id: 61629186
+                  inventory_item_id: 808950810
+                  available: 42
+                summary: 'Setting an inventory item to a fulfillment service without "disconnect_if_necessary": true fails with a 422 error'
+      summary: Shopify Sets The Inventory Level For An Inventory Item At A Location
+      description: https://shopify.dev/docs/admin-api/rest/reference/inventory/inventorylevel#set-2020-07
+      parameters:
+      - in: query
+        name: "inventory_item_id\n                  required"
+        description: The ID for the inventory item.
+        schema: {}
+        required: false
+      - in: query
+        name: "location_id\n                  required"
+        description: The ID of the location that the inventory level belongs to. To find the ID of the location, use the Location resource.
+        schema: {}
+        required: false
+      - in: query
+        name: "available\n                  required"
+        description: Sets the available inventory quantity.
+        schema: {}
+        required: false
+      - in: query
+        name: disconnect_if_necessary
+        description: "Whether inventory for any previously connected locations will be set to 0 and the locations disconnected. This property is ignored when no fulfillment service  is involved. For more information, see Inventory levels and fulfillment service locations.\n                  (default: false)"
+        schema: {}
+        required: false
+      tags:
+      - Levels
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_create_inventory_levels_set
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/inventory_levels.json:
+    get:
+      summary: Shopify Retrieves A List Of Inventory Levels
+      description: https://shopify.dev/docs/admin-api/rest/reference/inventory/inventorylevel#index-2020-10
+      parameters:
+      - in: query
+        name: inventory_item_ids
+        description: "A comma-separated list of inventory item IDs.\n                  (maximum: 50)"
+        schema: {}
+        required: false
+      - in: query
+        name: location_ids
+        description: "A comma-separated list of location IDs. To find the ID of a location, use the Location resource.\n                  (maximum: 50)"
+        schema: {}
+        required: false
+      - in: query
+        name: limit
+        description: "The maximum number of results to show.\n                  (default: 50, maximum: 250)"
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_min
+        description: 'Show inventory levels updated at or after date (format: 2019-03-19T01:21:44-04:00).'
+        schema: {}
+        required: false
+      tags:
+      - Levels
+      responses:
+        '200':
+          description: ''
+      operationId: get_inventory_levels
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    delete:
+      summary: Shopify Deletes An Inventory Level Of An Inventory Item At A Location
+      description: https://shopify.dev/docs/admin-api/rest/reference/inventory/inventorylevel#destroy-2020-10
+      parameters:
+      - in: query
+        name: "inventory_item_id\n                  required"
+        description: The ID for the inventory item.
+        schema: {}
+        required: false
+      - in: query
+        name: "location_id\n                  required"
+        description: The ID of the location that the inventory level belongs to. To find the ID of the location, use the Location resource.
+        schema: {}
+        required: false
+      - in: query
+        name: inventory_item_id
+        schema:
+          type: integer
+        description: inventory_item_id
+        required: false
+      - in: query
+        name: location_id
+        schema:
+          type: integer
+        description: location_id
+        required: false
+      tags:
+      - Levels
+      responses:
+        '200':
+          description: ''
+      operationId: delete_inventory_levels
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/inventory_levels/adjust.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  location_id: 905684977
+                  inventory_item_id: 808950810
+                  available_adjustment: 5
+                summary: Adjust the available quantity of an inventory item by 5 at a single location
+              example2:
+                value:
+                  location_id: 905684977
+                  inventory_item_id: 808950810
+                  available_adjustment: 5
+                summary: Adjusting inventory levels at a non-existent location fails and returns an error
+              example3:
+                value:
+                  location_id: 905684977
+                  inventory_item_id: 808950810
+                  available_adjustment: 5
+                summary: Adjusting inventory levels for an inventory item that is untracked fails and returns an error
+      summary: Shopify Adjusts The Inventory Level Of An Inventory Item At A Single Location
+      description: https://shopify.dev/docs/admin-api/rest/reference/inventory/inventorylevel#adjust-2020-10
+      parameters:
+      - in: query
+        name: "inventory_item_id\n                  required"
+        description: The ID of the inventory item.
+        schema: {}
+        required: false
+      - in: query
+        name: "location_id\n                  required"
+        description: The ID of the location that the inventory level belongs to. To find the ID of the location, use the Location resource.
+        schema: {}
+        required: false
+      - in: query
+        name: "available_adjustment\n                  required"
+        description: 'The amount to adjust the available inventory quantity. Send negative values to subtract from the current available quantity. For example, "available_adjustment": 2 increases the current available quantity by 2, and "available_adjustment": -3decreases the current available quantity by 3.'
+        schema: {}
+        required: false
+      tags:
+      - Levels
+      responses:
+        '200':
+          description: ''
+      operationId: create_inventory_levels_adjust
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/inventory_levels/connect.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  location_id: 192722535
+                  inventory_item_id: 457924702
+                summary: Connect an inventory item to a location
+              example2:
+                value:
+                  location_id: 123
+                  inventory_item_id: 457924702
+                summary: Connecting an inventory item to a non-existent location fails and returns an error
+              example3:
+                value:
+                  location_id: 48752903
+                  inventory_item_id: 808950810
+                summary: 'Connecting an inventory item to a fulfillment service location without "relocate_if_necessary": true fails with a 422 error'
+              example4:
+                value:
+                  location_id: 192722535
+                  inventory_item_id: 457924702
+                summary: Connecting an inventory item to a location when the store hasn't enabled multiple locations fails with a 403 error
+      summary: Shopify Connects An Inventory Item To A Location By Creating An Inventory Level At That Location
+      description: https://shopify.dev/docs/admin-api/rest/reference/inventory/inventorylevel#connect-2020-10
+      parameters:
+      - in: query
+        name: "inventory_item_id\n                  required"
+        description: The ID of the inventory item.
+        schema: {}
+        required: false
+      - in: query
+        name: "location_id\n                  required"
+        description: The ID of the location that the inventory level belongs to. To find the ID of the location, use the Location resource.
+        schema: {}
+        required: false
+      - in: query
+        name: relocate_if_necessary
+        description: "Whether inventory for any previously connected locations will be relocated. This property is ignored when no fulfillment service location is involved. For more information, see Inventory levels and fulfillment service locations.\n                  (default: false)"
+        schema: {}
+        required: false
+      tags:
+      - Levels
+      responses:
+        '200':
+          description: ''
+      operationId: create_inventory_levels_connect
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/inventory_levels/set.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  location_id: 905684977
+                  inventory_item_id: 808950810
+                  available: 42
+                summary: Set the available inventory at a location
+              example2:
+                value:
+                  location_id: 61629186
+                  inventory_item_id: 808950810
+                  available: 42
+                summary: 'Setting an inventory item to a fulfillment service without "disconnect_if_necessary": true fails with a 422 error'
+      summary: Shopify Sets The Inventory Level For An Inventory Item At A Location
+      description: https://shopify.dev/docs/admin-api/rest/reference/inventory/inventorylevel#set-2020-10
+      parameters:
+      - in: query
+        name: "inventory_item_id\n                  required"
+        description: The ID for the inventory item.
+        schema: {}
+        required: false
+      - in: query
+        name: "location_id\n                  required"
+        description: The ID of the location that the inventory level belongs to. To find the ID of the location, use the Location resource.
+        schema: {}
+        required: false
+      - in: query
+        name: "available\n                  required"
+        description: Sets the available inventory quantity.
+        schema: {}
+        required: false
+      - in: query
+        name: disconnect_if_necessary
+        description: "Whether inventory for any previously connected locations will be set to 0 and the locations disconnected. This property is ignored when no fulfillment service  is involved. For more information, see Inventory levels and fulfillment service locations.\n                  (default: false)"
+        schema: {}
+        required: false
+      tags:
+      - Levels
+      responses:
+        '200':
+          description: ''
+      operationId: create_inventory_levels_set
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/inventory_levels.json:
+    get:
+      summary: Shopify Retrieves A List Of Inventory Levels
+      description: https://shopify.dev/docs/admin-api/rest/reference/inventory/inventorylevel#index-2021-01
+      parameters:
+      - in: query
+        name: inventory_item_ids
+        description: "A comma-separated list of inventory item IDs.\n                  (maximum: 50)"
+        schema: {}
+        required: false
+      - in: query
+        name: location_ids
+        description: "A comma-separated list of location IDs. To find the ID of a location, use the Location resource.\n                  (maximum: 50)"
+        schema: {}
+        required: false
+      - in: query
+        name: limit
+        description: "The maximum number of results to show.\n                  (default: 50, maximum: 250)"
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_min
+        description: 'Show inventory levels updated at or after date (format: 2019-03-19T01:21:44-04:00).'
+        schema: {}
+        required: false
+      tags:
+      - Levels
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_get_inventory_levels
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    delete:
+      summary: Shopify Deletes An Inventory Level Of An Inventory Item At A Location
+      description: https://shopify.dev/docs/admin-api/rest/reference/inventory/inventorylevel#destroy-2021-01
+      parameters:
+      - in: query
+        name: "inventory_item_id\n                  required"
+        description: The ID for the inventory item.
+        schema: {}
+        required: false
+      - in: query
+        name: "location_id\n                  required"
+        description: The ID of the location that the inventory level belongs to. To find the ID of the location, use the Location resource.
+        schema: {}
+        required: false
+      - in: query
+        name: inventory_item_id
+        schema:
+          type: integer
+        description: inventory_item_id
+        required: false
+      - in: query
+        name: location_id
+        schema:
+          type: integer
+        description: location_id
+        required: false
+      tags:
+      - Levels
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_delete_inventory_levels
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/inventory_levels/adjust.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  location_id: 905684977
+                  inventory_item_id: 808950810
+                  available_adjustment: 5
+                summary: Adjust the available quantity of an inventory item by 5 at a single location
+              example2:
+                value:
+                  location_id: 905684977
+                  inventory_item_id: 808950810
+                  available_adjustment: 5
+                summary: Adjusting inventory levels at a non-existent location fails and returns an error
+              example3:
+                value:
+                  location_id: 905684977
+                  inventory_item_id: 808950810
+                  available_adjustment: 5
+                summary: Adjusting inventory levels for an inventory item that is untracked fails and returns an error
+      summary: Shopify Adjusts The Inventory Level Of An Inventory Item At A Single Location
+      description: https://shopify.dev/docs/admin-api/rest/reference/inventory/inventorylevel#adjust-2021-01
+      parameters:
+      - in: query
+        name: "inventory_item_id\n                  required"
+        description: The ID of the inventory item.
+        schema: {}
+        required: false
+      - in: query
+        name: "location_id\n                  required"
+        description: The ID of the location that the inventory level belongs to. To find the ID of the location, use the Location resource.
+        schema: {}
+        required: false
+      - in: query
+        name: "available_adjustment\n                  required"
+        description: 'The amount to adjust the available inventory quantity. Send negative values to subtract from the current available quantity. For example, "available_adjustment": 2 increases the current available quantity by 2, and "available_adjustment": -3decreases the current available quantity by 3.'
+        schema: {}
+        required: false
+      tags:
+      - Levels
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_create_inventory_levels_adjust
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/inventory_levels/connect.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  location_id: 192722535
+                  inventory_item_id: 457924702
+                summary: Connect an inventory item to a location
+              example2:
+                value:
+                  location_id: 123
+                  inventory_item_id: 457924702
+                summary: Connecting an inventory item to a non-existent location fails and returns an error
+              example3:
+                value:
+                  location_id: 48752903
+                  inventory_item_id: 808950810
+                summary: 'Connecting an inventory item to a fulfillment service location without "relocate_if_necessary": true fails with a 422 error'
+              example4:
+                value:
+                  location_id: 192722535
+                  inventory_item_id: 457924702
+                summary: Connecting an inventory item to a location when the store hasn't enabled multiple locations fails with a 403 error
+      summary: Shopify Connects An Inventory Item To A Location By Creating An Inventory Level At That Location
+      description: https://shopify.dev/docs/admin-api/rest/reference/inventory/inventorylevel#connect-2021-01
+      parameters:
+      - in: query
+        name: "inventory_item_id\n                  required"
+        description: The ID of the inventory item.
+        schema: {}
+        required: false
+      - in: query
+        name: "location_id\n                  required"
+        description: The ID of the location that the inventory level belongs to. To find the ID of the location, use the Location resource.
+        schema: {}
+        required: false
+      - in: query
+        name: relocate_if_necessary
+        description: "Whether inventory for any previously connected locations will be relocated. This property is ignored when no fulfillment service location is involved. For more information, see Inventory levels and fulfillment service locations.\n                  (default: false)"
+        schema: {}
+        required: false
+      tags:
+      - Levels
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_create_inventory_levels_connect
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/inventory_levels/set.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  location_id: 905684977
+                  inventory_item_id: 808950810
+                  available: 42
+                summary: Set the available inventory at a location
+              example2:
+                value:
+                  location_id: 61629186
+                  inventory_item_id: 808950810
+                  available: 42
+                summary: 'Setting an inventory item to a fulfillment service without "disconnect_if_necessary": true fails with a 422 error'
+      summary: Shopify Sets The Inventory Level For An Inventory Item At A Location
+      description: https://shopify.dev/docs/admin-api/rest/reference/inventory/inventorylevel#set-2021-01
+      parameters:
+      - in: query
+        name: "inventory_item_id\n                  required"
+        description: The ID for the inventory item.
+        schema: {}
+        required: false
+      - in: query
+        name: "location_id\n                  required"
+        description: The ID of the location that the inventory level belongs to. To find the ID of the location, use the Location resource.
+        schema: {}
+        required: false
+      - in: query
+        name: "available\n                  required"
+        description: Sets the available inventory quantity.
+        schema: {}
+        required: false
+      - in: query
+        name: disconnect_if_necessary
+        description: "Whether inventory for any previously connected locations will be set to 0 and the locations disconnected. This property is ignored when no fulfillment service  is involved. For more information, see Inventory levels and fulfillment service locations.\n                  (default: false)"
+        schema: {}
+        required: false
+      tags:
+      - Levels
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_create_inventory_levels_set
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/inventory_levels.json:
+    get:
+      summary: Shopify Retrieves A List Of Inventory Levels
+      description: https://shopify.dev/docs/admin-api/rest/reference/inventory/inventorylevel#index-unstable
+      parameters:
+      - in: query
+        name: inventory_item_ids
+        description: "A comma-separated list of inventory item IDs.\n                  (maximum: 50)"
+        schema: {}
+        required: false
+      - in: query
+        name: location_ids
+        description: "A comma-separated list of location IDs. To find the ID of a location, use the Location resource.\n                  (maximum: 50)"
+        schema: {}
+        required: false
+      - in: query
+        name: limit
+        description: "The maximum number of results to show.\n                  (default: 50, maximum: 250)"
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_min
+        description: 'Show inventory levels updated at or after date (format: 2019-03-19T01:21:44-04:00).'
+        schema: {}
+        required: false
+      tags:
+      - Levels
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_get_inventory_levels
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    delete:
+      summary: Shopify Deletes An Inventory Level Of An Inventory Item At A Location
+      description: https://shopify.dev/docs/admin-api/rest/reference/inventory/inventorylevel#destroy-unstable
+      parameters:
+      - in: query
+        name: "inventory_item_id\n                  required"
+        description: The ID for the inventory item.
+        schema: {}
+        required: false
+      - in: query
+        name: "location_id\n                  required"
+        description: The ID of the location that the inventory level belongs to. To find the ID of the location, use the Location resource.
+        schema: {}
+        required: false
+      - in: query
+        name: inventory_item_id
+        schema:
+          type: integer
+        description: inventory_item_id
+        required: false
+      - in: query
+        name: location_id
+        schema:
+          type: integer
+        description: location_id
+        required: false
+      tags:
+      - Levels
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_delete_inventory_levels
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/inventory_levels/adjust.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  location_id: 905684977
+                  inventory_item_id: 808950810
+                  available_adjustment: 5
+                summary: Adjust the available quantity of an inventory item by 5 at a single location
+              example2:
+                value:
+                  location_id: 905684977
+                  inventory_item_id: 808950810
+                  available_adjustment: 5
+                summary: Adjusting inventory levels at a non-existent location fails and returns an error
+              example3:
+                value:
+                  location_id: 905684977
+                  inventory_item_id: 808950810
+                  available_adjustment: 5
+                summary: Adjusting inventory levels for an inventory item that is untracked fails and returns an error
+      summary: Shopify Adjusts The Inventory Level Of An Inventory Item At A Single Location
+      description: https://shopify.dev/docs/admin-api/rest/reference/inventory/inventorylevel#adjust-unstable
+      parameters:
+      - in: query
+        name: "inventory_item_id\n                  required"
+        description: The ID of the inventory item.
+        schema: {}
+        required: false
+      - in: query
+        name: "location_id\n                  required"
+        description: The ID of the location that the inventory level belongs to. To find the ID of the location, use the Location resource.
+        schema: {}
+        required: false
+      - in: query
+        name: "available_adjustment\n                  required"
+        description: 'The amount to adjust the available inventory quantity. Send negative values to subtract from the current available quantity. For example, "available_adjustment": 2 increases the current available quantity by 2, and "available_adjustment": -3decreases the current available quantity by 3.'
+        schema: {}
+        required: false
+      tags:
+      - Levels
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_create_inventory_levels_adjust
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/inventory_levels/connect.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  location_id: 192722535
+                  inventory_item_id: 457924702
+                summary: Connect an inventory item to a location
+              example2:
+                value:
+                  location_id: 123
+                  inventory_item_id: 457924702
+                summary: Connecting an inventory item to a non-existent location fails and returns an error
+              example3:
+                value:
+                  location_id: 48752903
+                  inventory_item_id: 808950810
+                summary: 'Connecting an inventory item to a fulfillment service location without "relocate_if_necessary": true fails with a 422 error'
+              example4:
+                value:
+                  location_id: 192722535
+                  inventory_item_id: 457924702
+                summary: Connecting an inventory item to a location when the store hasn't enabled multiple locations fails with a 403 error
+      summary: Shopify Connects An Inventory Item To A Location By Creating An Inventory Level At That Location
+      description: https://shopify.dev/docs/admin-api/rest/reference/inventory/inventorylevel#connect-unstable
+      parameters:
+      - in: query
+        name: "inventory_item_id\n                  required"
+        description: The ID of the inventory item.
+        schema: {}
+        required: false
+      - in: query
+        name: "location_id\n                  required"
+        description: The ID of the location that the inventory level belongs to. To find the ID of the location, use the Location resource.
+        schema: {}
+        required: false
+      - in: query
+        name: relocate_if_necessary
+        description: "Whether inventory for any previously connected locations will be relocated. This property is ignored when no fulfillment service location is involved. For more information, see Inventory levels and fulfillment service locations.\n                  (default: false)"
+        schema: {}
+        required: false
+      tags:
+      - Levels
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_create_inventory_levels_connect
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/inventory_levels/set.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  location_id: 905684977
+                  inventory_item_id: 808950810
+                  available: 42
+                summary: Set the available inventory at a location
+              example2:
+                value:
+                  location_id: 61629186
+                  inventory_item_id: 808950810
+                  available: 42
+                summary: 'Setting an inventory item to a fulfillment service without "disconnect_if_necessary": true fails with a 422 error'
+      summary: Shopify Sets The Inventory Level For An Inventory Item At A Location
+      description: https://shopify.dev/docs/admin-api/rest/reference/inventory/inventorylevel#set-unstable
+      parameters:
+      - in: query
+        name: "inventory_item_id\n                  required"
+        description: The ID for the inventory item.
+        schema: {}
+        required: false
+      - in: query
+        name: "location_id\n                  required"
+        description: The ID of the location that the inventory level belongs to. To find the ID of the location, use the Location resource.
+        schema: {}
+        required: false
+      - in: query
+        name: "available\n                  required"
+        description: Sets the available inventory quantity.
+        schema: {}
+        required: false
+      - in: query
+        name: disconnect_if_necessary
+        description: "Whether inventory for any previously connected locations will be set to 0 and the locations disconnected. This property is ignored when no fulfillment service  is involved. For more information, see Inventory levels and fulfillment service locations.\n                  (default: false)"
+        schema: {}
+        required: false
+      tags:
+      - Levels
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_create_inventory_levels_set
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-01/locations/{location_id}/inventory_levels.json:
+    get:
+      summary: Shopify Retrieves A List Of Inventory Levels For A Location
+      description: https://shopify.dev/docs/admin-api/rest/reference/inventory/location#inventory_levels-2020-01
+      parameters:
+      - in: path
+        name: location_id
+        required: true
+        schema:
+          type: string
+        description: location_id
+      tags:
+      - Levels
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_get_locations_param_location_id_inventory_levels
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/locations/{location_id}/inventory_levels.json:
+    get:
+      summary: Shopify Retrieves A List Of Inventory Levels For A Location
+      description: https://shopify.dev/docs/admin-api/rest/reference/inventory/location#inventory_levels-2020-04
+      parameters:
+      - in: path
+        name: location_id
+        required: true
+        schema:
+          type: string
+        description: location_id
+      tags:
+      - Levels
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_get_locations_param_location_id_inventory_levels
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/locations/{location_id}/inventory_levels.json:
+    get:
+      summary: Shopify Retrieves A List Of Inventory Levels For A Location
+      description: https://shopify.dev/docs/admin-api/rest/reference/inventory/location#inventory_levels-2020-07
+      parameters:
+      - in: path
+        name: location_id
+        required: true
+        schema:
+          type: string
+        description: location_id
+      tags:
+      - Levels
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_get_locations_param_location_id_inventory_levels
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/locations/{location_id}/inventory_levels.json:
+    get:
+      summary: Shopify Retrieves A List Of Inventory Levels For A Location
+      description: https://shopify.dev/docs/admin-api/rest/reference/inventory/location#inventory_levels-2020-10
+      parameters:
+      - in: path
+        name: location_id
+        required: true
+        schema:
+          type: string
+        description: location_id
+      tags:
+      - Levels
+      responses:
+        '200':
+          description: ''
+      operationId: get_locations_param_location_id_inventory_levels
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/locations/{location_id}/inventory_levels.json:
+    get:
+      summary: Shopify Retrieves A List Of Inventory Levels For A Location
+      description: https://shopify.dev/docs/admin-api/rest/reference/inventory/location#inventory_levels-2021-01
+      parameters:
+      - in: path
+        name: location_id
+        required: true
+        schema:
+          type: string
+        description: location_id
+      tags:
+      - Levels
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_get_locations_param_location_id_inventory_levels
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/locations/{location_id}/inventory_levels.json:
+    get:
+      summary: Shopify Retrieves A List Of Inventory Levels For A Location
+      description: https://shopify.dev/docs/admin-api/rest/reference/inventory/location#inventory_levels-unstable
+      parameters:
+      - in: path
+        name: location_id
+        required: true
+        schema:
+          type: string
+        description: location_id
+      tags:
+      - Levels
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_get_locations_param_location_id_inventory_levels
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /fetch_stock:
+    get:
+      summary: Shopify Get Inventory Levels
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentservice#fetch-stock
+      parameters:
+      - in: query
+        name: max_retries
+        description: The maximum amount of times Shopify will send the request for inventory levels.
+        schema: {}
+        required: false
+      - in: query
+        name: shop
+        description: The shop's myshopify url.
+        schema: {}
+        required: false
+      - in: query
+        name: sku
+        description: The SKU for the Product Variant we need stock levels for.
+        schema: {}
+        required: false
+      - in: query
+        name: timestamp
+        description: The Unix timestamp from when the inventory request was made.
+        schema: {}
+        required: false
+      tags:
+      - Levels
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unknown_version_get_fetch_stock
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+components:
+  securitySchemes:
+    AccessToken:
+      type: apiKey
+      name: X-Shopify-Access-Token
+      in: header
+      description: Access token obtained via OAuth

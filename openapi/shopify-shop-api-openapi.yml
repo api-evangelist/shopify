@@ -1,0 +1,390 @@
+openapi: 3.1.0
+info:
+  title: Shopify Admin REST About Shop API
+  description: The Shopify Admin REST API lets you build apps and integrations that extend and enhance the Shopify admin. Access products, customers, orders, inventory, fulfillment, and more. Endpoints are organized by resource type and versioned by release date.
+  version: 2025-01
+  contact:
+    name: Shopify
+    url: https://shopify.dev/docs/api/admin-rest
+    email: api@shopify.com
+  license:
+    name: Shopify API Terms
+    url: https://www.shopify.com/legal/api-terms
+  x-date: '2026-03-04'
+servers:
+- url: https://{store}.myshopify.com/admin/api/2025-01
+  description: Shopify Admin REST API
+  variables:
+    store:
+      default: my-store
+      description: The Shopify store subdomain
+security:
+- AccessToken: []
+tags:
+- name: Shop
+  description: Retrieve shop configuration
+paths:
+  /shop.json:
+    get:
+      operationId: getShop
+      summary: Shopify Retrieve shop configuration
+      description: Retrieves the shop's configuration including name, domain, currency, timezone, plan, and address information.
+      tags:
+      - Shop
+      parameters:
+      - name: fields
+        in: query
+        description: Comma-separated list of fields to include
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The shop configuration
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  shop:
+                    $ref: '#/components/schemas/Shop'
+  /admin/api/2020-01/assigned_fulfillment_orders.json:
+    get:
+      summary: Shopify Retrieves A List Of Fulfillment Orders On A Shop For A Specific App
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/assignedfulfillmentorder#index-2020-01
+      parameters:
+      - in: query
+        name: assignment_status
+        description: "The assigment status of the fulfillment orders that should be returned:\n                    \n                        cancellation_requested: Fulfillment orders for which the merchant has requested cancellation of the previously accepted fulfillment request.\n                        fulfillment_requested: Fulfillment orders for which the merchant has requested fulfillment.\n                        fulfillment_accepted: Fulfillment orders for which the merchant's fulfillment request has been accepted. Any number of fulfillments can be created on these fulfillment orders to completely fulfill the requested items."
+        schema: {}
+        required: false
+      - in: query
+        name: location_ids
+        description: The IDs of the assigned locations of the fulfillment orders that should be returned.
+        schema: {}
+        required: false
+      - in: query
+        name: location_ids[]
+        schema:
+          type: integer
+        description: location_ids[]
+        required: false
+      tags:
+      - Shop
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_get_assigned_fulfillment_orders
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/assigned_fulfillment_orders.json:
+    get:
+      summary: Shopify Retrieves A List Of Fulfillment Orders On A Shop For A Specific App
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/assignedfulfillmentorder#index-2020-04
+      parameters:
+      - in: query
+        name: assignment_status
+        description: "The assigment status of the fulfillment orders that should be returned:\n                    \n                        cancellation_requested: Fulfillment orders for which the merchant has requested cancellation of the previously accepted fulfillment request.\n                        fulfillment_requested: Fulfillment orders for which the merchant has requested fulfillment.\n                        fulfillment_accepted: Fulfillment orders for which the merchant's fulfillment request has been accepted. Any number of fulfillments can be created on these fulfillment orders to completely fulfill the requested items."
+        schema: {}
+        required: false
+      - in: query
+        name: location_ids
+        description: The IDs of the assigned locations of the fulfillment orders that should be returned.
+        schema: {}
+        required: false
+      - in: query
+        name: location_ids[]
+        schema:
+          type: integer
+        description: location_ids[]
+        required: false
+      tags:
+      - Shop
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_get_assigned_fulfillment_orders
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/assigned_fulfillment_orders.json:
+    get:
+      summary: Shopify Retrieves A List Of Fulfillment Orders On A Shop For A Specific App
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/assignedfulfillmentorder#index-2020-07
+      parameters:
+      - in: query
+        name: assignment_status
+        description: "The assigment status of the fulfillment orders that should be returned:\n                    \n                        cancellation_requested: Fulfillment orders for which the merchant has requested cancellation of the previously accepted fulfillment request.\n                        fulfillment_requested: Fulfillment orders for which the merchant has requested fulfillment.\n                        fulfillment_accepted: Fulfillment orders for which the merchant's fulfillment request has been accepted. Any number of fulfillments can be created on these fulfillment orders to completely fulfill the requested items."
+        schema: {}
+        required: false
+      - in: query
+        name: location_ids
+        description: The IDs of the assigned locations of the fulfillment orders that should be returned.
+        schema: {}
+        required: false
+      - in: query
+        name: location_ids[]
+        schema:
+          type: integer
+        description: location_ids[]
+        required: false
+      tags:
+      - Shop
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_get_assigned_fulfillment_orders
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/assigned_fulfillment_orders.json:
+    get:
+      summary: Shopify Retrieves A List Of Fulfillment Orders On A Shop For A Specific App
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/assignedfulfillmentorder#index-2020-10
+      parameters:
+      - in: query
+        name: assignment_status
+        description: "The assigment status of the fulfillment orders that should be returned:\n                    \n                        cancellation_requested: Fulfillment orders for which the merchant has requested cancellation of the previously accepted fulfillment request.\n                        fulfillment_requested: Fulfillment orders for which the merchant has requested fulfillment.\n                        fulfillment_accepted: Fulfillment orders for which the merchant's fulfillment request has been accepted. Any number of fulfillments can be created on these fulfillment orders to completely fulfill the requested items."
+        schema: {}
+        required: false
+      - in: query
+        name: location_ids
+        description: The IDs of the assigned locations of the fulfillment orders that should be returned.
+        schema: {}
+        required: false
+      - in: query
+        name: location_ids[]
+        schema:
+          type: integer
+        description: location_ids[]
+        required: false
+      tags:
+      - Shop
+      responses:
+        '200':
+          description: ''
+      operationId: get_assigned_fulfillment_orders
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/assigned_fulfillment_orders.json:
+    get:
+      summary: Shopify Retrieves A List Of Fulfillment Orders On A Shop For A Specific App
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/assignedfulfillmentorder#index-2021-01
+      parameters:
+      - in: query
+        name: assignment_status
+        description: "The assigment status of the fulfillment orders that should be returned:\n                    \n                        cancellation_requested: Fulfillment orders for which the merchant has requested cancellation of the previously accepted fulfillment request.\n                        fulfillment_requested: Fulfillment orders for which the merchant has requested fulfillment.\n                        fulfillment_accepted: Fulfillment orders for which the merchant's fulfillment request has been accepted. Any number of fulfillments can be created on these fulfillment orders to completely fulfill the requested items."
+        schema: {}
+        required: false
+      - in: query
+        name: location_ids
+        description: The IDs of the assigned locations of the fulfillment orders that should be returned.
+        schema: {}
+        required: false
+      - in: query
+        name: location_ids[]
+        schema:
+          type: integer
+        description: location_ids[]
+        required: false
+      tags:
+      - Shop
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_get_assigned_fulfillment_orders
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/assigned_fulfillment_orders.json:
+    get:
+      summary: Shopify Retrieves A List Of Fulfillment Orders On A Shop For A Specific App
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/assignedfulfillmentorder#index-unstable
+      parameters:
+      - in: query
+        name: assignment_status
+        description: "The assigment status of the fulfillment orders that should be returned:\n                    \n                        cancellation_requested: Fulfillment orders for which the merchant has requested cancellation of the previously accepted fulfillment request.\n                        fulfillment_requested: Fulfillment orders for which the merchant has requested fulfillment.\n                        fulfillment_accepted: Fulfillment orders for which the merchant's fulfillment request has been accepted. Any number of fulfillments can be created on these fulfillment orders to completely fulfill the requested items."
+        schema: {}
+        required: false
+      - in: query
+        name: location_ids
+        description: The IDs of the assigned locations of the fulfillment orders that should be returned.
+        schema: {}
+        required: false
+      - in: query
+        name: location_ids[]
+        schema:
+          type: integer
+        description: location_ids[]
+        required: false
+      tags:
+      - Shop
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_get_assigned_fulfillment_orders
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-01/currencies.json:
+    get:
+      summary: Shopify Retrieves A List Of Currencies Enabled On A Shop
+      description: https://shopify.dev/docs/admin-api/rest/reference/store-properties/currency#index-2020-01
+      parameters: []
+      tags:
+      - Shop
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_get_currencies
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/currencies.json:
+    get:
+      summary: Shopify Retrieves A List Of Currencies Enabled On A Shop
+      description: https://shopify.dev/docs/admin-api/rest/reference/store-properties/currency#index-2020-04
+      parameters: []
+      tags:
+      - Shop
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_get_currencies
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/currencies.json:
+    get:
+      summary: Shopify Retrieves A List Of Currencies Enabled On A Shop
+      description: https://shopify.dev/docs/admin-api/rest/reference/store-properties/currency#index-2020-07
+      parameters: []
+      tags:
+      - Shop
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_get_currencies
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/currencies.json:
+    get:
+      summary: Shopify Retrieves A List Of Currencies Enabled On A Shop
+      description: https://shopify.dev/docs/admin-api/rest/reference/store-properties/currency#index-2020-10
+      parameters: []
+      tags:
+      - Shop
+      responses:
+        '200':
+          description: ''
+      operationId: get_currencies
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/currencies.json:
+    get:
+      summary: Shopify Retrieves A List Of Currencies Enabled On A Shop
+      description: https://shopify.dev/docs/admin-api/rest/reference/store-properties/currency#index-2021-01
+      parameters: []
+      tags:
+      - Shop
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_get_currencies
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/currencies.json:
+    get:
+      summary: Shopify Retrieves A List Of Currencies Enabled On A Shop
+      description: https://shopify.dev/docs/admin-api/rest/reference/store-properties/currency#index-unstable
+      parameters: []
+      tags:
+      - Shop
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_get_currencies
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+components:
+  schemas:
+    Shop:
+      type: object
+      description: Shop configuration and metadata
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+          description: The name of the shop
+        email:
+          type: string
+          format: email
+        domain:
+          type: string
+          description: Primary domain
+        myshopify_domain:
+          type: string
+          description: The .myshopify.com domain
+        shop_owner:
+          type: string
+        phone:
+          type:
+          - string
+          - 'null'
+        address1:
+          type: string
+        address2:
+          type:
+          - string
+          - 'null'
+        city:
+          type: string
+        province:
+          type: string
+        province_code:
+          type: string
+        country:
+          type: string
+        country_code:
+          type: string
+        country_name:
+          type: string
+        zip:
+          type: string
+        currency:
+          type: string
+          description: Three-letter ISO 4217 currency code
+        money_format:
+          type: string
+        timezone:
+          type: string
+        iana_timezone:
+          type: string
+        plan_name:
+          type: string
+        plan_display_name:
+          type: string
+        weight_unit:
+          type: string
+        primary_locale:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        admin_graphql_api_id:
+          type: string
+  securitySchemes:
+    AccessToken:
+      type: apiKey
+      name: X-Shopify-Access-Token
+      in: header
+      description: Access token obtained via OAuth

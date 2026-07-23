@@ -1,0 +1,146 @@
+openapi: 3.1.0
+info:
+  title: Shopify Admin REST About Customer Addresses API
+  description: The Shopify Admin REST API lets you build apps and integrations that extend and enhance the Shopify admin. Access products, customers, orders, inventory, fulfillment, and more. Endpoints are organized by resource type and versioned by release date.
+  version: 2025-01
+  contact:
+    name: Shopify
+    url: https://shopify.dev/docs/api/admin-rest
+    email: api@shopify.com
+  license:
+    name: Shopify API Terms
+    url: https://www.shopify.com/legal/api-terms
+  x-date: '2026-03-04'
+servers:
+- url: https://{store}.myshopify.com/admin/api/2025-01
+  description: Shopify Admin REST API
+  variables:
+    store:
+      default: my-store
+      description: The Shopify store subdomain
+security:
+- AccessToken: []
+tags:
+- name: Customer Addresses
+  description: Manage customer addresses
+paths:
+  /customers/{customer_id}/addresses.json:
+    get:
+      operationId: listCustomerAddresses
+      summary: Shopify Retrieve addresses for a customer
+      description: Retrieves all addresses for a customer.
+      tags:
+      - Customer Addresses
+      parameters:
+      - $ref: '#/components/parameters/CustomerId'
+      - name: limit
+        in: query
+        description: Maximum number of results (max 250, default 50)
+        schema:
+          type: integer
+          default: 50
+          maximum: 250
+      responses:
+        '200':
+          description: A list of customer addresses
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  addresses:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Address'
+    post:
+      operationId: createCustomerAddress
+      summary: Shopify Create a customer address
+      description: Creates a new address for a customer.
+      tags:
+      - Customer Addresses
+      parameters:
+      - $ref: '#/components/parameters/CustomerId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - address
+              properties:
+                address:
+                  $ref: '#/components/schemas/Address'
+      responses:
+        '201':
+          description: The created address
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  customer_address:
+                    $ref: '#/components/schemas/Address'
+components:
+  parameters:
+    CustomerId:
+      name: customer_id
+      in: path
+      required: true
+      description: The ID of the customer
+      schema:
+        type: integer
+  schemas:
+    Address:
+      type: object
+      description: A customer mailing address
+      properties:
+        id:
+          type: integer
+        customer_id:
+          type: integer
+        first_name:
+          type: string
+        last_name:
+          type: string
+        company:
+          type:
+          - string
+          - 'null'
+        address1:
+          type: string
+        address2:
+          type:
+          - string
+          - 'null'
+        city:
+          type: string
+        province:
+          type:
+          - string
+          - 'null'
+        country:
+          type: string
+        zip:
+          type: string
+        phone:
+          type:
+          - string
+          - 'null'
+        province_code:
+          type:
+          - string
+          - 'null'
+        country_code:
+          type: string
+        country_name:
+          type: string
+        default:
+          type: boolean
+          description: Whether this is the default address
+  securitySchemes:
+    AccessToken:
+      type: apiKey
+      name: X-Shopify-Access-Token
+      in: header
+      description: Access token obtained via OAuth

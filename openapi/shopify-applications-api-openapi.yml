@@ -1,0 +1,3600 @@
+openapi: 3.1.0
+info:
+  title: Shopify Admin REST About Applications API
+  description: The Shopify Admin REST API lets you build apps and integrations that extend and enhance the Shopify admin. Access products, customers, orders, inventory, fulfillment, and more. Endpoints are organized by resource type and versioned by release date.
+  version: 2025-01
+  contact:
+    name: Shopify
+    url: https://shopify.dev/docs/api/admin-rest
+    email: api@shopify.com
+  license:
+    name: Shopify API Terms
+    url: https://www.shopify.com/legal/api-terms
+  x-date: '2026-03-04'
+servers:
+- url: https://{store}.myshopify.com/admin/api/2025-01
+  description: Shopify Admin REST API
+  variables:
+    store:
+      default: my-store
+      description: The Shopify store subdomain
+security:
+- AccessToken: []
+tags:
+- name: Applications
+paths:
+  /admin/api/2020-01/reports/{report_id}.json:
+    get:
+      summary: Shopify Retrieves A Single Report Created By Your App
+      description: https://shopify.dev/docs/admin-api/rest/reference/analytics/report#show-2020-01
+      parameters:
+      - in: path
+        name: report_id
+        required: true
+        schema:
+          type: string
+        description: report_id
+      - in: query
+        name: fields
+        description: A comma-separated list of fields to include in the response.
+        schema: {}
+        required: false
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_get_reports_param_report_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/reports/{report_id}.json:
+    get:
+      summary: Shopify Retrieves A Single Report Created By Your App
+      description: https://shopify.dev/docs/admin-api/rest/reference/analytics/report#show-2020-04
+      parameters:
+      - in: path
+        name: report_id
+        required: true
+        schema:
+          type: string
+        description: report_id
+      - in: query
+        name: fields
+        description: A comma-separated list of fields to include in the response.
+        schema: {}
+        required: false
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_get_reports_param_report_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/reports/{report_id}.json:
+    get:
+      summary: Shopify Retrieves A Single Report Created By Your App
+      description: https://shopify.dev/docs/admin-api/rest/reference/analytics/report#show-2020-07
+      parameters:
+      - in: path
+        name: report_id
+        required: true
+        schema:
+          type: string
+        description: report_id
+      - in: query
+        name: fields
+        description: A comma-separated list of fields to include in the response.
+        schema: {}
+        required: false
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_get_reports_param_report_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/reports/{report_id}.json:
+    get:
+      summary: Shopify Retrieves A Single Report Created By Your App
+      description: https://shopify.dev/docs/admin-api/rest/reference/analytics/report#show-2020-10
+      parameters:
+      - in: path
+        name: report_id
+        required: true
+        schema:
+          type: string
+        description: report_id
+      - in: query
+        name: fields
+        description: A comma-separated list of fields to include in the response.
+        schema: {}
+        required: false
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: get_reports_param_report_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/reports/{report_id}.json:
+    get:
+      summary: Shopify Retrieves A Single Report Created By Your App
+      description: https://shopify.dev/docs/admin-api/rest/reference/analytics/report#show-2021-01
+      parameters:
+      - in: path
+        name: report_id
+        required: true
+        schema:
+          type: string
+        description: report_id
+      - in: query
+        name: fields
+        description: A comma-separated list of fields to include in the response.
+        schema: {}
+        required: false
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_get_reports_param_report_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/reports/{report_id}.json:
+    get:
+      summary: Shopify Retrieves A Single Report Created By Your App
+      description: https://shopify.dev/docs/admin-api/rest/reference/analytics/report#show-unstable
+      parameters:
+      - in: path
+        name: report_id
+        required: true
+        schema:
+          type: string
+        description: report_id
+      - in: query
+        name: fields
+        description: A comma-separated list of fields to include in the response.
+        schema: {}
+        required: false
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_get_reports_param_report_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-01/application_charges.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  application_charge:
+                    name: Super Duper Expensive action
+                    price: 100
+                    return_url: http://super-duper.shopifyapps.com
+                summary: Create an application charge
+              example2:
+                value:
+                  application_charge:
+                    name: Super Duper Expensive action
+                    price: 100
+                    return_url: http://super-duper.shopifyapps.com
+                    test: true
+                summary: Create a test charge that will not cause a credit card to be charged
+              example3:
+                value:
+                  application_charge:
+                    name: Super Duper Expensive action
+                    price: 0.4
+                    return_url: http://super-duper.shopifyapps.com
+                summary: Trying to create a charge with a price less than 0.50 will return an error
+              example4:
+                value:
+                  application_charge:
+                    name: ''
+                summary: Trying to create a charge without a price or name will return an error
+      summary: Shopify Creates An Application Charge
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/applicationcharge#create-2020-01
+      parameters: []
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_create_application_charges
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    get:
+      summary: Shopify Retrieves A List Of Application Charges
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/applicationcharge#index-2020-01
+      parameters:
+      - in: query
+        name: since_id
+        description: Restrict results to after the specified ID.
+        schema: {}
+        required: false
+      - in: query
+        name: fields
+        description: A comma-separated list of fields to include in the response.
+        schema: {}
+        required: false
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_get_application_charges
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-01/application_charges/{application_charge_id}.json:
+    get:
+      summary: Shopify Retrieves An Application Charge
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/applicationcharge#show-2020-01
+      parameters:
+      - in: path
+        name: application_charge_id
+        required: true
+        schema:
+          type: string
+        description: application_charge_id
+      - in: query
+        name: fields
+        description: A comma-separated list of fields to include in the response.
+        schema: {}
+        required: false
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_get_application_charges_param_application_charge_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/application_charges.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  application_charge:
+                    name: Super Duper Expensive action
+                    price: 100
+                    return_url: http://super-duper.shopifyapps.com
+                summary: Create an application charge
+              example2:
+                value:
+                  application_charge:
+                    name: Super Duper Expensive action
+                    price: 100
+                    return_url: http://super-duper.shopifyapps.com
+                    test: true
+                summary: Create a test charge that will not cause a credit card to be charged
+              example3:
+                value:
+                  application_charge:
+                    name: Super Duper Expensive action
+                    price: 0.4
+                    return_url: http://super-duper.shopifyapps.com
+                summary: Trying to create a charge with a price less than 0.50 will return an error
+              example4:
+                value:
+                  application_charge:
+                    name: ''
+                summary: Trying to create a charge without a price or name will return an error
+      summary: Shopify Creates An Application Charge
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/applicationcharge#create-2020-04
+      parameters: []
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_create_application_charges
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    get:
+      summary: Shopify Retrieves A List Of Application Charges
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/applicationcharge#index-2020-04
+      parameters:
+      - in: query
+        name: since_id
+        description: Restrict results to after the specified ID.
+        schema: {}
+        required: false
+      - in: query
+        name: fields
+        description: A comma-separated list of fields to include in the response.
+        schema: {}
+        required: false
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_get_application_charges
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/application_charges/{application_charge_id}.json:
+    get:
+      summary: Shopify Retrieves An Application Charge
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/applicationcharge#show-2020-04
+      parameters:
+      - in: path
+        name: application_charge_id
+        required: true
+        schema:
+          type: string
+        description: application_charge_id
+      - in: query
+        name: fields
+        description: A comma-separated list of fields to include in the response.
+        schema: {}
+        required: false
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_get_application_charges_param_application_charge_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/application_charges.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  application_charge:
+                    name: Super Duper Expensive action
+                    price: 100
+                    return_url: http://super-duper.shopifyapps.com
+                summary: Create an application charge
+              example2:
+                value:
+                  application_charge:
+                    name: Super Duper Expensive action
+                    price: 100
+                    return_url: http://super-duper.shopifyapps.com
+                    test: true
+                summary: Create a test charge that will not cause a credit card to be charged
+              example3:
+                value:
+                  application_charge:
+                    name: Super Duper Expensive action
+                    price: 0.4
+                    return_url: http://super-duper.shopifyapps.com
+                summary: Trying to create a charge with a price less than 0.50 will return an error
+              example4:
+                value:
+                  application_charge:
+                    name: ''
+                summary: Trying to create a charge without a price or name will return an error
+      summary: Shopify Creates An Application Charge
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/applicationcharge#create-2020-07
+      parameters: []
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_create_application_charges
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    get:
+      summary: Shopify Retrieves A List Of Application Charges
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/applicationcharge#index-2020-07
+      parameters:
+      - in: query
+        name: since_id
+        description: Restrict results to after the specified ID.
+        schema: {}
+        required: false
+      - in: query
+        name: fields
+        description: A comma-separated list of fields to include in the response.
+        schema: {}
+        required: false
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_get_application_charges
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/application_charges/{application_charge_id}.json:
+    get:
+      summary: Shopify Retrieves An Application Charge
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/applicationcharge#show-2020-07
+      parameters:
+      - in: path
+        name: application_charge_id
+        required: true
+        schema:
+          type: string
+        description: application_charge_id
+      - in: query
+        name: fields
+        description: A comma-separated list of fields to include in the response.
+        schema: {}
+        required: false
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_get_application_charges_param_application_charge_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/application_charges.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  application_charge:
+                    name: Super Duper Expensive action
+                    price: 100
+                    return_url: http://super-duper.shopifyapps.com
+                summary: Create an application charge
+              example2:
+                value:
+                  application_charge:
+                    name: Super Duper Expensive action
+                    price: 100
+                    return_url: http://super-duper.shopifyapps.com
+                    test: true
+                summary: Create a test charge that will not cause a credit card to be charged
+              example3:
+                value:
+                  application_charge:
+                    name: Super Duper Expensive action
+                    price: 0.4
+                    return_url: http://super-duper.shopifyapps.com
+                summary: Trying to create a charge with a price less than 0.50 will return an error
+              example4:
+                value:
+                  application_charge:
+                    name: ''
+                summary: Trying to create a charge without a price or name will return an error
+      summary: Shopify Creates An Application Charge
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/applicationcharge#create-2020-10
+      parameters: []
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: create_application_charges
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    get:
+      summary: Shopify Retrieves A List Of Application Charges
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/applicationcharge#index-2020-10
+      parameters:
+      - in: query
+        name: since_id
+        description: Restrict results to after the specified ID.
+        schema: {}
+        required: false
+      - in: query
+        name: fields
+        description: A comma-separated list of fields to include in the response.
+        schema: {}
+        required: false
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: get_application_charges
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/application_charges/{application_charge_id}.json:
+    get:
+      summary: Shopify Retrieves An Application Charge
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/applicationcharge#show-2020-10
+      parameters:
+      - in: path
+        name: application_charge_id
+        required: true
+        schema:
+          type: string
+        description: application_charge_id
+      - in: query
+        name: fields
+        description: A comma-separated list of fields to include in the response.
+        schema: {}
+        required: false
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: get_application_charges_param_application_charge_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/application_charges.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  application_charge:
+                    name: Super Duper Expensive action
+                    price: 100
+                    return_url: http://super-duper.shopifyapps.com
+                summary: Create an application charge
+              example2:
+                value:
+                  application_charge:
+                    name: Super Duper Expensive action
+                    price: 100
+                    return_url: http://super-duper.shopifyapps.com
+                    test: true
+                summary: Create a test charge that will not cause a credit card to be charged
+              example3:
+                value:
+                  application_charge:
+                    name: Super Duper Expensive action
+                    price: 0.4
+                    return_url: http://super-duper.shopifyapps.com
+                summary: Trying to create a charge with a price less than 0.50 will return an error
+              example4:
+                value:
+                  application_charge:
+                    name: ''
+                summary: Trying to create a charge without a price or name will return an error
+      summary: Shopify Creates An Application Charge
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/applicationcharge#create-2021-01
+      parameters: []
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_create_application_charges
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    get:
+      summary: Shopify Retrieves A List Of Application Charges
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/applicationcharge#index-2021-01
+      parameters:
+      - in: query
+        name: since_id
+        description: Restrict results to after the specified ID.
+        schema: {}
+        required: false
+      - in: query
+        name: fields
+        description: A comma-separated list of fields to include in the response.
+        schema: {}
+        required: false
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_get_application_charges
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/application_charges/{application_charge_id}.json:
+    get:
+      summary: Shopify Retrieves An Application Charge
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/applicationcharge#show-2021-01
+      parameters:
+      - in: path
+        name: application_charge_id
+        required: true
+        schema:
+          type: string
+        description: application_charge_id
+      - in: query
+        name: fields
+        description: A comma-separated list of fields to include in the response.
+        schema: {}
+        required: false
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_get_application_charges_param_application_charge_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/application_charges.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  application_charge:
+                    name: Super Duper Expensive action
+                    price: 100
+                    return_url: http://super-duper.shopifyapps.com
+                summary: Create an application charge
+              example2:
+                value:
+                  application_charge:
+                    name: Super Duper Expensive action
+                    price: 100
+                    return_url: http://super-duper.shopifyapps.com
+                    test: true
+                summary: Create a test charge that will not cause a credit card to be charged
+              example3:
+                value:
+                  application_charge:
+                    name: Super Duper Expensive action
+                    price: 0.4
+                    return_url: http://super-duper.shopifyapps.com
+                summary: Trying to create a charge with a price less than 0.50 will return an error
+              example4:
+                value:
+                  application_charge:
+                    name: ''
+                summary: Trying to create a charge without a price or name will return an error
+      summary: Shopify Creates An Application Charge
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/applicationcharge#create-unstable
+      parameters: []
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_create_application_charges
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    get:
+      summary: Shopify Retrieves A List Of Application Charges
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/applicationcharge#index-unstable
+      parameters:
+      - in: query
+        name: since_id
+        description: Restrict results to after the specified ID.
+        schema: {}
+        required: false
+      - in: query
+        name: fields
+        description: A comma-separated list of fields to include in the response.
+        schema: {}
+        required: false
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_get_application_charges
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/application_charges/{application_charge_id}.json:
+    get:
+      summary: Shopify Retrieves An Application Charge
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/applicationcharge#show-unstable
+      parameters:
+      - in: path
+        name: application_charge_id
+        required: true
+        schema:
+          type: string
+        description: application_charge_id
+      - in: query
+        name: fields
+        description: A comma-separated list of fields to include in the response.
+        schema: {}
+        required: false
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_get_application_charges_param_application_charge_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-01/application_credits.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  application_credit:
+                    description: application credit for refund
+                    amount: 5
+                summary: Create a new credit
+              example2:
+                value:
+                  application_credit:
+                    description: application credit for refund
+                    amount: 5
+                    test: true
+                summary: Create a test application credit that will not issue a credit to the merchant
+              example3:
+                value:
+                  application_credit:
+                    description: application credit for refund
+                    amount: 5
+                summary: Creating a credit amount that exceeds shop owner purchases over last 30 days will return an error
+              example4:
+                value:
+                  application_credit:
+                    description: application credit for refund
+                    amount: 5
+                summary: Applying a credit to a shop without a previous app purchase will return an error
+              example5:
+                value:
+                  application_credit:
+                    description: application credit for refund
+                    amount: 5
+                summary: Creating a credit amount that exceeds the total pending payouts for the app will return an error
+      summary: Shopify Creates An Application Credit
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/applicationcredit#create-2020-01
+      parameters: []
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_create_application_credits
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    get:
+      summary: Shopify Retrieves All Application Credits
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/applicationcredit#index-2020-01
+      parameters:
+      - in: query
+        name: fields
+        description: A comma-separated list of fields to include in the response.
+        schema: {}
+        required: false
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_get_application_credits
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-01/application_credits/{application_credit_id}.json:
+    get:
+      summary: Shopify Retrieves A Single Application Credit
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/applicationcredit#show-2020-01
+      parameters:
+      - in: path
+        name: application_credit_id
+        required: true
+        schema:
+          type: string
+        description: application_credit_id
+      - in: query
+        name: fields
+        description: A comma-separated list of fields to include in the response.
+        schema: {}
+        required: false
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_get_application_credits_param_application_credit_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/application_credits.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  application_credit:
+                    description: application credit for refund
+                    amount: 5
+                summary: Create a new credit
+              example2:
+                value:
+                  application_credit:
+                    description: application credit for refund
+                    amount: 5
+                    test: true
+                summary: Create a test application credit that will not issue a credit to the merchant
+              example3:
+                value:
+                  application_credit:
+                    description: application credit for refund
+                    amount: 5
+                summary: Creating a credit amount that exceeds shop owner purchases over last 30 days will return an error
+              example4:
+                value:
+                  application_credit:
+                    description: application credit for refund
+                    amount: 5
+                summary: Applying a credit to a shop without a previous app purchase will return an error
+              example5:
+                value:
+                  application_credit:
+                    description: application credit for refund
+                    amount: 5
+                summary: Creating a credit amount that exceeds the total pending payouts for the app will return an error
+      summary: Shopify Creates An Application Credit
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/applicationcredit#create-2020-04
+      parameters: []
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_create_application_credits
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    get:
+      summary: Shopify Retrieves All Application Credits
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/applicationcredit#index-2020-04
+      parameters:
+      - in: query
+        name: fields
+        description: A comma-separated list of fields to include in the response.
+        schema: {}
+        required: false
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_get_application_credits
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/application_credits/{application_credit_id}.json:
+    get:
+      summary: Shopify Retrieves A Single Application Credit
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/applicationcredit#show-2020-04
+      parameters:
+      - in: path
+        name: application_credit_id
+        required: true
+        schema:
+          type: string
+        description: application_credit_id
+      - in: query
+        name: fields
+        description: A comma-separated list of fields to include in the response.
+        schema: {}
+        required: false
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_get_application_credits_param_application_credit_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/application_credits.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  application_credit:
+                    description: application credit for refund
+                    amount: 5
+                summary: Create a new credit
+              example2:
+                value:
+                  application_credit:
+                    description: application credit for refund
+                    amount: 5
+                    test: true
+                summary: Create a test application credit that will not issue a credit to the merchant
+              example3:
+                value:
+                  application_credit:
+                    description: application credit for refund
+                    amount: 5
+                summary: Creating a credit amount that exceeds shop owner purchases over last 30 days will return an error
+              example4:
+                value:
+                  application_credit:
+                    description: application credit for refund
+                    amount: 5
+                summary: Applying a credit to a shop without a previous app purchase will return an error
+              example5:
+                value:
+                  application_credit:
+                    description: application credit for refund
+                    amount: 5
+                summary: Creating a credit amount that exceeds the total pending payouts for the app will return an error
+      summary: Shopify Creates An Application Credit
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/applicationcredit#create-2020-07
+      parameters: []
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_create_application_credits
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    get:
+      summary: Shopify Retrieves All Application Credits
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/applicationcredit#index-2020-07
+      parameters:
+      - in: query
+        name: fields
+        description: A comma-separated list of fields to include in the response.
+        schema: {}
+        required: false
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_get_application_credits
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/application_credits/{application_credit_id}.json:
+    get:
+      summary: Shopify Retrieves A Single Application Credit
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/applicationcredit#show-2020-07
+      parameters:
+      - in: path
+        name: application_credit_id
+        required: true
+        schema:
+          type: string
+        description: application_credit_id
+      - in: query
+        name: fields
+        description: A comma-separated list of fields to include in the response.
+        schema: {}
+        required: false
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_get_application_credits_param_application_credit_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/application_credits.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  application_credit:
+                    description: application credit for refund
+                    amount: 5
+                summary: Create a new credit
+              example2:
+                value:
+                  application_credit:
+                    description: application credit for refund
+                    amount: 5
+                    test: true
+                summary: Create a test application credit that will not issue a credit to the merchant
+              example3:
+                value:
+                  application_credit:
+                    description: application credit for refund
+                    amount: 5
+                summary: Creating a credit amount that exceeds shop owner purchases over last 30 days will return an error
+              example4:
+                value:
+                  application_credit:
+                    description: application credit for refund
+                    amount: 5
+                summary: Applying a credit to a shop without a previous app purchase will return an error
+              example5:
+                value:
+                  application_credit:
+                    description: application credit for refund
+                    amount: 5
+                summary: Creating a credit amount that exceeds the total pending payouts for the app will return an error
+      summary: Shopify Creates An Application Credit
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/applicationcredit#create-2020-10
+      parameters: []
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: create_application_credits
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    get:
+      summary: Shopify Retrieves All Application Credits
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/applicationcredit#index-2020-10
+      parameters:
+      - in: query
+        name: fields
+        description: A comma-separated list of fields to include in the response.
+        schema: {}
+        required: false
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: get_application_credits
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/application_credits/{application_credit_id}.json:
+    get:
+      summary: Shopify Retrieves A Single Application Credit
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/applicationcredit#show-2020-10
+      parameters:
+      - in: path
+        name: application_credit_id
+        required: true
+        schema:
+          type: string
+        description: application_credit_id
+      - in: query
+        name: fields
+        description: A comma-separated list of fields to include in the response.
+        schema: {}
+        required: false
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: get_application_credits_param_application_credit_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/application_credits.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  application_credit:
+                    description: application credit for refund
+                    amount: 5
+                summary: Create a new credit
+              example2:
+                value:
+                  application_credit:
+                    description: application credit for refund
+                    amount: 5
+                    test: true
+                summary: Create a test application credit that will not issue a credit to the merchant
+              example3:
+                value:
+                  application_credit:
+                    description: application credit for refund
+                    amount: 5
+                summary: Creating a credit amount that exceeds shop owner purchases over last 30 days will return an error
+              example4:
+                value:
+                  application_credit:
+                    description: application credit for refund
+                    amount: 5
+                summary: Applying a credit to a shop without a previous app purchase will return an error
+              example5:
+                value:
+                  application_credit:
+                    description: application credit for refund
+                    amount: 5
+                summary: Creating a credit amount that exceeds the total pending payouts for the app will return an error
+      summary: Shopify Creates An Application Credit
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/applicationcredit#create-2021-01
+      parameters: []
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_create_application_credits
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    get:
+      summary: Shopify Retrieves All Application Credits
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/applicationcredit#index-2021-01
+      parameters:
+      - in: query
+        name: fields
+        description: A comma-separated list of fields to include in the response.
+        schema: {}
+        required: false
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_get_application_credits
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/application_credits/{application_credit_id}.json:
+    get:
+      summary: Shopify Retrieves A Single Application Credit
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/applicationcredit#show-2021-01
+      parameters:
+      - in: path
+        name: application_credit_id
+        required: true
+        schema:
+          type: string
+        description: application_credit_id
+      - in: query
+        name: fields
+        description: A comma-separated list of fields to include in the response.
+        schema: {}
+        required: false
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_get_application_credits_param_application_credit_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/application_credits.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  application_credit:
+                    description: application credit for refund
+                    amount: 5
+                summary: Create a new credit
+              example2:
+                value:
+                  application_credit:
+                    description: application credit for refund
+                    amount: 5
+                    test: true
+                summary: Create a test application credit that will not issue a credit to the merchant
+              example3:
+                value:
+                  application_credit:
+                    description: application credit for refund
+                    amount: 5
+                summary: Creating a credit amount that exceeds shop owner purchases over last 30 days will return an error
+              example4:
+                value:
+                  application_credit:
+                    description: application credit for refund
+                    amount: 5
+                summary: Applying a credit to a shop without a previous app purchase will return an error
+              example5:
+                value:
+                  application_credit:
+                    description: application credit for refund
+                    amount: 5
+                summary: Creating a credit amount that exceeds the total pending payouts for the app will return an error
+      summary: Shopify Creates An Application Credit
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/applicationcredit#create-unstable
+      parameters: []
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_create_application_credits
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    get:
+      summary: Shopify Retrieves All Application Credits
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/applicationcredit#index-unstable
+      parameters:
+      - in: query
+        name: fields
+        description: A comma-separated list of fields to include in the response.
+        schema: {}
+        required: false
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_get_application_credits
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/application_credits/{application_credit_id}.json:
+    get:
+      summary: Shopify Retrieves A Single Application Credit
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/applicationcredit#show-unstable
+      parameters:
+      - in: path
+        name: application_credit_id
+        required: true
+        schema:
+          type: string
+        description: application_credit_id
+      - in: query
+        name: fields
+        description: A comma-separated list of fields to include in the response.
+        schema: {}
+        required: false
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_get_application_credits_param_application_credit_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-01/recurring_application_charges.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  recurring_application_charge:
+                    name: Super Duper Plan
+                    price: 10
+                    return_url: http://super-duper.shopifyapps.com
+                summary: Create a recurring application charge
+              example2:
+                value:
+                  recurring_application_charge:
+                    name: Super Duper Plan
+                    price: 10
+                    return_url: http://super-duper.shopifyapps.com
+                    capped_amount: 100
+                    terms: $1 for 1000 emails
+                summary: Create a new charge with terms and a capped amount
+              example3:
+                value:
+                  recurring_application_charge:
+                    name: Super Duper Plan
+                    price: 10
+                    return_url: http://super-duper.shopifyapps.com
+                    trial_days: 5
+                summary: Create a new charge with a trial period. The trial period will go into effect at the time the recurring charge is activated.
+              example4:
+                value:
+                  recurring_application_charge:
+                    name: Super Duper Plan
+                    price: 10
+                    return_url: http://super-duper.shopifyapps.com
+                    test: true
+                summary: Create a recurring test charge that will not cause a credit card to be charged
+              example5:
+                value:
+                  recurring_application_charge:
+                    name: ''
+                summary: Trying to create a charge without a price and name will return an error
+      summary: Shopify Creates A Recurring Application Charge
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/recurringapplicationcharge#create-2020-01
+      parameters: []
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_create_recurring_application_charges
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    get:
+      summary: Shopify Retrieves A List Of Recurring Application Charges
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/recurringapplicationcharge#index-2020-01
+      parameters:
+      - in: query
+        name: since_id
+        description: Restrict results to after the specified ID.
+        schema: {}
+        required: false
+      - in: query
+        name: fields
+        description: A comma-separated list of fields to include in the response.
+        schema: {}
+        required: false
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_get_recurring_application_charges
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-01/recurring_application_charges/{recurring_application_charge_id}.json:
+    delete:
+      summary: Shopify Cancels A Recurring Application Charge
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/recurringapplicationcharge#destroy-2020-01
+      parameters:
+      - in: path
+        name: recurring_application_charge_id
+        required: true
+        schema:
+          type: string
+        description: recurring_application_charge_id
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_delete_recurring_application_charges_param_recurring_application_charge_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-01/recurring_application_charges/{recurring_application_charge_id}/customize.json:
+    put:
+      summary: Shopify Updates The Capped Amount Of An Active Recurring Application Charge
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/recurringapplicationcharge#customize-2020-01
+      parameters:
+      - in: path
+        name: recurring_application_charge_id
+        required: true
+        schema:
+          type: string
+        description: recurring_application_charge_id
+      - in: query
+        name: recurring_application_charge[capped_amount]
+        schema:
+          type: integer
+        description: recurring_application_charge[capped_amount]
+        required: false
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_update_recurring_application_charges_param_recurring_application_charge_id_customize
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/recurring_application_charges.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  recurring_application_charge:
+                    name: Super Duper Plan
+                    price: 10
+                    return_url: http://super-duper.shopifyapps.com
+                summary: Create a recurring application charge
+              example2:
+                value:
+                  recurring_application_charge:
+                    name: Super Duper Plan
+                    price: 10
+                    return_url: http://super-duper.shopifyapps.com
+                    capped_amount: 100
+                    terms: $1 for 1000 emails
+                summary: Create a new charge with terms and a capped amount
+              example3:
+                value:
+                  recurring_application_charge:
+                    name: Super Duper Plan
+                    price: 10
+                    return_url: http://super-duper.shopifyapps.com
+                    trial_days: 5
+                summary: Create a new charge with a trial period. The trial period will go into effect at the time the recurring charge is activated.
+              example4:
+                value:
+                  recurring_application_charge:
+                    name: Super Duper Plan
+                    price: 10
+                    return_url: http://super-duper.shopifyapps.com
+                    test: true
+                summary: Create a recurring test charge that will not cause a credit card to be charged
+              example5:
+                value:
+                  recurring_application_charge:
+                    name: ''
+                summary: Trying to create a charge without a price and name will return an error
+      summary: Shopify Creates A Recurring Application Charge
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/recurringapplicationcharge#create-2020-04
+      parameters: []
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_create_recurring_application_charges
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    get:
+      summary: Shopify Retrieves A List Of Recurring Application Charges
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/recurringapplicationcharge#index-2020-04
+      parameters:
+      - in: query
+        name: since_id
+        description: Restrict results to after the specified ID.
+        schema: {}
+        required: false
+      - in: query
+        name: fields
+        description: A comma-separated list of fields to include in the response.
+        schema: {}
+        required: false
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_get_recurring_application_charges
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/recurring_application_charges/{recurring_application_charge_id}.json:
+    delete:
+      summary: Shopify Cancels A Recurring Application Charge
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/recurringapplicationcharge#destroy-2020-04
+      parameters:
+      - in: path
+        name: recurring_application_charge_id
+        required: true
+        schema:
+          type: string
+        description: recurring_application_charge_id
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_delete_recurring_application_charges_param_recurring_application_charge_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/recurring_application_charges/{recurring_application_charge_id}/customize.json:
+    put:
+      summary: Shopify Updates The Capped Amount Of An Active Recurring Application Charge
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/recurringapplicationcharge#customize-2020-04
+      parameters:
+      - in: path
+        name: recurring_application_charge_id
+        required: true
+        schema:
+          type: string
+        description: recurring_application_charge_id
+      - in: query
+        name: recurring_application_charge[capped_amount]
+        schema:
+          type: integer
+        description: recurring_application_charge[capped_amount]
+        required: false
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_update_recurring_application_charges_param_recurring_application_charge_id_customize
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/recurring_application_charges.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  recurring_application_charge:
+                    name: Super Duper Plan
+                    price: 10
+                    return_url: http://super-duper.shopifyapps.com
+                summary: Create a recurring application charge
+              example2:
+                value:
+                  recurring_application_charge:
+                    name: Super Duper Plan
+                    price: 10
+                    return_url: http://super-duper.shopifyapps.com
+                    capped_amount: 100
+                    terms: $1 for 1000 emails
+                summary: Create a new charge with terms and a capped amount
+              example3:
+                value:
+                  recurring_application_charge:
+                    name: Super Duper Plan
+                    price: 10
+                    return_url: http://super-duper.shopifyapps.com
+                    trial_days: 5
+                summary: Create a new charge with a trial period. The trial period will go into effect at the time the recurring charge is activated.
+              example4:
+                value:
+                  recurring_application_charge:
+                    name: Super Duper Plan
+                    price: 10
+                    return_url: http://super-duper.shopifyapps.com
+                    test: true
+                summary: Create a recurring test charge that will not cause a credit card to be charged
+              example5:
+                value:
+                  recurring_application_charge:
+                    name: ''
+                summary: Trying to create a charge without a price and name will return an error
+      summary: Shopify Creates A Recurring Application Charge
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/recurringapplicationcharge#create-2020-07
+      parameters: []
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_create_recurring_application_charges
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    get:
+      summary: Shopify Retrieves A List Of Recurring Application Charges
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/recurringapplicationcharge#index-2020-07
+      parameters:
+      - in: query
+        name: since_id
+        description: Restrict results to after the specified ID.
+        schema: {}
+        required: false
+      - in: query
+        name: fields
+        description: A comma-separated list of fields to include in the response.
+        schema: {}
+        required: false
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_get_recurring_application_charges
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/recurring_application_charges/{recurring_application_charge_id}.json:
+    delete:
+      summary: Shopify Cancels A Recurring Application Charge
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/recurringapplicationcharge#destroy-2020-07
+      parameters:
+      - in: path
+        name: recurring_application_charge_id
+        required: true
+        schema:
+          type: string
+        description: recurring_application_charge_id
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_delete_recurring_application_charges_param_recurring_application_charge_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/recurring_application_charges/{recurring_application_charge_id}/customize.json:
+    put:
+      summary: Shopify Updates The Capped Amount Of An Active Recurring Application Charge
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/recurringapplicationcharge#customize-2020-07
+      parameters:
+      - in: path
+        name: recurring_application_charge_id
+        required: true
+        schema:
+          type: string
+        description: recurring_application_charge_id
+      - in: query
+        name: recurring_application_charge[capped_amount]
+        schema:
+          type: integer
+        description: recurring_application_charge[capped_amount]
+        required: false
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_update_recurring_application_charges_param_recurring_application_charge_id_customize
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/recurring_application_charges.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  recurring_application_charge:
+                    name: Super Duper Plan
+                    price: 10
+                    return_url: http://super-duper.shopifyapps.com
+                summary: Create a recurring application charge
+              example2:
+                value:
+                  recurring_application_charge:
+                    name: Super Duper Plan
+                    price: 10
+                    return_url: http://super-duper.shopifyapps.com
+                    capped_amount: 100
+                    terms: $1 for 1000 emails
+                summary: Create a new charge with terms and a capped amount
+              example3:
+                value:
+                  recurring_application_charge:
+                    name: Super Duper Plan
+                    price: 10
+                    return_url: http://super-duper.shopifyapps.com
+                    trial_days: 5
+                summary: Create a new charge with a trial period. The trial period will go into effect at the time the recurring charge is activated.
+              example4:
+                value:
+                  recurring_application_charge:
+                    name: Super Duper Plan
+                    price: 10
+                    return_url: http://super-duper.shopifyapps.com
+                    test: true
+                summary: Create a recurring test charge that will not cause a credit card to be charged
+              example5:
+                value:
+                  recurring_application_charge:
+                    name: ''
+                summary: Trying to create a charge without a price and name will return an error
+      summary: Shopify Creates A Recurring Application Charge
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/recurringapplicationcharge#create-2020-10
+      parameters: []
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: create_recurring_application_charges
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    get:
+      summary: Shopify Retrieves A List Of Recurring Application Charges
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/recurringapplicationcharge#index-2020-10
+      parameters:
+      - in: query
+        name: since_id
+        description: Restrict results to after the specified ID.
+        schema: {}
+        required: false
+      - in: query
+        name: fields
+        description: A comma-separated list of fields to include in the response.
+        schema: {}
+        required: false
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: get_recurring_application_charges
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/recurring_application_charges/{recurring_application_charge_id}.json:
+    delete:
+      summary: Shopify Cancels A Recurring Application Charge
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/recurringapplicationcharge#destroy-2020-10
+      parameters:
+      - in: path
+        name: recurring_application_charge_id
+        required: true
+        schema:
+          type: string
+        description: recurring_application_charge_id
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: delete_recurring_application_charges_param_recurring_application_charge_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/recurring_application_charges/{recurring_application_charge_id}/customize.json:
+    put:
+      summary: Shopify Updates The Capped Amount Of An Active Recurring Application Charge
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/recurringapplicationcharge#customize-2020-10
+      parameters:
+      - in: path
+        name: recurring_application_charge_id
+        required: true
+        schema:
+          type: string
+        description: recurring_application_charge_id
+      - in: query
+        name: recurring_application_charge[capped_amount]
+        schema:
+          type: integer
+        description: recurring_application_charge[capped_amount]
+        required: false
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: update_recurring_application_charges_param_recurring_application_charge_id_customize
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/recurring_application_charges.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  recurring_application_charge:
+                    name: Super Duper Plan
+                    price: 10
+                    return_url: http://super-duper.shopifyapps.com
+                summary: Create a recurring application charge
+              example2:
+                value:
+                  recurring_application_charge:
+                    name: Super Duper Plan
+                    price: 10
+                    return_url: http://super-duper.shopifyapps.com
+                    capped_amount: 100
+                    terms: $1 for 1000 emails
+                summary: Create a new charge with terms and a capped amount
+              example3:
+                value:
+                  recurring_application_charge:
+                    name: Super Duper Plan
+                    price: 10
+                    return_url: http://super-duper.shopifyapps.com
+                    trial_days: 5
+                summary: Create a new charge with a trial period. The trial period will go into effect at the time the recurring charge is activated.
+              example4:
+                value:
+                  recurring_application_charge:
+                    name: Super Duper Plan
+                    price: 10
+                    return_url: http://super-duper.shopifyapps.com
+                    test: true
+                summary: Create a recurring test charge that will not cause a credit card to be charged
+              example5:
+                value:
+                  recurring_application_charge:
+                    name: ''
+                summary: Trying to create a charge without a price and name will return an error
+      summary: Shopify Creates A Recurring Application Charge
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/recurringapplicationcharge#create-2021-01
+      parameters: []
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_create_recurring_application_charges
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    get:
+      summary: Shopify Retrieves A List Of Recurring Application Charges
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/recurringapplicationcharge#index-2021-01
+      parameters:
+      - in: query
+        name: since_id
+        description: Restrict results to after the specified ID.
+        schema: {}
+        required: false
+      - in: query
+        name: fields
+        description: A comma-separated list of fields to include in the response.
+        schema: {}
+        required: false
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_get_recurring_application_charges
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/recurring_application_charges/{recurring_application_charge_id}.json:
+    delete:
+      summary: Shopify Cancels A Recurring Application Charge
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/recurringapplicationcharge#destroy-2021-01
+      parameters:
+      - in: path
+        name: recurring_application_charge_id
+        required: true
+        schema:
+          type: string
+        description: recurring_application_charge_id
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_delete_recurring_application_charges_param_recurring_application_charge_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/recurring_application_charges/{recurring_application_charge_id}/customize.json:
+    put:
+      summary: Shopify Updates The Capped Amount Of An Active Recurring Application Charge
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/recurringapplicationcharge#customize-2021-01
+      parameters:
+      - in: path
+        name: recurring_application_charge_id
+        required: true
+        schema:
+          type: string
+        description: recurring_application_charge_id
+      - in: query
+        name: recurring_application_charge[capped_amount]
+        schema:
+          type: integer
+        description: recurring_application_charge[capped_amount]
+        required: false
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_update_recurring_application_charges_param_recurring_application_charge_id_customize
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/recurring_application_charges.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  recurring_application_charge:
+                    name: Super Duper Plan
+                    price: 10
+                    return_url: http://super-duper.shopifyapps.com
+                summary: Create a recurring application charge
+              example2:
+                value:
+                  recurring_application_charge:
+                    name: Super Duper Plan
+                    price: 10
+                    return_url: http://super-duper.shopifyapps.com
+                    capped_amount: 100
+                    terms: $1 for 1000 emails
+                summary: Create a new charge with terms and a capped amount
+              example3:
+                value:
+                  recurring_application_charge:
+                    name: Super Duper Plan
+                    price: 10
+                    return_url: http://super-duper.shopifyapps.com
+                    trial_days: 5
+                summary: Create a new charge with a trial period. The trial period will go into effect at the time the recurring charge is activated.
+              example4:
+                value:
+                  recurring_application_charge:
+                    name: Super Duper Plan
+                    price: 10
+                    return_url: http://super-duper.shopifyapps.com
+                    test: true
+                summary: Create a recurring test charge that will not cause a credit card to be charged
+              example5:
+                value:
+                  recurring_application_charge:
+                    name: ''
+                summary: Trying to create a charge without a price and name will return an error
+      summary: Shopify Creates A Recurring Application Charge
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/recurringapplicationcharge#create-unstable
+      parameters: []
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_create_recurring_application_charges
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    get:
+      summary: Shopify Retrieves A List Of Recurring Application Charges
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/recurringapplicationcharge#index-unstable
+      parameters:
+      - in: query
+        name: since_id
+        description: Restrict results to after the specified ID.
+        schema: {}
+        required: false
+      - in: query
+        name: fields
+        description: A comma-separated list of fields to include in the response.
+        schema: {}
+        required: false
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_get_recurring_application_charges
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/recurring_application_charges/{recurring_application_charge_id}.json:
+    delete:
+      summary: Shopify Cancels A Recurring Application Charge
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/recurringapplicationcharge#destroy-unstable
+      parameters:
+      - in: path
+        name: recurring_application_charge_id
+        required: true
+        schema:
+          type: string
+        description: recurring_application_charge_id
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_delete_recurring_application_charges_param_recurring_application_charge_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/recurring_application_charges/{recurring_application_charge_id}/customize.json:
+    put:
+      summary: Shopify Updates The Capped Amount Of An Active Recurring Application Charge
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/recurringapplicationcharge#customize-unstable
+      parameters:
+      - in: path
+        name: recurring_application_charge_id
+        required: true
+        schema:
+          type: string
+        description: recurring_application_charge_id
+      - in: query
+        name: recurring_application_charge[capped_amount]
+        schema:
+          type: integer
+        description: recurring_application_charge[capped_amount]
+        required: false
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_update_recurring_application_charges_param_recurring_application_charge_id_customize
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/deprecated_api_calls.json:
+    get:
+      summary: Shopify Retrieves A List Of Deprecated Api Calls Made By The Authenticated Private App In The Past 30 Days
+      description: https://shopify.dev/docs/admin-api/rest/reference/deprecated_api_calls#index-2021-01
+      parameters: []
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_get_deprecated_api_calls
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/deprecated_api_calls.json:
+    get:
+      summary: Shopify Retrieves A List Of Deprecated Api Calls Made By The Authenticated Private App In The Past 30 Days
+      description: https://shopify.dev/docs/admin-api/rest/reference/deprecated_api_calls#index-unstable
+      parameters: []
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_get_deprecated_api_calls
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-01/orders/{order_id}/risks/{risk_id}.json:
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  risk:
+                    id: 284138680
+                    message: After further review, this is a legitimate order
+                    recommendation: accept
+                    source: External
+                    cause_cancel: false
+                    score: 0
+                summary: Update an existing order risk for an order
+      summary: Shopify Updates An Order Risk                                            You Cannot Modify An Order Risk That Was Created By Another Application
+      description: https://shopify.dev/docs/admin-api/rest/reference/orders/order-risk#update-2020-01
+      parameters:
+      - in: path
+        name: order_id
+        required: true
+        schema:
+          type: string
+        description: order_id
+      - in: path
+        name: risk_id
+        required: true
+        schema:
+          type: string
+        description: risk_id
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_update_orders_param_order_id_risks_param_risk_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    delete:
+      summary: Shopify Deletes An Order Risk For An Order                                            You Cannot Delete An Order Risk That Was Created By Another Application
+      description: https://shopify.dev/docs/admin-api/rest/reference/orders/order-risk#destroy-2020-01
+      parameters:
+      - in: path
+        name: order_id
+        required: true
+        schema:
+          type: string
+        description: order_id
+      - in: path
+        name: risk_id
+        required: true
+        schema:
+          type: string
+        description: risk_id
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_delete_orders_param_order_id_risks_param_risk_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/orders/{order_id}/risks/{risk_id}.json:
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  risk:
+                    id: 284138680
+                    message: After further review, this is a legitimate order
+                    recommendation: accept
+                    source: External
+                    cause_cancel: false
+                    score: 0
+                summary: Update an existing order risk for an order
+      summary: Shopify Updates An Order Risk                                            You Cannot Modify An Order Risk That Was Created By Another Application
+      description: https://shopify.dev/docs/admin-api/rest/reference/orders/order-risk#update-2020-04
+      parameters:
+      - in: path
+        name: order_id
+        required: true
+        schema:
+          type: string
+        description: order_id
+      - in: path
+        name: risk_id
+        required: true
+        schema:
+          type: string
+        description: risk_id
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_update_orders_param_order_id_risks_param_risk_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    delete:
+      summary: Shopify Deletes An Order Risk For An Order                                            You Cannot Delete An Order Risk That Was Created By Another Application
+      description: https://shopify.dev/docs/admin-api/rest/reference/orders/order-risk#destroy-2020-04
+      parameters:
+      - in: path
+        name: order_id
+        required: true
+        schema:
+          type: string
+        description: order_id
+      - in: path
+        name: risk_id
+        required: true
+        schema:
+          type: string
+        description: risk_id
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_delete_orders_param_order_id_risks_param_risk_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/orders/{order_id}/risks/{risk_id}.json:
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  risk:
+                    id: 284138680
+                    message: After further review, this is a legitimate order
+                    recommendation: accept
+                    source: External
+                    cause_cancel: false
+                    score: 0
+                summary: Update an existing order risk for an order
+      summary: Shopify Updates An Order Risk                                            You Cannot Modify An Order Risk That Was Created By Another Application
+      description: https://shopify.dev/docs/admin-api/rest/reference/orders/order-risk#update-2020-07
+      parameters:
+      - in: path
+        name: order_id
+        required: true
+        schema:
+          type: string
+        description: order_id
+      - in: path
+        name: risk_id
+        required: true
+        schema:
+          type: string
+        description: risk_id
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_update_orders_param_order_id_risks_param_risk_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    delete:
+      summary: Shopify Deletes An Order Risk For An Order                                            You Cannot Delete An Order Risk That Was Created By Another Application
+      description: https://shopify.dev/docs/admin-api/rest/reference/orders/order-risk#destroy-2020-07
+      parameters:
+      - in: path
+        name: order_id
+        required: true
+        schema:
+          type: string
+        description: order_id
+      - in: path
+        name: risk_id
+        required: true
+        schema:
+          type: string
+        description: risk_id
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_delete_orders_param_order_id_risks_param_risk_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/orders/{order_id}/risks/{risk_id}.json:
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  risk:
+                    id: 284138680
+                    message: After further review, this is a legitimate order
+                    recommendation: accept
+                    source: External
+                    cause_cancel: false
+                    score: 0
+                summary: Update an existing order risk for an order
+      summary: Shopify Updates An Order Risk                                            You Cannot Modify An Order Risk That Was Created By Another Application
+      description: https://shopify.dev/docs/admin-api/rest/reference/orders/order-risk#update-2020-10
+      parameters:
+      - in: path
+        name: order_id
+        required: true
+        schema:
+          type: string
+        description: order_id
+      - in: path
+        name: risk_id
+        required: true
+        schema:
+          type: string
+        description: risk_id
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: update_orders_param_order_id_risks_param_risk_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    delete:
+      summary: Shopify Deletes An Order Risk For An Order                                            You Cannot Delete An Order Risk That Was Created By Another Application
+      description: https://shopify.dev/docs/admin-api/rest/reference/orders/order-risk#destroy-2020-10
+      parameters:
+      - in: path
+        name: order_id
+        required: true
+        schema:
+          type: string
+        description: order_id
+      - in: path
+        name: risk_id
+        required: true
+        schema:
+          type: string
+        description: risk_id
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: delete_orders_param_order_id_risks_param_risk_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/orders/{order_id}/risks/{risk_id}.json:
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  risk:
+                    id: 284138680
+                    message: After further review, this is a legitimate order
+                    recommendation: accept
+                    source: External
+                    cause_cancel: false
+                    score: 0
+                summary: Update an existing order risk for an order
+      summary: Shopify Updates An Order Risk                                            You Cannot Modify An Order Risk That Was Created By Another Application
+      description: https://shopify.dev/docs/admin-api/rest/reference/orders/order-risk#update-2021-01
+      parameters:
+      - in: path
+        name: order_id
+        required: true
+        schema:
+          type: string
+        description: order_id
+      - in: path
+        name: risk_id
+        required: true
+        schema:
+          type: string
+        description: risk_id
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_update_orders_param_order_id_risks_param_risk_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    delete:
+      summary: Shopify Deletes An Order Risk For An Order                                            You Cannot Delete An Order Risk That Was Created By Another Application
+      description: https://shopify.dev/docs/admin-api/rest/reference/orders/order-risk#destroy-2021-01
+      parameters:
+      - in: path
+        name: order_id
+        required: true
+        schema:
+          type: string
+        description: order_id
+      - in: path
+        name: risk_id
+        required: true
+        schema:
+          type: string
+        description: risk_id
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_delete_orders_param_order_id_risks_param_risk_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/orders/{order_id}/risks/{risk_id}.json:
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  risk:
+                    id: 284138680
+                    message: After further review, this is a legitimate order
+                    recommendation: accept
+                    source: External
+                    cause_cancel: false
+                    score: 0
+                summary: Update an existing order risk for an order
+      summary: Shopify Updates An Order Risk                                            You Cannot Modify An Order Risk That Was Created By Another Application
+      description: https://shopify.dev/docs/admin-api/rest/reference/orders/order-risk#update-unstable
+      parameters:
+      - in: path
+        name: order_id
+        required: true
+        schema:
+          type: string
+        description: order_id
+      - in: path
+        name: risk_id
+        required: true
+        schema:
+          type: string
+        description: risk_id
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_update_orders_param_order_id_risks_param_risk_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    delete:
+      summary: Shopify Deletes An Order Risk For An Order                                            You Cannot Delete An Order Risk That Was Created By Another Application
+      description: https://shopify.dev/docs/admin-api/rest/reference/orders/order-risk#destroy-unstable
+      parameters:
+      - in: path
+        name: order_id
+        required: true
+        schema:
+          type: string
+        description: order_id
+      - in: path
+        name: risk_id
+        required: true
+        schema:
+          type: string
+        description: risk_id
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_delete_orders_param_order_id_risks_param_risk_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-01/collection_listings.json:
+    get:
+      summary: Shopify Retrieve Collection Listings That Are Published To Your App
+      description: https://shopify.dev/docs/admin-api/rest/reference/sales-channels/collectionlisting#index-2020-01
+      parameters:
+      - in: query
+        name: limit
+        description: "Amount of results\n                  (default: 50, maximum: 1000)"
+        schema: {}
+        required: false
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_get_collection_listings
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-01/collection_listings/{collection_listing_id}.json:
+    get:
+      summary: Shopify Retrieve A Specific Collection Listing That Is Published To Your App
+      description: https://shopify.dev/docs/admin-api/rest/reference/sales-channels/collectionlisting#show-2020-01
+      parameters:
+      - in: path
+        name: collection_listing_id
+        required: true
+        schema:
+          type: string
+        description: collection_listing_id
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_get_collection_listings_param_collection_listing_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  collection_listing:
+                    collection_id: 482865238
+                summary: Create a collection listing to publish a collection to your app
+      summary: Shopify Create A Collection Listing To Publish A Collection To Your App
+      description: https://shopify.dev/docs/admin-api/rest/reference/sales-channels/collectionlisting#create-2020-01
+      parameters:
+      - in: path
+        name: collection_listing_id
+        required: true
+        schema:
+          type: string
+        description: collection_listing_id
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_update_collection_listings_param_collection_listing_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    delete:
+      summary: Shopify Delete A Collection Listing To Unpublish A Collection From Your App
+      description: https://shopify.dev/docs/admin-api/rest/reference/sales-channels/collectionlisting#destroy-2020-01
+      parameters:
+      - in: path
+        name: collection_listing_id
+        required: true
+        schema:
+          type: string
+        description: collection_listing_id
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_delete_collection_listings_param_collection_listing_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/collection_listings.json:
+    get:
+      summary: Shopify Retrieve Collection Listings That Are Published To Your App
+      description: https://shopify.dev/docs/admin-api/rest/reference/sales-channels/collectionlisting#index-2020-04
+      parameters:
+      - in: query
+        name: limit
+        description: "Amount of results\n                  (default: 50, maximum: 1000)"
+        schema: {}
+        required: false
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_get_collection_listings
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/collection_listings/{collection_listing_id}.json:
+    get:
+      summary: Shopify Retrieve A Specific Collection Listing That Is Published To Your App
+      description: https://shopify.dev/docs/admin-api/rest/reference/sales-channels/collectionlisting#show-2020-04
+      parameters:
+      - in: path
+        name: collection_listing_id
+        required: true
+        schema:
+          type: string
+        description: collection_listing_id
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_get_collection_listings_param_collection_listing_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  collection_listing:
+                    collection_id: 482865238
+                summary: Create a collection listing to publish a collection to your app
+      summary: Shopify Create A Collection Listing To Publish A Collection To Your App
+      description: https://shopify.dev/docs/admin-api/rest/reference/sales-channels/collectionlisting#create-2020-04
+      parameters:
+      - in: path
+        name: collection_listing_id
+        required: true
+        schema:
+          type: string
+        description: collection_listing_id
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_update_collection_listings_param_collection_listing_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    delete:
+      summary: Shopify Delete A Collection Listing To Unpublish A Collection From Your App
+      description: https://shopify.dev/docs/admin-api/rest/reference/sales-channels/collectionlisting#destroy-2020-04
+      parameters:
+      - in: path
+        name: collection_listing_id
+        required: true
+        schema:
+          type: string
+        description: collection_listing_id
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_delete_collection_listings_param_collection_listing_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/collection_listings.json:
+    get:
+      summary: Shopify Retrieve Collection Listings That Are Published To Your App
+      description: https://shopify.dev/docs/admin-api/rest/reference/sales-channels/collectionlisting#index-2020-07
+      parameters:
+      - in: query
+        name: limit
+        description: "Amount of results\n                  (default: 50, maximum: 1000)"
+        schema: {}
+        required: false
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_get_collection_listings
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/collection_listings/{collection_listing_id}.json:
+    get:
+      summary: Shopify Retrieve A Specific Collection Listing That Is Published To Your App
+      description: https://shopify.dev/docs/admin-api/rest/reference/sales-channels/collectionlisting#show-2020-07
+      parameters:
+      - in: path
+        name: collection_listing_id
+        required: true
+        schema:
+          type: string
+        description: collection_listing_id
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_get_collection_listings_param_collection_listing_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  collection_listing:
+                    collection_id: 482865238
+                summary: Create a collection listing to publish a collection to your app
+      summary: Shopify Create A Collection Listing To Publish A Collection To Your App
+      description: https://shopify.dev/docs/admin-api/rest/reference/sales-channels/collectionlisting#create-2020-07
+      parameters:
+      - in: path
+        name: collection_listing_id
+        required: true
+        schema:
+          type: string
+        description: collection_listing_id
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_update_collection_listings_param_collection_listing_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    delete:
+      summary: Shopify Delete A Collection Listing To Unpublish A Collection From Your App
+      description: https://shopify.dev/docs/admin-api/rest/reference/sales-channels/collectionlisting#destroy-2020-07
+      parameters:
+      - in: path
+        name: collection_listing_id
+        required: true
+        schema:
+          type: string
+        description: collection_listing_id
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_delete_collection_listings_param_collection_listing_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/collection_listings.json:
+    get:
+      summary: Shopify Retrieve Collection Listings That Are Published To Your App
+      description: https://shopify.dev/docs/admin-api/rest/reference/sales-channels/collectionlisting#index-2020-10
+      parameters:
+      - in: query
+        name: limit
+        description: "Amount of results\n                  (default: 50, maximum: 1000)"
+        schema: {}
+        required: false
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: get_collection_listings
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/collection_listings/{collection_listing_id}.json:
+    get:
+      summary: Shopify Retrieve A Specific Collection Listing That Is Published To Your App
+      description: https://shopify.dev/docs/admin-api/rest/reference/sales-channels/collectionlisting#show-2020-10
+      parameters:
+      - in: path
+        name: collection_listing_id
+        required: true
+        schema:
+          type: string
+        description: collection_listing_id
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: get_collection_listings_param_collection_listing_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  collection_listing:
+                    collection_id: 482865238
+                summary: Create a collection listing to publish a collection to your app
+      summary: Shopify Create A Collection Listing To Publish A Collection To Your App
+      description: https://shopify.dev/docs/admin-api/rest/reference/sales-channels/collectionlisting#create-2020-10
+      parameters:
+      - in: path
+        name: collection_listing_id
+        required: true
+        schema:
+          type: string
+        description: collection_listing_id
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: update_collection_listings_param_collection_listing_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    delete:
+      summary: Shopify Delete A Collection Listing To Unpublish A Collection From Your App
+      description: https://shopify.dev/docs/admin-api/rest/reference/sales-channels/collectionlisting#destroy-2020-10
+      parameters:
+      - in: path
+        name: collection_listing_id
+        required: true
+        schema:
+          type: string
+        description: collection_listing_id
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: delete_collection_listings_param_collection_listing_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/collection_listings.json:
+    get:
+      summary: Shopify Retrieve Collection Listings That Are Published To Your App
+      description: https://shopify.dev/docs/admin-api/rest/reference/sales-channels/collectionlisting#index-2021-01
+      parameters:
+      - in: query
+        name: limit
+        description: "Amount of results\n                  (default: 50, maximum: 1000)"
+        schema: {}
+        required: false
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_get_collection_listings
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/collection_listings/{collection_listing_id}.json:
+    get:
+      summary: Shopify Retrieve A Specific Collection Listing That Is Published To Your App
+      description: https://shopify.dev/docs/admin-api/rest/reference/sales-channels/collectionlisting#show-2021-01
+      parameters:
+      - in: path
+        name: collection_listing_id
+        required: true
+        schema:
+          type: string
+        description: collection_listing_id
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_get_collection_listings_param_collection_listing_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  collection_listing:
+                    collection_id: 482865238
+                summary: Create a collection listing to publish a collection to your app
+      summary: Shopify Create A Collection Listing To Publish A Collection To Your App
+      description: https://shopify.dev/docs/admin-api/rest/reference/sales-channels/collectionlisting#create-2021-01
+      parameters:
+      - in: path
+        name: collection_listing_id
+        required: true
+        schema:
+          type: string
+        description: collection_listing_id
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_update_collection_listings_param_collection_listing_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    delete:
+      summary: Shopify Delete A Collection Listing To Unpublish A Collection From Your App
+      description: https://shopify.dev/docs/admin-api/rest/reference/sales-channels/collectionlisting#destroy-2021-01
+      parameters:
+      - in: path
+        name: collection_listing_id
+        required: true
+        schema:
+          type: string
+        description: collection_listing_id
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_delete_collection_listings_param_collection_listing_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/collection_listings.json:
+    get:
+      summary: Shopify Retrieve Collection Listings That Are Published To Your App
+      description: https://shopify.dev/docs/admin-api/rest/reference/sales-channels/collectionlisting#index-unstable
+      parameters:
+      - in: query
+        name: limit
+        description: "Amount of results\n                  (default: 50, maximum: 1000)"
+        schema: {}
+        required: false
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_get_collection_listings
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/collection_listings/{collection_listing_id}.json:
+    get:
+      summary: Shopify Retrieve A Specific Collection Listing That Is Published To Your App
+      description: https://shopify.dev/docs/admin-api/rest/reference/sales-channels/collectionlisting#show-unstable
+      parameters:
+      - in: path
+        name: collection_listing_id
+        required: true
+        schema:
+          type: string
+        description: collection_listing_id
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_get_collection_listings_param_collection_listing_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  collection_listing:
+                    collection_id: 482865238
+                summary: Create a collection listing to publish a collection to your app
+      summary: Shopify Create A Collection Listing To Publish A Collection To Your App
+      description: https://shopify.dev/docs/admin-api/rest/reference/sales-channels/collectionlisting#create-unstable
+      parameters:
+      - in: path
+        name: collection_listing_id
+        required: true
+        schema:
+          type: string
+        description: collection_listing_id
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_update_collection_listings_param_collection_listing_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    delete:
+      summary: Shopify Delete A Collection Listing To Unpublish A Collection From Your App
+      description: https://shopify.dev/docs/admin-api/rest/reference/sales-channels/collectionlisting#destroy-unstable
+      parameters:
+      - in: path
+        name: collection_listing_id
+        required: true
+        schema:
+          type: string
+        description: collection_listing_id
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_delete_collection_listings_param_collection_listing_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-01/product_listings.json:
+    get:
+      summary: Shopify Retrieve Product Listings That Are Published To Your App
+      description: https://shopify.dev/docs/admin-api/rest/reference/sales-channels/productlisting#index-2020-01
+      parameters:
+      - in: query
+        name: product_ids
+        description: A comma-separated list of product ids
+        schema: {}
+        required: false
+      - in: query
+        name: limit
+        description: "Amount of results\n                  (default: 50, maximum: 1000)"
+        schema: {}
+        required: false
+      - in: query
+        name: collection_id
+        description: Filter by products belonging to a particular collection
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_min
+        description: Filter by products last updated after a certain date and time (formatted in ISO 8601)
+        schema: {}
+        required: false
+      - in: query
+        name: handle
+        description: Filter by product handle
+        schema: {}
+        required: false
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_get_product_listings
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-01/product_listings/product_ids.json:
+    get:
+      summary: Shopify Retrieve Product_ids That Are Published To Your App
+      description: https://shopify.dev/docs/admin-api/rest/reference/sales-channels/productlisting#product_ids-2020-01
+      parameters:
+      - in: query
+        name: limit
+        description: "Amount of results\n                  (default: 50, maximum: 1000)"
+        schema: {}
+        required: false
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_get_product_listings_product_ids
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-01/product_listings/count.json:
+    get:
+      summary: Shopify Retrieve A Count Of Products That Are Published To Your App
+      description: https://shopify.dev/docs/admin-api/rest/reference/sales-channels/productlisting#count-2020-01
+      parameters: []
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_get_product_listings_count
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-01/product_listings/{product_listing_id}.json:
+    get:
+      summary: Shopify Retrieve A Specific Product Listing That Is Published To Your App
+      description: https://shopify.dev/docs/admin-api/rest/reference/sales-channels/productlisting#show-2020-01
+      parameters:
+      - in: path
+        name: product_listing_id
+        required: true
+        schema:
+          type: string
+        description: product_listing_id
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_get_product_listings_param_product_listing_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  product_listing:
+                    product_id: 921728736
+                summary: Create a product listing to publish a product to your app
+      summary: Shopify Create A Product Listing To Publish A Product To Your App
+      description: https://shopify.dev/docs/admin-api/rest/reference/sales-channels/productlisting#create-2020-01
+      parameters:
+      - in: path
+        name: product_listing_id
+        required: true
+        schema:
+          type: string
+        description: product_listing_id
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_update_product_listings_param_product_listing_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    delete:
+      summary: Shopify Delete A Product Listing To Unpublish A Product From Your App
+      description: https://shopify.dev/docs/admin-api/rest/reference/sales-channels/productlisting#destroy-2020-01
+      parameters:
+      - in: path
+        name: product_listing_id
+        required: true
+        schema:
+          type: string
+        description: product_listing_id
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_delete_product_listings_param_product_listing_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/product_listings.json:
+    get:
+      summary: Shopify Retrieve Product Listings That Are Published To Your App
+      description: https://shopify.dev/docs/admin-api/rest/reference/sales-channels/productlisting#index-2020-04
+      parameters:
+      - in: query
+        name: product_ids
+        description: A comma-separated list of product ids
+        schema: {}
+        required: false
+      - in: query
+        name: limit
+        description: "Amount of results\n                  (default: 50, maximum: 1000)"
+        schema: {}
+        required: false
+      - in: query
+        name: collection_id
+        description: Filter by products belonging to a particular collection
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_min
+        description: Filter by products last updated after a certain date and time (formatted in ISO 8601)
+        schema: {}
+        required: false
+      - in: query
+        name: handle
+        description: Filter by product handle
+        schema: {}
+        required: false
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_get_product_listings
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/product_listings/product_ids.json:
+    get:
+      summary: Shopify Retrieve Product_ids That Are Published To Your App
+      description: https://shopify.dev/docs/admin-api/rest/reference/sales-channels/productlisting#product_ids-2020-04
+      parameters:
+      - in: query
+        name: limit
+        description: "Amount of results\n                  (default: 50, maximum: 1000)"
+        schema: {}
+        required: false
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_get_product_listings_product_ids
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/product_listings/count.json:
+    get:
+      summary: Shopify Retrieve A Count Of Products That Are Published To Your App
+      description: https://shopify.dev/docs/admin-api/rest/reference/sales-channels/productlisting#count-2020-04
+      parameters: []
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_get_product_listings_count
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/product_listings/{product_listing_id}.json:
+    get:
+      summary: Shopify Retrieve A Specific Product Listing That Is Published To Your App
+      description: https://shopify.dev/docs/admin-api/rest/reference/sales-channels/productlisting#show-2020-04
+      parameters:
+      - in: path
+        name: product_listing_id
+        required: true
+        schema:
+          type: string
+        description: product_listing_id
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_get_product_listings_param_product_listing_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  product_listing:
+                    product_id: 921728736
+                summary: Create a product listing to publish a product to your app
+      summary: Shopify Create A Product Listing To Publish A Product To Your App
+      description: https://shopify.dev/docs/admin-api/rest/reference/sales-channels/productlisting#create-2020-04
+      parameters:
+      - in: path
+        name: product_listing_id
+        required: true
+        schema:
+          type: string
+        description: product_listing_id
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_update_product_listings_param_product_listing_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    delete:
+      summary: Shopify Delete A Product Listing To Unpublish A Product From Your App
+      description: https://shopify.dev/docs/admin-api/rest/reference/sales-channels/productlisting#destroy-2020-04
+      parameters:
+      - in: path
+        name: product_listing_id
+        required: true
+        schema:
+          type: string
+        description: product_listing_id
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_delete_product_listings_param_product_listing_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/product_listings.json:
+    get:
+      summary: Shopify Retrieve Product Listings That Are Published To Your App
+      description: https://shopify.dev/docs/admin-api/rest/reference/sales-channels/productlisting#index-2020-07
+      parameters:
+      - in: query
+        name: product_ids
+        description: A comma-separated list of product ids
+        schema: {}
+        required: false
+      - in: query
+        name: limit
+        description: "Amount of results\n                  (default: 50, maximum: 1000)"
+        schema: {}
+        required: false
+      - in: query
+        name: collection_id
+        description: Filter by products belonging to a particular collection
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_min
+        description: Filter by products last updated after a certain date and time (formatted in ISO 8601)
+        schema: {}
+        required: false
+      - in: query
+        name: handle
+        description: Filter by product handle
+        schema: {}
+        required: false
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_get_product_listings
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/product_listings/product_ids.json:
+    get:
+      summary: Shopify Retrieve Product_ids That Are Published To Your App
+      description: https://shopify.dev/docs/admin-api/rest/reference/sales-channels/productlisting#product_ids-2020-07
+      parameters:
+      - in: query
+        name: limit
+        description: "Amount of results\n                  (default: 50, maximum: 1000)"
+        schema: {}
+        required: false
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_get_product_listings_product_ids
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/product_listings/count.json:
+    get:
+      summary: Shopify Retrieve A Count Of Products That Are Published To Your App
+      description: https://shopify.dev/docs/admin-api/rest/reference/sales-channels/productlisting#count-2020-07
+      parameters: []
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_get_product_listings_count
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/product_listings/{product_listing_id}.json:
+    get:
+      summary: Shopify Retrieve A Specific Product Listing That Is Published To Your App
+      description: https://shopify.dev/docs/admin-api/rest/reference/sales-channels/productlisting#show-2020-07
+      parameters:
+      - in: path
+        name: product_listing_id
+        required: true
+        schema:
+          type: string
+        description: product_listing_id
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_get_product_listings_param_product_listing_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  product_listing:
+                    product_id: 921728736
+                summary: Create a product listing to publish a product to your app
+      summary: Shopify Create A Product Listing To Publish A Product To Your App
+      description: https://shopify.dev/docs/admin-api/rest/reference/sales-channels/productlisting#create-2020-07
+      parameters:
+      - in: path
+        name: product_listing_id
+        required: true
+        schema:
+          type: string
+        description: product_listing_id
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_update_product_listings_param_product_listing_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    delete:
+      summary: Shopify Delete A Product Listing To Unpublish A Product From Your App
+      description: https://shopify.dev/docs/admin-api/rest/reference/sales-channels/productlisting#destroy-2020-07
+      parameters:
+      - in: path
+        name: product_listing_id
+        required: true
+        schema:
+          type: string
+        description: product_listing_id
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_delete_product_listings_param_product_listing_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-01/assigned_fulfillment_orders.json:
+    get:
+      summary: Shopify Retrieves A List Of Fulfillment Orders On A Shop For A Specific App
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/assignedfulfillmentorder#index-2020-01
+      parameters:
+      - in: query
+        name: assignment_status
+        description: "The assigment status of the fulfillment orders that should be returned:\n                    \n                        cancellation_requested: Fulfillment orders for which the merchant has requested cancellation of the previously accepted fulfillment request.\n                        fulfillment_requested: Fulfillment orders for which the merchant has requested fulfillment.\n                        fulfillment_accepted: Fulfillment orders for which the merchant's fulfillment request has been accepted. Any number of fulfillments can be created on these fulfillment orders to completely fulfill the requested items."
+        schema: {}
+        required: false
+      - in: query
+        name: location_ids
+        description: The IDs of the assigned locations of the fulfillment orders that should be returned.
+        schema: {}
+        required: false
+      - in: query
+        name: location_ids[]
+        schema:
+          type: integer
+        description: location_ids[]
+        required: false
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_get_assigned_fulfillment_orders
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/assigned_fulfillment_orders.json:
+    get:
+      summary: Shopify Retrieves A List Of Fulfillment Orders On A Shop For A Specific App
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/assignedfulfillmentorder#index-2020-04
+      parameters:
+      - in: query
+        name: assignment_status
+        description: "The assigment status of the fulfillment orders that should be returned:\n                    \n                        cancellation_requested: Fulfillment orders for which the merchant has requested cancellation of the previously accepted fulfillment request.\n                        fulfillment_requested: Fulfillment orders for which the merchant has requested fulfillment.\n                        fulfillment_accepted: Fulfillment orders for which the merchant's fulfillment request has been accepted. Any number of fulfillments can be created on these fulfillment orders to completely fulfill the requested items."
+        schema: {}
+        required: false
+      - in: query
+        name: location_ids
+        description: The IDs of the assigned locations of the fulfillment orders that should be returned.
+        schema: {}
+        required: false
+      - in: query
+        name: location_ids[]
+        schema:
+          type: integer
+        description: location_ids[]
+        required: false
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_get_assigned_fulfillment_orders
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/assigned_fulfillment_orders.json:
+    get:
+      summary: Shopify Retrieves A List Of Fulfillment Orders On A Shop For A Specific App
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/assignedfulfillmentorder#index-2020-07
+      parameters:
+      - in: query
+        name: assignment_status
+        description: "The assigment status of the fulfillment orders that should be returned:\n                    \n                        cancellation_requested: Fulfillment orders for which the merchant has requested cancellation of the previously accepted fulfillment request.\n                        fulfillment_requested: Fulfillment orders for which the merchant has requested fulfillment.\n                        fulfillment_accepted: Fulfillment orders for which the merchant's fulfillment request has been accepted. Any number of fulfillments can be created on these fulfillment orders to completely fulfill the requested items."
+        schema: {}
+        required: false
+      - in: query
+        name: location_ids
+        description: The IDs of the assigned locations of the fulfillment orders that should be returned.
+        schema: {}
+        required: false
+      - in: query
+        name: location_ids[]
+        schema:
+          type: integer
+        description: location_ids[]
+        required: false
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_get_assigned_fulfillment_orders
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/assigned_fulfillment_orders.json:
+    get:
+      summary: Shopify Retrieves A List Of Fulfillment Orders On A Shop For A Specific App
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/assignedfulfillmentorder#index-2020-10
+      parameters:
+      - in: query
+        name: assignment_status
+        description: "The assigment status of the fulfillment orders that should be returned:\n                    \n                        cancellation_requested: Fulfillment orders for which the merchant has requested cancellation of the previously accepted fulfillment request.\n                        fulfillment_requested: Fulfillment orders for which the merchant has requested fulfillment.\n                        fulfillment_accepted: Fulfillment orders for which the merchant's fulfillment request has been accepted. Any number of fulfillments can be created on these fulfillment orders to completely fulfill the requested items."
+        schema: {}
+        required: false
+      - in: query
+        name: location_ids
+        description: The IDs of the assigned locations of the fulfillment orders that should be returned.
+        schema: {}
+        required: false
+      - in: query
+        name: location_ids[]
+        schema:
+          type: integer
+        description: location_ids[]
+        required: false
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: get_assigned_fulfillment_orders
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/assigned_fulfillment_orders.json:
+    get:
+      summary: Shopify Retrieves A List Of Fulfillment Orders On A Shop For A Specific App
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/assignedfulfillmentorder#index-2021-01
+      parameters:
+      - in: query
+        name: assignment_status
+        description: "The assigment status of the fulfillment orders that should be returned:\n                    \n                        cancellation_requested: Fulfillment orders for which the merchant has requested cancellation of the previously accepted fulfillment request.\n                        fulfillment_requested: Fulfillment orders for which the merchant has requested fulfillment.\n                        fulfillment_accepted: Fulfillment orders for which the merchant's fulfillment request has been accepted. Any number of fulfillments can be created on these fulfillment orders to completely fulfill the requested items."
+        schema: {}
+        required: false
+      - in: query
+        name: location_ids
+        description: The IDs of the assigned locations of the fulfillment orders that should be returned.
+        schema: {}
+        required: false
+      - in: query
+        name: location_ids[]
+        schema:
+          type: integer
+        description: location_ids[]
+        required: false
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_get_assigned_fulfillment_orders
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/assigned_fulfillment_orders.json:
+    get:
+      summary: Shopify Retrieves A List Of Fulfillment Orders On A Shop For A Specific App
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/assignedfulfillmentorder#index-unstable
+      parameters:
+      - in: query
+        name: assignment_status
+        description: "The assigment status of the fulfillment orders that should be returned:\n                    \n                        cancellation_requested: Fulfillment orders for which the merchant has requested cancellation of the previously accepted fulfillment request.\n                        fulfillment_requested: Fulfillment orders for which the merchant has requested fulfillment.\n                        fulfillment_accepted: Fulfillment orders for which the merchant's fulfillment request has been accepted. Any number of fulfillments can be created on these fulfillment orders to completely fulfill the requested items."
+        schema: {}
+        required: false
+      - in: query
+        name: location_ids
+        description: The IDs of the assigned locations of the fulfillment orders that should be returned.
+        schema: {}
+        required: false
+      - in: query
+        name: location_ids[]
+        schema:
+          type: integer
+        description: location_ids[]
+        required: false
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_get_assigned_fulfillment_orders
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+components:
+  securitySchemes:
+    AccessToken:
+      type: apiKey
+      name: X-Shopify-Access-Token
+      in: header
+      description: Access token obtained via OAuth

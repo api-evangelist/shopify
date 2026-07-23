@@ -1,0 +1,3644 @@
+openapi: 3.1.0
+info:
+  title: Shopify Admin REST About Customers API
+  description: The Shopify Admin REST API lets you build apps and integrations that extend and enhance the Shopify admin. Access products, customers, orders, inventory, fulfillment, and more. Endpoints are organized by resource type and versioned by release date.
+  version: 2025-01
+  contact:
+    name: Shopify
+    url: https://shopify.dev/docs/api/admin-rest
+    email: api@shopify.com
+  license:
+    name: Shopify API Terms
+    url: https://www.shopify.com/legal/api-terms
+  x-date: '2026-03-04'
+servers:
+- url: https://{store}.myshopify.com/admin/api/2025-01
+  description: Shopify Admin REST API
+  variables:
+    store:
+      default: my-store
+      description: The Shopify store subdomain
+security:
+- AccessToken: []
+tags:
+- name: Customers
+  description: Manage customer records
+paths:
+  /customers.json:
+    get:
+      operationId: listCustomers
+      summary: Shopify Retrieve a list of customers
+      description: Retrieves a list of customers. Results can be filtered by creation date, update date, and other criteria. Returns up to 250 customers.
+      tags:
+      - Customers
+      parameters:
+      - name: ids
+        in: query
+        description: Comma-separated list of customer IDs
+        schema:
+          type: string
+      - name: limit
+        in: query
+        description: Maximum number of results (max 250, default 50)
+        schema:
+          type: integer
+          default: 50
+          maximum: 250
+      - name: since_id
+        in: query
+        description: Return customers after the specified ID
+        schema:
+          type: integer
+      - name: created_at_min
+        in: query
+        description: Show customers created after this date
+        schema:
+          type: string
+          format: date-time
+      - name: created_at_max
+        in: query
+        description: Show customers created before this date
+        schema:
+          type: string
+          format: date-time
+      - name: updated_at_min
+        in: query
+        description: Show customers updated after this date
+        schema:
+          type: string
+          format: date-time
+      - name: updated_at_max
+        in: query
+        description: Show customers updated before this date
+        schema:
+          type: string
+          format: date-time
+      - name: fields
+        in: query
+        description: Comma-separated list of fields to include
+        schema:
+          type: string
+      responses:
+        '200':
+          description: A list of customers
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  customers:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Customer'
+    post:
+      operationId: createCustomer
+      summary: Shopify Create a customer
+      description: Creates a new customer record. Sends a welcome email if send_email_welcome is true.
+      tags:
+      - Customers
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - customer
+              properties:
+                customer:
+                  $ref: '#/components/schemas/CustomerInput'
+      responses:
+        '201':
+          description: The created customer
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  customer:
+                    $ref: '#/components/schemas/Customer'
+        '422':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /customers/count.json:
+    get:
+      operationId: getCustomerCount
+      summary: Shopify Retrieve a count of customers
+      description: Retrieves a count of all customers.
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: The customer count
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+  /customers/search.json:
+    get:
+      operationId: searchCustomers
+      summary: Shopify Search for customers
+      description: Searches for customers matching a supplied query. Supports searching by name, email, phone, and other fields.
+      tags:
+      - Customers
+      parameters:
+      - name: query
+        in: query
+        required: true
+        description: Search query (e.g. email:user@example.com)
+        schema:
+          type: string
+      - name: limit
+        in: query
+        description: Maximum number of results (max 250, default 50)
+        schema:
+          type: integer
+          default: 50
+          maximum: 250
+      - name: fields
+        in: query
+        description: Comma-separated list of fields to include
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Matching customers
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  customers:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Customer'
+  /customers/{customer_id}.json:
+    get:
+      operationId: getCustomer
+      summary: Shopify Retrieve a single customer
+      description: Retrieves a single customer by ID.
+      tags:
+      - Customers
+      parameters:
+      - $ref: '#/components/parameters/CustomerId'
+      - name: fields
+        in: query
+        description: Comma-separated list of fields to include
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The requested customer
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  customer:
+                    $ref: '#/components/schemas/Customer'
+        '404':
+          description: Customer not found
+    put:
+      operationId: updateCustomer
+      summary: Shopify Update a customer
+      description: Updates an existing customer record.
+      tags:
+      - Customers
+      parameters:
+      - $ref: '#/components/parameters/CustomerId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - customer
+              properties:
+                customer:
+                  $ref: '#/components/schemas/CustomerInput'
+      responses:
+        '200':
+          description: The updated customer
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  customer:
+                    $ref: '#/components/schemas/Customer'
+        '422':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /customers/{customer_id}/orders.json:
+    get:
+      operationId: listCustomerOrders
+      summary: Shopify Retrieve orders for a customer
+      description: Retrieves all orders belonging to a specific customer.
+      tags:
+      - Customers
+      parameters:
+      - $ref: '#/components/parameters/CustomerId'
+      - name: status
+        in: query
+        description: Filter by order status
+        schema:
+          type: string
+          enum:
+          - open
+          - closed
+          - cancelled
+          - any
+      responses:
+        '200':
+          description: A list of orders for the customer
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  orders:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Order'
+  /admin/api/2020-01/customers.json:
+    get:
+      summary: Shopify Retrieves A List Of Customers
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer#index-2020-01
+      parameters:
+      - in: query
+        name: ids
+        description: Restrict results to customers specified by a comma-separated list of IDs.
+        schema: {}
+        required: false
+      - in: query
+        name: since_id
+        description: Restrict results to those after the specified ID.
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_min
+        description: 'Show customers created after a specified date.(format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_max
+        description: 'Show customers created before a specified date.(format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_min
+        description: 'Show customers last updated after a specified date.(format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_max
+        description: 'Show customers last updated before a specified date.(format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: limit
+        description: "The maximum number of results to show.\n                  (default: 50, maximum: 250)"
+        schema: {}
+        required: false
+      - in: query
+        name: fields
+        description: Show only certain fields, specified by a comma-separated list of field names.
+        schema: {}
+        required: false
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_get_customers
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-01/customers/search.json:
+    get:
+      summary: Shopify Searches For Customers That Match A Supplied Query
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer#search-2020-01
+      parameters:
+      - in: query
+        name: order
+        description: "Set the field and direction by which to order results.\n                  (default: last_order_date DESC)"
+        schema: {}
+        required: false
+      - in: query
+        name: query
+        description: Text to search for in the shop's customer data.
+        schema: {}
+        required: false
+      - in: query
+        name: limit
+        description: "The maximum number of results to show.\n                  (default: 50, maximum: 250)"
+        schema: {}
+        required: false
+      - in: query
+        name: fields
+        description: Show only certain fields, specified by a comma-separated list of field names.
+        schema: {}
+        required: false
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_get_customers_search
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-01/customers/count.json:
+    get:
+      summary: Shopify Retrieves A Count Of All Customers
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer#count-2020-01
+      parameters: []
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_get_customers_count
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/customers.json:
+    get:
+      summary: Shopify Retrieves A List Of Customers
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer#index-2020-04
+      parameters:
+      - in: query
+        name: ids
+        description: Restrict results to customers specified by a comma-separated list of IDs.
+        schema: {}
+        required: false
+      - in: query
+        name: since_id
+        description: Restrict results to those after the specified ID.
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_min
+        description: 'Show customers created after a specified date.(format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_max
+        description: 'Show customers created before a specified date.(format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_min
+        description: 'Show customers last updated after a specified date.(format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_max
+        description: 'Show customers last updated before a specified date.(format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: limit
+        description: "The maximum number of results to show.\n                  (default: 50, maximum: 250)"
+        schema: {}
+        required: false
+      - in: query
+        name: fields
+        description: Show only certain fields, specified by a comma-separated list of field names.
+        schema: {}
+        required: false
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_get_customers
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/customers/search.json:
+    get:
+      summary: Shopify Searches For Customers That Match A Supplied Query
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer#search-2020-04
+      parameters:
+      - in: query
+        name: order
+        description: "Set the field and direction by which to order results.\n                  (default: last_order_date DESC)"
+        schema: {}
+        required: false
+      - in: query
+        name: query
+        description: Text to search for in the shop's customer data.
+        schema: {}
+        required: false
+      - in: query
+        name: limit
+        description: "The maximum number of results to show.\n                  (default: 50, maximum: 250)"
+        schema: {}
+        required: false
+      - in: query
+        name: fields
+        description: Show only certain fields, specified by a comma-separated list of field names.
+        schema: {}
+        required: false
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_get_customers_search
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/customers/count.json:
+    get:
+      summary: Shopify Retrieves A Count Of All Customers
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer#count-2020-04
+      parameters: []
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_get_customers_count
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/customers.json:
+    get:
+      summary: Shopify Retrieves A List Of Customers
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer#index-2020-07
+      parameters:
+      - in: query
+        name: ids
+        description: Restrict results to customers specified by a comma-separated list of IDs.
+        schema: {}
+        required: false
+      - in: query
+        name: since_id
+        description: Restrict results to those after the specified ID.
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_min
+        description: 'Show customers created after a specified date.(format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_max
+        description: 'Show customers created before a specified date.(format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_min
+        description: 'Show customers last updated after a specified date.(format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_max
+        description: 'Show customers last updated before a specified date.(format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: limit
+        description: "The maximum number of results to show.\n                  (default: 50, maximum: 250)"
+        schema: {}
+        required: false
+      - in: query
+        name: fields
+        description: Show only certain fields, specified by a comma-separated list of field names.
+        schema: {}
+        required: false
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_get_customers
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/customers/search.json:
+    get:
+      summary: Shopify Searches For Customers That Match A Supplied Query
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer#search-2020-07
+      parameters:
+      - in: query
+        name: order
+        description: "Set the field and direction by which to order results.\n                  (default: last_order_date DESC)"
+        schema: {}
+        required: false
+      - in: query
+        name: query
+        description: Text to search for in the shop's customer data.
+        schema: {}
+        required: false
+      - in: query
+        name: limit
+        description: "The maximum number of results to show.\n                  (default: 50, maximum: 250)"
+        schema: {}
+        required: false
+      - in: query
+        name: fields
+        description: Show only certain fields, specified by a comma-separated list of field names.
+        schema: {}
+        required: false
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_get_customers_search
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/customers/count.json:
+    get:
+      summary: Shopify Retrieves A Count Of All Customers
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer#count-2020-07
+      parameters: []
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_get_customers_count
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/customers.json:
+    get:
+      summary: Shopify Retrieves A List Of Customers
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer#index-2020-10
+      parameters:
+      - in: query
+        name: ids
+        description: Restrict results to customers specified by a comma-separated list of IDs.
+        schema: {}
+        required: false
+      - in: query
+        name: since_id
+        description: Restrict results to those after the specified ID.
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_min
+        description: 'Show customers created after a specified date.(format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_max
+        description: 'Show customers created before a specified date.(format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_min
+        description: 'Show customers last updated after a specified date.(format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_max
+        description: 'Show customers last updated before a specified date.(format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: limit
+        description: "The maximum number of results to show.\n                  (default: 50, maximum: 250)"
+        schema: {}
+        required: false
+      - in: query
+        name: fields
+        description: Show only certain fields, specified by a comma-separated list of field names.
+        schema: {}
+        required: false
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: get_customers
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/customers/search.json:
+    get:
+      summary: Shopify Searches For Customers That Match A Supplied Query
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer#search-2020-10
+      parameters:
+      - in: query
+        name: order
+        description: "Set the field and direction by which to order results.\n                  (default: last_order_date DESC)"
+        schema: {}
+        required: false
+      - in: query
+        name: query
+        description: Text to search for in the shop's customer data.
+        schema: {}
+        required: false
+      - in: query
+        name: limit
+        description: "The maximum number of results to show.\n                  (default: 50, maximum: 250)"
+        schema: {}
+        required: false
+      - in: query
+        name: fields
+        description: Show only certain fields, specified by a comma-separated list of field names.
+        schema: {}
+        required: false
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: get_customers_search
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/customers/count.json:
+    get:
+      summary: Shopify Retrieves A Count Of All Customers
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer#count-2020-10
+      parameters: []
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: get_customers_count
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/customers.json:
+    get:
+      summary: Shopify Retrieves A List Of Customers
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer#index-2021-01
+      parameters:
+      - in: query
+        name: ids
+        description: Restrict results to customers specified by a comma-separated list of IDs.
+        schema: {}
+        required: false
+      - in: query
+        name: since_id
+        description: Restrict results to those after the specified ID.
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_min
+        description: 'Show customers created after a specified date.(format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_max
+        description: 'Show customers created before a specified date.(format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_min
+        description: 'Show customers last updated after a specified date.(format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_max
+        description: 'Show customers last updated before a specified date.(format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: limit
+        description: "The maximum number of results to show.\n                  (default: 50, maximum: 250)"
+        schema: {}
+        required: false
+      - in: query
+        name: fields
+        description: Show only certain fields, specified by a comma-separated list of field names.
+        schema: {}
+        required: false
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_get_customers
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/customers/search.json:
+    get:
+      summary: Shopify Searches For Customers That Match A Supplied Query
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer#search-2021-01
+      parameters:
+      - in: query
+        name: order
+        description: "Set the field and direction by which to order results.\n                  (default: last_order_date DESC)"
+        schema: {}
+        required: false
+      - in: query
+        name: query
+        description: Text to search for in the shop's customer data.
+        schema: {}
+        required: false
+      - in: query
+        name: limit
+        description: "The maximum number of results to show.\n                  (default: 50, maximum: 250)"
+        schema: {}
+        required: false
+      - in: query
+        name: fields
+        description: Show only certain fields, specified by a comma-separated list of field names.
+        schema: {}
+        required: false
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_get_customers_search
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/customers/count.json:
+    get:
+      summary: Shopify Retrieves A Count Of All Customers
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer#count-2021-01
+      parameters: []
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_get_customers_count
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/customers.json:
+    get:
+      summary: Shopify Retrieves A List Of Customers
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer#index-unstable
+      parameters:
+      - in: query
+        name: ids
+        description: Restrict results to customers specified by a comma-separated list of IDs.
+        schema: {}
+        required: false
+      - in: query
+        name: since_id
+        description: Restrict results to those after the specified ID.
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_min
+        description: 'Show customers created after a specified date.(format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_max
+        description: 'Show customers created before a specified date.(format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_min
+        description: 'Show customers last updated after a specified date.(format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_max
+        description: 'Show customers last updated before a specified date.(format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: limit
+        description: "The maximum number of results to show.\n                  (default: 50, maximum: 250)"
+        schema: {}
+        required: false
+      - in: query
+        name: fields
+        description: Show only certain fields, specified by a comma-separated list of field names.
+        schema: {}
+        required: false
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_get_customers
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/customers/search.json:
+    get:
+      summary: Shopify Searches For Customers That Match A Supplied Query
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer#search-unstable
+      parameters:
+      - in: query
+        name: order
+        description: "Set the field and direction by which to order results.\n                  (default: last_order_date DESC)"
+        schema: {}
+        required: false
+      - in: query
+        name: query
+        description: Text to search for in the shop's customer data.
+        schema: {}
+        required: false
+      - in: query
+        name: limit
+        description: "The maximum number of results to show.\n                  (default: 50, maximum: 250)"
+        schema: {}
+        required: false
+      - in: query
+        name: fields
+        description: Show only certain fields, specified by a comma-separated list of field names.
+        schema: {}
+        required: false
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_get_customers_search
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/customers/count.json:
+    get:
+      summary: Shopify Retrieves A Count Of All Customers
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer#count-unstable
+      parameters: []
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_get_customers_count
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-01/customers/{customer_id}/addresses.json:
+    get:
+      summary: Shopify Retrieves A List Of Addresses For A Customer
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer-address#index-2020-01
+      parameters:
+      - in: path
+        name: customer_id
+        required: true
+        schema:
+          type: string
+        description: customer_id
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_get_customers_param_customer_id_addresses
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  address:
+                    address1: 1 Rue des Carrieres
+                    address2: Suite 1234
+                    city: Montreal
+                    company: Fancy Co.
+                    first_name: Samuel
+                    last_name: de Champlain
+                    phone: 819-555-5555
+                    province: Quebec
+                    country: Canada
+                    zip: G1R 4P5
+                    name: Samuel de Champlain
+                    province_code: QC
+                    country_code: CA
+                    country_name: Canada
+                summary: Create a new address for a customer
+      summary: Shopify Creates A New Address For A Customer
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer-address#create-2020-01
+      parameters:
+      - in: path
+        name: customer_id
+        required: true
+        schema:
+          type: string
+        description: customer_id
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_create_customers_param_customer_id_addresses
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-01/customers/{customer_id}/addresses/{address_id}.json:
+    get:
+      summary: Shopify Retrieves Details A Single Customer Address
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer-address#show-2020-01
+      parameters:
+      - in: path
+        name: customer_id
+        required: true
+        schema:
+          type: string
+        description: customer_id
+      - in: path
+        name: address_id
+        required: true
+        schema:
+          type: string
+        description: address_id
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_get_customers_param_customer_id_addresses_param_address_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  address:
+                    id: 207119551
+                    zip: '90210'
+                summary: Update the postal code of a customer address
+      summary: Shopify Updates An Existing Customer Address
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer-address#update-2020-01
+      parameters:
+      - in: path
+        name: customer_id
+        required: true
+        schema:
+          type: string
+        description: customer_id
+      - in: path
+        name: address_id
+        required: true
+        schema:
+          type: string
+        description: address_id
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_update_customers_param_customer_id_addresses_param_address_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-01/customers/{customer_id}/addresses/set.json:
+    put:
+      summary: Shopify Performs Bulk Operations For Multiple Customer Addresses
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer-address#set-2020-01
+      parameters:
+      - in: path
+        name: customer_id
+        required: true
+        schema:
+          type: string
+        description: customer_id
+      - in: query
+        name: address_ids[]
+        schema:
+          type: integer
+        description: address_ids[]
+        required: false
+      - in: query
+        name: operation
+        schema:
+          type: string
+        description: operation
+        required: false
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_update_customers_param_customer_id_addresses_set
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-01/customers/{customer_id}/addresses/{address_id}/default.json:
+    put:
+      summary: Shopify Sets The Default Address For A Customer
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer-address#default-2020-01
+      parameters:
+      - in: path
+        name: customer_id
+        required: true
+        schema:
+          type: string
+        description: customer_id
+      - in: path
+        name: address_id
+        required: true
+        schema:
+          type: string
+        description: address_id
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_update_customers_param_customer_id_addresses_param_address_id_default
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/customers/{customer_id}/addresses.json:
+    get:
+      summary: Shopify Retrieves A List Of Addresses For A Customer
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer-address#index-2020-04
+      parameters:
+      - in: path
+        name: customer_id
+        required: true
+        schema:
+          type: string
+        description: customer_id
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_get_customers_param_customer_id_addresses
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  address:
+                    address1: 1 Rue des Carrieres
+                    address2: Suite 1234
+                    city: Montreal
+                    company: Fancy Co.
+                    first_name: Samuel
+                    last_name: de Champlain
+                    phone: 819-555-5555
+                    province: Quebec
+                    country: Canada
+                    zip: G1R 4P5
+                    name: Samuel de Champlain
+                    province_code: QC
+                    country_code: CA
+                    country_name: Canada
+                summary: Create a new address for a customer
+      summary: Shopify Creates A New Address For A Customer
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer-address#create-2020-04
+      parameters:
+      - in: path
+        name: customer_id
+        required: true
+        schema:
+          type: string
+        description: customer_id
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_create_customers_param_customer_id_addresses
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/customers/{customer_id}/addresses/{address_id}.json:
+    get:
+      summary: Shopify Retrieves Details A Single Customer Address
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer-address#show-2020-04
+      parameters:
+      - in: path
+        name: customer_id
+        required: true
+        schema:
+          type: string
+        description: customer_id
+      - in: path
+        name: address_id
+        required: true
+        schema:
+          type: string
+        description: address_id
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_get_customers_param_customer_id_addresses_param_address_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  address:
+                    id: 207119551
+                    zip: '90210'
+                summary: Update the postal code of a customer address
+      summary: Shopify Updates An Existing Customer Address
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer-address#update-2020-04
+      parameters:
+      - in: path
+        name: customer_id
+        required: true
+        schema:
+          type: string
+        description: customer_id
+      - in: path
+        name: address_id
+        required: true
+        schema:
+          type: string
+        description: address_id
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_update_customers_param_customer_id_addresses_param_address_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/customers/{customer_id}/addresses/set.json:
+    put:
+      summary: Shopify Performs Bulk Operations For Multiple Customer Addresses
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer-address#set-2020-04
+      parameters:
+      - in: path
+        name: customer_id
+        required: true
+        schema:
+          type: string
+        description: customer_id
+      - in: query
+        name: address_ids[]
+        schema:
+          type: integer
+        description: address_ids[]
+        required: false
+      - in: query
+        name: operation
+        schema:
+          type: string
+        description: operation
+        required: false
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_update_customers_param_customer_id_addresses_set
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/customers/{customer_id}/addresses/{address_id}/default.json:
+    put:
+      summary: Shopify Sets The Default Address For A Customer
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer-address#default-2020-04
+      parameters:
+      - in: path
+        name: customer_id
+        required: true
+        schema:
+          type: string
+        description: customer_id
+      - in: path
+        name: address_id
+        required: true
+        schema:
+          type: string
+        description: address_id
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_update_customers_param_customer_id_addresses_param_address_id_default
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/customers/{customer_id}/addresses.json:
+    get:
+      summary: Shopify Retrieves A List Of Addresses For A Customer
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer-address#index-2020-07
+      parameters:
+      - in: path
+        name: customer_id
+        required: true
+        schema:
+          type: string
+        description: customer_id
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_get_customers_param_customer_id_addresses
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  address:
+                    address1: 1 Rue des Carrieres
+                    address2: Suite 1234
+                    city: Montreal
+                    company: Fancy Co.
+                    first_name: Samuel
+                    last_name: de Champlain
+                    phone: 819-555-5555
+                    province: Quebec
+                    country: Canada
+                    zip: G1R 4P5
+                    name: Samuel de Champlain
+                    province_code: QC
+                    country_code: CA
+                    country_name: Canada
+                summary: Create a new address for a customer
+      summary: Shopify Creates A New Address For A Customer
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer-address#create-2020-07
+      parameters:
+      - in: path
+        name: customer_id
+        required: true
+        schema:
+          type: string
+        description: customer_id
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_create_customers_param_customer_id_addresses
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/customers/{customer_id}/addresses/{address_id}.json:
+    get:
+      summary: Shopify Retrieves Details A Single Customer Address
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer-address#show-2020-07
+      parameters:
+      - in: path
+        name: customer_id
+        required: true
+        schema:
+          type: string
+        description: customer_id
+      - in: path
+        name: address_id
+        required: true
+        schema:
+          type: string
+        description: address_id
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_get_customers_param_customer_id_addresses_param_address_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  address:
+                    id: 207119551
+                    zip: '90210'
+                summary: Update the postal code of a customer address
+      summary: Shopify Updates An Existing Customer Address
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer-address#update-2020-07
+      parameters:
+      - in: path
+        name: customer_id
+        required: true
+        schema:
+          type: string
+        description: customer_id
+      - in: path
+        name: address_id
+        required: true
+        schema:
+          type: string
+        description: address_id
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_update_customers_param_customer_id_addresses_param_address_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/customers/{customer_id}/addresses/set.json:
+    put:
+      summary: Shopify Performs Bulk Operations For Multiple Customer Addresses
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer-address#set-2020-07
+      parameters:
+      - in: path
+        name: customer_id
+        required: true
+        schema:
+          type: string
+        description: customer_id
+      - in: query
+        name: address_ids[]
+        schema:
+          type: integer
+        description: address_ids[]
+        required: false
+      - in: query
+        name: operation
+        schema:
+          type: string
+        description: operation
+        required: false
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_update_customers_param_customer_id_addresses_set
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/customers/{customer_id}/addresses/{address_id}/default.json:
+    put:
+      summary: Shopify Sets The Default Address For A Customer
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer-address#default-2020-07
+      parameters:
+      - in: path
+        name: customer_id
+        required: true
+        schema:
+          type: string
+        description: customer_id
+      - in: path
+        name: address_id
+        required: true
+        schema:
+          type: string
+        description: address_id
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_update_customers_param_customer_id_addresses_param_address_id_default
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/customers/{customer_id}/addresses.json:
+    get:
+      summary: Shopify Retrieves A List Of Addresses For A Customer
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer-address#index-2020-10
+      parameters:
+      - in: path
+        name: customer_id
+        required: true
+        schema:
+          type: string
+        description: customer_id
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: get_customers_param_customer_id_addresses
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  address:
+                    address1: 1 Rue des Carrieres
+                    address2: Suite 1234
+                    city: Montreal
+                    company: Fancy Co.
+                    first_name: Samuel
+                    last_name: de Champlain
+                    phone: 819-555-5555
+                    province: Quebec
+                    country: Canada
+                    zip: G1R 4P5
+                    name: Samuel de Champlain
+                    province_code: QC
+                    country_code: CA
+                    country_name: Canada
+                summary: Create a new address for a customer
+      summary: Shopify Creates A New Address For A Customer
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer-address#create-2020-10
+      parameters:
+      - in: path
+        name: customer_id
+        required: true
+        schema:
+          type: string
+        description: customer_id
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: create_customers_param_customer_id_addresses
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/customers/{customer_id}/addresses/{address_id}.json:
+    get:
+      summary: Shopify Retrieves Details A Single Customer Address
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer-address#show-2020-10
+      parameters:
+      - in: path
+        name: customer_id
+        required: true
+        schema:
+          type: string
+        description: customer_id
+      - in: path
+        name: address_id
+        required: true
+        schema:
+          type: string
+        description: address_id
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: get_customers_param_customer_id_addresses_param_address_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  address:
+                    id: 207119551
+                    zip: '90210'
+                summary: Update the postal code of a customer address
+      summary: Shopify Updates An Existing Customer Address
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer-address#update-2020-10
+      parameters:
+      - in: path
+        name: customer_id
+        required: true
+        schema:
+          type: string
+        description: customer_id
+      - in: path
+        name: address_id
+        required: true
+        schema:
+          type: string
+        description: address_id
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: update_customers_param_customer_id_addresses_param_address_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/customers/{customer_id}/addresses/set.json:
+    put:
+      summary: Shopify Performs Bulk Operations For Multiple Customer Addresses
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer-address#set-2020-10
+      parameters:
+      - in: path
+        name: customer_id
+        required: true
+        schema:
+          type: string
+        description: customer_id
+      - in: query
+        name: address_ids[]
+        schema:
+          type: integer
+        description: address_ids[]
+        required: false
+      - in: query
+        name: operation
+        schema:
+          type: string
+        description: operation
+        required: false
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: update_customers_param_customer_id_addresses_set
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/customers/{customer_id}/addresses/{address_id}/default.json:
+    put:
+      summary: Shopify Sets The Default Address For A Customer
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer-address#default-2020-10
+      parameters:
+      - in: path
+        name: customer_id
+        required: true
+        schema:
+          type: string
+        description: customer_id
+      - in: path
+        name: address_id
+        required: true
+        schema:
+          type: string
+        description: address_id
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: update_customers_param_customer_id_addresses_param_address_id_default
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/customers/{customer_id}/addresses.json:
+    get:
+      summary: Shopify Retrieves A List Of Addresses For A Customer
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer-address#index-2021-01
+      parameters:
+      - in: path
+        name: customer_id
+        required: true
+        schema:
+          type: string
+        description: customer_id
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_get_customers_param_customer_id_addresses
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  address:
+                    address1: 1 Rue des Carrieres
+                    address2: Suite 1234
+                    city: Montreal
+                    company: Fancy Co.
+                    first_name: Samuel
+                    last_name: de Champlain
+                    phone: 819-555-5555
+                    province: Quebec
+                    country: Canada
+                    zip: G1R 4P5
+                    name: Samuel de Champlain
+                    province_code: QC
+                    country_code: CA
+                    country_name: Canada
+                summary: Create a new address for a customer
+      summary: Shopify Creates A New Address For A Customer
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer-address#create-2021-01
+      parameters:
+      - in: path
+        name: customer_id
+        required: true
+        schema:
+          type: string
+        description: customer_id
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_create_customers_param_customer_id_addresses
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/customers/{customer_id}/addresses/{address_id}.json:
+    get:
+      summary: Shopify Retrieves Details A Single Customer Address
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer-address#show-2021-01
+      parameters:
+      - in: path
+        name: customer_id
+        required: true
+        schema:
+          type: string
+        description: customer_id
+      - in: path
+        name: address_id
+        required: true
+        schema:
+          type: string
+        description: address_id
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_get_customers_param_customer_id_addresses_param_address_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  address:
+                    id: 207119551
+                    zip: '90210'
+                summary: Update the postal code of a customer address
+      summary: Shopify Updates An Existing Customer Address
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer-address#update-2021-01
+      parameters:
+      - in: path
+        name: customer_id
+        required: true
+        schema:
+          type: string
+        description: customer_id
+      - in: path
+        name: address_id
+        required: true
+        schema:
+          type: string
+        description: address_id
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_update_customers_param_customer_id_addresses_param_address_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/customers/{customer_id}/addresses/set.json:
+    put:
+      summary: Shopify Performs Bulk Operations For Multiple Customer Addresses
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer-address#set-2021-01
+      parameters:
+      - in: path
+        name: customer_id
+        required: true
+        schema:
+          type: string
+        description: customer_id
+      - in: query
+        name: address_ids[]
+        schema:
+          type: integer
+        description: address_ids[]
+        required: false
+      - in: query
+        name: operation
+        schema:
+          type: string
+        description: operation
+        required: false
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_update_customers_param_customer_id_addresses_set
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/customers/{customer_id}/addresses/{address_id}/default.json:
+    put:
+      summary: Shopify Sets The Default Address For A Customer
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer-address#default-2021-01
+      parameters:
+      - in: path
+        name: customer_id
+        required: true
+        schema:
+          type: string
+        description: customer_id
+      - in: path
+        name: address_id
+        required: true
+        schema:
+          type: string
+        description: address_id
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_update_customers_param_customer_id_addresses_param_address_id_default
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/customers/{customer_id}/addresses.json:
+    get:
+      summary: Shopify Retrieves A List Of Addresses For A Customer
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer-address#index-unstable
+      parameters:
+      - in: path
+        name: customer_id
+        required: true
+        schema:
+          type: string
+        description: customer_id
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_get_customers_param_customer_id_addresses
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  address:
+                    address1: 1 Rue des Carrieres
+                    address2: Suite 1234
+                    city: Montreal
+                    company: Fancy Co.
+                    first_name: Samuel
+                    last_name: de Champlain
+                    phone: 819-555-5555
+                    province: Quebec
+                    country: Canada
+                    zip: G1R 4P5
+                    name: Samuel de Champlain
+                    province_code: QC
+                    country_code: CA
+                    country_name: Canada
+                summary: Create a new address for a customer
+      summary: Shopify Creates A New Address For A Customer
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer-address#create-unstable
+      parameters:
+      - in: path
+        name: customer_id
+        required: true
+        schema:
+          type: string
+        description: customer_id
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_create_customers_param_customer_id_addresses
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/customers/{customer_id}/addresses/{address_id}.json:
+    get:
+      summary: Shopify Retrieves Details A Single Customer Address
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer-address#show-unstable
+      parameters:
+      - in: path
+        name: customer_id
+        required: true
+        schema:
+          type: string
+        description: customer_id
+      - in: path
+        name: address_id
+        required: true
+        schema:
+          type: string
+        description: address_id
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_get_customers_param_customer_id_addresses_param_address_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  address:
+                    id: 207119551
+                    zip: '90210'
+                summary: Update the postal code of a customer address
+      summary: Shopify Updates An Existing Customer Address
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer-address#update-unstable
+      parameters:
+      - in: path
+        name: customer_id
+        required: true
+        schema:
+          type: string
+        description: customer_id
+      - in: path
+        name: address_id
+        required: true
+        schema:
+          type: string
+        description: address_id
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_update_customers_param_customer_id_addresses_param_address_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/customers/{customer_id}/addresses/set.json:
+    put:
+      summary: Shopify Performs Bulk Operations For Multiple Customer Addresses
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer-address#set-unstable
+      parameters:
+      - in: path
+        name: customer_id
+        required: true
+        schema:
+          type: string
+        description: customer_id
+      - in: query
+        name: address_ids[]
+        schema:
+          type: integer
+        description: address_ids[]
+        required: false
+      - in: query
+        name: operation
+        schema:
+          type: string
+        description: operation
+        required: false
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_update_customers_param_customer_id_addresses_set
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/customers/{customer_id}/addresses/{address_id}/default.json:
+    put:
+      summary: Shopify Sets The Default Address For A Customer
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer-address#default-unstable
+      parameters:
+      - in: path
+        name: customer_id
+        required: true
+        schema:
+          type: string
+        description: customer_id
+      - in: path
+        name: address_id
+        required: true
+        schema:
+          type: string
+        description: address_id
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_update_customers_param_customer_id_addresses_param_address_id_default
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-01/customer_saved_searches.json:
+    get:
+      summary: Shopify Retrieves A List Of Customer Saved Searches
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customersavedsearch#index-2020-01
+      parameters:
+      - in: query
+        name: limit
+        description: "The maximum number of results to show.\n                  (default: 50, maximum: 250)"
+        schema: {}
+        required: false
+      - in: query
+        name: since_id
+        description: Restrict results to after the specified ID.
+        schema: {}
+        required: false
+      - in: query
+        name: fields
+        description: Show only certain fields, specified by a comma-separated list of field names.
+        schema: {}
+        required: false
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_get_customer_saved_searches
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  customer_saved_search:
+                    name: Spent more than $50
+                    query: total_spent:>50
+                summary: Create a customer saved search
+              example2:
+                value:
+                  customer_saved_search:
+                    name: Spent more than $50 and after 2013
+                    query: total_spent:>50 order_date:>=2013-01-01
+                summary: Create a customer saved search with multiple terms
+              example3:
+                value:
+                  customer_saved_search:
+                    body: foobar
+                summary: Creating a customer saved search without a name fails and returns an error
+      summary: Shopify Creates A Customer Saved Search
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customersavedsearch#create-2020-01
+      parameters: []
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_create_customer_saved_searches
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-01/customer_saved_searches/count.json:
+    get:
+      summary: Shopify Retrieves A Count Of All Customer Saved Searches
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customersavedsearch#count-2020-01
+      parameters:
+      - in: query
+        name: since_id
+        description: Restrict results to after the specified ID
+        schema: {}
+        required: false
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_get_customer_saved_searches_count
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-01/customer_saved_searches/{customer_saved_search_id}.json:
+    get:
+      summary: Shopify Retrieves A Single Customer Saved Search
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customersavedsearch#show-2020-01
+      parameters:
+      - in: path
+        name: customer_saved_search_id
+        required: true
+        schema:
+          type: string
+        description: customer_saved_search_id
+      - in: query
+        name: fields
+        description: Show only certain fields, specified by a comma-separated list of field names.
+        schema: {}
+        required: false
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_get_customer_saved_searches_param_customer_saved_search_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  customer_saved_search:
+                    id: 789629109
+                    name: This Name Has Been Changed
+                summary: Update an existing customer saved search
+      summary: Shopify Updates A Customer Saved Search
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customersavedsearch#update-2020-01
+      parameters:
+      - in: path
+        name: customer_saved_search_id
+        required: true
+        schema:
+          type: string
+        description: customer_saved_search_id
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_update_customer_saved_searches_param_customer_saved_search_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    delete:
+      summary: Shopify Deletes A Customer Saved Search
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customersavedsearch#destroy-2020-01
+      parameters:
+      - in: path
+        name: customer_saved_search_id
+        required: true
+        schema:
+          type: string
+        description: customer_saved_search_id
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_delete_customer_saved_searches_param_customer_saved_search_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-01/customer_saved_searches/{customer_saved_search_id}/customers.json:
+    get:
+      summary: Shopify Retrieves All Customers Returned By A Customer Saved Search
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customersavedsearch#other-2020-01
+      parameters:
+      - in: path
+        name: customer_saved_search_id
+        required: true
+        schema:
+          type: string
+        description: customer_saved_search_id
+      - in: query
+        name: order
+        description: "Set the field and direction by which to order results.\n                  (default: last_order_date DESC)"
+        schema: {}
+        required: false
+      - in: query
+        name: limit
+        description: "The maximum number of results to show.\n                  (default: 50, maximum: 250)"
+        schema: {}
+        required: false
+      - in: query
+        name: fields
+        description: Show only certain fields, specified by a comma-separated list of field names.
+        schema: {}
+        required: false
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_get_customer_saved_searches_param_customer_saved_search_id_customers
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/customer_saved_searches.json:
+    get:
+      summary: Shopify Retrieves A List Of Customer Saved Searches
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customersavedsearch#index-2020-04
+      parameters:
+      - in: query
+        name: limit
+        description: "The maximum number of results to show.\n                  (default: 50, maximum: 250)"
+        schema: {}
+        required: false
+      - in: query
+        name: since_id
+        description: Restrict results to after the specified ID.
+        schema: {}
+        required: false
+      - in: query
+        name: fields
+        description: Show only certain fields, specified by a comma-separated list of field names.
+        schema: {}
+        required: false
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_get_customer_saved_searches
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  customer_saved_search:
+                    name: Spent more than $50
+                    query: total_spent:>50
+                summary: Create a customer saved search
+              example2:
+                value:
+                  customer_saved_search:
+                    name: Spent more than $50 and after 2013
+                    query: total_spent:>50 order_date:>=2013-01-01
+                summary: Create a customer saved search with multiple terms
+              example3:
+                value:
+                  customer_saved_search:
+                    body: foobar
+                summary: Creating a customer saved search without a name fails and returns an error
+      summary: Shopify Creates A Customer Saved Search
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customersavedsearch#create-2020-04
+      parameters: []
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_create_customer_saved_searches
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/customer_saved_searches/count.json:
+    get:
+      summary: Shopify Retrieves A Count Of All Customer Saved Searches
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customersavedsearch#count-2020-04
+      parameters:
+      - in: query
+        name: since_id
+        description: Restrict results to after the specified ID
+        schema: {}
+        required: false
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_get_customer_saved_searches_count
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/customer_saved_searches/{customer_saved_search_id}.json:
+    get:
+      summary: Shopify Retrieves A Single Customer Saved Search
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customersavedsearch#show-2020-04
+      parameters:
+      - in: path
+        name: customer_saved_search_id
+        required: true
+        schema:
+          type: string
+        description: customer_saved_search_id
+      - in: query
+        name: fields
+        description: Show only certain fields, specified by a comma-separated list of field names.
+        schema: {}
+        required: false
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_get_customer_saved_searches_param_customer_saved_search_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  customer_saved_search:
+                    id: 789629109
+                    name: This Name Has Been Changed
+                summary: Update an existing customer saved search
+      summary: Shopify Updates A Customer Saved Search
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customersavedsearch#update-2020-04
+      parameters:
+      - in: path
+        name: customer_saved_search_id
+        required: true
+        schema:
+          type: string
+        description: customer_saved_search_id
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_update_customer_saved_searches_param_customer_saved_search_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    delete:
+      summary: Shopify Deletes A Customer Saved Search
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customersavedsearch#destroy-2020-04
+      parameters:
+      - in: path
+        name: customer_saved_search_id
+        required: true
+        schema:
+          type: string
+        description: customer_saved_search_id
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_delete_customer_saved_searches_param_customer_saved_search_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/customer_saved_searches/{customer_saved_search_id}/customers.json:
+    get:
+      summary: Shopify Retrieves All Customers Returned By A Customer Saved Search
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customersavedsearch#other-2020-04
+      parameters:
+      - in: path
+        name: customer_saved_search_id
+        required: true
+        schema:
+          type: string
+        description: customer_saved_search_id
+      - in: query
+        name: order
+        description: "Set the field and direction by which to order results.\n                  (default: last_order_date DESC)"
+        schema: {}
+        required: false
+      - in: query
+        name: limit
+        description: "The maximum number of results to show.\n                  (default: 50, maximum: 250)"
+        schema: {}
+        required: false
+      - in: query
+        name: fields
+        description: Show only certain fields, specified by a comma-separated list of field names.
+        schema: {}
+        required: false
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_get_customer_saved_searches_param_customer_saved_search_id_customers
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/customer_saved_searches.json:
+    get:
+      summary: Shopify Retrieves A List Of Customer Saved Searches
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customersavedsearch#index-2020-07
+      parameters:
+      - in: query
+        name: limit
+        description: "The maximum number of results to show.\n                  (default: 50, maximum: 250)"
+        schema: {}
+        required: false
+      - in: query
+        name: since_id
+        description: Restrict results to after the specified ID.
+        schema: {}
+        required: false
+      - in: query
+        name: fields
+        description: Show only certain fields, specified by a comma-separated list of field names.
+        schema: {}
+        required: false
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_get_customer_saved_searches
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  customer_saved_search:
+                    name: Spent more than $50
+                    query: total_spent:>50
+                summary: Create a customer saved search
+              example2:
+                value:
+                  customer_saved_search:
+                    name: Spent more than $50 and after 2013
+                    query: total_spent:>50 order_date:>=2013-01-01
+                summary: Create a customer saved search with multiple terms
+              example3:
+                value:
+                  customer_saved_search:
+                    body: foobar
+                summary: Creating a customer saved search without a name fails and returns an error
+      summary: Shopify Creates A Customer Saved Search
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customersavedsearch#create-2020-07
+      parameters: []
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_create_customer_saved_searches
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/customer_saved_searches/count.json:
+    get:
+      summary: Shopify Retrieves A Count Of All Customer Saved Searches
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customersavedsearch#count-2020-07
+      parameters:
+      - in: query
+        name: since_id
+        description: Restrict results to after the specified ID
+        schema: {}
+        required: false
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_get_customer_saved_searches_count
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/customer_saved_searches/{customer_saved_search_id}.json:
+    get:
+      summary: Shopify Retrieves A Single Customer Saved Search
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customersavedsearch#show-2020-07
+      parameters:
+      - in: path
+        name: customer_saved_search_id
+        required: true
+        schema:
+          type: string
+        description: customer_saved_search_id
+      - in: query
+        name: fields
+        description: Show only certain fields, specified by a comma-separated list of field names.
+        schema: {}
+        required: false
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_get_customer_saved_searches_param_customer_saved_search_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  customer_saved_search:
+                    id: 789629109
+                    name: This Name Has Been Changed
+                summary: Update an existing customer saved search
+      summary: Shopify Updates A Customer Saved Search
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customersavedsearch#update-2020-07
+      parameters:
+      - in: path
+        name: customer_saved_search_id
+        required: true
+        schema:
+          type: string
+        description: customer_saved_search_id
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_update_customer_saved_searches_param_customer_saved_search_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    delete:
+      summary: Shopify Deletes A Customer Saved Search
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customersavedsearch#destroy-2020-07
+      parameters:
+      - in: path
+        name: customer_saved_search_id
+        required: true
+        schema:
+          type: string
+        description: customer_saved_search_id
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_delete_customer_saved_searches_param_customer_saved_search_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/customer_saved_searches/{customer_saved_search_id}/customers.json:
+    get:
+      summary: Shopify Retrieves All Customers Returned By A Customer Saved Search
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customersavedsearch#other-2020-07
+      parameters:
+      - in: path
+        name: customer_saved_search_id
+        required: true
+        schema:
+          type: string
+        description: customer_saved_search_id
+      - in: query
+        name: order
+        description: "Set the field and direction by which to order results.\n                  (default: last_order_date DESC)"
+        schema: {}
+        required: false
+      - in: query
+        name: limit
+        description: "The maximum number of results to show.\n                  (default: 50, maximum: 250)"
+        schema: {}
+        required: false
+      - in: query
+        name: fields
+        description: Show only certain fields, specified by a comma-separated list of field names.
+        schema: {}
+        required: false
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_get_customer_saved_searches_param_customer_saved_search_id_customers
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/customer_saved_searches.json:
+    get:
+      summary: Shopify Retrieves A List Of Customer Saved Searches
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customersavedsearch#index-2020-10
+      parameters:
+      - in: query
+        name: limit
+        description: "The maximum number of results to show.\n                  (default: 50, maximum: 250)"
+        schema: {}
+        required: false
+      - in: query
+        name: since_id
+        description: Restrict results to after the specified ID.
+        schema: {}
+        required: false
+      - in: query
+        name: fields
+        description: Show only certain fields, specified by a comma-separated list of field names.
+        schema: {}
+        required: false
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: get_customer_saved_searches
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  customer_saved_search:
+                    name: Spent more than $50
+                    query: total_spent:>50
+                summary: Create a customer saved search
+              example2:
+                value:
+                  customer_saved_search:
+                    name: Spent more than $50 and after 2013
+                    query: total_spent:>50 order_date:>=2013-01-01
+                summary: Create a customer saved search with multiple terms
+              example3:
+                value:
+                  customer_saved_search:
+                    body: foobar
+                summary: Creating a customer saved search without a name fails and returns an error
+      summary: Shopify Creates A Customer Saved Search
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customersavedsearch#create-2020-10
+      parameters: []
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: create_customer_saved_searches
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/customer_saved_searches/count.json:
+    get:
+      summary: Shopify Retrieves A Count Of All Customer Saved Searches
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customersavedsearch#count-2020-10
+      parameters:
+      - in: query
+        name: since_id
+        description: Restrict results to after the specified ID
+        schema: {}
+        required: false
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: get_customer_saved_searches_count
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/customer_saved_searches/{customer_saved_search_id}.json:
+    get:
+      summary: Shopify Retrieves A Single Customer Saved Search
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customersavedsearch#show-2020-10
+      parameters:
+      - in: path
+        name: customer_saved_search_id
+        required: true
+        schema:
+          type: string
+        description: customer_saved_search_id
+      - in: query
+        name: fields
+        description: Show only certain fields, specified by a comma-separated list of field names.
+        schema: {}
+        required: false
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: get_customer_saved_searches_param_customer_saved_search_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  customer_saved_search:
+                    id: 789629109
+                    name: This Name Has Been Changed
+                summary: Update an existing customer saved search
+      summary: Shopify Updates A Customer Saved Search
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customersavedsearch#update-2020-10
+      parameters:
+      - in: path
+        name: customer_saved_search_id
+        required: true
+        schema:
+          type: string
+        description: customer_saved_search_id
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: update_customer_saved_searches_param_customer_saved_search_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    delete:
+      summary: Shopify Deletes A Customer Saved Search
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customersavedsearch#destroy-2020-10
+      parameters:
+      - in: path
+        name: customer_saved_search_id
+        required: true
+        schema:
+          type: string
+        description: customer_saved_search_id
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: delete_customer_saved_searches_param_customer_saved_search_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/customer_saved_searches/{customer_saved_search_id}/customers.json:
+    get:
+      summary: Shopify Retrieves All Customers Returned By A Customer Saved Search
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customersavedsearch#other-2020-10
+      parameters:
+      - in: path
+        name: customer_saved_search_id
+        required: true
+        schema:
+          type: string
+        description: customer_saved_search_id
+      - in: query
+        name: order
+        description: "Set the field and direction by which to order results.\n                  (default: last_order_date DESC)"
+        schema: {}
+        required: false
+      - in: query
+        name: limit
+        description: "The maximum number of results to show.\n                  (default: 50, maximum: 250)"
+        schema: {}
+        required: false
+      - in: query
+        name: fields
+        description: Show only certain fields, specified by a comma-separated list of field names.
+        schema: {}
+        required: false
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: get_customer_saved_searches_param_customer_saved_search_id_customers
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/customer_saved_searches.json:
+    get:
+      summary: Shopify Retrieves A List Of Customer Saved Searches
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customersavedsearch#index-2021-01
+      parameters:
+      - in: query
+        name: limit
+        description: "The maximum number of results to show.\n                  (default: 50, maximum: 250)"
+        schema: {}
+        required: false
+      - in: query
+        name: since_id
+        description: Restrict results to after the specified ID.
+        schema: {}
+        required: false
+      - in: query
+        name: fields
+        description: Show only certain fields, specified by a comma-separated list of field names.
+        schema: {}
+        required: false
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_get_customer_saved_searches
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  customer_saved_search:
+                    name: Spent more than $50
+                    query: total_spent:>50
+                summary: Create a customer saved search
+              example2:
+                value:
+                  customer_saved_search:
+                    name: Spent more than $50 and after 2013
+                    query: total_spent:>50 order_date:>=2013-01-01
+                summary: Create a customer saved search with multiple terms
+              example3:
+                value:
+                  customer_saved_search:
+                    body: foobar
+                summary: Creating a customer saved search without a name fails and returns an error
+      summary: Shopify Creates A Customer Saved Search
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customersavedsearch#create-2021-01
+      parameters: []
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_create_customer_saved_searches
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/customer_saved_searches/count.json:
+    get:
+      summary: Shopify Retrieves A Count Of All Customer Saved Searches
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customersavedsearch#count-2021-01
+      parameters:
+      - in: query
+        name: since_id
+        description: Restrict results to after the specified ID
+        schema: {}
+        required: false
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_get_customer_saved_searches_count
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/customer_saved_searches/{customer_saved_search_id}.json:
+    get:
+      summary: Shopify Retrieves A Single Customer Saved Search
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customersavedsearch#show-2021-01
+      parameters:
+      - in: path
+        name: customer_saved_search_id
+        required: true
+        schema:
+          type: string
+        description: customer_saved_search_id
+      - in: query
+        name: fields
+        description: Show only certain fields, specified by a comma-separated list of field names.
+        schema: {}
+        required: false
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_get_customer_saved_searches_param_customer_saved_search_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  customer_saved_search:
+                    id: 789629109
+                    name: This Name Has Been Changed
+                summary: Update an existing customer saved search
+      summary: Shopify Updates A Customer Saved Search
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customersavedsearch#update-2021-01
+      parameters:
+      - in: path
+        name: customer_saved_search_id
+        required: true
+        schema:
+          type: string
+        description: customer_saved_search_id
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_update_customer_saved_searches_param_customer_saved_search_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    delete:
+      summary: Shopify Deletes A Customer Saved Search
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customersavedsearch#destroy-2021-01
+      parameters:
+      - in: path
+        name: customer_saved_search_id
+        required: true
+        schema:
+          type: string
+        description: customer_saved_search_id
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_delete_customer_saved_searches_param_customer_saved_search_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/customer_saved_searches/{customer_saved_search_id}/customers.json:
+    get:
+      summary: Shopify Retrieves All Customers Returned By A Customer Saved Search
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customersavedsearch#other-2021-01
+      parameters:
+      - in: path
+        name: customer_saved_search_id
+        required: true
+        schema:
+          type: string
+        description: customer_saved_search_id
+      - in: query
+        name: order
+        description: "Set the field and direction by which to order results.\n                  (default: last_order_date DESC)"
+        schema: {}
+        required: false
+      - in: query
+        name: limit
+        description: "The maximum number of results to show.\n                  (default: 50, maximum: 250)"
+        schema: {}
+        required: false
+      - in: query
+        name: fields
+        description: Show only certain fields, specified by a comma-separated list of field names.
+        schema: {}
+        required: false
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_get_customer_saved_searches_param_customer_saved_search_id_customers
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/customer_saved_searches.json:
+    get:
+      summary: Shopify Retrieves A List Of Customer Saved Searches
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customersavedsearch#index-unstable
+      parameters:
+      - in: query
+        name: limit
+        description: "The maximum number of results to show.\n                  (default: 50, maximum: 250)"
+        schema: {}
+        required: false
+      - in: query
+        name: since_id
+        description: Restrict results to after the specified ID.
+        schema: {}
+        required: false
+      - in: query
+        name: fields
+        description: Show only certain fields, specified by a comma-separated list of field names.
+        schema: {}
+        required: false
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_get_customer_saved_searches
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  customer_saved_search:
+                    name: Spent more than $50
+                    query: total_spent:>50
+                summary: Create a customer saved search
+              example2:
+                value:
+                  customer_saved_search:
+                    name: Spent more than $50 and after 2013
+                    query: total_spent:>50 order_date:>=2013-01-01
+                summary: Create a customer saved search with multiple terms
+              example3:
+                value:
+                  customer_saved_search:
+                    body: foobar
+                summary: Creating a customer saved search without a name fails and returns an error
+      summary: Shopify Creates A Customer Saved Search
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customersavedsearch#create-unstable
+      parameters: []
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_create_customer_saved_searches
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/customer_saved_searches/count.json:
+    get:
+      summary: Shopify Retrieves A Count Of All Customer Saved Searches
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customersavedsearch#count-unstable
+      parameters:
+      - in: query
+        name: since_id
+        description: Restrict results to after the specified ID
+        schema: {}
+        required: false
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_get_customer_saved_searches_count
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/customer_saved_searches/{customer_saved_search_id}.json:
+    get:
+      summary: Shopify Retrieves A Single Customer Saved Search
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customersavedsearch#show-unstable
+      parameters:
+      - in: path
+        name: customer_saved_search_id
+        required: true
+        schema:
+          type: string
+        description: customer_saved_search_id
+      - in: query
+        name: fields
+        description: Show only certain fields, specified by a comma-separated list of field names.
+        schema: {}
+        required: false
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_get_customer_saved_searches_param_customer_saved_search_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  customer_saved_search:
+                    id: 789629109
+                    name: This Name Has Been Changed
+                summary: Update an existing customer saved search
+      summary: Shopify Updates A Customer Saved Search
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customersavedsearch#update-unstable
+      parameters:
+      - in: path
+        name: customer_saved_search_id
+        required: true
+        schema:
+          type: string
+        description: customer_saved_search_id
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_update_customer_saved_searches_param_customer_saved_search_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    delete:
+      summary: Shopify Deletes A Customer Saved Search
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customersavedsearch#destroy-unstable
+      parameters:
+      - in: path
+        name: customer_saved_search_id
+        required: true
+        schema:
+          type: string
+        description: customer_saved_search_id
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_delete_customer_saved_searches_param_customer_saved_search_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/customer_saved_searches/{customer_saved_search_id}/customers.json:
+    get:
+      summary: Shopify Retrieves All Customers Returned By A Customer Saved Search
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customersavedsearch#other-unstable
+      parameters:
+      - in: path
+        name: customer_saved_search_id
+        required: true
+        schema:
+          type: string
+        description: customer_saved_search_id
+      - in: query
+        name: order
+        description: "Set the field and direction by which to order results.\n                  (default: last_order_date DESC)"
+        schema: {}
+        required: false
+      - in: query
+        name: limit
+        description: "The maximum number of results to show.\n                  (default: 50, maximum: 250)"
+        schema: {}
+        required: false
+      - in: query
+        name: fields
+        description: Show only certain fields, specified by a comma-separated list of field names.
+        schema: {}
+        required: false
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_get_customer_saved_searches_param_customer_saved_search_id_customers
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+components:
+  schemas:
+    TaxLine:
+      type: object
+      description: A tax line applied to an item
+      properties:
+        title:
+          type: string
+        price:
+          type: string
+        rate:
+          type: number
+    ShippingLine:
+      type: object
+      description: A shipping method applied to an order
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        price:
+          type: string
+        code:
+          type:
+          - string
+          - 'null'
+        source:
+          type: string
+        discounted_price:
+          type: string
+        tax_lines:
+          type: array
+          items:
+            $ref: '#/components/schemas/TaxLine'
+    Fulfillment:
+      type: object
+      description: A fulfillment of an order
+      properties:
+        id:
+          type: integer
+        order_id:
+          type: integer
+        status:
+          type: string
+          enum:
+          - pending
+          - open
+          - success
+          - cancelled
+          - error
+          - failure
+        tracking_company:
+          type:
+          - string
+          - 'null'
+        tracking_number:
+          type:
+          - string
+          - 'null'
+        tracking_numbers:
+          type: array
+          items:
+            type: string
+        tracking_url:
+          type:
+          - string
+          - 'null'
+        tracking_urls:
+          type: array
+          items:
+            type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        line_items:
+          type: array
+          items:
+            $ref: '#/components/schemas/LineItem'
+        admin_graphql_api_id:
+          type: string
+    Address:
+      type: object
+      description: A customer mailing address
+      properties:
+        id:
+          type: integer
+        customer_id:
+          type: integer
+        first_name:
+          type: string
+        last_name:
+          type: string
+        company:
+          type:
+          - string
+          - 'null'
+        address1:
+          type: string
+        address2:
+          type:
+          - string
+          - 'null'
+        city:
+          type: string
+        province:
+          type:
+          - string
+          - 'null'
+        country:
+          type: string
+        zip:
+          type: string
+        phone:
+          type:
+          - string
+          - 'null'
+        province_code:
+          type:
+          - string
+          - 'null'
+        country_code:
+          type: string
+        country_name:
+          type: string
+        default:
+          type: boolean
+          description: Whether this is the default address
+    Customer:
+      type: object
+      description: A Shopify customer
+      properties:
+        id:
+          type: integer
+          description: Unique numeric identifier
+        email:
+          type:
+          - string
+          - 'null'
+          format: email
+          description: Customer email address
+        first_name:
+          type:
+          - string
+          - 'null'
+          description: First name
+        last_name:
+          type:
+          - string
+          - 'null'
+          description: Last name
+        phone:
+          type:
+          - string
+          - 'null'
+          description: Phone number in E.164 format
+        orders_count:
+          type: integer
+          description: Number of orders placed
+        total_spent:
+          type: string
+          description: Total amount spent
+        state:
+          type: string
+          description: Account state
+          enum:
+          - disabled
+          - invited
+          - enabled
+          - declined
+        note:
+          type:
+          - string
+          - 'null'
+          description: A note about the customer
+        verified_email:
+          type: boolean
+          description: Whether the email has been verified
+        tax_exempt:
+          type: boolean
+          description: Whether the customer is tax exempt
+        tags:
+          type: string
+          description: Comma-separated list of tags
+        currency:
+          type: string
+          description: Three-letter ISO 4217 currency code
+        accepts_marketing:
+          type: boolean
+          description: Whether the customer has consented to marketing
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        default_address:
+          $ref: '#/components/schemas/Address'
+        addresses:
+          type: array
+          items:
+            $ref: '#/components/schemas/Address'
+        admin_graphql_api_id:
+          type: string
+    Order:
+      type: object
+      description: A Shopify order
+      properties:
+        id:
+          type: integer
+          description: Unique numeric identifier
+        name:
+          type: string
+          description: The order name (e.g.
+        order_number:
+          type: integer
+          description: The order number without prefix
+        email:
+          type:
+          - string
+          - 'null'
+          format: email
+        phone:
+          type:
+          - string
+          - 'null'
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        closed_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        cancelled_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        cancel_reason:
+          type:
+          - string
+          - 'null'
+          enum:
+          - customer
+          - fraud
+          - inventory
+          - declined
+          - other
+          - null
+        note:
+          type:
+          - string
+          - 'null'
+          description: Notes about the order
+        tags:
+          type: string
+          description: Comma-separated tags
+        token:
+          type: string
+        total_price:
+          type: string
+          description: Total price of the order
+        subtotal_price:
+          type: string
+          description: Subtotal before shipping and taxes
+        total_tax:
+          type: string
+          description: Total tax amount
+        total_discounts:
+          type: string
+          description: Total discount amount
+        total_shipping_price_set:
+          type: object
+          description: Total shipping price in shop and presentment currencies
+          properties:
+            shop_money:
+              $ref: '#/components/schemas/Money'
+            presentment_money:
+              $ref: '#/components/schemas/Money'
+        currency:
+          type: string
+          description: Three-letter ISO 4217 currency code
+        financial_status:
+          type: string
+          enum:
+          - pending
+          - authorized
+          - partially_paid
+          - paid
+          - partially_refunded
+          - refunded
+          - voided
+        fulfillment_status:
+          type:
+          - string
+          - 'null'
+          enum:
+          - fulfilled
+          - partial
+          - restocked
+          - null
+        confirmed:
+          type: boolean
+        test:
+          type: boolean
+          description: Whether this is a test order
+        taxes_included:
+          type: boolean
+        buyer_accepts_marketing:
+          type: boolean
+        customer:
+          $ref: '#/components/schemas/Customer'
+        billing_address:
+          $ref: '#/components/schemas/Address'
+        shipping_address:
+          $ref: '#/components/schemas/Address'
+        line_items:
+          type: array
+          items:
+            $ref: '#/components/schemas/LineItem'
+        shipping_lines:
+          type: array
+          items:
+            $ref: '#/components/schemas/ShippingLine'
+        fulfillments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Fulfillment'
+        refunds:
+          type: array
+          items:
+            $ref: '#/components/schemas/Refund'
+        discount_codes:
+          type: array
+          items:
+            type: object
+            properties:
+              code:
+                type: string
+              amount:
+                type: string
+              type:
+                type: string
+        admin_graphql_api_id:
+          type: string
+    Money:
+      type: object
+      description: A monetary amount with currency
+      properties:
+        amount:
+          type: string
+        currency_code:
+          type: string
+    CustomerInput:
+      type: object
+      description: Input for creating or updating a customer
+      properties:
+        first_name:
+          type: string
+        last_name:
+          type: string
+        email:
+          type: string
+          format: email
+        phone:
+          type: string
+        note:
+          type: string
+        tags:
+          type: string
+        tax_exempt:
+          type: boolean
+        accepts_marketing:
+          type: boolean
+        send_email_welcome:
+          type: boolean
+          description: Whether to send a welcome email
+        addresses:
+          type: array
+          items:
+            $ref: '#/components/schemas/Address'
+    LineItem:
+      type: object
+      description: An individual line item in an order
+      properties:
+        id:
+          type: integer
+        variant_id:
+          type:
+          - integer
+          - 'null'
+        product_id:
+          type:
+          - integer
+          - 'null'
+        title:
+          type: string
+        variant_title:
+          type:
+          - string
+          - 'null'
+        name:
+          type: string
+          description: Product title and variant title combined
+        quantity:
+          type: integer
+        price:
+          type: string
+        total_discount:
+          type: string
+        sku:
+          type:
+          - string
+          - 'null'
+        vendor:
+          type:
+          - string
+          - 'null'
+        fulfillment_service:
+          type: string
+        fulfillment_status:
+          type:
+          - string
+          - 'null'
+        taxable:
+          type: boolean
+        requires_shipping:
+          type: boolean
+        gift_card:
+          type: boolean
+        grams:
+          type: integer
+        tax_lines:
+          type: array
+          items:
+            $ref: '#/components/schemas/TaxLine'
+        properties:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              value:
+                type: string
+        admin_graphql_api_id:
+          type: string
+    Error:
+      type: object
+      description: Error response
+      properties:
+        errors:
+          description: Error details
+          oneOf:
+          - type: string
+          - type: object
+            additionalProperties:
+              type: array
+              items:
+                type: string
+    Refund:
+      type: object
+      description: A refund on an order
+      properties:
+        id:
+          type: integer
+        order_id:
+          type: integer
+        created_at:
+          type: string
+          format: date-time
+        note:
+          type:
+          - string
+          - 'null'
+        restock:
+          type: boolean
+        refund_line_items:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+              quantity:
+                type: integer
+              line_item_id:
+                type: integer
+              subtotal:
+                type: number
+              total_tax:
+                type: number
+              line_item:
+                $ref: '#/components/schemas/LineItem'
+        admin_graphql_api_id:
+          type: string
+  parameters:
+    CustomerId:
+      name: customer_id
+      in: path
+      required: true
+      description: The ID of the customer
+      schema:
+        type: integer
+  securitySchemes:
+    AccessToken:
+      type: apiKey
+      name: X-Shopify-Access-Token
+      in: header
+      description: Access token obtained via OAuth

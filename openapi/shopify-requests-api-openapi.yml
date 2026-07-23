@@ -1,0 +1,1466 @@
+openapi: 3.1.0
+info:
+  title: Shopify Admin REST About Requests API
+  description: The Shopify Admin REST API lets you build apps and integrations that extend and enhance the Shopify admin. Access products, customers, orders, inventory, fulfillment, and more. Endpoints are organized by resource type and versioned by release date.
+  version: 2025-01
+  contact:
+    name: Shopify
+    url: https://shopify.dev/docs/api/admin-rest
+    email: api@shopify.com
+  license:
+    name: Shopify API Terms
+    url: https://www.shopify.com/legal/api-terms
+  x-date: '2026-03-04'
+servers:
+- url: https://{store}.myshopify.com/admin/api/2025-01
+  description: Shopify Admin REST API
+  variables:
+    store:
+      default: my-store
+      description: The Shopify store subdomain
+security:
+- AccessToken: []
+tags:
+- name: Requests
+paths:
+  /admin/api/2020-01/users/current.json:
+    get:
+      summary: Shopify Retrieves Information About The User Account Associated With The Access Token Used To Make This Api Request
+      description: https://shopify.dev/docs/admin-api/rest/reference/plus/user#current-2020-01
+      parameters: []
+      tags:
+      - Requests
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_get_users_current
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/users/current.json:
+    get:
+      summary: Shopify Retrieves Information About The User Account Associated With The Access Token Used To Make This Api Request
+      description: https://shopify.dev/docs/admin-api/rest/reference/plus/user#current-2020-04
+      parameters: []
+      tags:
+      - Requests
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_get_users_current
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/users/current.json:
+    get:
+      summary: Shopify Retrieves Information About The User Account Associated With The Access Token Used To Make This Api Request
+      description: https://shopify.dev/docs/admin-api/rest/reference/plus/user#current-2020-07
+      parameters: []
+      tags:
+      - Requests
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_get_users_current
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/users/current.json:
+    get:
+      summary: Shopify Retrieves Information About The User Account Associated With The Access Token Used To Make This Api Request
+      description: https://shopify.dev/docs/admin-api/rest/reference/plus/user#current-2020-10
+      parameters: []
+      tags:
+      - Requests
+      responses:
+        '200':
+          description: ''
+      operationId: get_users_current
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/users/current.json:
+    get:
+      summary: Shopify Retrieves Information About The User Account Associated With The Access Token Used To Make This Api Request
+      description: https://shopify.dev/docs/admin-api/rest/reference/plus/user#current-2021-01
+      parameters: []
+      tags:
+      - Requests
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_get_users_current
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/users/current.json:
+    get:
+      summary: Shopify Retrieves Information About The User Account Associated With The Access Token Used To Make This Api Request
+      description: https://shopify.dev/docs/admin-api/rest/reference/plus/user#current-unstable
+      parameters: []
+      tags:
+      - Requests
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_get_users_current
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-01/fulfillment_orders/{fulfillment_order_id}/cancellation_request.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  cancellation_request:
+                    message: The customer changed his mind.
+                summary: Sends a cancellation request to the fulfillment service of a fulfillment order and updates the fulfillment order
+      summary: Shopify Sends A Cancellation Request To The Fulfillment Service Of A Fulfillment Order
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/cancellationrequest#create-2020-01
+      parameters:
+      - in: path
+        name: fulfillment_order_id
+        required: true
+        schema:
+          type: string
+        description: fulfillment_order_id
+      - in: query
+        name: message
+        description: An optional reason for the cancellation request.
+        schema: {}
+        required: false
+      tags:
+      - Requests
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_create_fulfillment_orders_param_fulfillment_order_id_cancellation_request
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-01/fulfillment_orders/{fulfillment_order_id}/cancellation_request/accept.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  cancellation_request:
+                    message: We had not started any processing yet.
+                summary: Accepts a cancellation request sent to a fulfillment service and updates the fulfillment order
+      summary: Shopify Accepts A Cancellation Request Sent To A Fulfillment Service For A Fulfillment Order
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/cancellationrequest#accept-2020-01
+      parameters:
+      - in: path
+        name: fulfillment_order_id
+        required: true
+        schema:
+          type: string
+        description: fulfillment_order_id
+      - in: query
+        name: message
+        description: An optional reason for accepting the cancellation request.
+        schema: {}
+        required: false
+      tags:
+      - Requests
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_create_fulfillment_orders_param_fulfillment_order_id_cancellation_request_accept
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-01/fulfillment_orders/{fulfillment_order_id}/cancellation_request/reject.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  cancellation_request:
+                    message: We have already send the shipment out.
+                summary: Rejects a cancellation request sent to a fulfillment service and updates the fulfillment order
+      summary: Shopify Rejects A Cancellation Request Sent To A Fulfillment Service For A Fulfillment Order
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/cancellationrequest#reject-2020-01
+      parameters:
+      - in: path
+        name: fulfillment_order_id
+        required: true
+        schema:
+          type: string
+        description: fulfillment_order_id
+      - in: query
+        name: message
+        description: An optional reason for rejecting the cancellation request.
+        schema: {}
+        required: false
+      tags:
+      - Requests
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_create_fulfillment_orders_param_fulfillment_order_id_cancellation_request_reject
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/fulfillment_orders/{fulfillment_order_id}/cancellation_request.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  cancellation_request:
+                    message: The customer changed his mind.
+                summary: Sends a cancellation request to the fulfillment service of a fulfillment order and updates the fulfillment order
+      summary: Shopify Sends A Cancellation Request To The Fulfillment Service Of A Fulfillment Order
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/cancellationrequest#create-2020-04
+      parameters:
+      - in: path
+        name: fulfillment_order_id
+        required: true
+        schema:
+          type: string
+        description: fulfillment_order_id
+      - in: query
+        name: message
+        description: An optional reason for the cancellation request.
+        schema: {}
+        required: false
+      tags:
+      - Requests
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_create_fulfillment_orders_param_fulfillment_order_id_cancellation_request
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/fulfillment_orders/{fulfillment_order_id}/cancellation_request/accept.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  cancellation_request:
+                    message: We had not started any processing yet.
+                summary: Accepts a cancellation request sent to a fulfillment service and updates the fulfillment order
+      summary: Shopify Accepts A Cancellation Request Sent To A Fulfillment Service For A Fulfillment Order
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/cancellationrequest#accept-2020-04
+      parameters:
+      - in: path
+        name: fulfillment_order_id
+        required: true
+        schema:
+          type: string
+        description: fulfillment_order_id
+      - in: query
+        name: message
+        description: An optional reason for accepting the cancellation request.
+        schema: {}
+        required: false
+      tags:
+      - Requests
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_create_fulfillment_orders_param_fulfillment_order_id_cancellation_request_accept
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/fulfillment_orders/{fulfillment_order_id}/cancellation_request/reject.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  cancellation_request:
+                    message: We have already send the shipment out.
+                summary: Rejects a cancellation request sent to a fulfillment service and updates the fulfillment order
+      summary: Shopify Rejects A Cancellation Request Sent To A Fulfillment Service For A Fulfillment Order
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/cancellationrequest#reject-2020-04
+      parameters:
+      - in: path
+        name: fulfillment_order_id
+        required: true
+        schema:
+          type: string
+        description: fulfillment_order_id
+      - in: query
+        name: message
+        description: An optional reason for rejecting the cancellation request.
+        schema: {}
+        required: false
+      tags:
+      - Requests
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_create_fulfillment_orders_param_fulfillment_order_id_cancellation_request_reject
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/fulfillment_orders/{fulfillment_order_id}/cancellation_request.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  cancellation_request:
+                    message: The customer changed his mind.
+                summary: Sends a cancellation request to the fulfillment service of a fulfillment order and updates the fulfillment order
+      summary: Shopify Sends A Cancellation Request To The Fulfillment Service Of A Fulfillment Order
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/cancellationrequest#create-2020-07
+      parameters:
+      - in: path
+        name: fulfillment_order_id
+        required: true
+        schema:
+          type: string
+        description: fulfillment_order_id
+      - in: query
+        name: message
+        description: An optional reason for the cancellation request.
+        schema: {}
+        required: false
+      tags:
+      - Requests
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_create_fulfillment_orders_param_fulfillment_order_id_cancellation_request
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/fulfillment_orders/{fulfillment_order_id}/cancellation_request/accept.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  cancellation_request:
+                    message: We had not started any processing yet.
+                summary: Accepts a cancellation request sent to a fulfillment service and updates the fulfillment order
+      summary: Shopify Accepts A Cancellation Request Sent To A Fulfillment Service For A Fulfillment Order
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/cancellationrequest#accept-2020-07
+      parameters:
+      - in: path
+        name: fulfillment_order_id
+        required: true
+        schema:
+          type: string
+        description: fulfillment_order_id
+      - in: query
+        name: message
+        description: An optional reason for accepting the cancellation request.
+        schema: {}
+        required: false
+      tags:
+      - Requests
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_create_fulfillment_orders_param_fulfillment_order_id_cancellation_request_accept
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/fulfillment_orders/{fulfillment_order_id}/cancellation_request/reject.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  cancellation_request:
+                    message: We have already send the shipment out.
+                summary: Rejects a cancellation request sent to a fulfillment service and updates the fulfillment order
+      summary: Shopify Rejects A Cancellation Request Sent To A Fulfillment Service For A Fulfillment Order
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/cancellationrequest#reject-2020-07
+      parameters:
+      - in: path
+        name: fulfillment_order_id
+        required: true
+        schema:
+          type: string
+        description: fulfillment_order_id
+      - in: query
+        name: message
+        description: An optional reason for rejecting the cancellation request.
+        schema: {}
+        required: false
+      tags:
+      - Requests
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_create_fulfillment_orders_param_fulfillment_order_id_cancellation_request_reject
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/fulfillment_orders/{fulfillment_order_id}/cancellation_request.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  cancellation_request:
+                    message: The customer changed his mind.
+                summary: Sends a cancellation request to the fulfillment service of a fulfillment order and updates the fulfillment order
+      summary: Shopify Sends A Cancellation Request To The Fulfillment Service Of A Fulfillment Order
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/cancellationrequest#create-2020-10
+      parameters:
+      - in: path
+        name: fulfillment_order_id
+        required: true
+        schema:
+          type: string
+        description: fulfillment_order_id
+      - in: query
+        name: message
+        description: An optional reason for the cancellation request.
+        schema: {}
+        required: false
+      tags:
+      - Requests
+      responses:
+        '200':
+          description: ''
+      operationId: create_fulfillment_orders_param_fulfillment_order_id_cancellation_request
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/fulfillment_orders/{fulfillment_order_id}/cancellation_request/accept.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  cancellation_request:
+                    message: We had not started any processing yet.
+                summary: Accepts a cancellation request sent to a fulfillment service and updates the fulfillment order
+      summary: Shopify Accepts A Cancellation Request Sent To A Fulfillment Service For A Fulfillment Order
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/cancellationrequest#accept-2020-10
+      parameters:
+      - in: path
+        name: fulfillment_order_id
+        required: true
+        schema:
+          type: string
+        description: fulfillment_order_id
+      - in: query
+        name: message
+        description: An optional reason for accepting the cancellation request.
+        schema: {}
+        required: false
+      tags:
+      - Requests
+      responses:
+        '200':
+          description: ''
+      operationId: create_fulfillment_orders_param_fulfillment_order_id_cancellation_request_accept
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/fulfillment_orders/{fulfillment_order_id}/cancellation_request/reject.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  cancellation_request:
+                    message: We have already send the shipment out.
+                summary: Rejects a cancellation request sent to a fulfillment service and updates the fulfillment order
+      summary: Shopify Rejects A Cancellation Request Sent To A Fulfillment Service For A Fulfillment Order
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/cancellationrequest#reject-2020-10
+      parameters:
+      - in: path
+        name: fulfillment_order_id
+        required: true
+        schema:
+          type: string
+        description: fulfillment_order_id
+      - in: query
+        name: message
+        description: An optional reason for rejecting the cancellation request.
+        schema: {}
+        required: false
+      tags:
+      - Requests
+      responses:
+        '200':
+          description: ''
+      operationId: create_fulfillment_orders_param_fulfillment_order_id_cancellation_request_reject
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/fulfillment_orders/{fulfillment_order_id}/cancellation_request.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  cancellation_request:
+                    message: The customer changed his mind.
+                summary: Sends a cancellation request to the fulfillment service of a fulfillment order and updates the fulfillment order
+      summary: Shopify Sends A Cancellation Request To The Fulfillment Service Of A Fulfillment Order
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/cancellationrequest#create-2021-01
+      parameters:
+      - in: path
+        name: fulfillment_order_id
+        required: true
+        schema:
+          type: string
+        description: fulfillment_order_id
+      - in: query
+        name: message
+        description: An optional reason for the cancellation request.
+        schema: {}
+        required: false
+      tags:
+      - Requests
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_create_fulfillment_orders_param_fulfillment_order_id_cancellation_request
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/fulfillment_orders/{fulfillment_order_id}/cancellation_request/accept.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  cancellation_request:
+                    message: We had not started any processing yet.
+                summary: Accepts a cancellation request sent to a fulfillment service and updates the fulfillment order
+      summary: Shopify Accepts A Cancellation Request Sent To A Fulfillment Service For A Fulfillment Order
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/cancellationrequest#accept-2021-01
+      parameters:
+      - in: path
+        name: fulfillment_order_id
+        required: true
+        schema:
+          type: string
+        description: fulfillment_order_id
+      - in: query
+        name: message
+        description: An optional reason for accepting the cancellation request.
+        schema: {}
+        required: false
+      tags:
+      - Requests
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_create_fulfillment_orders_param_fulfillment_order_id_cancellation_request_accept
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/fulfillment_orders/{fulfillment_order_id}/cancellation_request/reject.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  cancellation_request:
+                    message: We have already send the shipment out.
+                summary: Rejects a cancellation request sent to a fulfillment service and updates the fulfillment order
+      summary: Shopify Rejects A Cancellation Request Sent To A Fulfillment Service For A Fulfillment Order
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/cancellationrequest#reject-2021-01
+      parameters:
+      - in: path
+        name: fulfillment_order_id
+        required: true
+        schema:
+          type: string
+        description: fulfillment_order_id
+      - in: query
+        name: message
+        description: An optional reason for rejecting the cancellation request.
+        schema: {}
+        required: false
+      tags:
+      - Requests
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_create_fulfillment_orders_param_fulfillment_order_id_cancellation_request_reject
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/fulfillment_orders/{fulfillment_order_id}/cancellation_request.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  cancellation_request:
+                    message: The customer changed his mind.
+                summary: Sends a cancellation request to the fulfillment service of a fulfillment order and updates the fulfillment order
+      summary: Shopify Sends A Cancellation Request To The Fulfillment Service Of A Fulfillment Order
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/cancellationrequest#create-unstable
+      parameters:
+      - in: path
+        name: fulfillment_order_id
+        required: true
+        schema:
+          type: string
+        description: fulfillment_order_id
+      - in: query
+        name: message
+        description: An optional reason for the cancellation request.
+        schema: {}
+        required: false
+      tags:
+      - Requests
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_create_fulfillment_orders_param_fulfillment_order_id_cancellation_request
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/fulfillment_orders/{fulfillment_order_id}/cancellation_request/accept.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  cancellation_request:
+                    message: We had not started any processing yet.
+                summary: Accepts a cancellation request sent to a fulfillment service and updates the fulfillment order
+      summary: Shopify Accepts A Cancellation Request Sent To A Fulfillment Service For A Fulfillment Order
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/cancellationrequest#accept-unstable
+      parameters:
+      - in: path
+        name: fulfillment_order_id
+        required: true
+        schema:
+          type: string
+        description: fulfillment_order_id
+      - in: query
+        name: message
+        description: An optional reason for accepting the cancellation request.
+        schema: {}
+        required: false
+      tags:
+      - Requests
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_create_fulfillment_orders_param_fulfillment_order_id_cancellation_request_accept
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/fulfillment_orders/{fulfillment_order_id}/cancellation_request/reject.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  cancellation_request:
+                    message: We have already send the shipment out.
+                summary: Rejects a cancellation request sent to a fulfillment service and updates the fulfillment order
+      summary: Shopify Rejects A Cancellation Request Sent To A Fulfillment Service For A Fulfillment Order
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/cancellationrequest#reject-unstable
+      parameters:
+      - in: path
+        name: fulfillment_order_id
+        required: true
+        schema:
+          type: string
+        description: fulfillment_order_id
+      - in: query
+        name: message
+        description: An optional reason for rejecting the cancellation request.
+        schema: {}
+        required: false
+      tags:
+      - Requests
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_create_fulfillment_orders_param_fulfillment_order_id_cancellation_request_reject
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-01/fulfillment_orders/{fulfillment_order_id}/fulfillment_request.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  fulfillment_request:
+                    message: Fulfill this ASAP please.
+                    fulfillment_order_line_items:
+                    - id: 1025578671
+                      quantity: 1
+                    - id: 1025578672
+                      quantity: 1
+                summary: Sends a fulfillment request to the fulfillment service of a fulfillment order for the specified line items
+              example2:
+                value:
+                  fulfillment_request:
+                    message: Fulfill this ASAP please.
+                summary: Sends a fulfillment request to the fulfillment service for all line items on the fulfillment order if fulfillment_order_line_items is left blank
+      summary: Shopify Sends A Fulfillment Request To The Fulfillment Service Of A Fulfillment Order
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentrequest#create-2020-01
+      parameters:
+      - in: path
+        name: fulfillment_order_id
+        required: true
+        schema:
+          type: string
+        description: fulfillment_order_id
+      - in: query
+        name: message
+        description: An optional message for the fulfillment request.
+        schema: {}
+        required: false
+      - in: query
+        name: fulfillment_order_line_items
+        description: The fulfillment order line items to be requested for fulfillment. If left blank, all line items of the fulfillment order are requested for fulfillment.
+        schema: {}
+        required: false
+      tags:
+      - Requests
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_create_fulfillment_orders_param_fulfillment_order_id_fulfillment_request
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-01/fulfillment_orders/{fulfillment_order_id}/fulfillment_request/accept.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  fulfillment_request:
+                    message: We will start processing your fulfillment on the next business day.
+                summary: Accepts a fulfillment request sent to a fulfillment service and updates the fulfillment order
+      summary: Shopify Accepts A Fulfillment Request Sent To A Fulfillment Service For A Fulfillment Order
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentrequest#accept-2020-01
+      parameters:
+      - in: path
+        name: fulfillment_order_id
+        required: true
+        schema:
+          type: string
+        description: fulfillment_order_id
+      - in: query
+        name: message
+        description: An optional reason for accepting the fulfillment request.
+        schema: {}
+        required: false
+      tags:
+      - Requests
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_create_fulfillment_orders_param_fulfillment_order_id_fulfillment_request_accept
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-01/fulfillment_orders/{fulfillment_order_id}/fulfillment_request/reject.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  fulfillment_request:
+                    message: Not enough inventory on hand to complete the work.
+                summary: Rejects a fulfillment request sent to a fulfillment service and updates the fulfillment order
+      summary: Shopify Rejects A Fulfillment Request Sent To A Fulfillment Service For A Fulfillment Order
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentrequest#reject-2020-01
+      parameters:
+      - in: path
+        name: fulfillment_order_id
+        required: true
+        schema:
+          type: string
+        description: fulfillment_order_id
+      - in: query
+        name: message
+        description: An optional reason for rejecting the fulfillment request.
+        schema: {}
+        required: false
+      tags:
+      - Requests
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_create_fulfillment_orders_param_fulfillment_order_id_fulfillment_request_reject
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/fulfillment_orders/{fulfillment_order_id}/fulfillment_request.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  fulfillment_request:
+                    message: Fulfill this ASAP please.
+                    fulfillment_order_line_items:
+                    - id: 1025578671
+                      quantity: 1
+                    - id: 1025578672
+                      quantity: 1
+                summary: Sends a fulfillment request to the fulfillment service of a fulfillment order for the specified line items
+              example2:
+                value:
+                  fulfillment_request:
+                    message: Fulfill this ASAP please.
+                summary: Sends a fulfillment request to the fulfillment service for all line items on the fulfillment order if fulfillment_order_line_items is left blank
+      summary: Shopify Sends A Fulfillment Request To The Fulfillment Service Of A Fulfillment Order
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentrequest#create-2020-04
+      parameters:
+      - in: path
+        name: fulfillment_order_id
+        required: true
+        schema:
+          type: string
+        description: fulfillment_order_id
+      - in: query
+        name: message
+        description: An optional message for the fulfillment request.
+        schema: {}
+        required: false
+      - in: query
+        name: fulfillment_order_line_items
+        description: The fulfillment order line items to be requested for fulfillment. If left blank, all line items of the fulfillment order are requested for fulfillment.
+        schema: {}
+        required: false
+      tags:
+      - Requests
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_create_fulfillment_orders_param_fulfillment_order_id_fulfillment_request
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/fulfillment_orders/{fulfillment_order_id}/fulfillment_request/accept.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  fulfillment_request:
+                    message: We will start processing your fulfillment on the next business day.
+                summary: Accepts a fulfillment request sent to a fulfillment service and updates the fulfillment order
+      summary: Shopify Accepts A Fulfillment Request Sent To A Fulfillment Service For A Fulfillment Order
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentrequest#accept-2020-04
+      parameters:
+      - in: path
+        name: fulfillment_order_id
+        required: true
+        schema:
+          type: string
+        description: fulfillment_order_id
+      - in: query
+        name: message
+        description: An optional reason for accepting the fulfillment request.
+        schema: {}
+        required: false
+      tags:
+      - Requests
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_create_fulfillment_orders_param_fulfillment_order_id_fulfillment_request_accept
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/fulfillment_orders/{fulfillment_order_id}/fulfillment_request/reject.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  fulfillment_request:
+                    message: Not enough inventory on hand to complete the work.
+                summary: Rejects a fulfillment request sent to a fulfillment service and updates the fulfillment order
+      summary: Shopify Rejects A Fulfillment Request Sent To A Fulfillment Service For A Fulfillment Order
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentrequest#reject-2020-04
+      parameters:
+      - in: path
+        name: fulfillment_order_id
+        required: true
+        schema:
+          type: string
+        description: fulfillment_order_id
+      - in: query
+        name: message
+        description: An optional reason for rejecting the fulfillment request.
+        schema: {}
+        required: false
+      tags:
+      - Requests
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_create_fulfillment_orders_param_fulfillment_order_id_fulfillment_request_reject
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/fulfillment_orders/{fulfillment_order_id}/fulfillment_request.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  fulfillment_request:
+                    message: Fulfill this ASAP please.
+                    fulfillment_order_line_items:
+                    - id: 1025578671
+                      quantity: 1
+                    - id: 1025578672
+                      quantity: 1
+                summary: Sends a fulfillment request to the fulfillment service of a fulfillment order for the specified line items
+              example2:
+                value:
+                  fulfillment_request:
+                    message: Fulfill this ASAP please.
+                summary: Sends a fulfillment request to the fulfillment service for all line items on the fulfillment order if fulfillment_order_line_items is left blank
+      summary: Shopify Sends A Fulfillment Request To The Fulfillment Service Of A Fulfillment Order
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentrequest#create-2020-07
+      parameters:
+      - in: path
+        name: fulfillment_order_id
+        required: true
+        schema:
+          type: string
+        description: fulfillment_order_id
+      - in: query
+        name: message
+        description: An optional message for the fulfillment request.
+        schema: {}
+        required: false
+      - in: query
+        name: fulfillment_order_line_items
+        description: The fulfillment order line items to be requested for fulfillment. If left blank, all line items of the fulfillment order are requested for fulfillment.
+        schema: {}
+        required: false
+      tags:
+      - Requests
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_create_fulfillment_orders_param_fulfillment_order_id_fulfillment_request
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/fulfillment_orders/{fulfillment_order_id}/fulfillment_request/accept.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  fulfillment_request:
+                    message: We will start processing your fulfillment on the next business day.
+                summary: Accepts a fulfillment request sent to a fulfillment service and updates the fulfillment order
+      summary: Shopify Accepts A Fulfillment Request Sent To A Fulfillment Service For A Fulfillment Order
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentrequest#accept-2020-07
+      parameters:
+      - in: path
+        name: fulfillment_order_id
+        required: true
+        schema:
+          type: string
+        description: fulfillment_order_id
+      - in: query
+        name: message
+        description: An optional reason for accepting the fulfillment request.
+        schema: {}
+        required: false
+      tags:
+      - Requests
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_create_fulfillment_orders_param_fulfillment_order_id_fulfillment_request_accept
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/fulfillment_orders/{fulfillment_order_id}/fulfillment_request/reject.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  fulfillment_request:
+                    message: Not enough inventory on hand to complete the work.
+                summary: Rejects a fulfillment request sent to a fulfillment service and updates the fulfillment order
+      summary: Shopify Rejects A Fulfillment Request Sent To A Fulfillment Service For A Fulfillment Order
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentrequest#reject-2020-07
+      parameters:
+      - in: path
+        name: fulfillment_order_id
+        required: true
+        schema:
+          type: string
+        description: fulfillment_order_id
+      - in: query
+        name: message
+        description: An optional reason for rejecting the fulfillment request.
+        schema: {}
+        required: false
+      tags:
+      - Requests
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_create_fulfillment_orders_param_fulfillment_order_id_fulfillment_request_reject
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/fulfillment_orders/{fulfillment_order_id}/fulfillment_request.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  fulfillment_request:
+                    message: Fulfill this ASAP please.
+                    fulfillment_order_line_items:
+                    - id: 1025578671
+                      quantity: 1
+                    - id: 1025578672
+                      quantity: 1
+                summary: Sends a fulfillment request to the fulfillment service of a fulfillment order for the specified line items
+              example2:
+                value:
+                  fulfillment_request:
+                    message: Fulfill this ASAP please.
+                summary: Sends a fulfillment request to the fulfillment service for all line items on the fulfillment order if fulfillment_order_line_items is left blank
+      summary: Shopify Sends A Fulfillment Request To The Fulfillment Service Of A Fulfillment Order
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentrequest#create-2020-10
+      parameters:
+      - in: path
+        name: fulfillment_order_id
+        required: true
+        schema:
+          type: string
+        description: fulfillment_order_id
+      - in: query
+        name: message
+        description: An optional message for the fulfillment request.
+        schema: {}
+        required: false
+      - in: query
+        name: fulfillment_order_line_items
+        description: The fulfillment order line items to be requested for fulfillment. If left blank, all line items of the fulfillment order are requested for fulfillment.
+        schema: {}
+        required: false
+      tags:
+      - Requests
+      responses:
+        '200':
+          description: ''
+      operationId: create_fulfillment_orders_param_fulfillment_order_id_fulfillment_request
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/fulfillment_orders/{fulfillment_order_id}/fulfillment_request/accept.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  fulfillment_request:
+                    message: We will start processing your fulfillment on the next business day.
+                summary: Accepts a fulfillment request sent to a fulfillment service and updates the fulfillment order
+      summary: Shopify Accepts A Fulfillment Request Sent To A Fulfillment Service For A Fulfillment Order
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentrequest#accept-2020-10
+      parameters:
+      - in: path
+        name: fulfillment_order_id
+        required: true
+        schema:
+          type: string
+        description: fulfillment_order_id
+      - in: query
+        name: message
+        description: An optional reason for accepting the fulfillment request.
+        schema: {}
+        required: false
+      tags:
+      - Requests
+      responses:
+        '200':
+          description: ''
+      operationId: create_fulfillment_orders_param_fulfillment_order_id_fulfillment_request_accept
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/fulfillment_orders/{fulfillment_order_id}/fulfillment_request/reject.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  fulfillment_request:
+                    message: Not enough inventory on hand to complete the work.
+                summary: Rejects a fulfillment request sent to a fulfillment service and updates the fulfillment order
+      summary: Shopify Rejects A Fulfillment Request Sent To A Fulfillment Service For A Fulfillment Order
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentrequest#reject-2020-10
+      parameters:
+      - in: path
+        name: fulfillment_order_id
+        required: true
+        schema:
+          type: string
+        description: fulfillment_order_id
+      - in: query
+        name: message
+        description: An optional reason for rejecting the fulfillment request.
+        schema: {}
+        required: false
+      tags:
+      - Requests
+      responses:
+        '200':
+          description: ''
+      operationId: create_fulfillment_orders_param_fulfillment_order_id_fulfillment_request_reject
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/fulfillment_orders/{fulfillment_order_id}/fulfillment_request.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  fulfillment_request:
+                    message: Fulfill this ASAP please.
+                    fulfillment_order_line_items:
+                    - id: 1025578671
+                      quantity: 1
+                    - id: 1025578672
+                      quantity: 1
+                summary: Sends a fulfillment request to the fulfillment service of a fulfillment order for the specified line items
+              example2:
+                value:
+                  fulfillment_request:
+                    message: Fulfill this ASAP please.
+                summary: Sends a fulfillment request to the fulfillment service for all line items on the fulfillment order if fulfillment_order_line_items is left blank
+      summary: Shopify Sends A Fulfillment Request To The Fulfillment Service Of A Fulfillment Order
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentrequest#create-2021-01
+      parameters:
+      - in: path
+        name: fulfillment_order_id
+        required: true
+        schema:
+          type: string
+        description: fulfillment_order_id
+      - in: query
+        name: message
+        description: An optional message for the fulfillment request.
+        schema: {}
+        required: false
+      - in: query
+        name: fulfillment_order_line_items
+        description: The fulfillment order line items to be requested for fulfillment. If left blank, all line items of the fulfillment order are requested for fulfillment.
+        schema: {}
+        required: false
+      tags:
+      - Requests
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_create_fulfillment_orders_param_fulfillment_order_id_fulfillment_request
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/fulfillment_orders/{fulfillment_order_id}/fulfillment_request/accept.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  fulfillment_request:
+                    message: We will start processing your fulfillment on the next business day.
+                summary: Accepts a fulfillment request sent to a fulfillment service and updates the fulfillment order
+      summary: Shopify Accepts A Fulfillment Request Sent To A Fulfillment Service For A Fulfillment Order
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentrequest#accept-2021-01
+      parameters:
+      - in: path
+        name: fulfillment_order_id
+        required: true
+        schema:
+          type: string
+        description: fulfillment_order_id
+      - in: query
+        name: message
+        description: An optional reason for accepting the fulfillment request.
+        schema: {}
+        required: false
+      tags:
+      - Requests
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_create_fulfillment_orders_param_fulfillment_order_id_fulfillment_request_accept
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/fulfillment_orders/{fulfillment_order_id}/fulfillment_request/reject.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  fulfillment_request:
+                    message: Not enough inventory on hand to complete the work.
+                summary: Rejects a fulfillment request sent to a fulfillment service and updates the fulfillment order
+      summary: Shopify Rejects A Fulfillment Request Sent To A Fulfillment Service For A Fulfillment Order
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentrequest#reject-2021-01
+      parameters:
+      - in: path
+        name: fulfillment_order_id
+        required: true
+        schema:
+          type: string
+        description: fulfillment_order_id
+      - in: query
+        name: message
+        description: An optional reason for rejecting the fulfillment request.
+        schema: {}
+        required: false
+      tags:
+      - Requests
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_create_fulfillment_orders_param_fulfillment_order_id_fulfillment_request_reject
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/fulfillment_orders/{fulfillment_order_id}/fulfillment_request.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  fulfillment_request:
+                    message: Fulfill this ASAP please.
+                    fulfillment_order_line_items:
+                    - id: 1025578671
+                      quantity: 1
+                    - id: 1025578672
+                      quantity: 1
+                summary: Sends a fulfillment request to the fulfillment service of a fulfillment order for the specified line items
+              example2:
+                value:
+                  fulfillment_request:
+                    message: Fulfill this ASAP please.
+                summary: Sends a fulfillment request to the fulfillment service for all line items on the fulfillment order if fulfillment_order_line_items is left blank
+      summary: Shopify Sends A Fulfillment Request To The Fulfillment Service Of A Fulfillment Order
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentrequest#create-unstable
+      parameters:
+      - in: path
+        name: fulfillment_order_id
+        required: true
+        schema:
+          type: string
+        description: fulfillment_order_id
+      - in: query
+        name: message
+        description: An optional message for the fulfillment request.
+        schema: {}
+        required: false
+      - in: query
+        name: fulfillment_order_line_items
+        description: The fulfillment order line items to be requested for fulfillment. If left blank, all line items of the fulfillment order are requested for fulfillment.
+        schema: {}
+        required: false
+      tags:
+      - Requests
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_create_fulfillment_orders_param_fulfillment_order_id_fulfillment_request
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/fulfillment_orders/{fulfillment_order_id}/fulfillment_request/accept.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  fulfillment_request:
+                    message: We will start processing your fulfillment on the next business day.
+                summary: Accepts a fulfillment request sent to a fulfillment service and updates the fulfillment order
+      summary: Shopify Accepts A Fulfillment Request Sent To A Fulfillment Service For A Fulfillment Order
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentrequest#accept-unstable
+      parameters:
+      - in: path
+        name: fulfillment_order_id
+        required: true
+        schema:
+          type: string
+        description: fulfillment_order_id
+      - in: query
+        name: message
+        description: An optional reason for accepting the fulfillment request.
+        schema: {}
+        required: false
+      tags:
+      - Requests
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_create_fulfillment_orders_param_fulfillment_order_id_fulfillment_request_accept
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/fulfillment_orders/{fulfillment_order_id}/fulfillment_request/reject.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  fulfillment_request:
+                    message: Not enough inventory on hand to complete the work.
+                summary: Rejects a fulfillment request sent to a fulfillment service and updates the fulfillment order
+      summary: Shopify Rejects A Fulfillment Request Sent To A Fulfillment Service For A Fulfillment Order
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentrequest#reject-unstable
+      parameters:
+      - in: path
+        name: fulfillment_order_id
+        required: true
+        schema:
+          type: string
+        description: fulfillment_order_id
+      - in: query
+        name: message
+        description: An optional reason for rejecting the fulfillment request.
+        schema: {}
+        required: false
+      tags:
+      - Requests
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_create_fulfillment_orders_param_fulfillment_order_id_fulfillment_request_reject
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+components:
+  securitySchemes:
+    AccessToken:
+      type: apiKey
+      name: X-Shopify-Access-Token
+      in: header
+      description: Access token obtained via OAuth

@@ -1,0 +1,152 @@
+openapi: 3.1.0
+info:
+  title: Shopify Admin REST About Inventory Levels API
+  description: The Shopify Admin REST API lets you build apps and integrations that extend and enhance the Shopify admin. Access products, customers, orders, inventory, fulfillment, and more. Endpoints are organized by resource type and versioned by release date.
+  version: 2025-01
+  contact:
+    name: Shopify
+    url: https://shopify.dev/docs/api/admin-rest
+    email: api@shopify.com
+  license:
+    name: Shopify API Terms
+    url: https://www.shopify.com/legal/api-terms
+  x-date: '2026-03-04'
+servers:
+- url: https://{store}.myshopify.com/admin/api/2025-01
+  description: Shopify Admin REST API
+  variables:
+    store:
+      default: my-store
+      description: The Shopify store subdomain
+security:
+- AccessToken: []
+tags:
+- name: Inventory Levels
+  description: Manage inventory quantities at locations
+paths:
+  /inventory_levels.json:
+    get:
+      operationId: listInventoryLevels
+      summary: Shopify Retrieve inventory levels
+      description: Retrieves inventory levels for items at locations. Filter by inventory_item_ids or location_ids.
+      tags:
+      - Inventory Levels
+      parameters:
+      - name: inventory_item_ids
+        in: query
+        description: Comma-separated inventory item IDs
+        schema:
+          type: string
+      - name: location_ids
+        in: query
+        description: Comma-separated location IDs
+        schema:
+          type: string
+      - name: limit
+        in: query
+        description: Maximum number of results (max 250, default 50)
+        schema:
+          type: integer
+          default: 50
+          maximum: 250
+      responses:
+        '200':
+          description: A list of inventory levels
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  inventory_levels:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/InventoryLevel'
+  /inventory_levels/set.json:
+    post:
+      operationId: setInventoryLevel
+      summary: Shopify Set inventory level for an item at a location
+      description: Sets the inventory level for an inventory item at a location.
+      tags:
+      - Inventory Levels
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - inventory_item_id
+              - location_id
+              - available
+              properties:
+                inventory_item_id:
+                  type: integer
+                  description: The inventory item ID
+                location_id:
+                  type: integer
+                  description: The location ID
+                available:
+                  type: integer
+                  description: The available quantity
+      responses:
+        '200':
+          description: The updated inventory level
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  inventory_level:
+                    $ref: '#/components/schemas/InventoryLevel'
+  /locations/{location_id}/inventory_levels.json:
+    get:
+      operationId: listLocationInventoryLevels
+      summary: Shopify Retrieve inventory levels for a location
+      description: Retrieves all inventory levels at a specific location.
+      tags:
+      - Inventory Levels
+      parameters:
+      - name: location_id
+        in: path
+        required: true
+        description: The ID of the location
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Inventory levels at this location
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  inventory_levels:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/InventoryLevel'
+components:
+  schemas:
+    InventoryLevel:
+      type: object
+      description: Inventory level for an item at a location
+      properties:
+        inventory_item_id:
+          type: integer
+        location_id:
+          type: integer
+        available:
+          type:
+          - integer
+          - 'null'
+          description: Available inventory quantity
+        updated_at:
+          type: string
+          format: date-time
+        admin_graphql_api_id:
+          type: string
+  securitySchemes:
+    AccessToken:
+      type: apiKey
+      name: X-Shopify-Access-Token
+      in: header
+      description: Access token obtained via OAuth

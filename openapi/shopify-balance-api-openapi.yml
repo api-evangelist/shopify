@@ -1,0 +1,155 @@
+openapi: 3.1.0
+info:
+  title: Shopify Admin REST About Balance API
+  description: The Shopify Admin REST API lets you build apps and integrations that extend and enhance the Shopify admin. Access products, customers, orders, inventory, fulfillment, and more. Endpoints are organized by resource type and versioned by release date.
+  version: 2025-01
+  contact:
+    name: Shopify
+    url: https://shopify.dev/docs/api/admin-rest
+    email: api@shopify.com
+  license:
+    name: Shopify API Terms
+    url: https://www.shopify.com/legal/api-terms
+  x-date: '2026-03-04'
+servers:
+- url: https://{store}.myshopify.com/admin/api/2025-01
+  description: Shopify Admin REST API
+  variables:
+    store:
+      default: my-store
+      description: The Shopify store subdomain
+security:
+- AccessToken: []
+tags:
+- name: Balance
+paths:
+  /admin/api/2020-01/shopify_payments/balance.json:
+    get:
+      summary: Shopify Retrieves The Account's Current Balance
+      description: https://shopify.dev/docs/admin-api/rest/reference/shopify_payments/balance#show-2020-01
+      parameters: []
+      tags:
+      - Balance
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_get_shopify_payments_balance
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/shopify_payments/balance.json:
+    get:
+      summary: Shopify Retrieves The Account's Current Balance
+      description: https://shopify.dev/docs/admin-api/rest/reference/shopify_payments/balance#show-2020-04
+      parameters: []
+      tags:
+      - Balance
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_get_shopify_payments_balance
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/shopify_payments/balance.json:
+    get:
+      summary: Shopify Retrieves The Account's Current Balance
+      description: https://shopify.dev/docs/admin-api/rest/reference/shopify_payments/balance#show-2020-07
+      parameters: []
+      tags:
+      - Balance
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_get_shopify_payments_balance
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/shopify_payments/balance.json:
+    get:
+      summary: Shopify Retrieves The Account's Current Balance
+      description: https://shopify.dev/docs/admin-api/rest/reference/shopify_payments/balance#show-2020-10
+      parameters: []
+      tags:
+      - Balance
+      responses:
+        '200':
+          description: ''
+      operationId: get_shopify_payments_balance
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/shopify_payments/balance.json:
+    get:
+      summary: Shopify Retrieves The Account's Current Balance
+      description: https://shopify.dev/docs/admin-api/rest/reference/shopify_payments/balance#show-2021-01
+      parameters: []
+      tags:
+      - Balance
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_get_shopify_payments_balance
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/shopify_payments/balance.json:
+    get:
+      summary: Shopify Retrieves The Account's Current Balance
+      description: https://shopify.dev/docs/admin-api/rest/reference/shopify_payments/balance#show-unstable
+      parameters: []
+      tags:
+      - Balance
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_get_shopify_payments_balance
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-01/shopify_payments/balance/transactions.json:
+    get:
+      summary: Shopify Retrieves A List Of All Balance Transactions Ordered By Processingtime
+      description: https://shopify.dev/docs/admin-api/rest/reference/shopify_payments/transaction#index-2020-01
+      parameters:
+      - in: query
+        name: since_id
+        description: Filter response to transactions exclusively after the specified ID.
+        schema: {}
+        required: false
+      - in: query
+        name: last_id
+        description: Filter response to transactions exclusively before the specified ID
+        schema: {}
+        required: false
+      - in: query
+        name: test
+        description: Filter response to transactions placed in test mode.
+        schema: {}
+        required: false
+      - in: query
+        name: payout_id
+        description: Filter response to transactions paid out in the specified payout.
+        schema: {}
+        required: false
+      - in: query
+        name: payout_status
+        description: Filter response to transactions with the specified payout status
+        schema: {}
+        required: false
+      tags:
+      - Balance
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_get_shopify_payments_balance_transactions
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+components:
+  securitySchemes:
+    AccessToken:
+      type: apiKey
+      name: X-Shopify-Access-Token
+      in: header
+      description: Access token obtained via OAuth

@@ -1,0 +1,255 @@
+openapi: 3.1.0
+info:
+  title: Shopify Admin REST About Product Variants API
+  description: The Shopify Admin REST API lets you build apps and integrations that extend and enhance the Shopify admin. Access products, customers, orders, inventory, fulfillment, and more. Endpoints are organized by resource type and versioned by release date.
+  version: 2025-01
+  contact:
+    name: Shopify
+    url: https://shopify.dev/docs/api/admin-rest
+    email: api@shopify.com
+  license:
+    name: Shopify API Terms
+    url: https://www.shopify.com/legal/api-terms
+  x-date: '2026-03-04'
+servers:
+- url: https://{store}.myshopify.com/admin/api/2025-01
+  description: Shopify Admin REST API
+  variables:
+    store:
+      default: my-store
+      description: The Shopify store subdomain
+security:
+- AccessToken: []
+tags:
+- name: Product Variants
+  description: Manage product variants
+paths:
+  /products/{product_id}/variants.json:
+    get:
+      operationId: listProductVariants
+      summary: Shopify Retrieve a list of product variants
+      description: Retrieves all variants for a given product.
+      tags:
+      - Product Variants
+      parameters:
+      - $ref: '#/components/parameters/ProductId'
+      - name: limit
+        in: query
+        description: Maximum number of results (max 250, default 50)
+        schema:
+          type: integer
+          default: 50
+          maximum: 250
+      - name: since_id
+        in: query
+        description: Return variants after the specified ID
+        schema:
+          type: integer
+      - name: fields
+        in: query
+        description: Comma-separated list of fields to include
+        schema:
+          type: string
+      responses:
+        '200':
+          description: A list of product variants
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  variants:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Variant'
+    post:
+      operationId: createProductVariant
+      summary: Shopify Create a product variant
+      description: Creates a new variant for a product.
+      tags:
+      - Product Variants
+      parameters:
+      - $ref: '#/components/parameters/ProductId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - variant
+              properties:
+                variant:
+                  $ref: '#/components/schemas/VariantInput'
+      responses:
+        '201':
+          description: The created variant
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  variant:
+                    $ref: '#/components/schemas/Variant'
+components:
+  schemas:
+    VariantInput:
+      type: object
+      description: Input for creating or updating a variant
+      properties:
+        title:
+          type: string
+        price:
+          type: string
+        sku:
+          type: string
+        position:
+          type: integer
+        inventory_policy:
+          type: string
+          enum:
+          - deny
+          - continue
+        compare_at_price:
+          type: string
+        option1:
+          type: string
+        option2:
+          type: string
+        option3:
+          type: string
+        taxable:
+          type: boolean
+        barcode:
+          type: string
+        grams:
+          type: integer
+        weight:
+          type: number
+        weight_unit:
+          type: string
+          enum:
+          - g
+          - kg
+          - oz
+          - lb
+        inventory_quantity:
+          type: integer
+        requires_shipping:
+          type: boolean
+    Variant:
+      type: object
+      description: A product variant
+      properties:
+        id:
+          type: integer
+          description: Unique numeric identifier
+        product_id:
+          type: integer
+          description: The ID of the parent product
+        title:
+          type: string
+          description: The variant title
+        price:
+          type: string
+          description: The price of the variant
+        sku:
+          type:
+          - string
+          - 'null'
+          description: Stock keeping unit
+        position:
+          type: integer
+          description: Position of the variant in the list
+        inventory_policy:
+          type: string
+          description: Whether to allow selling when out of stock
+          enum:
+          - deny
+          - continue
+        compare_at_price:
+          type:
+          - string
+          - 'null'
+          description: Original price for comparison
+        fulfillment_service:
+          type: string
+          description: The fulfillment service for the variant
+        inventory_management:
+          type:
+          - string
+          - 'null'
+          description: The inventory tracking service
+        option1:
+          type:
+          - string
+          - 'null'
+          description: Option 1 value
+        option2:
+          type:
+          - string
+          - 'null'
+          description: Option 2 value
+        option3:
+          type:
+          - string
+          - 'null'
+          description: Option 3 value
+        taxable:
+          type: boolean
+          description: Whether the variant is taxable
+        barcode:
+          type:
+          - string
+          - 'null'
+          description: Barcode, UPC, or ISBN
+        grams:
+          type: integer
+          description: Weight in grams
+        weight:
+          type: number
+          description: Weight in the specified unit
+        weight_unit:
+          type: string
+          description: Weight unit
+          enum:
+          - g
+          - kg
+          - oz
+          - lb
+        inventory_item_id:
+          type: integer
+          description: The inventory item ID
+        inventory_quantity:
+          type: integer
+          description: Tracked inventory quantity
+        requires_shipping:
+          type: boolean
+          description: Whether the variant requires shipping
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        image_id:
+          type:
+          - integer
+          - 'null'
+          description: The ID of the associated image
+        admin_graphql_api_id:
+          type: string
+  parameters:
+    ProductId:
+      name: product_id
+      in: path
+      required: true
+      description: The ID of the product
+      schema:
+        type: integer
+  securitySchemes:
+    AccessToken:
+      type: apiKey
+      name: X-Shopify-Access-Token
+      in: header
+      description: Access token obtained via OAuth

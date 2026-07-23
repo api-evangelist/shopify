@@ -1,0 +1,2282 @@
+openapi: 3.1.0
+info:
+  title: Shopify Admin REST About Products API
+  description: The Shopify Admin REST API lets you build apps and integrations that extend and enhance the Shopify admin. Access products, customers, orders, inventory, fulfillment, and more. Endpoints are organized by resource type and versioned by release date.
+  version: 2025-01
+  contact:
+    name: Shopify
+    url: https://shopify.dev/docs/api/admin-rest
+    email: api@shopify.com
+  license:
+    name: Shopify API Terms
+    url: https://www.shopify.com/legal/api-terms
+  x-date: '2026-03-04'
+servers:
+- url: https://{store}.myshopify.com/admin/api/2025-01
+  description: Shopify Admin REST API
+  variables:
+    store:
+      default: my-store
+      description: The Shopify store subdomain
+security:
+- AccessToken: []
+tags:
+- name: Products
+  description: Manage products in a Shopify store
+paths:
+  /products.json:
+    get:
+      operationId: listProducts
+      summary: Shopify Retrieve a list of products
+      description: Retrieves a list of products. Results can be filtered by collection, product type, vendor, creation date, update date, publication status, and other criteria. Returns up to 250 products per page.
+      tags:
+      - Products
+      parameters:
+      - name: ids
+        in: query
+        description: Comma-separated list of product IDs to retrieve
+        schema:
+          type: string
+      - name: limit
+        in: query
+        description: Maximum number of results to return (max 250, default 50)
+        schema:
+          type: integer
+          default: 50
+          maximum: 250
+      - name: since_id
+        in: query
+        description: Return products after the specified ID
+        schema:
+          type: integer
+      - name: title
+        in: query
+        description: Filter by product title
+        schema:
+          type: string
+      - name: vendor
+        in: query
+        description: Filter by product vendor
+        schema:
+          type: string
+      - name: product_type
+        in: query
+        description: Filter by product type
+        schema:
+          type: string
+      - name: collection_id
+        in: query
+        description: Filter by collection ID
+        schema:
+          type: integer
+      - name: status
+        in: query
+        description: Filter by product status
+        schema:
+          type: string
+          enum:
+          - active
+          - archived
+          - draft
+      - name: fields
+        in: query
+        description: Comma-separated list of fields to include in the response
+        schema:
+          type: string
+      - name: created_at_min
+        in: query
+        description: Show products created after this date (ISO 8601)
+        schema:
+          type: string
+          format: date-time
+      - name: created_at_max
+        in: query
+        description: Show products created before this date (ISO 8601)
+        schema:
+          type: string
+          format: date-time
+      - name: updated_at_min
+        in: query
+        description: Show products updated after this date (ISO 8601)
+        schema:
+          type: string
+          format: date-time
+      - name: updated_at_max
+        in: query
+        description: Show products updated before this date (ISO 8601)
+        schema:
+          type: string
+          format: date-time
+      responses:
+        '200':
+          description: A list of products
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  products:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Product'
+    post:
+      operationId: createProduct
+      summary: Shopify Create a new product
+      description: Creates a new product. You can include product variants and images in the same request. If no variants are specified a default variant is created automatically.
+      tags:
+      - Products
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - product
+              properties:
+                product:
+                  $ref: '#/components/schemas/ProductInput'
+      responses:
+        '201':
+          description: The created product
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  product:
+                    $ref: '#/components/schemas/Product'
+        '422':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /products/count.json:
+    get:
+      operationId: getProductCount
+      summary: Shopify Retrieve a count of products
+      description: Retrieves a count of products matching the specified criteria.
+      tags:
+      - Products
+      parameters:
+      - name: vendor
+        in: query
+        description: Filter by product vendor
+        schema:
+          type: string
+      - name: product_type
+        in: query
+        description: Filter by product type
+        schema:
+          type: string
+      - name: collection_id
+        in: query
+        description: Filter by collection ID
+        schema:
+          type: integer
+      - name: created_at_min
+        in: query
+        description: Count products created after this date
+        schema:
+          type: string
+          format: date-time
+      - name: updated_at_min
+        in: query
+        description: Count products updated after this date
+        schema:
+          type: string
+          format: date-time
+      responses:
+        '200':
+          description: The product count
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+  /products/{product_id}.json:
+    get:
+      operationId: getProduct
+      summary: Shopify Retrieve a single product
+      description: Retrieves a single product by its ID, including variants, images, and options.
+      tags:
+      - Products
+      parameters:
+      - $ref: '#/components/parameters/ProductId'
+      - name: fields
+        in: query
+        description: Comma-separated list of fields to include
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The requested product
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  product:
+                    $ref: '#/components/schemas/Product'
+        '404':
+          description: Product not found
+    put:
+      operationId: updateProduct
+      summary: Shopify Update a product
+      description: Updates an existing product and any of its variants and images.
+      tags:
+      - Products
+      parameters:
+      - $ref: '#/components/parameters/ProductId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - product
+              properties:
+                product:
+                  $ref: '#/components/schemas/ProductInput'
+      responses:
+        '200':
+          description: The updated product
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  product:
+                    $ref: '#/components/schemas/Product'
+        '422':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      operationId: deleteProduct
+      summary: Shopify Delete a product
+      description: Deletes a product and all associated variants and images.
+      tags:
+      - Products
+      parameters:
+      - $ref: '#/components/parameters/ProductId'
+      responses:
+        '200':
+          description: Product deleted successfully
+        '404':
+          description: Product not found
+  /products/{handle}.js:
+    get:
+      operationId: getProductByHandle
+      summary: Shopify Retrieve a product by its handle
+      description: Retrieves product information in JSON format using the product handle. Returns product metadata, pricing, variants (up to 250), images, options, and availability. Monetary values reflect the customer presentment currency.
+      tags:
+      - Products
+      parameters:
+      - name: handle
+        in: path
+        required: true
+        description: The URL-friendly product handle
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The product data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StorefrontProduct'
+        '404':
+          description: Product not found
+  /admin/api/2020-01/collections/{collection_id}/products.json:
+    get:
+      summary: Shopify Retrieve A List Of Products Belonging To A Collection
+      description: https://shopify.dev/docs/admin-api/rest/reference/products/collection#products-2020-01
+      parameters:
+      - in: path
+        name: collection_id
+        required: true
+        schema:
+          type: string
+        description: collection_id
+      - in: query
+        name: limit
+        description: "The number of products to retrieve.\n                  (default: 50, maximum: 250)"
+        schema: {}
+        required: false
+      tags:
+      - Products
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_get_collections_param_collection_id_products
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/collections/{collection_id}/products.json:
+    get:
+      summary: Shopify Retrieve A List Of Products Belonging To A Collection
+      description: https://shopify.dev/docs/admin-api/rest/reference/products/collection#products-2020-04
+      parameters:
+      - in: path
+        name: collection_id
+        required: true
+        schema:
+          type: string
+        description: collection_id
+      - in: query
+        name: limit
+        description: "The number of products to retrieve.\n                  (default: 50, maximum: 250)"
+        schema: {}
+        required: false
+      tags:
+      - Products
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_get_collections_param_collection_id_products
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/collections/{collection_id}/products.json:
+    get:
+      summary: Shopify Retrieve A List Of Products Belonging To A Collection
+      description: https://shopify.dev/docs/admin-api/rest/reference/products/collection#products-2020-07
+      parameters:
+      - in: path
+        name: collection_id
+        required: true
+        schema:
+          type: string
+        description: collection_id
+      - in: query
+        name: limit
+        description: "The number of products to retrieve.\n                  (default: 50, maximum: 250)"
+        schema: {}
+        required: false
+      tags:
+      - Products
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_get_collections_param_collection_id_products
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/collections/{collection_id}/products.json:
+    get:
+      summary: Shopify Retrieve A List Of Products Belonging To A Collection
+      description: https://shopify.dev/docs/admin-api/rest/reference/products/collection#products-2020-10
+      parameters:
+      - in: path
+        name: collection_id
+        required: true
+        schema:
+          type: string
+        description: collection_id
+      - in: query
+        name: limit
+        description: "The number of products to retrieve.\n                  (default: 50, maximum: 250)"
+        schema: {}
+        required: false
+      tags:
+      - Products
+      responses:
+        '200':
+          description: ''
+      operationId: get_collections_param_collection_id_products
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/collections/{collection_id}/products.json:
+    get:
+      summary: Shopify Retrieve A List Of Products Belonging To A Collection
+      description: https://shopify.dev/docs/admin-api/rest/reference/products/collection#products-2021-01
+      parameters:
+      - in: path
+        name: collection_id
+        required: true
+        schema:
+          type: string
+        description: collection_id
+      - in: query
+        name: limit
+        description: "The number of products to retrieve.\n                  (default: 50, maximum: 250)"
+        schema: {}
+        required: false
+      tags:
+      - Products
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_get_collections_param_collection_id_products
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/collections/{collection_id}/products.json:
+    get:
+      summary: Shopify Retrieve A List Of Products Belonging To A Collection
+      description: https://shopify.dev/docs/admin-api/rest/reference/products/collection#products-unstable
+      parameters:
+      - in: path
+        name: collection_id
+        required: true
+        schema:
+          type: string
+        description: collection_id
+      - in: query
+        name: limit
+        description: "The number of products to retrieve.\n                  (default: 50, maximum: 250)"
+        schema: {}
+        required: false
+      tags:
+      - Products
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_get_collections_param_collection_id_products
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-01/products.json:
+    get:
+      summary: Shopify Retrieves A List Of Products
+      description: https://shopify.dev/docs/admin-api/rest/reference/products/product#index-2020-01
+      parameters:
+      - in: query
+        name: ids
+        description: Return only products specified by a comma-separated list of product IDs.
+        schema: {}
+        required: false
+      - in: query
+        name: limit
+        description: "Return up to this many results per page.\n                  (default: 50, maximum: 250)"
+        schema: {}
+        required: false
+      - in: query
+        name: since_id
+        description: Restrict results to after the specified ID.
+        schema: {}
+        required: false
+      - in: query
+        name: title
+        description: Filter results by product title.
+        schema: {}
+        required: false
+      - in: query
+        name: vendor
+        description: Filter results by product vendor.
+        schema: {}
+        required: false
+      - in: query
+        name: handle
+        description: Filter results by product handle.
+        schema: {}
+        required: false
+      - in: query
+        name: product_type
+        description: Filter results by product type.
+        schema: {}
+        required: false
+      - in: query
+        name: status
+        description: "Return products by their status.\n                  (default: active)\n                    \n                        active: Show only active products.\n                        archived: Show only archived products.\n                        draft: Show only draft products."
+        schema: {}
+        required: false
+      - in: query
+        name: collection_id
+        description: Filter results by product collection ID.
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_min
+        description: 'Show products created after date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_max
+        description: 'Show products created before date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_min
+        description: 'Show products last updated after date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_max
+        description: 'Show products last updated before date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: published_at_min
+        description: 'Show products published after date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: published_at_max
+        description: 'Show products published before date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: published_status
+        description: "Return products by their published status\n                  (default: any)\n                    \n                        published: Show only published products.\n                        unpublished: Show only unpublished products.\n                        any: Show all products."
+        schema: {}
+        required: false
+      - in: query
+        name: fields
+        description: Show only certain fields, specified by a comma-separated list of field names.
+        schema: {}
+        required: false
+      - in: query
+        name: presentment_currencies
+        description: Return presentment prices in only certain currencies, specified by a comma-separated list of ISO 4217 currency codes.
+        schema: {}
+        required: false
+      tags:
+      - Products
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_get_products
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-01/products/count.json:
+    get:
+      summary: Shopify Retrieves A Count Of Products
+      description: https://shopify.dev/docs/admin-api/rest/reference/products/product#count-2020-01
+      parameters:
+      - in: query
+        name: vendor
+        description: Filter results by product vendor.
+        schema: {}
+        required: false
+      - in: query
+        name: product_type
+        description: Filter results by product type.
+        schema: {}
+        required: false
+      - in: query
+        name: collection_id
+        description: Filter results by collection ID.
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_min
+        description: 'Show products created after date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_max
+        description: 'Show products created before date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_min
+        description: 'Show products last updated after date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_max
+        description: 'Show products last updated before date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: published_at_min
+        description: 'Show products published after date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: published_at_max
+        description: 'Show products published before date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: published_status
+        description: "Return products by their published status\n                  (default: any)\n                    \n                        published: Show only published products.\n                        unpublished: Show only unpublished products.\n                        any: Show all products."
+        schema: {}
+        required: false
+      tags:
+      - Products
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_get_products_count
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/products.json:
+    get:
+      summary: Shopify Retrieves A List Of Products
+      description: https://shopify.dev/docs/admin-api/rest/reference/products/product#index-2020-04
+      parameters:
+      - in: query
+        name: ids
+        description: Return only products specified by a comma-separated list of product IDs.
+        schema: {}
+        required: false
+      - in: query
+        name: limit
+        description: "Return up to this many results per page.\n                  (default: 50, maximum: 250)"
+        schema: {}
+        required: false
+      - in: query
+        name: since_id
+        description: Restrict results to after the specified ID.
+        schema: {}
+        required: false
+      - in: query
+        name: title
+        description: Filter results by product title.
+        schema: {}
+        required: false
+      - in: query
+        name: vendor
+        description: Filter results by product vendor.
+        schema: {}
+        required: false
+      - in: query
+        name: handle
+        description: Filter results by product handle.
+        schema: {}
+        required: false
+      - in: query
+        name: product_type
+        description: Filter results by product type.
+        schema: {}
+        required: false
+      - in: query
+        name: status
+        description: "Return products by their status.\n                  (default: active)\n                    \n                        active: Show only active products.\n                        archived: Show only archived products.\n                        draft: Show only draft products."
+        schema: {}
+        required: false
+      - in: query
+        name: collection_id
+        description: Filter results by product collection ID.
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_min
+        description: 'Show products created after date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_max
+        description: 'Show products created before date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_min
+        description: 'Show products last updated after date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_max
+        description: 'Show products last updated before date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: published_at_min
+        description: 'Show products published after date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: published_at_max
+        description: 'Show products published before date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: published_status
+        description: "Return products by their published status\n                  (default: any)\n                    \n                        published: Show only published products.\n                        unpublished: Show only unpublished products.\n                        any: Show all products."
+        schema: {}
+        required: false
+      - in: query
+        name: fields
+        description: Show only certain fields, specified by a comma-separated list of field names.
+        schema: {}
+        required: false
+      - in: query
+        name: presentment_currencies
+        description: Return presentment prices in only certain currencies, specified by a comma-separated list of ISO 4217 currency codes.
+        schema: {}
+        required: false
+      tags:
+      - Products
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_get_products
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/products/count.json:
+    get:
+      summary: Shopify Retrieves A Count Of Products
+      description: https://shopify.dev/docs/admin-api/rest/reference/products/product#count-2020-04
+      parameters:
+      - in: query
+        name: vendor
+        description: Filter results by product vendor.
+        schema: {}
+        required: false
+      - in: query
+        name: product_type
+        description: Filter results by product type.
+        schema: {}
+        required: false
+      - in: query
+        name: collection_id
+        description: Filter results by collection ID.
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_min
+        description: 'Show products created after date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_max
+        description: 'Show products created before date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_min
+        description: 'Show products last updated after date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_max
+        description: 'Show products last updated before date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: published_at_min
+        description: 'Show products published after date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: published_at_max
+        description: 'Show products published before date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: published_status
+        description: "Return products by their published status\n                  (default: any)\n                    \n                        published: Show only published products.\n                        unpublished: Show only unpublished products.\n                        any: Show all products."
+        schema: {}
+        required: false
+      tags:
+      - Products
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_get_products_count
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/products.json:
+    get:
+      summary: Shopify Retrieves A List Of Products
+      description: https://shopify.dev/docs/admin-api/rest/reference/products/product#index-2020-07
+      parameters:
+      - in: query
+        name: ids
+        description: Return only products specified by a comma-separated list of product IDs.
+        schema: {}
+        required: false
+      - in: query
+        name: limit
+        description: "Return up to this many results per page.\n                  (default: 50, maximum: 250)"
+        schema: {}
+        required: false
+      - in: query
+        name: since_id
+        description: Restrict results to after the specified ID.
+        schema: {}
+        required: false
+      - in: query
+        name: title
+        description: Filter results by product title.
+        schema: {}
+        required: false
+      - in: query
+        name: vendor
+        description: Filter results by product vendor.
+        schema: {}
+        required: false
+      - in: query
+        name: handle
+        description: Filter results by product handle.
+        schema: {}
+        required: false
+      - in: query
+        name: product_type
+        description: Filter results by product type.
+        schema: {}
+        required: false
+      - in: query
+        name: status
+        description: "Return products by their status.\n                  (default: active)\n                    \n                        active: Show only active products.\n                        archived: Show only archived products.\n                        draft: Show only draft products."
+        schema: {}
+        required: false
+      - in: query
+        name: collection_id
+        description: Filter results by product collection ID.
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_min
+        description: 'Show products created after date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_max
+        description: 'Show products created before date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_min
+        description: 'Show products last updated after date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_max
+        description: 'Show products last updated before date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: published_at_min
+        description: 'Show products published after date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: published_at_max
+        description: 'Show products published before date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: published_status
+        description: "Return products by their published status\n                  (default: any)\n                    \n                        published: Show only published products.\n                        unpublished: Show only unpublished products.\n                        any: Show all products."
+        schema: {}
+        required: false
+      - in: query
+        name: fields
+        description: Show only certain fields, specified by a comma-separated list of field names.
+        schema: {}
+        required: false
+      - in: query
+        name: presentment_currencies
+        description: Return presentment prices in only certain currencies, specified by a comma-separated list of ISO 4217 currency codes.
+        schema: {}
+        required: false
+      tags:
+      - Products
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_get_products
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/products/count.json:
+    get:
+      summary: Shopify Retrieves A Count Of Products
+      description: https://shopify.dev/docs/admin-api/rest/reference/products/product#count-2020-07
+      parameters:
+      - in: query
+        name: vendor
+        description: Filter results by product vendor.
+        schema: {}
+        required: false
+      - in: query
+        name: product_type
+        description: Filter results by product type.
+        schema: {}
+        required: false
+      - in: query
+        name: collection_id
+        description: Filter results by collection ID.
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_min
+        description: 'Show products created after date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_max
+        description: 'Show products created before date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_min
+        description: 'Show products last updated after date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_max
+        description: 'Show products last updated before date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: published_at_min
+        description: 'Show products published after date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: published_at_max
+        description: 'Show products published before date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: published_status
+        description: "Return products by their published status\n                  (default: any)\n                    \n                        published: Show only published products.\n                        unpublished: Show only unpublished products.\n                        any: Show all products."
+        schema: {}
+        required: false
+      tags:
+      - Products
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_get_products_count
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/products.json:
+    get:
+      summary: Shopify Retrieves A List Of Products
+      description: https://shopify.dev/docs/admin-api/rest/reference/products/product#index-2020-10
+      parameters:
+      - in: query
+        name: ids
+        description: Return only products specified by a comma-separated list of product IDs.
+        schema: {}
+        required: false
+      - in: query
+        name: limit
+        description: "Return up to this many results per page.\n                  (default: 50, maximum: 250)"
+        schema: {}
+        required: false
+      - in: query
+        name: since_id
+        description: Restrict results to after the specified ID.
+        schema: {}
+        required: false
+      - in: query
+        name: title
+        description: Filter results by product title.
+        schema: {}
+        required: false
+      - in: query
+        name: vendor
+        description: Filter results by product vendor.
+        schema: {}
+        required: false
+      - in: query
+        name: handle
+        description: Filter results by product handle.
+        schema: {}
+        required: false
+      - in: query
+        name: product_type
+        description: Filter results by product type.
+        schema: {}
+        required: false
+      - in: query
+        name: status
+        description: "Return products by their status.\n                  (default: active)\n                    \n                        active: Show only active products.\n                        archived: Show only archived products.\n                        draft: Show only draft products."
+        schema: {}
+        required: false
+      - in: query
+        name: collection_id
+        description: Filter results by product collection ID.
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_min
+        description: 'Show products created after date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_max
+        description: 'Show products created before date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_min
+        description: 'Show products last updated after date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_max
+        description: 'Show products last updated before date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: published_at_min
+        description: 'Show products published after date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: published_at_max
+        description: 'Show products published before date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: published_status
+        description: "Return products by their published status\n                  (default: any)\n                    \n                        published: Show only published products.\n                        unpublished: Show only unpublished products.\n                        any: Show all products."
+        schema: {}
+        required: false
+      - in: query
+        name: fields
+        description: Show only certain fields, specified by a comma-separated list of field names.
+        schema: {}
+        required: false
+      - in: query
+        name: presentment_currencies
+        description: Return presentment prices in only certain currencies, specified by a comma-separated list of ISO 4217 currency codes.
+        schema: {}
+        required: false
+      tags:
+      - Products
+      responses:
+        '200':
+          description: ''
+      operationId: get_products
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/products/count.json:
+    get:
+      summary: Shopify Retrieves A Count Of Products
+      description: https://shopify.dev/docs/admin-api/rest/reference/products/product#count-2020-10
+      parameters:
+      - in: query
+        name: vendor
+        description: Filter results by product vendor.
+        schema: {}
+        required: false
+      - in: query
+        name: product_type
+        description: Filter results by product type.
+        schema: {}
+        required: false
+      - in: query
+        name: collection_id
+        description: Filter results by collection ID.
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_min
+        description: 'Show products created after date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_max
+        description: 'Show products created before date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_min
+        description: 'Show products last updated after date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_max
+        description: 'Show products last updated before date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: published_at_min
+        description: 'Show products published after date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: published_at_max
+        description: 'Show products published before date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: published_status
+        description: "Return products by their published status\n                  (default: any)\n                    \n                        published: Show only published products.\n                        unpublished: Show only unpublished products.\n                        any: Show all products."
+        schema: {}
+        required: false
+      tags:
+      - Products
+      responses:
+        '200':
+          description: ''
+      operationId: get_products_count
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/products.json:
+    get:
+      summary: Shopify Retrieves A List Of Products
+      description: https://shopify.dev/docs/admin-api/rest/reference/products/product#index-2021-01
+      parameters:
+      - in: query
+        name: ids
+        description: Return only products specified by a comma-separated list of product IDs.
+        schema: {}
+        required: false
+      - in: query
+        name: limit
+        description: "Return up to this many results per page.\n                  (default: 50, maximum: 250)"
+        schema: {}
+        required: false
+      - in: query
+        name: since_id
+        description: Restrict results to after the specified ID.
+        schema: {}
+        required: false
+      - in: query
+        name: title
+        description: Filter results by product title.
+        schema: {}
+        required: false
+      - in: query
+        name: vendor
+        description: Filter results by product vendor.
+        schema: {}
+        required: false
+      - in: query
+        name: handle
+        description: Filter results by product handle.
+        schema: {}
+        required: false
+      - in: query
+        name: product_type
+        description: Filter results by product type.
+        schema: {}
+        required: false
+      - in: query
+        name: status
+        description: "Return products by their status.\n                  (default: active)\n                    \n                        active: Show only active products.\n                        archived: Show only archived products.\n                        draft: Show only draft products."
+        schema: {}
+        required: false
+      - in: query
+        name: collection_id
+        description: Filter results by product collection ID.
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_min
+        description: 'Show products created after date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_max
+        description: 'Show products created before date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_min
+        description: 'Show products last updated after date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_max
+        description: 'Show products last updated before date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: published_at_min
+        description: 'Show products published after date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: published_at_max
+        description: 'Show products published before date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: published_status
+        description: "Return products by their published status\n                  (default: any)\n                    \n                        published: Show only published products.\n                        unpublished: Show only unpublished products.\n                        any: Show all products."
+        schema: {}
+        required: false
+      - in: query
+        name: fields
+        description: Show only certain fields, specified by a comma-separated list of field names.
+        schema: {}
+        required: false
+      - in: query
+        name: presentment_currencies
+        description: Return presentment prices in only certain currencies, specified by a comma-separated list of ISO 4217 currency codes.
+        schema: {}
+        required: false
+      tags:
+      - Products
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_get_products
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/products/count.json:
+    get:
+      summary: Shopify Retrieves A Count Of Products
+      description: https://shopify.dev/docs/admin-api/rest/reference/products/product#count-2021-01
+      parameters:
+      - in: query
+        name: vendor
+        description: Filter results by product vendor.
+        schema: {}
+        required: false
+      - in: query
+        name: product_type
+        description: Filter results by product type.
+        schema: {}
+        required: false
+      - in: query
+        name: collection_id
+        description: Filter results by collection ID.
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_min
+        description: 'Show products created after date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_max
+        description: 'Show products created before date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_min
+        description: 'Show products last updated after date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_max
+        description: 'Show products last updated before date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: published_at_min
+        description: 'Show products published after date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: published_at_max
+        description: 'Show products published before date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: published_status
+        description: "Return products by their published status\n                  (default: any)\n                    \n                        published: Show only published products.\n                        unpublished: Show only unpublished products.\n                        any: Show all products."
+        schema: {}
+        required: false
+      tags:
+      - Products
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_get_products_count
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/products.json:
+    get:
+      summary: Shopify Retrieves A List Of Products
+      description: https://shopify.dev/docs/admin-api/rest/reference/products/product#index-unstable
+      parameters:
+      - in: query
+        name: ids
+        description: Return only products specified by a comma-separated list of product IDs.
+        schema: {}
+        required: false
+      - in: query
+        name: limit
+        description: "Return up to this many results per page.\n                  (default: 50, maximum: 250)"
+        schema: {}
+        required: false
+      - in: query
+        name: since_id
+        description: Restrict results to after the specified ID.
+        schema: {}
+        required: false
+      - in: query
+        name: title
+        description: Filter results by product title.
+        schema: {}
+        required: false
+      - in: query
+        name: vendor
+        description: Filter results by product vendor.
+        schema: {}
+        required: false
+      - in: query
+        name: handle
+        description: Filter results by product handle.
+        schema: {}
+        required: false
+      - in: query
+        name: product_type
+        description: Filter results by product type.
+        schema: {}
+        required: false
+      - in: query
+        name: status
+        description: "Return products by their status.\n                  (default: active)\n                    \n                        active: Show only active products.\n                        archived: Show only archived products.\n                        draft: Show only draft products."
+        schema: {}
+        required: false
+      - in: query
+        name: collection_id
+        description: Filter results by product collection ID.
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_min
+        description: 'Show products created after date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_max
+        description: 'Show products created before date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_min
+        description: 'Show products last updated after date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_max
+        description: 'Show products last updated before date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: published_at_min
+        description: 'Show products published after date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: published_at_max
+        description: 'Show products published before date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: published_status
+        description: "Return products by their published status\n                  (default: any)\n                    \n                        published: Show only published products.\n                        unpublished: Show only unpublished products.\n                        any: Show all products."
+        schema: {}
+        required: false
+      - in: query
+        name: fields
+        description: Show only certain fields, specified by a comma-separated list of field names.
+        schema: {}
+        required: false
+      - in: query
+        name: presentment_currencies
+        description: Return presentment prices in only certain currencies, specified by a comma-separated list of ISO 4217 currency codes.
+        schema: {}
+        required: false
+      tags:
+      - Products
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_get_products
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/products/count.json:
+    get:
+      summary: Shopify Retrieves A Count Of Products
+      description: https://shopify.dev/docs/admin-api/rest/reference/products/product#count-unstable
+      parameters:
+      - in: query
+        name: vendor
+        description: Filter results by product vendor.
+        schema: {}
+        required: false
+      - in: query
+        name: product_type
+        description: Filter results by product type.
+        schema: {}
+        required: false
+      - in: query
+        name: collection_id
+        description: Filter results by collection ID.
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_min
+        description: 'Show products created after date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_max
+        description: 'Show products created before date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_min
+        description: 'Show products last updated after date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_max
+        description: 'Show products last updated before date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: published_at_min
+        description: 'Show products published after date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: published_at_max
+        description: 'Show products published before date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: published_status
+        description: "Return products by their published status\n                  (default: any)\n                    \n                        published: Show only published products.\n                        unpublished: Show only unpublished products.\n                        any: Show all products."
+        schema: {}
+        required: false
+      tags:
+      - Products
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_get_products_count
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-01/smart_collections/{smart_collection_id}/order.json:
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value: {}
+                summary: Update manually-sorted products in the smart collection
+              example2:
+                value: {}
+                summary: Update the type of ordering applied to the smart collection
+      summary: Shopify Updates The Ordering Type Of Products In A Smart Collection
+      description: https://shopify.dev/docs/admin-api/rest/reference/products/smartcollection#order-2020-01
+      parameters:
+      - in: path
+        name: smart_collection_id
+        required: true
+        schema:
+          type: string
+        description: smart_collection_id
+      - in: query
+        name: products
+        description: An array of product IDs, in the order that you want them to appear at the top of the collection. When products is specified but empty, any previously sorted products are cleared.
+        schema: {}
+        required: false
+      - in: query
+        name: sort_order
+        description: "The type of sorting to apply. Valid values are listed in the Properties section above.\n                  (default: (current value))"
+        schema: {}
+        required: false
+      - in: query
+        name: products[]
+        schema:
+          type: integer
+        description: products[]
+        required: false
+      tags:
+      - Products
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_update_smart_collections_param_smart_collection_id_order
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/smart_collections/{smart_collection_id}/order.json:
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value: {}
+                summary: Update manually-sorted products in the smart collection
+              example2:
+                value: {}
+                summary: Update the type of ordering applied to the smart collection
+      summary: Shopify Updates The Ordering Type Of Products In A Smart Collection
+      description: https://shopify.dev/docs/admin-api/rest/reference/products/smartcollection#order-2020-04
+      parameters:
+      - in: path
+        name: smart_collection_id
+        required: true
+        schema:
+          type: string
+        description: smart_collection_id
+      - in: query
+        name: products
+        description: An array of product IDs, in the order that you want them to appear at the top of the collection. When products is specified but empty, any previously sorted products are cleared.
+        schema: {}
+        required: false
+      - in: query
+        name: sort_order
+        description: "The type of sorting to apply. Valid values are listed in the Properties section above.\n                  (default: (current value))"
+        schema: {}
+        required: false
+      - in: query
+        name: products[]
+        schema:
+          type: integer
+        description: products[]
+        required: false
+      tags:
+      - Products
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_update_smart_collections_param_smart_collection_id_order
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/smart_collections/{smart_collection_id}/order.json:
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value: {}
+                summary: Update manually-sorted products in the smart collection
+              example2:
+                value: {}
+                summary: Update the type of ordering applied to the smart collection
+      summary: Shopify Updates The Ordering Type Of Products In A Smart Collection
+      description: https://shopify.dev/docs/admin-api/rest/reference/products/smartcollection#order-2020-07
+      parameters:
+      - in: path
+        name: smart_collection_id
+        required: true
+        schema:
+          type: string
+        description: smart_collection_id
+      - in: query
+        name: products
+        description: An array of product IDs, in the order that you want them to appear at the top of the collection. When products is specified but empty, any previously sorted products are cleared.
+        schema: {}
+        required: false
+      - in: query
+        name: sort_order
+        description: "The type of sorting to apply. Valid values are listed in the Properties section above.\n                  (default: (current value))"
+        schema: {}
+        required: false
+      - in: query
+        name: products[]
+        schema:
+          type: integer
+        description: products[]
+        required: false
+      tags:
+      - Products
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_update_smart_collections_param_smart_collection_id_order
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/smart_collections/{smart_collection_id}/order.json:
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value: {}
+                summary: Update manually-sorted products in the smart collection
+              example2:
+                value: {}
+                summary: Update the type of ordering applied to the smart collection
+      summary: Shopify Updates The Ordering Type Of Products In A Smart Collection
+      description: https://shopify.dev/docs/admin-api/rest/reference/products/smartcollection#order-2020-10
+      parameters:
+      - in: path
+        name: smart_collection_id
+        required: true
+        schema:
+          type: string
+        description: smart_collection_id
+      - in: query
+        name: products
+        description: An array of product IDs, in the order that you want them to appear at the top of the collection. When products is specified but empty, any previously sorted products are cleared.
+        schema: {}
+        required: false
+      - in: query
+        name: sort_order
+        description: "The type of sorting to apply. Valid values are listed in the Properties section above.\n                  (default: (current value))"
+        schema: {}
+        required: false
+      - in: query
+        name: products[]
+        schema:
+          type: integer
+        description: products[]
+        required: false
+      tags:
+      - Products
+      responses:
+        '200':
+          description: ''
+      operationId: update_smart_collections_param_smart_collection_id_order
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/smart_collections/{smart_collection_id}/order.json:
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value: {}
+                summary: Update manually-sorted products in the smart collection
+              example2:
+                value: {}
+                summary: Update the type of ordering applied to the smart collection
+      summary: Shopify Updates The Ordering Type Of Products In A Smart Collection
+      description: https://shopify.dev/docs/admin-api/rest/reference/products/smartcollection#order-2021-01
+      parameters:
+      - in: path
+        name: smart_collection_id
+        required: true
+        schema:
+          type: string
+        description: smart_collection_id
+      - in: query
+        name: products
+        description: An array of product IDs, in the order that you want them to appear at the top of the collection. When products is specified but empty, any previously sorted products are cleared.
+        schema: {}
+        required: false
+      - in: query
+        name: sort_order
+        description: "The type of sorting to apply. Valid values are listed in the Properties section above.\n                  (default: (current value))"
+        schema: {}
+        required: false
+      - in: query
+        name: products[]
+        schema:
+          type: integer
+        description: products[]
+        required: false
+      tags:
+      - Products
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_update_smart_collections_param_smart_collection_id_order
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/smart_collections/{smart_collection_id}/order.json:
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value: {}
+                summary: Update manually-sorted products in the smart collection
+              example2:
+                value: {}
+                summary: Update the type of ordering applied to the smart collection
+      summary: Shopify Updates The Ordering Type Of Products In A Smart Collection
+      description: https://shopify.dev/docs/admin-api/rest/reference/products/smartcollection#order-unstable
+      parameters:
+      - in: path
+        name: smart_collection_id
+        required: true
+        schema:
+          type: string
+        description: smart_collection_id
+      - in: query
+        name: products
+        description: An array of product IDs, in the order that you want them to appear at the top of the collection. When products is specified but empty, any previously sorted products are cleared.
+        schema: {}
+        required: false
+      - in: query
+        name: sort_order
+        description: "The type of sorting to apply. Valid values are listed in the Properties section above.\n                  (default: (current value))"
+        schema: {}
+        required: false
+      - in: query
+        name: products[]
+        schema:
+          type: integer
+        description: products[]
+        required: false
+      tags:
+      - Products
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_update_smart_collections_param_smart_collection_id_order
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-01/product_listings/count.json:
+    get:
+      summary: Shopify Retrieve A Count Of Products That Are Published To Your App
+      description: https://shopify.dev/docs/admin-api/rest/reference/sales-channels/productlisting#count-2020-01
+      parameters: []
+      tags:
+      - Products
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_get_product_listings_count
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/product_listings/count.json:
+    get:
+      summary: Shopify Retrieve A Count Of Products That Are Published To Your App
+      description: https://shopify.dev/docs/admin-api/rest/reference/sales-channels/productlisting#count-2020-04
+      parameters: []
+      tags:
+      - Products
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_get_product_listings_count
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/product_listings/count.json:
+    get:
+      summary: Shopify Retrieve A Count Of Products That Are Published To Your App
+      description: https://shopify.dev/docs/admin-api/rest/reference/sales-channels/productlisting#count-2020-07
+      parameters: []
+      tags:
+      - Products
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_get_product_listings_count
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+components:
+  schemas:
+    Product:
+      type: object
+      description: A Shopify product
+      properties:
+        id:
+          type: integer
+          description: Unique numeric identifier for the product
+        title:
+          type: string
+          description: The name of the product
+        body_html:
+          type: string
+          description: Product description in HTML
+        vendor:
+          type: string
+          description: The name of the product vendor
+        product_type:
+          type: string
+          description: A categorization for the product
+        handle:
+          type: string
+          description: URL-friendly version of the product title
+        created_at:
+          type: string
+          format: date-time
+          description: When the product was created
+        updated_at:
+          type: string
+          format: date-time
+          description: When the product was last updated
+        published_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: When the product was published (null if unpublished)
+        template_suffix:
+          type:
+          - string
+          - 'null'
+          description: Liquid template suffix for the product page
+        published_scope:
+          type: string
+          description: Whether the product is published to the POS channel and online store
+        tags:
+          type: string
+          description: Comma-separated list of tags
+        status:
+          type: string
+          description: Product status
+          enum:
+          - active
+          - archived
+          - draft
+        admin_graphql_api_id:
+          type: string
+          description: The GraphQL Admin API ID
+        variants:
+          type: array
+          description: Product variants
+          items:
+            $ref: '#/components/schemas/Variant'
+        options:
+          type: array
+          description: Product options (e.g. Size, Color)
+          items:
+            $ref: '#/components/schemas/ProductOption'
+        images:
+          type: array
+          description: Product images
+          items:
+            $ref: '#/components/schemas/Image'
+        image:
+          description: The primary product image
+          $ref: '#/components/schemas/Image'
+    ProductInput:
+      type: object
+      description: Input for creating or updating a product
+      properties:
+        title:
+          type: string
+          description: The name of the product
+        body_html:
+          type: string
+          description: Product description in HTML
+        vendor:
+          type: string
+          description: The product vendor
+        product_type:
+          type: string
+          description: A categorization for the product
+        tags:
+          type: string
+          description: Comma-separated list of tags
+        status:
+          type: string
+          enum:
+          - active
+          - archived
+          - draft
+        variants:
+          type: array
+          items:
+            $ref: '#/components/schemas/VariantInput'
+        images:
+          type: array
+          items:
+            $ref: '#/components/schemas/ImageInput'
+    StorefrontProduct:
+      type: object
+      description: A product as returned by the storefront Ajax API
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        handle:
+          type: string
+        description:
+          type: string
+        published_at:
+          type: string
+          format: date-time
+        created_at:
+          type: string
+          format: date-time
+        vendor:
+          type: string
+        type:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string
+        price:
+          type: integer
+          description: Price in cents
+        price_min:
+          type: integer
+        price_max:
+          type: integer
+        available:
+          type: boolean
+        price_varies:
+          type: boolean
+        compare_at_price:
+          type:
+          - integer
+          - 'null'
+        compare_at_price_min:
+          type: integer
+        compare_at_price_max:
+          type: integer
+        compare_at_price_varies:
+          type: boolean
+        variants:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+              title:
+                type: string
+              option1:
+                type:
+                - string
+                - 'null'
+              option2:
+                type:
+                - string
+                - 'null'
+              option3:
+                type:
+                - string
+                - 'null'
+              sku:
+                type:
+                - string
+                - 'null'
+              requires_shipping:
+                type: boolean
+              taxable:
+                type: boolean
+              featured_image:
+                type:
+                - object
+                - 'null'
+              available:
+                type: boolean
+              name:
+                type: string
+              public_title:
+                type:
+                - string
+                - 'null'
+              price:
+                type: integer
+              weight:
+                type: integer
+              compare_at_price:
+                type:
+                - integer
+                - 'null'
+              barcode:
+                type:
+                - string
+                - 'null'
+        images:
+          type: array
+          items:
+            type: string
+            format: uri
+        featured_image:
+          type: string
+          format: uri
+        options:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              position:
+                type: integer
+              values:
+                type: array
+                items:
+                  type: string
+        url:
+          type: string
+        media:
+          type: array
+          items:
+            type: object
+            properties:
+              alt:
+                type:
+                - string
+                - 'null'
+              id:
+                type: integer
+              position:
+                type: integer
+              media_type:
+                type: string
+              src:
+                type: string
+                format: uri
+              width:
+                type: integer
+              height:
+                type: integer
+    Image:
+      type: object
+      description: A product image
+      properties:
+        id:
+          type: integer
+        product_id:
+          type: integer
+        position:
+          type: integer
+          description: Position in the image list
+        alt:
+          type:
+          - string
+          - 'null'
+          description: Alt text for the image
+        width:
+          type: integer
+        height:
+          type: integer
+        src:
+          type: string
+          format: uri
+          description: The image URL
+        variant_ids:
+          type: array
+          description: Variant IDs associated with this image
+          items:
+            type: integer
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        admin_graphql_api_id:
+          type: string
+    VariantInput:
+      type: object
+      description: Input for creating or updating a variant
+      properties:
+        title:
+          type: string
+        price:
+          type: string
+        sku:
+          type: string
+        position:
+          type: integer
+        inventory_policy:
+          type: string
+          enum:
+          - deny
+          - continue
+        compare_at_price:
+          type: string
+        option1:
+          type: string
+        option2:
+          type: string
+        option3:
+          type: string
+        taxable:
+          type: boolean
+        barcode:
+          type: string
+        grams:
+          type: integer
+        weight:
+          type: number
+        weight_unit:
+          type: string
+          enum:
+          - g
+          - kg
+          - oz
+          - lb
+        inventory_quantity:
+          type: integer
+        requires_shipping:
+          type: boolean
+    ImageInput:
+      type: object
+      description: Input for creating or updating a product image
+      properties:
+        src:
+          type: string
+          format: uri
+          description: URL of the image
+        attachment:
+          type: string
+          description: Base64-encoded image data
+        alt:
+          type: string
+          description: Alt text
+        position:
+          type: integer
+        variant_ids:
+          type: array
+          items:
+            type: integer
+    Variant:
+      type: object
+      description: A product variant
+      properties:
+        id:
+          type: integer
+          description: Unique numeric identifier
+        product_id:
+          type: integer
+          description: The ID of the parent product
+        title:
+          type: string
+          description: The variant title
+        price:
+          type: string
+          description: The price of the variant
+        sku:
+          type:
+          - string
+          - 'null'
+          description: Stock keeping unit
+        position:
+          type: integer
+          description: Position of the variant in the list
+        inventory_policy:
+          type: string
+          description: Whether to allow selling when out of stock
+          enum:
+          - deny
+          - continue
+        compare_at_price:
+          type:
+          - string
+          - 'null'
+          description: Original price for comparison
+        fulfillment_service:
+          type: string
+          description: The fulfillment service for the variant
+        inventory_management:
+          type:
+          - string
+          - 'null'
+          description: The inventory tracking service
+        option1:
+          type:
+          - string
+          - 'null'
+          description: Option 1 value
+        option2:
+          type:
+          - string
+          - 'null'
+          description: Option 2 value
+        option3:
+          type:
+          - string
+          - 'null'
+          description: Option 3 value
+        taxable:
+          type: boolean
+          description: Whether the variant is taxable
+        barcode:
+          type:
+          - string
+          - 'null'
+          description: Barcode, UPC, or ISBN
+        grams:
+          type: integer
+          description: Weight in grams
+        weight:
+          type: number
+          description: Weight in the specified unit
+        weight_unit:
+          type: string
+          description: Weight unit
+          enum:
+          - g
+          - kg
+          - oz
+          - lb
+        inventory_item_id:
+          type: integer
+          description: The inventory item ID
+        inventory_quantity:
+          type: integer
+          description: Tracked inventory quantity
+        requires_shipping:
+          type: boolean
+          description: Whether the variant requires shipping
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        image_id:
+          type:
+          - integer
+          - 'null'
+          description: The ID of the associated image
+        admin_graphql_api_id:
+          type: string
+    ProductOption:
+      type: object
+      description: A product option (e.g. Size, Color)
+      properties:
+        id:
+          type: integer
+        product_id:
+          type: integer
+        name:
+          type: string
+          description: The option name
+        position:
+          type: integer
+          description: Position in the options list
+        values:
+          type: array
+          description: Available values for this option
+          items:
+            type: string
+    Error:
+      type: object
+      description: Error response
+      properties:
+        errors:
+          description: Error details
+          oneOf:
+          - type: string
+          - type: object
+            additionalProperties:
+              type: array
+              items:
+                type: string
+  parameters:
+    ProductId:
+      name: product_id
+      in: path
+      required: true
+      description: The ID of the product
+      schema:
+        type: integer
+  securitySchemes:
+    AccessToken:
+      type: apiKey
+      name: X-Shopify-Access-Token
+      in: header
+      description: Access token obtained via OAuth

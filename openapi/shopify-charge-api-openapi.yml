@@ -1,0 +1,1616 @@
+openapi: 3.1.0
+info:
+  title: Shopify Admin REST About Charge API
+  description: The Shopify Admin REST API lets you build apps and integrations that extend and enhance the Shopify admin. Access products, customers, orders, inventory, fulfillment, and more. Endpoints are organized by resource type and versioned by release date.
+  version: 2025-01
+  contact:
+    name: Shopify
+    url: https://shopify.dev/docs/api/admin-rest
+    email: api@shopify.com
+  license:
+    name: Shopify API Terms
+    url: https://www.shopify.com/legal/api-terms
+  x-date: '2026-03-04'
+servers:
+- url: https://{store}.myshopify.com/admin/api/2025-01
+  description: Shopify Admin REST API
+  variables:
+    store:
+      default: my-store
+      description: The Shopify store subdomain
+security:
+- AccessToken: []
+tags:
+- name: Charge
+paths:
+  /admin/api/2020-01/application_charges.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  application_charge:
+                    name: Super Duper Expensive action
+                    price: 100
+                    return_url: http://super-duper.shopifyapps.com
+                summary: Create an application charge
+              example2:
+                value:
+                  application_charge:
+                    name: Super Duper Expensive action
+                    price: 100
+                    return_url: http://super-duper.shopifyapps.com
+                    test: true
+                summary: Create a test charge that will not cause a credit card to be charged
+              example3:
+                value:
+                  application_charge:
+                    name: Super Duper Expensive action
+                    price: 0.4
+                    return_url: http://super-duper.shopifyapps.com
+                summary: Trying to create a charge with a price less than 0.50 will return an error
+              example4:
+                value:
+                  application_charge:
+                    name: ''
+                summary: Trying to create a charge without a price or name will return an error
+      summary: Shopify Creates An Application Charge
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/applicationcharge#create-2020-01
+      parameters: []
+      tags:
+      - Charge
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_create_application_charges
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-01/application_charges/{application_charge_id}.json:
+    get:
+      summary: Shopify Retrieves An Application Charge
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/applicationcharge#show-2020-01
+      parameters:
+      - in: path
+        name: application_charge_id
+        required: true
+        schema:
+          type: string
+        description: application_charge_id
+      - in: query
+        name: fields
+        description: A comma-separated list of fields to include in the response.
+        schema: {}
+        required: false
+      tags:
+      - Charge
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_get_application_charges_param_application_charge_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/application_charges.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  application_charge:
+                    name: Super Duper Expensive action
+                    price: 100
+                    return_url: http://super-duper.shopifyapps.com
+                summary: Create an application charge
+              example2:
+                value:
+                  application_charge:
+                    name: Super Duper Expensive action
+                    price: 100
+                    return_url: http://super-duper.shopifyapps.com
+                    test: true
+                summary: Create a test charge that will not cause a credit card to be charged
+              example3:
+                value:
+                  application_charge:
+                    name: Super Duper Expensive action
+                    price: 0.4
+                    return_url: http://super-duper.shopifyapps.com
+                summary: Trying to create a charge with a price less than 0.50 will return an error
+              example4:
+                value:
+                  application_charge:
+                    name: ''
+                summary: Trying to create a charge without a price or name will return an error
+      summary: Shopify Creates An Application Charge
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/applicationcharge#create-2020-04
+      parameters: []
+      tags:
+      - Charge
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_create_application_charges
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/application_charges/{application_charge_id}.json:
+    get:
+      summary: Shopify Retrieves An Application Charge
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/applicationcharge#show-2020-04
+      parameters:
+      - in: path
+        name: application_charge_id
+        required: true
+        schema:
+          type: string
+        description: application_charge_id
+      - in: query
+        name: fields
+        description: A comma-separated list of fields to include in the response.
+        schema: {}
+        required: false
+      tags:
+      - Charge
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_get_application_charges_param_application_charge_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/application_charges.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  application_charge:
+                    name: Super Duper Expensive action
+                    price: 100
+                    return_url: http://super-duper.shopifyapps.com
+                summary: Create an application charge
+              example2:
+                value:
+                  application_charge:
+                    name: Super Duper Expensive action
+                    price: 100
+                    return_url: http://super-duper.shopifyapps.com
+                    test: true
+                summary: Create a test charge that will not cause a credit card to be charged
+              example3:
+                value:
+                  application_charge:
+                    name: Super Duper Expensive action
+                    price: 0.4
+                    return_url: http://super-duper.shopifyapps.com
+                summary: Trying to create a charge with a price less than 0.50 will return an error
+              example4:
+                value:
+                  application_charge:
+                    name: ''
+                summary: Trying to create a charge without a price or name will return an error
+      summary: Shopify Creates An Application Charge
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/applicationcharge#create-2020-07
+      parameters: []
+      tags:
+      - Charge
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_create_application_charges
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/application_charges/{application_charge_id}.json:
+    get:
+      summary: Shopify Retrieves An Application Charge
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/applicationcharge#show-2020-07
+      parameters:
+      - in: path
+        name: application_charge_id
+        required: true
+        schema:
+          type: string
+        description: application_charge_id
+      - in: query
+        name: fields
+        description: A comma-separated list of fields to include in the response.
+        schema: {}
+        required: false
+      tags:
+      - Charge
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_get_application_charges_param_application_charge_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/application_charges.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  application_charge:
+                    name: Super Duper Expensive action
+                    price: 100
+                    return_url: http://super-duper.shopifyapps.com
+                summary: Create an application charge
+              example2:
+                value:
+                  application_charge:
+                    name: Super Duper Expensive action
+                    price: 100
+                    return_url: http://super-duper.shopifyapps.com
+                    test: true
+                summary: Create a test charge that will not cause a credit card to be charged
+              example3:
+                value:
+                  application_charge:
+                    name: Super Duper Expensive action
+                    price: 0.4
+                    return_url: http://super-duper.shopifyapps.com
+                summary: Trying to create a charge with a price less than 0.50 will return an error
+              example4:
+                value:
+                  application_charge:
+                    name: ''
+                summary: Trying to create a charge without a price or name will return an error
+      summary: Shopify Creates An Application Charge
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/applicationcharge#create-2020-10
+      parameters: []
+      tags:
+      - Charge
+      responses:
+        '200':
+          description: ''
+      operationId: create_application_charges
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/application_charges/{application_charge_id}.json:
+    get:
+      summary: Shopify Retrieves An Application Charge
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/applicationcharge#show-2020-10
+      parameters:
+      - in: path
+        name: application_charge_id
+        required: true
+        schema:
+          type: string
+        description: application_charge_id
+      - in: query
+        name: fields
+        description: A comma-separated list of fields to include in the response.
+        schema: {}
+        required: false
+      tags:
+      - Charge
+      responses:
+        '200':
+          description: ''
+      operationId: get_application_charges_param_application_charge_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/application_charges.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  application_charge:
+                    name: Super Duper Expensive action
+                    price: 100
+                    return_url: http://super-duper.shopifyapps.com
+                summary: Create an application charge
+              example2:
+                value:
+                  application_charge:
+                    name: Super Duper Expensive action
+                    price: 100
+                    return_url: http://super-duper.shopifyapps.com
+                    test: true
+                summary: Create a test charge that will not cause a credit card to be charged
+              example3:
+                value:
+                  application_charge:
+                    name: Super Duper Expensive action
+                    price: 0.4
+                    return_url: http://super-duper.shopifyapps.com
+                summary: Trying to create a charge with a price less than 0.50 will return an error
+              example4:
+                value:
+                  application_charge:
+                    name: ''
+                summary: Trying to create a charge without a price or name will return an error
+      summary: Shopify Creates An Application Charge
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/applicationcharge#create-2021-01
+      parameters: []
+      tags:
+      - Charge
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_create_application_charges
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/application_charges/{application_charge_id}.json:
+    get:
+      summary: Shopify Retrieves An Application Charge
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/applicationcharge#show-2021-01
+      parameters:
+      - in: path
+        name: application_charge_id
+        required: true
+        schema:
+          type: string
+        description: application_charge_id
+      - in: query
+        name: fields
+        description: A comma-separated list of fields to include in the response.
+        schema: {}
+        required: false
+      tags:
+      - Charge
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_get_application_charges_param_application_charge_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/application_charges.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  application_charge:
+                    name: Super Duper Expensive action
+                    price: 100
+                    return_url: http://super-duper.shopifyapps.com
+                summary: Create an application charge
+              example2:
+                value:
+                  application_charge:
+                    name: Super Duper Expensive action
+                    price: 100
+                    return_url: http://super-duper.shopifyapps.com
+                    test: true
+                summary: Create a test charge that will not cause a credit card to be charged
+              example3:
+                value:
+                  application_charge:
+                    name: Super Duper Expensive action
+                    price: 0.4
+                    return_url: http://super-duper.shopifyapps.com
+                summary: Trying to create a charge with a price less than 0.50 will return an error
+              example4:
+                value:
+                  application_charge:
+                    name: ''
+                summary: Trying to create a charge without a price or name will return an error
+      summary: Shopify Creates An Application Charge
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/applicationcharge#create-unstable
+      parameters: []
+      tags:
+      - Charge
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_create_application_charges
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/application_charges/{application_charge_id}.json:
+    get:
+      summary: Shopify Retrieves An Application Charge
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/applicationcharge#show-unstable
+      parameters:
+      - in: path
+        name: application_charge_id
+        required: true
+        schema:
+          type: string
+        description: application_charge_id
+      - in: query
+        name: fields
+        description: A comma-separated list of fields to include in the response.
+        schema: {}
+        required: false
+      tags:
+      - Charge
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_get_application_charges_param_application_charge_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-01/recurring_application_charges.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  recurring_application_charge:
+                    name: Super Duper Plan
+                    price: 10
+                    return_url: http://super-duper.shopifyapps.com
+                summary: Create a recurring application charge
+              example2:
+                value:
+                  recurring_application_charge:
+                    name: Super Duper Plan
+                    price: 10
+                    return_url: http://super-duper.shopifyapps.com
+                    capped_amount: 100
+                    terms: $1 for 1000 emails
+                summary: Create a new charge with terms and a capped amount
+              example3:
+                value:
+                  recurring_application_charge:
+                    name: Super Duper Plan
+                    price: 10
+                    return_url: http://super-duper.shopifyapps.com
+                    trial_days: 5
+                summary: Create a new charge with a trial period. The trial period will go into effect at the time the recurring charge is activated.
+              example4:
+                value:
+                  recurring_application_charge:
+                    name: Super Duper Plan
+                    price: 10
+                    return_url: http://super-duper.shopifyapps.com
+                    test: true
+                summary: Create a recurring test charge that will not cause a credit card to be charged
+              example5:
+                value:
+                  recurring_application_charge:
+                    name: ''
+                summary: Trying to create a charge without a price and name will return an error
+      summary: Shopify Creates A Recurring Application Charge
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/recurringapplicationcharge#create-2020-01
+      parameters: []
+      tags:
+      - Charge
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_create_recurring_application_charges
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-01/recurring_application_charges/{recurring_application_charge_id}.json:
+    get:
+      summary: Shopify Retrieves A Single Charge
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/recurringapplicationcharge#show-2020-01
+      parameters:
+      - in: path
+        name: recurring_application_charge_id
+        required: true
+        schema:
+          type: string
+        description: recurring_application_charge_id
+      - in: query
+        name: fields
+        description: A comma-separated list of fields to include in the response.
+        schema: {}
+        required: false
+      tags:
+      - Charge
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_get_recurring_application_charges_param_recurring_application_charge_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    delete:
+      summary: Shopify Cancels A Recurring Application Charge
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/recurringapplicationcharge#destroy-2020-01
+      parameters:
+      - in: path
+        name: recurring_application_charge_id
+        required: true
+        schema:
+          type: string
+        description: recurring_application_charge_id
+      tags:
+      - Charge
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_delete_recurring_application_charges_param_recurring_application_charge_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-01/recurring_application_charges/{recurring_application_charge_id}/customize.json:
+    put:
+      summary: Shopify Updates The Capped Amount Of An Active Recurring Application Charge
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/recurringapplicationcharge#customize-2020-01
+      parameters:
+      - in: path
+        name: recurring_application_charge_id
+        required: true
+        schema:
+          type: string
+        description: recurring_application_charge_id
+      - in: query
+        name: recurring_application_charge[capped_amount]
+        schema:
+          type: integer
+        description: recurring_application_charge[capped_amount]
+        required: false
+      tags:
+      - Charge
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_update_recurring_application_charges_param_recurring_application_charge_id_customize
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/recurring_application_charges.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  recurring_application_charge:
+                    name: Super Duper Plan
+                    price: 10
+                    return_url: http://super-duper.shopifyapps.com
+                summary: Create a recurring application charge
+              example2:
+                value:
+                  recurring_application_charge:
+                    name: Super Duper Plan
+                    price: 10
+                    return_url: http://super-duper.shopifyapps.com
+                    capped_amount: 100
+                    terms: $1 for 1000 emails
+                summary: Create a new charge with terms and a capped amount
+              example3:
+                value:
+                  recurring_application_charge:
+                    name: Super Duper Plan
+                    price: 10
+                    return_url: http://super-duper.shopifyapps.com
+                    trial_days: 5
+                summary: Create a new charge with a trial period. The trial period will go into effect at the time the recurring charge is activated.
+              example4:
+                value:
+                  recurring_application_charge:
+                    name: Super Duper Plan
+                    price: 10
+                    return_url: http://super-duper.shopifyapps.com
+                    test: true
+                summary: Create a recurring test charge that will not cause a credit card to be charged
+              example5:
+                value:
+                  recurring_application_charge:
+                    name: ''
+                summary: Trying to create a charge without a price and name will return an error
+      summary: Shopify Creates A Recurring Application Charge
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/recurringapplicationcharge#create-2020-04
+      parameters: []
+      tags:
+      - Charge
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_create_recurring_application_charges
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/recurring_application_charges/{recurring_application_charge_id}.json:
+    get:
+      summary: Shopify Retrieves A Single Charge
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/recurringapplicationcharge#show-2020-04
+      parameters:
+      - in: path
+        name: recurring_application_charge_id
+        required: true
+        schema:
+          type: string
+        description: recurring_application_charge_id
+      - in: query
+        name: fields
+        description: A comma-separated list of fields to include in the response.
+        schema: {}
+        required: false
+      tags:
+      - Charge
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_get_recurring_application_charges_param_recurring_application_charge_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    delete:
+      summary: Shopify Cancels A Recurring Application Charge
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/recurringapplicationcharge#destroy-2020-04
+      parameters:
+      - in: path
+        name: recurring_application_charge_id
+        required: true
+        schema:
+          type: string
+        description: recurring_application_charge_id
+      tags:
+      - Charge
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_delete_recurring_application_charges_param_recurring_application_charge_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/recurring_application_charges/{recurring_application_charge_id}/customize.json:
+    put:
+      summary: Shopify Updates The Capped Amount Of An Active Recurring Application Charge
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/recurringapplicationcharge#customize-2020-04
+      parameters:
+      - in: path
+        name: recurring_application_charge_id
+        required: true
+        schema:
+          type: string
+        description: recurring_application_charge_id
+      - in: query
+        name: recurring_application_charge[capped_amount]
+        schema:
+          type: integer
+        description: recurring_application_charge[capped_amount]
+        required: false
+      tags:
+      - Charge
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_update_recurring_application_charges_param_recurring_application_charge_id_customize
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/recurring_application_charges.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  recurring_application_charge:
+                    name: Super Duper Plan
+                    price: 10
+                    return_url: http://super-duper.shopifyapps.com
+                summary: Create a recurring application charge
+              example2:
+                value:
+                  recurring_application_charge:
+                    name: Super Duper Plan
+                    price: 10
+                    return_url: http://super-duper.shopifyapps.com
+                    capped_amount: 100
+                    terms: $1 for 1000 emails
+                summary: Create a new charge with terms and a capped amount
+              example3:
+                value:
+                  recurring_application_charge:
+                    name: Super Duper Plan
+                    price: 10
+                    return_url: http://super-duper.shopifyapps.com
+                    trial_days: 5
+                summary: Create a new charge with a trial period. The trial period will go into effect at the time the recurring charge is activated.
+              example4:
+                value:
+                  recurring_application_charge:
+                    name: Super Duper Plan
+                    price: 10
+                    return_url: http://super-duper.shopifyapps.com
+                    test: true
+                summary: Create a recurring test charge that will not cause a credit card to be charged
+              example5:
+                value:
+                  recurring_application_charge:
+                    name: ''
+                summary: Trying to create a charge without a price and name will return an error
+      summary: Shopify Creates A Recurring Application Charge
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/recurringapplicationcharge#create-2020-07
+      parameters: []
+      tags:
+      - Charge
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_create_recurring_application_charges
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/recurring_application_charges/{recurring_application_charge_id}.json:
+    get:
+      summary: Shopify Retrieves A Single Charge
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/recurringapplicationcharge#show-2020-07
+      parameters:
+      - in: path
+        name: recurring_application_charge_id
+        required: true
+        schema:
+          type: string
+        description: recurring_application_charge_id
+      - in: query
+        name: fields
+        description: A comma-separated list of fields to include in the response.
+        schema: {}
+        required: false
+      tags:
+      - Charge
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_get_recurring_application_charges_param_recurring_application_charge_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    delete:
+      summary: Shopify Cancels A Recurring Application Charge
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/recurringapplicationcharge#destroy-2020-07
+      parameters:
+      - in: path
+        name: recurring_application_charge_id
+        required: true
+        schema:
+          type: string
+        description: recurring_application_charge_id
+      tags:
+      - Charge
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_delete_recurring_application_charges_param_recurring_application_charge_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/recurring_application_charges/{recurring_application_charge_id}/customize.json:
+    put:
+      summary: Shopify Updates The Capped Amount Of An Active Recurring Application Charge
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/recurringapplicationcharge#customize-2020-07
+      parameters:
+      - in: path
+        name: recurring_application_charge_id
+        required: true
+        schema:
+          type: string
+        description: recurring_application_charge_id
+      - in: query
+        name: recurring_application_charge[capped_amount]
+        schema:
+          type: integer
+        description: recurring_application_charge[capped_amount]
+        required: false
+      tags:
+      - Charge
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_update_recurring_application_charges_param_recurring_application_charge_id_customize
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/recurring_application_charges.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  recurring_application_charge:
+                    name: Super Duper Plan
+                    price: 10
+                    return_url: http://super-duper.shopifyapps.com
+                summary: Create a recurring application charge
+              example2:
+                value:
+                  recurring_application_charge:
+                    name: Super Duper Plan
+                    price: 10
+                    return_url: http://super-duper.shopifyapps.com
+                    capped_amount: 100
+                    terms: $1 for 1000 emails
+                summary: Create a new charge with terms and a capped amount
+              example3:
+                value:
+                  recurring_application_charge:
+                    name: Super Duper Plan
+                    price: 10
+                    return_url: http://super-duper.shopifyapps.com
+                    trial_days: 5
+                summary: Create a new charge with a trial period. The trial period will go into effect at the time the recurring charge is activated.
+              example4:
+                value:
+                  recurring_application_charge:
+                    name: Super Duper Plan
+                    price: 10
+                    return_url: http://super-duper.shopifyapps.com
+                    test: true
+                summary: Create a recurring test charge that will not cause a credit card to be charged
+              example5:
+                value:
+                  recurring_application_charge:
+                    name: ''
+                summary: Trying to create a charge without a price and name will return an error
+      summary: Shopify Creates A Recurring Application Charge
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/recurringapplicationcharge#create-2020-10
+      parameters: []
+      tags:
+      - Charge
+      responses:
+        '200':
+          description: ''
+      operationId: create_recurring_application_charges
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/recurring_application_charges/{recurring_application_charge_id}.json:
+    get:
+      summary: Shopify Retrieves A Single Charge
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/recurringapplicationcharge#show-2020-10
+      parameters:
+      - in: path
+        name: recurring_application_charge_id
+        required: true
+        schema:
+          type: string
+        description: recurring_application_charge_id
+      - in: query
+        name: fields
+        description: A comma-separated list of fields to include in the response.
+        schema: {}
+        required: false
+      tags:
+      - Charge
+      responses:
+        '200':
+          description: ''
+      operationId: get_recurring_application_charges_param_recurring_application_charge_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    delete:
+      summary: Shopify Cancels A Recurring Application Charge
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/recurringapplicationcharge#destroy-2020-10
+      parameters:
+      - in: path
+        name: recurring_application_charge_id
+        required: true
+        schema:
+          type: string
+        description: recurring_application_charge_id
+      tags:
+      - Charge
+      responses:
+        '200':
+          description: ''
+      operationId: delete_recurring_application_charges_param_recurring_application_charge_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/recurring_application_charges/{recurring_application_charge_id}/customize.json:
+    put:
+      summary: Shopify Updates The Capped Amount Of An Active Recurring Application Charge
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/recurringapplicationcharge#customize-2020-10
+      parameters:
+      - in: path
+        name: recurring_application_charge_id
+        required: true
+        schema:
+          type: string
+        description: recurring_application_charge_id
+      - in: query
+        name: recurring_application_charge[capped_amount]
+        schema:
+          type: integer
+        description: recurring_application_charge[capped_amount]
+        required: false
+      tags:
+      - Charge
+      responses:
+        '200':
+          description: ''
+      operationId: update_recurring_application_charges_param_recurring_application_charge_id_customize
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/recurring_application_charges.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  recurring_application_charge:
+                    name: Super Duper Plan
+                    price: 10
+                    return_url: http://super-duper.shopifyapps.com
+                summary: Create a recurring application charge
+              example2:
+                value:
+                  recurring_application_charge:
+                    name: Super Duper Plan
+                    price: 10
+                    return_url: http://super-duper.shopifyapps.com
+                    capped_amount: 100
+                    terms: $1 for 1000 emails
+                summary: Create a new charge with terms and a capped amount
+              example3:
+                value:
+                  recurring_application_charge:
+                    name: Super Duper Plan
+                    price: 10
+                    return_url: http://super-duper.shopifyapps.com
+                    trial_days: 5
+                summary: Create a new charge with a trial period. The trial period will go into effect at the time the recurring charge is activated.
+              example4:
+                value:
+                  recurring_application_charge:
+                    name: Super Duper Plan
+                    price: 10
+                    return_url: http://super-duper.shopifyapps.com
+                    test: true
+                summary: Create a recurring test charge that will not cause a credit card to be charged
+              example5:
+                value:
+                  recurring_application_charge:
+                    name: ''
+                summary: Trying to create a charge without a price and name will return an error
+      summary: Shopify Creates A Recurring Application Charge
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/recurringapplicationcharge#create-2021-01
+      parameters: []
+      tags:
+      - Charge
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_create_recurring_application_charges
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/recurring_application_charges/{recurring_application_charge_id}.json:
+    get:
+      summary: Shopify Retrieves A Single Charge
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/recurringapplicationcharge#show-2021-01
+      parameters:
+      - in: path
+        name: recurring_application_charge_id
+        required: true
+        schema:
+          type: string
+        description: recurring_application_charge_id
+      - in: query
+        name: fields
+        description: A comma-separated list of fields to include in the response.
+        schema: {}
+        required: false
+      tags:
+      - Charge
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_get_recurring_application_charges_param_recurring_application_charge_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    delete:
+      summary: Shopify Cancels A Recurring Application Charge
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/recurringapplicationcharge#destroy-2021-01
+      parameters:
+      - in: path
+        name: recurring_application_charge_id
+        required: true
+        schema:
+          type: string
+        description: recurring_application_charge_id
+      tags:
+      - Charge
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_delete_recurring_application_charges_param_recurring_application_charge_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/recurring_application_charges/{recurring_application_charge_id}/customize.json:
+    put:
+      summary: Shopify Updates The Capped Amount Of An Active Recurring Application Charge
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/recurringapplicationcharge#customize-2021-01
+      parameters:
+      - in: path
+        name: recurring_application_charge_id
+        required: true
+        schema:
+          type: string
+        description: recurring_application_charge_id
+      - in: query
+        name: recurring_application_charge[capped_amount]
+        schema:
+          type: integer
+        description: recurring_application_charge[capped_amount]
+        required: false
+      tags:
+      - Charge
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_update_recurring_application_charges_param_recurring_application_charge_id_customize
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/recurring_application_charges.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  recurring_application_charge:
+                    name: Super Duper Plan
+                    price: 10
+                    return_url: http://super-duper.shopifyapps.com
+                summary: Create a recurring application charge
+              example2:
+                value:
+                  recurring_application_charge:
+                    name: Super Duper Plan
+                    price: 10
+                    return_url: http://super-duper.shopifyapps.com
+                    capped_amount: 100
+                    terms: $1 for 1000 emails
+                summary: Create a new charge with terms and a capped amount
+              example3:
+                value:
+                  recurring_application_charge:
+                    name: Super Duper Plan
+                    price: 10
+                    return_url: http://super-duper.shopifyapps.com
+                    trial_days: 5
+                summary: Create a new charge with a trial period. The trial period will go into effect at the time the recurring charge is activated.
+              example4:
+                value:
+                  recurring_application_charge:
+                    name: Super Duper Plan
+                    price: 10
+                    return_url: http://super-duper.shopifyapps.com
+                    test: true
+                summary: Create a recurring test charge that will not cause a credit card to be charged
+              example5:
+                value:
+                  recurring_application_charge:
+                    name: ''
+                summary: Trying to create a charge without a price and name will return an error
+      summary: Shopify Creates A Recurring Application Charge
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/recurringapplicationcharge#create-unstable
+      parameters: []
+      tags:
+      - Charge
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_create_recurring_application_charges
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/recurring_application_charges/{recurring_application_charge_id}.json:
+    get:
+      summary: Shopify Retrieves A Single Charge
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/recurringapplicationcharge#show-unstable
+      parameters:
+      - in: path
+        name: recurring_application_charge_id
+        required: true
+        schema:
+          type: string
+        description: recurring_application_charge_id
+      - in: query
+        name: fields
+        description: A comma-separated list of fields to include in the response.
+        schema: {}
+        required: false
+      tags:
+      - Charge
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_get_recurring_application_charges_param_recurring_application_charge_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    delete:
+      summary: Shopify Cancels A Recurring Application Charge
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/recurringapplicationcharge#destroy-unstable
+      parameters:
+      - in: path
+        name: recurring_application_charge_id
+        required: true
+        schema:
+          type: string
+        description: recurring_application_charge_id
+      tags:
+      - Charge
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_delete_recurring_application_charges_param_recurring_application_charge_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/recurring_application_charges/{recurring_application_charge_id}/customize.json:
+    put:
+      summary: Shopify Updates The Capped Amount Of An Active Recurring Application Charge
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/recurringapplicationcharge#customize-unstable
+      parameters:
+      - in: path
+        name: recurring_application_charge_id
+        required: true
+        schema:
+          type: string
+        description: recurring_application_charge_id
+      - in: query
+        name: recurring_application_charge[capped_amount]
+        schema:
+          type: integer
+        description: recurring_application_charge[capped_amount]
+        required: false
+      tags:
+      - Charge
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_update_recurring_application_charges_param_recurring_application_charge_id_customize
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-01/recurring_application_charges/{recurring_application_charge_id}/usage_charges.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  usage_charge:
+                    description: Super Mega Plan 1000 emails
+                    price: 1
+                summary: Create a new usage charge
+              example2:
+                value:
+                  usage_charge:
+                    description: ''
+                summary: Trying to create a charge without a price and description will return an error
+      summary: Shopify Creates A Usage Charge
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/usagecharge#create-2020-01
+      parameters:
+      - in: path
+        name: recurring_application_charge_id
+        required: true
+        schema:
+          type: string
+        description: recurring_application_charge_id
+      tags:
+      - Charge
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_create_recurring_application_charges_param_recurring_application_charge_id_usage_charges
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-01/recurring_application_charges/{recurring_application_charge_id}/usage_charges/{usage_charge_id}.json:
+    get:
+      summary: Shopify Retrieves A Single Charge
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/usagecharge#show-2020-01
+      parameters:
+      - in: path
+        name: recurring_application_charge_id
+        required: true
+        schema:
+          type: string
+        description: recurring_application_charge_id
+      - in: path
+        name: usage_charge_id
+        required: true
+        schema:
+          type: string
+        description: usage_charge_id
+      - in: query
+        name: fields
+        description: A comma-separated list of fields to include in the response.
+        schema: {}
+        required: false
+      tags:
+      - Charge
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_get_recurring_application_charges_param_recurring_application_charge_id_usage_charges_param_usage_charge_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/recurring_application_charges/{recurring_application_charge_id}/usage_charges.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  usage_charge:
+                    description: Super Mega Plan 1000 emails
+                    price: 1
+                summary: Create a new usage charge
+              example2:
+                value:
+                  usage_charge:
+                    description: ''
+                summary: Trying to create a charge without a price and description will return an error
+      summary: Shopify Creates A Usage Charge
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/usagecharge#create-2020-04
+      parameters:
+      - in: path
+        name: recurring_application_charge_id
+        required: true
+        schema:
+          type: string
+        description: recurring_application_charge_id
+      tags:
+      - Charge
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_create_recurring_application_charges_param_recurring_application_charge_id_usage_charges
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/recurring_application_charges/{recurring_application_charge_id}/usage_charges/{usage_charge_id}.json:
+    get:
+      summary: Shopify Retrieves A Single Charge
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/usagecharge#show-2020-04
+      parameters:
+      - in: path
+        name: recurring_application_charge_id
+        required: true
+        schema:
+          type: string
+        description: recurring_application_charge_id
+      - in: path
+        name: usage_charge_id
+        required: true
+        schema:
+          type: string
+        description: usage_charge_id
+      - in: query
+        name: fields
+        description: A comma-separated list of fields to include in the response.
+        schema: {}
+        required: false
+      tags:
+      - Charge
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_get_recurring_application_charges_param_recurring_application_charge_id_usage_charges_param_usage_charge_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/recurring_application_charges/{recurring_application_charge_id}/usage_charges.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  usage_charge:
+                    description: Super Mega Plan 1000 emails
+                    price: 1
+                summary: Create a new usage charge
+              example2:
+                value:
+                  usage_charge:
+                    description: ''
+                summary: Trying to create a charge without a price and description will return an error
+      summary: Shopify Creates A Usage Charge
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/usagecharge#create-2020-07
+      parameters:
+      - in: path
+        name: recurring_application_charge_id
+        required: true
+        schema:
+          type: string
+        description: recurring_application_charge_id
+      tags:
+      - Charge
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_create_recurring_application_charges_param_recurring_application_charge_id_usage_charges
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/recurring_application_charges/{recurring_application_charge_id}/usage_charges/{usage_charge_id}.json:
+    get:
+      summary: Shopify Retrieves A Single Charge
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/usagecharge#show-2020-07
+      parameters:
+      - in: path
+        name: recurring_application_charge_id
+        required: true
+        schema:
+          type: string
+        description: recurring_application_charge_id
+      - in: path
+        name: usage_charge_id
+        required: true
+        schema:
+          type: string
+        description: usage_charge_id
+      - in: query
+        name: fields
+        description: A comma-separated list of fields to include in the response.
+        schema: {}
+        required: false
+      tags:
+      - Charge
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_get_recurring_application_charges_param_recurring_application_charge_id_usage_charges_param_usage_charge_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/recurring_application_charges/{recurring_application_charge_id}/usage_charges.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  usage_charge:
+                    description: Super Mega Plan 1000 emails
+                    price: 1
+                summary: Create a new usage charge
+              example2:
+                value:
+                  usage_charge:
+                    description: ''
+                summary: Trying to create a charge without a price and description will return an error
+      summary: Shopify Creates A Usage Charge
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/usagecharge#create-2020-10
+      parameters:
+      - in: path
+        name: recurring_application_charge_id
+        required: true
+        schema:
+          type: string
+        description: recurring_application_charge_id
+      tags:
+      - Charge
+      responses:
+        '200':
+          description: ''
+      operationId: create_recurring_application_charges_param_recurring_application_charge_id_usage_charges
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/recurring_application_charges/{recurring_application_charge_id}/usage_charges/{usage_charge_id}.json:
+    get:
+      summary: Shopify Retrieves A Single Charge
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/usagecharge#show-2020-10
+      parameters:
+      - in: path
+        name: recurring_application_charge_id
+        required: true
+        schema:
+          type: string
+        description: recurring_application_charge_id
+      - in: path
+        name: usage_charge_id
+        required: true
+        schema:
+          type: string
+        description: usage_charge_id
+      - in: query
+        name: fields
+        description: A comma-separated list of fields to include in the response.
+        schema: {}
+        required: false
+      tags:
+      - Charge
+      responses:
+        '200':
+          description: ''
+      operationId: get_recurring_application_charges_param_recurring_application_charge_id_usage_charges_param_usage_charge_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/recurring_application_charges/{recurring_application_charge_id}/usage_charges.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  usage_charge:
+                    description: Super Mega Plan 1000 emails
+                    price: 1
+                summary: Create a new usage charge
+              example2:
+                value:
+                  usage_charge:
+                    description: ''
+                summary: Trying to create a charge without a price and description will return an error
+      summary: Shopify Creates A Usage Charge
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/usagecharge#create-2021-01
+      parameters:
+      - in: path
+        name: recurring_application_charge_id
+        required: true
+        schema:
+          type: string
+        description: recurring_application_charge_id
+      tags:
+      - Charge
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_create_recurring_application_charges_param_recurring_application_charge_id_usage_charges
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/recurring_application_charges/{recurring_application_charge_id}/usage_charges/{usage_charge_id}.json:
+    get:
+      summary: Shopify Retrieves A Single Charge
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/usagecharge#show-2021-01
+      parameters:
+      - in: path
+        name: recurring_application_charge_id
+        required: true
+        schema:
+          type: string
+        description: recurring_application_charge_id
+      - in: path
+        name: usage_charge_id
+        required: true
+        schema:
+          type: string
+        description: usage_charge_id
+      - in: query
+        name: fields
+        description: A comma-separated list of fields to include in the response.
+        schema: {}
+        required: false
+      tags:
+      - Charge
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_get_recurring_application_charges_param_recurring_application_charge_id_usage_charges_param_usage_charge_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/recurring_application_charges/{recurring_application_charge_id}/usage_charges.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  usage_charge:
+                    description: Super Mega Plan 1000 emails
+                    price: 1
+                summary: Create a new usage charge
+              example2:
+                value:
+                  usage_charge:
+                    description: ''
+                summary: Trying to create a charge without a price and description will return an error
+      summary: Shopify Creates A Usage Charge
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/usagecharge#create-unstable
+      parameters:
+      - in: path
+        name: recurring_application_charge_id
+        required: true
+        schema:
+          type: string
+        description: recurring_application_charge_id
+      tags:
+      - Charge
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_create_recurring_application_charges_param_recurring_application_charge_id_usage_charges
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/recurring_application_charges/{recurring_application_charge_id}/usage_charges/{usage_charge_id}.json:
+    get:
+      summary: Shopify Retrieves A Single Charge
+      description: https://shopify.dev/docs/admin-api/rest/reference/billing/usagecharge#show-unstable
+      parameters:
+      - in: path
+        name: recurring_application_charge_id
+        required: true
+        schema:
+          type: string
+        description: recurring_application_charge_id
+      - in: path
+        name: usage_charge_id
+        required: true
+        schema:
+          type: string
+        description: usage_charge_id
+      - in: query
+        name: fields
+        description: A comma-separated list of fields to include in the response.
+        schema: {}
+        required: false
+      tags:
+      - Charge
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_get_recurring_application_charges_param_recurring_application_charge_id_usage_charges_param_usage_charge_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+components:
+  securitySchemes:
+    AccessToken:
+      type: apiKey
+      name: X-Shopify-Access-Token
+      in: header
+      description: Access token obtained via OAuth

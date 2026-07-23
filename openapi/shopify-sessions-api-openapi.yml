@@ -1,0 +1,566 @@
+openapi: 3.1.0
+info:
+  title: Shopify Admin REST About Sessions API
+  description: The Shopify Admin REST API lets you build apps and integrations that extend and enhance the Shopify admin. Access products, customers, orders, inventory, fulfillment, and more. Endpoints are organized by resource type and versioned by release date.
+  version: 2025-01
+  contact:
+    name: Shopify
+    url: https://shopify.dev/docs/api/admin-rest
+    email: api@shopify.com
+  license:
+    name: Shopify API Terms
+    url: https://www.shopify.com/legal/api-terms
+  x-date: '2026-03-04'
+servers:
+- url: https://{store}.myshopify.com/admin/api/2025-01
+  description: Shopify Admin REST API
+  variables:
+    store:
+      default: my-store
+      description: The Shopify store subdomain
+security:
+- AccessToken: []
+tags:
+- name: Sessions
+paths:
+  /admin/api/2020-01/checkouts/{token}/payments.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  payment:
+                    request_details:
+                      ip_address: 123.1.1.1
+                      accept_language: en-US,en;q=0.8,fr;q=0.6
+                      user_agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36
+                    amount: '398.00'
+                    session_id: global-2b883b5dbab7059e
+                    unique_token: client-side-idempotency-token
+                summary: Create an authorization using a valid session_id stored in the vault
+              example2:
+                value:
+                  payment:
+                    request_details:
+                      ip_address: 123.1.1.1
+                      accept_language: en-US,en;q=0.8,fr;q=0.6
+                      user_agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36
+                    amount: '419.49'
+                    session_id: global-a61a334b946b55fb
+                    unique_token: client-side-idempotency-token
+                summary: Creating an authorization with a valid session ID but an invalid credit card number fails and returns errors
+              example3:
+                value:
+                  payment:
+                    request_details:
+                      ip_address: 123.1.1.1
+                      accept_language: en-US,en;q=0.8,fr;q=0.6
+                      user_agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36
+                    amount: '419.49'
+                    session_id: global-an_invalid_session_id
+                    unique_token: client-side-idempotency-token
+                summary: Creating an authorization with an invalid session ID fails and returns errors
+              example4:
+                value:
+                  payment:
+                    request_details:
+                      ip_address: 123.1.1.1
+                      accept_language: en-US,en;q=0.8,fr;q=0.6
+                      user_agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36
+                    amount: '398.00'
+                    session_id: global-d0436243a47a3418
+                    unique_token: client-side-idempotency-token
+                summary: Creating an authorization with a valid session can fail for various reasons
+      summary: Shopify Creates A Payment On A Checkout Using The Session Id Returned By The Card Vault
+      description: https://shopify.dev/docs/admin-api/rest/reference/sales-channels/payment#create_payment-2020-01
+      parameters:
+      - in: path
+        name: token
+        required: true
+        schema:
+          type: string
+        description: token
+      - in: query
+        name: "amount\n                  required"
+        description: The amount of the payment.
+        schema: {}
+        required: false
+      - in: query
+        name: "request_details\n                  required"
+        description: "The details of the request, including the following attributes:\n                    \n                        ip_address: The IP address of the customer.\n                        accept_language: The language preferences of the customer, in the same format as a standard Accept-Language request header.\n\n                        user_agent: The user agent string for the customer's device."
+        schema: {}
+        required: false
+      - in: query
+        name: "session_id\n                  required"
+        description: A session ID provided by the card vault when creating a payment session.
+        schema: {}
+        required: false
+      - in: query
+        name: "unique_token\n                  required"
+        description: A unique idempotency token generated by your app. This can be any value, but must be unique across all payment requests.
+        schema: {}
+        required: false
+      tags:
+      - Sessions
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_create_checkouts_param_token_payments
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/checkouts/{token}/payments.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  payment:
+                    request_details:
+                      ip_address: 123.1.1.1
+                      accept_language: en-US,en;q=0.8,fr;q=0.6
+                      user_agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36
+                    amount: '398.00'
+                    session_id: global-2b883b5dbab7059e
+                    unique_token: client-side-idempotency-token
+                summary: Create an authorization using a valid session_id stored in the vault
+              example2:
+                value:
+                  payment:
+                    request_details:
+                      ip_address: 123.1.1.1
+                      accept_language: en-US,en;q=0.8,fr;q=0.6
+                      user_agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36
+                    amount: '419.49'
+                    session_id: global-a61a334b946b55fb
+                    unique_token: client-side-idempotency-token
+                summary: Creating an authorization with a valid session ID but an invalid credit card number fails and returns errors
+              example3:
+                value:
+                  payment:
+                    request_details:
+                      ip_address: 123.1.1.1
+                      accept_language: en-US,en;q=0.8,fr;q=0.6
+                      user_agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36
+                    amount: '419.49'
+                    session_id: global-an_invalid_session_id
+                    unique_token: client-side-idempotency-token
+                summary: Creating an authorization with an invalid session ID fails and returns errors
+              example4:
+                value:
+                  payment:
+                    request_details:
+                      ip_address: 123.1.1.1
+                      accept_language: en-US,en;q=0.8,fr;q=0.6
+                      user_agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36
+                    amount: '398.00'
+                    session_id: global-d0436243a47a3418
+                    unique_token: client-side-idempotency-token
+                summary: Creating an authorization with a valid session can fail for various reasons
+      summary: Shopify Creates A Payment On A Checkout Using The Session Id Returned By The Card Vault
+      description: https://shopify.dev/docs/admin-api/rest/reference/sales-channels/payment#create_payment-2020-04
+      parameters:
+      - in: path
+        name: token
+        required: true
+        schema:
+          type: string
+        description: token
+      - in: query
+        name: "amount\n                  required"
+        description: The amount of the payment.
+        schema: {}
+        required: false
+      - in: query
+        name: "request_details\n                  required"
+        description: "The details of the request, including the following attributes:\n                    \n                        ip_address: The IP address of the customer.\n                        accept_language: The language preferences of the customer, in the same format as a standard Accept-Language request header.\n\n                        user_agent: The user agent string for the customer's device."
+        schema: {}
+        required: false
+      - in: query
+        name: "session_id\n                  required"
+        description: A session ID provided by the card vault when creating a payment session.
+        schema: {}
+        required: false
+      - in: query
+        name: "unique_token\n                  required"
+        description: A unique idempotency token generated by your app. This can be any value, but must be unique across all payment requests.
+        schema: {}
+        required: false
+      tags:
+      - Sessions
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_create_checkouts_param_token_payments
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/checkouts/{token}/payments.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  payment:
+                    request_details:
+                      ip_address: 123.1.1.1
+                      accept_language: en-US,en;q=0.8,fr;q=0.6
+                      user_agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36
+                    amount: '398.00'
+                    session_id: global-2b883b5dbab7059e
+                    unique_token: client-side-idempotency-token
+                summary: Create an authorization using a valid session_id stored in the vault
+              example2:
+                value:
+                  payment:
+                    request_details:
+                      ip_address: 123.1.1.1
+                      accept_language: en-US,en;q=0.8,fr;q=0.6
+                      user_agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36
+                    amount: '419.49'
+                    session_id: global-a61a334b946b55fb
+                    unique_token: client-side-idempotency-token
+                summary: Creating an authorization with a valid session ID but an invalid credit card number fails and returns errors
+              example3:
+                value:
+                  payment:
+                    request_details:
+                      ip_address: 123.1.1.1
+                      accept_language: en-US,en;q=0.8,fr;q=0.6
+                      user_agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36
+                    amount: '419.49'
+                    session_id: global-an_invalid_session_id
+                    unique_token: client-side-idempotency-token
+                summary: Creating an authorization with an invalid session ID fails and returns errors
+              example4:
+                value:
+                  payment:
+                    request_details:
+                      ip_address: 123.1.1.1
+                      accept_language: en-US,en;q=0.8,fr;q=0.6
+                      user_agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36
+                    amount: '398.00'
+                    session_id: global-d0436243a47a3418
+                    unique_token: client-side-idempotency-token
+                summary: Creating an authorization with a valid session can fail for various reasons
+      summary: Shopify Creates A Payment On A Checkout Using The Session Id Returned By The Card Vault
+      description: https://shopify.dev/docs/admin-api/rest/reference/sales-channels/payment#create_payment-2020-07
+      parameters:
+      - in: path
+        name: token
+        required: true
+        schema:
+          type: string
+        description: token
+      - in: query
+        name: "amount\n                  required"
+        description: The amount of the payment.
+        schema: {}
+        required: false
+      - in: query
+        name: "request_details\n                  required"
+        description: "The details of the request, including the following attributes:\n                    \n                        ip_address: The IP address of the customer.\n                        accept_language: The language preferences of the customer, in the same format as a standard Accept-Language request header.\n\n                        user_agent: The user agent string for the customer's device."
+        schema: {}
+        required: false
+      - in: query
+        name: "session_id\n                  required"
+        description: A session ID provided by the card vault when creating a payment session.
+        schema: {}
+        required: false
+      - in: query
+        name: "unique_token\n                  required"
+        description: A unique idempotency token generated by your app. This can be any value, but must be unique across all payment requests.
+        schema: {}
+        required: false
+      tags:
+      - Sessions
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_create_checkouts_param_token_payments
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/checkouts/{token}/payments.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  payment:
+                    request_details:
+                      ip_address: 123.1.1.1
+                      accept_language: en-US,en;q=0.8,fr;q=0.6
+                      user_agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36
+                    amount: '398.00'
+                    session_id: global-2b883b5dbab7059e
+                    unique_token: client-side-idempotency-token
+                summary: Create an authorization using a valid session_id stored in the vault
+              example2:
+                value:
+                  payment:
+                    request_details:
+                      ip_address: 123.1.1.1
+                      accept_language: en-US,en;q=0.8,fr;q=0.6
+                      user_agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36
+                    amount: '419.49'
+                    session_id: global-a61a334b946b55fb
+                    unique_token: client-side-idempotency-token
+                summary: Creating an authorization with a valid session ID but an invalid credit card number fails and returns errors
+              example3:
+                value:
+                  payment:
+                    request_details:
+                      ip_address: 123.1.1.1
+                      accept_language: en-US,en;q=0.8,fr;q=0.6
+                      user_agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36
+                    amount: '419.49'
+                    session_id: global-an_invalid_session_id
+                    unique_token: client-side-idempotency-token
+                summary: Creating an authorization with an invalid session ID fails and returns errors
+              example4:
+                value:
+                  payment:
+                    request_details:
+                      ip_address: 123.1.1.1
+                      accept_language: en-US,en;q=0.8,fr;q=0.6
+                      user_agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36
+                    amount: '398.00'
+                    session_id: global-d0436243a47a3418
+                    unique_token: client-side-idempotency-token
+                summary: Creating an authorization with a valid session can fail for various reasons
+      summary: Shopify Creates A Payment On A Checkout Using The Session Id Returned By The Card Vault
+      description: https://shopify.dev/docs/admin-api/rest/reference/sales-channels/payment#create_payment-2020-10
+      parameters:
+      - in: path
+        name: token
+        required: true
+        schema:
+          type: string
+        description: token
+      - in: query
+        name: "amount\n                  required"
+        description: The amount of the payment.
+        schema: {}
+        required: false
+      - in: query
+        name: "request_details\n                  required"
+        description: "The details of the request, including the following attributes:\n                    \n                        ip_address: The IP address of the customer.\n                        accept_language: The language preferences of the customer, in the same format as a standard Accept-Language request header.\n\n                        user_agent: The user agent string for the customer's device."
+        schema: {}
+        required: false
+      - in: query
+        name: "session_id\n                  required"
+        description: A session ID provided by the card vault when creating a payment session.
+        schema: {}
+        required: false
+      - in: query
+        name: "unique_token\n                  required"
+        description: A unique idempotency token generated by your app. This can be any value, but must be unique across all payment requests.
+        schema: {}
+        required: false
+      tags:
+      - Sessions
+      responses:
+        '200':
+          description: ''
+      operationId: create_checkouts_param_token_payments
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/checkouts/{token}/payments.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  payment:
+                    request_details:
+                      ip_address: 123.1.1.1
+                      accept_language: en-US,en;q=0.8,fr;q=0.6
+                      user_agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36
+                    amount: '398.00'
+                    session_id: global-2b883b5dbab7059e
+                    unique_token: client-side-idempotency-token
+                summary: Create an authorization using a valid session_id stored in the vault
+              example2:
+                value:
+                  payment:
+                    request_details:
+                      ip_address: 123.1.1.1
+                      accept_language: en-US,en;q=0.8,fr;q=0.6
+                      user_agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36
+                    amount: '419.49'
+                    session_id: global-a61a334b946b55fb
+                    unique_token: client-side-idempotency-token
+                summary: Creating an authorization with a valid session ID but an invalid credit card number fails and returns errors
+              example3:
+                value:
+                  payment:
+                    request_details:
+                      ip_address: 123.1.1.1
+                      accept_language: en-US,en;q=0.8,fr;q=0.6
+                      user_agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36
+                    amount: '419.49'
+                    session_id: global-an_invalid_session_id
+                    unique_token: client-side-idempotency-token
+                summary: Creating an authorization with an invalid session ID fails and returns errors
+              example4:
+                value:
+                  payment:
+                    request_details:
+                      ip_address: 123.1.1.1
+                      accept_language: en-US,en;q=0.8,fr;q=0.6
+                      user_agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36
+                    amount: '398.00'
+                    session_id: global-d0436243a47a3418
+                    unique_token: client-side-idempotency-token
+                summary: Creating an authorization with a valid session can fail for various reasons
+      summary: Shopify Creates A Payment On A Checkout Using The Session Id Returned By The Card Vault
+      description: https://shopify.dev/docs/admin-api/rest/reference/sales-channels/payment#create_payment-2021-01
+      parameters:
+      - in: path
+        name: token
+        required: true
+        schema:
+          type: string
+        description: token
+      - in: query
+        name: "amount\n                  required"
+        description: The amount of the payment.
+        schema: {}
+        required: false
+      - in: query
+        name: "request_details\n                  required"
+        description: "The details of the request, including the following attributes:\n                    \n                        ip_address: The IP address of the customer.\n                        accept_language: The language preferences of the customer, in the same format as a standard Accept-Language request header.\n\n                        user_agent: The user agent string for the customer's device."
+        schema: {}
+        required: false
+      - in: query
+        name: "session_id\n                  required"
+        description: A session ID provided by the card vault when creating a payment session.
+        schema: {}
+        required: false
+      - in: query
+        name: "unique_token\n                  required"
+        description: A unique idempotency token generated by your app. This can be any value, but must be unique across all payment requests.
+        schema: {}
+        required: false
+      tags:
+      - Sessions
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_create_checkouts_param_token_payments
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/checkouts/{token}/payments.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  payment:
+                    request_details:
+                      ip_address: 123.1.1.1
+                      accept_language: en-US,en;q=0.8,fr;q=0.6
+                      user_agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36
+                    amount: '398.00'
+                    session_id: global-2b883b5dbab7059e
+                    unique_token: client-side-idempotency-token
+                summary: Create an authorization using a valid session_id stored in the vault
+              example2:
+                value:
+                  payment:
+                    request_details:
+                      ip_address: 123.1.1.1
+                      accept_language: en-US,en;q=0.8,fr;q=0.6
+                      user_agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36
+                    amount: '419.49'
+                    session_id: global-a61a334b946b55fb
+                    unique_token: client-side-idempotency-token
+                summary: Creating an authorization with a valid session ID but an invalid credit card number fails and returns errors
+              example3:
+                value:
+                  payment:
+                    request_details:
+                      ip_address: 123.1.1.1
+                      accept_language: en-US,en;q=0.8,fr;q=0.6
+                      user_agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36
+                    amount: '419.49'
+                    session_id: global-an_invalid_session_id
+                    unique_token: client-side-idempotency-token
+                summary: Creating an authorization with an invalid session ID fails and returns errors
+              example4:
+                value:
+                  payment:
+                    request_details:
+                      ip_address: 123.1.1.1
+                      accept_language: en-US,en;q=0.8,fr;q=0.6
+                      user_agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36
+                    amount: '398.00'
+                    session_id: global-d0436243a47a3418
+                    unique_token: client-side-idempotency-token
+                summary: Creating an authorization with a valid session can fail for various reasons
+      summary: Shopify Creates A Payment On A Checkout Using The Session Id Returned By The Card Vault
+      description: https://shopify.dev/docs/admin-api/rest/reference/sales-channels/payment#create_payment-unstable
+      parameters:
+      - in: path
+        name: token
+        required: true
+        schema:
+          type: string
+        description: token
+      - in: query
+        name: "amount\n                  required"
+        description: The amount of the payment.
+        schema: {}
+        required: false
+      - in: query
+        name: "request_details\n                  required"
+        description: "The details of the request, including the following attributes:\n                    \n                        ip_address: The IP address of the customer.\n                        accept_language: The language preferences of the customer, in the same format as a standard Accept-Language request header.\n\n                        user_agent: The user agent string for the customer's device."
+        schema: {}
+        required: false
+      - in: query
+        name: "session_id\n                  required"
+        description: A session ID provided by the card vault when creating a payment session.
+        schema: {}
+        required: false
+      - in: query
+        name: "unique_token\n                  required"
+        description: A unique idempotency token generated by your app. This can be any value, but must be unique across all payment requests.
+        schema: {}
+        required: false
+      tags:
+      - Sessions
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_create_checkouts_param_token_payments
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+components:
+  securitySchemes:
+    AccessToken:
+      type: apiKey
+      name: X-Shopify-Access-Token
+      in: header
+      description: Access token obtained via OAuth

@@ -1,0 +1,3063 @@
+openapi: 3.1.0
+info:
+  title: Shopify Admin REST About Orders API
+  description: The Shopify Admin REST API lets you build apps and integrations that extend and enhance the Shopify admin. Access products, customers, orders, inventory, fulfillment, and more. Endpoints are organized by resource type and versioned by release date.
+  version: 2025-01
+  contact:
+    name: Shopify
+    url: https://shopify.dev/docs/api/admin-rest
+    email: api@shopify.com
+  license:
+    name: Shopify API Terms
+    url: https://www.shopify.com/legal/api-terms
+  x-date: '2026-03-04'
+servers:
+- url: https://{store}.myshopify.com/admin/api/2025-01
+  description: Shopify Admin REST API
+  variables:
+    store:
+      default: my-store
+      description: The Shopify store subdomain
+security:
+- AccessToken: []
+tags:
+- name: Orders
+  description: Manage orders
+paths:
+  /orders.json:
+    get:
+      operationId: listOrders
+      summary: Shopify Retrieve a list of orders
+      description: Retrieves a list of orders. By default only orders from the last 60 days are returned. Use status=any to include all statuses.
+      tags:
+      - Orders
+      parameters:
+      - name: ids
+        in: query
+        description: Comma-separated list of order IDs
+        schema:
+          type: string
+      - name: limit
+        in: query
+        description: Maximum number of results (max 250, default 50)
+        schema:
+          type: integer
+          default: 50
+          maximum: 250
+      - name: since_id
+        in: query
+        description: Return orders after the specified ID
+        schema:
+          type: integer
+      - name: status
+        in: query
+        description: Filter by order status
+        schema:
+          type: string
+          enum:
+          - open
+          - closed
+          - cancelled
+          - any
+          default: open
+      - name: financial_status
+        in: query
+        description: Filter by financial status
+        schema:
+          type: string
+          enum:
+          - authorized
+          - pending
+          - paid
+          - partially_paid
+          - refunded
+          - voided
+          - partially_refunded
+          - any
+          - unpaid
+      - name: fulfillment_status
+        in: query
+        description: Filter by fulfillment status
+        schema:
+          type: string
+          enum:
+          - shipped
+          - partial
+          - unshipped
+          - any
+          - unfulfilled
+      - name: created_at_min
+        in: query
+        description: Show orders created after this date
+        schema:
+          type: string
+          format: date-time
+      - name: created_at_max
+        in: query
+        description: Show orders created before this date
+        schema:
+          type: string
+          format: date-time
+      - name: updated_at_min
+        in: query
+        description: Show orders updated after this date
+        schema:
+          type: string
+          format: date-time
+      - name: updated_at_max
+        in: query
+        description: Show orders updated before this date
+        schema:
+          type: string
+          format: date-time
+      - name: fields
+        in: query
+        description: Comma-separated list of fields to include
+        schema:
+          type: string
+      responses:
+        '200':
+          description: A list of orders
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  orders:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Order'
+    post:
+      operationId: createOrder
+      summary: Shopify Create an order
+      description: Creates an order. Orders created via the API do not trigger payment processing. Use the order to represent sales from external channels.
+      tags:
+      - Orders
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - order
+              properties:
+                order:
+                  $ref: '#/components/schemas/OrderInput'
+      responses:
+        '201':
+          description: The created order
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  order:
+                    $ref: '#/components/schemas/Order'
+        '422':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /orders/count.json:
+    get:
+      operationId: getOrderCount
+      summary: Shopify Retrieve a count of orders
+      description: Retrieves a count of orders matching the given criteria.
+      tags:
+      - Orders
+      parameters:
+      - name: status
+        in: query
+        description: Filter by order status
+        schema:
+          type: string
+          enum:
+          - open
+          - closed
+          - cancelled
+          - any
+      - name: financial_status
+        in: query
+        description: Filter by financial status
+        schema:
+          type: string
+      - name: fulfillment_status
+        in: query
+        description: Filter by fulfillment status
+        schema:
+          type: string
+      - name: created_at_min
+        in: query
+        description: Count orders created after this date
+        schema:
+          type: string
+          format: date-time
+      - name: updated_at_min
+        in: query
+        description: Count orders updated after this date
+        schema:
+          type: string
+          format: date-time
+      responses:
+        '200':
+          description: The order count
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+  /orders/{order_id}.json:
+    get:
+      operationId: getOrder
+      summary: Shopify Retrieve a single order
+      description: Retrieves a single order by ID including line items and details.
+      tags:
+      - Orders
+      parameters:
+      - $ref: '#/components/parameters/OrderId'
+      - name: fields
+        in: query
+        description: Comma-separated list of fields to include
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The requested order
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  order:
+                    $ref: '#/components/schemas/Order'
+        '404':
+          description: Order not found
+    put:
+      operationId: updateOrder
+      summary: Shopify Update an order
+      description: Updates an existing order. Note, tags, email, phone, shipping address, and metafields can be updated.
+      tags:
+      - Orders
+      parameters:
+      - $ref: '#/components/parameters/OrderId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - order
+              properties:
+                order:
+                  $ref: '#/components/schemas/OrderInput'
+      responses:
+        '200':
+          description: The updated order
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  order:
+                    $ref: '#/components/schemas/Order'
+    delete:
+      operationId: deleteOrder
+      summary: Shopify Delete an order
+      description: Deletes an order. Orders that interact with an online gateway cannot be deleted.
+      tags:
+      - Orders
+      parameters:
+      - $ref: '#/components/parameters/OrderId'
+      responses:
+        '200':
+          description: Order deleted successfully
+        '404':
+          description: Order not found
+  /orders/{order_id}/cancel.json:
+    post:
+      operationId: cancelOrder
+      summary: Shopify Cancel an order
+      description: Cancels an order. Optionally refunds payment and restocks items.
+      tags:
+      - Orders
+      parameters:
+      - $ref: '#/components/parameters/OrderId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                reason:
+                  type: string
+                  description: Cancellation reason
+                  enum:
+                  - customer
+                  - fraud
+                  - inventory
+                  - declined
+                  - other
+                email:
+                  type: boolean
+                  description: Whether to send a cancellation email
+                restock:
+                  type: boolean
+                  description: Whether to restock items
+      responses:
+        '200':
+          description: The cancelled order
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  order:
+                    $ref: '#/components/schemas/Order'
+  /orders/{order_id}/close.json:
+    post:
+      operationId: closeOrder
+      summary: Shopify Close an order
+      description: Closes an order, marking it as completed.
+      tags:
+      - Orders
+      parameters:
+      - $ref: '#/components/parameters/OrderId'
+      responses:
+        '200':
+          description: The closed order
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  order:
+                    $ref: '#/components/schemas/Order'
+  /orders/{order_id}/open.json:
+    post:
+      operationId: reopenOrder
+      summary: Shopify Re-open a closed order
+      description: Re-opens a previously closed order.
+      tags:
+      - Orders
+      parameters:
+      - $ref: '#/components/parameters/OrderId'
+      responses:
+        '200':
+          description: The re-opened order
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  order:
+                    $ref: '#/components/schemas/Order'
+  /admin/api/2020-01/customers/{customer_id}/orders.json:
+    get:
+      summary: Shopify Retrieves All Orders Belonging To A Customer
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer#orders-2020-01
+      parameters:
+      - in: path
+        name: customer_id
+        required: true
+        schema:
+          type: string
+        description: customer_id
+      tags:
+      - Orders
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_get_customers_param_customer_id_orders
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/customers/{customer_id}/orders.json:
+    get:
+      summary: Shopify Retrieves All Orders Belonging To A Customer
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer#orders-2020-04
+      parameters:
+      - in: path
+        name: customer_id
+        required: true
+        schema:
+          type: string
+        description: customer_id
+      tags:
+      - Orders
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_get_customers_param_customer_id_orders
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/customers/{customer_id}/orders.json:
+    get:
+      summary: Shopify Retrieves All Orders Belonging To A Customer
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer#orders-2020-07
+      parameters:
+      - in: path
+        name: customer_id
+        required: true
+        schema:
+          type: string
+        description: customer_id
+      tags:
+      - Orders
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_get_customers_param_customer_id_orders
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/customers/{customer_id}/orders.json:
+    get:
+      summary: Shopify Retrieves All Orders Belonging To A Customer
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer#orders-2020-10
+      parameters:
+      - in: path
+        name: customer_id
+        required: true
+        schema:
+          type: string
+        description: customer_id
+      tags:
+      - Orders
+      responses:
+        '200':
+          description: ''
+      operationId: get_customers_param_customer_id_orders
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/customers/{customer_id}/orders.json:
+    get:
+      summary: Shopify Retrieves All Orders Belonging To A Customer
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer#orders-2021-01
+      parameters:
+      - in: path
+        name: customer_id
+        required: true
+        schema:
+          type: string
+        description: customer_id
+      tags:
+      - Orders
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_get_customers_param_customer_id_orders
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/customers/{customer_id}/orders.json:
+    get:
+      summary: Shopify Retrieves All Orders Belonging To A Customer
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customer#orders-unstable
+      parameters:
+      - in: path
+        name: customer_id
+        required: true
+        schema:
+          type: string
+        description: customer_id
+      tags:
+      - Orders
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_get_customers_param_customer_id_orders
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-01/orders.json:
+    get:
+      summary: Shopify Retrieves A List Of Orders
+      description: https://shopify.dev/docs/admin-api/rest/reference/orders/order#index-2020-01
+      parameters:
+      - in: query
+        name: ids
+        description: Retrieve only orders specified by a comma-separated list of order IDs.
+        schema: {}
+        required: false
+      - in: query
+        name: limit
+        description: "The maximum number of results to show on a page.\n                  (default: 50, maximum: 250)"
+        schema: {}
+        required: false
+      - in: query
+        name: since_id
+        description: Show orders after the specified ID.
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_min
+        description: 'Show orders created at or after date (format: 2014-04-25T16:15:47-04:00).'
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_max
+        description: 'Show orders created at or before date (format: 2014-04-25T16:15:47-04:00).'
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_min
+        description: 'Show orders last updated at or after date (format: 2014-04-25T16:15:47-04:00).'
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_max
+        description: 'Show orders last updated at or before date (format: 2014-04-25T16:15:47-04:00).'
+        schema: {}
+        required: false
+      - in: query
+        name: processed_at_min
+        description: 'Show orders imported at or after date (format: 2014-04-25T16:15:47-04:00).'
+        schema: {}
+        required: false
+      - in: query
+        name: processed_at_max
+        description: 'Show orders imported at or before date (format: 2014-04-25T16:15:47-04:00).'
+        schema: {}
+        required: false
+      - in: query
+        name: attribution_app_id
+        description: Show orders attributed to a certain app, specified by the app ID. Set as current to show orders for the app currently consuming the API.
+        schema: {}
+        required: false
+      - in: query
+        name: status
+        description: "Filter orders by their status.\n                  (default: open)\n                    \n                        open: Show only open orders.\n                        closed: Show only closed orders.\n                        cancelled: Show only canceled orders.\n                        any: Show orders of any status, including archived orders."
+        schema: {}
+        required: false
+      - in: query
+        name: financial_status
+        description: "Filter orders by their financial status.\n                  (default: any)\n                    \n                        authorized: Show only authorized orders\n                        pending: Show only pending orders\n                        paid: Show only paid orders\n                        partially_paid: Show only partially paid orders\n                        refunded: Show only refunded orders\n                        voided: Show only voided orders\n                        partially_refunded: Show only partially refunded orders\n                        any: Show orders of any financial status.\n                        unpaid: Show authorized and partially paid orders."
+        schema: {}
+        required: false
+      - in: query
+        name: fulfillment_status
+        description: "Filter orders by their fulfillment status.\n                  (default: any)\n                    \n                        shipped: Show orders that have been shipped. Returns orders with fulfillment_status of fulfilled.\n                        partial: Show partially shipped orders.\n                        unshipped: Show orders that have not yet been shipped. Returns orders with fulfillment_status of null.\n                        any: Show orders of any fulfillment status.\n                        unfulfilled: Returns orders with fulfillment_status of null or partial."
+        schema: {}
+        required: false
+      - in: query
+        name: fields
+        description: Retrieve only certain fields, specified by a comma-separated list of fields names.
+        schema: {}
+        required: false
+      tags:
+      - Orders
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_get_orders
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-01/orders/{order_id}/cancel.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value: {}
+                summary: Cancel an order
+              example2:
+                value:
+                  amount: '10.00'
+                  currency: USD
+                summary: Cancel and refund an order using the amount property
+              example3:
+                value:
+                  amount: '109.00'
+                  currency: USD
+                summary: When an order has multiple refundable transactions, refunding an amount less than its net payment without a refund property fails with an error
+              example4:
+                value:
+                  refund:
+                    note: Customer made a mistake
+                    shipping:
+                      full_refund: true
+                    refund_line_items:
+                    - line_item_id: 466157049
+                      quantity: 1
+                      restock_type: cancel
+                      location_id: 48752903
+                    transactions:
+                    - parent_id: 1072844756
+                      amount: '10.00'
+                      kind: refund
+                      gateway: bogus
+                    - parent_id: 1072844757
+                      amount: '100.00'
+                      kind: refund
+                      gateway: gift_card
+                summary: Cancel and refund an order using the refund property
+              example5:
+                value: {}
+                summary: Canceling an order that has fulfillments fails with an error
+      summary: Shopify For Multi-currency Orders
+      description: https://shopify.dev/docs/admin-api/rest/reference/orders/order#cancel-2020-01
+      parameters:
+      - in: path
+        name: order_id
+        required: true
+        schema:
+          type: string
+        description: order_id
+      - in: query
+        name: amount
+        description: The amount to refund. If set, Shopify attempts to void or refund the payment, depending on its status. Shopify refunds through a manual gateway in cases where the original transaction was not made in Shopify. Refunds through a manual gateway are recorded as a refund on Shopify, but the customer is not refunded.
+        schema: {}
+        required: false
+      - in: query
+        name: currency
+        description: The currency of the refund that's issued when the order is canceled. Required for multi-currency orders whenever the amount property is provided.
+        schema: {}
+        required: false
+      - in: query
+        name: "restock\n                  deprecated"
+        description: "Whether to restock refunded items back to your store's inventory.\n                  (default: false)"
+        schema: {}
+        required: false
+      - in: query
+        name: reason
+        description: "The reason for the order cancellation. Valid values: customer, inventory, fraud, declined, and other.)\n                  (default: other)"
+        schema: {}
+        required: false
+      - in: query
+        name: email
+        description: "Whether to send an email to the customer notifying them of the cancellation.\n                  (default: false)"
+        schema: {}
+        required: false
+      - in: query
+        name: refund
+        description: The refund transactions to perform. Required for some more complex refund situations. For more information, see the Refund API.
+        schema: {}
+        required: false
+      tags:
+      - Orders
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_create_orders_param_order_id_cancel
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/orders.json:
+    get:
+      summary: Shopify Retrieves A List Of Orders
+      description: https://shopify.dev/docs/admin-api/rest/reference/orders/order#index-2020-04
+      parameters:
+      - in: query
+        name: ids
+        description: Retrieve only orders specified by a comma-separated list of order IDs.
+        schema: {}
+        required: false
+      - in: query
+        name: limit
+        description: "The maximum number of results to show on a page.\n                  (default: 50, maximum: 250)"
+        schema: {}
+        required: false
+      - in: query
+        name: since_id
+        description: Show orders after the specified ID.
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_min
+        description: 'Show orders created at or after date (format: 2014-04-25T16:15:47-04:00).'
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_max
+        description: 'Show orders created at or before date (format: 2014-04-25T16:15:47-04:00).'
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_min
+        description: 'Show orders last updated at or after date (format: 2014-04-25T16:15:47-04:00).'
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_max
+        description: 'Show orders last updated at or before date (format: 2014-04-25T16:15:47-04:00).'
+        schema: {}
+        required: false
+      - in: query
+        name: processed_at_min
+        description: 'Show orders imported at or after date (format: 2014-04-25T16:15:47-04:00).'
+        schema: {}
+        required: false
+      - in: query
+        name: processed_at_max
+        description: 'Show orders imported at or before date (format: 2014-04-25T16:15:47-04:00).'
+        schema: {}
+        required: false
+      - in: query
+        name: attribution_app_id
+        description: Show orders attributed to a certain app, specified by the app ID. Set as current to show orders for the app currently consuming the API.
+        schema: {}
+        required: false
+      - in: query
+        name: status
+        description: "Filter orders by their status.\n                  (default: open)\n                    \n                        open: Show only open orders.\n                        closed: Show only closed orders.\n                        cancelled: Show only canceled orders.\n                        any: Show orders of any status, including archived orders."
+        schema: {}
+        required: false
+      - in: query
+        name: financial_status
+        description: "Filter orders by their financial status.\n                  (default: any)\n                    \n                        authorized: Show only authorized orders\n                        pending: Show only pending orders\n                        paid: Show only paid orders\n                        partially_paid: Show only partially paid orders\n                        refunded: Show only refunded orders\n                        voided: Show only voided orders\n                        partially_refunded: Show only partially refunded orders\n                        any: Show orders of any financial status.\n                        unpaid: Show authorized and partially paid orders."
+        schema: {}
+        required: false
+      - in: query
+        name: fulfillment_status
+        description: "Filter orders by their fulfillment status.\n                  (default: any)\n                    \n                        shipped: Show orders that have been shipped. Returns orders with fulfillment_status of fulfilled.\n                        partial: Show partially shipped orders.\n                        unshipped: Show orders that have not yet been shipped. Returns orders with fulfillment_status of null.\n                        any: Show orders of any fulfillment status.\n                        unfulfilled: Returns orders with fulfillment_status of null or partial."
+        schema: {}
+        required: false
+      - in: query
+        name: fields
+        description: Retrieve only certain fields, specified by a comma-separated list of fields names.
+        schema: {}
+        required: false
+      tags:
+      - Orders
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_get_orders
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/orders/{order_id}/cancel.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value: {}
+                summary: Cancel an order
+              example2:
+                value:
+                  amount: '10.00'
+                  currency: USD
+                summary: Cancel and refund an order using the amount property
+              example3:
+                value:
+                  amount: '109.00'
+                  currency: USD
+                summary: When an order has multiple refundable transactions, refunding an amount less than its net payment without a refund property fails with an error
+              example4:
+                value:
+                  refund:
+                    note: Customer made a mistake
+                    shipping:
+                      full_refund: true
+                    refund_line_items:
+                    - line_item_id: 466157049
+                      quantity: 1
+                      restock_type: cancel
+                      location_id: 48752903
+                    transactions:
+                    - parent_id: 1072844756
+                      amount: '10.00'
+                      kind: refund
+                      gateway: bogus
+                    - parent_id: 1072844757
+                      amount: '100.00'
+                      kind: refund
+                      gateway: gift_card
+                summary: Cancel and refund an order using the refund property
+              example5:
+                value: {}
+                summary: Canceling an order that has fulfillments fails with an error
+      summary: Shopify For Multi-currency Orders
+      description: https://shopify.dev/docs/admin-api/rest/reference/orders/order#cancel-2020-04
+      parameters:
+      - in: path
+        name: order_id
+        required: true
+        schema:
+          type: string
+        description: order_id
+      - in: query
+        name: amount
+        description: The amount to refund. If set, Shopify attempts to void or refund the payment, depending on its status. Shopify refunds through a manual gateway in cases where the original transaction was not made in Shopify. Refunds through a manual gateway are recorded as a refund on Shopify, but the customer is not refunded.
+        schema: {}
+        required: false
+      - in: query
+        name: currency
+        description: The currency of the refund that's issued when the order is canceled. Required for multi-currency orders whenever the amount property is provided.
+        schema: {}
+        required: false
+      - in: query
+        name: "restock\n                  deprecated"
+        description: "Whether to restock refunded items back to your store's inventory.\n                  (default: false)"
+        schema: {}
+        required: false
+      - in: query
+        name: reason
+        description: "The reason for the order cancellation. Valid values: customer, inventory, fraud, declined, and other.)\n                  (default: other)"
+        schema: {}
+        required: false
+      - in: query
+        name: email
+        description: "Whether to send an email to the customer notifying them of the cancellation.\n                  (default: false)"
+        schema: {}
+        required: false
+      - in: query
+        name: refund
+        description: The refund transactions to perform. Required for some more complex refund situations. For more information, see the Refund API.
+        schema: {}
+        required: false
+      tags:
+      - Orders
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_create_orders_param_order_id_cancel
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/orders.json:
+    get:
+      summary: Shopify Retrieves A List Of Orders
+      description: https://shopify.dev/docs/admin-api/rest/reference/orders/order#index-2020-07
+      parameters:
+      - in: query
+        name: ids
+        description: Retrieve only orders specified by a comma-separated list of order IDs.
+        schema: {}
+        required: false
+      - in: query
+        name: limit
+        description: "The maximum number of results to show on a page.\n                  (default: 50, maximum: 250)"
+        schema: {}
+        required: false
+      - in: query
+        name: since_id
+        description: Show orders after the specified ID.
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_min
+        description: 'Show orders created at or after date (format: 2014-04-25T16:15:47-04:00).'
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_max
+        description: 'Show orders created at or before date (format: 2014-04-25T16:15:47-04:00).'
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_min
+        description: 'Show orders last updated at or after date (format: 2014-04-25T16:15:47-04:00).'
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_max
+        description: 'Show orders last updated at or before date (format: 2014-04-25T16:15:47-04:00).'
+        schema: {}
+        required: false
+      - in: query
+        name: processed_at_min
+        description: 'Show orders imported at or after date (format: 2014-04-25T16:15:47-04:00).'
+        schema: {}
+        required: false
+      - in: query
+        name: processed_at_max
+        description: 'Show orders imported at or before date (format: 2014-04-25T16:15:47-04:00).'
+        schema: {}
+        required: false
+      - in: query
+        name: attribution_app_id
+        description: Show orders attributed to a certain app, specified by the app ID. Set as current to show orders for the app currently consuming the API.
+        schema: {}
+        required: false
+      - in: query
+        name: status
+        description: "Filter orders by their status.\n                  (default: open)\n                    \n                        open: Show only open orders.\n                        closed: Show only closed orders.\n                        cancelled: Show only canceled orders.\n                        any: Show orders of any status, including archived orders."
+        schema: {}
+        required: false
+      - in: query
+        name: financial_status
+        description: "Filter orders by their financial status.\n                  (default: any)\n                    \n                        authorized: Show only authorized orders\n                        pending: Show only pending orders\n                        paid: Show only paid orders\n                        partially_paid: Show only partially paid orders\n                        refunded: Show only refunded orders\n                        voided: Show only voided orders\n                        partially_refunded: Show only partially refunded orders\n                        any: Show orders of any financial status.\n                        unpaid: Show authorized and partially paid orders."
+        schema: {}
+        required: false
+      - in: query
+        name: fulfillment_status
+        description: "Filter orders by their fulfillment status.\n                  (default: any)\n                    \n                        shipped: Show orders that have been shipped. Returns orders with fulfillment_status of fulfilled.\n                        partial: Show partially shipped orders.\n                        unshipped: Show orders that have not yet been shipped. Returns orders with fulfillment_status of null.\n                        any: Show orders of any fulfillment status.\n                        unfulfilled: Returns orders with fulfillment_status of null or partial."
+        schema: {}
+        required: false
+      - in: query
+        name: fields
+        description: Retrieve only certain fields, specified by a comma-separated list of fields names.
+        schema: {}
+        required: false
+      tags:
+      - Orders
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_get_orders
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-01/orders/{order_id}/refunds.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  refund:
+                    currency: USD
+                    notify: true
+                    note: wrong size
+                    shipping:
+                      full_refund: true
+                    refund_line_items:
+                    - line_item_id: 518995019
+                      quantity: 1
+                      restock_type: return
+                      location_id: 487838322
+                    transactions:
+                    - parent_id: 801038806
+                      amount: 41.94
+                      kind: refund
+                      gateway: bogus
+                summary: Create a refund for an order
+              example2:
+                value:
+                  refund:
+                    currency: USD
+                    shipping:
+                      amount: 5
+                    transactions:
+                    - parent_id: 801038806
+                      amount: 5
+                      kind: refund
+                      gateway: bogus
+                summary: Refund a specific amount of shipping
+      summary: Shopify For Multi-currency Orders
+      description: https://shopify.dev/docs/admin-api/rest/reference/orders/refund#create-2020-01
+      parameters:
+      - in: path
+        name: order_id
+        required: true
+        schema:
+          type: string
+        description: order_id
+      - in: query
+        name: "restock\n                  deprecated"
+        description: Whether to add the line items back to the store inventory. Use restock_type for refund line items instead.
+        schema: {}
+        required: false
+      - in: query
+        name: notify
+        description: Whether to send a refund notification to the customer.
+        schema: {}
+        required: false
+      - in: query
+        name: note
+        description: An optional note attached to a refund.
+        schema: {}
+        required: false
+      - in: query
+        name: discrepancy_reason
+        description: 'An optional comment that explains a discrepancy between calculated and actual refund amounts. Used to populate the reason property of the resulting order adjustment object attached to the refund. Valid values: restock, damage, customer, and other.'
+        schema: {}
+        required: false
+      - in: query
+        name: shipping
+        description: "Specify how much shipping to refund. It has the following properties:\n                    \n                        full_refund: Whether to refund all remaining shipping.\n                        amount: Set a specific amount to refund for shipping. Takes precedence over full_refund."
+        schema: {}
+        required: false
+      - in: query
+        name: refund_line_items
+        description: "A list of line item IDs, quantities to refund, and restock instructions. Each entry has the following properties:\n                    \n                        line_item_id: The ID of a line item to refund.\n                        quantity: The quantity to refund.\n                        restock_type:           How this refund line item affects inventory levels. Valid values:\n          \n            no_restock: Refunding these items won't affect inventory.\n            cancel: The items have not yet been fulfilled.\n            The canceled quantity will be added back to the available count.\n            The number of fulfillable units for this line item will decrease.\n            return: The items were already delivered but will be returned to the merchant.\n            The returned quantity will be added back to the available count. The number of fulfillable units for this\n            line item will remain unchanged.\n          \n\n                        location_id:           The ID of the location where the items should be\n          restocked. This is required when the value of restock_type is return or cancel.\n          If the item is not already stocked at the location, then\n          the item is connected to the location. An error is returned when the item is connected to\n          a \n          fulfillment service location and a different location is provided."
+        schema: {}
+        required: false
+      - in: query
+        name: transactions
+        description: "A list of transactions\n          to process as refunds."
+        schema: {}
+        required: false
+      - in: query
+        name: currency
+        description: The three-letter code (ISO 4217 format) for the currency used for the refund.
+        schema: {}
+        required: false
+      tags:
+      - Orders
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_create_orders_param_order_id_refunds
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-01/orders/{order_id}/refunds/calculate.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  refund:
+                    currency: USD
+                    shipping:
+                      amount: 2
+                summary: Calculate a refund for a partial amount of shipping
+              example2:
+                value:
+                  refund:
+                    shipping:
+                      full_refund: true
+                    refund_line_items:
+                    - line_item_id: 518995019
+                      quantity: 1
+                      restock_type: no_restock
+                summary: Calculate the refund without specifying currency
+              example3:
+                value:
+                  refund:
+                    currency: USD
+                    shipping:
+                      full_refund: true
+                    refund_line_items:
+                    - line_item_id: 518995019
+                      quantity: 1
+                      restock_type: no_restock
+                summary: Calculate the refund for a line item and shipping
+      summary: Shopify For Multi-currency Orders
+      description: https://shopify.dev/docs/admin-api/rest/reference/orders/refund#calculate-2020-01
+      parameters:
+      - in: path
+        name: order_id
+        required: true
+        schema:
+          type: string
+        description: order_id
+      - in: query
+        name: shipping
+        description: "Specify how much shipping to refund. It has the following properties:\n                    \n                        full_refund: Whether to refund all remaining shipping.\n                        amount: Set a specific amount to refund for shipping. Takes precedence over full_refund."
+        schema: {}
+        required: false
+      - in: query
+        name: refund_line_items
+        description: "A list of line item IDs, quantities to refund, and restock instructions. Each entry has the following properties:\n                    \n                        line_item_id: The ID of a line item to refund.\n                        quantity: The quantity to refund.\n                        restock_type:           How this refund line item affects inventory levels. Valid values:\n          \n            no_restock: Refunding these items won't affect inventory.\n            cancel: The items have not yet been fulfilled. The canceled quantity will be added\n            back to the available count. The number of fulfillable units for this line item will decrease.\n            return: The items were already delivered but will be returned to the merchant.\n            The returned quantity will be added back to the available count.\n            The number of fulfillable units for this line item will remain unchanged.\n          \n\n                        location_id:           The ID of the location\n          where the items should be restocked. If location_id is not provided and the value of\n          restock_type is return or cancel, then the endpoint returns a suitable\n          location ID.\n\n                        already_stocked:           Whether the item is already stocked at\n          the location. If this is false, then creating the refund will connect the item to the location and start\n          stocking it there."
+        schema: {}
+        required: false
+      - in: query
+        name: currency
+        description: "The three-letter code (ISO 4217 format) for the\n          currency used for the refund. Note: Required whenever the shipping amount property is provided."
+        schema: {}
+        required: false
+      tags:
+      - Orders
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_create_orders_param_order_id_refunds_calculate
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/orders/{order_id}/refunds.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  refund:
+                    currency: USD
+                    notify: true
+                    note: wrong size
+                    shipping:
+                      full_refund: true
+                    refund_line_items:
+                    - line_item_id: 518995019
+                      quantity: 1
+                      restock_type: return
+                      location_id: 487838322
+                    transactions:
+                    - parent_id: 801038806
+                      amount: 41.94
+                      kind: refund
+                      gateway: bogus
+                summary: Create a refund for an order
+              example2:
+                value:
+                  refund:
+                    currency: USD
+                    shipping:
+                      amount: 5
+                    transactions:
+                    - parent_id: 801038806
+                      amount: 5
+                      kind: refund
+                      gateway: bogus
+                summary: Refund a specific amount of shipping
+      summary: Shopify For Multi-currency Orders
+      description: https://shopify.dev/docs/admin-api/rest/reference/orders/refund#create-2020-04
+      parameters:
+      - in: path
+        name: order_id
+        required: true
+        schema:
+          type: string
+        description: order_id
+      - in: query
+        name: "restock\n                  deprecated"
+        description: Whether to add the line items back to the store inventory. Use restock_type for refund line items instead.
+        schema: {}
+        required: false
+      - in: query
+        name: notify
+        description: Whether to send a refund notification to the customer.
+        schema: {}
+        required: false
+      - in: query
+        name: note
+        description: An optional note attached to a refund.
+        schema: {}
+        required: false
+      - in: query
+        name: discrepancy_reason
+        description: 'An optional comment that explains a discrepancy between calculated and actual refund amounts. Used to populate the reason property of the resulting order adjustment object attached to the refund. Valid values: restock, damage, customer, and other.'
+        schema: {}
+        required: false
+      - in: query
+        name: shipping
+        description: "Specify how much shipping to refund. It has the following properties:\n                    \n                        full_refund: Whether to refund all remaining shipping.\n                        amount: Set a specific amount to refund for shipping. Takes precedence over full_refund."
+        schema: {}
+        required: false
+      - in: query
+        name: refund_line_items
+        description: "A list of line item IDs, quantities to refund, and restock instructions. Each entry has the following properties:\n                    \n                        line_item_id: The ID of a line item to refund.\n                        quantity: The quantity to refund.\n                        restock_type:           How this refund line item affects inventory levels. Valid values:\n          \n            no_restock: Refunding these items won't affect inventory.\n            cancel: The items have not yet been fulfilled.\n            The canceled quantity will be added back to the available count.\n            The number of fulfillable units for this line item will decrease.\n            return: The items were already delivered but will be returned to the merchant.\n            The returned quantity will be added back to the available count. The number of fulfillable units for this\n            line item will remain unchanged.\n          \n\n                        location_id:           The ID of the location where the items should be\n          restocked. This is required when the value of restock_type is return or cancel.\n          If the item is not already stocked at the location, then\n          the item is connected to the location. An error is returned when the item is connected to\n          a \n          fulfillment service location and a different location is provided."
+        schema: {}
+        required: false
+      - in: query
+        name: transactions
+        description: "A list of transactions\n          to process as refunds."
+        schema: {}
+        required: false
+      - in: query
+        name: currency
+        description: The three-letter code (ISO 4217 format) for the currency used for the refund.
+        schema: {}
+        required: false
+      tags:
+      - Orders
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_create_orders_param_order_id_refunds
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/orders/{order_id}/refunds/calculate.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  refund:
+                    currency: USD
+                    shipping:
+                      amount: 2
+                summary: Calculate a refund for a partial amount of shipping
+              example2:
+                value:
+                  refund:
+                    shipping:
+                      full_refund: true
+                    refund_line_items:
+                    - line_item_id: 518995019
+                      quantity: 1
+                      restock_type: no_restock
+                summary: Calculate the refund without specifying currency
+              example3:
+                value:
+                  refund:
+                    currency: USD
+                    shipping:
+                      full_refund: true
+                    refund_line_items:
+                    - line_item_id: 518995019
+                      quantity: 1
+                      restock_type: no_restock
+                summary: Calculate the refund for a line item and shipping
+      summary: Shopify For Multi-currency Orders
+      description: https://shopify.dev/docs/admin-api/rest/reference/orders/refund#calculate-2020-04
+      parameters:
+      - in: path
+        name: order_id
+        required: true
+        schema:
+          type: string
+        description: order_id
+      - in: query
+        name: shipping
+        description: "Specify how much shipping to refund. It has the following properties:\n                    \n                        full_refund: Whether to refund all remaining shipping.\n                        amount: Set a specific amount to refund for shipping. Takes precedence over full_refund."
+        schema: {}
+        required: false
+      - in: query
+        name: refund_line_items
+        description: "A list of line item IDs, quantities to refund, and restock instructions. Each entry has the following properties:\n                    \n                        line_item_id: The ID of a line item to refund.\n                        quantity: The quantity to refund.\n                        restock_type:           How this refund line item affects inventory levels. Valid values:\n          \n            no_restock: Refunding these items won't affect inventory.\n            cancel: The items have not yet been fulfilled. The canceled quantity will be added\n            back to the available count. The number of fulfillable units for this line item will decrease.\n            return: The items were already delivered but will be returned to the merchant.\n            The returned quantity will be added back to the available count.\n            The number of fulfillable units for this line item will remain unchanged.\n          \n\n                        location_id:           The ID of the location\n          where the items should be restocked. If location_id is not provided and the value of\n          restock_type is return or cancel, then the endpoint returns a suitable\n          location ID.\n\n                        already_stocked:           Whether the item is already stocked at\n          the location. If this is false, then creating the refund will connect the item to the location and start\n          stocking it there."
+        schema: {}
+        required: false
+      - in: query
+        name: currency
+        description: "The three-letter code (ISO 4217 format) for the\n          currency used for the refund. Note: Required whenever the shipping amount property is provided."
+        schema: {}
+        required: false
+      tags:
+      - Orders
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_create_orders_param_order_id_refunds_calculate
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/orders/{order_id}/refunds.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  refund:
+                    currency: USD
+                    notify: true
+                    note: wrong size
+                    shipping:
+                      full_refund: true
+                    refund_line_items:
+                    - line_item_id: 518995019
+                      quantity: 1
+                      restock_type: return
+                      location_id: 487838322
+                    transactions:
+                    - parent_id: 801038806
+                      amount: 41.94
+                      kind: refund
+                      gateway: bogus
+                summary: Create a refund for an order
+              example2:
+                value:
+                  refund:
+                    currency: USD
+                    shipping:
+                      amount: 5
+                    transactions:
+                    - parent_id: 801038806
+                      amount: 5
+                      kind: refund
+                      gateway: bogus
+                summary: Refund a specific amount of shipping
+      summary: Shopify For Multi-currency Orders
+      description: https://shopify.dev/docs/admin-api/rest/reference/orders/refund#create-2020-07
+      parameters:
+      - in: path
+        name: order_id
+        required: true
+        schema:
+          type: string
+        description: order_id
+      - in: query
+        name: "restock\n                  deprecated"
+        description: Whether to add the line items back to the store inventory. Use restock_type for refund line items instead.
+        schema: {}
+        required: false
+      - in: query
+        name: notify
+        description: Whether to send a refund notification to the customer.
+        schema: {}
+        required: false
+      - in: query
+        name: note
+        description: An optional note attached to a refund.
+        schema: {}
+        required: false
+      - in: query
+        name: discrepancy_reason
+        description: 'An optional comment that explains a discrepancy between calculated and actual refund amounts. Used to populate the reason property of the resulting order adjustment object attached to the refund. Valid values: restock, damage, customer, and other.'
+        schema: {}
+        required: false
+      - in: query
+        name: shipping
+        description: "Specify how much shipping to refund. It has the following properties:\n                    \n                        full_refund: Whether to refund all remaining shipping.\n                        amount: Set a specific amount to refund for shipping. Takes precedence over full_refund."
+        schema: {}
+        required: false
+      - in: query
+        name: refund_line_items
+        description: "A list of line item IDs, quantities to refund, and restock instructions. Each entry has the following properties:\n                    \n                        line_item_id: The ID of a line item to refund.\n                        quantity: The quantity to refund.\n                        restock_type:           How this refund line item affects inventory levels. Valid values:\n          \n            no_restock: Refunding these items won't affect inventory.\n            cancel: The items have not yet been fulfilled.\n            The canceled quantity will be added back to the available count.\n            The number of fulfillable units for this line item will decrease.\n            return: The items were already delivered but will be returned to the merchant.\n            The returned quantity will be added back to the available count. The number of fulfillable units for this\n            line item will remain unchanged.\n          \n\n                        location_id:           The ID of the location where the items should be\n          restocked. This is required when the value of restock_type is return or cancel.\n          If the item is not already stocked at the location, then\n          the item is connected to the location. An error is returned when the item is connected to\n          a \n          fulfillment service location and a different location is provided."
+        schema: {}
+        required: false
+      - in: query
+        name: transactions
+        description: "A list of transactions\n          to process as refunds."
+        schema: {}
+        required: false
+      - in: query
+        name: currency
+        description: The three-letter code (ISO 4217 format) for the currency used for the refund.
+        schema: {}
+        required: false
+      tags:
+      - Orders
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_create_orders_param_order_id_refunds
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/orders/{order_id}/refunds/calculate.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  refund:
+                    currency: USD
+                    shipping:
+                      amount: 2
+                summary: Calculate a refund for a partial amount of shipping
+              example2:
+                value:
+                  refund:
+                    shipping:
+                      full_refund: true
+                    refund_line_items:
+                    - line_item_id: 518995019
+                      quantity: 1
+                      restock_type: no_restock
+                summary: Calculate the refund without specifying currency
+              example3:
+                value:
+                  refund:
+                    currency: USD
+                    shipping:
+                      full_refund: true
+                    refund_line_items:
+                    - line_item_id: 518995019
+                      quantity: 1
+                      restock_type: no_restock
+                summary: Calculate the refund for a line item and shipping
+      summary: Shopify For Multi-currency Orders
+      description: https://shopify.dev/docs/admin-api/rest/reference/orders/refund#calculate-2020-07
+      parameters:
+      - in: path
+        name: order_id
+        required: true
+        schema:
+          type: string
+        description: order_id
+      - in: query
+        name: shipping
+        description: "Specify how much shipping to refund. It has the following properties:\n                    \n                        full_refund: Whether to refund all remaining shipping.\n                        amount: Set a specific amount to refund for shipping. Takes precedence over full_refund."
+        schema: {}
+        required: false
+      - in: query
+        name: refund_line_items
+        description: "A list of line item IDs, quantities to refund, and restock instructions. Each entry has the following properties:\n                    \n                        line_item_id: The ID of a line item to refund.\n                        quantity: The quantity to refund.\n                        restock_type:           How this refund line item affects inventory levels. Valid values:\n          \n            no_restock: Refunding these items won't affect inventory.\n            cancel: The items have not yet been fulfilled. The canceled quantity will be added\n            back to the available count. The number of fulfillable units for this line item will decrease.\n            return: The items were already delivered but will be returned to the merchant.\n            The returned quantity will be added back to the available count.\n            The number of fulfillable units for this line item will remain unchanged.\n          \n\n                        location_id:           The ID of the location\n          where the items should be restocked. If location_id is not provided and the value of\n          restock_type is return or cancel, then the endpoint returns a suitable\n          location ID.\n\n                        already_stocked:           Whether the item is already stocked at\n          the location. If this is false, then creating the refund will connect the item to the location and start\n          stocking it there."
+        schema: {}
+        required: false
+      - in: query
+        name: currency
+        description: "The three-letter code (ISO 4217 format) for the\n          currency used for the refund. Note: Required whenever the shipping amount property is provided."
+        schema: {}
+        required: false
+      tags:
+      - Orders
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_create_orders_param_order_id_refunds_calculate
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/orders/{order_id}/refunds.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  refund:
+                    currency: USD
+                    notify: true
+                    note: wrong size
+                    shipping:
+                      full_refund: true
+                    refund_line_items:
+                    - line_item_id: 518995019
+                      quantity: 1
+                      restock_type: return
+                      location_id: 487838322
+                    transactions:
+                    - parent_id: 801038806
+                      amount: 41.94
+                      kind: refund
+                      gateway: bogus
+                summary: Create a refund for an order
+              example2:
+                value:
+                  refund:
+                    currency: USD
+                    shipping:
+                      amount: 5
+                    transactions:
+                    - parent_id: 801038806
+                      amount: 5
+                      kind: refund
+                      gateway: bogus
+                summary: Refund a specific amount of shipping
+      summary: Shopify For Multi-currency Orders
+      description: https://shopify.dev/docs/admin-api/rest/reference/orders/refund#create-2020-10
+      parameters:
+      - in: path
+        name: order_id
+        required: true
+        schema:
+          type: string
+        description: order_id
+      - in: query
+        name: "restock\n                  deprecated"
+        description: Whether to add the line items back to the store inventory. Use restock_type for refund line items instead.
+        schema: {}
+        required: false
+      - in: query
+        name: notify
+        description: Whether to send a refund notification to the customer.
+        schema: {}
+        required: false
+      - in: query
+        name: note
+        description: An optional note attached to a refund.
+        schema: {}
+        required: false
+      - in: query
+        name: discrepancy_reason
+        description: 'An optional comment that explains a discrepancy between calculated and actual refund amounts. Used to populate the reason property of the resulting order adjustment object attached to the refund. Valid values: restock, damage, customer, and other.'
+        schema: {}
+        required: false
+      - in: query
+        name: shipping
+        description: "Specify how much shipping to refund. It has the following properties:\n                    \n                        full_refund: Whether to refund all remaining shipping.\n                        amount: Set a specific amount to refund for shipping. Takes precedence over full_refund."
+        schema: {}
+        required: false
+      - in: query
+        name: refund_line_items
+        description: "A list of line item IDs, quantities to refund, and restock instructions. Each entry has the following properties:\n                    \n                        line_item_id: The ID of a line item to refund.\n                        quantity: The quantity to refund.\n                        restock_type:           How this refund line item affects inventory levels. Valid values:\n          \n            no_restock: Refunding these items won't affect inventory.\n            cancel: The items have not yet been fulfilled.\n            The canceled quantity will be added back to the available count.\n            The number of fulfillable units for this line item will decrease.\n            return: The items were already delivered but will be returned to the merchant.\n            The returned quantity will be added back to the available count. The number of fulfillable units for this\n            line item will remain unchanged.\n          \n\n                        location_id:           The ID of the location where the items should be\n          restocked. This is required when the value of restock_type is return or cancel.\n          If the item is not already stocked at the location, then\n          the item is connected to the location. An error is returned when the item is connected to\n          a \n          fulfillment service location and a different location is provided."
+        schema: {}
+        required: false
+      - in: query
+        name: transactions
+        description: "A list of transactions\n          to process as refunds."
+        schema: {}
+        required: false
+      - in: query
+        name: currency
+        description: The three-letter code (ISO 4217 format) for the currency used for the refund.
+        schema: {}
+        required: false
+      tags:
+      - Orders
+      responses:
+        '200':
+          description: ''
+      operationId: create_orders_param_order_id_refunds
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/orders/{order_id}/refunds/calculate.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  refund:
+                    currency: USD
+                    shipping:
+                      amount: 2
+                summary: Calculate a refund for a partial amount of shipping
+              example2:
+                value:
+                  refund:
+                    shipping:
+                      full_refund: true
+                    refund_line_items:
+                    - line_item_id: 518995019
+                      quantity: 1
+                      restock_type: no_restock
+                summary: Calculate the refund without specifying currency
+              example3:
+                value:
+                  refund:
+                    currency: USD
+                    shipping:
+                      full_refund: true
+                    refund_line_items:
+                    - line_item_id: 518995019
+                      quantity: 1
+                      restock_type: no_restock
+                summary: Calculate the refund for a line item and shipping
+      summary: Shopify For Multi-currency Orders
+      description: https://shopify.dev/docs/admin-api/rest/reference/orders/refund#calculate-2020-10
+      parameters:
+      - in: path
+        name: order_id
+        required: true
+        schema:
+          type: string
+        description: order_id
+      - in: query
+        name: shipping
+        description: "Specify how much shipping to refund. It has the following properties:\n                    \n                        full_refund: Whether to refund all remaining shipping.\n                        amount: Set a specific amount to refund for shipping. Takes precedence over full_refund."
+        schema: {}
+        required: false
+      - in: query
+        name: refund_line_items
+        description: "A list of line item IDs, quantities to refund, and restock instructions. Each entry has the following properties:\n                    \n                        line_item_id: The ID of a line item to refund.\n                        quantity: The quantity to refund.\n                        restock_type:           How this refund line item affects inventory levels. Valid values:\n          \n            no_restock: Refunding these items won't affect inventory.\n            cancel: The items have not yet been fulfilled. The canceled quantity will be added\n            back to the available count. The number of fulfillable units for this line item will decrease.\n            return: The items were already delivered but will be returned to the merchant.\n            The returned quantity will be added back to the available count.\n            The number of fulfillable units for this line item will remain unchanged.\n          \n\n                        location_id:           The ID of the location\n          where the items should be restocked. If location_id is not provided and the value of\n          restock_type is return or cancel, then the endpoint returns a suitable\n          location ID.\n\n                        already_stocked:           Whether the item is already stocked at\n          the location. If this is false, then creating the refund will connect the item to the location and start\n          stocking it there."
+        schema: {}
+        required: false
+      - in: query
+        name: currency
+        description: "The three-letter code (ISO 4217 format) for the\n          currency used for the refund. Note: Required whenever the shipping amount property is provided."
+        schema: {}
+        required: false
+      tags:
+      - Orders
+      responses:
+        '200':
+          description: ''
+      operationId: create_orders_param_order_id_refunds_calculate
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/orders/{order_id}/refunds.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  refund:
+                    currency: USD
+                    notify: true
+                    note: wrong size
+                    shipping:
+                      full_refund: true
+                    refund_line_items:
+                    - line_item_id: 518995019
+                      quantity: 1
+                      restock_type: return
+                      location_id: 487838322
+                    transactions:
+                    - parent_id: 801038806
+                      amount: 41.94
+                      kind: refund
+                      gateway: bogus
+                summary: Create a refund for an order
+              example2:
+                value:
+                  refund:
+                    currency: USD
+                    shipping:
+                      amount: 5
+                    transactions:
+                    - parent_id: 801038806
+                      amount: 5
+                      kind: refund
+                      gateway: bogus
+                summary: Refund a specific amount of shipping
+      summary: Shopify For Multi-currency Orders
+      description: https://shopify.dev/docs/admin-api/rest/reference/orders/refund#create-2021-01
+      parameters:
+      - in: path
+        name: order_id
+        required: true
+        schema:
+          type: string
+        description: order_id
+      - in: query
+        name: "restock\n                  deprecated"
+        description: Whether to add the line items back to the store inventory. Use restock_type for refund line items instead.
+        schema: {}
+        required: false
+      - in: query
+        name: notify
+        description: Whether to send a refund notification to the customer.
+        schema: {}
+        required: false
+      - in: query
+        name: note
+        description: An optional note attached to a refund.
+        schema: {}
+        required: false
+      - in: query
+        name: discrepancy_reason
+        description: 'An optional comment that explains a discrepancy between calculated and actual refund amounts. Used to populate the reason property of the resulting order adjustment object attached to the refund. Valid values: restock, damage, customer, and other.'
+        schema: {}
+        required: false
+      - in: query
+        name: shipping
+        description: "Specify how much shipping to refund. It has the following properties:\n                    \n                        full_refund: Whether to refund all remaining shipping.\n                        amount: Set a specific amount to refund for shipping. Takes precedence over full_refund."
+        schema: {}
+        required: false
+      - in: query
+        name: refund_line_items
+        description: "A list of line item IDs, quantities to refund, and restock instructions. Each entry has the following properties:\n                    \n                        line_item_id: The ID of a line item to refund.\n                        quantity: The quantity to refund.\n                        restock_type:           How this refund line item affects inventory levels. Valid values:\n          \n            no_restock: Refunding these items won't affect inventory.\n            cancel: The items have not yet been fulfilled.\n            The canceled quantity will be added back to the available count.\n            The number of fulfillable units for this line item will decrease.\n            return: The items were already delivered but will be returned to the merchant.\n            The returned quantity will be added back to the available count. The number of fulfillable units for this\n            line item will remain unchanged.\n          \n\n                        location_id:           The ID of the location where the items should be\n          restocked. This is required when the value of restock_type is return or cancel.\n          If the item is not already stocked at the location, then\n          the item is connected to the location. An error is returned when the item is connected to\n          a \n          fulfillment service location and a different location is provided."
+        schema: {}
+        required: false
+      - in: query
+        name: transactions
+        description: "A list of transactions\n          to process as refunds."
+        schema: {}
+        required: false
+      - in: query
+        name: currency
+        description: The three-letter code (ISO 4217 format) for the currency used for the refund.
+        schema: {}
+        required: false
+      tags:
+      - Orders
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_create_orders_param_order_id_refunds
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/orders/{order_id}/refunds/calculate.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  refund:
+                    currency: USD
+                    shipping:
+                      amount: 2
+                summary: Calculate a refund for a partial amount of shipping
+              example2:
+                value:
+                  refund:
+                    shipping:
+                      full_refund: true
+                    refund_line_items:
+                    - line_item_id: 518995019
+                      quantity: 1
+                      restock_type: no_restock
+                summary: Calculate the refund without specifying currency
+              example3:
+                value:
+                  refund:
+                    currency: USD
+                    shipping:
+                      full_refund: true
+                    refund_line_items:
+                    - line_item_id: 518995019
+                      quantity: 1
+                      restock_type: no_restock
+                summary: Calculate the refund for a line item and shipping
+      summary: Shopify For Multi-currency Orders
+      description: https://shopify.dev/docs/admin-api/rest/reference/orders/refund#calculate-2021-01
+      parameters:
+      - in: path
+        name: order_id
+        required: true
+        schema:
+          type: string
+        description: order_id
+      - in: query
+        name: shipping
+        description: "Specify how much shipping to refund. It has the following properties:\n                    \n                        full_refund: Whether to refund all remaining shipping.\n                        amount: Set a specific amount to refund for shipping. Takes precedence over full_refund."
+        schema: {}
+        required: false
+      - in: query
+        name: refund_line_items
+        description: "A list of line item IDs, quantities to refund, and restock instructions. Each entry has the following properties:\n                    \n                        line_item_id: The ID of a line item to refund.\n                        quantity: The quantity to refund.\n                        restock_type:           How this refund line item affects inventory levels. Valid values:\n          \n            no_restock: Refunding these items won't affect inventory.\n            cancel: The items have not yet been fulfilled. The canceled quantity will be added\n            back to the available count. The number of fulfillable units for this line item will decrease.\n            return: The items were already delivered but will be returned to the merchant.\n            The returned quantity will be added back to the available count.\n            The number of fulfillable units for this line item will remain unchanged.\n          \n\n                        location_id:           The ID of the location\n          where the items should be restocked. If location_id is not provided and the value of\n          restock_type is return or cancel, then the endpoint returns a suitable\n          location ID.\n\n                        already_stocked:           Whether the item is already stocked at\n          the location. If this is false, then creating the refund will connect the item to the location and start\n          stocking it there."
+        schema: {}
+        required: false
+      - in: query
+        name: currency
+        description: "The three-letter code (ISO 4217 format) for the\n          currency used for the refund. Note: Required whenever the shipping amount property is provided."
+        schema: {}
+        required: false
+      tags:
+      - Orders
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_create_orders_param_order_id_refunds_calculate
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/orders/{order_id}/refunds.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  refund:
+                    currency: USD
+                    notify: true
+                    note: wrong size
+                    shipping:
+                      full_refund: true
+                    refund_line_items:
+                    - line_item_id: 518995019
+                      quantity: 1
+                      restock_type: return
+                      location_id: 487838322
+                    transactions:
+                    - parent_id: 801038806
+                      amount: 41.94
+                      kind: refund
+                      gateway: bogus
+                summary: Create a refund for an order
+              example2:
+                value:
+                  refund:
+                    currency: USD
+                    shipping:
+                      amount: 5
+                    transactions:
+                    - parent_id: 801038806
+                      amount: 5
+                      kind: refund
+                      gateway: bogus
+                summary: Refund a specific amount of shipping
+      summary: Shopify For Multi-currency Orders
+      description: https://shopify.dev/docs/admin-api/rest/reference/orders/refund#create-unstable
+      parameters:
+      - in: path
+        name: order_id
+        required: true
+        schema:
+          type: string
+        description: order_id
+      - in: query
+        name: "restock\n                  deprecated"
+        description: Whether to add the line items back to the store inventory. Use restock_type for refund line items instead.
+        schema: {}
+        required: false
+      - in: query
+        name: notify
+        description: Whether to send a refund notification to the customer.
+        schema: {}
+        required: false
+      - in: query
+        name: note
+        description: An optional note attached to a refund.
+        schema: {}
+        required: false
+      - in: query
+        name: discrepancy_reason
+        description: 'An optional comment that explains a discrepancy between calculated and actual refund amounts. Used to populate the reason property of the resulting order adjustment object attached to the refund. Valid values: restock, damage, customer, and other.'
+        schema: {}
+        required: false
+      - in: query
+        name: shipping
+        description: "Specify how much shipping to refund. It has the following properties:\n                    \n                        full_refund: Whether to refund all remaining shipping.\n                        amount: Set a specific amount to refund for shipping. Takes precedence over full_refund."
+        schema: {}
+        required: false
+      - in: query
+        name: refund_line_items
+        description: "A list of line item IDs, quantities to refund, and restock instructions. Each entry has the following properties:\n                    \n                        line_item_id: The ID of a line item to refund.\n                        quantity: The quantity to refund.\n                        restock_type:           How this refund line item affects inventory levels. Valid values:\n          \n            no_restock: Refunding these items won't affect inventory.\n            cancel: The items have not yet been fulfilled.\n            The canceled quantity will be added back to the available count.\n            The number of fulfillable units for this line item will decrease.\n            return: The items were already delivered but will be returned to the merchant.\n            The returned quantity will be added back to the available count. The number of fulfillable units for this\n            line item will remain unchanged.\n          \n\n                        location_id:           The ID of the location where the items should be\n          restocked. This is required when the value of restock_type is return or cancel.\n          If the item is not already stocked at the location, then\n          the item is connected to the location. An error is returned when the item is connected to\n          a \n          fulfillment service location and a different location is provided."
+        schema: {}
+        required: false
+      - in: query
+        name: transactions
+        description: "A list of transactions\n          to process as refunds."
+        schema: {}
+        required: false
+      - in: query
+        name: currency
+        description: The three-letter code (ISO 4217 format) for the currency used for the refund.
+        schema: {}
+        required: false
+      tags:
+      - Orders
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_create_orders_param_order_id_refunds
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/orders/{order_id}/refunds/calculate.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  refund:
+                    currency: USD
+                    shipping:
+                      amount: 2
+                summary: Calculate a refund for a partial amount of shipping
+              example2:
+                value:
+                  refund:
+                    shipping:
+                      full_refund: true
+                    refund_line_items:
+                    - line_item_id: 518995019
+                      quantity: 1
+                      restock_type: no_restock
+                summary: Calculate the refund without specifying currency
+              example3:
+                value:
+                  refund:
+                    currency: USD
+                    shipping:
+                      full_refund: true
+                    refund_line_items:
+                    - line_item_id: 518995019
+                      quantity: 1
+                      restock_type: no_restock
+                summary: Calculate the refund for a line item and shipping
+      summary: Shopify For Multi-currency Orders
+      description: https://shopify.dev/docs/admin-api/rest/reference/orders/refund#calculate-unstable
+      parameters:
+      - in: path
+        name: order_id
+        required: true
+        schema:
+          type: string
+        description: order_id
+      - in: query
+        name: shipping
+        description: "Specify how much shipping to refund. It has the following properties:\n                    \n                        full_refund: Whether to refund all remaining shipping.\n                        amount: Set a specific amount to refund for shipping. Takes precedence over full_refund."
+        schema: {}
+        required: false
+      - in: query
+        name: refund_line_items
+        description: "A list of line item IDs, quantities to refund, and restock instructions. Each entry has the following properties:\n                    \n                        line_item_id: The ID of a line item to refund.\n                        quantity: The quantity to refund.\n                        restock_type:           How this refund line item affects inventory levels. Valid values:\n          \n            no_restock: Refunding these items won't affect inventory.\n            cancel: The items have not yet been fulfilled. The canceled quantity will be added\n            back to the available count. The number of fulfillable units for this line item will decrease.\n            return: The items were already delivered but will be returned to the merchant.\n            The returned quantity will be added back to the available count.\n            The number of fulfillable units for this line item will remain unchanged.\n          \n\n                        location_id:           The ID of the location\n          where the items should be restocked. If location_id is not provided and the value of\n          restock_type is return or cancel, then the endpoint returns a suitable\n          location ID.\n\n                        already_stocked:           Whether the item is already stocked at\n          the location. If this is false, then creating the refund will connect the item to the location and start\n          stocking it there."
+        schema: {}
+        required: false
+      - in: query
+        name: currency
+        description: "The three-letter code (ISO 4217 format) for the\n          currency used for the refund. Note: Required whenever the shipping amount property is provided."
+        schema: {}
+        required: false
+      tags:
+      - Orders
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_create_orders_param_order_id_refunds_calculate
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-01/assigned_fulfillment_orders.json:
+    get:
+      summary: Shopify Retrieves A List Of Fulfillment Orders On A Shop For A Specific App
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/assignedfulfillmentorder#index-2020-01
+      parameters:
+      - in: query
+        name: assignment_status
+        description: "The assigment status of the fulfillment orders that should be returned:\n                    \n                        cancellation_requested: Fulfillment orders for which the merchant has requested cancellation of the previously accepted fulfillment request.\n                        fulfillment_requested: Fulfillment orders for which the merchant has requested fulfillment.\n                        fulfillment_accepted: Fulfillment orders for which the merchant's fulfillment request has been accepted. Any number of fulfillments can be created on these fulfillment orders to completely fulfill the requested items."
+        schema: {}
+        required: false
+      - in: query
+        name: location_ids
+        description: The IDs of the assigned locations of the fulfillment orders that should be returned.
+        schema: {}
+        required: false
+      - in: query
+        name: location_ids[]
+        schema:
+          type: integer
+        description: location_ids[]
+        required: false
+      tags:
+      - Orders
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_get_assigned_fulfillment_orders
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/assigned_fulfillment_orders.json:
+    get:
+      summary: Shopify Retrieves A List Of Fulfillment Orders On A Shop For A Specific App
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/assignedfulfillmentorder#index-2020-04
+      parameters:
+      - in: query
+        name: assignment_status
+        description: "The assigment status of the fulfillment orders that should be returned:\n                    \n                        cancellation_requested: Fulfillment orders for which the merchant has requested cancellation of the previously accepted fulfillment request.\n                        fulfillment_requested: Fulfillment orders for which the merchant has requested fulfillment.\n                        fulfillment_accepted: Fulfillment orders for which the merchant's fulfillment request has been accepted. Any number of fulfillments can be created on these fulfillment orders to completely fulfill the requested items."
+        schema: {}
+        required: false
+      - in: query
+        name: location_ids
+        description: The IDs of the assigned locations of the fulfillment orders that should be returned.
+        schema: {}
+        required: false
+      - in: query
+        name: location_ids[]
+        schema:
+          type: integer
+        description: location_ids[]
+        required: false
+      tags:
+      - Orders
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_get_assigned_fulfillment_orders
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/assigned_fulfillment_orders.json:
+    get:
+      summary: Shopify Retrieves A List Of Fulfillment Orders On A Shop For A Specific App
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/assignedfulfillmentorder#index-2020-07
+      parameters:
+      - in: query
+        name: assignment_status
+        description: "The assigment status of the fulfillment orders that should be returned:\n                    \n                        cancellation_requested: Fulfillment orders for which the merchant has requested cancellation of the previously accepted fulfillment request.\n                        fulfillment_requested: Fulfillment orders for which the merchant has requested fulfillment.\n                        fulfillment_accepted: Fulfillment orders for which the merchant's fulfillment request has been accepted. Any number of fulfillments can be created on these fulfillment orders to completely fulfill the requested items."
+        schema: {}
+        required: false
+      - in: query
+        name: location_ids
+        description: The IDs of the assigned locations of the fulfillment orders that should be returned.
+        schema: {}
+        required: false
+      - in: query
+        name: location_ids[]
+        schema:
+          type: integer
+        description: location_ids[]
+        required: false
+      tags:
+      - Orders
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_get_assigned_fulfillment_orders
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/assigned_fulfillment_orders.json:
+    get:
+      summary: Shopify Retrieves A List Of Fulfillment Orders On A Shop For A Specific App
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/assignedfulfillmentorder#index-2020-10
+      parameters:
+      - in: query
+        name: assignment_status
+        description: "The assigment status of the fulfillment orders that should be returned:\n                    \n                        cancellation_requested: Fulfillment orders for which the merchant has requested cancellation of the previously accepted fulfillment request.\n                        fulfillment_requested: Fulfillment orders for which the merchant has requested fulfillment.\n                        fulfillment_accepted: Fulfillment orders for which the merchant's fulfillment request has been accepted. Any number of fulfillments can be created on these fulfillment orders to completely fulfill the requested items."
+        schema: {}
+        required: false
+      - in: query
+        name: location_ids
+        description: The IDs of the assigned locations of the fulfillment orders that should be returned.
+        schema: {}
+        required: false
+      - in: query
+        name: location_ids[]
+        schema:
+          type: integer
+        description: location_ids[]
+        required: false
+      tags:
+      - Orders
+      responses:
+        '200':
+          description: ''
+      operationId: get_assigned_fulfillment_orders
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/assigned_fulfillment_orders.json:
+    get:
+      summary: Shopify Retrieves A List Of Fulfillment Orders On A Shop For A Specific App
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/assignedfulfillmentorder#index-2021-01
+      parameters:
+      - in: query
+        name: assignment_status
+        description: "The assigment status of the fulfillment orders that should be returned:\n                    \n                        cancellation_requested: Fulfillment orders for which the merchant has requested cancellation of the previously accepted fulfillment request.\n                        fulfillment_requested: Fulfillment orders for which the merchant has requested fulfillment.\n                        fulfillment_accepted: Fulfillment orders for which the merchant's fulfillment request has been accepted. Any number of fulfillments can be created on these fulfillment orders to completely fulfill the requested items."
+        schema: {}
+        required: false
+      - in: query
+        name: location_ids
+        description: The IDs of the assigned locations of the fulfillment orders that should be returned.
+        schema: {}
+        required: false
+      - in: query
+        name: location_ids[]
+        schema:
+          type: integer
+        description: location_ids[]
+        required: false
+      tags:
+      - Orders
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_get_assigned_fulfillment_orders
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/assigned_fulfillment_orders.json:
+    get:
+      summary: Shopify Retrieves A List Of Fulfillment Orders On A Shop For A Specific App
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/assignedfulfillmentorder#index-unstable
+      parameters:
+      - in: query
+        name: assignment_status
+        description: "The assigment status of the fulfillment orders that should be returned:\n                    \n                        cancellation_requested: Fulfillment orders for which the merchant has requested cancellation of the previously accepted fulfillment request.\n                        fulfillment_requested: Fulfillment orders for which the merchant has requested fulfillment.\n                        fulfillment_accepted: Fulfillment orders for which the merchant's fulfillment request has been accepted. Any number of fulfillments can be created on these fulfillment orders to completely fulfill the requested items."
+        schema: {}
+        required: false
+      - in: query
+        name: location_ids
+        description: The IDs of the assigned locations of the fulfillment orders that should be returned.
+        schema: {}
+        required: false
+      - in: query
+        name: location_ids[]
+        schema:
+          type: integer
+        description: location_ids[]
+        required: false
+      tags:
+      - Orders
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_get_assigned_fulfillment_orders
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-01/fulfillments.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  fulfillment:
+                    message: The package was shipped this morning.
+                    notify_customer: false
+                    tracking_info:
+                      number: 1562678
+                      url: https://www.my-shipping-company.com
+                      company: my-shipping-company
+                    line_items_by_fulfillment_order:
+                    - fulfillment_order_id: 1046000794
+                      fulfillment_order_line_items:
+                      - id: 1025578640
+                        quantity: 1
+                summary: Create a fulfillment for the fulfillment order line items specified
+              example2:
+                value:
+                  fulfillment:
+                    message: The package was shipped this morning.
+                    notify_customer: false
+                    tracking_info:
+                      number: 1562678
+                      url: https://www.my-shipping-company.com
+                      company: my-shipping-company
+                    line_items_by_fulfillment_order:
+                    - fulfillment_order_id: 1046000795
+                summary: Creates a fulfillment for all fulfillment order line items if `fulfillment_order_line_items` is left blank
+      summary: Shopify Creates A Fulfillment For One Or Many Fulfillment Orders
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillment#createV2-2020-01
+      parameters: []
+      tags:
+      - Orders
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_create_fulfillments
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/fulfillments.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  fulfillment:
+                    message: The package was shipped this morning.
+                    notify_customer: false
+                    tracking_info:
+                      number: 1562678
+                      url: https://www.my-shipping-company.com
+                      company: my-shipping-company
+                    line_items_by_fulfillment_order:
+                    - fulfillment_order_id: 1046000794
+                      fulfillment_order_line_items:
+                      - id: 1025578640
+                        quantity: 1
+                summary: Create a fulfillment for the fulfillment order line items specified
+              example2:
+                value:
+                  fulfillment:
+                    message: The package was shipped this morning.
+                    notify_customer: false
+                    tracking_info:
+                      number: 1562678
+                      url: https://www.my-shipping-company.com
+                      company: my-shipping-company
+                    line_items_by_fulfillment_order:
+                    - fulfillment_order_id: 1046000795
+                summary: Creates a fulfillment for all fulfillment order line items if `fulfillment_order_line_items` is left blank
+      summary: Shopify Creates A Fulfillment For One Or Many Fulfillment Orders
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillment#createV2-2020-04
+      parameters: []
+      tags:
+      - Orders
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_create_fulfillments
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/fulfillments.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  fulfillment:
+                    message: The package was shipped this morning.
+                    notify_customer: false
+                    tracking_info:
+                      number: 1562678
+                      url: https://www.my-shipping-company.com
+                      company: my-shipping-company
+                    line_items_by_fulfillment_order:
+                    - fulfillment_order_id: 1046000794
+                      fulfillment_order_line_items:
+                      - id: 1025578640
+                        quantity: 1
+                summary: Create a fulfillment for the fulfillment order line items specified
+              example2:
+                value:
+                  fulfillment:
+                    message: The package was shipped this morning.
+                    notify_customer: false
+                    tracking_info:
+                      number: 1562678
+                      url: https://www.my-shipping-company.com
+                      company: my-shipping-company
+                    line_items_by_fulfillment_order:
+                    - fulfillment_order_id: 1046000795
+                summary: Creates a fulfillment for all fulfillment order line items if `fulfillment_order_line_items` is left blank
+      summary: Shopify Creates A Fulfillment For One Or Many Fulfillment Orders
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillment#createV2-2020-07
+      parameters: []
+      tags:
+      - Orders
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_create_fulfillments
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/fulfillments.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  fulfillment:
+                    message: The package was shipped this morning.
+                    notify_customer: false
+                    tracking_info:
+                      number: 1562678
+                      url: https://www.my-shipping-company.com
+                      company: my-shipping-company
+                    line_items_by_fulfillment_order:
+                    - fulfillment_order_id: 1046000794
+                      fulfillment_order_line_items:
+                      - id: 1025578640
+                        quantity: 1
+                summary: Create a fulfillment for the fulfillment order line items specified
+              example2:
+                value:
+                  fulfillment:
+                    message: The package was shipped this morning.
+                    notify_customer: false
+                    tracking_info:
+                      number: 1562678
+                      url: https://www.my-shipping-company.com
+                      company: my-shipping-company
+                    line_items_by_fulfillment_order:
+                    - fulfillment_order_id: 1046000795
+                summary: Creates a fulfillment for all fulfillment order line items if `fulfillment_order_line_items` is left blank
+      summary: Shopify Creates A Fulfillment For One Or Many Fulfillment Orders
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillment#createV2-2020-10
+      parameters: []
+      tags:
+      - Orders
+      responses:
+        '200':
+          description: ''
+      operationId: create_fulfillments
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/fulfillments.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  fulfillment:
+                    message: The package was shipped this morning.
+                    notify_customer: false
+                    tracking_info:
+                      number: 1562678
+                      url: https://www.my-shipping-company.com
+                      company: my-shipping-company
+                    line_items_by_fulfillment_order:
+                    - fulfillment_order_id: 1046000794
+                      fulfillment_order_line_items:
+                      - id: 1025578640
+                        quantity: 1
+                summary: Create a fulfillment for the fulfillment order line items specified
+              example2:
+                value:
+                  fulfillment:
+                    message: The package was shipped this morning.
+                    notify_customer: false
+                    tracking_info:
+                      number: 1562678
+                      url: https://www.my-shipping-company.com
+                      company: my-shipping-company
+                    line_items_by_fulfillment_order:
+                    - fulfillment_order_id: 1046000795
+                summary: Creates a fulfillment for all fulfillment order line items if `fulfillment_order_line_items` is left blank
+      summary: Shopify Creates A Fulfillment For One Or Many Fulfillment Orders
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillment#createV2-2021-01
+      parameters: []
+      tags:
+      - Orders
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_create_fulfillments
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/fulfillments.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  fulfillment:
+                    message: The package was shipped this morning.
+                    notify_customer: false
+                    tracking_info:
+                      number: 1562678
+                      url: https://www.my-shipping-company.com
+                      company: my-shipping-company
+                    line_items_by_fulfillment_order:
+                    - fulfillment_order_id: 1046000794
+                      fulfillment_order_line_items:
+                      - id: 1025578640
+                        quantity: 1
+                summary: Create a fulfillment for the fulfillment order line items specified
+              example2:
+                value:
+                  fulfillment:
+                    message: The package was shipped this morning.
+                    notify_customer: false
+                    tracking_info:
+                      number: 1562678
+                      url: https://www.my-shipping-company.com
+                      company: my-shipping-company
+                    line_items_by_fulfillment_order:
+                    - fulfillment_order_id: 1046000795
+                summary: Creates a fulfillment for all fulfillment order line items if `fulfillment_order_line_items` is left blank
+      summary: Shopify Creates A Fulfillment For One Or Many Fulfillment Orders
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillment#createV2-unstable
+      parameters: []
+      tags:
+      - Orders
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_create_fulfillments
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-01/orders/{order_id}/fulfillment_orders.json:
+    get:
+      summary: Shopify Retrieves A List Of Fulfillment Orders For A Specific Order
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentorder#index-2020-01
+      parameters:
+      - in: path
+        name: order_id
+        required: true
+        schema:
+          type: string
+        description: order_id
+      - in: query
+        name: order_id
+        description: The ID of the order that is associated with the fulfillment orders.
+        schema: {}
+        required: false
+      tags:
+      - Orders
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_get_orders_param_order_id_fulfillment_orders
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/orders/{order_id}/fulfillment_orders.json:
+    get:
+      summary: Shopify Retrieves A List Of Fulfillment Orders For A Specific Order
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentorder#index-2020-04
+      parameters:
+      - in: path
+        name: order_id
+        required: true
+        schema:
+          type: string
+        description: order_id
+      - in: query
+        name: order_id
+        description: The ID of the order that is associated with the fulfillment orders.
+        schema: {}
+        required: false
+      tags:
+      - Orders
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_get_orders_param_order_id_fulfillment_orders
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/orders/{order_id}/fulfillment_orders.json:
+    get:
+      summary: Shopify Retrieves A List Of Fulfillment Orders For A Specific Order
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentorder#index-2020-07
+      parameters:
+      - in: path
+        name: order_id
+        required: true
+        schema:
+          type: string
+        description: order_id
+      - in: query
+        name: order_id
+        description: The ID of the order that is associated with the fulfillment orders.
+        schema: {}
+        required: false
+      tags:
+      - Orders
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_get_orders_param_order_id_fulfillment_orders
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/orders/{order_id}/fulfillment_orders.json:
+    get:
+      summary: Shopify Retrieves A List Of Fulfillment Orders For A Specific Order
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentorder#index-2020-10
+      parameters:
+      - in: path
+        name: order_id
+        required: true
+        schema:
+          type: string
+        description: order_id
+      - in: query
+        name: order_id
+        description: The ID of the order that is associated with the fulfillment orders.
+        schema: {}
+        required: false
+      tags:
+      - Orders
+      responses:
+        '200':
+          description: ''
+      operationId: get_orders_param_order_id_fulfillment_orders
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/orders/{order_id}/fulfillment_orders.json:
+    get:
+      summary: Shopify Retrieves A List Of Fulfillment Orders For A Specific Order
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentorder#index-2021-01
+      parameters:
+      - in: path
+        name: order_id
+        required: true
+        schema:
+          type: string
+        description: order_id
+      - in: query
+        name: order_id
+        description: The ID of the order that is associated with the fulfillment orders.
+        schema: {}
+        required: false
+      tags:
+      - Orders
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_get_orders_param_order_id_fulfillment_orders
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/orders/{order_id}/fulfillment_orders.json:
+    get:
+      summary: Shopify Retrieves A List Of Fulfillment Orders For A Specific Order
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentorder#index-unstable
+      parameters:
+      - in: path
+        name: order_id
+        required: true
+        schema:
+          type: string
+        description: order_id
+      - in: query
+        name: order_id
+        description: The ID of the order that is associated with the fulfillment orders.
+        schema: {}
+        required: false
+      tags:
+      - Orders
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_get_orders_param_order_id_fulfillment_orders
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /fetch_tracking_numbers:
+    get:
+      summary: Shopify Get Tracking Numbers For Orders
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentservice#fetch-tracking-numbers
+      parameters:
+      - in: query
+        name: order_names
+        description: 'The fulfillment names we require tracking numbers for (i.e. #1001.1)'
+        schema: {}
+        required: false
+      - in: query
+        name: shop
+        description: The shop's myshopify url
+        schema: {}
+        required: false
+      tags:
+      - Orders
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unknown_version_get_fetch_tracking_numbers
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+components:
+  schemas:
+    TaxLine:
+      type: object
+      description: A tax line applied to an item
+      properties:
+        title:
+          type: string
+        price:
+          type: string
+        rate:
+          type: number
+    ShippingLine:
+      type: object
+      description: A shipping method applied to an order
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        price:
+          type: string
+        code:
+          type:
+          - string
+          - 'null'
+        source:
+          type: string
+        discounted_price:
+          type: string
+        tax_lines:
+          type: array
+          items:
+            $ref: '#/components/schemas/TaxLine'
+    Fulfillment:
+      type: object
+      description: A fulfillment of an order
+      properties:
+        id:
+          type: integer
+        order_id:
+          type: integer
+        status:
+          type: string
+          enum:
+          - pending
+          - open
+          - success
+          - cancelled
+          - error
+          - failure
+        tracking_company:
+          type:
+          - string
+          - 'null'
+        tracking_number:
+          type:
+          - string
+          - 'null'
+        tracking_numbers:
+          type: array
+          items:
+            type: string
+        tracking_url:
+          type:
+          - string
+          - 'null'
+        tracking_urls:
+          type: array
+          items:
+            type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        line_items:
+          type: array
+          items:
+            $ref: '#/components/schemas/LineItem'
+        admin_graphql_api_id:
+          type: string
+    OrderInput:
+      type: object
+      description: Input for creating or updating an order
+      properties:
+        email:
+          type: string
+          format: email
+        phone:
+          type: string
+        note:
+          type: string
+        tags:
+          type: string
+        line_items:
+          type: array
+          items:
+            type: object
+            properties:
+              variant_id:
+                type: integer
+              quantity:
+                type: integer
+              price:
+                type: string
+              title:
+                type: string
+        billing_address:
+          $ref: '#/components/schemas/Address'
+        shipping_address:
+          $ref: '#/components/schemas/Address'
+        financial_status:
+          type: string
+        send_receipt:
+          type: boolean
+        send_fulfillment_receipt:
+          type: boolean
+        transactions:
+          type: array
+          items:
+            type: object
+            properties:
+              kind:
+                type: string
+              status:
+                type: string
+              amount:
+                type: string
+    Address:
+      type: object
+      description: A customer mailing address
+      properties:
+        id:
+          type: integer
+        customer_id:
+          type: integer
+        first_name:
+          type: string
+        last_name:
+          type: string
+        company:
+          type:
+          - string
+          - 'null'
+        address1:
+          type: string
+        address2:
+          type:
+          - string
+          - 'null'
+        city:
+          type: string
+        province:
+          type:
+          - string
+          - 'null'
+        country:
+          type: string
+        zip:
+          type: string
+        phone:
+          type:
+          - string
+          - 'null'
+        province_code:
+          type:
+          - string
+          - 'null'
+        country_code:
+          type: string
+        country_name:
+          type: string
+        default:
+          type: boolean
+          description: Whether this is the default address
+    Customer:
+      type: object
+      description: A Shopify customer
+      properties:
+        id:
+          type: integer
+          description: Unique numeric identifier
+        email:
+          type:
+          - string
+          - 'null'
+          format: email
+          description: Customer email address
+        first_name:
+          type:
+          - string
+          - 'null'
+          description: First name
+        last_name:
+          type:
+          - string
+          - 'null'
+          description: Last name
+        phone:
+          type:
+          - string
+          - 'null'
+          description: Phone number in E.164 format
+        orders_count:
+          type: integer
+          description: Number of orders placed
+        total_spent:
+          type: string
+          description: Total amount spent
+        state:
+          type: string
+          description: Account state
+          enum:
+          - disabled
+          - invited
+          - enabled
+          - declined
+        note:
+          type:
+          - string
+          - 'null'
+          description: A note about the customer
+        verified_email:
+          type: boolean
+          description: Whether the email has been verified
+        tax_exempt:
+          type: boolean
+          description: Whether the customer is tax exempt
+        tags:
+          type: string
+          description: Comma-separated list of tags
+        currency:
+          type: string
+          description: Three-letter ISO 4217 currency code
+        accepts_marketing:
+          type: boolean
+          description: Whether the customer has consented to marketing
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        default_address:
+          $ref: '#/components/schemas/Address'
+        addresses:
+          type: array
+          items:
+            $ref: '#/components/schemas/Address'
+        admin_graphql_api_id:
+          type: string
+    Order:
+      type: object
+      description: A Shopify order
+      properties:
+        id:
+          type: integer
+          description: Unique numeric identifier
+        name:
+          type: string
+          description: The order name (e.g.
+        order_number:
+          type: integer
+          description: The order number without prefix
+        email:
+          type:
+          - string
+          - 'null'
+          format: email
+        phone:
+          type:
+          - string
+          - 'null'
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        closed_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        cancelled_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        cancel_reason:
+          type:
+          - string
+          - 'null'
+          enum:
+          - customer
+          - fraud
+          - inventory
+          - declined
+          - other
+          - null
+        note:
+          type:
+          - string
+          - 'null'
+          description: Notes about the order
+        tags:
+          type: string
+          description: Comma-separated tags
+        token:
+          type: string
+        total_price:
+          type: string
+          description: Total price of the order
+        subtotal_price:
+          type: string
+          description: Subtotal before shipping and taxes
+        total_tax:
+          type: string
+          description: Total tax amount
+        total_discounts:
+          type: string
+          description: Total discount amount
+        total_shipping_price_set:
+          type: object
+          description: Total shipping price in shop and presentment currencies
+          properties:
+            shop_money:
+              $ref: '#/components/schemas/Money'
+            presentment_money:
+              $ref: '#/components/schemas/Money'
+        currency:
+          type: string
+          description: Three-letter ISO 4217 currency code
+        financial_status:
+          type: string
+          enum:
+          - pending
+          - authorized
+          - partially_paid
+          - paid
+          - partially_refunded
+          - refunded
+          - voided
+        fulfillment_status:
+          type:
+          - string
+          - 'null'
+          enum:
+          - fulfilled
+          - partial
+          - restocked
+          - null
+        confirmed:
+          type: boolean
+        test:
+          type: boolean
+          description: Whether this is a test order
+        taxes_included:
+          type: boolean
+        buyer_accepts_marketing:
+          type: boolean
+        customer:
+          $ref: '#/components/schemas/Customer'
+        billing_address:
+          $ref: '#/components/schemas/Address'
+        shipping_address:
+          $ref: '#/components/schemas/Address'
+        line_items:
+          type: array
+          items:
+            $ref: '#/components/schemas/LineItem'
+        shipping_lines:
+          type: array
+          items:
+            $ref: '#/components/schemas/ShippingLine'
+        fulfillments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Fulfillment'
+        refunds:
+          type: array
+          items:
+            $ref: '#/components/schemas/Refund'
+        discount_codes:
+          type: array
+          items:
+            type: object
+            properties:
+              code:
+                type: string
+              amount:
+                type: string
+              type:
+                type: string
+        admin_graphql_api_id:
+          type: string
+    Money:
+      type: object
+      description: A monetary amount with currency
+      properties:
+        amount:
+          type: string
+        currency_code:
+          type: string
+    LineItem:
+      type: object
+      description: An individual line item in an order
+      properties:
+        id:
+          type: integer
+        variant_id:
+          type:
+          - integer
+          - 'null'
+        product_id:
+          type:
+          - integer
+          - 'null'
+        title:
+          type: string
+        variant_title:
+          type:
+          - string
+          - 'null'
+        name:
+          type: string
+          description: Product title and variant title combined
+        quantity:
+          type: integer
+        price:
+          type: string
+        total_discount:
+          type: string
+        sku:
+          type:
+          - string
+          - 'null'
+        vendor:
+          type:
+          - string
+          - 'null'
+        fulfillment_service:
+          type: string
+        fulfillment_status:
+          type:
+          - string
+          - 'null'
+        taxable:
+          type: boolean
+        requires_shipping:
+          type: boolean
+        gift_card:
+          type: boolean
+        grams:
+          type: integer
+        tax_lines:
+          type: array
+          items:
+            $ref: '#/components/schemas/TaxLine'
+        properties:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              value:
+                type: string
+        admin_graphql_api_id:
+          type: string
+    Error:
+      type: object
+      description: Error response
+      properties:
+        errors:
+          description: Error details
+          oneOf:
+          - type: string
+          - type: object
+            additionalProperties:
+              type: array
+              items:
+                type: string
+    Refund:
+      type: object
+      description: A refund on an order
+      properties:
+        id:
+          type: integer
+        order_id:
+          type: integer
+        created_at:
+          type: string
+          format: date-time
+        note:
+          type:
+          - string
+          - 'null'
+        restock:
+          type: boolean
+        refund_line_items:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+              quantity:
+                type: integer
+              line_item_id:
+                type: integer
+              subtotal:
+                type: number
+              total_tax:
+                type: number
+              line_item:
+                $ref: '#/components/schemas/LineItem'
+        admin_graphql_api_id:
+          type: string
+  parameters:
+    OrderId:
+      name: order_id
+      in: path
+      required: true
+      description: The ID of the order
+      schema:
+        type: integer
+  securitySchemes:
+    AccessToken:
+      type: apiKey
+      name: X-Shopify-Access-Token
+      in: header
+      description: Access token obtained via OAuth

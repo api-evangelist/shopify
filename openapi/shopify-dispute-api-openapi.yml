@@ -1,0 +1,52 @@
+openapi: 3.1.0
+info:
+  title: Shopify Admin REST About Dispute API
+  description: The Shopify Admin REST API lets you build apps and integrations that extend and enhance the Shopify admin. Access products, customers, orders, inventory, fulfillment, and more. Endpoints are organized by resource type and versioned by release date.
+  version: 2025-01
+  contact:
+    name: Shopify
+    url: https://shopify.dev/docs/api/admin-rest
+    email: api@shopify.com
+  license:
+    name: Shopify API Terms
+    url: https://www.shopify.com/legal/api-terms
+  x-date: '2026-03-04'
+servers:
+- url: https://{store}.myshopify.com/admin/api/2025-01
+  description: Shopify Admin REST API
+  variables:
+    store:
+      default: my-store
+      description: The Shopify store subdomain
+security:
+- AccessToken: []
+tags:
+- name: Dispute
+paths:
+  /admin/api/2020-01/shopify_payments/disputes/{dispute_id}.json:
+    get:
+      summary: Shopify Retrieves A Single Dispute By Id
+      description: https://shopify.dev/docs/admin-api/rest/reference/shopify_payments/dispute#show-2020-01
+      parameters:
+      - in: path
+        name: dispute_id
+        required: true
+        schema:
+          type: string
+        description: dispute_id
+      tags:
+      - Dispute
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_get_shopify_payments_disputes_param_dispute_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+components:
+  securitySchemes:
+    AccessToken:
+      type: apiKey
+      name: X-Shopify-Access-Token
+      in: header
+      description: Access token obtained via OAuth

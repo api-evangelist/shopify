@@ -1,0 +1,88 @@
+openapi: 3.1.0
+info:
+  title: Shopify Admin REST About Spam API
+  description: The Shopify Admin REST API lets you build apps and integrations that extend and enhance the Shopify admin. Access products, customers, orders, inventory, fulfillment, and more. Endpoints are organized by resource type and versioned by release date.
+  version: 2025-01
+  contact:
+    name: Shopify
+    url: https://shopify.dev/docs/api/admin-rest
+    email: api@shopify.com
+  license:
+    name: Shopify API Terms
+    url: https://www.shopify.com/legal/api-terms
+  x-date: '2026-03-04'
+servers:
+- url: https://{store}.myshopify.com/admin/api/2025-01
+  description: Shopify Admin REST API
+  variables:
+    store:
+      default: my-store
+      description: The Shopify store subdomain
+security:
+- AccessToken: []
+tags:
+- name: Spam
+paths:
+  /admin/api/2020-01/comments/{comment_id}/spam.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value: {}
+                summary: Mark a comment as spam
+      summary: Shopify Marks A Comment As Spam
+      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/comment#spam-2020-01
+      parameters:
+      - in: path
+        name: comment_id
+        required: true
+        schema:
+          type: string
+        description: comment_id
+      tags:
+      - Spam
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_create_comments_param_comment_id_spam
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-01/comments/{comment_id}/not_spam.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value: {}
+                summary: Mark a comment as not spam, restoring it to an unapproved or published state
+      summary: Shopify Marks A Comment As Not Spam
+      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/comment#not_spam-2020-01
+      parameters:
+      - in: path
+        name: comment_id
+        required: true
+        schema:
+          type: string
+        description: comment_id
+      tags:
+      - Spam
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_create_comments_param_comment_id_not_spam
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+components:
+  securitySchemes:
+    AccessToken:
+      type: apiKey
+      name: X-Shopify-Access-Token
+      in: header
+      description: Access token obtained via OAuth

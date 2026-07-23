@@ -1,0 +1,686 @@
+openapi: 3.1.0
+info:
+  title: Shopify Admin REST About Carrier API
+  description: The Shopify Admin REST API lets you build apps and integrations that extend and enhance the Shopify admin. Access products, customers, orders, inventory, fulfillment, and more. Endpoints are organized by resource type and versioned by release date.
+  version: 2025-01
+  contact:
+    name: Shopify
+    url: https://shopify.dev/docs/api/admin-rest
+    email: api@shopify.com
+  license:
+    name: Shopify API Terms
+    url: https://www.shopify.com/legal/api-terms
+  x-date: '2026-03-04'
+servers:
+- url: https://{store}.myshopify.com/admin/api/2025-01
+  description: Shopify Admin REST API
+  variables:
+    store:
+      default: my-store
+      description: The Shopify store subdomain
+security:
+- AccessToken: []
+tags:
+- name: Carrier
+paths:
+  /admin/api/2020-01/carrier_services.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  carrier_service:
+                    name: Shipping Rate Provider
+                    callback_url: http://shippingrateprovider.com
+                    service_discovery: true
+                summary: Create a carrier service
+      summary: Shopify Creates A Carrier Service
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/carrierservice#create-2020-01
+      parameters: []
+      tags:
+      - Carrier
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_create_carrier_services
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    get:
+      summary: Shopify Retrieves A List Of Carrier Services
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/carrierservice#index-2020-01
+      parameters: []
+      tags:
+      - Carrier
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_get_carrier_services
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-01/carrier_services/{carrier_service_id}.json:
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  carrier_service:
+                    id: 1036894957
+                    name: Some new name
+                    active: false
+                summary: Update a carrier service
+      summary: Shopify Updates A Carrier Service
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/carrierservice#update-2020-01
+      parameters:
+      - in: path
+        name: carrier_service_id
+        required: true
+        schema:
+          type: string
+        description: carrier_service_id
+      tags:
+      - Carrier
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_update_carrier_services_param_carrier_service_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    get:
+      summary: Shopify Retrieves A Single Carrier Service By Its Id
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/carrierservice#show-2020-01
+      parameters:
+      - in: path
+        name: carrier_service_id
+        required: true
+        schema:
+          type: string
+        description: carrier_service_id
+      tags:
+      - Carrier
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_get_carrier_services_param_carrier_service_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    delete:
+      summary: Shopify Deletes A Carrier Service
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/carrierservice#destroy-2020-01
+      parameters:
+      - in: path
+        name: carrier_service_id
+        required: true
+        schema:
+          type: string
+        description: carrier_service_id
+      tags:
+      - Carrier
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_delete_carrier_services_param_carrier_service_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/carrier_services.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  carrier_service:
+                    name: Shipping Rate Provider
+                    callback_url: http://shippingrateprovider.com
+                    service_discovery: true
+                summary: Create a carrier service
+      summary: Shopify Creates A Carrier Service
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/carrierservice#create-2020-04
+      parameters: []
+      tags:
+      - Carrier
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_create_carrier_services
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    get:
+      summary: Shopify Retrieves A List Of Carrier Services
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/carrierservice#index-2020-04
+      parameters: []
+      tags:
+      - Carrier
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_get_carrier_services
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/carrier_services/{carrier_service_id}.json:
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  carrier_service:
+                    id: 1036894957
+                    name: Some new name
+                    active: false
+                summary: Update a carrier service
+      summary: Shopify Updates A Carrier Service
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/carrierservice#update-2020-04
+      parameters:
+      - in: path
+        name: carrier_service_id
+        required: true
+        schema:
+          type: string
+        description: carrier_service_id
+      tags:
+      - Carrier
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_update_carrier_services_param_carrier_service_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    get:
+      summary: Shopify Retrieves A Single Carrier Service By Its Id
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/carrierservice#show-2020-04
+      parameters:
+      - in: path
+        name: carrier_service_id
+        required: true
+        schema:
+          type: string
+        description: carrier_service_id
+      tags:
+      - Carrier
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_get_carrier_services_param_carrier_service_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    delete:
+      summary: Shopify Deletes A Carrier Service
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/carrierservice#destroy-2020-04
+      parameters:
+      - in: path
+        name: carrier_service_id
+        required: true
+        schema:
+          type: string
+        description: carrier_service_id
+      tags:
+      - Carrier
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_delete_carrier_services_param_carrier_service_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/carrier_services.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  carrier_service:
+                    name: Shipping Rate Provider
+                    callback_url: http://shippingrateprovider.com
+                    service_discovery: true
+                summary: Create a carrier service
+      summary: Shopify Creates A Carrier Service
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/carrierservice#create-2020-07
+      parameters: []
+      tags:
+      - Carrier
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_create_carrier_services
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    get:
+      summary: Shopify Retrieves A List Of Carrier Services
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/carrierservice#index-2020-07
+      parameters: []
+      tags:
+      - Carrier
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_get_carrier_services
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/carrier_services/{carrier_service_id}.json:
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  carrier_service:
+                    id: 1036894957
+                    name: Some new name
+                    active: false
+                summary: Update a carrier service
+      summary: Shopify Updates A Carrier Service
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/carrierservice#update-2020-07
+      parameters:
+      - in: path
+        name: carrier_service_id
+        required: true
+        schema:
+          type: string
+        description: carrier_service_id
+      tags:
+      - Carrier
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_update_carrier_services_param_carrier_service_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    get:
+      summary: Shopify Retrieves A Single Carrier Service By Its Id
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/carrierservice#show-2020-07
+      parameters:
+      - in: path
+        name: carrier_service_id
+        required: true
+        schema:
+          type: string
+        description: carrier_service_id
+      tags:
+      - Carrier
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_get_carrier_services_param_carrier_service_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    delete:
+      summary: Shopify Deletes A Carrier Service
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/carrierservice#destroy-2020-07
+      parameters:
+      - in: path
+        name: carrier_service_id
+        required: true
+        schema:
+          type: string
+        description: carrier_service_id
+      tags:
+      - Carrier
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_delete_carrier_services_param_carrier_service_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/carrier_services.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  carrier_service:
+                    name: Shipping Rate Provider
+                    callback_url: http://shippingrateprovider.com
+                    service_discovery: true
+                summary: Create a carrier service
+      summary: Shopify Creates A Carrier Service
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/carrierservice#create-2020-10
+      parameters: []
+      tags:
+      - Carrier
+      responses:
+        '200':
+          description: ''
+      operationId: create_carrier_services
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    get:
+      summary: Shopify Retrieves A List Of Carrier Services
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/carrierservice#index-2020-10
+      parameters: []
+      tags:
+      - Carrier
+      responses:
+        '200':
+          description: ''
+      operationId: get_carrier_services
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/carrier_services/{carrier_service_id}.json:
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  carrier_service:
+                    id: 1036894957
+                    name: Some new name
+                    active: false
+                summary: Update a carrier service
+      summary: Shopify Updates A Carrier Service
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/carrierservice#update-2020-10
+      parameters:
+      - in: path
+        name: carrier_service_id
+        required: true
+        schema:
+          type: string
+        description: carrier_service_id
+      tags:
+      - Carrier
+      responses:
+        '200':
+          description: ''
+      operationId: update_carrier_services_param_carrier_service_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    get:
+      summary: Shopify Retrieves A Single Carrier Service By Its Id
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/carrierservice#show-2020-10
+      parameters:
+      - in: path
+        name: carrier_service_id
+        required: true
+        schema:
+          type: string
+        description: carrier_service_id
+      tags:
+      - Carrier
+      responses:
+        '200':
+          description: ''
+      operationId: get_carrier_services_param_carrier_service_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    delete:
+      summary: Shopify Deletes A Carrier Service
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/carrierservice#destroy-2020-10
+      parameters:
+      - in: path
+        name: carrier_service_id
+        required: true
+        schema:
+          type: string
+        description: carrier_service_id
+      tags:
+      - Carrier
+      responses:
+        '200':
+          description: ''
+      operationId: delete_carrier_services_param_carrier_service_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/carrier_services.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  carrier_service:
+                    name: Shipping Rate Provider
+                    callback_url: http://shippingrateprovider.com
+                    service_discovery: true
+                summary: Create a carrier service
+      summary: Shopify Creates A Carrier Service
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/carrierservice#create-2021-01
+      parameters: []
+      tags:
+      - Carrier
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_create_carrier_services
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    get:
+      summary: Shopify Retrieves A List Of Carrier Services
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/carrierservice#index-2021-01
+      parameters: []
+      tags:
+      - Carrier
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_get_carrier_services
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/carrier_services/{carrier_service_id}.json:
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  carrier_service:
+                    id: 1036894957
+                    name: Some new name
+                    active: false
+                summary: Update a carrier service
+      summary: Shopify Updates A Carrier Service
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/carrierservice#update-2021-01
+      parameters:
+      - in: path
+        name: carrier_service_id
+        required: true
+        schema:
+          type: string
+        description: carrier_service_id
+      tags:
+      - Carrier
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_update_carrier_services_param_carrier_service_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    get:
+      summary: Shopify Retrieves A Single Carrier Service By Its Id
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/carrierservice#show-2021-01
+      parameters:
+      - in: path
+        name: carrier_service_id
+        required: true
+        schema:
+          type: string
+        description: carrier_service_id
+      tags:
+      - Carrier
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_get_carrier_services_param_carrier_service_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    delete:
+      summary: Shopify Deletes A Carrier Service
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/carrierservice#destroy-2021-01
+      parameters:
+      - in: path
+        name: carrier_service_id
+        required: true
+        schema:
+          type: string
+        description: carrier_service_id
+      tags:
+      - Carrier
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_delete_carrier_services_param_carrier_service_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/carrier_services.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  carrier_service:
+                    name: Shipping Rate Provider
+                    callback_url: http://shippingrateprovider.com
+                    service_discovery: true
+                summary: Create a carrier service
+      summary: Shopify Creates A Carrier Service
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/carrierservice#create-unstable
+      parameters: []
+      tags:
+      - Carrier
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_create_carrier_services
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    get:
+      summary: Shopify Retrieves A List Of Carrier Services
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/carrierservice#index-unstable
+      parameters: []
+      tags:
+      - Carrier
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_get_carrier_services
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/carrier_services/{carrier_service_id}.json:
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  carrier_service:
+                    id: 1036894957
+                    name: Some new name
+                    active: false
+                summary: Update a carrier service
+      summary: Shopify Updates A Carrier Service
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/carrierservice#update-unstable
+      parameters:
+      - in: path
+        name: carrier_service_id
+        required: true
+        schema:
+          type: string
+        description: carrier_service_id
+      tags:
+      - Carrier
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_update_carrier_services_param_carrier_service_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    get:
+      summary: Shopify Retrieves A Single Carrier Service By Its Id
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/carrierservice#show-unstable
+      parameters:
+      - in: path
+        name: carrier_service_id
+        required: true
+        schema:
+          type: string
+        description: carrier_service_id
+      tags:
+      - Carrier
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_get_carrier_services_param_carrier_service_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    delete:
+      summary: Shopify Deletes A Carrier Service
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/carrierservice#destroy-unstable
+      parameters:
+      - in: path
+        name: carrier_service_id
+        required: true
+        schema:
+          type: string
+        description: carrier_service_id
+      tags:
+      - Carrier
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_delete_carrier_services_param_carrier_service_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+components:
+  securitySchemes:
+    AccessToken:
+      type: apiKey
+      name: X-Shopify-Access-Token
+      in: header
+      description: Access token obtained via OAuth

@@ -1,0 +1,532 @@
+openapi: 3.1.0
+info:
+  title: Shopify Admin REST About Tokens API
+  description: The Shopify Admin REST API lets you build apps and integrations that extend and enhance the Shopify admin. Access products, customers, orders, inventory, fulfillment, and more. Endpoints are organized by resource type and versioned by release date.
+  version: 2025-01
+  contact:
+    name: Shopify
+    url: https://shopify.dev/docs/api/admin-rest
+    email: api@shopify.com
+  license:
+    name: Shopify API Terms
+    url: https://www.shopify.com/legal/api-terms
+  x-date: '2026-03-04'
+servers:
+- url: https://{store}.myshopify.com/admin/api/2025-01
+  description: Shopify Admin REST API
+  variables:
+    store:
+      default: my-store
+      description: The Shopify store subdomain
+security:
+- AccessToken: []
+tags:
+- name: Tokens
+paths:
+  /admin/oauth/access_scopes.json:
+    get:
+      summary: Shopify Retrieves A List Of Access Scopes Associated To The Access Token
+      description: https://shopify.dev/docs/admin-api/rest/reference/access/accessscope#index-2020-10
+      parameters: []
+      tags:
+      - Tokens
+      responses:
+        '200':
+          description: ''
+      operationId: get_admin_oauth_access_scopes
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-01/storefront_access_tokens.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  storefront_access_token:
+                    title: Test
+                summary: Create a new storefront access token
+              example2:
+                value:
+                  storefront_access_token:
+                    title: Test
+                summary: Generating a token for an app that lacks required unauthenticated scopes fails
+              example3:
+                value:
+                  storefront_access_token:
+                    title: Token
+                summary: Creating a token after exceeding the limit fails
+      summary: Shopify Creates A New Storefront Access Token
+      description: https://shopify.dev/docs/admin-api/rest/reference/access/storefrontaccesstoken#create-2020-01
+      parameters: []
+      tags:
+      - Tokens
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_create_storefront_access_tokens
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    get:
+      summary: Shopify Retrieves A List Of Storefront Access Tokens That Have Been Issued
+      description: https://shopify.dev/docs/admin-api/rest/reference/access/storefrontaccesstoken#index-2020-01
+      parameters: []
+      tags:
+      - Tokens
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_get_storefront_access_tokens
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-01/storefront_access_tokens/{storefront_access_token_id}.json:
+    delete:
+      summary: Shopify Deletes An Existing Storefront Access Token
+      description: https://shopify.dev/docs/admin-api/rest/reference/access/storefrontaccesstoken#destroy-2020-01
+      parameters:
+      - in: path
+        name: storefront_access_token_id
+        required: true
+        schema:
+          type: string
+        description: storefront_access_token_id
+      tags:
+      - Tokens
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_delete_storefront_access_tokens_param_storefront_access_token_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/storefront_access_tokens.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  storefront_access_token:
+                    title: Test
+                summary: Create a new storefront access token
+              example2:
+                value:
+                  storefront_access_token:
+                    title: Test
+                summary: Generating a token for an app that lacks required unauthenticated scopes fails
+              example3:
+                value:
+                  storefront_access_token:
+                    title: Token
+                summary: Creating a token after exceeding the limit fails
+      summary: Shopify Creates A New Storefront Access Token
+      description: https://shopify.dev/docs/admin-api/rest/reference/access/storefrontaccesstoken#create-2020-04
+      parameters: []
+      tags:
+      - Tokens
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_create_storefront_access_tokens
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    get:
+      summary: Shopify Retrieves A List Of Storefront Access Tokens That Have Been Issued
+      description: https://shopify.dev/docs/admin-api/rest/reference/access/storefrontaccesstoken#index-2020-04
+      parameters: []
+      tags:
+      - Tokens
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_get_storefront_access_tokens
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/storefront_access_tokens/{storefront_access_token_id}.json:
+    delete:
+      summary: Shopify Deletes An Existing Storefront Access Token
+      description: https://shopify.dev/docs/admin-api/rest/reference/access/storefrontaccesstoken#destroy-2020-04
+      parameters:
+      - in: path
+        name: storefront_access_token_id
+        required: true
+        schema:
+          type: string
+        description: storefront_access_token_id
+      tags:
+      - Tokens
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_delete_storefront_access_tokens_param_storefront_access_token_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/storefront_access_tokens.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  storefront_access_token:
+                    title: Test
+                summary: Create a new storefront access token
+              example2:
+                value:
+                  storefront_access_token:
+                    title: Test
+                summary: Generating a token for an app that lacks required unauthenticated scopes fails
+              example3:
+                value:
+                  storefront_access_token:
+                    title: Token
+                summary: Creating a token after exceeding the limit fails
+      summary: Shopify Creates A New Storefront Access Token
+      description: https://shopify.dev/docs/admin-api/rest/reference/access/storefrontaccesstoken#create-2020-07
+      parameters: []
+      tags:
+      - Tokens
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_create_storefront_access_tokens
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    get:
+      summary: Shopify Retrieves A List Of Storefront Access Tokens That Have Been Issued
+      description: https://shopify.dev/docs/admin-api/rest/reference/access/storefrontaccesstoken#index-2020-07
+      parameters: []
+      tags:
+      - Tokens
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_get_storefront_access_tokens
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/storefront_access_tokens/{storefront_access_token_id}.json:
+    delete:
+      summary: Shopify Deletes An Existing Storefront Access Token
+      description: https://shopify.dev/docs/admin-api/rest/reference/access/storefrontaccesstoken#destroy-2020-07
+      parameters:
+      - in: path
+        name: storefront_access_token_id
+        required: true
+        schema:
+          type: string
+        description: storefront_access_token_id
+      tags:
+      - Tokens
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_delete_storefront_access_tokens_param_storefront_access_token_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/storefront_access_tokens.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  storefront_access_token:
+                    title: Test
+                summary: Create a new storefront access token
+              example2:
+                value:
+                  storefront_access_token:
+                    title: Test
+                summary: Generating a token for an app that lacks required unauthenticated scopes fails
+              example3:
+                value:
+                  storefront_access_token:
+                    title: Token
+                summary: Creating a token after exceeding the limit fails
+      summary: Shopify Creates A New Storefront Access Token
+      description: https://shopify.dev/docs/admin-api/rest/reference/access/storefrontaccesstoken#create-2020-10
+      parameters: []
+      tags:
+      - Tokens
+      responses:
+        '200':
+          description: ''
+      operationId: create_storefront_access_tokens
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    get:
+      summary: Shopify Retrieves A List Of Storefront Access Tokens That Have Been Issued
+      description: https://shopify.dev/docs/admin-api/rest/reference/access/storefrontaccesstoken#index-2020-10
+      parameters: []
+      tags:
+      - Tokens
+      responses:
+        '200':
+          description: ''
+      operationId: get_storefront_access_tokens
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/storefront_access_tokens/{storefront_access_token_id}.json:
+    delete:
+      summary: Shopify Deletes An Existing Storefront Access Token
+      description: https://shopify.dev/docs/admin-api/rest/reference/access/storefrontaccesstoken#destroy-2020-10
+      parameters:
+      - in: path
+        name: storefront_access_token_id
+        required: true
+        schema:
+          type: string
+        description: storefront_access_token_id
+      tags:
+      - Tokens
+      responses:
+        '200':
+          description: ''
+      operationId: delete_storefront_access_tokens_param_storefront_access_token_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/storefront_access_tokens.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  storefront_access_token:
+                    title: Test
+                summary: Create a new storefront access token
+              example2:
+                value:
+                  storefront_access_token:
+                    title: Test
+                summary: Generating a token for an app that lacks required unauthenticated scopes fails
+              example3:
+                value:
+                  storefront_access_token:
+                    title: Token
+                summary: Creating a token after exceeding the limit fails
+      summary: Shopify Creates A New Storefront Access Token
+      description: https://shopify.dev/docs/admin-api/rest/reference/access/storefrontaccesstoken#create-2021-01
+      parameters: []
+      tags:
+      - Tokens
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_create_storefront_access_tokens
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    get:
+      summary: Shopify Retrieves A List Of Storefront Access Tokens That Have Been Issued
+      description: https://shopify.dev/docs/admin-api/rest/reference/access/storefrontaccesstoken#index-2021-01
+      parameters: []
+      tags:
+      - Tokens
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_get_storefront_access_tokens
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/storefront_access_tokens/{storefront_access_token_id}.json:
+    delete:
+      summary: Shopify Deletes An Existing Storefront Access Token
+      description: https://shopify.dev/docs/admin-api/rest/reference/access/storefrontaccesstoken#destroy-2021-01
+      parameters:
+      - in: path
+        name: storefront_access_token_id
+        required: true
+        schema:
+          type: string
+        description: storefront_access_token_id
+      tags:
+      - Tokens
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_delete_storefront_access_tokens_param_storefront_access_token_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/storefront_access_tokens.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  storefront_access_token:
+                    title: Test
+                summary: Create a new storefront access token
+              example2:
+                value:
+                  storefront_access_token:
+                    title: Test
+                summary: Generating a token for an app that lacks required unauthenticated scopes fails
+              example3:
+                value:
+                  storefront_access_token:
+                    title: Token
+                summary: Creating a token after exceeding the limit fails
+      summary: Shopify Creates A New Storefront Access Token
+      description: https://shopify.dev/docs/admin-api/rest/reference/access/storefrontaccesstoken#create-unstable
+      parameters: []
+      tags:
+      - Tokens
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_create_storefront_access_tokens
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    get:
+      summary: Shopify Retrieves A List Of Storefront Access Tokens That Have Been Issued
+      description: https://shopify.dev/docs/admin-api/rest/reference/access/storefrontaccesstoken#index-unstable
+      parameters: []
+      tags:
+      - Tokens
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_get_storefront_access_tokens
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/storefront_access_tokens/{storefront_access_token_id}.json:
+    delete:
+      summary: Shopify Deletes An Existing Storefront Access Token
+      description: https://shopify.dev/docs/admin-api/rest/reference/access/storefrontaccesstoken#destroy-unstable
+      parameters:
+      - in: path
+        name: storefront_access_token_id
+        required: true
+        schema:
+          type: string
+        description: storefront_access_token_id
+      tags:
+      - Tokens
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_delete_storefront_access_tokens_param_storefront_access_token_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-01/users/current.json:
+    get:
+      summary: Shopify Retrieves Information About The User Account Associated With The Access Token Used To Make This Api Request
+      description: https://shopify.dev/docs/admin-api/rest/reference/plus/user#current-2020-01
+      parameters: []
+      tags:
+      - Tokens
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_get_users_current
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/users/current.json:
+    get:
+      summary: Shopify Retrieves Information About The User Account Associated With The Access Token Used To Make This Api Request
+      description: https://shopify.dev/docs/admin-api/rest/reference/plus/user#current-2020-04
+      parameters: []
+      tags:
+      - Tokens
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_get_users_current
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/users/current.json:
+    get:
+      summary: Shopify Retrieves Information About The User Account Associated With The Access Token Used To Make This Api Request
+      description: https://shopify.dev/docs/admin-api/rest/reference/plus/user#current-2020-07
+      parameters: []
+      tags:
+      - Tokens
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_get_users_current
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/users/current.json:
+    get:
+      summary: Shopify Retrieves Information About The User Account Associated With The Access Token Used To Make This Api Request
+      description: https://shopify.dev/docs/admin-api/rest/reference/plus/user#current-2020-10
+      parameters: []
+      tags:
+      - Tokens
+      responses:
+        '200':
+          description: ''
+      operationId: get_users_current
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/users/current.json:
+    get:
+      summary: Shopify Retrieves Information About The User Account Associated With The Access Token Used To Make This Api Request
+      description: https://shopify.dev/docs/admin-api/rest/reference/plus/user#current-2021-01
+      parameters: []
+      tags:
+      - Tokens
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_get_users_current
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/users/current.json:
+    get:
+      summary: Shopify Retrieves Information About The User Account Associated With The Access Token Used To Make This Api Request
+      description: https://shopify.dev/docs/admin-api/rest/reference/plus/user#current-unstable
+      parameters: []
+      tags:
+      - Tokens
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_get_users_current
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+components:
+  securitySchemes:
+    AccessToken:
+      type: apiKey
+      name: X-Shopify-Access-Token
+      in: header
+      description: Access token obtained via OAuth

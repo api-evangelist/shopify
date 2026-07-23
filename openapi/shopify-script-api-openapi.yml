@@ -1,0 +1,1088 @@
+openapi: 3.1.0
+info:
+  title: Shopify Admin REST About Script API
+  description: The Shopify Admin REST API lets you build apps and integrations that extend and enhance the Shopify admin. Access products, customers, orders, inventory, fulfillment, and more. Endpoints are organized by resource type and versioned by release date.
+  version: 2025-01
+  contact:
+    name: Shopify
+    url: https://shopify.dev/docs/api/admin-rest
+    email: api@shopify.com
+  license:
+    name: Shopify API Terms
+    url: https://www.shopify.com/legal/api-terms
+  x-date: '2026-03-04'
+servers:
+- url: https://{store}.myshopify.com/admin/api/2025-01
+  description: Shopify Admin REST API
+  variables:
+    store:
+      default: my-store
+      description: The Shopify store subdomain
+security:
+- AccessToken: []
+tags:
+- name: Script
+paths:
+  /admin/api/2020-01/script_tags.json:
+    get:
+      summary: Shopify Retrieves A List Of All Script Tags
+      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/scripttag#index-2020-01
+      parameters:
+      - in: query
+        name: limit
+        description: "The number of results to return.\n                  (default: 50, maximum: 250)"
+        schema: {}
+        required: false
+      - in: query
+        name: since_id
+        description: Restrict results to after the specified ID.
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_min
+        description: 'Show script tags created after this date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_max
+        description: 'Show script tags created before this date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_min
+        description: 'Show script tags last updated after this date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_max
+        description: 'Show script tags last updated before this date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: src
+        description: Show script tags with this URL.
+        schema: {}
+        required: false
+      - in: query
+        name: fields
+        description: A comma-separated list of fields to include in the response.
+        schema: {}
+        required: false
+      tags:
+      - Script
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_get_script_tags
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  script_tag:
+                    event: onload
+                    src: https://djavaskripped.org/fancy.js
+                summary: Create a new script tag
+              example2:
+                value:
+                  script_tag:
+                    body: foobar
+                summary: Creating a script tag without a src and event will return an error
+      summary: Shopify Creates A New Script Tag
+      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/scripttag#create-2020-01
+      parameters: []
+      tags:
+      - Script
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_create_script_tags
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-01/script_tags/count.json:
+    get:
+      summary: Shopify Retrieves A Count Of All Script Tags
+      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/scripttag#count-2020-01
+      parameters:
+      - in: query
+        name: src
+        description: Count only script tags with a given URL.
+        schema: {}
+        required: false
+      tags:
+      - Script
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_get_script_tags_count
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-01/script_tags/{script_tag_id}.json:
+    get:
+      summary: Shopify Retrieves A Single Script Tag
+      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/scripttag#show-2020-01
+      parameters:
+      - in: path
+        name: script_tag_id
+        required: true
+        schema:
+          type: string
+        description: script_tag_id
+      - in: query
+        name: fields
+        description: A comma-separated list of fields to include in the response.
+        schema: {}
+        required: false
+      tags:
+      - Script
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_get_script_tags_param_script_tag_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  script_tag:
+                    id: 596726825
+                    src: https://somewhere-else.com/another.js
+                summary: Update a script tag's URL
+      summary: Shopify Updates A Script Tag
+      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/scripttag#update-2020-01
+      parameters:
+      - in: path
+        name: script_tag_id
+        required: true
+        schema:
+          type: string
+        description: script_tag_id
+      tags:
+      - Script
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_update_script_tags_param_script_tag_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    delete:
+      summary: Shopify Deletes A Script Tag
+      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/scripttag#destroy-2020-01
+      parameters:
+      - in: path
+        name: script_tag_id
+        required: true
+        schema:
+          type: string
+        description: script_tag_id
+      tags:
+      - Script
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_delete_script_tags_param_script_tag_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/script_tags.json:
+    get:
+      summary: Shopify Retrieves A List Of All Script Tags
+      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/scripttag#index-2020-04
+      parameters:
+      - in: query
+        name: limit
+        description: "The number of results to return.\n                  (default: 50, maximum: 250)"
+        schema: {}
+        required: false
+      - in: query
+        name: since_id
+        description: Restrict results to after the specified ID.
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_min
+        description: 'Show script tags created after this date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_max
+        description: 'Show script tags created before this date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_min
+        description: 'Show script tags last updated after this date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_max
+        description: 'Show script tags last updated before this date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: src
+        description: Show script tags with this URL.
+        schema: {}
+        required: false
+      - in: query
+        name: fields
+        description: A comma-separated list of fields to include in the response.
+        schema: {}
+        required: false
+      tags:
+      - Script
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_get_script_tags
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  script_tag:
+                    event: onload
+                    src: https://djavaskripped.org/fancy.js
+                summary: Create a new script tag
+              example2:
+                value:
+                  script_tag:
+                    body: foobar
+                summary: Creating a script tag without a src and event will return an error
+      summary: Shopify Creates A New Script Tag
+      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/scripttag#create-2020-04
+      parameters: []
+      tags:
+      - Script
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_create_script_tags
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/script_tags/count.json:
+    get:
+      summary: Shopify Retrieves A Count Of All Script Tags
+      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/scripttag#count-2020-04
+      parameters:
+      - in: query
+        name: src
+        description: Count only script tags with a given URL.
+        schema: {}
+        required: false
+      tags:
+      - Script
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_get_script_tags_count
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/script_tags/{script_tag_id}.json:
+    get:
+      summary: Shopify Retrieves A Single Script Tag
+      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/scripttag#show-2020-04
+      parameters:
+      - in: path
+        name: script_tag_id
+        required: true
+        schema:
+          type: string
+        description: script_tag_id
+      - in: query
+        name: fields
+        description: A comma-separated list of fields to include in the response.
+        schema: {}
+        required: false
+      tags:
+      - Script
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_get_script_tags_param_script_tag_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  script_tag:
+                    id: 596726825
+                    src: https://somewhere-else.com/another.js
+                summary: Update a script tag's URL
+      summary: Shopify Updates A Script Tag
+      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/scripttag#update-2020-04
+      parameters:
+      - in: path
+        name: script_tag_id
+        required: true
+        schema:
+          type: string
+        description: script_tag_id
+      tags:
+      - Script
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_update_script_tags_param_script_tag_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    delete:
+      summary: Shopify Deletes A Script Tag
+      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/scripttag#destroy-2020-04
+      parameters:
+      - in: path
+        name: script_tag_id
+        required: true
+        schema:
+          type: string
+        description: script_tag_id
+      tags:
+      - Script
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_delete_script_tags_param_script_tag_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/script_tags.json:
+    get:
+      summary: Shopify Retrieves A List Of All Script Tags
+      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/scripttag#index-2020-07
+      parameters:
+      - in: query
+        name: limit
+        description: "The number of results to return.\n                  (default: 50, maximum: 250)"
+        schema: {}
+        required: false
+      - in: query
+        name: since_id
+        description: Restrict results to after the specified ID.
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_min
+        description: 'Show script tags created after this date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_max
+        description: 'Show script tags created before this date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_min
+        description: 'Show script tags last updated after this date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_max
+        description: 'Show script tags last updated before this date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: src
+        description: Show script tags with this URL.
+        schema: {}
+        required: false
+      - in: query
+        name: fields
+        description: A comma-separated list of fields to include in the response.
+        schema: {}
+        required: false
+      tags:
+      - Script
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_get_script_tags
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  script_tag:
+                    event: onload
+                    src: https://djavaskripped.org/fancy.js
+                summary: Create a new script tag
+              example2:
+                value:
+                  script_tag:
+                    body: foobar
+                summary: Creating a script tag without a src and event will return an error
+      summary: Shopify Creates A New Script Tag
+      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/scripttag#create-2020-07
+      parameters: []
+      tags:
+      - Script
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_create_script_tags
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/script_tags/count.json:
+    get:
+      summary: Shopify Retrieves A Count Of All Script Tags
+      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/scripttag#count-2020-07
+      parameters:
+      - in: query
+        name: src
+        description: Count only script tags with a given URL.
+        schema: {}
+        required: false
+      tags:
+      - Script
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_get_script_tags_count
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/script_tags/{script_tag_id}.json:
+    get:
+      summary: Shopify Retrieves A Single Script Tag
+      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/scripttag#show-2020-07
+      parameters:
+      - in: path
+        name: script_tag_id
+        required: true
+        schema:
+          type: string
+        description: script_tag_id
+      - in: query
+        name: fields
+        description: A comma-separated list of fields to include in the response.
+        schema: {}
+        required: false
+      tags:
+      - Script
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_get_script_tags_param_script_tag_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  script_tag:
+                    id: 596726825
+                    src: https://somewhere-else.com/another.js
+                summary: Update a script tag's URL
+      summary: Shopify Updates A Script Tag
+      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/scripttag#update-2020-07
+      parameters:
+      - in: path
+        name: script_tag_id
+        required: true
+        schema:
+          type: string
+        description: script_tag_id
+      tags:
+      - Script
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_update_script_tags_param_script_tag_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    delete:
+      summary: Shopify Deletes A Script Tag
+      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/scripttag#destroy-2020-07
+      parameters:
+      - in: path
+        name: script_tag_id
+        required: true
+        schema:
+          type: string
+        description: script_tag_id
+      tags:
+      - Script
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_delete_script_tags_param_script_tag_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/script_tags.json:
+    get:
+      summary: Shopify Retrieves A List Of All Script Tags
+      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/scripttag#index-2020-10
+      parameters:
+      - in: query
+        name: limit
+        description: "The number of results to return.\n                  (default: 50, maximum: 250)"
+        schema: {}
+        required: false
+      - in: query
+        name: since_id
+        description: Restrict results to after the specified ID.
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_min
+        description: 'Show script tags created after this date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_max
+        description: 'Show script tags created before this date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_min
+        description: 'Show script tags last updated after this date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_max
+        description: 'Show script tags last updated before this date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: src
+        description: Show script tags with this URL.
+        schema: {}
+        required: false
+      - in: query
+        name: fields
+        description: A comma-separated list of fields to include in the response.
+        schema: {}
+        required: false
+      tags:
+      - Script
+      responses:
+        '200':
+          description: ''
+      operationId: get_script_tags
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  script_tag:
+                    event: onload
+                    src: https://djavaskripped.org/fancy.js
+                summary: Create a new script tag
+              example2:
+                value:
+                  script_tag:
+                    body: foobar
+                summary: Creating a script tag without a src and event will return an error
+      summary: Shopify Creates A New Script Tag
+      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/scripttag#create-2020-10
+      parameters: []
+      tags:
+      - Script
+      responses:
+        '200':
+          description: ''
+      operationId: create_script_tags
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/script_tags/count.json:
+    get:
+      summary: Shopify Retrieves A Count Of All Script Tags
+      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/scripttag#count-2020-10
+      parameters:
+      - in: query
+        name: src
+        description: Count only script tags with a given URL.
+        schema: {}
+        required: false
+      tags:
+      - Script
+      responses:
+        '200':
+          description: ''
+      operationId: get_script_tags_count
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/script_tags/{script_tag_id}.json:
+    get:
+      summary: Shopify Retrieves A Single Script Tag
+      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/scripttag#show-2020-10
+      parameters:
+      - in: path
+        name: script_tag_id
+        required: true
+        schema:
+          type: string
+        description: script_tag_id
+      - in: query
+        name: fields
+        description: A comma-separated list of fields to include in the response.
+        schema: {}
+        required: false
+      tags:
+      - Script
+      responses:
+        '200':
+          description: ''
+      operationId: get_script_tags_param_script_tag_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  script_tag:
+                    id: 596726825
+                    src: https://somewhere-else.com/another.js
+                summary: Update a script tag's URL
+      summary: Shopify Updates A Script Tag
+      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/scripttag#update-2020-10
+      parameters:
+      - in: path
+        name: script_tag_id
+        required: true
+        schema:
+          type: string
+        description: script_tag_id
+      tags:
+      - Script
+      responses:
+        '200':
+          description: ''
+      operationId: update_script_tags_param_script_tag_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    delete:
+      summary: Shopify Deletes A Script Tag
+      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/scripttag#destroy-2020-10
+      parameters:
+      - in: path
+        name: script_tag_id
+        required: true
+        schema:
+          type: string
+        description: script_tag_id
+      tags:
+      - Script
+      responses:
+        '200':
+          description: ''
+      operationId: delete_script_tags_param_script_tag_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/script_tags.json:
+    get:
+      summary: Shopify Retrieves A List Of All Script Tags
+      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/scripttag#index-2021-01
+      parameters:
+      - in: query
+        name: limit
+        description: "The number of results to return.\n                  (default: 50, maximum: 250)"
+        schema: {}
+        required: false
+      - in: query
+        name: since_id
+        description: Restrict results to after the specified ID.
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_min
+        description: 'Show script tags created after this date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_max
+        description: 'Show script tags created before this date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_min
+        description: 'Show script tags last updated after this date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_max
+        description: 'Show script tags last updated before this date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: src
+        description: Show script tags with this URL.
+        schema: {}
+        required: false
+      - in: query
+        name: fields
+        description: A comma-separated list of fields to include in the response.
+        schema: {}
+        required: false
+      tags:
+      - Script
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_get_script_tags
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  script_tag:
+                    event: onload
+                    src: https://djavaskripped.org/fancy.js
+                summary: Create a new script tag
+              example2:
+                value:
+                  script_tag:
+                    body: foobar
+                summary: Creating a script tag without a src and event will return an error
+      summary: Shopify Creates A New Script Tag
+      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/scripttag#create-2021-01
+      parameters: []
+      tags:
+      - Script
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_create_script_tags
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/script_tags/count.json:
+    get:
+      summary: Shopify Retrieves A Count Of All Script Tags
+      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/scripttag#count-2021-01
+      parameters:
+      - in: query
+        name: src
+        description: Count only script tags with a given URL.
+        schema: {}
+        required: false
+      tags:
+      - Script
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_get_script_tags_count
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/script_tags/{script_tag_id}.json:
+    get:
+      summary: Shopify Retrieves A Single Script Tag
+      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/scripttag#show-2021-01
+      parameters:
+      - in: path
+        name: script_tag_id
+        required: true
+        schema:
+          type: string
+        description: script_tag_id
+      - in: query
+        name: fields
+        description: A comma-separated list of fields to include in the response.
+        schema: {}
+        required: false
+      tags:
+      - Script
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_get_script_tags_param_script_tag_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  script_tag:
+                    id: 596726825
+                    src: https://somewhere-else.com/another.js
+                summary: Update a script tag's URL
+      summary: Shopify Updates A Script Tag
+      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/scripttag#update-2021-01
+      parameters:
+      - in: path
+        name: script_tag_id
+        required: true
+        schema:
+          type: string
+        description: script_tag_id
+      tags:
+      - Script
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_update_script_tags_param_script_tag_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    delete:
+      summary: Shopify Deletes A Script Tag
+      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/scripttag#destroy-2021-01
+      parameters:
+      - in: path
+        name: script_tag_id
+        required: true
+        schema:
+          type: string
+        description: script_tag_id
+      tags:
+      - Script
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_delete_script_tags_param_script_tag_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/script_tags.json:
+    get:
+      summary: Shopify Retrieves A List Of All Script Tags
+      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/scripttag#index-unstable
+      parameters:
+      - in: query
+        name: limit
+        description: "The number of results to return.\n                  (default: 50, maximum: 250)"
+        schema: {}
+        required: false
+      - in: query
+        name: since_id
+        description: Restrict results to after the specified ID.
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_min
+        description: 'Show script tags created after this date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_max
+        description: 'Show script tags created before this date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_min
+        description: 'Show script tags last updated after this date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_max
+        description: 'Show script tags last updated before this date. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: src
+        description: Show script tags with this URL.
+        schema: {}
+        required: false
+      - in: query
+        name: fields
+        description: A comma-separated list of fields to include in the response.
+        schema: {}
+        required: false
+      tags:
+      - Script
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_get_script_tags
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  script_tag:
+                    event: onload
+                    src: https://djavaskripped.org/fancy.js
+                summary: Create a new script tag
+              example2:
+                value:
+                  script_tag:
+                    body: foobar
+                summary: Creating a script tag without a src and event will return an error
+      summary: Shopify Creates A New Script Tag
+      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/scripttag#create-unstable
+      parameters: []
+      tags:
+      - Script
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_create_script_tags
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/script_tags/count.json:
+    get:
+      summary: Shopify Retrieves A Count Of All Script Tags
+      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/scripttag#count-unstable
+      parameters:
+      - in: query
+        name: src
+        description: Count only script tags with a given URL.
+        schema: {}
+        required: false
+      tags:
+      - Script
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_get_script_tags_count
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/script_tags/{script_tag_id}.json:
+    get:
+      summary: Shopify Retrieves A Single Script Tag
+      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/scripttag#show-unstable
+      parameters:
+      - in: path
+        name: script_tag_id
+        required: true
+        schema:
+          type: string
+        description: script_tag_id
+      - in: query
+        name: fields
+        description: A comma-separated list of fields to include in the response.
+        schema: {}
+        required: false
+      tags:
+      - Script
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_get_script_tags_param_script_tag_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  script_tag:
+                    id: 596726825
+                    src: https://somewhere-else.com/another.js
+                summary: Update a script tag's URL
+      summary: Shopify Updates A Script Tag
+      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/scripttag#update-unstable
+      parameters:
+      - in: path
+        name: script_tag_id
+        required: true
+        schema:
+          type: string
+        description: script_tag_id
+      tags:
+      - Script
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_update_script_tags_param_script_tag_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    delete:
+      summary: Shopify Deletes A Script Tag
+      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/scripttag#destroy-unstable
+      parameters:
+      - in: path
+        name: script_tag_id
+        required: true
+        schema:
+          type: string
+        description: script_tag_id
+      tags:
+      - Script
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_delete_script_tags_param_script_tag_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+components:
+  securitySchemes:
+    AccessToken:
+      type: apiKey
+      name: X-Shopify-Access-Token
+      in: header
+      description: Access token obtained via OAuth

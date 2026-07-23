@@ -1,0 +1,398 @@
+openapi: 3.1.0
+info:
+  title: Shopify Admin REST About Modifies API
+  description: The Shopify Admin REST API lets you build apps and integrations that extend and enhance the Shopify admin. Access products, customers, orders, inventory, fulfillment, and more. Endpoints are organized by resource type and versioned by release date.
+  version: 2025-01
+  contact:
+    name: Shopify
+    url: https://shopify.dev/docs/api/admin-rest
+    email: api@shopify.com
+  license:
+    name: Shopify API Terms
+    url: https://www.shopify.com/legal/api-terms
+  x-date: '2026-03-04'
+servers:
+- url: https://{store}.myshopify.com/admin/api/2025-01
+  description: Shopify Admin REST API
+  variables:
+    store:
+      default: my-store
+      description: The Shopify store subdomain
+security:
+- AccessToken: []
+tags:
+- name: Modifies
+paths:
+  /admin/api/2020-01/checkouts/{token}.json:
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  checkout:
+                    token: exuw7apwoycchjuwtiqg8nytfhphr62a
+                    email: john.smith@example.com
+                    shipping_address:
+                      first_name: John
+                      last_name: Smith
+                      address1: 126 York St.
+                      city: Los Angeles
+                      province_code: CA
+                      country_code: US
+                      phone: (123)456-7890
+                      zip: '90002'
+                summary: Update the shipping address and email of a checkout
+              example2:
+                value:
+                  checkout:
+                    token: exuw7apwoycchjuwtiqg8nytfhphr62a
+                    shipping_line:
+                      handle: shopify-Free%20Shipping-0.00
+                summary: Select a shipping rate
+              example3:
+                value:
+                  checkout:
+                    token: exuw7apwoycchjuwtiqg8nytfhphr62a
+                    shipping_address:
+                      first_name: John
+                      last_name: Smith
+                      address1: 126 York St.
+                      city: Beverly Hills
+                      province_code: CA
+                      country_code: US
+                      phone: (123)456-7890
+                      zip: '1234'
+                summary: Updating a shipping address with an invalid zip code fails and returns errors
+      summary: Shopify Modifies An Existing Checkout
+      description: https://shopify.dev/docs/admin-api/rest/reference/sales-channels/checkout#update-2020-01
+      parameters:
+      - in: path
+        name: token
+        required: true
+        schema:
+          type: string
+        description: token
+      tags:
+      - Modifies
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_update_checkouts_param_token
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/checkouts/{token}.json:
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  checkout:
+                    token: exuw7apwoycchjuwtiqg8nytfhphr62a
+                    email: john.smith@example.com
+                    shipping_address:
+                      first_name: John
+                      last_name: Smith
+                      address1: 126 York St.
+                      city: Los Angeles
+                      province_code: CA
+                      country_code: US
+                      phone: (123)456-7890
+                      zip: '90002'
+                summary: Update the shipping address and email of a checkout
+              example2:
+                value:
+                  checkout:
+                    token: exuw7apwoycchjuwtiqg8nytfhphr62a
+                    shipping_line:
+                      handle: shopify-Free%20Shipping-0.00
+                summary: Select a shipping rate
+              example3:
+                value:
+                  checkout:
+                    token: exuw7apwoycchjuwtiqg8nytfhphr62a
+                    shipping_address:
+                      first_name: John
+                      last_name: Smith
+                      address1: 126 York St.
+                      city: Beverly Hills
+                      province_code: CA
+                      country_code: US
+                      phone: (123)456-7890
+                      zip: '1234'
+                summary: Updating a shipping address with an invalid zip code fails and returns errors
+      summary: Shopify Modifies An Existing Checkout
+      description: https://shopify.dev/docs/admin-api/rest/reference/sales-channels/checkout#update-2020-04
+      parameters:
+      - in: path
+        name: token
+        required: true
+        schema:
+          type: string
+        description: token
+      tags:
+      - Modifies
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_update_checkouts_param_token
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/checkouts/{token}.json:
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  checkout:
+                    token: exuw7apwoycchjuwtiqg8nytfhphr62a
+                    email: john.smith@example.com
+                    shipping_address:
+                      first_name: John
+                      last_name: Smith
+                      address1: 126 York St.
+                      city: Los Angeles
+                      province_code: CA
+                      country_code: US
+                      phone: (123)456-7890
+                      zip: '90002'
+                summary: Update the shipping address and email of a checkout
+              example2:
+                value:
+                  checkout:
+                    token: exuw7apwoycchjuwtiqg8nytfhphr62a
+                    shipping_line:
+                      handle: shopify-Free%20Shipping-0.00
+                summary: Select a shipping rate
+              example3:
+                value:
+                  checkout:
+                    token: exuw7apwoycchjuwtiqg8nytfhphr62a
+                    shipping_address:
+                      first_name: John
+                      last_name: Smith
+                      address1: 126 York St.
+                      city: Beverly Hills
+                      province_code: CA
+                      country_code: US
+                      phone: (123)456-7890
+                      zip: '1234'
+                summary: Updating a shipping address with an invalid zip code fails and returns errors
+      summary: Shopify Modifies An Existing Checkout
+      description: https://shopify.dev/docs/admin-api/rest/reference/sales-channels/checkout#update-2020-07
+      parameters:
+      - in: path
+        name: token
+        required: true
+        schema:
+          type: string
+        description: token
+      tags:
+      - Modifies
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_update_checkouts_param_token
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/checkouts/{token}.json:
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  checkout:
+                    token: exuw7apwoycchjuwtiqg8nytfhphr62a
+                    email: john.smith@example.com
+                    shipping_address:
+                      first_name: John
+                      last_name: Smith
+                      address1: 126 York St.
+                      city: Los Angeles
+                      province_code: CA
+                      country_code: US
+                      phone: (123)456-7890
+                      zip: '90002'
+                summary: Update the shipping address and email of a checkout
+              example2:
+                value:
+                  checkout:
+                    token: exuw7apwoycchjuwtiqg8nytfhphr62a
+                    shipping_line:
+                      handle: shopify-Free%20Shipping-0.00
+                summary: Select a shipping rate
+              example3:
+                value:
+                  checkout:
+                    token: exuw7apwoycchjuwtiqg8nytfhphr62a
+                    shipping_address:
+                      first_name: John
+                      last_name: Smith
+                      address1: 126 York St.
+                      city: Beverly Hills
+                      province_code: CA
+                      country_code: US
+                      phone: (123)456-7890
+                      zip: '1234'
+                summary: Updating a shipping address with an invalid zip code fails and returns errors
+      summary: Shopify Modifies An Existing Checkout
+      description: https://shopify.dev/docs/admin-api/rest/reference/sales-channels/checkout#update-2020-10
+      parameters:
+      - in: path
+        name: token
+        required: true
+        schema:
+          type: string
+        description: token
+      tags:
+      - Modifies
+      responses:
+        '200':
+          description: ''
+      operationId: update_checkouts_param_token
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/checkouts/{token}.json:
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  checkout:
+                    token: exuw7apwoycchjuwtiqg8nytfhphr62a
+                    email: john.smith@example.com
+                    shipping_address:
+                      first_name: John
+                      last_name: Smith
+                      address1: 126 York St.
+                      city: Los Angeles
+                      province_code: CA
+                      country_code: US
+                      phone: (123)456-7890
+                      zip: '90002'
+                summary: Update the shipping address and email of a checkout
+              example2:
+                value:
+                  checkout:
+                    token: exuw7apwoycchjuwtiqg8nytfhphr62a
+                    shipping_line:
+                      handle: shopify-Free%20Shipping-0.00
+                summary: Select a shipping rate
+              example3:
+                value:
+                  checkout:
+                    token: exuw7apwoycchjuwtiqg8nytfhphr62a
+                    shipping_address:
+                      first_name: John
+                      last_name: Smith
+                      address1: 126 York St.
+                      city: Beverly Hills
+                      province_code: CA
+                      country_code: US
+                      phone: (123)456-7890
+                      zip: '1234'
+                summary: Updating a shipping address with an invalid zip code fails and returns errors
+      summary: Shopify Modifies An Existing Checkout
+      description: https://shopify.dev/docs/admin-api/rest/reference/sales-channels/checkout#update-2021-01
+      parameters:
+      - in: path
+        name: token
+        required: true
+        schema:
+          type: string
+        description: token
+      tags:
+      - Modifies
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_update_checkouts_param_token
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/checkouts/{token}.json:
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  checkout:
+                    token: exuw7apwoycchjuwtiqg8nytfhphr62a
+                    email: john.smith@example.com
+                    shipping_address:
+                      first_name: John
+                      last_name: Smith
+                      address1: 126 York St.
+                      city: Los Angeles
+                      province_code: CA
+                      country_code: US
+                      phone: (123)456-7890
+                      zip: '90002'
+                summary: Update the shipping address and email of a checkout
+              example2:
+                value:
+                  checkout:
+                    token: exuw7apwoycchjuwtiqg8nytfhphr62a
+                    shipping_line:
+                      handle: shopify-Free%20Shipping-0.00
+                summary: Select a shipping rate
+              example3:
+                value:
+                  checkout:
+                    token: exuw7apwoycchjuwtiqg8nytfhphr62a
+                    shipping_address:
+                      first_name: John
+                      last_name: Smith
+                      address1: 126 York St.
+                      city: Beverly Hills
+                      province_code: CA
+                      country_code: US
+                      phone: (123)456-7890
+                      zip: '1234'
+                summary: Updating a shipping address with an invalid zip code fails and returns errors
+      summary: Shopify Modifies An Existing Checkout
+      description: https://shopify.dev/docs/admin-api/rest/reference/sales-channels/checkout#update-unstable
+      parameters:
+      - in: path
+        name: token
+        required: true
+        schema:
+          type: string
+        description: token
+      tags:
+      - Modifies
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_update_checkouts_param_token
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+components:
+  securitySchemes:
+    AccessToken:
+      type: apiKey
+      name: X-Shopify-Access-Token
+      in: header
+      description: Access token obtained via OAuth

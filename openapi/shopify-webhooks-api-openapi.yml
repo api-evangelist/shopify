@@ -1,98 +1,62 @@
 openapi: 3.1.0
 info:
-  title: Shopify Webhooks API
-  description: >-
-    Shopify webhooks enable apps to receive real-time HTTP notifications when
-    events occur in a shop. Apps subscribe to webhook topics and Shopify
-    delivers POST requests with event payloads to the registered callback URL.
-    This specification documents the webhook subscription management endpoints
-    and the standard webhook event payload structures.
-  version: '2025-01'
+  title: Shopify Admin REST About Webhooks API
+  description: The Shopify Admin REST API lets you build apps and integrations that extend and enhance the Shopify admin. Access products, customers, orders, inventory, fulfillment, and more. Endpoints are organized by resource type and versioned by release date.
+  version: 2025-01
   contact:
     name: Shopify
-    url: https://shopify.dev/docs/api/webhooks
+    url: https://shopify.dev/docs/api/admin-rest
     email: api@shopify.com
   license:
     name: Shopify API Terms
     url: https://www.shopify.com/legal/api-terms
   x-date: '2026-03-04'
 servers:
-  - url: https://{store}.myshopify.com/admin/api/2025-01
-    description: Shopify Admin REST API
-    variables:
-      store:
-        default: my-store
-        description: The Shopify store subdomain
+- url: https://{store}.myshopify.com/admin/api/2025-01
+  description: Shopify Admin REST API
+  variables:
+    store:
+      default: my-store
+      description: The Shopify store subdomain
 security:
-  - AccessToken: []
+- AccessToken: []
 tags:
-  - name: Webhook Subscriptions
-    description: Create and manage webhook subscriptions
+- name: Webhooks
+  description: Manage webhook subscriptions
 paths:
   /webhooks.json:
     get:
-      operationId: listWebhookSubscriptions
-      summary: Shopify Retrieve a list of webhook subscriptions
-      description: >-
-        Retrieves a list of webhooks for the authenticated app. Filter by
-        topic, creation date, or other criteria.
+      operationId: listWebhooks
+      summary: Shopify Retrieve a list of webhooks
+      description: Retrieves a list of webhook subscriptions for the app.
       tags:
-        - Webhook Subscriptions
+      - Webhooks
       parameters:
-        - name: topic
-          in: query
-          description: Filter by webhook topic (e.g. orders/create)
-          schema:
-            type: string
-        - name: address
-          in: query
-          description: Filter by callback address
-          schema:
-            type: string
-        - name: created_at_min
-          in: query
-          description: Show webhooks created after this date
-          schema:
-            type: string
-            format: date-time
-        - name: created_at_max
-          in: query
-          description: Show webhooks created before this date
-          schema:
-            type: string
-            format: date-time
-        - name: updated_at_min
-          in: query
-          description: Show webhooks updated after this date
-          schema:
-            type: string
-            format: date-time
-        - name: updated_at_max
-          in: query
-          description: Show webhooks updated before this date
-          schema:
-            type: string
-            format: date-time
-        - name: limit
-          in: query
-          description: Maximum number of results (max 250, default 50)
-          schema:
-            type: integer
-            default: 50
-            maximum: 250
-        - name: since_id
-          in: query
-          description: Return webhooks after the specified ID
-          schema:
-            type: integer
-        - name: fields
-          in: query
-          description: Comma-separated list of fields to include
-          schema:
-            type: string
+      - name: topic
+        in: query
+        description: Filter by webhook topic
+        schema:
+          type: string
+      - name: limit
+        in: query
+        description: Maximum number of results (max 250, default 50)
+        schema:
+          type: integer
+          default: 50
+          maximum: 250
+      - name: since_id
+        in: query
+        description: Return webhooks after the specified ID
+        schema:
+          type: integer
+      - name: fields
+        in: query
+        description: Comma-separated list of fields to include
+        schema:
+          type: string
       responses:
         '200':
-          description: A list of webhook subscriptions
+          description: A list of webhooks
           content:
             application/json:
               schema:
@@ -101,16 +65,13 @@ paths:
                   webhooks:
                     type: array
                     items:
-                      $ref: '#/components/schemas/WebhookSubscription'
+                      $ref: '#/components/schemas/Webhook'
     post:
-      operationId: createWebhookSubscription
+      operationId: createWebhook
       summary: Shopify Create a webhook subscription
-      description: >-
-        Creates a new webhook subscription. When the specified event occurs
-        Shopify sends an HTTP POST to the provided callback address with the
-        event payload in JSON or XML format.
+      description: Creates a new webhook subscription. When the specified event occurs Shopify sends an HTTP POST to the provided address.
       tags:
-        - Webhook Subscriptions
+      - Webhooks
       requestBody:
         required: true
         content:
@@ -118,45 +79,39 @@ paths:
             schema:
               type: object
               required:
-                - webhook
+              - webhook
               properties:
                 webhook:
-                  $ref: '#/components/schemas/WebhookSubscriptionInput'
+                  $ref: '#/components/schemas/WebhookInput'
       responses:
         '201':
-          description: The created webhook subscription
+          description: The created webhook
           content:
             application/json:
               schema:
                 type: object
                 properties:
                   webhook:
-                    $ref: '#/components/schemas/WebhookSubscription'
+                    $ref: '#/components/schemas/Webhook'
         '422':
-          description: Validation error (invalid topic or address)
+          description: Validation error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
   /webhooks/count.json:
     get:
-      operationId: getWebhookSubscriptionCount
-      summary: Shopify Retrieve a count of webhook subscriptions
-      description: >-
-        Retrieves a count of webhook subscriptions for the authenticated app.
+      operationId: getWebhookCount
+      summary: Shopify Retrieve a count of webhooks
+      description: Retrieves a count of existing webhook subscriptions.
       tags:
-        - Webhook Subscriptions
+      - Webhooks
       parameters:
-        - name: topic
-          in: query
-          description: Count webhooks for a specific topic
-          schema:
-            type: string
-        - name: address
-          in: query
-          description: Count webhooks for a specific address
-          schema:
-            type: string
+      - name: topic
+        in: query
+        description: Count webhooks for a specific topic
+        schema:
+          type: string
       responses:
         '200':
           description: The webhook count
@@ -169,40 +124,41 @@ paths:
                     type: integer
   /webhooks/{webhook_id}.json:
     get:
-      operationId: getWebhookSubscription
-      summary: Shopify Retrieve a single webhook subscription
-      description: Retrieves a webhook subscription by its ID.
+      operationId: getWebhook
+      summary: Shopify Retrieve a single webhook
+      description: Retrieves a single webhook subscription by ID.
       tags:
-        - Webhook Subscriptions
+      - Webhooks
       parameters:
-        - $ref: '#/components/parameters/WebhookId'
-        - name: fields
-          in: query
-          description: Comma-separated list of fields to include
-          schema:
-            type: string
+      - name: webhook_id
+        in: path
+        required: true
+        description: The ID of the webhook
+        schema:
+          type: integer
       responses:
         '200':
-          description: The webhook subscription
+          description: The requested webhook
           content:
             application/json:
               schema:
                 type: object
                 properties:
                   webhook:
-                    $ref: '#/components/schemas/WebhookSubscription'
-        '404':
-          description: Webhook not found
+                    $ref: '#/components/schemas/Webhook'
     put:
-      operationId: updateWebhookSubscription
+      operationId: updateWebhook
       summary: Shopify Update a webhook subscription
-      description: >-
-        Updates an existing webhook subscription. The address and fields can
-        be modified but the topic cannot be changed.
+      description: Updates an existing webhook subscription.
       tags:
-        - Webhook Subscriptions
+      - Webhooks
       parameters:
-        - $ref: '#/components/parameters/WebhookId'
+      - name: webhook_id
+        in: path
+        required: true
+        description: The ID of the webhook
+        schema:
+          type: integer
       requestBody:
         required: true
         content:
@@ -210,195 +166,1249 @@ paths:
             schema:
               type: object
               required:
-                - webhook
+              - webhook
               properties:
                 webhook:
-                  $ref: '#/components/schemas/WebhookSubscriptionInput'
+                  $ref: '#/components/schemas/WebhookInput'
       responses:
         '200':
-          description: The updated webhook subscription
+          description: The updated webhook
           content:
             application/json:
               schema:
                 type: object
                 properties:
                   webhook:
-                    $ref: '#/components/schemas/WebhookSubscription'
-        '422':
-          description: Validation error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
+                    $ref: '#/components/schemas/Webhook'
     delete:
-      operationId: deleteWebhookSubscription
+      operationId: deleteWebhook
       summary: Shopify Delete a webhook subscription
-      description: Deletes a webhook subscription by its ID.
+      description: Deletes a webhook subscription.
       tags:
-        - Webhook Subscriptions
+      - Webhooks
       parameters:
-        - $ref: '#/components/parameters/WebhookId'
+      - name: webhook_id
+        in: path
+        required: true
+        description: The ID of the webhook
+        schema:
+          type: integer
       responses:
         '200':
           description: Webhook deleted successfully
-        '404':
-          description: Webhook not found
+  /admin/api/2020-01/webhooks.json:
+    get:
+      summary: Shopify Retrieves A List Of Webhooks
+      description: https://shopify.dev/docs/admin-api/rest/reference/events/webhook#index-2020-01
+      parameters:
+      - in: query
+        name: address
+        description: Retrieve webhook subscriptions that send the POST request to this URI.
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_max
+        description: 'Retrieve webhook subscriptions that were created before a given date and time (format: 2014-04-25T16:15:47-04:00).'
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_min
+        description: 'Retrieve webhook subscriptions that were created after a given date and time (format: 2014-04-25T16:15:47-04:00).'
+        schema: {}
+        required: false
+      - in: query
+        name: fields
+        description: Comma-separated list of the properties you want returned for each item in the result list. Use this parameter to restrict the returned list of items to only those properties you specify.
+        schema: {}
+        required: false
+      - in: query
+        name: limit
+        description: "Maximum number of webhook subscriptions that should be returned. Setting this parameter outside the maximum range will return an error.\n                  (default: 50, maximum: 250)"
+        schema: {}
+        required: false
+      - in: query
+        name: since_id
+        description: Restrict the returned list to webhook subscriptions whose id is greater than the specified since_id.
+        schema: {}
+        required: false
+      - in: query
+        name: topic
+        description: 'Show webhook subscriptions with a given topic.
+
+          For a list of valid values, refer to the topic property.>'
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_min
+        description: 'Retrieve webhooks that were updated before a given date and time (format: 2014-04-25T16:15:47-04:00).'
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_max
+        description: 'Retrieve webhooks that were updated after a given date and time (format: 2014-04-25T16:15:47-04:00).'
+        schema: {}
+        required: false
+      tags:
+      - Webhooks
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_get_webhooks
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  webhook:
+                    topic: orders/create
+                    address: https://whatever.hostname.com/
+                    format: json
+                summary: Subscribe to order creation webhooks
+              example2:
+                value:
+                  webhook:
+                    body: foobar
+                summary: Trying to create a webhook subscription without an address and topic will return a 422 - Unprocessable Entity error
+      summary: Shopify Create A New Webhook Subscription By Specifying Both An Address And A Topic
+      description: https://shopify.dev/docs/admin-api/rest/reference/events/webhook#create-2020-01
+      parameters:
+      - in: query
+        name: format
+        description: "Use this parameter to select the data format for the payload. Valid values are json and xml.\n                  (default: json)"
+        schema: {}
+        required: false
+      tags:
+      - Webhooks
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_create_webhooks
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-01/webhooks/count.json:
+    get:
+      summary: Shopify Retrieves A Count Of Existing Webhook Subscriptions
+      description: https://shopify.dev/docs/admin-api/rest/reference/events/webhook#count-2020-01
+      parameters:
+      - in: query
+        name: address
+        description: Retrieve webhook subscriptions that send the POST request to this URI.
+        schema: {}
+        required: false
+      - in: query
+        name: topic
+        description: 'Show webhook subscriptions with a given topic.
+
+          For a list of valid values, refer to the topic property.>'
+        schema: {}
+        required: false
+      tags:
+      - Webhooks
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_get_webhooks_count
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-01/webhooks/{webhook_id}.json:
+    get:
+      summary: Shopify Retrieves A Single Webhook Subscription
+      description: https://shopify.dev/docs/admin-api/rest/reference/events/webhook#show-2020-01
+      parameters:
+      - in: path
+        name: webhook_id
+        required: true
+        schema:
+          type: string
+        description: webhook_id
+      - in: query
+        name: fields
+        description: Comma-separated list of the properties you want returned for each item in the result list. Use this parameter to restrict the returned list of items to only those properties you specify.
+        schema: {}
+        required: false
+      tags:
+      - Webhooks
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_get_webhooks_param_webhook_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  webhook:
+                    id: 4759306
+                    address: https://somewhere-else.com/
+                summary: Update a webhook subscription so that it POSTs to a different address
+      summary: Shopify Update A Webhook Subscription's Topic Or Address Uris
+      description: https://shopify.dev/docs/admin-api/rest/reference/events/webhook#update-2020-01
+      parameters:
+      - in: path
+        name: webhook_id
+        required: true
+        schema:
+          type: string
+        description: webhook_id
+      tags:
+      - Webhooks
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_update_webhooks_param_webhook_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    delete:
+      summary: Shopify Delete A Webhook Subscription
+      description: https://shopify.dev/docs/admin-api/rest/reference/events/webhook#destroy-2020-01
+      parameters:
+      - in: path
+        name: webhook_id
+        required: true
+        schema:
+          type: string
+        description: webhook_id
+      tags:
+      - Webhooks
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_delete_webhooks_param_webhook_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/webhooks.json:
+    get:
+      summary: Shopify Retrieves A List Of Webhooks
+      description: https://shopify.dev/docs/admin-api/rest/reference/events/webhook#index-2020-04
+      parameters:
+      - in: query
+        name: address
+        description: Retrieve webhook subscriptions that send the POST request to this URI.
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_max
+        description: 'Retrieve webhook subscriptions that were created before a given date and time (format: 2014-04-25T16:15:47-04:00).'
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_min
+        description: 'Retrieve webhook subscriptions that were created after a given date and time (format: 2014-04-25T16:15:47-04:00).'
+        schema: {}
+        required: false
+      - in: query
+        name: fields
+        description: Comma-separated list of the properties you want returned for each item in the result list. Use this parameter to restrict the returned list of items to only those properties you specify.
+        schema: {}
+        required: false
+      - in: query
+        name: limit
+        description: "Maximum number of webhook subscriptions that should be returned. Setting this parameter outside the maximum range will return an error.\n                  (default: 50, maximum: 250)"
+        schema: {}
+        required: false
+      - in: query
+        name: since_id
+        description: Restrict the returned list to webhook subscriptions whose id is greater than the specified since_id.
+        schema: {}
+        required: false
+      - in: query
+        name: topic
+        description: 'Show webhook subscriptions with a given topic.
+
+          For a list of valid values, refer to the topic property.>'
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_min
+        description: 'Retrieve webhooks that were updated before a given date and time (format: 2014-04-25T16:15:47-04:00).'
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_max
+        description: 'Retrieve webhooks that were updated after a given date and time (format: 2014-04-25T16:15:47-04:00).'
+        schema: {}
+        required: false
+      tags:
+      - Webhooks
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_get_webhooks
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  webhook:
+                    topic: orders/create
+                    address: https://whatever.hostname.com/
+                    format: json
+                summary: Subscribe to order creation webhooks
+              example2:
+                value:
+                  webhook:
+                    body: foobar
+                summary: Trying to create a webhook subscription without an address and topic will return a 422 - Unprocessable Entity error
+      summary: Shopify Create A New Webhook Subscription By Specifying Both An Address And A Topic
+      description: https://shopify.dev/docs/admin-api/rest/reference/events/webhook#create-2020-04
+      parameters:
+      - in: query
+        name: format
+        description: "Use this parameter to select the data format for the payload. Valid values are json and xml.\n                  (default: json)"
+        schema: {}
+        required: false
+      tags:
+      - Webhooks
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_create_webhooks
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/webhooks/count.json:
+    get:
+      summary: Shopify Retrieves A Count Of Existing Webhook Subscriptions
+      description: https://shopify.dev/docs/admin-api/rest/reference/events/webhook#count-2020-04
+      parameters:
+      - in: query
+        name: address
+        description: Retrieve webhook subscriptions that send the POST request to this URI.
+        schema: {}
+        required: false
+      - in: query
+        name: topic
+        description: 'Show webhook subscriptions with a given topic.
+
+          For a list of valid values, refer to the topic property.>'
+        schema: {}
+        required: false
+      tags:
+      - Webhooks
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_get_webhooks_count
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/webhooks/{webhook_id}.json:
+    get:
+      summary: Shopify Retrieves A Single Webhook Subscription
+      description: https://shopify.dev/docs/admin-api/rest/reference/events/webhook#show-2020-04
+      parameters:
+      - in: path
+        name: webhook_id
+        required: true
+        schema:
+          type: string
+        description: webhook_id
+      - in: query
+        name: fields
+        description: Comma-separated list of the properties you want returned for each item in the result list. Use this parameter to restrict the returned list of items to only those properties you specify.
+        schema: {}
+        required: false
+      tags:
+      - Webhooks
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_get_webhooks_param_webhook_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  webhook:
+                    id: 4759306
+                    address: https://somewhere-else.com/
+                summary: Update a webhook subscription so that it POSTs to a different address
+      summary: Shopify Update A Webhook Subscription's Topic Or Address Uris
+      description: https://shopify.dev/docs/admin-api/rest/reference/events/webhook#update-2020-04
+      parameters:
+      - in: path
+        name: webhook_id
+        required: true
+        schema:
+          type: string
+        description: webhook_id
+      tags:
+      - Webhooks
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_update_webhooks_param_webhook_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    delete:
+      summary: Shopify Delete A Webhook Subscription
+      description: https://shopify.dev/docs/admin-api/rest/reference/events/webhook#destroy-2020-04
+      parameters:
+      - in: path
+        name: webhook_id
+        required: true
+        schema:
+          type: string
+        description: webhook_id
+      tags:
+      - Webhooks
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_delete_webhooks_param_webhook_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/webhooks.json:
+    get:
+      summary: Shopify Retrieves A List Of Webhooks
+      description: https://shopify.dev/docs/admin-api/rest/reference/events/webhook#index-2020-07
+      parameters:
+      - in: query
+        name: address
+        description: Retrieve webhook subscriptions that send the POST request to this URI.
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_max
+        description: 'Retrieve webhook subscriptions that were created before a given date and time (format: 2014-04-25T16:15:47-04:00).'
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_min
+        description: 'Retrieve webhook subscriptions that were created after a given date and time (format: 2014-04-25T16:15:47-04:00).'
+        schema: {}
+        required: false
+      - in: query
+        name: fields
+        description: Comma-separated list of the properties you want returned for each item in the result list. Use this parameter to restrict the returned list of items to only those properties you specify.
+        schema: {}
+        required: false
+      - in: query
+        name: limit
+        description: "Maximum number of webhook subscriptions that should be returned. Setting this parameter outside the maximum range will return an error.\n                  (default: 50, maximum: 250)"
+        schema: {}
+        required: false
+      - in: query
+        name: since_id
+        description: Restrict the returned list to webhook subscriptions whose id is greater than the specified since_id.
+        schema: {}
+        required: false
+      - in: query
+        name: topic
+        description: 'Show webhook subscriptions with a given topic.
+
+          For a list of valid values, refer to the topic property.>'
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_min
+        description: 'Retrieve webhooks that were updated before a given date and time (format: 2014-04-25T16:15:47-04:00).'
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_max
+        description: 'Retrieve webhooks that were updated after a given date and time (format: 2014-04-25T16:15:47-04:00).'
+        schema: {}
+        required: false
+      tags:
+      - Webhooks
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_get_webhooks
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  webhook:
+                    topic: orders/create
+                    address: https://whatever.hostname.com/
+                    format: json
+                summary: Subscribe to order creation webhooks
+              example2:
+                value:
+                  webhook:
+                    body: foobar
+                summary: Trying to create a webhook subscription without an address and topic will return a 422 - Unprocessable Entity error
+      summary: Shopify Create A New Webhook Subscription By Specifying Both An Address And A Topic
+      description: https://shopify.dev/docs/admin-api/rest/reference/events/webhook#create-2020-07
+      parameters:
+      - in: query
+        name: format
+        description: "Use this parameter to select the data format for the payload. Valid values are json and xml.\n                  (default: json)"
+        schema: {}
+        required: false
+      tags:
+      - Webhooks
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_create_webhooks
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/webhooks/count.json:
+    get:
+      summary: Shopify Retrieves A Count Of Existing Webhook Subscriptions
+      description: https://shopify.dev/docs/admin-api/rest/reference/events/webhook#count-2020-07
+      parameters:
+      - in: query
+        name: address
+        description: Retrieve webhook subscriptions that send the POST request to this URI.
+        schema: {}
+        required: false
+      - in: query
+        name: topic
+        description: 'Show webhook subscriptions with a given topic.
+
+          For a list of valid values, refer to the topic property.>'
+        schema: {}
+        required: false
+      tags:
+      - Webhooks
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_get_webhooks_count
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/webhooks/{webhook_id}.json:
+    get:
+      summary: Shopify Retrieves A Single Webhook Subscription
+      description: https://shopify.dev/docs/admin-api/rest/reference/events/webhook#show-2020-07
+      parameters:
+      - in: path
+        name: webhook_id
+        required: true
+        schema:
+          type: string
+        description: webhook_id
+      - in: query
+        name: fields
+        description: Comma-separated list of the properties you want returned for each item in the result list. Use this parameter to restrict the returned list of items to only those properties you specify.
+        schema: {}
+        required: false
+      tags:
+      - Webhooks
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_get_webhooks_param_webhook_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  webhook:
+                    id: 4759306
+                    address: https://somewhere-else.com/
+                summary: Update a webhook subscription so that it POSTs to a different address
+      summary: Shopify Update A Webhook Subscription's Topic Or Address Uris
+      description: https://shopify.dev/docs/admin-api/rest/reference/events/webhook#update-2020-07
+      parameters:
+      - in: path
+        name: webhook_id
+        required: true
+        schema:
+          type: string
+        description: webhook_id
+      tags:
+      - Webhooks
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_update_webhooks_param_webhook_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    delete:
+      summary: Shopify Delete A Webhook Subscription
+      description: https://shopify.dev/docs/admin-api/rest/reference/events/webhook#destroy-2020-07
+      parameters:
+      - in: path
+        name: webhook_id
+        required: true
+        schema:
+          type: string
+        description: webhook_id
+      tags:
+      - Webhooks
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_delete_webhooks_param_webhook_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/webhooks.json:
+    get:
+      summary: Shopify Retrieves A List Of Webhooks
+      description: https://shopify.dev/docs/admin-api/rest/reference/events/webhook#index-2020-10
+      parameters:
+      - in: query
+        name: address
+        description: Retrieve webhook subscriptions that send the POST request to this URI.
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_max
+        description: 'Retrieve webhook subscriptions that were created before a given date and time (format: 2014-04-25T16:15:47-04:00).'
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_min
+        description: 'Retrieve webhook subscriptions that were created after a given date and time (format: 2014-04-25T16:15:47-04:00).'
+        schema: {}
+        required: false
+      - in: query
+        name: fields
+        description: Comma-separated list of the properties you want returned for each item in the result list. Use this parameter to restrict the returned list of items to only those properties you specify.
+        schema: {}
+        required: false
+      - in: query
+        name: limit
+        description: "Maximum number of webhook subscriptions that should be returned. Setting this parameter outside the maximum range will return an error.\n                  (default: 50, maximum: 250)"
+        schema: {}
+        required: false
+      - in: query
+        name: since_id
+        description: Restrict the returned list to webhook subscriptions whose id is greater than the specified since_id.
+        schema: {}
+        required: false
+      - in: query
+        name: topic
+        description: 'Show webhook subscriptions with a given topic.
+
+          For a list of valid values, refer to the topic property.>'
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_min
+        description: 'Retrieve webhooks that were updated before a given date and time (format: 2014-04-25T16:15:47-04:00).'
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_max
+        description: 'Retrieve webhooks that were updated after a given date and time (format: 2014-04-25T16:15:47-04:00).'
+        schema: {}
+        required: false
+      tags:
+      - Webhooks
+      responses:
+        '200':
+          description: ''
+      operationId: get_webhooks
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  webhook:
+                    topic: orders/create
+                    address: https://whatever.hostname.com/
+                    format: json
+                summary: Subscribe to order creation webhooks
+              example2:
+                value:
+                  webhook:
+                    body: foobar
+                summary: Trying to create a webhook subscription without an address and topic will return a 422 - Unprocessable Entity error
+      summary: Shopify Create A New Webhook Subscription By Specifying Both An Address And A Topic
+      description: https://shopify.dev/docs/admin-api/rest/reference/events/webhook#create-2020-10
+      parameters:
+      - in: query
+        name: format
+        description: "Use this parameter to select the data format for the payload. Valid values are json and xml.\n                  (default: json)"
+        schema: {}
+        required: false
+      tags:
+      - Webhooks
+      responses:
+        '200':
+          description: ''
+      operationId: create_webhooks
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/webhooks/count.json:
+    get:
+      summary: Shopify Retrieves A Count Of Existing Webhook Subscriptions
+      description: https://shopify.dev/docs/admin-api/rest/reference/events/webhook#count-2020-10
+      parameters:
+      - in: query
+        name: address
+        description: Retrieve webhook subscriptions that send the POST request to this URI.
+        schema: {}
+        required: false
+      - in: query
+        name: topic
+        description: 'Show webhook subscriptions with a given topic.
+
+          For a list of valid values, refer to the topic property.>'
+        schema: {}
+        required: false
+      tags:
+      - Webhooks
+      responses:
+        '200':
+          description: ''
+      operationId: get_webhooks_count
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/webhooks/{webhook_id}.json:
+    get:
+      summary: Shopify Retrieves A Single Webhook Subscription
+      description: https://shopify.dev/docs/admin-api/rest/reference/events/webhook#show-2020-10
+      parameters:
+      - in: path
+        name: webhook_id
+        required: true
+        schema:
+          type: string
+        description: webhook_id
+      - in: query
+        name: fields
+        description: Comma-separated list of the properties you want returned for each item in the result list. Use this parameter to restrict the returned list of items to only those properties you specify.
+        schema: {}
+        required: false
+      tags:
+      - Webhooks
+      responses:
+        '200':
+          description: ''
+      operationId: get_webhooks_param_webhook_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  webhook:
+                    id: 4759306
+                    address: https://somewhere-else.com/
+                summary: Update a webhook subscription so that it POSTs to a different address
+      summary: Shopify Update A Webhook Subscription's Topic Or Address Uris
+      description: https://shopify.dev/docs/admin-api/rest/reference/events/webhook#update-2020-10
+      parameters:
+      - in: path
+        name: webhook_id
+        required: true
+        schema:
+          type: string
+        description: webhook_id
+      tags:
+      - Webhooks
+      responses:
+        '200':
+          description: ''
+      operationId: update_webhooks_param_webhook_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    delete:
+      summary: Shopify Delete A Webhook Subscription
+      description: https://shopify.dev/docs/admin-api/rest/reference/events/webhook#destroy-2020-10
+      parameters:
+      - in: path
+        name: webhook_id
+        required: true
+        schema:
+          type: string
+        description: webhook_id
+      tags:
+      - Webhooks
+      responses:
+        '200':
+          description: ''
+      operationId: delete_webhooks_param_webhook_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/webhooks.json:
+    get:
+      summary: Shopify Retrieves A List Of Webhooks
+      description: https://shopify.dev/docs/admin-api/rest/reference/events/webhook#index-2021-01
+      parameters:
+      - in: query
+        name: address
+        description: Retrieve webhook subscriptions that send the POST request to this URI.
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_max
+        description: 'Retrieve webhook subscriptions that were created before a given date and time (format: 2014-04-25T16:15:47-04:00).'
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_min
+        description: 'Retrieve webhook subscriptions that were created after a given date and time (format: 2014-04-25T16:15:47-04:00).'
+        schema: {}
+        required: false
+      - in: query
+        name: fields
+        description: Comma-separated list of the properties you want returned for each item in the result list. Use this parameter to restrict the returned list of items to only those properties you specify.
+        schema: {}
+        required: false
+      - in: query
+        name: limit
+        description: "Maximum number of webhook subscriptions that should be returned. Setting this parameter outside the maximum range will return an error.\n                  (default: 50, maximum: 250)"
+        schema: {}
+        required: false
+      - in: query
+        name: since_id
+        description: Restrict the returned list to webhook subscriptions whose id is greater than the specified since_id.
+        schema: {}
+        required: false
+      - in: query
+        name: topic
+        description: 'Show webhook subscriptions with a given topic.
+
+          For a list of valid values, refer to the topic property.>'
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_min
+        description: 'Retrieve webhooks that were updated before a given date and time (format: 2014-04-25T16:15:47-04:00).'
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_max
+        description: 'Retrieve webhooks that were updated after a given date and time (format: 2014-04-25T16:15:47-04:00).'
+        schema: {}
+        required: false
+      tags:
+      - Webhooks
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_get_webhooks
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  webhook:
+                    topic: orders/create
+                    address: https://whatever.hostname.com/
+                    format: json
+                summary: Subscribe to order creation webhooks
+              example2:
+                value:
+                  webhook:
+                    body: foobar
+                summary: Trying to create a webhook subscription without an address and topic will return a 422 - Unprocessable Entity error
+      summary: Shopify Create A New Webhook Subscription By Specifying Both An Address And A Topic
+      description: https://shopify.dev/docs/admin-api/rest/reference/events/webhook#create-2021-01
+      parameters:
+      - in: query
+        name: format
+        description: "Use this parameter to select the data format for the payload. Valid values are json and xml.\n                  (default: json)"
+        schema: {}
+        required: false
+      tags:
+      - Webhooks
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_create_webhooks
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/webhooks/count.json:
+    get:
+      summary: Shopify Retrieves A Count Of Existing Webhook Subscriptions
+      description: https://shopify.dev/docs/admin-api/rest/reference/events/webhook#count-2021-01
+      parameters:
+      - in: query
+        name: address
+        description: Retrieve webhook subscriptions that send the POST request to this URI.
+        schema: {}
+        required: false
+      - in: query
+        name: topic
+        description: 'Show webhook subscriptions with a given topic.
+
+          For a list of valid values, refer to the topic property.>'
+        schema: {}
+        required: false
+      tags:
+      - Webhooks
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_get_webhooks_count
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/webhooks/{webhook_id}.json:
+    get:
+      summary: Shopify Retrieves A Single Webhook Subscription
+      description: https://shopify.dev/docs/admin-api/rest/reference/events/webhook#show-2021-01
+      parameters:
+      - in: path
+        name: webhook_id
+        required: true
+        schema:
+          type: string
+        description: webhook_id
+      - in: query
+        name: fields
+        description: Comma-separated list of the properties you want returned for each item in the result list. Use this parameter to restrict the returned list of items to only those properties you specify.
+        schema: {}
+        required: false
+      tags:
+      - Webhooks
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_get_webhooks_param_webhook_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  webhook:
+                    id: 4759306
+                    address: https://somewhere-else.com/
+                summary: Update a webhook subscription so that it POSTs to a different address
+      summary: Shopify Update A Webhook Subscription's Topic Or Address Uris
+      description: https://shopify.dev/docs/admin-api/rest/reference/events/webhook#update-2021-01
+      parameters:
+      - in: path
+        name: webhook_id
+        required: true
+        schema:
+          type: string
+        description: webhook_id
+      tags:
+      - Webhooks
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_update_webhooks_param_webhook_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    delete:
+      summary: Shopify Delete A Webhook Subscription
+      description: https://shopify.dev/docs/admin-api/rest/reference/events/webhook#destroy-2021-01
+      parameters:
+      - in: path
+        name: webhook_id
+        required: true
+        schema:
+          type: string
+        description: webhook_id
+      tags:
+      - Webhooks
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_delete_webhooks_param_webhook_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/webhooks.json:
+    get:
+      summary: Shopify Retrieves A List Of Webhooks
+      description: https://shopify.dev/docs/admin-api/rest/reference/events/webhook#index-unstable
+      parameters:
+      - in: query
+        name: address
+        description: Retrieve webhook subscriptions that send the POST request to this URI.
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_max
+        description: 'Retrieve webhook subscriptions that were created before a given date and time (format: 2014-04-25T16:15:47-04:00).'
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_min
+        description: 'Retrieve webhook subscriptions that were created after a given date and time (format: 2014-04-25T16:15:47-04:00).'
+        schema: {}
+        required: false
+      - in: query
+        name: fields
+        description: Comma-separated list of the properties you want returned for each item in the result list. Use this parameter to restrict the returned list of items to only those properties you specify.
+        schema: {}
+        required: false
+      - in: query
+        name: limit
+        description: "Maximum number of webhook subscriptions that should be returned. Setting this parameter outside the maximum range will return an error.\n                  (default: 50, maximum: 250)"
+        schema: {}
+        required: false
+      - in: query
+        name: since_id
+        description: Restrict the returned list to webhook subscriptions whose id is greater than the specified since_id.
+        schema: {}
+        required: false
+      - in: query
+        name: topic
+        description: 'Show webhook subscriptions with a given topic.
+
+          For a list of valid values, refer to the topic property.>'
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_min
+        description: 'Retrieve webhooks that were updated before a given date and time (format: 2014-04-25T16:15:47-04:00).'
+        schema: {}
+        required: false
+      - in: query
+        name: updated_at_max
+        description: 'Retrieve webhooks that were updated after a given date and time (format: 2014-04-25T16:15:47-04:00).'
+        schema: {}
+        required: false
+      tags:
+      - Webhooks
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_get_webhooks
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  webhook:
+                    topic: orders/create
+                    address: https://whatever.hostname.com/
+                    format: json
+                summary: Subscribe to order creation webhooks
+              example2:
+                value:
+                  webhook:
+                    body: foobar
+                summary: Trying to create a webhook subscription without an address and topic will return a 422 - Unprocessable Entity error
+      summary: Shopify Create A New Webhook Subscription By Specifying Both An Address And A Topic
+      description: https://shopify.dev/docs/admin-api/rest/reference/events/webhook#create-unstable
+      parameters:
+      - in: query
+        name: format
+        description: "Use this parameter to select the data format for the payload. Valid values are json and xml.\n                  (default: json)"
+        schema: {}
+        required: false
+      tags:
+      - Webhooks
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_create_webhooks
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/webhooks/count.json:
+    get:
+      summary: Shopify Retrieves A Count Of Existing Webhook Subscriptions
+      description: https://shopify.dev/docs/admin-api/rest/reference/events/webhook#count-unstable
+      parameters:
+      - in: query
+        name: address
+        description: Retrieve webhook subscriptions that send the POST request to this URI.
+        schema: {}
+        required: false
+      - in: query
+        name: topic
+        description: 'Show webhook subscriptions with a given topic.
+
+          For a list of valid values, refer to the topic property.>'
+        schema: {}
+        required: false
+      tags:
+      - Webhooks
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_get_webhooks_count
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/webhooks/{webhook_id}.json:
+    get:
+      summary: Shopify Retrieves A Single Webhook Subscription
+      description: https://shopify.dev/docs/admin-api/rest/reference/events/webhook#show-unstable
+      parameters:
+      - in: path
+        name: webhook_id
+        required: true
+        schema:
+          type: string
+        description: webhook_id
+      - in: query
+        name: fields
+        description: Comma-separated list of the properties you want returned for each item in the result list. Use this parameter to restrict the returned list of items to only those properties you specify.
+        schema: {}
+        required: false
+      tags:
+      - Webhooks
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_get_webhooks_param_webhook_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  webhook:
+                    id: 4759306
+                    address: https://somewhere-else.com/
+                summary: Update a webhook subscription so that it POSTs to a different address
+      summary: Shopify Update A Webhook Subscription's Topic Or Address Uris
+      description: https://shopify.dev/docs/admin-api/rest/reference/events/webhook#update-unstable
+      parameters:
+      - in: path
+        name: webhook_id
+        required: true
+        schema:
+          type: string
+        description: webhook_id
+      tags:
+      - Webhooks
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_update_webhooks_param_webhook_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    delete:
+      summary: Shopify Delete A Webhook Subscription
+      description: https://shopify.dev/docs/admin-api/rest/reference/events/webhook#destroy-unstable
+      parameters:
+      - in: path
+        name: webhook_id
+        required: true
+        schema:
+          type: string
+        description: webhook_id
+      tags:
+      - Webhooks
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_delete_webhooks_param_webhook_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
 components:
-  securitySchemes:
-    AccessToken:
-      type: apiKey
-      name: X-Shopify-Access-Token
-      in: header
-      description: Access token obtained via OAuth
-  parameters:
-    WebhookId:
-      name: webhook_id
-      in: path
-      required: true
-      description: The ID of the webhook subscription
-      schema:
-        type: integer
   schemas:
-    WebhookSubscription:
+    Webhook:
       type: object
       description: A webhook subscription
       properties:
         id:
           type: integer
-          description: Unique numeric identifier
         address:
           type: string
           format: uri
-          description: The callback URL where Shopify sends webhook payloads
+          description: The URL where the webhook delivers data
         topic:
           type: string
-          description: >-
-            The event topic. Common topics include orders/create,
-            orders/updated, orders/cancelled, orders/fulfilled,
-            products/create, products/update, products/delete,
-            customers/create, customers/update, customers/delete,
-            carts/create, carts/update, checkouts/create,
-            checkouts/update, inventory_levels/update,
-            fulfillments/create, fulfillments/update,
-            app/uninstalled, and shop/update.
-          enum:
-            - orders/create
-            - orders/updated
-            - orders/cancelled
-            - orders/fulfilled
-            - orders/paid
-            - orders/partially_fulfilled
-            - orders/delete
-            - products/create
-            - products/update
-            - products/delete
-            - customers/create
-            - customers/update
-            - customers/delete
-            - customers/enable
-            - customers/disable
-            - carts/create
-            - carts/update
-            - checkouts/create
-            - checkouts/update
-            - checkouts/delete
-            - collections/create
-            - collections/update
-            - collections/delete
-            - inventory_items/create
-            - inventory_items/update
-            - inventory_items/delete
-            - inventory_levels/connect
-            - inventory_levels/update
-            - inventory_levels/disconnect
-            - fulfillments/create
-            - fulfillments/update
-            - fulfillment_events/create
-            - fulfillment_events/delete
-            - refunds/create
-            - shop/update
-            - app/uninstalled
-            - app/scopes_update
-            - themes/create
-            - themes/publish
-            - themes/update
-            - themes/delete
+          description: The event that triggers the webhook
         format:
           type: string
-          description: The data format for the webhook payload
+          description: The data format
           enum:
-            - json
-            - xml
+          - json
+          - xml
         fields:
           type: array
-          description: Optional list of top-level fields to include
+          description: Optional list of fields to include in the payload
           items:
             type: string
-        metafield_namespaces:
-          type: array
-          description: Optional metafield namespaces to include
-          items:
-            type: string
-        api_version:
-          type: string
-          description: The API version for the webhook payload
         created_at:
           type: string
           format: date-time
         updated_at:
           type: string
           format: date-time
+        api_version:
+          type: string
+          description: The API version for the webhook payload
         admin_graphql_api_id:
           type: string
-    WebhookSubscriptionInput:
-      type: object
-      description: Input for creating or updating a webhook subscription
-      properties:
-        topic:
-          type: string
-          description: The event topic to subscribe to
-        address:
-          type: string
-          format: uri
-          description: The callback URL
-        format:
-          type: string
-          description: Payload format
-          enum:
-            - json
-            - xml
-        fields:
-          type: array
-          description: Fields to include in the payload
-          items:
-            type: string
-        metafield_namespaces:
-          type: array
-          description: Metafield namespaces to include
-          items:
-            type: string
-    WebhookHeaders:
-      type: object
-      description: >-
-        Standard HTTP headers included with every webhook delivery.
-        Apps should verify the X-Shopify-Hmac-SHA256 header to
-        authenticate that the webhook was sent by Shopify.
-      properties:
-        X-Shopify-Topic:
-          type: string
-          description: The webhook topic
-        X-Shopify-Hmac-Sha256:
-          type: string
-          description: Base64-encoded HMAC-SHA256 hash for verification
-        X-Shopify-Shop-Domain:
-          type: string
-          description: The shop domain
-        X-Shopify-API-Version:
-          type: string
-          description: The API version of the payload
-        X-Shopify-Webhook-Id:
-          type: string
-          description: Unique ID for this webhook delivery
     Error:
       type: object
       description: Error response
@@ -406,9 +1416,38 @@ components:
         errors:
           description: Error details
           oneOf:
-            - type: string
-            - type: object
-              additionalProperties:
-                type: array
-                items:
-                  type: string
+          - type: string
+          - type: object
+            additionalProperties:
+              type: array
+              items:
+                type: string
+    WebhookInput:
+      type: object
+      description: Input for creating or updating a webhook
+      required:
+      - topic
+      - address
+      properties:
+        topic:
+          type: string
+          description: The event topic (e.g. orders/create)
+        address:
+          type: string
+          format: uri
+          description: The callback URL
+        format:
+          type: string
+          enum:
+          - json
+          - xml
+        fields:
+          type: array
+          items:
+            type: string
+  securitySchemes:
+    AccessToken:
+      type: apiKey
+      name: X-Shopify-Access-Token
+      in: header
+      description: Access token obtained via OAuth

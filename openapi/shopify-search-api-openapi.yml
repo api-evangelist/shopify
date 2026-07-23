@@ -1,0 +1,902 @@
+openapi: 3.1.0
+info:
+  title: Shopify Admin REST About Search API
+  description: The Shopify Admin REST API lets you build apps and integrations that extend and enhance the Shopify admin. Access products, customers, orders, inventory, fulfillment, and more. Endpoints are organized by resource type and versioned by release date.
+  version: 2025-01
+  contact:
+    name: Shopify
+    url: https://shopify.dev/docs/api/admin-rest
+    email: api@shopify.com
+  license:
+    name: Shopify API Terms
+    url: https://www.shopify.com/legal/api-terms
+  x-date: '2026-03-04'
+servers:
+- url: https://{store}.myshopify.com/admin/api/2025-01
+  description: Shopify Admin REST API
+  variables:
+    store:
+      default: my-store
+      description: The Shopify store subdomain
+security:
+- AccessToken: []
+tags:
+- name: Search
+paths:
+  /admin/api/2020-01/customer_saved_searches.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  customer_saved_search:
+                    name: Spent more than $50
+                    query: total_spent:>50
+                summary: Create a customer saved search
+              example2:
+                value:
+                  customer_saved_search:
+                    name: Spent more than $50 and after 2013
+                    query: total_spent:>50 order_date:>=2013-01-01
+                summary: Create a customer saved search with multiple terms
+              example3:
+                value:
+                  customer_saved_search:
+                    body: foobar
+                summary: Creating a customer saved search without a name fails and returns an error
+      summary: Shopify Creates A Customer Saved Search
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customersavedsearch#create-2020-01
+      parameters: []
+      tags:
+      - Search
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_create_customer_saved_searches
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-01/customer_saved_searches/{customer_saved_search_id}.json:
+    get:
+      summary: Shopify Retrieves A Single Customer Saved Search
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customersavedsearch#show-2020-01
+      parameters:
+      - in: path
+        name: customer_saved_search_id
+        required: true
+        schema:
+          type: string
+        description: customer_saved_search_id
+      - in: query
+        name: fields
+        description: Show only certain fields, specified by a comma-separated list of field names.
+        schema: {}
+        required: false
+      tags:
+      - Search
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_get_customer_saved_searches_param_customer_saved_search_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  customer_saved_search:
+                    id: 789629109
+                    name: This Name Has Been Changed
+                summary: Update an existing customer saved search
+      summary: Shopify Updates A Customer Saved Search
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customersavedsearch#update-2020-01
+      parameters:
+      - in: path
+        name: customer_saved_search_id
+        required: true
+        schema:
+          type: string
+        description: customer_saved_search_id
+      tags:
+      - Search
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_update_customer_saved_searches_param_customer_saved_search_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    delete:
+      summary: Shopify Deletes A Customer Saved Search
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customersavedsearch#destroy-2020-01
+      parameters:
+      - in: path
+        name: customer_saved_search_id
+        required: true
+        schema:
+          type: string
+        description: customer_saved_search_id
+      tags:
+      - Search
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_delete_customer_saved_searches_param_customer_saved_search_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-01/customer_saved_searches/{customer_saved_search_id}/customers.json:
+    get:
+      summary: Shopify Retrieves All Customers Returned By A Customer Saved Search
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customersavedsearch#other-2020-01
+      parameters:
+      - in: path
+        name: customer_saved_search_id
+        required: true
+        schema:
+          type: string
+        description: customer_saved_search_id
+      - in: query
+        name: order
+        description: "Set the field and direction by which to order results.\n                  (default: last_order_date DESC)"
+        schema: {}
+        required: false
+      - in: query
+        name: limit
+        description: "The maximum number of results to show.\n                  (default: 50, maximum: 250)"
+        schema: {}
+        required: false
+      - in: query
+        name: fields
+        description: Show only certain fields, specified by a comma-separated list of field names.
+        schema: {}
+        required: false
+      tags:
+      - Search
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_get_customer_saved_searches_param_customer_saved_search_id_customers
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/customer_saved_searches.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  customer_saved_search:
+                    name: Spent more than $50
+                    query: total_spent:>50
+                summary: Create a customer saved search
+              example2:
+                value:
+                  customer_saved_search:
+                    name: Spent more than $50 and after 2013
+                    query: total_spent:>50 order_date:>=2013-01-01
+                summary: Create a customer saved search with multiple terms
+              example3:
+                value:
+                  customer_saved_search:
+                    body: foobar
+                summary: Creating a customer saved search without a name fails and returns an error
+      summary: Shopify Creates A Customer Saved Search
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customersavedsearch#create-2020-04
+      parameters: []
+      tags:
+      - Search
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_create_customer_saved_searches
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/customer_saved_searches/{customer_saved_search_id}.json:
+    get:
+      summary: Shopify Retrieves A Single Customer Saved Search
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customersavedsearch#show-2020-04
+      parameters:
+      - in: path
+        name: customer_saved_search_id
+        required: true
+        schema:
+          type: string
+        description: customer_saved_search_id
+      - in: query
+        name: fields
+        description: Show only certain fields, specified by a comma-separated list of field names.
+        schema: {}
+        required: false
+      tags:
+      - Search
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_get_customer_saved_searches_param_customer_saved_search_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  customer_saved_search:
+                    id: 789629109
+                    name: This Name Has Been Changed
+                summary: Update an existing customer saved search
+      summary: Shopify Updates A Customer Saved Search
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customersavedsearch#update-2020-04
+      parameters:
+      - in: path
+        name: customer_saved_search_id
+        required: true
+        schema:
+          type: string
+        description: customer_saved_search_id
+      tags:
+      - Search
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_update_customer_saved_searches_param_customer_saved_search_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    delete:
+      summary: Shopify Deletes A Customer Saved Search
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customersavedsearch#destroy-2020-04
+      parameters:
+      - in: path
+        name: customer_saved_search_id
+        required: true
+        schema:
+          type: string
+        description: customer_saved_search_id
+      tags:
+      - Search
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_delete_customer_saved_searches_param_customer_saved_search_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/customer_saved_searches/{customer_saved_search_id}/customers.json:
+    get:
+      summary: Shopify Retrieves All Customers Returned By A Customer Saved Search
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customersavedsearch#other-2020-04
+      parameters:
+      - in: path
+        name: customer_saved_search_id
+        required: true
+        schema:
+          type: string
+        description: customer_saved_search_id
+      - in: query
+        name: order
+        description: "Set the field and direction by which to order results.\n                  (default: last_order_date DESC)"
+        schema: {}
+        required: false
+      - in: query
+        name: limit
+        description: "The maximum number of results to show.\n                  (default: 50, maximum: 250)"
+        schema: {}
+        required: false
+      - in: query
+        name: fields
+        description: Show only certain fields, specified by a comma-separated list of field names.
+        schema: {}
+        required: false
+      tags:
+      - Search
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_get_customer_saved_searches_param_customer_saved_search_id_customers
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/customer_saved_searches.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  customer_saved_search:
+                    name: Spent more than $50
+                    query: total_spent:>50
+                summary: Create a customer saved search
+              example2:
+                value:
+                  customer_saved_search:
+                    name: Spent more than $50 and after 2013
+                    query: total_spent:>50 order_date:>=2013-01-01
+                summary: Create a customer saved search with multiple terms
+              example3:
+                value:
+                  customer_saved_search:
+                    body: foobar
+                summary: Creating a customer saved search without a name fails and returns an error
+      summary: Shopify Creates A Customer Saved Search
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customersavedsearch#create-2020-07
+      parameters: []
+      tags:
+      - Search
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_create_customer_saved_searches
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/customer_saved_searches/{customer_saved_search_id}.json:
+    get:
+      summary: Shopify Retrieves A Single Customer Saved Search
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customersavedsearch#show-2020-07
+      parameters:
+      - in: path
+        name: customer_saved_search_id
+        required: true
+        schema:
+          type: string
+        description: customer_saved_search_id
+      - in: query
+        name: fields
+        description: Show only certain fields, specified by a comma-separated list of field names.
+        schema: {}
+        required: false
+      tags:
+      - Search
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_get_customer_saved_searches_param_customer_saved_search_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  customer_saved_search:
+                    id: 789629109
+                    name: This Name Has Been Changed
+                summary: Update an existing customer saved search
+      summary: Shopify Updates A Customer Saved Search
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customersavedsearch#update-2020-07
+      parameters:
+      - in: path
+        name: customer_saved_search_id
+        required: true
+        schema:
+          type: string
+        description: customer_saved_search_id
+      tags:
+      - Search
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_update_customer_saved_searches_param_customer_saved_search_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    delete:
+      summary: Shopify Deletes A Customer Saved Search
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customersavedsearch#destroy-2020-07
+      parameters:
+      - in: path
+        name: customer_saved_search_id
+        required: true
+        schema:
+          type: string
+        description: customer_saved_search_id
+      tags:
+      - Search
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_delete_customer_saved_searches_param_customer_saved_search_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/customer_saved_searches/{customer_saved_search_id}/customers.json:
+    get:
+      summary: Shopify Retrieves All Customers Returned By A Customer Saved Search
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customersavedsearch#other-2020-07
+      parameters:
+      - in: path
+        name: customer_saved_search_id
+        required: true
+        schema:
+          type: string
+        description: customer_saved_search_id
+      - in: query
+        name: order
+        description: "Set the field and direction by which to order results.\n                  (default: last_order_date DESC)"
+        schema: {}
+        required: false
+      - in: query
+        name: limit
+        description: "The maximum number of results to show.\n                  (default: 50, maximum: 250)"
+        schema: {}
+        required: false
+      - in: query
+        name: fields
+        description: Show only certain fields, specified by a comma-separated list of field names.
+        schema: {}
+        required: false
+      tags:
+      - Search
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_get_customer_saved_searches_param_customer_saved_search_id_customers
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/customer_saved_searches.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  customer_saved_search:
+                    name: Spent more than $50
+                    query: total_spent:>50
+                summary: Create a customer saved search
+              example2:
+                value:
+                  customer_saved_search:
+                    name: Spent more than $50 and after 2013
+                    query: total_spent:>50 order_date:>=2013-01-01
+                summary: Create a customer saved search with multiple terms
+              example3:
+                value:
+                  customer_saved_search:
+                    body: foobar
+                summary: Creating a customer saved search without a name fails and returns an error
+      summary: Shopify Creates A Customer Saved Search
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customersavedsearch#create-2020-10
+      parameters: []
+      tags:
+      - Search
+      responses:
+        '200':
+          description: ''
+      operationId: create_customer_saved_searches
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/customer_saved_searches/{customer_saved_search_id}.json:
+    get:
+      summary: Shopify Retrieves A Single Customer Saved Search
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customersavedsearch#show-2020-10
+      parameters:
+      - in: path
+        name: customer_saved_search_id
+        required: true
+        schema:
+          type: string
+        description: customer_saved_search_id
+      - in: query
+        name: fields
+        description: Show only certain fields, specified by a comma-separated list of field names.
+        schema: {}
+        required: false
+      tags:
+      - Search
+      responses:
+        '200':
+          description: ''
+      operationId: get_customer_saved_searches_param_customer_saved_search_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  customer_saved_search:
+                    id: 789629109
+                    name: This Name Has Been Changed
+                summary: Update an existing customer saved search
+      summary: Shopify Updates A Customer Saved Search
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customersavedsearch#update-2020-10
+      parameters:
+      - in: path
+        name: customer_saved_search_id
+        required: true
+        schema:
+          type: string
+        description: customer_saved_search_id
+      tags:
+      - Search
+      responses:
+        '200':
+          description: ''
+      operationId: update_customer_saved_searches_param_customer_saved_search_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    delete:
+      summary: Shopify Deletes A Customer Saved Search
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customersavedsearch#destroy-2020-10
+      parameters:
+      - in: path
+        name: customer_saved_search_id
+        required: true
+        schema:
+          type: string
+        description: customer_saved_search_id
+      tags:
+      - Search
+      responses:
+        '200':
+          description: ''
+      operationId: delete_customer_saved_searches_param_customer_saved_search_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/customer_saved_searches/{customer_saved_search_id}/customers.json:
+    get:
+      summary: Shopify Retrieves All Customers Returned By A Customer Saved Search
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customersavedsearch#other-2020-10
+      parameters:
+      - in: path
+        name: customer_saved_search_id
+        required: true
+        schema:
+          type: string
+        description: customer_saved_search_id
+      - in: query
+        name: order
+        description: "Set the field and direction by which to order results.\n                  (default: last_order_date DESC)"
+        schema: {}
+        required: false
+      - in: query
+        name: limit
+        description: "The maximum number of results to show.\n                  (default: 50, maximum: 250)"
+        schema: {}
+        required: false
+      - in: query
+        name: fields
+        description: Show only certain fields, specified by a comma-separated list of field names.
+        schema: {}
+        required: false
+      tags:
+      - Search
+      responses:
+        '200':
+          description: ''
+      operationId: get_customer_saved_searches_param_customer_saved_search_id_customers
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/customer_saved_searches.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  customer_saved_search:
+                    name: Spent more than $50
+                    query: total_spent:>50
+                summary: Create a customer saved search
+              example2:
+                value:
+                  customer_saved_search:
+                    name: Spent more than $50 and after 2013
+                    query: total_spent:>50 order_date:>=2013-01-01
+                summary: Create a customer saved search with multiple terms
+              example3:
+                value:
+                  customer_saved_search:
+                    body: foobar
+                summary: Creating a customer saved search without a name fails and returns an error
+      summary: Shopify Creates A Customer Saved Search
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customersavedsearch#create-2021-01
+      parameters: []
+      tags:
+      - Search
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_create_customer_saved_searches
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/customer_saved_searches/{customer_saved_search_id}.json:
+    get:
+      summary: Shopify Retrieves A Single Customer Saved Search
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customersavedsearch#show-2021-01
+      parameters:
+      - in: path
+        name: customer_saved_search_id
+        required: true
+        schema:
+          type: string
+        description: customer_saved_search_id
+      - in: query
+        name: fields
+        description: Show only certain fields, specified by a comma-separated list of field names.
+        schema: {}
+        required: false
+      tags:
+      - Search
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_get_customer_saved_searches_param_customer_saved_search_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  customer_saved_search:
+                    id: 789629109
+                    name: This Name Has Been Changed
+                summary: Update an existing customer saved search
+      summary: Shopify Updates A Customer Saved Search
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customersavedsearch#update-2021-01
+      parameters:
+      - in: path
+        name: customer_saved_search_id
+        required: true
+        schema:
+          type: string
+        description: customer_saved_search_id
+      tags:
+      - Search
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_update_customer_saved_searches_param_customer_saved_search_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    delete:
+      summary: Shopify Deletes A Customer Saved Search
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customersavedsearch#destroy-2021-01
+      parameters:
+      - in: path
+        name: customer_saved_search_id
+        required: true
+        schema:
+          type: string
+        description: customer_saved_search_id
+      tags:
+      - Search
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_delete_customer_saved_searches_param_customer_saved_search_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/customer_saved_searches/{customer_saved_search_id}/customers.json:
+    get:
+      summary: Shopify Retrieves All Customers Returned By A Customer Saved Search
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customersavedsearch#other-2021-01
+      parameters:
+      - in: path
+        name: customer_saved_search_id
+        required: true
+        schema:
+          type: string
+        description: customer_saved_search_id
+      - in: query
+        name: order
+        description: "Set the field and direction by which to order results.\n                  (default: last_order_date DESC)"
+        schema: {}
+        required: false
+      - in: query
+        name: limit
+        description: "The maximum number of results to show.\n                  (default: 50, maximum: 250)"
+        schema: {}
+        required: false
+      - in: query
+        name: fields
+        description: Show only certain fields, specified by a comma-separated list of field names.
+        schema: {}
+        required: false
+      tags:
+      - Search
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_get_customer_saved_searches_param_customer_saved_search_id_customers
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/customer_saved_searches.json:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  customer_saved_search:
+                    name: Spent more than $50
+                    query: total_spent:>50
+                summary: Create a customer saved search
+              example2:
+                value:
+                  customer_saved_search:
+                    name: Spent more than $50 and after 2013
+                    query: total_spent:>50 order_date:>=2013-01-01
+                summary: Create a customer saved search with multiple terms
+              example3:
+                value:
+                  customer_saved_search:
+                    body: foobar
+                summary: Creating a customer saved search without a name fails and returns an error
+      summary: Shopify Creates A Customer Saved Search
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customersavedsearch#create-unstable
+      parameters: []
+      tags:
+      - Search
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_create_customer_saved_searches
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/customer_saved_searches/{customer_saved_search_id}.json:
+    get:
+      summary: Shopify Retrieves A Single Customer Saved Search
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customersavedsearch#show-unstable
+      parameters:
+      - in: path
+        name: customer_saved_search_id
+        required: true
+        schema:
+          type: string
+        description: customer_saved_search_id
+      - in: query
+        name: fields
+        description: Show only certain fields, specified by a comma-separated list of field names.
+        schema: {}
+        required: false
+      tags:
+      - Search
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_get_customer_saved_searches_param_customer_saved_search_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  customer_saved_search:
+                    id: 789629109
+                    name: This Name Has Been Changed
+                summary: Update an existing customer saved search
+      summary: Shopify Updates A Customer Saved Search
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customersavedsearch#update-unstable
+      parameters:
+      - in: path
+        name: customer_saved_search_id
+        required: true
+        schema:
+          type: string
+        description: customer_saved_search_id
+      tags:
+      - Search
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_update_customer_saved_searches_param_customer_saved_search_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    delete:
+      summary: Shopify Deletes A Customer Saved Search
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customersavedsearch#destroy-unstable
+      parameters:
+      - in: path
+        name: customer_saved_search_id
+        required: true
+        schema:
+          type: string
+        description: customer_saved_search_id
+      tags:
+      - Search
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_delete_customer_saved_searches_param_customer_saved_search_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/customer_saved_searches/{customer_saved_search_id}/customers.json:
+    get:
+      summary: Shopify Retrieves All Customers Returned By A Customer Saved Search
+      description: https://shopify.dev/docs/admin-api/rest/reference/customers/customersavedsearch#other-unstable
+      parameters:
+      - in: path
+        name: customer_saved_search_id
+        required: true
+        schema:
+          type: string
+        description: customer_saved_search_id
+      - in: query
+        name: order
+        description: "Set the field and direction by which to order results.\n                  (default: last_order_date DESC)"
+        schema: {}
+        required: false
+      - in: query
+        name: limit
+        description: "The maximum number of results to show.\n                  (default: 50, maximum: 250)"
+        schema: {}
+        required: false
+      - in: query
+        name: fields
+        description: Show only certain fields, specified by a comma-separated list of field names.
+        schema: {}
+        required: false
+      tags:
+      - Search
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_get_customer_saved_searches_param_customer_saved_search_id_customers
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+components:
+  securitySchemes:
+    AccessToken:
+      type: apiKey
+      name: X-Shopify-Access-Token
+      in: header
+      description: Access token obtained via OAuth

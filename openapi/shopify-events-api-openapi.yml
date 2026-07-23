@@ -1,0 +1,1454 @@
+openapi: 3.1.0
+info:
+  title: Shopify Admin REST About Events API
+  description: The Shopify Admin REST API lets you build apps and integrations that extend and enhance the Shopify admin. Access products, customers, orders, inventory, fulfillment, and more. Endpoints are organized by resource type and versioned by release date.
+  version: 2025-01
+  contact:
+    name: Shopify
+    url: https://shopify.dev/docs/api/admin-rest
+    email: api@shopify.com
+  license:
+    name: Shopify API Terms
+    url: https://www.shopify.com/legal/api-terms
+  x-date: '2026-03-04'
+servers:
+- url: https://{store}.myshopify.com/admin/api/2025-01
+  description: Shopify Admin REST API
+  variables:
+    store:
+      default: my-store
+      description: The Shopify store subdomain
+security:
+- AccessToken: []
+tags:
+- name: Events
+paths:
+  /admin/api/2020-01/events.json:
+    get:
+      summary: Shopify Retrieves A List Of Events
+      description: https://shopify.dev/docs/admin-api/rest/reference/events/event#index-2020-01
+      parameters:
+      - in: query
+        name: limit
+        description: "The number of results to show.\n                  (default: 50, maximum: 250)"
+        schema: {}
+        required: false
+      - in: query
+        name: since_id
+        description: Show only results after the specified ID.
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_min
+        description: 'Show events created at or after this date and time. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_max
+        description: 'Show events created at or before this date and time. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: filter
+        description: Show events specified in this filter.
+        schema: {}
+        required: false
+      - in: query
+        name: verb
+        description: Show events of a certain type.
+        schema: {}
+        required: false
+      - in: query
+        name: fields
+        description: Show only certain fields, specified by a comma-separated list of field names.
+        schema: {}
+        required: false
+      tags:
+      - Events
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_get_events
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-01/events/{event_id}.json:
+    get:
+      summary: Shopify Retrieves A Single Event By Its Id
+      description: https://shopify.dev/docs/admin-api/rest/reference/events/event#show-2020-01
+      parameters:
+      - in: path
+        name: event_id
+        required: true
+        schema:
+          type: string
+        description: event_id
+      - in: query
+        name: fields
+        description: Show only certain fields, specified by a comma-separated list of field names.
+        schema: {}
+        required: false
+      tags:
+      - Events
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_get_events_param_event_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-01/events/count.json:
+    get:
+      summary: Shopify Retrieves A Count Of Events
+      description: https://shopify.dev/docs/admin-api/rest/reference/events/event#count-2020-01
+      parameters:
+      - in: query
+        name: created_at_min
+        description: 'Count only events created at or after this date and time. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_max
+        description: 'Count only events created at or before this date and time. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      tags:
+      - Events
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_get_events_count
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/events.json:
+    get:
+      summary: Shopify Retrieves A List Of Events
+      description: https://shopify.dev/docs/admin-api/rest/reference/events/event#index-2020-04
+      parameters:
+      - in: query
+        name: limit
+        description: "The number of results to show.\n                  (default: 50, maximum: 250)"
+        schema: {}
+        required: false
+      - in: query
+        name: since_id
+        description: Show only results after the specified ID.
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_min
+        description: 'Show events created at or after this date and time. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_max
+        description: 'Show events created at or before this date and time. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: filter
+        description: Show events specified in this filter.
+        schema: {}
+        required: false
+      - in: query
+        name: verb
+        description: Show events of a certain type.
+        schema: {}
+        required: false
+      - in: query
+        name: fields
+        description: Show only certain fields, specified by a comma-separated list of field names.
+        schema: {}
+        required: false
+      tags:
+      - Events
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_get_events
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/events/{event_id}.json:
+    get:
+      summary: Shopify Retrieves A Single Event By Its Id
+      description: https://shopify.dev/docs/admin-api/rest/reference/events/event#show-2020-04
+      parameters:
+      - in: path
+        name: event_id
+        required: true
+        schema:
+          type: string
+        description: event_id
+      - in: query
+        name: fields
+        description: Show only certain fields, specified by a comma-separated list of field names.
+        schema: {}
+        required: false
+      tags:
+      - Events
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_get_events_param_event_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/events/count.json:
+    get:
+      summary: Shopify Retrieves A Count Of Events
+      description: https://shopify.dev/docs/admin-api/rest/reference/events/event#count-2020-04
+      parameters:
+      - in: query
+        name: created_at_min
+        description: 'Count only events created at or after this date and time. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_max
+        description: 'Count only events created at or before this date and time. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      tags:
+      - Events
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_get_events_count
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/events.json:
+    get:
+      summary: Shopify Retrieves A List Of Events
+      description: https://shopify.dev/docs/admin-api/rest/reference/events/event#index-2020-07
+      parameters:
+      - in: query
+        name: limit
+        description: "The number of results to show.\n                  (default: 50, maximum: 250)"
+        schema: {}
+        required: false
+      - in: query
+        name: since_id
+        description: Show only results after the specified ID.
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_min
+        description: 'Show events created at or after this date and time. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_max
+        description: 'Show events created at or before this date and time. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: filter
+        description: Show events specified in this filter.
+        schema: {}
+        required: false
+      - in: query
+        name: verb
+        description: Show events of a certain type.
+        schema: {}
+        required: false
+      - in: query
+        name: fields
+        description: Show only certain fields, specified by a comma-separated list of field names.
+        schema: {}
+        required: false
+      tags:
+      - Events
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_get_events
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/events/{event_id}.json:
+    get:
+      summary: Shopify Retrieves A Single Event By Its Id
+      description: https://shopify.dev/docs/admin-api/rest/reference/events/event#show-2020-07
+      parameters:
+      - in: path
+        name: event_id
+        required: true
+        schema:
+          type: string
+        description: event_id
+      - in: query
+        name: fields
+        description: Show only certain fields, specified by a comma-separated list of field names.
+        schema: {}
+        required: false
+      tags:
+      - Events
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_get_events_param_event_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/events/count.json:
+    get:
+      summary: Shopify Retrieves A Count Of Events
+      description: https://shopify.dev/docs/admin-api/rest/reference/events/event#count-2020-07
+      parameters:
+      - in: query
+        name: created_at_min
+        description: 'Count only events created at or after this date and time. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_max
+        description: 'Count only events created at or before this date and time. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      tags:
+      - Events
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_get_events_count
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/events.json:
+    get:
+      summary: Shopify Retrieves A List Of Events
+      description: https://shopify.dev/docs/admin-api/rest/reference/events/event#index-2020-10
+      parameters:
+      - in: query
+        name: limit
+        description: "The number of results to show.\n                  (default: 50, maximum: 250)"
+        schema: {}
+        required: false
+      - in: query
+        name: since_id
+        description: Show only results after the specified ID.
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_min
+        description: 'Show events created at or after this date and time. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_max
+        description: 'Show events created at or before this date and time. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: filter
+        description: Show events specified in this filter.
+        schema: {}
+        required: false
+      - in: query
+        name: verb
+        description: Show events of a certain type.
+        schema: {}
+        required: false
+      - in: query
+        name: fields
+        description: Show only certain fields, specified by a comma-separated list of field names.
+        schema: {}
+        required: false
+      tags:
+      - Events
+      responses:
+        '200':
+          description: ''
+      operationId: get_events
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/events/{event_id}.json:
+    get:
+      summary: Shopify Retrieves A Single Event By Its Id
+      description: https://shopify.dev/docs/admin-api/rest/reference/events/event#show-2020-10
+      parameters:
+      - in: path
+        name: event_id
+        required: true
+        schema:
+          type: string
+        description: event_id
+      - in: query
+        name: fields
+        description: Show only certain fields, specified by a comma-separated list of field names.
+        schema: {}
+        required: false
+      tags:
+      - Events
+      responses:
+        '200':
+          description: ''
+      operationId: get_events_param_event_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/events/count.json:
+    get:
+      summary: Shopify Retrieves A Count Of Events
+      description: https://shopify.dev/docs/admin-api/rest/reference/events/event#count-2020-10
+      parameters:
+      - in: query
+        name: created_at_min
+        description: 'Count only events created at or after this date and time. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_max
+        description: 'Count only events created at or before this date and time. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      tags:
+      - Events
+      responses:
+        '200':
+          description: ''
+      operationId: get_events_count
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/events.json:
+    get:
+      summary: Shopify Retrieves A List Of Events
+      description: https://shopify.dev/docs/admin-api/rest/reference/events/event#index-2021-01
+      parameters:
+      - in: query
+        name: limit
+        description: "The number of results to show.\n                  (default: 50, maximum: 250)"
+        schema: {}
+        required: false
+      - in: query
+        name: since_id
+        description: Show only results after the specified ID.
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_min
+        description: 'Show events created at or after this date and time. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_max
+        description: 'Show events created at or before this date and time. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: filter
+        description: Show events specified in this filter.
+        schema: {}
+        required: false
+      - in: query
+        name: verb
+        description: Show events of a certain type.
+        schema: {}
+        required: false
+      - in: query
+        name: fields
+        description: Show only certain fields, specified by a comma-separated list of field names.
+        schema: {}
+        required: false
+      tags:
+      - Events
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_get_events
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/events/{event_id}.json:
+    get:
+      summary: Shopify Retrieves A Single Event By Its Id
+      description: https://shopify.dev/docs/admin-api/rest/reference/events/event#show-2021-01
+      parameters:
+      - in: path
+        name: event_id
+        required: true
+        schema:
+          type: string
+        description: event_id
+      - in: query
+        name: fields
+        description: Show only certain fields, specified by a comma-separated list of field names.
+        schema: {}
+        required: false
+      tags:
+      - Events
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_get_events_param_event_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/events/count.json:
+    get:
+      summary: Shopify Retrieves A Count Of Events
+      description: https://shopify.dev/docs/admin-api/rest/reference/events/event#count-2021-01
+      parameters:
+      - in: query
+        name: created_at_min
+        description: 'Count only events created at or after this date and time. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_max
+        description: 'Count only events created at or before this date and time. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      tags:
+      - Events
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_get_events_count
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/events.json:
+    get:
+      summary: Shopify Retrieves A List Of Events
+      description: https://shopify.dev/docs/admin-api/rest/reference/events/event#index-unstable
+      parameters:
+      - in: query
+        name: limit
+        description: "The number of results to show.\n                  (default: 50, maximum: 250)"
+        schema: {}
+        required: false
+      - in: query
+        name: since_id
+        description: Show only results after the specified ID.
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_min
+        description: 'Show events created at or after this date and time. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_max
+        description: 'Show events created at or before this date and time. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: filter
+        description: Show events specified in this filter.
+        schema: {}
+        required: false
+      - in: query
+        name: verb
+        description: Show events of a certain type.
+        schema: {}
+        required: false
+      - in: query
+        name: fields
+        description: Show only certain fields, specified by a comma-separated list of field names.
+        schema: {}
+        required: false
+      tags:
+      - Events
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_get_events
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/events/{event_id}.json:
+    get:
+      summary: Shopify Retrieves A Single Event By Its Id
+      description: https://shopify.dev/docs/admin-api/rest/reference/events/event#show-unstable
+      parameters:
+      - in: path
+        name: event_id
+        required: true
+        schema:
+          type: string
+        description: event_id
+      - in: query
+        name: fields
+        description: Show only certain fields, specified by a comma-separated list of field names.
+        schema: {}
+        required: false
+      tags:
+      - Events
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_get_events_param_event_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/events/count.json:
+    get:
+      summary: Shopify Retrieves A Count Of Events
+      description: https://shopify.dev/docs/admin-api/rest/reference/events/event#count-unstable
+      parameters:
+      - in: query
+        name: created_at_min
+        description: 'Count only events created at or after this date and time. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      - in: query
+        name: created_at_max
+        description: 'Count only events created at or before this date and time. (format: 2014-04-25T16:15:47-04:00)'
+        schema: {}
+        required: false
+      tags:
+      - Events
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_get_events_count
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-01/orders/{order_id}/fulfillments/{fulfillment_id}/events.json:
+    get:
+      summary: Shopify Retrieves A List Of Fulfillment Events For A Specific Fulfillment
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentevent#index-2020-01
+      parameters:
+      - in: path
+        name: order_id
+        required: true
+        schema:
+          type: string
+        description: order_id
+      - in: path
+        name: fulfillment_id
+        required: true
+        schema:
+          type: string
+        description: fulfillment_id
+      - in: query
+        name: fulfillment_id
+        description: The ID of the fulfillment that's associated with the fulfillment event.
+        schema: {}
+        required: false
+      - in: query
+        name: order_id
+        description: The ID of the order that's associated with the fulfillment event.
+        schema: {}
+        required: false
+      tags:
+      - Events
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_get_orders_param_order_id_fulfillments_param_fulfillment_id_events
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  event:
+                    status: in_transit
+                summary: Create a fulfillment event
+      summary: Shopify Creates A Fulfillment Event
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentevent#create-2020-01
+      parameters:
+      - in: path
+        name: order_id
+        required: true
+        schema:
+          type: string
+        description: order_id
+      - in: path
+        name: fulfillment_id
+        required: true
+        schema:
+          type: string
+        description: fulfillment_id
+      tags:
+      - Events
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_create_orders_param_order_id_fulfillments_param_fulfillment_id_events
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-01/orders/{order_id}/fulfillments/{fulfillment_id}/events/{event_id}.json:
+    get:
+      summary: Shopify Retrieves A Specific Fulfillment Event
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentevent#show-2020-01
+      parameters:
+      - in: path
+        name: order_id
+        required: true
+        schema:
+          type: string
+        description: order_id
+      - in: path
+        name: fulfillment_id
+        required: true
+        schema:
+          type: string
+        description: fulfillment_id
+      - in: path
+        name: event_id
+        required: true
+        schema:
+          type: string
+        description: event_id
+      - in: query
+        name: event_id
+        description: The ID of the fulfillment event.
+        schema: {}
+        required: false
+      tags:
+      - Events
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_get_orders_param_order_id_fulfillments_param_fulfillment_id_events_param_event_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    delete:
+      summary: Shopify Deletes A Fulfillment Event
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentevent#destroy-2020-01
+      parameters:
+      - in: path
+        name: order_id
+        required: true
+        schema:
+          type: string
+        description: order_id
+      - in: path
+        name: fulfillment_id
+        required: true
+        schema:
+          type: string
+        description: fulfillment_id
+      - in: path
+        name: event_id
+        required: true
+        schema:
+          type: string
+        description: event_id
+      tags:
+      - Events
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_delete_orders_param_order_id_fulfillments_param_fulfillment_id_events_param_event_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/orders/{order_id}/fulfillments/{fulfillment_id}/events.json:
+    get:
+      summary: Shopify Retrieves A List Of Fulfillment Events For A Specific Fulfillment
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentevent#index-2020-04
+      parameters:
+      - in: path
+        name: order_id
+        required: true
+        schema:
+          type: string
+        description: order_id
+      - in: path
+        name: fulfillment_id
+        required: true
+        schema:
+          type: string
+        description: fulfillment_id
+      - in: query
+        name: fulfillment_id
+        description: The ID of the fulfillment that's associated with the fulfillment event.
+        schema: {}
+        required: false
+      - in: query
+        name: order_id
+        description: The ID of the order that's associated with the fulfillment event.
+        schema: {}
+        required: false
+      tags:
+      - Events
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_get_orders_param_order_id_fulfillments_param_fulfillment_id_events
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  event:
+                    status: in_transit
+                summary: Create a fulfillment event
+      summary: Shopify Creates A Fulfillment Event
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentevent#create-2020-04
+      parameters:
+      - in: path
+        name: order_id
+        required: true
+        schema:
+          type: string
+        description: order_id
+      - in: path
+        name: fulfillment_id
+        required: true
+        schema:
+          type: string
+        description: fulfillment_id
+      tags:
+      - Events
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_create_orders_param_order_id_fulfillments_param_fulfillment_id_events
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/orders/{order_id}/fulfillments/{fulfillment_id}/events/{event_id}.json:
+    get:
+      summary: Shopify Retrieves A Specific Fulfillment Event
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentevent#show-2020-04
+      parameters:
+      - in: path
+        name: order_id
+        required: true
+        schema:
+          type: string
+        description: order_id
+      - in: path
+        name: fulfillment_id
+        required: true
+        schema:
+          type: string
+        description: fulfillment_id
+      - in: path
+        name: event_id
+        required: true
+        schema:
+          type: string
+        description: event_id
+      - in: query
+        name: event_id
+        description: The ID of the fulfillment event.
+        schema: {}
+        required: false
+      tags:
+      - Events
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_get_orders_param_order_id_fulfillments_param_fulfillment_id_events_param_event_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    delete:
+      summary: Shopify Deletes A Fulfillment Event
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentevent#destroy-2020-04
+      parameters:
+      - in: path
+        name: order_id
+        required: true
+        schema:
+          type: string
+        description: order_id
+      - in: path
+        name: fulfillment_id
+        required: true
+        schema:
+          type: string
+        description: fulfillment_id
+      - in: path
+        name: event_id
+        required: true
+        schema:
+          type: string
+        description: event_id
+      tags:
+      - Events
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_delete_orders_param_order_id_fulfillments_param_fulfillment_id_events_param_event_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/orders/{order_id}/fulfillments/{fulfillment_id}/events.json:
+    get:
+      summary: Shopify Retrieves A List Of Fulfillment Events For A Specific Fulfillment
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentevent#index-2020-07
+      parameters:
+      - in: path
+        name: order_id
+        required: true
+        schema:
+          type: string
+        description: order_id
+      - in: path
+        name: fulfillment_id
+        required: true
+        schema:
+          type: string
+        description: fulfillment_id
+      - in: query
+        name: fulfillment_id
+        description: The ID of the fulfillment that's associated with the fulfillment event.
+        schema: {}
+        required: false
+      - in: query
+        name: order_id
+        description: The ID of the order that's associated with the fulfillment event.
+        schema: {}
+        required: false
+      tags:
+      - Events
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_get_orders_param_order_id_fulfillments_param_fulfillment_id_events
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  event:
+                    status: in_transit
+                summary: Create a fulfillment event
+      summary: Shopify Creates A Fulfillment Event
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentevent#create-2020-07
+      parameters:
+      - in: path
+        name: order_id
+        required: true
+        schema:
+          type: string
+        description: order_id
+      - in: path
+        name: fulfillment_id
+        required: true
+        schema:
+          type: string
+        description: fulfillment_id
+      tags:
+      - Events
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_create_orders_param_order_id_fulfillments_param_fulfillment_id_events
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/orders/{order_id}/fulfillments/{fulfillment_id}/events/{event_id}.json:
+    get:
+      summary: Shopify Retrieves A Specific Fulfillment Event
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentevent#show-2020-07
+      parameters:
+      - in: path
+        name: order_id
+        required: true
+        schema:
+          type: string
+        description: order_id
+      - in: path
+        name: fulfillment_id
+        required: true
+        schema:
+          type: string
+        description: fulfillment_id
+      - in: path
+        name: event_id
+        required: true
+        schema:
+          type: string
+        description: event_id
+      - in: query
+        name: event_id
+        description: The ID of the fulfillment event.
+        schema: {}
+        required: false
+      tags:
+      - Events
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_get_orders_param_order_id_fulfillments_param_fulfillment_id_events_param_event_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    delete:
+      summary: Shopify Deletes A Fulfillment Event
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentevent#destroy-2020-07
+      parameters:
+      - in: path
+        name: order_id
+        required: true
+        schema:
+          type: string
+        description: order_id
+      - in: path
+        name: fulfillment_id
+        required: true
+        schema:
+          type: string
+        description: fulfillment_id
+      - in: path
+        name: event_id
+        required: true
+        schema:
+          type: string
+        description: event_id
+      tags:
+      - Events
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_delete_orders_param_order_id_fulfillments_param_fulfillment_id_events_param_event_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/orders/{order_id}/fulfillments/{fulfillment_id}/events.json:
+    get:
+      summary: Shopify Retrieves A List Of Fulfillment Events For A Specific Fulfillment
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentevent#index-2020-10
+      parameters:
+      - in: path
+        name: order_id
+        required: true
+        schema:
+          type: string
+        description: order_id
+      - in: path
+        name: fulfillment_id
+        required: true
+        schema:
+          type: string
+        description: fulfillment_id
+      - in: query
+        name: fulfillment_id
+        description: The ID of the fulfillment that's associated with the fulfillment event.
+        schema: {}
+        required: false
+      - in: query
+        name: order_id
+        description: The ID of the order that's associated with the fulfillment event.
+        schema: {}
+        required: false
+      tags:
+      - Events
+      responses:
+        '200':
+          description: ''
+      operationId: get_orders_param_order_id_fulfillments_param_fulfillment_id_events
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  event:
+                    status: in_transit
+                summary: Create a fulfillment event
+      summary: Shopify Creates A Fulfillment Event
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentevent#create-2020-10
+      parameters:
+      - in: path
+        name: order_id
+        required: true
+        schema:
+          type: string
+        description: order_id
+      - in: path
+        name: fulfillment_id
+        required: true
+        schema:
+          type: string
+        description: fulfillment_id
+      tags:
+      - Events
+      responses:
+        '200':
+          description: ''
+      operationId: create_orders_param_order_id_fulfillments_param_fulfillment_id_events
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/orders/{order_id}/fulfillments/{fulfillment_id}/events/{event_id}.json:
+    get:
+      summary: Shopify Retrieves A Specific Fulfillment Event
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentevent#show-2020-10
+      parameters:
+      - in: path
+        name: order_id
+        required: true
+        schema:
+          type: string
+        description: order_id
+      - in: path
+        name: fulfillment_id
+        required: true
+        schema:
+          type: string
+        description: fulfillment_id
+      - in: path
+        name: event_id
+        required: true
+        schema:
+          type: string
+        description: event_id
+      - in: query
+        name: event_id
+        description: The ID of the fulfillment event.
+        schema: {}
+        required: false
+      tags:
+      - Events
+      responses:
+        '200':
+          description: ''
+      operationId: get_orders_param_order_id_fulfillments_param_fulfillment_id_events_param_event_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    delete:
+      summary: Shopify Deletes A Fulfillment Event
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentevent#destroy-2020-10
+      parameters:
+      - in: path
+        name: order_id
+        required: true
+        schema:
+          type: string
+        description: order_id
+      - in: path
+        name: fulfillment_id
+        required: true
+        schema:
+          type: string
+        description: fulfillment_id
+      - in: path
+        name: event_id
+        required: true
+        schema:
+          type: string
+        description: event_id
+      tags:
+      - Events
+      responses:
+        '200':
+          description: ''
+      operationId: delete_orders_param_order_id_fulfillments_param_fulfillment_id_events_param_event_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/orders/{order_id}/fulfillments/{fulfillment_id}/events.json:
+    get:
+      summary: Shopify Retrieves A List Of Fulfillment Events For A Specific Fulfillment
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentevent#index-2021-01
+      parameters:
+      - in: path
+        name: order_id
+        required: true
+        schema:
+          type: string
+        description: order_id
+      - in: path
+        name: fulfillment_id
+        required: true
+        schema:
+          type: string
+        description: fulfillment_id
+      - in: query
+        name: fulfillment_id
+        description: The ID of the fulfillment that's associated with the fulfillment event.
+        schema: {}
+        required: false
+      - in: query
+        name: order_id
+        description: The ID of the order that's associated with the fulfillment event.
+        schema: {}
+        required: false
+      tags:
+      - Events
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_get_orders_param_order_id_fulfillments_param_fulfillment_id_events
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  event:
+                    status: in_transit
+                summary: Create a fulfillment event
+      summary: Shopify Creates A Fulfillment Event
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentevent#create-2021-01
+      parameters:
+      - in: path
+        name: order_id
+        required: true
+        schema:
+          type: string
+        description: order_id
+      - in: path
+        name: fulfillment_id
+        required: true
+        schema:
+          type: string
+        description: fulfillment_id
+      tags:
+      - Events
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_create_orders_param_order_id_fulfillments_param_fulfillment_id_events
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/orders/{order_id}/fulfillments/{fulfillment_id}/events/{event_id}.json:
+    get:
+      summary: Shopify Retrieves A Specific Fulfillment Event
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentevent#show-2021-01
+      parameters:
+      - in: path
+        name: order_id
+        required: true
+        schema:
+          type: string
+        description: order_id
+      - in: path
+        name: fulfillment_id
+        required: true
+        schema:
+          type: string
+        description: fulfillment_id
+      - in: path
+        name: event_id
+        required: true
+        schema:
+          type: string
+        description: event_id
+      - in: query
+        name: event_id
+        description: The ID of the fulfillment event.
+        schema: {}
+        required: false
+      tags:
+      - Events
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_get_orders_param_order_id_fulfillments_param_fulfillment_id_events_param_event_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    delete:
+      summary: Shopify Deletes A Fulfillment Event
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentevent#destroy-2021-01
+      parameters:
+      - in: path
+        name: order_id
+        required: true
+        schema:
+          type: string
+        description: order_id
+      - in: path
+        name: fulfillment_id
+        required: true
+        schema:
+          type: string
+        description: fulfillment_id
+      - in: path
+        name: event_id
+        required: true
+        schema:
+          type: string
+        description: event_id
+      tags:
+      - Events
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_delete_orders_param_order_id_fulfillments_param_fulfillment_id_events_param_event_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/orders/{order_id}/fulfillments/{fulfillment_id}/events.json:
+    get:
+      summary: Shopify Retrieves A List Of Fulfillment Events For A Specific Fulfillment
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentevent#index-unstable
+      parameters:
+      - in: path
+        name: order_id
+        required: true
+        schema:
+          type: string
+        description: order_id
+      - in: path
+        name: fulfillment_id
+        required: true
+        schema:
+          type: string
+        description: fulfillment_id
+      - in: query
+        name: fulfillment_id
+        description: The ID of the fulfillment that's associated with the fulfillment event.
+        schema: {}
+        required: false
+      - in: query
+        name: order_id
+        description: The ID of the order that's associated with the fulfillment event.
+        schema: {}
+        required: false
+      tags:
+      - Events
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_get_orders_param_order_id_fulfillments_param_fulfillment_id_events
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value:
+                  event:
+                    status: in_transit
+                summary: Create a fulfillment event
+      summary: Shopify Creates A Fulfillment Event
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentevent#create-unstable
+      parameters:
+      - in: path
+        name: order_id
+        required: true
+        schema:
+          type: string
+        description: order_id
+      - in: path
+        name: fulfillment_id
+        required: true
+        schema:
+          type: string
+        description: fulfillment_id
+      tags:
+      - Events
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_create_orders_param_order_id_fulfillments_param_fulfillment_id_events
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/orders/{order_id}/fulfillments/{fulfillment_id}/events/{event_id}.json:
+    get:
+      summary: Shopify Retrieves A Specific Fulfillment Event
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentevent#show-unstable
+      parameters:
+      - in: path
+        name: order_id
+        required: true
+        schema:
+          type: string
+        description: order_id
+      - in: path
+        name: fulfillment_id
+        required: true
+        schema:
+          type: string
+        description: fulfillment_id
+      - in: path
+        name: event_id
+        required: true
+        schema:
+          type: string
+        description: event_id
+      - in: query
+        name: event_id
+        description: The ID of the fulfillment event.
+        schema: {}
+        required: false
+      tags:
+      - Events
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_get_orders_param_order_id_fulfillments_param_fulfillment_id_events_param_event_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+    delete:
+      summary: Shopify Deletes A Fulfillment Event
+      description: https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentevent#destroy-unstable
+      parameters:
+      - in: path
+        name: order_id
+        required: true
+        schema:
+          type: string
+        description: order_id
+      - in: path
+        name: fulfillment_id
+        required: true
+        schema:
+          type: string
+        description: fulfillment_id
+      - in: path
+        name: event_id
+        required: true
+        schema:
+          type: string
+        description: event_id
+      tags:
+      - Events
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_delete_orders_param_order_id_fulfillments_param_fulfillment_id_events_param_event_id
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+components:
+  securitySchemes:
+    AccessToken:
+      type: apiKey
+      name: X-Shopify-Access-Token
+      in: header
+      description: Access token obtained via OAuth

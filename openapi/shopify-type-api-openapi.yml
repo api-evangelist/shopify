@@ -1,0 +1,314 @@
+openapi: 3.1.0
+info:
+  title: Shopify Admin REST About Type API
+  description: The Shopify Admin REST API lets you build apps and integrations that extend and enhance the Shopify admin. Access products, customers, orders, inventory, fulfillment, and more. Endpoints are organized by resource type and versioned by release date.
+  version: 2025-01
+  contact:
+    name: Shopify
+    url: https://shopify.dev/docs/api/admin-rest
+    email: api@shopify.com
+  license:
+    name: Shopify API Terms
+    url: https://www.shopify.com/legal/api-terms
+  x-date: '2026-03-04'
+servers:
+- url: https://{store}.myshopify.com/admin/api/2025-01
+  description: Shopify Admin REST API
+  variables:
+    store:
+      default: my-store
+      description: The Shopify store subdomain
+security:
+- AccessToken: []
+tags:
+- name: Type
+paths:
+  /admin/api/2020-01/smart_collections/{smart_collection_id}/order.json:
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value: {}
+                summary: Update manually-sorted products in the smart collection
+              example2:
+                value: {}
+                summary: Update the type of ordering applied to the smart collection
+      summary: Shopify Updates The Ordering Type Of Products In A Smart Collection
+      description: https://shopify.dev/docs/admin-api/rest/reference/products/smartcollection#order-2020-01
+      parameters:
+      - in: path
+        name: smart_collection_id
+        required: true
+        schema:
+          type: string
+        description: smart_collection_id
+      - in: query
+        name: products
+        description: An array of product IDs, in the order that you want them to appear at the top of the collection. When products is specified but empty, any previously sorted products are cleared.
+        schema: {}
+        required: false
+      - in: query
+        name: sort_order
+        description: "The type of sorting to apply. Valid values are listed in the Properties section above.\n                  (default: (current value))"
+        schema: {}
+        required: false
+      - in: query
+        name: products[]
+        schema:
+          type: integer
+        description: products[]
+        required: false
+      tags:
+      - Type
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202001_update_smart_collections_param_smart_collection_id_order
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-04/smart_collections/{smart_collection_id}/order.json:
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value: {}
+                summary: Update manually-sorted products in the smart collection
+              example2:
+                value: {}
+                summary: Update the type of ordering applied to the smart collection
+      summary: Shopify Updates The Ordering Type Of Products In A Smart Collection
+      description: https://shopify.dev/docs/admin-api/rest/reference/products/smartcollection#order-2020-04
+      parameters:
+      - in: path
+        name: smart_collection_id
+        required: true
+        schema:
+          type: string
+        description: smart_collection_id
+      - in: query
+        name: products
+        description: An array of product IDs, in the order that you want them to appear at the top of the collection. When products is specified but empty, any previously sorted products are cleared.
+        schema: {}
+        required: false
+      - in: query
+        name: sort_order
+        description: "The type of sorting to apply. Valid values are listed in the Properties section above.\n                  (default: (current value))"
+        schema: {}
+        required: false
+      - in: query
+        name: products[]
+        schema:
+          type: integer
+        description: products[]
+        required: false
+      tags:
+      - Type
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202004_update_smart_collections_param_smart_collection_id_order
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-07/smart_collections/{smart_collection_id}/order.json:
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value: {}
+                summary: Update manually-sorted products in the smart collection
+              example2:
+                value: {}
+                summary: Update the type of ordering applied to the smart collection
+      summary: Shopify Updates The Ordering Type Of Products In A Smart Collection
+      description: https://shopify.dev/docs/admin-api/rest/reference/products/smartcollection#order-2020-07
+      parameters:
+      - in: path
+        name: smart_collection_id
+        required: true
+        schema:
+          type: string
+        description: smart_collection_id
+      - in: query
+        name: products
+        description: An array of product IDs, in the order that you want them to appear at the top of the collection. When products is specified but empty, any previously sorted products are cleared.
+        schema: {}
+        required: false
+      - in: query
+        name: sort_order
+        description: "The type of sorting to apply. Valid values are listed in the Properties section above.\n                  (default: (current value))"
+        schema: {}
+        required: false
+      - in: query
+        name: products[]
+        schema:
+          type: integer
+        description: products[]
+        required: false
+      tags:
+      - Type
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202007_update_smart_collections_param_smart_collection_id_order
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2020-10/smart_collections/{smart_collection_id}/order.json:
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value: {}
+                summary: Update manually-sorted products in the smart collection
+              example2:
+                value: {}
+                summary: Update the type of ordering applied to the smart collection
+      summary: Shopify Updates The Ordering Type Of Products In A Smart Collection
+      description: https://shopify.dev/docs/admin-api/rest/reference/products/smartcollection#order-2020-10
+      parameters:
+      - in: path
+        name: smart_collection_id
+        required: true
+        schema:
+          type: string
+        description: smart_collection_id
+      - in: query
+        name: products
+        description: An array of product IDs, in the order that you want them to appear at the top of the collection. When products is specified but empty, any previously sorted products are cleared.
+        schema: {}
+        required: false
+      - in: query
+        name: sort_order
+        description: "The type of sorting to apply. Valid values are listed in the Properties section above.\n                  (default: (current value))"
+        schema: {}
+        required: false
+      - in: query
+        name: products[]
+        schema:
+          type: integer
+        description: products[]
+        required: false
+      tags:
+      - Type
+      responses:
+        '200':
+          description: ''
+      operationId: update_smart_collections_param_smart_collection_id_order
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/2021-01/smart_collections/{smart_collection_id}/order.json:
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value: {}
+                summary: Update manually-sorted products in the smart collection
+              example2:
+                value: {}
+                summary: Update the type of ordering applied to the smart collection
+      summary: Shopify Updates The Ordering Type Of Products In A Smart Collection
+      description: https://shopify.dev/docs/admin-api/rest/reference/products/smartcollection#order-2021-01
+      parameters:
+      - in: path
+        name: smart_collection_id
+        required: true
+        schema:
+          type: string
+        description: smart_collection_id
+      - in: query
+        name: products
+        description: An array of product IDs, in the order that you want them to appear at the top of the collection. When products is specified but empty, any previously sorted products are cleared.
+        schema: {}
+        required: false
+      - in: query
+        name: sort_order
+        description: "The type of sorting to apply. Valid values are listed in the Properties section above.\n                  (default: (current value))"
+        schema: {}
+        required: false
+      - in: query
+        name: products[]
+        schema:
+          type: integer
+        description: products[]
+        required: false
+      tags:
+      - Type
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_202101_update_smart_collections_param_smart_collection_id_order
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+  /admin/api/unstable/smart_collections/{smart_collection_id}/order.json:
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            examples:
+              example1:
+                value: {}
+                summary: Update manually-sorted products in the smart collection
+              example2:
+                value: {}
+                summary: Update the type of ordering applied to the smart collection
+      summary: Shopify Updates The Ordering Type Of Products In A Smart Collection
+      description: https://shopify.dev/docs/admin-api/rest/reference/products/smartcollection#order-unstable
+      parameters:
+      - in: path
+        name: smart_collection_id
+        required: true
+        schema:
+          type: string
+        description: smart_collection_id
+      - in: query
+        name: products
+        description: An array of product IDs, in the order that you want them to appear at the top of the collection. When products is specified but empty, any previously sorted products are cleared.
+        schema: {}
+        required: false
+      - in: query
+        name: sort_order
+        description: "The type of sorting to apply. Valid values are listed in the Properties section above.\n                  (default: (current value))"
+        schema: {}
+        required: false
+      - in: query
+        name: products[]
+        schema:
+          type: integer
+        description: products[]
+        required: false
+      tags:
+      - Type
+      responses:
+        '200':
+          description: ''
+      operationId: deprecated_unstable_update_smart_collections_param_smart_collection_id_order
+      x-api-evangelist-processing:
+        PascalCaseOperationSummaries: true
+        ChooseTags: true
+components:
+  securitySchemes:
+    AccessToken:
+      type: apiKey
+      name: X-Shopify-Access-Token
+      in: header
+      description: Access token obtained via OAuth
