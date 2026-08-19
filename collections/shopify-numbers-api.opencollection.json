@@ -1,0 +1,51 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Shopify Admin REST About Numbers API",
+    "version": "2025-01"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Shopify-Access-Token",
+      "value": "{{X-Shopify-Access-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Numbers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Shopify Get Tracking Numbers For Orders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/fetch_tracking_numbers",
+            "params": [
+              {
+                "name": "order_names",
+                "value": "",
+                "type": "query",
+                "description": "The fulfillment names we require tracking numbers for (i.e. #1001.1)"
+              },
+              {
+                "name": "shop",
+                "value": "",
+                "type": "query",
+                "description": "The shop's myshopify url"
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentservice#fetch-tracking-numbers"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

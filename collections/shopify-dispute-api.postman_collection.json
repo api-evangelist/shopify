@@ -1,0 +1,159 @@
+{
+  "item": [
+    {
+      "id": "a2dcafcd-cb23-43d3-a40d-ddf96204eabe",
+      "name": "Dispute",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "44235f13-544d-4ccf-ae03-e4d103fd81de",
+          "name": "Shopify Retrieves A Single Dispute By Id",
+          "request": {
+            "name": "Shopify Retrieves A Single Dispute By Id",
+            "description": {
+              "content": "https://shopify.dev/docs/admin-api/rest/reference/shopify_payments/dispute#show-2020-01",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "admin",
+                "api",
+                "2020-01",
+                "shopify_payments",
+                "disputes",
+                "{{dispute_id}}.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Shopify store subdomain",
+                  "type": "any",
+                  "value": "{{store}}",
+                  "key": "store"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "20156a1e-60af-419c-84a3-a441f47f117f",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "api",
+                    "2020-01",
+                    "shopify_payments",
+                    "disputes",
+                    "{{dispute_id}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Shopify store subdomain",
+                      "type": "any",
+                      "value": "{{store}}",
+                      "key": "store"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Shopify-Access-Token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The Shopify store subdomain",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "my-store",
+      "key": "store"
+    },
+    {
+      "type": "string",
+      "value": "https://{{store}}.myshopify.com/admin/api/2025-01",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) dispute_id",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<string>",
+      "key": "dispute_id"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Shopify-Access-Token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "ab8499dd-3e53-4ebf-b908-a0e230ad45f1",
+    "name": "Shopify Admin REST About Dispute API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Shopify Admin REST API lets you build apps and integrations that extend and enhance the Shopify admin. Access products, customers, orders, inventory, fulfillment, and more. Endpoints are organized by resource type and versioned by release date.\n\nContact Support:\n Name: Shopify\n Email: api@shopify.com",
+      "type": "text/plain"
+    }
+  }
+}

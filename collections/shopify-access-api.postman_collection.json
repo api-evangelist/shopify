@@ -1,0 +1,2414 @@
+{
+  "item": [
+    {
+      "id": "3562cc5c-6773-4c42-b3c1-03a19ae87ae9",
+      "name": "Access",
+      "description": {
+        "content": "Manage access scopes and tokens",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4b594431-63bc-4dd4-b384-b41e2cbf2527",
+          "name": "Shopify Retrieve access scopes for the access token",
+          "request": {
+            "name": "Shopify Retrieve access scopes for the access token",
+            "description": {
+              "content": "Retrieves a list of access scopes associated with the current access token.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "admin",
+                "oauth",
+                "access_scopes.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Shopify store subdomain",
+                  "type": "any",
+                  "value": "{{store}}",
+                  "key": "store"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "78f9a2e9-c261-4fe8-bb11-fc2bfb318ba0",
+              "name": "A list of access scopes",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "oauth",
+                    "access_scopes.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Shopify store subdomain",
+                      "type": "any",
+                      "value": "{{store}}",
+                      "key": "store"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Shopify-Access-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"access_scopes\": [\n    {\n      \"handle\": \"string\"\n    },\n    {\n      \"handle\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0470db9a-d6e8-4655-b341-7e942d623e37",
+          "name": "Shopify Creates A New Storefront Access Token",
+          "request": {
+            "name": "Shopify Creates A New Storefront Access Token",
+            "description": {
+              "content": "https://shopify.dev/docs/admin-api/rest/reference/access/storefrontaccesstoken#create-2020-01",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "admin",
+                "api",
+                "2020-01",
+                "storefront_access_tokens.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Shopify store subdomain",
+                  "type": "any",
+                  "value": "{{store}}",
+                  "key": "store"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ff5e3e3b-3591-4724-bf51-d7824a87b4ce",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "api",
+                    "2020-01",
+                    "storefront_access_tokens.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Shopify store subdomain",
+                      "type": "any",
+                      "value": "{{store}}",
+                      "key": "store"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Shopify-Access-Token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"storefront_access_token\": {\n    \"title\": \"Test\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "53c3f690-6300-4ea6-b299-b612f253ce66",
+          "name": "Shopify Retrieves A List Of Storefront Access Tokens That Have Been Issued",
+          "request": {
+            "name": "Shopify Retrieves A List Of Storefront Access Tokens That Have Been Issued",
+            "description": {
+              "content": "https://shopify.dev/docs/admin-api/rest/reference/access/storefrontaccesstoken#index-2020-01",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "admin",
+                "api",
+                "2020-01",
+                "storefront_access_tokens.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Shopify store subdomain",
+                  "type": "any",
+                  "value": "{{store}}",
+                  "key": "store"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2d7f0759-6e9e-46d7-8a1e-93ec8298a65a",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "api",
+                    "2020-01",
+                    "storefront_access_tokens.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Shopify store subdomain",
+                      "type": "any",
+                      "value": "{{store}}",
+                      "key": "store"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Shopify-Access-Token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dbce3558-536d-4a89-87e8-f40b94083d06",
+          "name": "Shopify Deletes An Existing Storefront Access Token",
+          "request": {
+            "name": "Shopify Deletes An Existing Storefront Access Token",
+            "description": {
+              "content": "https://shopify.dev/docs/admin-api/rest/reference/access/storefrontaccesstoken#destroy-2020-01",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "admin",
+                "api",
+                "2020-01",
+                "storefront_access_tokens",
+                "{{storefront_access_token_id}}.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Shopify store subdomain",
+                  "type": "any",
+                  "value": "{{store}}",
+                  "key": "store"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "05f9d322-6dc1-4d23-a7be-dabc46b60d8e",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "api",
+                    "2020-01",
+                    "storefront_access_tokens",
+                    "{{storefront_access_token_id}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Shopify store subdomain",
+                      "type": "any",
+                      "value": "{{store}}",
+                      "key": "store"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Shopify-Access-Token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d096df27-9d78-42be-852b-0556c3d1aefd",
+          "name": "Shopify Creates A New Storefront Access Token",
+          "request": {
+            "name": "Shopify Creates A New Storefront Access Token",
+            "description": {
+              "content": "https://shopify.dev/docs/admin-api/rest/reference/access/storefrontaccesstoken#create-2020-04",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "admin",
+                "api",
+                "2020-04",
+                "storefront_access_tokens.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Shopify store subdomain",
+                  "type": "any",
+                  "value": "{{store}}",
+                  "key": "store"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "136c321a-17ca-4567-861c-02d22a93e3b5",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "api",
+                    "2020-04",
+                    "storefront_access_tokens.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Shopify store subdomain",
+                      "type": "any",
+                      "value": "{{store}}",
+                      "key": "store"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Shopify-Access-Token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"storefront_access_token\": {\n    \"title\": \"Test\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "09774c5f-c015-4775-95a2-1e1030e6796c",
+          "name": "Shopify Retrieves A List Of Storefront Access Tokens That Have Been Issued",
+          "request": {
+            "name": "Shopify Retrieves A List Of Storefront Access Tokens That Have Been Issued",
+            "description": {
+              "content": "https://shopify.dev/docs/admin-api/rest/reference/access/storefrontaccesstoken#index-2020-04",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "admin",
+                "api",
+                "2020-04",
+                "storefront_access_tokens.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Shopify store subdomain",
+                  "type": "any",
+                  "value": "{{store}}",
+                  "key": "store"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "49f4593c-5cd3-43b2-bacd-c6a28ad68d49",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "api",
+                    "2020-04",
+                    "storefront_access_tokens.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Shopify store subdomain",
+                      "type": "any",
+                      "value": "{{store}}",
+                      "key": "store"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Shopify-Access-Token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "df3f9c11-009a-4693-a343-a44bc41a75c3",
+          "name": "Shopify Deletes An Existing Storefront Access Token",
+          "request": {
+            "name": "Shopify Deletes An Existing Storefront Access Token",
+            "description": {
+              "content": "https://shopify.dev/docs/admin-api/rest/reference/access/storefrontaccesstoken#destroy-2020-04",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "admin",
+                "api",
+                "2020-04",
+                "storefront_access_tokens",
+                "{{storefront_access_token_id}}.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Shopify store subdomain",
+                  "type": "any",
+                  "value": "{{store}}",
+                  "key": "store"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e01ae0bd-1fe2-4e1b-bb9b-d7f4ca0ab415",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "api",
+                    "2020-04",
+                    "storefront_access_tokens",
+                    "{{storefront_access_token_id}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Shopify store subdomain",
+                      "type": "any",
+                      "value": "{{store}}",
+                      "key": "store"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Shopify-Access-Token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7630be2f-e78f-4803-84e4-a896dd3a2688",
+          "name": "Shopify Creates A New Storefront Access Token",
+          "request": {
+            "name": "Shopify Creates A New Storefront Access Token",
+            "description": {
+              "content": "https://shopify.dev/docs/admin-api/rest/reference/access/storefrontaccesstoken#create-2020-07",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "admin",
+                "api",
+                "2020-07",
+                "storefront_access_tokens.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Shopify store subdomain",
+                  "type": "any",
+                  "value": "{{store}}",
+                  "key": "store"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8131baa0-5580-47a7-8608-06b8f0d9f368",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "api",
+                    "2020-07",
+                    "storefront_access_tokens.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Shopify store subdomain",
+                      "type": "any",
+                      "value": "{{store}}",
+                      "key": "store"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Shopify-Access-Token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"storefront_access_token\": {\n    \"title\": \"Test\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1c213d47-74bc-47a7-a014-99ea0458b9fe",
+          "name": "Shopify Retrieves A List Of Storefront Access Tokens That Have Been Issued",
+          "request": {
+            "name": "Shopify Retrieves A List Of Storefront Access Tokens That Have Been Issued",
+            "description": {
+              "content": "https://shopify.dev/docs/admin-api/rest/reference/access/storefrontaccesstoken#index-2020-07",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "admin",
+                "api",
+                "2020-07",
+                "storefront_access_tokens.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Shopify store subdomain",
+                  "type": "any",
+                  "value": "{{store}}",
+                  "key": "store"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c4b508ec-0f55-4940-8f35-d8c4ba490f6c",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "api",
+                    "2020-07",
+                    "storefront_access_tokens.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Shopify store subdomain",
+                      "type": "any",
+                      "value": "{{store}}",
+                      "key": "store"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Shopify-Access-Token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "67ca4a8c-585b-46ac-8c35-6d536c640163",
+          "name": "Shopify Deletes An Existing Storefront Access Token",
+          "request": {
+            "name": "Shopify Deletes An Existing Storefront Access Token",
+            "description": {
+              "content": "https://shopify.dev/docs/admin-api/rest/reference/access/storefrontaccesstoken#destroy-2020-07",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "admin",
+                "api",
+                "2020-07",
+                "storefront_access_tokens",
+                "{{storefront_access_token_id}}.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Shopify store subdomain",
+                  "type": "any",
+                  "value": "{{store}}",
+                  "key": "store"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4866b82e-0c65-44f4-ae44-55676c7baf0e",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "api",
+                    "2020-07",
+                    "storefront_access_tokens",
+                    "{{storefront_access_token_id}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Shopify store subdomain",
+                      "type": "any",
+                      "value": "{{store}}",
+                      "key": "store"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Shopify-Access-Token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a27f99f1-372a-48b3-b1b5-a4dc2ca28ec1",
+          "name": "Shopify Creates A New Storefront Access Token",
+          "request": {
+            "name": "Shopify Creates A New Storefront Access Token",
+            "description": {
+              "content": "https://shopify.dev/docs/admin-api/rest/reference/access/storefrontaccesstoken#create-2020-10",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "admin",
+                "api",
+                "2020-10",
+                "storefront_access_tokens.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Shopify store subdomain",
+                  "type": "any",
+                  "value": "{{store}}",
+                  "key": "store"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7bfe583a-1cd1-4406-a59a-cd8e9b5b50dc",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "api",
+                    "2020-10",
+                    "storefront_access_tokens.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Shopify store subdomain",
+                      "type": "any",
+                      "value": "{{store}}",
+                      "key": "store"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Shopify-Access-Token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"storefront_access_token\": {\n    \"title\": \"Test\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e14c0a84-12ff-4d39-90c3-fca36d4e9f3b",
+          "name": "Shopify Retrieves A List Of Storefront Access Tokens That Have Been Issued",
+          "request": {
+            "name": "Shopify Retrieves A List Of Storefront Access Tokens That Have Been Issued",
+            "description": {
+              "content": "https://shopify.dev/docs/admin-api/rest/reference/access/storefrontaccesstoken#index-2020-10",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "admin",
+                "api",
+                "2020-10",
+                "storefront_access_tokens.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Shopify store subdomain",
+                  "type": "any",
+                  "value": "{{store}}",
+                  "key": "store"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "742d686d-dbe1-430a-bdd3-8f46b22a5365",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "api",
+                    "2020-10",
+                    "storefront_access_tokens.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Shopify store subdomain",
+                      "type": "any",
+                      "value": "{{store}}",
+                      "key": "store"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Shopify-Access-Token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1ed5f33e-a34a-4f3a-8335-5ae2a3a76104",
+          "name": "Shopify Deletes An Existing Storefront Access Token",
+          "request": {
+            "name": "Shopify Deletes An Existing Storefront Access Token",
+            "description": {
+              "content": "https://shopify.dev/docs/admin-api/rest/reference/access/storefrontaccesstoken#destroy-2020-10",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "admin",
+                "api",
+                "2020-10",
+                "storefront_access_tokens",
+                "{{storefront_access_token_id}}.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Shopify store subdomain",
+                  "type": "any",
+                  "value": "{{store}}",
+                  "key": "store"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d7fdeaa6-a321-447c-a0fe-889749951d97",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "api",
+                    "2020-10",
+                    "storefront_access_tokens",
+                    "{{storefront_access_token_id}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Shopify store subdomain",
+                      "type": "any",
+                      "value": "{{store}}",
+                      "key": "store"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Shopify-Access-Token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "76fec3f3-deb3-445b-b13f-0c7fd230bbf2",
+          "name": "Shopify Creates A New Storefront Access Token",
+          "request": {
+            "name": "Shopify Creates A New Storefront Access Token",
+            "description": {
+              "content": "https://shopify.dev/docs/admin-api/rest/reference/access/storefrontaccesstoken#create-2021-01",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "admin",
+                "api",
+                "2021-01",
+                "storefront_access_tokens.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Shopify store subdomain",
+                  "type": "any",
+                  "value": "{{store}}",
+                  "key": "store"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fe0d654b-0a7c-408b-95cf-d64155c09ff6",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "api",
+                    "2021-01",
+                    "storefront_access_tokens.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Shopify store subdomain",
+                      "type": "any",
+                      "value": "{{store}}",
+                      "key": "store"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Shopify-Access-Token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"storefront_access_token\": {\n    \"title\": \"Test\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9a01a666-bedd-4855-8df6-727d74f70c4a",
+          "name": "Shopify Retrieves A List Of Storefront Access Tokens That Have Been Issued",
+          "request": {
+            "name": "Shopify Retrieves A List Of Storefront Access Tokens That Have Been Issued",
+            "description": {
+              "content": "https://shopify.dev/docs/admin-api/rest/reference/access/storefrontaccesstoken#index-2021-01",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "admin",
+                "api",
+                "2021-01",
+                "storefront_access_tokens.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Shopify store subdomain",
+                  "type": "any",
+                  "value": "{{store}}",
+                  "key": "store"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "eb2df038-a7eb-4549-8e83-9986412fcd76",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "api",
+                    "2021-01",
+                    "storefront_access_tokens.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Shopify store subdomain",
+                      "type": "any",
+                      "value": "{{store}}",
+                      "key": "store"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Shopify-Access-Token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "eb0e99b6-4c6f-4fd3-8b8b-c33afca86815",
+          "name": "Shopify Deletes An Existing Storefront Access Token",
+          "request": {
+            "name": "Shopify Deletes An Existing Storefront Access Token",
+            "description": {
+              "content": "https://shopify.dev/docs/admin-api/rest/reference/access/storefrontaccesstoken#destroy-2021-01",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "admin",
+                "api",
+                "2021-01",
+                "storefront_access_tokens",
+                "{{storefront_access_token_id}}.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Shopify store subdomain",
+                  "type": "any",
+                  "value": "{{store}}",
+                  "key": "store"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "98c3d4e9-1536-43bd-9611-b172c56504cd",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "api",
+                    "2021-01",
+                    "storefront_access_tokens",
+                    "{{storefront_access_token_id}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Shopify store subdomain",
+                      "type": "any",
+                      "value": "{{store}}",
+                      "key": "store"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Shopify-Access-Token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7d48efbb-a209-4abc-bc18-d8c013f9261e",
+          "name": "Shopify Creates A New Storefront Access Token",
+          "request": {
+            "name": "Shopify Creates A New Storefront Access Token",
+            "description": {
+              "content": "https://shopify.dev/docs/admin-api/rest/reference/access/storefrontaccesstoken#create-unstable",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "admin",
+                "api",
+                "unstable",
+                "storefront_access_tokens.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Shopify store subdomain",
+                  "type": "any",
+                  "value": "{{store}}",
+                  "key": "store"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a4dab3ed-d7ea-4bd7-b850-aee793a7ab9e",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "api",
+                    "unstable",
+                    "storefront_access_tokens.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Shopify store subdomain",
+                      "type": "any",
+                      "value": "{{store}}",
+                      "key": "store"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Shopify-Access-Token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"storefront_access_token\": {\n    \"title\": \"Test\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "07f7675f-0ff0-4c76-830c-1288c931f10d",
+          "name": "Shopify Retrieves A List Of Storefront Access Tokens That Have Been Issued",
+          "request": {
+            "name": "Shopify Retrieves A List Of Storefront Access Tokens That Have Been Issued",
+            "description": {
+              "content": "https://shopify.dev/docs/admin-api/rest/reference/access/storefrontaccesstoken#index-unstable",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "admin",
+                "api",
+                "unstable",
+                "storefront_access_tokens.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Shopify store subdomain",
+                  "type": "any",
+                  "value": "{{store}}",
+                  "key": "store"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4bab365e-f448-452e-91ad-3944cc3ff64a",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "api",
+                    "unstable",
+                    "storefront_access_tokens.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Shopify store subdomain",
+                      "type": "any",
+                      "value": "{{store}}",
+                      "key": "store"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Shopify-Access-Token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "30653511-50ac-4c4a-9726-86859526b1eb",
+          "name": "Shopify Deletes An Existing Storefront Access Token",
+          "request": {
+            "name": "Shopify Deletes An Existing Storefront Access Token",
+            "description": {
+              "content": "https://shopify.dev/docs/admin-api/rest/reference/access/storefrontaccesstoken#destroy-unstable",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "admin",
+                "api",
+                "unstable",
+                "storefront_access_tokens",
+                "{{storefront_access_token_id}}.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Shopify store subdomain",
+                  "type": "any",
+                  "value": "{{store}}",
+                  "key": "store"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "10ed8a36-6c76-4f67-93a2-e7482b41fb06",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "api",
+                    "unstable",
+                    "storefront_access_tokens",
+                    "{{storefront_access_token_id}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Shopify store subdomain",
+                      "type": "any",
+                      "value": "{{store}}",
+                      "key": "store"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Shopify-Access-Token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dde51704-109e-4605-b493-c51fbdb96cac",
+          "name": "Shopify Retrieves Information About The User Account Associated With The Access Token Used To Make This Api Request",
+          "request": {
+            "name": "Shopify Retrieves Information About The User Account Associated With The Access Token Used To Make This Api Request",
+            "description": {
+              "content": "https://shopify.dev/docs/admin-api/rest/reference/plus/user#current-2020-01",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "admin",
+                "api",
+                "2020-01",
+                "users",
+                "current.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Shopify store subdomain",
+                  "type": "any",
+                  "value": "{{store}}",
+                  "key": "store"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a29901bf-caa4-4b46-a7d2-00134287a005",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "api",
+                    "2020-01",
+                    "users",
+                    "current.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Shopify store subdomain",
+                      "type": "any",
+                      "value": "{{store}}",
+                      "key": "store"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Shopify-Access-Token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "945f553f-5d72-42f5-b385-9266a025730f",
+          "name": "Shopify Retrieves Information About The User Account Associated With The Access Token Used To Make This Api Request",
+          "request": {
+            "name": "Shopify Retrieves Information About The User Account Associated With The Access Token Used To Make This Api Request",
+            "description": {
+              "content": "https://shopify.dev/docs/admin-api/rest/reference/plus/user#current-2020-04",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "admin",
+                "api",
+                "2020-04",
+                "users",
+                "current.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Shopify store subdomain",
+                  "type": "any",
+                  "value": "{{store}}",
+                  "key": "store"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "71184b1b-013a-4814-b571-947e29bf6fff",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "api",
+                    "2020-04",
+                    "users",
+                    "current.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Shopify store subdomain",
+                      "type": "any",
+                      "value": "{{store}}",
+                      "key": "store"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Shopify-Access-Token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "27b8f4f1-3bd5-4a01-91d4-09eafa629a56",
+          "name": "Shopify Retrieves Information About The User Account Associated With The Access Token Used To Make This Api Request",
+          "request": {
+            "name": "Shopify Retrieves Information About The User Account Associated With The Access Token Used To Make This Api Request",
+            "description": {
+              "content": "https://shopify.dev/docs/admin-api/rest/reference/plus/user#current-2020-07",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "admin",
+                "api",
+                "2020-07",
+                "users",
+                "current.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Shopify store subdomain",
+                  "type": "any",
+                  "value": "{{store}}",
+                  "key": "store"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5f39f42b-3146-4d69-8177-5452071b5a79",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "api",
+                    "2020-07",
+                    "users",
+                    "current.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Shopify store subdomain",
+                      "type": "any",
+                      "value": "{{store}}",
+                      "key": "store"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Shopify-Access-Token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f6ccb796-daa7-47a8-9810-23bb6b6a232d",
+          "name": "Shopify Retrieves Information About The User Account Associated With The Access Token Used To Make This Api Request",
+          "request": {
+            "name": "Shopify Retrieves Information About The User Account Associated With The Access Token Used To Make This Api Request",
+            "description": {
+              "content": "https://shopify.dev/docs/admin-api/rest/reference/plus/user#current-2020-10",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "admin",
+                "api",
+                "2020-10",
+                "users",
+                "current.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Shopify store subdomain",
+                  "type": "any",
+                  "value": "{{store}}",
+                  "key": "store"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "eeedf92d-3047-484a-bb4a-a6c320858ab7",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "api",
+                    "2020-10",
+                    "users",
+                    "current.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Shopify store subdomain",
+                      "type": "any",
+                      "value": "{{store}}",
+                      "key": "store"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Shopify-Access-Token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7584201c-f06b-401e-9ab4-171beee127e8",
+          "name": "Shopify Retrieves Information About The User Account Associated With The Access Token Used To Make This Api Request",
+          "request": {
+            "name": "Shopify Retrieves Information About The User Account Associated With The Access Token Used To Make This Api Request",
+            "description": {
+              "content": "https://shopify.dev/docs/admin-api/rest/reference/plus/user#current-2021-01",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "admin",
+                "api",
+                "2021-01",
+                "users",
+                "current.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Shopify store subdomain",
+                  "type": "any",
+                  "value": "{{store}}",
+                  "key": "store"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1ef5264c-6892-4f39-8516-3031019d1dbf",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "api",
+                    "2021-01",
+                    "users",
+                    "current.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Shopify store subdomain",
+                      "type": "any",
+                      "value": "{{store}}",
+                      "key": "store"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Shopify-Access-Token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4ee12a54-94f4-41c9-b196-a0dbcf66ba10",
+          "name": "Shopify Retrieves Information About The User Account Associated With The Access Token Used To Make This Api Request",
+          "request": {
+            "name": "Shopify Retrieves Information About The User Account Associated With The Access Token Used To Make This Api Request",
+            "description": {
+              "content": "https://shopify.dev/docs/admin-api/rest/reference/plus/user#current-unstable",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "admin",
+                "api",
+                "unstable",
+                "users",
+                "current.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Shopify store subdomain",
+                  "type": "any",
+                  "value": "{{store}}",
+                  "key": "store"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e5bbacd8-8385-4df5-99a6-68141e6d3ec4",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "api",
+                    "unstable",
+                    "users",
+                    "current.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Shopify store subdomain",
+                      "type": "any",
+                      "value": "{{store}}",
+                      "key": "store"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Shopify-Access-Token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The Shopify store subdomain",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "my-store",
+      "key": "store"
+    },
+    {
+      "type": "string",
+      "value": "https://{{store}}.myshopify.com/admin/api/2025-01",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) storefront_access_token_id",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<string>",
+      "key": "storefront_access_token_id"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Shopify-Access-Token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "ce4ba1e3-12fc-4360-b166-5958e647d85d",
+    "name": "Shopify Admin REST About Access API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Shopify Admin REST API lets you build apps and integrations that extend and enhance the Shopify admin. Access products, customers, orders, inventory, fulfillment, and more. Endpoints are organized by resource type and versioned by release date.\n\nContact Support:\n Name: Shopify\n Email: api@shopify.com",
+      "type": "text/plain"
+    }
+  }
+}

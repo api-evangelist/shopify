@@ -1,0 +1,186 @@
+{
+  "item": [
+    {
+      "id": "5aa6fa8e-9573-435a-abcc-b2d1c31e3412",
+      "name": "Approves",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6d21651d-54d3-4eaa-8cfe-c631497baf21",
+          "name": "Shopify Approves A Comment",
+          "request": {
+            "name": "Shopify Approves A Comment",
+            "description": {
+              "content": "https://shopify.dev/docs/admin-api/rest/reference/online-store/comment#approve-2020-01",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "admin",
+                "api",
+                "2020-01",
+                "comments",
+                ":comment_id",
+                "approve.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "comment_id",
+                  "description": "(Required) comment_id"
+                },
+                {
+                  "description": "The Shopify store subdomain",
+                  "type": "any",
+                  "value": "{{store}}",
+                  "key": "store"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a9f1b3b8-235d-4b45-8ac7-206b19f2fd00",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "api",
+                    "2020-01",
+                    "comments",
+                    ":comment_id",
+                    "approve.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "comment_id",
+                      "description": "(Required) comment_id"
+                    },
+                    {
+                      "description": "The Shopify store subdomain",
+                      "type": "any",
+                      "value": "{{store}}",
+                      "key": "store"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Shopify-Access-Token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The Shopify store subdomain",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "my-store",
+      "key": "store"
+    },
+    {
+      "type": "string",
+      "value": "https://{{store}}.myshopify.com/admin/api/2025-01",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Shopify-Access-Token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d8a065ac-94ec-41ee-a8a1-e8c2e82f448f",
+    "name": "Shopify Admin REST About Approves API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Shopify Admin REST API lets you build apps and integrations that extend and enhance the Shopify admin. Access products, customers, orders, inventory, fulfillment, and more. Endpoints are organized by resource type and versioned by release date.\n\nContact Support:\n Name: Shopify\n Email: api@shopify.com",
+      "type": "text/plain"
+    }
+  }
+}

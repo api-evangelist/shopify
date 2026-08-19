@@ -1,0 +1,358 @@
+{
+  "item": [
+    {
+      "id": "a7b4d84b-75aa-4c82-bd3e-d525b142f571",
+      "name": "Predictive Search",
+      "description": {
+        "content": "Search suggestions for products, collections, pages, and articles",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "36c90556-197f-4fb7-a86a-639b35c4cc4f",
+          "name": "Shopify Get predictive search results",
+          "request": {
+            "name": "Shopify Get predictive search results",
+            "description": {
+              "content": "Retrieves predictive search results for a query string. Returns matching products, collections, pages, articles, and query suggestions. Used for search-as-you-type experiences.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "search",
+                "suggest.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>",
+                  "description": "(Required) The search query"
+                },
+                {
+                  "disabled": false,
+                  "key": "resources[type]",
+                  "value": "query,product,collection,page",
+                  "description": "Comma-separated resource types to search (product, page, article, collection, query)"
+                },
+                {
+                  "disabled": false,
+                  "key": "resources[limit]",
+                  "value": "10",
+                  "description": "Number of results per type (1-10, default 10)"
+                },
+                {
+                  "disabled": false,
+                  "key": "resources[limit_scope]",
+                  "value": "all",
+                  "description": "How the limit is distributed: all (shared across types) or each (per type)"
+                },
+                {
+                  "disabled": false,
+                  "key": "resources[options][unavailable_products]",
+                  "value": "last",
+                  "description": "How to handle unavailable products"
+                },
+                {
+                  "disabled": false,
+                  "key": "resources[options][fields]",
+                  "value": "<string>",
+                  "description": "Comma-separated fields to search within (title, product_type, vendor, tag, variants.title, variants.sku, body)"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The Shopify store subdomain",
+                  "type": "any",
+                  "value": "{{store}}",
+                  "key": "store"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "109ecebb-b192-4e6e-a6c3-bf89bcc3c36f",
+              "name": "Predictive search results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "search",
+                    "suggest.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "resources[type]",
+                      "value": "query,product,collection,page"
+                    },
+                    {
+                      "key": "resources[limit]",
+                      "value": "10"
+                    },
+                    {
+                      "key": "resources[limit_scope]",
+                      "value": "all"
+                    },
+                    {
+                      "key": "resources[options][unavailable_products]",
+                      "value": "last"
+                    },
+                    {
+                      "key": "resources[options][fields]",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Shopify store subdomain",
+                      "type": "any",
+                      "value": "{{store}}",
+                      "key": "store"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Shopify-Access-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"resources\": {\n    \"results\": {\n      \"queries\": [\n        {\n          \"text\": \"string\",\n          \"styled_text\": \"string\"\n        },\n        {\n          \"text\": \"string\",\n          \"styled_text\": \"string\"\n        }\n      ],\n      \"products\": [\n        {\n          \"id\": 8258,\n          \"title\": \"string\",\n          \"handle\": \"string\",\n          \"description\": \"string\",\n          \"published_at\": \"1999-10-07T02:14:03.861Z\",\n          \"created_at\": \"1992-08-22T06:00:13.673Z\",\n          \"vendor\": \"string\",\n          \"type\": \"string\",\n          \"tags\": [\n            \"string\",\n            \"string\"\n          ],\n          \"price\": 8509,\n          \"price_min\": 5171,\n          \"price_max\": 6769,\n          \"available\": false,\n          \"price_varies\": true,\n          \"compare_at_price\": 4004,\n          \"compare_at_price_min\": 7659,\n          \"compare_at_price_max\": 6545,\n          \"compare_at_price_varies\": false,\n          \"variants\": [\n            {\n              \"id\": 9938,\n              \"title\": \"string\",\n              \"option1\": \"string\",\n              \"option2\": \"string\",\n              \"option3\": \"string\",\n              \"sku\": \"string\",\n              \"requires_shipping\": true,\n              \"taxable\": true,\n              \"featured_image\": {},\n              \"available\": true,\n              \"name\": \"string\",\n              \"public_title\": \"string\",\n              \"price\": 5754,\n              \"weight\": 2349,\n              \"compare_at_price\": 925,\n              \"barcode\": \"string\"\n            },\n            {\n              \"id\": 5182,\n              \"title\": \"string\",\n              \"option1\": \"string\",\n              \"option2\": \"string\",\n              \"option3\": \"string\",\n              \"sku\": \"string\",\n              \"requires_shipping\": false,\n              \"taxable\": true,\n              \"featured_image\": {},\n              \"available\": false,\n              \"name\": \"string\",\n              \"public_title\": \"string\",\n              \"price\": 6901,\n              \"weight\": 8711,\n              \"compare_at_price\": 2261,\n              \"barcode\": \"string\"\n            }\n          ],\n          \"images\": [\n            \"https://dlPgwqaK.vqtTA7qHCoWOnKuZtJ5q0oquEUH8TqLB66QH,2galnkH3fKGlqS\",\n            \"http://vsGZNKIVg.kych\"\n          ],\n          \"featured_image\": \"http://bamtWgUY.oswEz6CA6GIq8BE+X8ho\",\n          \"options\": [\n            {\n              \"name\": \"string\",\n              \"position\": 9535,\n              \"values\": [\n                \"string\",\n                \"string\"\n              ]\n            },\n            {\n              \"name\": \"string\",\n              \"position\": 7775,\n              \"values\": [\n                \"string\",\n                \"string\"\n              ]\n            }\n          ],\n          \"url\": \"string\",\n          \"media\": [\n            {\n              \"alt\": \"string\",\n              \"id\": 5241,\n              \"position\": 9168,\n              \"media_type\": \"string\",\n              \"src\": \"https://DNTceikVjRSooqNXzNJuJaFhWmCUyprVU.kympREfk,P-Jyk,vKF6VQEvvvv.nhih4shSEeInYTXFQYSIKJJWr2w0jT+bjGfMRj7XXg2fOYQ\",\n              \"width\": 4335,\n              \"height\": 4628\n            },\n            {\n              \"alt\": \"string\",\n              \"id\": 2994,\n              \"position\": 9290,\n              \"media_type\": \"string\",\n              \"src\": \"http://QAVOLHrUTghpRIacZJqbHnTsZkBJlSup.haiyP9-3xaOwU2NZVbB6paEGQt4z1vATGXAd05zmt\",\n              \"width\": 6443,\n              \"height\": 1693\n            }\n          ]\n        },\n        {\n          \"id\": 2659,\n          \"title\": \"string\",\n          \"handle\": \"string\",\n          \"description\": \"string\",\n          \"published_at\": \"1969-07-03T22:47:42.136Z\",\n          \"created_at\": \"1980-06-16T16:14:31.926Z\",\n          \"vendor\": \"string\",\n          \"type\": \"string\",\n          \"tags\": [\n            \"string\",\n            \"string\"\n          ],\n          \"price\": 2546,\n          \"price_min\": 7789,\n          \"price_max\": 2550,\n          \"available\": true,\n          \"price_varies\": false,\n          \"compare_at_price\": 415,\n          \"compare_at_price_min\": 8178,\n          \"compare_at_price_max\": 1050,\n          \"compare_at_price_varies\": true,\n          \"variants\": [\n            {\n              \"id\": 2357,\n              \"title\": \"string\",\n              \"option1\": \"string\",\n              \"option2\": \"string\",\n              \"option3\": \"string\",\n              \"sku\": \"string\",\n              \"requires_shipping\": false,\n              \"taxable\": false,\n              \"featured_image\": {},\n              \"available\": false,\n              \"name\": \"string\",\n              \"public_title\": \"string\",\n              \"price\": 1489,\n              \"weight\": 8167,\n              \"compare_at_price\": 1126,\n              \"barcode\": \"string\"\n            },\n            {\n              \"id\": 8451,\n              \"title\": \"string\",\n              \"option1\": \"string\",\n              \"option2\": \"string\",\n              \"option3\": \"string\",\n              \"sku\": \"string\",\n              \"requires_shipping\": true,\n              \"taxable\": false,\n              \"featured_image\": {},\n              \"available\": false,\n              \"name\": \"string\",\n              \"public_title\": \"string\",\n              \"price\": 7069,\n              \"weight\": 6408,\n              \"compare_at_price\": 3069,\n              \"barcode\": \"string\"\n            }\n          ],\n          \"images\": [\n            \"https://a.mdtoIa+OnCtpcsbqNF8IQfvS3g84jvQ-OgVUqKvlTFA2KOFbY0uU8C.CNLMdvWEEbCtvE\",\n            \"http://AAcMFgZIhINDyZQDQ.fuohC08ahD7Op-TNrhKhRR5LG,ZzmPAhHvNm-agu-WBz8LMn2x6Zlwpm5g3TQD8AGGodl,hUIdkTT9o\"\n          ],\n          \"featured_image\": \"https://QfiMKQoDXNyGGURHjQuoVmsW.rinxvxB4KHkhW4XZ6.8g1tfGCa71RFPKk2zLa-4Dg-luaFGZHLcLc7\",\n          \"options\": [\n            {\n              \"name\": \"string\",\n              \"position\": 4612,\n              \"values\": [\n                \"string\",\n                \"string\"\n              ]\n            },\n            {\n              \"name\": \"string\",\n              \"position\": 7213,\n              \"values\": [\n                \"string\",\n                \"string\"\n              ]\n            }\n          ],\n          \"url\": \"string\",\n          \"media\": [\n            {\n              \"alt\": \"string\",\n              \"id\": 7712,\n              \"position\": 4170,\n              \"media_type\": \"string\",\n              \"src\": \"http://okYRAJUhBBCQNUfUbLwoNaVCkpnbZ.yiqqXp4u-3t9fwNn2cocAy,X6jYUF1CuGVqZQnWKiXYhtyn3\",\n              \"width\": 945,\n              \"height\": 5822\n            },\n            {\n              \"alt\": \"string\",\n              \"id\": 5246,\n              \"position\": 6560,\n              \"media_type\": \"string\",\n              \"src\": \"http://yWZPAgiaCwgAqRLpRUOoT.ekQXKaxHf4NJHB87oA4+jvyQhGnzJI+NwlBAMusDGWsLMDOq.hKsCfvIE\",\n              \"width\": 2050,\n              \"height\": 8631\n            }\n          ]\n        }\n      ],\n      \"collections\": [\n        {\n          \"id\": 321,\n          \"title\": \"string\",\n          \"handle\": \"string\",\n          \"url\": \"string\",\n          \"published_at\": \"1974-08-19T11:51:04.343Z\",\n          \"body\": \"string\",\n          \"image\": {\n            \"url\": \"https://DBoMSfPEWtktHfvQpdpZmYwmOlwwVL.eojrOc1U55jvAqvAwzBA\",\n            \"alt\": \"string\",\n            \"width\": 9411,\n            \"height\": 6421\n          }\n        },\n        {\n          \"id\": 7963,\n          \"title\": \"string\",\n          \"handle\": \"string\",\n          \"url\": \"string\",\n          \"published_at\": \"1964-09-02T00:14:37.044Z\",\n          \"body\": \"string\",\n          \"image\": {\n            \"url\": \"https://hprFXswbHCw.ywvy5oGNzK4ju\",\n            \"alt\": \"string\",\n            \"width\": 2068,\n            \"height\": 5989\n          }\n        }\n      ],\n      \"pages\": [\n        {\n          \"id\": 8601,\n          \"title\": \"string\",\n          \"handle\": \"string\",\n          \"url\": \"string\",\n          \"body\": \"string\"\n        },\n        {\n          \"id\": 1118,\n          \"title\": \"string\",\n          \"handle\": \"string\",\n          \"url\": \"string\",\n          \"body\": \"string\"\n        }\n      ],\n      \"articles\": [\n        {\n          \"id\": 1286,\n          \"title\": \"string\",\n          \"handle\": \"string\",\n          \"url\": \"string\",\n          \"body\": \"string\",\n          \"published_at\": \"2025-04-16T01:26:44.353Z\",\n          \"image\": {\n            \"url\": \"https://eR.wmsVavxX+eScTwj98wZTvL\",\n            \"alt\": \"string\",\n            \"width\": 855,\n            \"height\": 6797\n          }\n        },\n        {\n          \"id\": 2080,\n          \"title\": \"string\",\n          \"handle\": \"string\",\n          \"url\": \"string\",\n          \"body\": \"string\",\n          \"published_at\": \"2010-06-15T08:50:39.497Z\",\n          \"image\": {\n            \"url\": \"https://mlqyVKMfzCwsmlsxSDYyoDeFwQeHOcgbP.flji,QrAXYNSY7\",\n            \"alt\": \"string\",\n            \"width\": 4583,\n            \"height\": 6942\n          }\n        }\n      ]\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0c59c689-db6c-4194-b29d-b9cdcf90d671",
+              "name": "Invalid parameter",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "search",
+                    "suggest.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "resources[type]",
+                      "value": "query,product,collection,page"
+                    },
+                    {
+                      "key": "resources[limit]",
+                      "value": "10"
+                    },
+                    {
+                      "key": "resources[limit_scope]",
+                      "value": "all"
+                    },
+                    {
+                      "key": "resources[options][unavailable_products]",
+                      "value": "last"
+                    },
+                    {
+                      "key": "resources[options][fields]",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Shopify store subdomain",
+                      "type": "any",
+                      "value": "{{store}}",
+                      "key": "store"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Shopify-Access-Token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8b99ed4e-f6c6-465f-b5c2-1016132bc25e",
+              "name": "Rate limited",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "search",
+                    "suggest.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "resources[type]",
+                      "value": "query,product,collection,page"
+                    },
+                    {
+                      "key": "resources[limit]",
+                      "value": "10"
+                    },
+                    {
+                      "key": "resources[limit_scope]",
+                      "value": "all"
+                    },
+                    {
+                      "key": "resources[options][unavailable_products]",
+                      "value": "last"
+                    },
+                    {
+                      "key": "resources[options][fields]",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Shopify store subdomain",
+                      "type": "any",
+                      "value": "{{store}}",
+                      "key": "store"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Shopify-Access-Token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The Shopify store subdomain",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "my-store",
+      "key": "store"
+    },
+    {
+      "type": "string",
+      "value": "https://{{store}}.myshopify.com/admin/api/2025-01",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Shopify-Access-Token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3309ceed-98ea-40cb-9547-160e9703ef64",
+    "name": "Shopify Admin REST About Predictive Search API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Shopify Admin REST API lets you build apps and integrations that extend and enhance the Shopify admin. Access products, customers, orders, inventory, fulfillment, and more. Endpoints are organized by resource type and versioned by release date.\n\nContact Support:\n Name: Shopify\n Email: api@shopify.com",
+      "type": "text/plain"
+    }
+  }
+}

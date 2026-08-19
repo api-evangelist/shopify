@@ -1,0 +1,93 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Shopify Admin REST About Inventory Items API",
+    "version": "2025-01"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Shopify-Access-Token",
+      "value": "{{X-Shopify-Access-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Inventory Items",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Shopify Retrieve a list of inventory items",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/inventory_items.json",
+            "params": [
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of inventory item IDs"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results (max 250, default 50)"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of inventory items. Items must be fetched by IDs."
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieve a single inventory item",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/inventory_items/:inventory_item_id.json",
+            "params": [
+              {
+                "name": "inventory_item_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the inventory item"
+              }
+            ]
+          },
+          "docs": "Retrieves a single inventory item by ID."
+        },
+        {
+          "info": {
+            "name": "Shopify Update an inventory item",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/inventory_items/:inventory_item_id.json",
+            "params": [
+              {
+                "name": "inventory_item_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the inventory item"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing inventory item."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

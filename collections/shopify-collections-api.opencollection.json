@@ -1,0 +1,1756 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Shopify Admin REST About Collections API",
+    "version": "2025-01"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Shopify-Access-Token",
+      "value": "{{X-Shopify-Access-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Collections",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Shopify Retrieve a single collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/collections/:collection_id.json",
+            "params": [
+              {
+                "name": "collection_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the collection"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to include"
+              }
+            ]
+          },
+          "docs": "Retrieves a single collection by ID including its metadata."
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieve products in a collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/collections/:collection_id/products.json",
+            "params": [
+              {
+                "name": "collection_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the collection"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results (max 250, default 50)"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of products belonging to a collection."
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of Custom Collections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-01/custom_collections.json",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of results to retrieve.\n                  (default: 50, maximum: 250)"
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "Show only collections specified by a comma-separated list of IDs."
+              },
+              {
+                "name": "since_id",
+                "value": "",
+                "type": "query",
+                "description": "Restrict results to after the specified ID."
+              },
+              {
+                "name": "title",
+                "value": "",
+                "type": "query",
+                "description": "Show custom collections with a given title."
+              },
+              {
+                "name": "product_id",
+                "value": "",
+                "type": "query",
+                "description": "Show custom collections that include a given product."
+              },
+              {
+                "name": "handle",
+                "value": "",
+                "type": "query",
+                "description": "Filter by custom collection handle."
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show custom collections last updated after date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show custom collections last updated before date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "published_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show custom collections published after date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "published_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show custom collections published before date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "published_status",
+                "value": "",
+                "type": "query",
+                "description": "Show custom collectsion with a given published status.\n                  (default: any)\n                    \n                        published: Show only published custom collections.\n                        unpublished: Show only unpublished custom collections.\n                        any: Show custom collections of any published status."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Show only certain fields, specified by a comma-separated list of field names."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/products/customcollection#index-2020-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Count Of Custom Collections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-01/custom_collections/count.json",
+            "params": [
+              {
+                "name": "title",
+                "value": "",
+                "type": "query",
+                "description": "Count custom collections with given title."
+              },
+              {
+                "name": "product_id",
+                "value": "",
+                "type": "query",
+                "description": "Count custom collections that include a given product."
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Count custom collections last updated after date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Count custom collections last updated before date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "published_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Count custom collections published after date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "published_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Count custom collections published before date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "published_status",
+                "value": "",
+                "type": "query",
+                "description": "Count custom collections with a given published status.\n                  (default: any)\n                    \n                        published: Count only published custom collections.\n                        unpublished: Count only unpublished custom collections.\n                        any: Count custom collections of any published status."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/products/customcollection#count-2020-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of Custom Collections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-04/custom_collections.json",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of results to retrieve.\n                  (default: 50, maximum: 250)"
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "Show only collections specified by a comma-separated list of IDs."
+              },
+              {
+                "name": "since_id",
+                "value": "",
+                "type": "query",
+                "description": "Restrict results to after the specified ID."
+              },
+              {
+                "name": "title",
+                "value": "",
+                "type": "query",
+                "description": "Show custom collections with a given title."
+              },
+              {
+                "name": "product_id",
+                "value": "",
+                "type": "query",
+                "description": "Show custom collections that include a given product."
+              },
+              {
+                "name": "handle",
+                "value": "",
+                "type": "query",
+                "description": "Filter by custom collection handle."
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show custom collections last updated after date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show custom collections last updated before date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "published_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show custom collections published after date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "published_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show custom collections published before date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "published_status",
+                "value": "",
+                "type": "query",
+                "description": "Show custom collectsion with a given published status.\n                  (default: any)\n                    \n                        published: Show only published custom collections.\n                        unpublished: Show only unpublished custom collections.\n                        any: Show custom collections of any published status."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Show only certain fields, specified by a comma-separated list of field names."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/products/customcollection#index-2020-04"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Count Of Custom Collections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-04/custom_collections/count.json",
+            "params": [
+              {
+                "name": "title",
+                "value": "",
+                "type": "query",
+                "description": "Count custom collections with given title."
+              },
+              {
+                "name": "product_id",
+                "value": "",
+                "type": "query",
+                "description": "Count custom collections that include a given product."
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Count custom collections last updated after date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Count custom collections last updated before date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "published_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Count custom collections published after date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "published_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Count custom collections published before date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "published_status",
+                "value": "",
+                "type": "query",
+                "description": "Count custom collections with a given published status.\n                  (default: any)\n                    \n                        published: Count only published custom collections.\n                        unpublished: Count only unpublished custom collections.\n                        any: Count custom collections of any published status."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/products/customcollection#count-2020-04"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of Custom Collections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-07/custom_collections.json",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of results to retrieve.\n                  (default: 50, maximum: 250)"
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "Show only collections specified by a comma-separated list of IDs."
+              },
+              {
+                "name": "since_id",
+                "value": "",
+                "type": "query",
+                "description": "Restrict results to after the specified ID."
+              },
+              {
+                "name": "title",
+                "value": "",
+                "type": "query",
+                "description": "Show custom collections with a given title."
+              },
+              {
+                "name": "product_id",
+                "value": "",
+                "type": "query",
+                "description": "Show custom collections that include a given product."
+              },
+              {
+                "name": "handle",
+                "value": "",
+                "type": "query",
+                "description": "Filter by custom collection handle."
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show custom collections last updated after date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show custom collections last updated before date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "published_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show custom collections published after date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "published_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show custom collections published before date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "published_status",
+                "value": "",
+                "type": "query",
+                "description": "Show custom collectsion with a given published status.\n                  (default: any)\n                    \n                        published: Show only published custom collections.\n                        unpublished: Show only unpublished custom collections.\n                        any: Show custom collections of any published status."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Show only certain fields, specified by a comma-separated list of field names."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/products/customcollection#index-2020-07"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Count Of Custom Collections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-07/custom_collections/count.json",
+            "params": [
+              {
+                "name": "title",
+                "value": "",
+                "type": "query",
+                "description": "Count custom collections with given title."
+              },
+              {
+                "name": "product_id",
+                "value": "",
+                "type": "query",
+                "description": "Count custom collections that include a given product."
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Count custom collections last updated after date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Count custom collections last updated before date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "published_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Count custom collections published after date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "published_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Count custom collections published before date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "published_status",
+                "value": "",
+                "type": "query",
+                "description": "Count custom collections with a given published status.\n                  (default: any)\n                    \n                        published: Count only published custom collections.\n                        unpublished: Count only unpublished custom collections.\n                        any: Count custom collections of any published status."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/products/customcollection#count-2020-07"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of Custom Collections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-10/custom_collections.json",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of results to retrieve.\n                  (default: 50, maximum: 250)"
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "Show only collections specified by a comma-separated list of IDs."
+              },
+              {
+                "name": "since_id",
+                "value": "",
+                "type": "query",
+                "description": "Restrict results to after the specified ID."
+              },
+              {
+                "name": "title",
+                "value": "",
+                "type": "query",
+                "description": "Show custom collections with a given title."
+              },
+              {
+                "name": "product_id",
+                "value": "",
+                "type": "query",
+                "description": "Show custom collections that include a given product."
+              },
+              {
+                "name": "handle",
+                "value": "",
+                "type": "query",
+                "description": "Filter by custom collection handle."
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show custom collections last updated after date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show custom collections last updated before date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "published_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show custom collections published after date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "published_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show custom collections published before date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "published_status",
+                "value": "",
+                "type": "query",
+                "description": "Show custom collectsion with a given published status.\n                  (default: any)\n                    \n                        published: Show only published custom collections.\n                        unpublished: Show only unpublished custom collections.\n                        any: Show custom collections of any published status."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Show only certain fields, specified by a comma-separated list of field names."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/products/customcollection#index-2020-10"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Count Of Custom Collections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-10/custom_collections/count.json",
+            "params": [
+              {
+                "name": "title",
+                "value": "",
+                "type": "query",
+                "description": "Count custom collections with given title."
+              },
+              {
+                "name": "product_id",
+                "value": "",
+                "type": "query",
+                "description": "Count custom collections that include a given product."
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Count custom collections last updated after date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Count custom collections last updated before date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "published_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Count custom collections published after date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "published_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Count custom collections published before date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "published_status",
+                "value": "",
+                "type": "query",
+                "description": "Count custom collections with a given published status.\n                  (default: any)\n                    \n                        published: Count only published custom collections.\n                        unpublished: Count only unpublished custom collections.\n                        any: Count custom collections of any published status."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/products/customcollection#count-2020-10"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of Custom Collections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2021-01/custom_collections.json",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of results to retrieve.\n                  (default: 50, maximum: 250)"
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "Show only collections specified by a comma-separated list of IDs."
+              },
+              {
+                "name": "since_id",
+                "value": "",
+                "type": "query",
+                "description": "Restrict results to after the specified ID."
+              },
+              {
+                "name": "title",
+                "value": "",
+                "type": "query",
+                "description": "Show custom collections with a given title."
+              },
+              {
+                "name": "product_id",
+                "value": "",
+                "type": "query",
+                "description": "Show custom collections that include a given product."
+              },
+              {
+                "name": "handle",
+                "value": "",
+                "type": "query",
+                "description": "Filter by custom collection handle."
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show custom collections last updated after date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show custom collections last updated before date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "published_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show custom collections published after date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "published_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show custom collections published before date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "published_status",
+                "value": "",
+                "type": "query",
+                "description": "Show custom collectsion with a given published status.\n                  (default: any)\n                    \n                        published: Show only published custom collections.\n                        unpublished: Show only unpublished custom collections.\n                        any: Show custom collections of any published status."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Show only certain fields, specified by a comma-separated list of field names."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/products/customcollection#index-2021-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Count Of Custom Collections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2021-01/custom_collections/count.json",
+            "params": [
+              {
+                "name": "title",
+                "value": "",
+                "type": "query",
+                "description": "Count custom collections with given title."
+              },
+              {
+                "name": "product_id",
+                "value": "",
+                "type": "query",
+                "description": "Count custom collections that include a given product."
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Count custom collections last updated after date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Count custom collections last updated before date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "published_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Count custom collections published after date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "published_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Count custom collections published before date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "published_status",
+                "value": "",
+                "type": "query",
+                "description": "Count custom collections with a given published status.\n                  (default: any)\n                    \n                        published: Count only published custom collections.\n                        unpublished: Count only unpublished custom collections.\n                        any: Count custom collections of any published status."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/products/customcollection#count-2021-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of Custom Collections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/unstable/custom_collections.json",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of results to retrieve.\n                  (default: 50, maximum: 250)"
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "Show only collections specified by a comma-separated list of IDs."
+              },
+              {
+                "name": "since_id",
+                "value": "",
+                "type": "query",
+                "description": "Restrict results to after the specified ID."
+              },
+              {
+                "name": "title",
+                "value": "",
+                "type": "query",
+                "description": "Show custom collections with a given title."
+              },
+              {
+                "name": "product_id",
+                "value": "",
+                "type": "query",
+                "description": "Show custom collections that include a given product."
+              },
+              {
+                "name": "handle",
+                "value": "",
+                "type": "query",
+                "description": "Filter by custom collection handle."
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show custom collections last updated after date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show custom collections last updated before date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "published_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show custom collections published after date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "published_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show custom collections published before date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "published_status",
+                "value": "",
+                "type": "query",
+                "description": "Show custom collectsion with a given published status.\n                  (default: any)\n                    \n                        published: Show only published custom collections.\n                        unpublished: Show only unpublished custom collections.\n                        any: Show custom collections of any published status."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Show only certain fields, specified by a comma-separated list of field names."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/products/customcollection#index-unstable"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Count Of Custom Collections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/unstable/custom_collections/count.json",
+            "params": [
+              {
+                "name": "title",
+                "value": "",
+                "type": "query",
+                "description": "Count custom collections with given title."
+              },
+              {
+                "name": "product_id",
+                "value": "",
+                "type": "query",
+                "description": "Count custom collections that include a given product."
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Count custom collections last updated after date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Count custom collections last updated before date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "published_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Count custom collections published after date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "published_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Count custom collections published before date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "published_status",
+                "value": "",
+                "type": "query",
+                "description": "Count custom collections with a given published status.\n                  (default: any)\n                    \n                        published: Count only published custom collections.\n                        unpublished: Count only unpublished custom collections.\n                        any: Count custom collections of any published status."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/products/customcollection#count-unstable"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of Smart Collections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-01/smart_collections.json",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to show.\n                  (default: 50, maximum: 250)"
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "Show only the smart collections specified by a comma-separated list of IDs."
+              },
+              {
+                "name": "since_id",
+                "value": "",
+                "type": "query",
+                "description": "Restrict results to after the specified ID."
+              },
+              {
+                "name": "title",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections with the specified title."
+              },
+              {
+                "name": "product_id",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections that includes the specified product."
+              },
+              {
+                "name": "handle",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by smart collection handle."
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections last updated after this date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections last updated before this date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections published after this date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections published before this date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_status",
+                "value": "",
+                "type": "query",
+                "description": "Filter results based on the published status of smart collections.\n                  (default: any)\n                    \n                        published: Show only published smart collections.\n                        unpublished: Show only unpublished smart collections.\n                        any: Show all smart collections."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Show only certain fields, specified by a comma-separated list of field names."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/products/smartcollection#index-2020-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Count Of Smart Collections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-01/smart_collections/count.json",
+            "params": [
+              {
+                "name": "title",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections with the specified title."
+              },
+              {
+                "name": "product_id",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections that include the specified product."
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections last updated after this date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections last updated before this date.  (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections published after this date.  (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections published before this date.  (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_status",
+                "value": "",
+                "type": "query",
+                "description": "Filter results based on the published status of smart collections.\n                  (default: any)\n                    \n                        published: Show only published smart collections.\n                        unpublished: Show only unpublished smart collections.\n                        any: Show all smart collections."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/products/smartcollection#count-2020-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of Smart Collections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-04/smart_collections.json",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to show.\n                  (default: 50, maximum: 250)"
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "Show only the smart collections specified by a comma-separated list of IDs."
+              },
+              {
+                "name": "since_id",
+                "value": "",
+                "type": "query",
+                "description": "Restrict results to after the specified ID."
+              },
+              {
+                "name": "title",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections with the specified title."
+              },
+              {
+                "name": "product_id",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections that includes the specified product."
+              },
+              {
+                "name": "handle",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by smart collection handle."
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections last updated after this date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections last updated before this date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections published after this date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections published before this date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_status",
+                "value": "",
+                "type": "query",
+                "description": "Filter results based on the published status of smart collections.\n                  (default: any)\n                    \n                        published: Show only published smart collections.\n                        unpublished: Show only unpublished smart collections.\n                        any: Show all smart collections."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Show only certain fields, specified by a comma-separated list of field names."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/products/smartcollection#index-2020-04"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Count Of Smart Collections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-04/smart_collections/count.json",
+            "params": [
+              {
+                "name": "title",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections with the specified title."
+              },
+              {
+                "name": "product_id",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections that include the specified product."
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections last updated after this date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections last updated before this date.  (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections published after this date.  (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections published before this date.  (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_status",
+                "value": "",
+                "type": "query",
+                "description": "Filter results based on the published status of smart collections.\n                  (default: any)\n                    \n                        published: Show only published smart collections.\n                        unpublished: Show only unpublished smart collections.\n                        any: Show all smart collections."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/products/smartcollection#count-2020-04"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of Smart Collections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-07/smart_collections.json",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to show.\n                  (default: 50, maximum: 250)"
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "Show only the smart collections specified by a comma-separated list of IDs."
+              },
+              {
+                "name": "since_id",
+                "value": "",
+                "type": "query",
+                "description": "Restrict results to after the specified ID."
+              },
+              {
+                "name": "title",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections with the specified title."
+              },
+              {
+                "name": "product_id",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections that includes the specified product."
+              },
+              {
+                "name": "handle",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by smart collection handle."
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections last updated after this date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections last updated before this date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections published after this date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections published before this date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_status",
+                "value": "",
+                "type": "query",
+                "description": "Filter results based on the published status of smart collections.\n                  (default: any)\n                    \n                        published: Show only published smart collections.\n                        unpublished: Show only unpublished smart collections.\n                        any: Show all smart collections."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Show only certain fields, specified by a comma-separated list of field names."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/products/smartcollection#index-2020-07"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Count Of Smart Collections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-07/smart_collections/count.json",
+            "params": [
+              {
+                "name": "title",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections with the specified title."
+              },
+              {
+                "name": "product_id",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections that include the specified product."
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections last updated after this date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections last updated before this date.  (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections published after this date.  (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections published before this date.  (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_status",
+                "value": "",
+                "type": "query",
+                "description": "Filter results based on the published status of smart collections.\n                  (default: any)\n                    \n                        published: Show only published smart collections.\n                        unpublished: Show only unpublished smart collections.\n                        any: Show all smart collections."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/products/smartcollection#count-2020-07"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of Smart Collections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-10/smart_collections.json",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to show.\n                  (default: 50, maximum: 250)"
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "Show only the smart collections specified by a comma-separated list of IDs."
+              },
+              {
+                "name": "since_id",
+                "value": "",
+                "type": "query",
+                "description": "Restrict results to after the specified ID."
+              },
+              {
+                "name": "title",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections with the specified title."
+              },
+              {
+                "name": "product_id",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections that includes the specified product."
+              },
+              {
+                "name": "handle",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by smart collection handle."
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections last updated after this date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections last updated before this date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections published after this date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections published before this date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_status",
+                "value": "",
+                "type": "query",
+                "description": "Filter results based on the published status of smart collections.\n                  (default: any)\n                    \n                        published: Show only published smart collections.\n                        unpublished: Show only unpublished smart collections.\n                        any: Show all smart collections."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Show only certain fields, specified by a comma-separated list of field names."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/products/smartcollection#index-2020-10"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Count Of Smart Collections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-10/smart_collections/count.json",
+            "params": [
+              {
+                "name": "title",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections with the specified title."
+              },
+              {
+                "name": "product_id",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections that include the specified product."
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections last updated after this date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections last updated before this date.  (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections published after this date.  (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections published before this date.  (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_status",
+                "value": "",
+                "type": "query",
+                "description": "Filter results based on the published status of smart collections.\n                  (default: any)\n                    \n                        published: Show only published smart collections.\n                        unpublished: Show only unpublished smart collections.\n                        any: Show all smart collections."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/products/smartcollection#count-2020-10"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of Smart Collections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2021-01/smart_collections.json",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to show.\n                  (default: 50, maximum: 250)"
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "Show only the smart collections specified by a comma-separated list of IDs."
+              },
+              {
+                "name": "since_id",
+                "value": "",
+                "type": "query",
+                "description": "Restrict results to after the specified ID."
+              },
+              {
+                "name": "title",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections with the specified title."
+              },
+              {
+                "name": "product_id",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections that includes the specified product."
+              },
+              {
+                "name": "handle",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by smart collection handle."
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections last updated after this date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections last updated before this date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections published after this date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections published before this date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_status",
+                "value": "",
+                "type": "query",
+                "description": "Filter results based on the published status of smart collections.\n                  (default: any)\n                    \n                        published: Show only published smart collections.\n                        unpublished: Show only unpublished smart collections.\n                        any: Show all smart collections."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Show only certain fields, specified by a comma-separated list of field names."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/products/smartcollection#index-2021-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Count Of Smart Collections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2021-01/smart_collections/count.json",
+            "params": [
+              {
+                "name": "title",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections with the specified title."
+              },
+              {
+                "name": "product_id",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections that include the specified product."
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections last updated after this date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections last updated before this date.  (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections published after this date.  (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections published before this date.  (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_status",
+                "value": "",
+                "type": "query",
+                "description": "Filter results based on the published status of smart collections.\n                  (default: any)\n                    \n                        published: Show only published smart collections.\n                        unpublished: Show only unpublished smart collections.\n                        any: Show all smart collections."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/products/smartcollection#count-2021-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of Smart Collections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/unstable/smart_collections.json",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to show.\n                  (default: 50, maximum: 250)"
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "Show only the smart collections specified by a comma-separated list of IDs."
+              },
+              {
+                "name": "since_id",
+                "value": "",
+                "type": "query",
+                "description": "Restrict results to after the specified ID."
+              },
+              {
+                "name": "title",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections with the specified title."
+              },
+              {
+                "name": "product_id",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections that includes the specified product."
+              },
+              {
+                "name": "handle",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by smart collection handle."
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections last updated after this date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections last updated before this date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections published after this date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections published before this date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_status",
+                "value": "",
+                "type": "query",
+                "description": "Filter results based on the published status of smart collections.\n                  (default: any)\n                    \n                        published: Show only published smart collections.\n                        unpublished: Show only unpublished smart collections.\n                        any: Show all smart collections."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Show only certain fields, specified by a comma-separated list of field names."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/products/smartcollection#index-unstable"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Count Of Smart Collections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/unstable/smart_collections/count.json",
+            "params": [
+              {
+                "name": "title",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections with the specified title."
+              },
+              {
+                "name": "product_id",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections that include the specified product."
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections last updated after this date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections last updated before this date.  (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections published after this date.  (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections published before this date.  (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_status",
+                "value": "",
+                "type": "query",
+                "description": "Filter results based on the published status of smart collections.\n                  (default: any)\n                    \n                        published: Show only published smart collections.\n                        unpublished: Show only unpublished smart collections.\n                        any: Show all smart collections."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/products/smartcollection#count-unstable"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

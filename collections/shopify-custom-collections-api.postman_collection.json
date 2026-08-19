@@ -1,0 +1,315 @@
+{
+  "item": [
+    {
+      "id": "ab2e4422-a7ec-43e9-b7db-1ebc5d78c404",
+      "name": "Custom Collections",
+      "description": {
+        "content": "Manage manual collections",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ebcadd34-2c19-4c86-a419-2740e8a75571",
+          "name": "Shopify Retrieve a list of custom collections",
+          "request": {
+            "name": "Shopify Retrieve a list of custom collections",
+            "description": {
+              "content": "Retrieves a list of custom (manual) collections.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "custom_collections.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "50",
+                  "description": "Maximum number of results (max 250, default 50)"
+                },
+                {
+                  "disabled": false,
+                  "key": "since_id",
+                  "value": "<integer>",
+                  "description": "Return collections after the specified ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "title",
+                  "value": "<string>",
+                  "description": "Filter by collection title"
+                },
+                {
+                  "disabled": false,
+                  "key": "product_id",
+                  "value": "<integer>",
+                  "description": "Show collections containing this product"
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "Comma-separated list of fields to include"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The Shopify store subdomain",
+                  "type": "any",
+                  "value": "{{store}}",
+                  "key": "store"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d43fbb22-3615-4f2f-9036-876fb24da937",
+              "name": "A list of custom collections",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom_collections.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "since_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "title",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "product_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Shopify store subdomain",
+                      "type": "any",
+                      "value": "{{store}}",
+                      "key": "store"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Shopify-Access-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"custom_collections\": [\n    {\n      \"id\": 7184,\n      \"title\": \"string\",\n      \"handle\": \"string\",\n      \"body_html\": \"string\",\n      \"published_at\": \"1947-05-19T22:01:42.623Z\",\n      \"sort_order\": \"string\",\n      \"template_suffix\": \"string\",\n      \"published_scope\": \"string\",\n      \"updated_at\": \"1952-12-03T00:24:09.385Z\",\n      \"image\": {\n        \"id\": 6880,\n        \"product_id\": 4618,\n        \"position\": 9595,\n        \"alt\": \"string\",\n        \"width\": 447,\n        \"height\": 222,\n        \"src\": \"http://bwoxRJrUTwLn.yqtFFpmdP8mU,UzM55XB18p5oMXmfq29XUEnehd4aMMS-DT\",\n        \"variant_ids\": [\n          7881,\n          1265\n        ],\n        \"created_at\": \"1987-03-25T16:38:17.743Z\",\n        \"updated_at\": \"2019-03-09T01:24:07.971Z\",\n        \"admin_graphql_api_id\": \"string\"\n      },\n      \"admin_graphql_api_id\": \"string\"\n    },\n    {\n      \"id\": 643,\n      \"title\": \"string\",\n      \"handle\": \"string\",\n      \"body_html\": \"string\",\n      \"published_at\": \"1996-12-21T02:56:50.100Z\",\n      \"sort_order\": \"string\",\n      \"template_suffix\": \"string\",\n      \"published_scope\": \"string\",\n      \"updated_at\": \"1964-11-05T02:29:36.243Z\",\n      \"image\": {\n        \"id\": 3687,\n        \"product_id\": 4670,\n        \"position\": 8644,\n        \"alt\": \"string\",\n        \"width\": 6811,\n        \"height\": 3056,\n        \"src\": \"https://UzOWmxWg.adSvSGYsoafZt\",\n        \"variant_ids\": [\n          21,\n          8047\n        ],\n        \"created_at\": \"1955-11-04T15:55:41.762Z\",\n        \"updated_at\": \"1974-06-09T04:31:34.593Z\",\n        \"admin_graphql_api_id\": \"string\"\n      },\n      \"admin_graphql_api_id\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "eb5475fe-289e-460d-b068-fe4174ad7d3f",
+          "name": "Shopify Create a custom collection",
+          "request": {
+            "name": "Shopify Create a custom collection",
+            "description": {
+              "content": "Creates a new custom (manual) collection.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "custom_collections.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Shopify store subdomain",
+                  "type": "any",
+                  "value": "{{store}}",
+                  "key": "store"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"custom_collection\": {\n    \"title\": \"<string>\",\n    \"body_html\": \"<string>\",\n    \"sort_order\": \"<string>\",\n    \"template_suffix\": \"<string>\",\n    \"published\": \"<boolean>\",\n    \"image\": {\n      \"src\": \"<uri>\",\n      \"attachment\": \"<string>\",\n      \"alt\": \"<string>\",\n      \"position\": \"<integer>\",\n      \"variant_ids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c9cbf5c1-8fa3-4b62-a144-ea1e15ab0ee9",
+              "name": "The created collection",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom_collections.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Shopify store subdomain",
+                      "type": "any",
+                      "value": "{{store}}",
+                      "key": "store"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Shopify-Access-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"custom_collection\": {\n    \"title\": \"string\",\n    \"body_html\": \"string\",\n    \"sort_order\": \"string\",\n    \"template_suffix\": \"string\",\n    \"published\": true,\n    \"image\": {\n      \"src\": \"https://woiJMQZgxUlZLwTYqkPzHdbUcisn.abrxMt3Eb1\",\n      \"attachment\": \"string\",\n      \"alt\": \"string\",\n      \"position\": 6948,\n      \"variant_ids\": [\n        6386,\n        5116\n      ]\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"custom_collection\": {\n    \"id\": 5905,\n    \"title\": \"string\",\n    \"handle\": \"string\",\n    \"body_html\": \"string\",\n    \"published_at\": \"1956-05-29T07:21:36.847Z\",\n    \"sort_order\": \"string\",\n    \"template_suffix\": \"string\",\n    \"published_scope\": \"string\",\n    \"updated_at\": \"1947-11-23T12:14:53.184Z\",\n    \"image\": {\n      \"id\": 6353,\n      \"product_id\": 2045,\n      \"position\": 6955,\n      \"alt\": \"string\",\n      \"width\": 7405,\n      \"height\": 29,\n      \"src\": \"https://EJL.yywxZlMw2HxQjuKAFGsOCxMzVyG+uKvjdGgfQFoJXtw\",\n      \"variant_ids\": [\n        2049,\n        8758\n      ],\n      \"created_at\": \"1957-01-11T14:36:30.282Z\",\n      \"updated_at\": \"2002-11-14T21:14:05.928Z\",\n      \"admin_graphql_api_id\": \"string\"\n    },\n    \"admin_graphql_api_id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The Shopify store subdomain",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "my-store",
+      "key": "store"
+    },
+    {
+      "type": "string",
+      "value": "https://{{store}}.myshopify.com/admin/api/2025-01",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Shopify-Access-Token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a6847ec3-398a-41c9-a76d-99e2e34ed6cf",
+    "name": "Shopify Admin REST About Custom Collections API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Shopify Admin REST API lets you build apps and integrations that extend and enhance the Shopify admin. Access products, customers, orders, inventory, fulfillment, and more. Endpoints are organized by resource type and versioned by release date.\n\nContact Support:\n Name: Shopify\n Email: api@shopify.com",
+      "type": "text/plain"
+    }
+  }
+}

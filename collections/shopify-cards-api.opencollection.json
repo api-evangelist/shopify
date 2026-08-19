@@ -1,0 +1,584 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Shopify Admin REST About Cards API",
+    "version": "2025-01"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Shopify-Access-Token",
+      "value": "{{X-Shopify-Access-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Cards",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of Gift Cards",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-01/gift_cards.json",
+            "params": [
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Retrieve gift cards with a given status. Valid values:\n                    \n                        enabled: Restrict results to only enabled gift cards\n                        disabled: Restrict results to only disabled gift cards"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of results to show.\n                  (default: 50, maximum: 250)"
+              },
+              {
+                "name": "since_id",
+                "value": "",
+                "type": "query",
+                "description": "Restrict results to after the specified ID."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Show only certain fields, specified by a comma-separated list of field names."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/plus/giftcard#index-2020-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Count Of Gift Cards",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-01/gift_cards/count.json",
+            "params": [
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Count gift cards with a given status. Valid values:\n                    \n                        enabled: Count only enabled gift cards\n                        disabled: Count only disabled gift cards"
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/plus/giftcard#count-2020-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Searches For Gift Cards That Match A Supplied Query",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-01/gift_cards/search.json",
+            "params": [
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "The field and direction to order results by.\n                  (default: disabled_at DESC)"
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "The text to search for."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of results to retrieve.\n                  (default: 50, maximum: 250)"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Show only certain fields, specified by a comma-separated list of field names."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/plus/giftcard#search-2020-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of Gift Cards",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-04/gift_cards.json",
+            "params": [
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Retrieve gift cards with a given status. Valid values:\n                    \n                        enabled: Restrict results to only enabled gift cards\n                        disabled: Restrict results to only disabled gift cards"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of results to show.\n                  (default: 50, maximum: 250)"
+              },
+              {
+                "name": "since_id",
+                "value": "",
+                "type": "query",
+                "description": "Restrict results to after the specified ID."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Show only certain fields, specified by a comma-separated list of field names."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/plus/giftcard#index-2020-04"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Count Of Gift Cards",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-04/gift_cards/count.json",
+            "params": [
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Count gift cards with a given status. Valid values:\n                    \n                        enabled: Count only enabled gift cards\n                        disabled: Count only disabled gift cards"
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/plus/giftcard#count-2020-04"
+        },
+        {
+          "info": {
+            "name": "Shopify Searches For Gift Cards That Match A Supplied Query",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-04/gift_cards/search.json",
+            "params": [
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "The field and direction to order results by.\n                  (default: disabled_at DESC)"
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "The text to search for."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of results to retrieve.\n                  (default: 50, maximum: 250)"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Show only certain fields, specified by a comma-separated list of field names."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/plus/giftcard#search-2020-04"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of Gift Cards",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-07/gift_cards.json",
+            "params": [
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Retrieve gift cards with a given status. Valid values:\n                    \n                        enabled: Restrict results to only enabled gift cards\n                        disabled: Restrict results to only disabled gift cards"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of results to show.\n                  (default: 50, maximum: 250)"
+              },
+              {
+                "name": "since_id",
+                "value": "",
+                "type": "query",
+                "description": "Restrict results to after the specified ID."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Show only certain fields, specified by a comma-separated list of field names."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/plus/giftcard#index-2020-07"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Count Of Gift Cards",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-07/gift_cards/count.json",
+            "params": [
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Count gift cards with a given status. Valid values:\n                    \n                        enabled: Count only enabled gift cards\n                        disabled: Count only disabled gift cards"
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/plus/giftcard#count-2020-07"
+        },
+        {
+          "info": {
+            "name": "Shopify Searches For Gift Cards That Match A Supplied Query",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-07/gift_cards/search.json",
+            "params": [
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "The field and direction to order results by.\n                  (default: disabled_at DESC)"
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "The text to search for."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of results to retrieve.\n                  (default: 50, maximum: 250)"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Show only certain fields, specified by a comma-separated list of field names."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/plus/giftcard#search-2020-07"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of Gift Cards",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-10/gift_cards.json",
+            "params": [
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Retrieve gift cards with a given status. Valid values:\n                    \n                        enabled: Restrict results to only enabled gift cards\n                        disabled: Restrict results to only disabled gift cards"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of results to show.\n                  (default: 50, maximum: 250)"
+              },
+              {
+                "name": "since_id",
+                "value": "",
+                "type": "query",
+                "description": "Restrict results to after the specified ID."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Show only certain fields, specified by a comma-separated list of field names."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/plus/giftcard#index-2020-10"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Count Of Gift Cards",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-10/gift_cards/count.json",
+            "params": [
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Count gift cards with a given status. Valid values:\n                    \n                        enabled: Count only enabled gift cards\n                        disabled: Count only disabled gift cards"
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/plus/giftcard#count-2020-10"
+        },
+        {
+          "info": {
+            "name": "Shopify Searches For Gift Cards That Match A Supplied Query",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-10/gift_cards/search.json",
+            "params": [
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "The field and direction to order results by.\n                  (default: disabled_at DESC)"
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "The text to search for."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of results to retrieve.\n                  (default: 50, maximum: 250)"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Show only certain fields, specified by a comma-separated list of field names."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/plus/giftcard#search-2020-10"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of Gift Cards",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2021-01/gift_cards.json",
+            "params": [
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Retrieve gift cards with a given status. Valid values:\n                    \n                        enabled: Restrict results to only enabled gift cards\n                        disabled: Restrict results to only disabled gift cards"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of results to show.\n                  (default: 50, maximum: 250)"
+              },
+              {
+                "name": "since_id",
+                "value": "",
+                "type": "query",
+                "description": "Restrict results to after the specified ID."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Show only certain fields, specified by a comma-separated list of field names."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/plus/giftcard#index-2021-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Count Of Gift Cards",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2021-01/gift_cards/count.json",
+            "params": [
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Count gift cards with a given status. Valid values:\n                    \n                        enabled: Count only enabled gift cards\n                        disabled: Count only disabled gift cards"
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/plus/giftcard#count-2021-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Searches For Gift Cards That Match A Supplied Query",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2021-01/gift_cards/search.json",
+            "params": [
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "The field and direction to order results by.\n                  (default: disabled_at DESC)"
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "The text to search for."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of results to retrieve.\n                  (default: 50, maximum: 250)"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Show only certain fields, specified by a comma-separated list of field names."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/plus/giftcard#search-2021-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of Gift Cards",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/unstable/gift_cards.json",
+            "params": [
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Retrieve gift cards with a given status. Valid values:\n                    \n                        enabled: Restrict results to only enabled gift cards\n                        disabled: Restrict results to only disabled gift cards"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of results to show.\n                  (default: 50, maximum: 250)"
+              },
+              {
+                "name": "since_id",
+                "value": "",
+                "type": "query",
+                "description": "Restrict results to after the specified ID."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Show only certain fields, specified by a comma-separated list of field names."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/plus/giftcard#index-unstable"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Count Of Gift Cards",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/unstable/gift_cards/count.json",
+            "params": [
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Count gift cards with a given status. Valid values:\n                    \n                        enabled: Count only enabled gift cards\n                        disabled: Count only disabled gift cards"
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/plus/giftcard#count-unstable"
+        },
+        {
+          "info": {
+            "name": "Shopify Searches For Gift Cards That Match A Supplied Query",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/unstable/gift_cards/search.json",
+            "params": [
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "The field and direction to order results by.\n                  (default: disabled_at DESC)"
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "The text to search for."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of results to retrieve.\n                  (default: 50, maximum: 250)"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Show only certain fields, specified by a comma-separated list of field names."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/plus/giftcard#search-unstable"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,49 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Shopify Admin REST About Releases API",
+    "version": "2025-01"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Shopify-Access-Token",
+      "value": "{{X-Shopify-Access-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Releases",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Shopify Releases The Fulfillment Order Holds For A Specific Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/unstable/fulfillment_orders/release_hold.json",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the order that is associated to the fulfillment orders."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentorder#release_hold-unstable"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

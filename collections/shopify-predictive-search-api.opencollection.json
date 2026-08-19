@@ -1,0 +1,75 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Shopify Admin REST About Predictive Search API",
+    "version": "2025-01"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Shopify-Access-Token",
+      "value": "{{X-Shopify-Access-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Predictive Search",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Shopify Get predictive search results",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/search/suggest.json",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "The search query"
+              },
+              {
+                "name": "resources[type]",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated resource types to search (product, page, article, collection, query)"
+              },
+              {
+                "name": "resources[limit]",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per type (1-10, default 10)"
+              },
+              {
+                "name": "resources[limit_scope]",
+                "value": "",
+                "type": "query",
+                "description": "How the limit is distributed: all (shared across types) or each (per type)"
+              },
+              {
+                "name": "resources[options][unavailable_products]",
+                "value": "",
+                "type": "query",
+                "description": "How to handle unavailable products"
+              },
+              {
+                "name": "resources[options][fields]",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated fields to search within (title, product_type, vendor, tag, variants.title, variants.sku, body)"
+              }
+            ]
+          },
+          "docs": "Retrieves predictive search results for a query string. Returns matching products, collections, pages, articles, and query suggestions. Used for search-as-you-type experiences."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

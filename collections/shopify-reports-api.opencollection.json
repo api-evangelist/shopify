@@ -1,0 +1,896 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Shopify Admin REST About Reports API",
+    "version": "2025-01"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Shopify-Access-Token",
+      "value": "{{X-Shopify-Access-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Reports",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of Reports",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-01/reports.json",
+            "params": [
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "A comma-separated list of report IDs."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The amount of results to return.\n                  (default: 50, maximum: 250)"
+              },
+              {
+                "name": "since_id",
+                "value": "",
+                "type": "query",
+                "description": "Restrict results to after the specified ID."
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show reports last updated after date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show reports last updated before date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "A comma-separated list of fields to include in the response."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/analytics/report#index-2020-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Creates A New Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-01/reports.json",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "The name of the report. Maximum length: 255 characters."
+              },
+              {
+                "name": "shopify_ql",
+                "value": "",
+                "type": "query",
+                "description": "The ShopifyQL the report will query."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/analytics/report#create-2020-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Single Report Created By Your App",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-01/reports/:report_id.json",
+            "params": [
+              {
+                "name": "report_id",
+                "value": "",
+                "type": "path",
+                "description": "report_id"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "A comma-separated list of fields to include in the response."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/analytics/report#show-2020-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Updates A Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-01/reports/:report_id.json",
+            "params": [
+              {
+                "name": "report_id",
+                "value": "",
+                "type": "path",
+                "description": "report_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/analytics/report#update-2020-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Deletes A Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-01/reports/:report_id.json",
+            "params": [
+              {
+                "name": "report_id",
+                "value": "",
+                "type": "path",
+                "description": "report_id"
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/analytics/report#destroy-2020-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of Reports",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-04/reports.json",
+            "params": [
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "A comma-separated list of report IDs."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The amount of results to return.\n                  (default: 50, maximum: 250)"
+              },
+              {
+                "name": "since_id",
+                "value": "",
+                "type": "query",
+                "description": "Restrict results to after the specified ID."
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show reports last updated after date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show reports last updated before date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "A comma-separated list of fields to include in the response."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/analytics/report#index-2020-04"
+        },
+        {
+          "info": {
+            "name": "Shopify Creates A New Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-04/reports.json",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "The name of the report. Maximum length: 255 characters."
+              },
+              {
+                "name": "shopify_ql",
+                "value": "",
+                "type": "query",
+                "description": "The ShopifyQL the report will query."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/analytics/report#create-2020-04"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Single Report Created By Your App",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-04/reports/:report_id.json",
+            "params": [
+              {
+                "name": "report_id",
+                "value": "",
+                "type": "path",
+                "description": "report_id"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "A comma-separated list of fields to include in the response."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/analytics/report#show-2020-04"
+        },
+        {
+          "info": {
+            "name": "Shopify Updates A Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-04/reports/:report_id.json",
+            "params": [
+              {
+                "name": "report_id",
+                "value": "",
+                "type": "path",
+                "description": "report_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/analytics/report#update-2020-04"
+        },
+        {
+          "info": {
+            "name": "Shopify Deletes A Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-04/reports/:report_id.json",
+            "params": [
+              {
+                "name": "report_id",
+                "value": "",
+                "type": "path",
+                "description": "report_id"
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/analytics/report#destroy-2020-04"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of Reports",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-07/reports.json",
+            "params": [
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "A comma-separated list of report IDs."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The amount of results to return.\n                  (default: 50, maximum: 250)"
+              },
+              {
+                "name": "since_id",
+                "value": "",
+                "type": "query",
+                "description": "Restrict results to after the specified ID."
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show reports last updated after date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show reports last updated before date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "A comma-separated list of fields to include in the response."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/analytics/report#index-2020-07"
+        },
+        {
+          "info": {
+            "name": "Shopify Creates A New Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-07/reports.json",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "The name of the report. Maximum length: 255 characters."
+              },
+              {
+                "name": "shopify_ql",
+                "value": "",
+                "type": "query",
+                "description": "The ShopifyQL the report will query."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/analytics/report#create-2020-07"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Single Report Created By Your App",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-07/reports/:report_id.json",
+            "params": [
+              {
+                "name": "report_id",
+                "value": "",
+                "type": "path",
+                "description": "report_id"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "A comma-separated list of fields to include in the response."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/analytics/report#show-2020-07"
+        },
+        {
+          "info": {
+            "name": "Shopify Updates A Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-07/reports/:report_id.json",
+            "params": [
+              {
+                "name": "report_id",
+                "value": "",
+                "type": "path",
+                "description": "report_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/analytics/report#update-2020-07"
+        },
+        {
+          "info": {
+            "name": "Shopify Deletes A Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-07/reports/:report_id.json",
+            "params": [
+              {
+                "name": "report_id",
+                "value": "",
+                "type": "path",
+                "description": "report_id"
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/analytics/report#destroy-2020-07"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of Reports",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-10/reports.json",
+            "params": [
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "A comma-separated list of report IDs."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The amount of results to return.\n                  (default: 50, maximum: 250)"
+              },
+              {
+                "name": "since_id",
+                "value": "",
+                "type": "query",
+                "description": "Restrict results to after the specified ID."
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show reports last updated after date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show reports last updated before date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "A comma-separated list of fields to include in the response."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/analytics/report#index-2020-10"
+        },
+        {
+          "info": {
+            "name": "Shopify Creates A New Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-10/reports.json",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "The name of the report. Maximum length: 255 characters."
+              },
+              {
+                "name": "shopify_ql",
+                "value": "",
+                "type": "query",
+                "description": "The ShopifyQL the report will query."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/analytics/report#create-2020-10"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Single Report Created By Your App",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-10/reports/:report_id.json",
+            "params": [
+              {
+                "name": "report_id",
+                "value": "",
+                "type": "path",
+                "description": "report_id"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "A comma-separated list of fields to include in the response."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/analytics/report#show-2020-10"
+        },
+        {
+          "info": {
+            "name": "Shopify Updates A Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-10/reports/:report_id.json",
+            "params": [
+              {
+                "name": "report_id",
+                "value": "",
+                "type": "path",
+                "description": "report_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/analytics/report#update-2020-10"
+        },
+        {
+          "info": {
+            "name": "Shopify Deletes A Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-10/reports/:report_id.json",
+            "params": [
+              {
+                "name": "report_id",
+                "value": "",
+                "type": "path",
+                "description": "report_id"
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/analytics/report#destroy-2020-10"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of Reports",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2021-01/reports.json",
+            "params": [
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "A comma-separated list of report IDs."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The amount of results to return.\n                  (default: 50, maximum: 250)"
+              },
+              {
+                "name": "since_id",
+                "value": "",
+                "type": "query",
+                "description": "Restrict results to after the specified ID."
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show reports last updated after date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show reports last updated before date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "A comma-separated list of fields to include in the response."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/analytics/report#index-2021-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Creates A New Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2021-01/reports.json",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "The name of the report. Maximum length: 255 characters."
+              },
+              {
+                "name": "shopify_ql",
+                "value": "",
+                "type": "query",
+                "description": "The ShopifyQL the report will query."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/analytics/report#create-2021-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Single Report Created By Your App",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2021-01/reports/:report_id.json",
+            "params": [
+              {
+                "name": "report_id",
+                "value": "",
+                "type": "path",
+                "description": "report_id"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "A comma-separated list of fields to include in the response."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/analytics/report#show-2021-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Updates A Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2021-01/reports/:report_id.json",
+            "params": [
+              {
+                "name": "report_id",
+                "value": "",
+                "type": "path",
+                "description": "report_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/analytics/report#update-2021-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Deletes A Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2021-01/reports/:report_id.json",
+            "params": [
+              {
+                "name": "report_id",
+                "value": "",
+                "type": "path",
+                "description": "report_id"
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/analytics/report#destroy-2021-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of Reports",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/unstable/reports.json",
+            "params": [
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "A comma-separated list of report IDs."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The amount of results to return.\n                  (default: 50, maximum: 250)"
+              },
+              {
+                "name": "since_id",
+                "value": "",
+                "type": "query",
+                "description": "Restrict results to after the specified ID."
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show reports last updated after date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show reports last updated before date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "A comma-separated list of fields to include in the response."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/analytics/report#index-unstable"
+        },
+        {
+          "info": {
+            "name": "Shopify Creates A New Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/unstable/reports.json",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "The name of the report. Maximum length: 255 characters."
+              },
+              {
+                "name": "shopify_ql",
+                "value": "",
+                "type": "query",
+                "description": "The ShopifyQL the report will query."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/analytics/report#create-unstable"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Single Report Created By Your App",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/unstable/reports/:report_id.json",
+            "params": [
+              {
+                "name": "report_id",
+                "value": "",
+                "type": "path",
+                "description": "report_id"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "A comma-separated list of fields to include in the response."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/analytics/report#show-unstable"
+        },
+        {
+          "info": {
+            "name": "Shopify Updates A Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/unstable/reports/:report_id.json",
+            "params": [
+              {
+                "name": "report_id",
+                "value": "",
+                "type": "path",
+                "description": "report_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/analytics/report#update-unstable"
+        },
+        {
+          "info": {
+            "name": "Shopify Deletes A Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/unstable/reports/:report_id.json",
+            "params": [
+              {
+                "name": "report_id",
+                "value": "",
+                "type": "path",
+                "description": "report_id"
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/analytics/report#destroy-unstable"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

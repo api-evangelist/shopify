@@ -1,7 +1,7 @@
 {
   "item": [
     {
-      "id": "8bef0384-9506-4ab4-980b-74c0ee6dc40c",
+      "id": "19f5035c-405a-43a2-b24b-8a35c95e9c87",
       "name": "Multipass",
       "description": {
         "content": "Single sign-on token-based authentication",
@@ -9,7 +9,7 @@
       },
       "item": [
         {
-          "id": "51e71395-2a76-4788-8ee8-7ec4010a127b",
+          "id": "bec0e8de-540f-4335-afb2-cf72d1a6842e",
           "name": "Shopify Log in a customer using a Multipass token",
           "request": {
             "name": "Shopify Log in a customer using a Multipass token",
@@ -49,7 +49,7 @@
           },
           "response": [
             {
-              "id": "276de8d9-ace7-4fc1-9768-687ecc6382e0",
+              "id": "c4dddeaf-0e6e-4dac-a6cf-6988b232536d",
               "name": "Successful authentication. Redirects to the return_to URL specified in the token payload or the store homepage.",
               "originalRequest": {
                 "url": {
@@ -79,6 +79,16 @@
                     }
                   ]
                 },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Shopify-Access-Token",
+                    "value": "<API Key>"
+                  }
+                ],
                 "method": "GET",
                 "body": {}
               },
@@ -89,7 +99,7 @@
                   "disabled": false,
                   "description": "The redirect destination URL",
                   "key": "Location",
-                  "value": "http://FATyGucNuKVCesZXOPxs.lnsJ7BZbEzMl5-ZqAISmHLuPdKTvxEt"
+                  "value": "https://YettSMQvHTvQkEmIeObzpOapE.url"
                 },
                 {
                   "disabled": false,
@@ -107,7 +117,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "cf47fb71-ce6b-46c1-8253-5c883e651afa",
+              "id": "8a1dfa19-9738-4b3e-a956-2ccb447f6a17",
               "name": "Token is invalid, expired, or has already been used.",
               "originalRequest": {
                 "url": {
@@ -137,6 +147,16 @@
                     }
                   ]
                 },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Shopify-Access-Token",
+                    "value": "<API Key>"
+                  }
+                ],
                 "method": "GET",
                 "body": {}
               },
@@ -153,7 +173,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "95ff57fb-f6dc-4f6d-89ef-89dd1df86ce5",
+              "id": "35f497c1-277d-4609-8f9d-57f105e997f0",
               "name": "Multipass is not enabled for this store or the store is not on a Shopify Plus plan.",
               "originalRequest": {
                 "url": {
@@ -183,6 +203,16 @@
                     }
                   ]
                 },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Shopify-Access-Token",
+                    "value": "<API Key>"
+                  }
+                ],
                 "method": "GET",
                 "body": {}
               },
@@ -221,16 +251,33 @@
     },
     {
       "type": "string",
-      "value": "https://{{store}}.myshopify.com",
+      "value": "https://{{store}}.myshopify.com/admin/api/2025-01",
       "key": "baseUrl"
     }
   ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Shopify-Access-Token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
   "info": {
-    "_postman_id": "b0e30533-75a2-4ab2-9246-5734ce673438",
-    "name": "Shopify Multipass API",
+    "_postman_id": "b3e009ef-11f7-4be7-b21e-900cbf283458",
+    "name": "Shopify Admin REST About Multipass API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": {
-      "content": "Multipass login enables seamless single sign-on for Shopify Plus stores. It allows store owners who have a separate website and a Shopify store to redirect users from the external website and automatically log them into the Shopify store. Multipass tokens are generated server-side using AES encryption and HMAC signing with the store multipass secret, then passed to the Shopify login endpoint via URL. Tokens are valid for 15 minutes and can only be used once. Requires a Shopify Plus plan.\n\nContact Support:\n Name: Shopify\n Email: api@shopify.com",
+      "content": "The Shopify Admin REST API lets you build apps and integrations that extend and enhance the Shopify admin. Access products, customers, orders, inventory, fulfillment, and more. Endpoints are organized by resource type and versioned by release date.\n\nContact Support:\n Name: Shopify\n Email: api@shopify.com",
       "type": "text/plain"
     }
   }

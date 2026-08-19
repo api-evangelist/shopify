@@ -1,0 +1,304 @@
+{
+  "item": [
+    {
+      "id": "f9d24329-099c-4662-9ee8-20f8b8296b62",
+      "name": "Product Recommendations",
+      "description": {
+        "content": "Get product recommendations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "fa24d9cc-db1b-486d-807e-e99727e97b46",
+          "name": "Shopify Get product recommendations",
+          "request": {
+            "name": "Shopify Get product recommendations",
+            "description": {
+              "content": "Retrieves product recommendations for a given product. Returns related or complementary products based on purchase history, product descriptions, and related collections.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "recommendations",
+                "products.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "product_id",
+                  "value": "<integer>",
+                  "description": "(Required) The product ID to get recommendations for"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Number of recommendations (1-10, default 10)"
+                },
+                {
+                  "disabled": false,
+                  "key": "intent",
+                  "value": "related",
+                  "description": "The recommendation intent"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The Shopify store subdomain",
+                  "type": "any",
+                  "value": "{{store}}",
+                  "key": "store"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0ffbeaa6-2d9a-4d65-a2ac-ebba57ce6ad8",
+              "name": "Product recommendations",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "recommendations",
+                    "products.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "product_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "intent",
+                      "value": "related"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Shopify store subdomain",
+                      "type": "any",
+                      "value": "{{store}}",
+                      "key": "store"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Shopify-Access-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"intent\": \"string\",\n  \"products\": [\n    {\n      \"id\": 9653,\n      \"title\": \"string\",\n      \"handle\": \"string\",\n      \"description\": \"string\",\n      \"published_at\": \"2006-07-05T13:26:07.656Z\",\n      \"created_at\": \"1998-07-12T03:35:14.989Z\",\n      \"vendor\": \"string\",\n      \"type\": \"string\",\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"price\": 5104,\n      \"price_min\": 3150,\n      \"price_max\": 6401,\n      \"available\": false,\n      \"price_varies\": true,\n      \"compare_at_price\": 4302,\n      \"compare_at_price_min\": 2732,\n      \"compare_at_price_max\": 2598,\n      \"compare_at_price_varies\": false,\n      \"variants\": [\n        {\n          \"id\": 8532,\n          \"title\": \"string\",\n          \"option1\": \"string\",\n          \"option2\": \"string\",\n          \"option3\": \"string\",\n          \"sku\": \"string\",\n          \"requires_shipping\": false,\n          \"taxable\": false,\n          \"featured_image\": {},\n          \"available\": true,\n          \"name\": \"string\",\n          \"public_title\": \"string\",\n          \"price\": 2721,\n          \"weight\": 4639,\n          \"compare_at_price\": 2236,\n          \"barcode\": \"string\"\n        },\n        {\n          \"id\": 3568,\n          \"title\": \"string\",\n          \"option1\": \"string\",\n          \"option2\": \"string\",\n          \"option3\": \"string\",\n          \"sku\": \"string\",\n          \"requires_shipping\": false,\n          \"taxable\": false,\n          \"featured_image\": {},\n          \"available\": true,\n          \"name\": \"string\",\n          \"public_title\": \"string\",\n          \"price\": 4572,\n          \"weight\": 7401,\n          \"compare_at_price\": 689,\n          \"barcode\": \"string\"\n        }\n      ],\n      \"images\": [\n        \"http://dq.amhqspgBRq70Gg\",\n        \"http://FBNFiilZfCwtjCAobxgiLZcapAz.kftgNQNl1MprstsWTlOmazFJbpw3s.Z8IOhSoq3Gsii+JzaEEvzk1FttMFEq7r\"\n      ],\n      \"featured_image\": \"https://BZLOtWk.qqllF7P1I,yyknv006CVOtKjQZCjWZmS5K2JNLL+gj1ar76FSumCEZr8LwRkP\",\n      \"options\": [\n        {\n          \"name\": \"string\",\n          \"position\": 4295,\n          \"values\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"name\": \"string\",\n          \"position\": 6221,\n          \"values\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ],\n      \"url\": \"string\",\n      \"media\": [\n        {\n          \"alt\": \"string\",\n          \"id\": 416,\n          \"position\": 6305,\n          \"media_type\": \"string\",\n          \"src\": \"http://LecYpEQOcPfgcvEMvaSYAo.ofmz-BVx.HqeOmNmZXo\",\n          \"width\": 4658,\n          \"height\": 5627\n        },\n        {\n          \"alt\": \"string\",\n          \"id\": 2504,\n          \"position\": 2638,\n          \"media_type\": \"string\",\n          \"src\": \"http://J.xsjfGqvcbIrslGOs3U,,Hrb4zb4o4eOs0\",\n          \"width\": 8494,\n          \"height\": 2332\n        }\n      ]\n    },\n    {\n      \"id\": 2330,\n      \"title\": \"string\",\n      \"handle\": \"string\",\n      \"description\": \"string\",\n      \"published_at\": \"1966-08-28T15:23:19.348Z\",\n      \"created_at\": \"2005-07-26T09:10:30.829Z\",\n      \"vendor\": \"string\",\n      \"type\": \"string\",\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"price\": 8865,\n      \"price_min\": 2418,\n      \"price_max\": 2955,\n      \"available\": false,\n      \"price_varies\": false,\n      \"compare_at_price\": 22,\n      \"compare_at_price_min\": 1149,\n      \"compare_at_price_max\": 5347,\n      \"compare_at_price_varies\": false,\n      \"variants\": [\n        {\n          \"id\": 3797,\n          \"title\": \"string\",\n          \"option1\": \"string\",\n          \"option2\": \"string\",\n          \"option3\": \"string\",\n          \"sku\": \"string\",\n          \"requires_shipping\": true,\n          \"taxable\": false,\n          \"featured_image\": {},\n          \"available\": false,\n          \"name\": \"string\",\n          \"public_title\": \"string\",\n          \"price\": 1057,\n          \"weight\": 2382,\n          \"compare_at_price\": 4142,\n          \"barcode\": \"string\"\n        },\n        {\n          \"id\": 2357,\n          \"title\": \"string\",\n          \"option1\": \"string\",\n          \"option2\": \"string\",\n          \"option3\": \"string\",\n          \"sku\": \"string\",\n          \"requires_shipping\": false,\n          \"taxable\": true,\n          \"featured_image\": {},\n          \"available\": false,\n          \"name\": \"string\",\n          \"public_title\": \"string\",\n          \"price\": 1276,\n          \"weight\": 5969,\n          \"compare_at_price\": 4122,\n          \"barcode\": \"string\"\n        }\n      ],\n      \"images\": [\n        \"https://ceYnqCxUFOVkLgTiJcsHzfYSBAqae.lyhZdCAP2cwBZOE8WBQGzoh0fZd7pjcovhHTCvAAmyakDvzfFSg6OnsZI\",\n        \"https://ojRBMEVEojyTyzc.wmqvuX0eXlVJjmOFi2fDglRvuY3aGi93GLwBj1c2c1gIAiaHbNyjGuRZ+CtGTsOqU\"\n      ],\n      \"featured_image\": \"https://PX.jtaL+KWgvH.g2kecfnW7p\",\n      \"options\": [\n        {\n          \"name\": \"string\",\n          \"position\": 6065,\n          \"values\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"name\": \"string\",\n          \"position\": 2897,\n          \"values\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ],\n      \"url\": \"string\",\n      \"media\": [\n        {\n          \"alt\": \"string\",\n          \"id\": 9202,\n          \"position\": 3769,\n          \"media_type\": \"string\",\n          \"src\": \"http://UblBToqDvrFSGmX.reeayBaz2NhMVE+dVij\",\n          \"width\": 8800,\n          \"height\": 4993\n        },\n        {\n          \"alt\": \"string\",\n          \"id\": 5022,\n          \"position\": 1345,\n          \"media_type\": \"string\",\n          \"src\": \"http://chdJPxbbJTHdoGDApNjgpDjUuHz.mbhuo-\",\n          \"width\": 9982,\n          \"height\": 831\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "02303b9a-7cb6-4b07-84bf-bd42587904a6",
+              "name": "Product not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "recommendations",
+                    "products.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "product_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "intent",
+                      "value": "related"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Shopify store subdomain",
+                      "type": "any",
+                      "value": "{{store}}",
+                      "key": "store"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Shopify-Access-Token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "42278469-1d7f-4300-88ab-4da08070e1e2",
+              "name": "Invalid parameter",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "recommendations",
+                    "products.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "product_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "intent",
+                      "value": "related"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Shopify store subdomain",
+                      "type": "any",
+                      "value": "{{store}}",
+                      "key": "store"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Shopify-Access-Token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The Shopify store subdomain",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "my-store",
+      "key": "store"
+    },
+    {
+      "type": "string",
+      "value": "https://{{store}}.myshopify.com/admin/api/2025-01",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Shopify-Access-Token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "49401447-84f4-4664-a2f9-412f20a6ae2a",
+    "name": "Shopify Admin REST About Product Recommendations API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Shopify Admin REST API lets you build apps and integrations that extend and enhance the Shopify admin. Access products, customers, orders, inventory, fulfillment, and more. Endpoints are organized by resource type and versioned by release date.\n\nContact Support:\n Name: Shopify\n Email: api@shopify.com",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,124 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Shopify Admin REST About Cart API",
+    "version": "2025-01"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Shopify-Access-Token",
+      "value": "{{X-Shopify-Access-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Cart",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Shopify Retrieve the current cart",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/cart.js"
+          },
+          "docs": "Retrieves the current cart contents as JSON, including all line items, totals, attributes, notes, and currency information."
+        },
+        {
+          "info": {
+            "name": "Shopify Add items to the cart",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/cart/add.js",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds one or more product variants to the cart. Each item requires a variant ID and quantity. Optional properties and selling plans can be attached to line items."
+        },
+        {
+          "info": {
+            "name": "Shopify Update the cart",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/cart/update.js",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates cart line item quantities, cart note, cart attributes, or applies a discount code. Quantities can be updated using a map of variant ID to quantity or line number to quantity."
+        },
+        {
+          "info": {
+            "name": "Shopify Change a cart line item",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/cart/change.js",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Changes the quantity, properties, or selling plan of a single cart line item. Identify the item by line number (1-indexed) or by its key."
+        },
+        {
+          "info": {
+            "name": "Shopify Clear all items from the cart",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/cart/clear.js"
+          },
+          "docs": "Removes all line items from the cart, returning an empty cart object."
+        },
+        {
+          "info": {
+            "name": "Shopify Get estimated shipping rates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/cart/shipping_rates.json",
+            "params": [
+              {
+                "name": "shipping_address[zip]",
+                "value": "",
+                "type": "query",
+                "description": "Postal or zip code"
+              },
+              {
+                "name": "shipping_address[country]",
+                "value": "",
+                "type": "query",
+                "description": "Country name or ISO code"
+              },
+              {
+                "name": "shipping_address[province]",
+                "value": "",
+                "type": "query",
+                "description": "Province, state, or region"
+              }
+            ]
+          },
+          "docs": "Retrieves estimated shipping rates for the current cart based on the provided shipping address. May be throttled for repeated requests."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,1604 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Shopify Admin REST About Smart API",
+    "version": "2025-01"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Shopify-Access-Token",
+      "value": "{{X-Shopify-Access-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Smart",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of Smart Collections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-01/smart_collections.json",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to show.\n                  (default: 50, maximum: 250)"
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "Show only the smart collections specified by a comma-separated list of IDs."
+              },
+              {
+                "name": "since_id",
+                "value": "",
+                "type": "query",
+                "description": "Restrict results to after the specified ID."
+              },
+              {
+                "name": "title",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections with the specified title."
+              },
+              {
+                "name": "product_id",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections that includes the specified product."
+              },
+              {
+                "name": "handle",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by smart collection handle."
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections last updated after this date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections last updated before this date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections published after this date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections published before this date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_status",
+                "value": "",
+                "type": "query",
+                "description": "Filter results based on the published status of smart collections.\n                  (default: any)\n                    \n                        published: Show only published smart collections.\n                        unpublished: Show only unpublished smart collections.\n                        any: Show all smart collections."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Show only certain fields, specified by a comma-separated list of field names."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/products/smartcollection#index-2020-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Creates A New Smart Collection Using The Specified Rules",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-01/smart_collections.json",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/products/smartcollection#create-2020-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Count Of Smart Collections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-01/smart_collections/count.json",
+            "params": [
+              {
+                "name": "title",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections with the specified title."
+              },
+              {
+                "name": "product_id",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections that include the specified product."
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections last updated after this date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections last updated before this date.  (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections published after this date.  (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections published before this date.  (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_status",
+                "value": "",
+                "type": "query",
+                "description": "Filter results based on the published status of smart collections.\n                  (default: any)\n                    \n                        published: Show only published smart collections.\n                        unpublished: Show only unpublished smart collections.\n                        any: Show all smart collections."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/products/smartcollection#count-2020-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Single Smart Collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-01/smart_collections/:smart_collection_id.json",
+            "params": [
+              {
+                "name": "smart_collection_id",
+                "value": "",
+                "type": "path",
+                "description": "smart_collection_id"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Show only certain fields, specified by a comma-separated list of field names."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/products/smartcollection#show-2020-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Updates An Existing Smart Collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-01/smart_collections/:smart_collection_id.json",
+            "params": [
+              {
+                "name": "smart_collection_id",
+                "value": "",
+                "type": "path",
+                "description": "smart_collection_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/products/smartcollection#update-2020-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Removes A Smart Collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-01/smart_collections/:smart_collection_id.json",
+            "params": [
+              {
+                "name": "smart_collection_id",
+                "value": "",
+                "type": "path",
+                "description": "smart_collection_id"
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/products/smartcollection#destroy-2020-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Updates The Ordering Type Of Products In A Smart Collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-01/smart_collections/:smart_collection_id/order.json",
+            "params": [
+              {
+                "name": "smart_collection_id",
+                "value": "",
+                "type": "path",
+                "description": "smart_collection_id"
+              },
+              {
+                "name": "products",
+                "value": "",
+                "type": "query",
+                "description": "An array of product IDs, in the order that you want them to appear at the top of the collection. When products is specified but empty, any previously sorted products are cleared."
+              },
+              {
+                "name": "sort_order",
+                "value": "",
+                "type": "query",
+                "description": "The type of sorting to apply. Valid values are listed in the Properties section above.\n                  (default: (current value))"
+              },
+              {
+                "name": "products[]",
+                "value": "",
+                "type": "query",
+                "description": "products[]"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/products/smartcollection#order-2020-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of Smart Collections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-04/smart_collections.json",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to show.\n                  (default: 50, maximum: 250)"
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "Show only the smart collections specified by a comma-separated list of IDs."
+              },
+              {
+                "name": "since_id",
+                "value": "",
+                "type": "query",
+                "description": "Restrict results to after the specified ID."
+              },
+              {
+                "name": "title",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections with the specified title."
+              },
+              {
+                "name": "product_id",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections that includes the specified product."
+              },
+              {
+                "name": "handle",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by smart collection handle."
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections last updated after this date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections last updated before this date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections published after this date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections published before this date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_status",
+                "value": "",
+                "type": "query",
+                "description": "Filter results based on the published status of smart collections.\n                  (default: any)\n                    \n                        published: Show only published smart collections.\n                        unpublished: Show only unpublished smart collections.\n                        any: Show all smart collections."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Show only certain fields, specified by a comma-separated list of field names."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/products/smartcollection#index-2020-04"
+        },
+        {
+          "info": {
+            "name": "Shopify Creates A New Smart Collection Using The Specified Rules",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-04/smart_collections.json",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/products/smartcollection#create-2020-04"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Count Of Smart Collections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-04/smart_collections/count.json",
+            "params": [
+              {
+                "name": "title",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections with the specified title."
+              },
+              {
+                "name": "product_id",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections that include the specified product."
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections last updated after this date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections last updated before this date.  (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections published after this date.  (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections published before this date.  (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_status",
+                "value": "",
+                "type": "query",
+                "description": "Filter results based on the published status of smart collections.\n                  (default: any)\n                    \n                        published: Show only published smart collections.\n                        unpublished: Show only unpublished smart collections.\n                        any: Show all smart collections."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/products/smartcollection#count-2020-04"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Single Smart Collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-04/smart_collections/:smart_collection_id.json",
+            "params": [
+              {
+                "name": "smart_collection_id",
+                "value": "",
+                "type": "path",
+                "description": "smart_collection_id"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Show only certain fields, specified by a comma-separated list of field names."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/products/smartcollection#show-2020-04"
+        },
+        {
+          "info": {
+            "name": "Shopify Updates An Existing Smart Collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-04/smart_collections/:smart_collection_id.json",
+            "params": [
+              {
+                "name": "smart_collection_id",
+                "value": "",
+                "type": "path",
+                "description": "smart_collection_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/products/smartcollection#update-2020-04"
+        },
+        {
+          "info": {
+            "name": "Shopify Removes A Smart Collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-04/smart_collections/:smart_collection_id.json",
+            "params": [
+              {
+                "name": "smart_collection_id",
+                "value": "",
+                "type": "path",
+                "description": "smart_collection_id"
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/products/smartcollection#destroy-2020-04"
+        },
+        {
+          "info": {
+            "name": "Shopify Updates The Ordering Type Of Products In A Smart Collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-04/smart_collections/:smart_collection_id/order.json",
+            "params": [
+              {
+                "name": "smart_collection_id",
+                "value": "",
+                "type": "path",
+                "description": "smart_collection_id"
+              },
+              {
+                "name": "products",
+                "value": "",
+                "type": "query",
+                "description": "An array of product IDs, in the order that you want them to appear at the top of the collection. When products is specified but empty, any previously sorted products are cleared."
+              },
+              {
+                "name": "sort_order",
+                "value": "",
+                "type": "query",
+                "description": "The type of sorting to apply. Valid values are listed in the Properties section above.\n                  (default: (current value))"
+              },
+              {
+                "name": "products[]",
+                "value": "",
+                "type": "query",
+                "description": "products[]"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/products/smartcollection#order-2020-04"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of Smart Collections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-07/smart_collections.json",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to show.\n                  (default: 50, maximum: 250)"
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "Show only the smart collections specified by a comma-separated list of IDs."
+              },
+              {
+                "name": "since_id",
+                "value": "",
+                "type": "query",
+                "description": "Restrict results to after the specified ID."
+              },
+              {
+                "name": "title",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections with the specified title."
+              },
+              {
+                "name": "product_id",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections that includes the specified product."
+              },
+              {
+                "name": "handle",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by smart collection handle."
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections last updated after this date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections last updated before this date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections published after this date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections published before this date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_status",
+                "value": "",
+                "type": "query",
+                "description": "Filter results based on the published status of smart collections.\n                  (default: any)\n                    \n                        published: Show only published smart collections.\n                        unpublished: Show only unpublished smart collections.\n                        any: Show all smart collections."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Show only certain fields, specified by a comma-separated list of field names."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/products/smartcollection#index-2020-07"
+        },
+        {
+          "info": {
+            "name": "Shopify Creates A New Smart Collection Using The Specified Rules",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-07/smart_collections.json",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/products/smartcollection#create-2020-07"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Count Of Smart Collections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-07/smart_collections/count.json",
+            "params": [
+              {
+                "name": "title",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections with the specified title."
+              },
+              {
+                "name": "product_id",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections that include the specified product."
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections last updated after this date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections last updated before this date.  (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections published after this date.  (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections published before this date.  (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_status",
+                "value": "",
+                "type": "query",
+                "description": "Filter results based on the published status of smart collections.\n                  (default: any)\n                    \n                        published: Show only published smart collections.\n                        unpublished: Show only unpublished smart collections.\n                        any: Show all smart collections."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/products/smartcollection#count-2020-07"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Single Smart Collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-07/smart_collections/:smart_collection_id.json",
+            "params": [
+              {
+                "name": "smart_collection_id",
+                "value": "",
+                "type": "path",
+                "description": "smart_collection_id"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Show only certain fields, specified by a comma-separated list of field names."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/products/smartcollection#show-2020-07"
+        },
+        {
+          "info": {
+            "name": "Shopify Updates An Existing Smart Collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-07/smart_collections/:smart_collection_id.json",
+            "params": [
+              {
+                "name": "smart_collection_id",
+                "value": "",
+                "type": "path",
+                "description": "smart_collection_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/products/smartcollection#update-2020-07"
+        },
+        {
+          "info": {
+            "name": "Shopify Removes A Smart Collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-07/smart_collections/:smart_collection_id.json",
+            "params": [
+              {
+                "name": "smart_collection_id",
+                "value": "",
+                "type": "path",
+                "description": "smart_collection_id"
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/products/smartcollection#destroy-2020-07"
+        },
+        {
+          "info": {
+            "name": "Shopify Updates The Ordering Type Of Products In A Smart Collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-07/smart_collections/:smart_collection_id/order.json",
+            "params": [
+              {
+                "name": "smart_collection_id",
+                "value": "",
+                "type": "path",
+                "description": "smart_collection_id"
+              },
+              {
+                "name": "products",
+                "value": "",
+                "type": "query",
+                "description": "An array of product IDs, in the order that you want them to appear at the top of the collection. When products is specified but empty, any previously sorted products are cleared."
+              },
+              {
+                "name": "sort_order",
+                "value": "",
+                "type": "query",
+                "description": "The type of sorting to apply. Valid values are listed in the Properties section above.\n                  (default: (current value))"
+              },
+              {
+                "name": "products[]",
+                "value": "",
+                "type": "query",
+                "description": "products[]"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/products/smartcollection#order-2020-07"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of Smart Collections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-10/smart_collections.json",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to show.\n                  (default: 50, maximum: 250)"
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "Show only the smart collections specified by a comma-separated list of IDs."
+              },
+              {
+                "name": "since_id",
+                "value": "",
+                "type": "query",
+                "description": "Restrict results to after the specified ID."
+              },
+              {
+                "name": "title",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections with the specified title."
+              },
+              {
+                "name": "product_id",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections that includes the specified product."
+              },
+              {
+                "name": "handle",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by smart collection handle."
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections last updated after this date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections last updated before this date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections published after this date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections published before this date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_status",
+                "value": "",
+                "type": "query",
+                "description": "Filter results based on the published status of smart collections.\n                  (default: any)\n                    \n                        published: Show only published smart collections.\n                        unpublished: Show only unpublished smart collections.\n                        any: Show all smart collections."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Show only certain fields, specified by a comma-separated list of field names."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/products/smartcollection#index-2020-10"
+        },
+        {
+          "info": {
+            "name": "Shopify Creates A New Smart Collection Using The Specified Rules",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-10/smart_collections.json",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/products/smartcollection#create-2020-10"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Count Of Smart Collections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-10/smart_collections/count.json",
+            "params": [
+              {
+                "name": "title",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections with the specified title."
+              },
+              {
+                "name": "product_id",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections that include the specified product."
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections last updated after this date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections last updated before this date.  (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections published after this date.  (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections published before this date.  (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_status",
+                "value": "",
+                "type": "query",
+                "description": "Filter results based on the published status of smart collections.\n                  (default: any)\n                    \n                        published: Show only published smart collections.\n                        unpublished: Show only unpublished smart collections.\n                        any: Show all smart collections."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/products/smartcollection#count-2020-10"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Single Smart Collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-10/smart_collections/:smart_collection_id.json",
+            "params": [
+              {
+                "name": "smart_collection_id",
+                "value": "",
+                "type": "path",
+                "description": "smart_collection_id"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Show only certain fields, specified by a comma-separated list of field names."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/products/smartcollection#show-2020-10"
+        },
+        {
+          "info": {
+            "name": "Shopify Updates An Existing Smart Collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-10/smart_collections/:smart_collection_id.json",
+            "params": [
+              {
+                "name": "smart_collection_id",
+                "value": "",
+                "type": "path",
+                "description": "smart_collection_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/products/smartcollection#update-2020-10"
+        },
+        {
+          "info": {
+            "name": "Shopify Removes A Smart Collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-10/smart_collections/:smart_collection_id.json",
+            "params": [
+              {
+                "name": "smart_collection_id",
+                "value": "",
+                "type": "path",
+                "description": "smart_collection_id"
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/products/smartcollection#destroy-2020-10"
+        },
+        {
+          "info": {
+            "name": "Shopify Updates The Ordering Type Of Products In A Smart Collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-10/smart_collections/:smart_collection_id/order.json",
+            "params": [
+              {
+                "name": "smart_collection_id",
+                "value": "",
+                "type": "path",
+                "description": "smart_collection_id"
+              },
+              {
+                "name": "products",
+                "value": "",
+                "type": "query",
+                "description": "An array of product IDs, in the order that you want them to appear at the top of the collection. When products is specified but empty, any previously sorted products are cleared."
+              },
+              {
+                "name": "sort_order",
+                "value": "",
+                "type": "query",
+                "description": "The type of sorting to apply. Valid values are listed in the Properties section above.\n                  (default: (current value))"
+              },
+              {
+                "name": "products[]",
+                "value": "",
+                "type": "query",
+                "description": "products[]"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/products/smartcollection#order-2020-10"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of Smart Collections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2021-01/smart_collections.json",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to show.\n                  (default: 50, maximum: 250)"
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "Show only the smart collections specified by a comma-separated list of IDs."
+              },
+              {
+                "name": "since_id",
+                "value": "",
+                "type": "query",
+                "description": "Restrict results to after the specified ID."
+              },
+              {
+                "name": "title",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections with the specified title."
+              },
+              {
+                "name": "product_id",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections that includes the specified product."
+              },
+              {
+                "name": "handle",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by smart collection handle."
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections last updated after this date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections last updated before this date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections published after this date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections published before this date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_status",
+                "value": "",
+                "type": "query",
+                "description": "Filter results based on the published status of smart collections.\n                  (default: any)\n                    \n                        published: Show only published smart collections.\n                        unpublished: Show only unpublished smart collections.\n                        any: Show all smart collections."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Show only certain fields, specified by a comma-separated list of field names."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/products/smartcollection#index-2021-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Creates A New Smart Collection Using The Specified Rules",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2021-01/smart_collections.json",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/products/smartcollection#create-2021-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Count Of Smart Collections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2021-01/smart_collections/count.json",
+            "params": [
+              {
+                "name": "title",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections with the specified title."
+              },
+              {
+                "name": "product_id",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections that include the specified product."
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections last updated after this date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections last updated before this date.  (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections published after this date.  (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections published before this date.  (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_status",
+                "value": "",
+                "type": "query",
+                "description": "Filter results based on the published status of smart collections.\n                  (default: any)\n                    \n                        published: Show only published smart collections.\n                        unpublished: Show only unpublished smart collections.\n                        any: Show all smart collections."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/products/smartcollection#count-2021-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Single Smart Collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2021-01/smart_collections/:smart_collection_id.json",
+            "params": [
+              {
+                "name": "smart_collection_id",
+                "value": "",
+                "type": "path",
+                "description": "smart_collection_id"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Show only certain fields, specified by a comma-separated list of field names."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/products/smartcollection#show-2021-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Updates An Existing Smart Collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2021-01/smart_collections/:smart_collection_id.json",
+            "params": [
+              {
+                "name": "smart_collection_id",
+                "value": "",
+                "type": "path",
+                "description": "smart_collection_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/products/smartcollection#update-2021-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Removes A Smart Collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2021-01/smart_collections/:smart_collection_id.json",
+            "params": [
+              {
+                "name": "smart_collection_id",
+                "value": "",
+                "type": "path",
+                "description": "smart_collection_id"
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/products/smartcollection#destroy-2021-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Updates The Ordering Type Of Products In A Smart Collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2021-01/smart_collections/:smart_collection_id/order.json",
+            "params": [
+              {
+                "name": "smart_collection_id",
+                "value": "",
+                "type": "path",
+                "description": "smart_collection_id"
+              },
+              {
+                "name": "products",
+                "value": "",
+                "type": "query",
+                "description": "An array of product IDs, in the order that you want them to appear at the top of the collection. When products is specified but empty, any previously sorted products are cleared."
+              },
+              {
+                "name": "sort_order",
+                "value": "",
+                "type": "query",
+                "description": "The type of sorting to apply. Valid values are listed in the Properties section above.\n                  (default: (current value))"
+              },
+              {
+                "name": "products[]",
+                "value": "",
+                "type": "query",
+                "description": "products[]"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/products/smartcollection#order-2021-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of Smart Collections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/unstable/smart_collections.json",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to show.\n                  (default: 50, maximum: 250)"
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "Show only the smart collections specified by a comma-separated list of IDs."
+              },
+              {
+                "name": "since_id",
+                "value": "",
+                "type": "query",
+                "description": "Restrict results to after the specified ID."
+              },
+              {
+                "name": "title",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections with the specified title."
+              },
+              {
+                "name": "product_id",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections that includes the specified product."
+              },
+              {
+                "name": "handle",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by smart collection handle."
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections last updated after this date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections last updated before this date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections published after this date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections published before this date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_status",
+                "value": "",
+                "type": "query",
+                "description": "Filter results based on the published status of smart collections.\n                  (default: any)\n                    \n                        published: Show only published smart collections.\n                        unpublished: Show only unpublished smart collections.\n                        any: Show all smart collections."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Show only certain fields, specified by a comma-separated list of field names."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/products/smartcollection#index-unstable"
+        },
+        {
+          "info": {
+            "name": "Shopify Creates A New Smart Collection Using The Specified Rules",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/unstable/smart_collections.json",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/products/smartcollection#create-unstable"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Count Of Smart Collections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/unstable/smart_collections/count.json",
+            "params": [
+              {
+                "name": "title",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections with the specified title."
+              },
+              {
+                "name": "product_id",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections that include the specified product."
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections last updated after this date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections last updated before this date.  (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections published after this date.  (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show smart collections published before this date.  (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_status",
+                "value": "",
+                "type": "query",
+                "description": "Filter results based on the published status of smart collections.\n                  (default: any)\n                    \n                        published: Show only published smart collections.\n                        unpublished: Show only unpublished smart collections.\n                        any: Show all smart collections."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/products/smartcollection#count-unstable"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Single Smart Collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/unstable/smart_collections/:smart_collection_id.json",
+            "params": [
+              {
+                "name": "smart_collection_id",
+                "value": "",
+                "type": "path",
+                "description": "smart_collection_id"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Show only certain fields, specified by a comma-separated list of field names."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/products/smartcollection#show-unstable"
+        },
+        {
+          "info": {
+            "name": "Shopify Updates An Existing Smart Collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/unstable/smart_collections/:smart_collection_id.json",
+            "params": [
+              {
+                "name": "smart_collection_id",
+                "value": "",
+                "type": "path",
+                "description": "smart_collection_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/products/smartcollection#update-unstable"
+        },
+        {
+          "info": {
+            "name": "Shopify Removes A Smart Collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/unstable/smart_collections/:smart_collection_id.json",
+            "params": [
+              {
+                "name": "smart_collection_id",
+                "value": "",
+                "type": "path",
+                "description": "smart_collection_id"
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/products/smartcollection#destroy-unstable"
+        },
+        {
+          "info": {
+            "name": "Shopify Updates The Ordering Type Of Products In A Smart Collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/unstable/smart_collections/:smart_collection_id/order.json",
+            "params": [
+              {
+                "name": "smart_collection_id",
+                "value": "",
+                "type": "path",
+                "description": "smart_collection_id"
+              },
+              {
+                "name": "products",
+                "value": "",
+                "type": "query",
+                "description": "An array of product IDs, in the order that you want them to appear at the top of the collection. When products is specified but empty, any previously sorted products are cleared."
+              },
+              {
+                "name": "sort_order",
+                "value": "",
+                "type": "query",
+                "description": "The type of sorting to apply. Valid values are listed in the Properties section above.\n                  (default: (current value))"
+              },
+              {
+                "name": "products[]",
+                "value": "",
+                "type": "query",
+                "description": "products[]"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/products/smartcollection#order-unstable"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

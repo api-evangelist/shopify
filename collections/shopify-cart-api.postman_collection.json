@@ -1,0 +1,770 @@
+{
+  "item": [
+    {
+      "id": "2402328a-c724-424e-812c-27e0e0958239",
+      "name": "Cart",
+      "description": {
+        "content": "Manage the shopping cart",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "893bc1bc-24ef-44f7-bdc9-715b338562c6",
+          "name": "Shopify Retrieve the current cart",
+          "request": {
+            "name": "Shopify Retrieve the current cart",
+            "description": {
+              "content": "Retrieves the current cart contents as JSON, including all line items, totals, attributes, notes, and currency information.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cart.js"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Shopify store subdomain",
+                  "type": "any",
+                  "value": "{{store}}",
+                  "key": "store"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f5de4285-babd-4545-9df1-0fc7aca75154",
+              "name": "The current cart",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cart.js"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Shopify store subdomain",
+                      "type": "any",
+                      "value": "{{store}}",
+                      "key": "store"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Shopify-Access-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"token\": \"string\",\n  \"note\": \"string\",\n  \"attributes\": {\n    \"key_0\": \"string\"\n  },\n  \"total_price\": 2181,\n  \"total_weight\": 3788.0177125973637,\n  \"item_count\": 5332,\n  \"items\": [\n    {\n      \"id\": 5311,\n      \"quantity\": 5142,\n      \"title\": \"string\",\n      \"price\": 8144,\n      \"original_price\": 7515,\n      \"discounted_price\": 4856,\n      \"line_price\": 5584,\n      \"original_line_price\": 9653,\n      \"total_discount\": 868,\n      \"sku\": \"string\",\n      \"grams\": 7267,\n      \"vendor\": \"string\",\n      \"taxable\": true,\n      \"product_id\": 5200,\n      \"product_has_only_default_variant\": false,\n      \"gift_card\": false,\n      \"url\": \"string\",\n      \"featured_image\": {\n        \"url\": \"http://znqcsSCLvevsTN.jcaU+MCZEE-AbH5R8mCnSRc2GHOw5XkrRZj3..Decl\",\n        \"alt\": \"string\",\n        \"aspect_ratio\": 2668.4955577972337\n      },\n      \"image\": \"https://zwAx.iibT.zfIizsA1bmbiPJ.llpXgFv0Dl72HY9LzM\",\n      \"handle\": \"string\",\n      \"requires_shipping\": true,\n      \"product_type\": \"string\",\n      \"product_title\": \"string\",\n      \"variant_title\": \"string\",\n      \"variant_options\": [\n        \"string\",\n        \"string\"\n      ],\n      \"properties\": {\n        \"key_0\": \"string\"\n      },\n      \"key\": \"string\",\n      \"line_level_discount_allocations\": [\n        {\n          \"amount\": 9926,\n          \"discount_application\": {\n            \"type\": \"string\",\n            \"title\": \"string\",\n            \"value\": \"string\",\n            \"value_type\": \"string\"\n          }\n        },\n        {\n          \"amount\": 830,\n          \"discount_application\": {\n            \"type\": \"string\",\n            \"title\": \"string\",\n            \"value\": \"string\",\n            \"value_type\": \"string\"\n          }\n        }\n      ],\n      \"line_level_total_discount\": 8104\n    },\n    {\n      \"id\": 2897,\n      \"quantity\": 776,\n      \"title\": \"string\",\n      \"price\": 9487,\n      \"original_price\": 252,\n      \"discounted_price\": 1093,\n      \"line_price\": 8759,\n      \"original_line_price\": 4094,\n      \"total_discount\": 9960,\n      \"sku\": \"string\",\n      \"grams\": 3838,\n      \"vendor\": \"string\",\n      \"taxable\": false,\n      \"product_id\": 4470,\n      \"product_has_only_default_variant\": true,\n      \"gift_card\": false,\n      \"url\": \"string\",\n      \"featured_image\": {\n        \"url\": \"https://demkJfLhfGiRdfYTjdedwbybaUb.skvSUWKPKB.BUgC3wIAXTsdlXmkH,wY0m+dNvnfQkyV8Be8cWkzdln\",\n        \"alt\": \"string\",\n        \"aspect_ratio\": 1475.3444315221086\n      },\n      \"image\": \"http://N.paqydB8BbhFXmNludZpe47S6if6j8zmc4WM+RMKOk,MaK6mx8kpYVOBC08yNsklqn+LwCT\",\n      \"handle\": \"string\",\n      \"requires_shipping\": true,\n      \"product_type\": \"string\",\n      \"product_title\": \"string\",\n      \"variant_title\": \"string\",\n      \"variant_options\": [\n        \"string\",\n        \"string\"\n      ],\n      \"properties\": {\n        \"key_0\": \"string\"\n      },\n      \"key\": \"string\",\n      \"line_level_discount_allocations\": [\n        {\n          \"amount\": 8468,\n          \"discount_application\": {\n            \"type\": \"string\",\n            \"title\": \"string\",\n            \"value\": \"string\",\n            \"value_type\": \"string\"\n          }\n        },\n        {\n          \"amount\": 7413,\n          \"discount_application\": {\n            \"type\": \"string\",\n            \"title\": \"string\",\n            \"value\": \"string\",\n            \"value_type\": \"string\"\n          }\n        }\n      ],\n      \"line_level_total_discount\": 8881\n    }\n  ],\n  \"requires_shipping\": true,\n  \"currency\": \"string\",\n  \"total_discount\": 4706,\n  \"cart_level_discount_applications\": [\n    {\n      \"type\": \"string\",\n      \"title\": \"string\",\n      \"total_allocated_amount\": 6530,\n      \"value\": \"string\",\n      \"value_type\": \"string\"\n    },\n    {\n      \"type\": \"string\",\n      \"title\": \"string\",\n      \"total_allocated_amount\": 3583,\n      \"value\": \"string\",\n      \"value_type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "32c18a6f-57d9-44d3-8249-7d5f3ee1d232",
+          "name": "Shopify Add items to the cart",
+          "request": {
+            "name": "Shopify Add items to the cart",
+            "description": {
+              "content": "Adds one or more product variants to the cart. Each item requires a variant ID and quantity. Optional properties and selling plans can be attached to line items.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cart",
+                "add.js"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Shopify store subdomain",
+                  "type": "any",
+                  "value": "{{store}}",
+                  "key": "store"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"items\": [\n    {\n      \"id\": \"<integer>\",\n      \"quantity\": \"<integer>\",\n      \"properties\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      },\n      \"selling_plan\": \"<integer>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"quantity\": \"<integer>\",\n      \"properties\": {\n        \"key_0\": \"<string>\"\n      },\n      \"selling_plan\": \"<integer>\"\n    }\n  ],\n  \"sections\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ce52b48a-0684-4182-8e6c-f6090019bd6f",
+              "name": "The items added to the cart",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cart",
+                    "add.js"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Shopify store subdomain",
+                      "type": "any",
+                      "value": "{{store}}",
+                      "key": "store"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Shopify-Access-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"items\": [\n    {\n      \"id\": \"<integer>\",\n      \"quantity\": \"<integer>\",\n      \"properties\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      },\n      \"selling_plan\": \"<integer>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"quantity\": \"<integer>\",\n      \"properties\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      },\n      \"selling_plan\": \"<integer>\"\n    }\n  ],\n  \"sections\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"id\": 998,\n      \"quantity\": 3137,\n      \"title\": \"string\",\n      \"price\": 9032,\n      \"original_price\": 1081,\n      \"discounted_price\": 60,\n      \"line_price\": 9030,\n      \"original_line_price\": 8172,\n      \"total_discount\": 3017,\n      \"sku\": \"string\",\n      \"grams\": 4138,\n      \"vendor\": \"string\",\n      \"taxable\": false,\n      \"product_id\": 4488,\n      \"product_has_only_default_variant\": true,\n      \"gift_card\": true,\n      \"url\": \"string\",\n      \"featured_image\": {\n        \"url\": \"http://uhWuwidQjjruTrsYB.uawvUDlAx72YNIGbTcOYyo1OoWsLcFNWk0ob,lMgypqfZDVMWk0lgHH+WKy\",\n        \"alt\": \"string\",\n        \"aspect_ratio\": 5358.446797014842\n      },\n      \"image\": \"https://SnI.itz0\",\n      \"handle\": \"string\",\n      \"requires_shipping\": false,\n      \"product_type\": \"string\",\n      \"product_title\": \"string\",\n      \"variant_title\": \"string\",\n      \"variant_options\": [\n        \"string\",\n        \"string\"\n      ],\n      \"properties\": {\n        \"key_0\": \"string\"\n      },\n      \"key\": \"string\",\n      \"line_level_discount_allocations\": [\n        {\n          \"amount\": 5082,\n          \"discount_application\": {\n            \"type\": \"string\",\n            \"title\": \"string\",\n            \"value\": \"string\",\n            \"value_type\": \"string\"\n          }\n        },\n        {\n          \"amount\": 7412,\n          \"discount_application\": {\n            \"type\": \"string\",\n            \"title\": \"string\",\n            \"value\": \"string\",\n            \"value_type\": \"string\"\n          }\n        }\n      ],\n      \"line_level_total_discount\": 6008\n    },\n    {\n      \"id\": 9928,\n      \"quantity\": 9440,\n      \"title\": \"string\",\n      \"price\": 5175,\n      \"original_price\": 1870,\n      \"discounted_price\": 3365,\n      \"line_price\": 58,\n      \"original_line_price\": 5714,\n      \"total_discount\": 8289,\n      \"sku\": \"string\",\n      \"grams\": 91,\n      \"vendor\": \"string\",\n      \"taxable\": true,\n      \"product_id\": 2780,\n      \"product_has_only_default_variant\": false,\n      \"gift_card\": true,\n      \"url\": \"string\",\n      \"featured_image\": {\n        \"url\": \"https://fpXpLwIAUqpVfwDaRWBloINXZNOwvOEQ.hwzfsYuNjbQtC3+nCMMO,V5woJJsSePohcDzUFxF5xZFyfUo,\",\n        \"alt\": \"string\",\n        \"aspect_ratio\": 291.5494691286569\n      },\n      \"image\": \"http://mXgsSICSFtdeT.lhflWgrenCTm-Tp3sNpsZfawjTlkKHSyc5iDfM-gMoNSdvNNKepKe-i\",\n      \"handle\": \"string\",\n      \"requires_shipping\": false,\n      \"product_type\": \"string\",\n      \"product_title\": \"string\",\n      \"variant_title\": \"string\",\n      \"variant_options\": [\n        \"string\",\n        \"string\"\n      ],\n      \"properties\": {\n        \"key_0\": \"string\"\n      },\n      \"key\": \"string\",\n      \"line_level_discount_allocations\": [\n        {\n          \"amount\": 9177,\n          \"discount_application\": {\n            \"type\": \"string\",\n            \"title\": \"string\",\n            \"value\": \"string\",\n            \"value_type\": \"string\"\n          }\n        },\n        {\n          \"amount\": 4755,\n          \"discount_application\": {\n            \"type\": \"string\",\n            \"title\": \"string\",\n            \"value\": \"string\",\n            \"value_type\": \"string\"\n          }\n        }\n      ],\n      \"line_level_total_discount\": 7962\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1ed9b03e-bdae-49de-8817-bf1a6b598b8d",
+              "name": "Invalid variant or quantity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cart",
+                    "add.js"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Shopify store subdomain",
+                      "type": "any",
+                      "value": "{{store}}",
+                      "key": "store"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Shopify-Access-Token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"items\": [\n    {\n      \"id\": \"<integer>\",\n      \"quantity\": \"<integer>\",\n      \"properties\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      },\n      \"selling_plan\": \"<integer>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"quantity\": \"<integer>\",\n      \"properties\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      },\n      \"selling_plan\": \"<integer>\"\n    }\n  ],\n  \"sections\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b52d39e0-f054-4505-ae08-29c4d42d04c5",
+          "name": "Shopify Update the cart",
+          "request": {
+            "name": "Shopify Update the cart",
+            "description": {
+              "content": "Updates cart line item quantities, cart note, cart attributes, or applies a discount code. Quantities can be updated using a map of variant ID to quantity or line number to quantity.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cart",
+                "update.js"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Shopify store subdomain",
+                  "type": "any",
+                  "value": "{{store}}",
+                  "key": "store"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"updates\": {\n    \"key_0\": \"<integer>\",\n    \"key_1\": \"<integer>\"\n  },\n  \"note\": \"<string>\",\n  \"attributes\": {\n    \"key_0\": \"<string>\"\n  },\n  \"discount\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "87e83258-1b37-4670-b176-69492d060735",
+              "name": "The updated cart",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cart",
+                    "update.js"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Shopify store subdomain",
+                      "type": "any",
+                      "value": "{{store}}",
+                      "key": "store"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Shopify-Access-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"updates\": {\n    \"key_0\": \"<integer>\"\n  },\n  \"note\": \"<string>\",\n  \"attributes\": {\n    \"key_0\": \"<string>\"\n  },\n  \"discount\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"token\": \"string\",\n  \"note\": \"string\",\n  \"attributes\": {\n    \"key_0\": \"string\"\n  },\n  \"total_price\": 2181,\n  \"total_weight\": 3788.0177125973637,\n  \"item_count\": 5332,\n  \"items\": [\n    {\n      \"id\": 5311,\n      \"quantity\": 5142,\n      \"title\": \"string\",\n      \"price\": 8144,\n      \"original_price\": 7515,\n      \"discounted_price\": 4856,\n      \"line_price\": 5584,\n      \"original_line_price\": 9653,\n      \"total_discount\": 868,\n      \"sku\": \"string\",\n      \"grams\": 7267,\n      \"vendor\": \"string\",\n      \"taxable\": true,\n      \"product_id\": 5200,\n      \"product_has_only_default_variant\": false,\n      \"gift_card\": false,\n      \"url\": \"string\",\n      \"featured_image\": {\n        \"url\": \"http://znqcsSCLvevsTN.jcaU+MCZEE-AbH5R8mCnSRc2GHOw5XkrRZj3..Decl\",\n        \"alt\": \"string\",\n        \"aspect_ratio\": 2668.4955577972337\n      },\n      \"image\": \"https://zwAx.iibT.zfIizsA1bmbiPJ.llpXgFv0Dl72HY9LzM\",\n      \"handle\": \"string\",\n      \"requires_shipping\": true,\n      \"product_type\": \"string\",\n      \"product_title\": \"string\",\n      \"variant_title\": \"string\",\n      \"variant_options\": [\n        \"string\",\n        \"string\"\n      ],\n      \"properties\": {\n        \"key_0\": \"string\"\n      },\n      \"key\": \"string\",\n      \"line_level_discount_allocations\": [\n        {\n          \"amount\": 9926,\n          \"discount_application\": {\n            \"type\": \"string\",\n            \"title\": \"string\",\n            \"value\": \"string\",\n            \"value_type\": \"string\"\n          }\n        },\n        {\n          \"amount\": 830,\n          \"discount_application\": {\n            \"type\": \"string\",\n            \"title\": \"string\",\n            \"value\": \"string\",\n            \"value_type\": \"string\"\n          }\n        }\n      ],\n      \"line_level_total_discount\": 8104\n    },\n    {\n      \"id\": 2897,\n      \"quantity\": 776,\n      \"title\": \"string\",\n      \"price\": 9487,\n      \"original_price\": 252,\n      \"discounted_price\": 1093,\n      \"line_price\": 8759,\n      \"original_line_price\": 4094,\n      \"total_discount\": 9960,\n      \"sku\": \"string\",\n      \"grams\": 3838,\n      \"vendor\": \"string\",\n      \"taxable\": false,\n      \"product_id\": 4470,\n      \"product_has_only_default_variant\": true,\n      \"gift_card\": false,\n      \"url\": \"string\",\n      \"featured_image\": {\n        \"url\": \"https://demkJfLhfGiRdfYTjdedwbybaUb.skvSUWKPKB.BUgC3wIAXTsdlXmkH,wY0m+dNvnfQkyV8Be8cWkzdln\",\n        \"alt\": \"string\",\n        \"aspect_ratio\": 1475.3444315221086\n      },\n      \"image\": \"http://N.paqydB8BbhFXmNludZpe47S6if6j8zmc4WM+RMKOk,MaK6mx8kpYVOBC08yNsklqn+LwCT\",\n      \"handle\": \"string\",\n      \"requires_shipping\": true,\n      \"product_type\": \"string\",\n      \"product_title\": \"string\",\n      \"variant_title\": \"string\",\n      \"variant_options\": [\n        \"string\",\n        \"string\"\n      ],\n      \"properties\": {\n        \"key_0\": \"string\"\n      },\n      \"key\": \"string\",\n      \"line_level_discount_allocations\": [\n        {\n          \"amount\": 8468,\n          \"discount_application\": {\n            \"type\": \"string\",\n            \"title\": \"string\",\n            \"value\": \"string\",\n            \"value_type\": \"string\"\n          }\n        },\n        {\n          \"amount\": 7413,\n          \"discount_application\": {\n            \"type\": \"string\",\n            \"title\": \"string\",\n            \"value\": \"string\",\n            \"value_type\": \"string\"\n          }\n        }\n      ],\n      \"line_level_total_discount\": 8881\n    }\n  ],\n  \"requires_shipping\": true,\n  \"currency\": \"string\",\n  \"total_discount\": 4706,\n  \"cart_level_discount_applications\": [\n    {\n      \"type\": \"string\",\n      \"title\": \"string\",\n      \"total_allocated_amount\": 6530,\n      \"value\": \"string\",\n      \"value_type\": \"string\"\n    },\n    {\n      \"type\": \"string\",\n      \"title\": \"string\",\n      \"total_allocated_amount\": 3583,\n      \"value\": \"string\",\n      \"value_type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "02d34e92-3de8-48f8-a499-2d01e752a8e5",
+          "name": "Shopify Change a cart line item",
+          "request": {
+            "name": "Shopify Change a cart line item",
+            "description": {
+              "content": "Changes the quantity, properties, or selling plan of a single cart line item. Identify the item by line number (1-indexed) or by its key.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cart",
+                "change.js"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Shopify store subdomain",
+                  "type": "any",
+                  "value": "{{store}}",
+                  "key": "store"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"line\": \"<integer>\",\n  \"id\": \"<string>\",\n  \"quantity\": \"<integer>\",\n  \"properties\": {\n    \"key_0\": \"<string>\"\n  },\n  \"selling_plan\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2e45a828-6d72-4399-9c59-2a2b9fd27a56",
+              "name": "The updated cart",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cart",
+                    "change.js"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Shopify store subdomain",
+                      "type": "any",
+                      "value": "{{store}}",
+                      "key": "store"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Shopify-Access-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"line\": \"<integer>\",\n  \"id\": \"<string>\",\n  \"quantity\": \"<integer>\",\n  \"properties\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"selling_plan\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"token\": \"string\",\n  \"note\": \"string\",\n  \"attributes\": {\n    \"key_0\": \"string\"\n  },\n  \"total_price\": 2181,\n  \"total_weight\": 3788.0177125973637,\n  \"item_count\": 5332,\n  \"items\": [\n    {\n      \"id\": 5311,\n      \"quantity\": 5142,\n      \"title\": \"string\",\n      \"price\": 8144,\n      \"original_price\": 7515,\n      \"discounted_price\": 4856,\n      \"line_price\": 5584,\n      \"original_line_price\": 9653,\n      \"total_discount\": 868,\n      \"sku\": \"string\",\n      \"grams\": 7267,\n      \"vendor\": \"string\",\n      \"taxable\": true,\n      \"product_id\": 5200,\n      \"product_has_only_default_variant\": false,\n      \"gift_card\": false,\n      \"url\": \"string\",\n      \"featured_image\": {\n        \"url\": \"http://znqcsSCLvevsTN.jcaU+MCZEE-AbH5R8mCnSRc2GHOw5XkrRZj3..Decl\",\n        \"alt\": \"string\",\n        \"aspect_ratio\": 2668.4955577972337\n      },\n      \"image\": \"https://zwAx.iibT.zfIizsA1bmbiPJ.llpXgFv0Dl72HY9LzM\",\n      \"handle\": \"string\",\n      \"requires_shipping\": true,\n      \"product_type\": \"string\",\n      \"product_title\": \"string\",\n      \"variant_title\": \"string\",\n      \"variant_options\": [\n        \"string\",\n        \"string\"\n      ],\n      \"properties\": {\n        \"key_0\": \"string\"\n      },\n      \"key\": \"string\",\n      \"line_level_discount_allocations\": [\n        {\n          \"amount\": 9926,\n          \"discount_application\": {\n            \"type\": \"string\",\n            \"title\": \"string\",\n            \"value\": \"string\",\n            \"value_type\": \"string\"\n          }\n        },\n        {\n          \"amount\": 830,\n          \"discount_application\": {\n            \"type\": \"string\",\n            \"title\": \"string\",\n            \"value\": \"string\",\n            \"value_type\": \"string\"\n          }\n        }\n      ],\n      \"line_level_total_discount\": 8104\n    },\n    {\n      \"id\": 2897,\n      \"quantity\": 776,\n      \"title\": \"string\",\n      \"price\": 9487,\n      \"original_price\": 252,\n      \"discounted_price\": 1093,\n      \"line_price\": 8759,\n      \"original_line_price\": 4094,\n      \"total_discount\": 9960,\n      \"sku\": \"string\",\n      \"grams\": 3838,\n      \"vendor\": \"string\",\n      \"taxable\": false,\n      \"product_id\": 4470,\n      \"product_has_only_default_variant\": true,\n      \"gift_card\": false,\n      \"url\": \"string\",\n      \"featured_image\": {\n        \"url\": \"https://demkJfLhfGiRdfYTjdedwbybaUb.skvSUWKPKB.BUgC3wIAXTsdlXmkH,wY0m+dNvnfQkyV8Be8cWkzdln\",\n        \"alt\": \"string\",\n        \"aspect_ratio\": 1475.3444315221086\n      },\n      \"image\": \"http://N.paqydB8BbhFXmNludZpe47S6if6j8zmc4WM+RMKOk,MaK6mx8kpYVOBC08yNsklqn+LwCT\",\n      \"handle\": \"string\",\n      \"requires_shipping\": true,\n      \"product_type\": \"string\",\n      \"product_title\": \"string\",\n      \"variant_title\": \"string\",\n      \"variant_options\": [\n        \"string\",\n        \"string\"\n      ],\n      \"properties\": {\n        \"key_0\": \"string\"\n      },\n      \"key\": \"string\",\n      \"line_level_discount_allocations\": [\n        {\n          \"amount\": 8468,\n          \"discount_application\": {\n            \"type\": \"string\",\n            \"title\": \"string\",\n            \"value\": \"string\",\n            \"value_type\": \"string\"\n          }\n        },\n        {\n          \"amount\": 7413,\n          \"discount_application\": {\n            \"type\": \"string\",\n            \"title\": \"string\",\n            \"value\": \"string\",\n            \"value_type\": \"string\"\n          }\n        }\n      ],\n      \"line_level_total_discount\": 8881\n    }\n  ],\n  \"requires_shipping\": true,\n  \"currency\": \"string\",\n  \"total_discount\": 4706,\n  \"cart_level_discount_applications\": [\n    {\n      \"type\": \"string\",\n      \"title\": \"string\",\n      \"total_allocated_amount\": 6530,\n      \"value\": \"string\",\n      \"value_type\": \"string\"\n    },\n    {\n      \"type\": \"string\",\n      \"title\": \"string\",\n      \"total_allocated_amount\": 3583,\n      \"value\": \"string\",\n      \"value_type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "34bf8890-7b02-449f-81e5-0c05a9d04047",
+          "name": "Shopify Clear all items from the cart",
+          "request": {
+            "name": "Shopify Clear all items from the cart",
+            "description": {
+              "content": "Removes all line items from the cart, returning an empty cart object.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cart",
+                "clear.js"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Shopify store subdomain",
+                  "type": "any",
+                  "value": "{{store}}",
+                  "key": "store"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ddf3f28c-ad3a-44b6-bd26-b6d5fefa1352",
+              "name": "The empty cart",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cart",
+                    "clear.js"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Shopify store subdomain",
+                      "type": "any",
+                      "value": "{{store}}",
+                      "key": "store"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Shopify-Access-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"token\": \"string\",\n  \"note\": \"string\",\n  \"attributes\": {\n    \"key_0\": \"string\"\n  },\n  \"total_price\": 2181,\n  \"total_weight\": 3788.0177125973637,\n  \"item_count\": 5332,\n  \"items\": [\n    {\n      \"id\": 5311,\n      \"quantity\": 5142,\n      \"title\": \"string\",\n      \"price\": 8144,\n      \"original_price\": 7515,\n      \"discounted_price\": 4856,\n      \"line_price\": 5584,\n      \"original_line_price\": 9653,\n      \"total_discount\": 868,\n      \"sku\": \"string\",\n      \"grams\": 7267,\n      \"vendor\": \"string\",\n      \"taxable\": true,\n      \"product_id\": 5200,\n      \"product_has_only_default_variant\": false,\n      \"gift_card\": false,\n      \"url\": \"string\",\n      \"featured_image\": {\n        \"url\": \"http://znqcsSCLvevsTN.jcaU+MCZEE-AbH5R8mCnSRc2GHOw5XkrRZj3..Decl\",\n        \"alt\": \"string\",\n        \"aspect_ratio\": 2668.4955577972337\n      },\n      \"image\": \"https://zwAx.iibT.zfIizsA1bmbiPJ.llpXgFv0Dl72HY9LzM\",\n      \"handle\": \"string\",\n      \"requires_shipping\": true,\n      \"product_type\": \"string\",\n      \"product_title\": \"string\",\n      \"variant_title\": \"string\",\n      \"variant_options\": [\n        \"string\",\n        \"string\"\n      ],\n      \"properties\": {\n        \"key_0\": \"string\"\n      },\n      \"key\": \"string\",\n      \"line_level_discount_allocations\": [\n        {\n          \"amount\": 9926,\n          \"discount_application\": {\n            \"type\": \"string\",\n            \"title\": \"string\",\n            \"value\": \"string\",\n            \"value_type\": \"string\"\n          }\n        },\n        {\n          \"amount\": 830,\n          \"discount_application\": {\n            \"type\": \"string\",\n            \"title\": \"string\",\n            \"value\": \"string\",\n            \"value_type\": \"string\"\n          }\n        }\n      ],\n      \"line_level_total_discount\": 8104\n    },\n    {\n      \"id\": 2897,\n      \"quantity\": 776,\n      \"title\": \"string\",\n      \"price\": 9487,\n      \"original_price\": 252,\n      \"discounted_price\": 1093,\n      \"line_price\": 8759,\n      \"original_line_price\": 4094,\n      \"total_discount\": 9960,\n      \"sku\": \"string\",\n      \"grams\": 3838,\n      \"vendor\": \"string\",\n      \"taxable\": false,\n      \"product_id\": 4470,\n      \"product_has_only_default_variant\": true,\n      \"gift_card\": false,\n      \"url\": \"string\",\n      \"featured_image\": {\n        \"url\": \"https://demkJfLhfGiRdfYTjdedwbybaUb.skvSUWKPKB.BUgC3wIAXTsdlXmkH,wY0m+dNvnfQkyV8Be8cWkzdln\",\n        \"alt\": \"string\",\n        \"aspect_ratio\": 1475.3444315221086\n      },\n      \"image\": \"http://N.paqydB8BbhFXmNludZpe47S6if6j8zmc4WM+RMKOk,MaK6mx8kpYVOBC08yNsklqn+LwCT\",\n      \"handle\": \"string\",\n      \"requires_shipping\": true,\n      \"product_type\": \"string\",\n      \"product_title\": \"string\",\n      \"variant_title\": \"string\",\n      \"variant_options\": [\n        \"string\",\n        \"string\"\n      ],\n      \"properties\": {\n        \"key_0\": \"string\"\n      },\n      \"key\": \"string\",\n      \"line_level_discount_allocations\": [\n        {\n          \"amount\": 8468,\n          \"discount_application\": {\n            \"type\": \"string\",\n            \"title\": \"string\",\n            \"value\": \"string\",\n            \"value_type\": \"string\"\n          }\n        },\n        {\n          \"amount\": 7413,\n          \"discount_application\": {\n            \"type\": \"string\",\n            \"title\": \"string\",\n            \"value\": \"string\",\n            \"value_type\": \"string\"\n          }\n        }\n      ],\n      \"line_level_total_discount\": 8881\n    }\n  ],\n  \"requires_shipping\": true,\n  \"currency\": \"string\",\n  \"total_discount\": 4706,\n  \"cart_level_discount_applications\": [\n    {\n      \"type\": \"string\",\n      \"title\": \"string\",\n      \"total_allocated_amount\": 6530,\n      \"value\": \"string\",\n      \"value_type\": \"string\"\n    },\n    {\n      \"type\": \"string\",\n      \"title\": \"string\",\n      \"total_allocated_amount\": 3583,\n      \"value\": \"string\",\n      \"value_type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "53e4f57e-3c88-4d26-9797-654a5512cfe5",
+          "name": "Shopify Get estimated shipping rates",
+          "request": {
+            "name": "Shopify Get estimated shipping rates",
+            "description": {
+              "content": "Retrieves estimated shipping rates for the current cart based on the provided shipping address. May be throttled for repeated requests.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cart",
+                "shipping_rates.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "shipping_address[zip]",
+                  "value": "<string>",
+                  "description": "(Required) Postal or zip code"
+                },
+                {
+                  "disabled": false,
+                  "key": "shipping_address[country]",
+                  "value": "<string>",
+                  "description": "(Required) Country name or ISO code"
+                },
+                {
+                  "disabled": false,
+                  "key": "shipping_address[province]",
+                  "value": "<string>",
+                  "description": "Province, state, or region"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The Shopify store subdomain",
+                  "type": "any",
+                  "value": "{{store}}",
+                  "key": "store"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bd95f5a4-daa1-42e7-8835-f9fc846f7ea8",
+              "name": "Estimated shipping rates",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cart",
+                    "shipping_rates.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "shipping_address[zip]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "shipping_address[country]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "shipping_address[province]",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Shopify store subdomain",
+                      "type": "any",
+                      "value": "{{store}}",
+                      "key": "store"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Shopify-Access-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"shipping_rates\": [\n    {\n      \"name\": \"string\",\n      \"price\": \"string\",\n      \"delivery_days\": [\n        3130,\n        6655\n      ],\n      \"source\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"price\": \"string\",\n      \"delivery_days\": [\n        4884,\n        4131\n      ],\n      \"source\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The Shopify store subdomain",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "my-store",
+      "key": "store"
+    },
+    {
+      "type": "string",
+      "value": "https://{{store}}.myshopify.com/admin/api/2025-01",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Shopify-Access-Token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "da62e647-2fa8-4e25-8cc4-5fd1c49ffc19",
+    "name": "Shopify Admin REST About Cart API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Shopify Admin REST API lets you build apps and integrations that extend and enhance the Shopify admin. Access products, customers, orders, inventory, fulfillment, and more. Endpoints are organized by resource type and versioned by release date.\n\nContact Support:\n Name: Shopify\n Email: api@shopify.com",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,297 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Shopify Admin REST About Shop API",
+    "version": "2025-01"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Shopify-Access-Token",
+      "value": "{{X-Shopify-Access-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Shop",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Shopify Retrieve shop configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/shop.json",
+            "params": [
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to include"
+              }
+            ]
+          },
+          "docs": "Retrieves the shop's configuration including name, domain, currency, timezone, plan, and address information."
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of Fulfillment Orders On A Shop For A Specific App",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-01/assigned_fulfillment_orders.json",
+            "params": [
+              {
+                "name": "assignment_status",
+                "value": "",
+                "type": "query",
+                "description": "The assigment status of the fulfillment orders that should be returned:\n                    \n                        cancellation_requested: Fulfillment orders for which the merchant has requested cancellation of the previously accepted fulfillment request.\n                        fulfillment_requested: Fulfillment orders for which the merchant has requested fulfillment.\n                        fulfillment_accepted: Fulfillment orders for which the merchant's fulfillment request has been accepted. Any number of fulfillments can be created on these fulfillment orders to completely fulfill the requested items."
+              },
+              {
+                "name": "location_ids",
+                "value": "",
+                "type": "query",
+                "description": "The IDs of the assigned locations of the fulfillment orders that should be returned."
+              },
+              {
+                "name": "location_ids[]",
+                "value": "",
+                "type": "query",
+                "description": "location_ids[]"
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/assignedfulfillmentorder#index-2020-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of Fulfillment Orders On A Shop For A Specific App",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-04/assigned_fulfillment_orders.json",
+            "params": [
+              {
+                "name": "assignment_status",
+                "value": "",
+                "type": "query",
+                "description": "The assigment status of the fulfillment orders that should be returned:\n                    \n                        cancellation_requested: Fulfillment orders for which the merchant has requested cancellation of the previously accepted fulfillment request.\n                        fulfillment_requested: Fulfillment orders for which the merchant has requested fulfillment.\n                        fulfillment_accepted: Fulfillment orders for which the merchant's fulfillment request has been accepted. Any number of fulfillments can be created on these fulfillment orders to completely fulfill the requested items."
+              },
+              {
+                "name": "location_ids",
+                "value": "",
+                "type": "query",
+                "description": "The IDs of the assigned locations of the fulfillment orders that should be returned."
+              },
+              {
+                "name": "location_ids[]",
+                "value": "",
+                "type": "query",
+                "description": "location_ids[]"
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/assignedfulfillmentorder#index-2020-04"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of Fulfillment Orders On A Shop For A Specific App",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-07/assigned_fulfillment_orders.json",
+            "params": [
+              {
+                "name": "assignment_status",
+                "value": "",
+                "type": "query",
+                "description": "The assigment status of the fulfillment orders that should be returned:\n                    \n                        cancellation_requested: Fulfillment orders for which the merchant has requested cancellation of the previously accepted fulfillment request.\n                        fulfillment_requested: Fulfillment orders for which the merchant has requested fulfillment.\n                        fulfillment_accepted: Fulfillment orders for which the merchant's fulfillment request has been accepted. Any number of fulfillments can be created on these fulfillment orders to completely fulfill the requested items."
+              },
+              {
+                "name": "location_ids",
+                "value": "",
+                "type": "query",
+                "description": "The IDs of the assigned locations of the fulfillment orders that should be returned."
+              },
+              {
+                "name": "location_ids[]",
+                "value": "",
+                "type": "query",
+                "description": "location_ids[]"
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/assignedfulfillmentorder#index-2020-07"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of Fulfillment Orders On A Shop For A Specific App",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-10/assigned_fulfillment_orders.json",
+            "params": [
+              {
+                "name": "assignment_status",
+                "value": "",
+                "type": "query",
+                "description": "The assigment status of the fulfillment orders that should be returned:\n                    \n                        cancellation_requested: Fulfillment orders for which the merchant has requested cancellation of the previously accepted fulfillment request.\n                        fulfillment_requested: Fulfillment orders for which the merchant has requested fulfillment.\n                        fulfillment_accepted: Fulfillment orders for which the merchant's fulfillment request has been accepted. Any number of fulfillments can be created on these fulfillment orders to completely fulfill the requested items."
+              },
+              {
+                "name": "location_ids",
+                "value": "",
+                "type": "query",
+                "description": "The IDs of the assigned locations of the fulfillment orders that should be returned."
+              },
+              {
+                "name": "location_ids[]",
+                "value": "",
+                "type": "query",
+                "description": "location_ids[]"
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/assignedfulfillmentorder#index-2020-10"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of Fulfillment Orders On A Shop For A Specific App",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2021-01/assigned_fulfillment_orders.json",
+            "params": [
+              {
+                "name": "assignment_status",
+                "value": "",
+                "type": "query",
+                "description": "The assigment status of the fulfillment orders that should be returned:\n                    \n                        cancellation_requested: Fulfillment orders for which the merchant has requested cancellation of the previously accepted fulfillment request.\n                        fulfillment_requested: Fulfillment orders for which the merchant has requested fulfillment.\n                        fulfillment_accepted: Fulfillment orders for which the merchant's fulfillment request has been accepted. Any number of fulfillments can be created on these fulfillment orders to completely fulfill the requested items."
+              },
+              {
+                "name": "location_ids",
+                "value": "",
+                "type": "query",
+                "description": "The IDs of the assigned locations of the fulfillment orders that should be returned."
+              },
+              {
+                "name": "location_ids[]",
+                "value": "",
+                "type": "query",
+                "description": "location_ids[]"
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/assignedfulfillmentorder#index-2021-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of Fulfillment Orders On A Shop For A Specific App",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/unstable/assigned_fulfillment_orders.json",
+            "params": [
+              {
+                "name": "assignment_status",
+                "value": "",
+                "type": "query",
+                "description": "The assigment status of the fulfillment orders that should be returned:\n                    \n                        cancellation_requested: Fulfillment orders for which the merchant has requested cancellation of the previously accepted fulfillment request.\n                        fulfillment_requested: Fulfillment orders for which the merchant has requested fulfillment.\n                        fulfillment_accepted: Fulfillment orders for which the merchant's fulfillment request has been accepted. Any number of fulfillments can be created on these fulfillment orders to completely fulfill the requested items."
+              },
+              {
+                "name": "location_ids",
+                "value": "",
+                "type": "query",
+                "description": "The IDs of the assigned locations of the fulfillment orders that should be returned."
+              },
+              {
+                "name": "location_ids[]",
+                "value": "",
+                "type": "query",
+                "description": "location_ids[]"
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/assignedfulfillmentorder#index-unstable"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of Currencies Enabled On A Shop",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-01/currencies.json"
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/store-properties/currency#index-2020-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of Currencies Enabled On A Shop",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-04/currencies.json"
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/store-properties/currency#index-2020-04"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of Currencies Enabled On A Shop",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-07/currencies.json"
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/store-properties/currency#index-2020-07"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of Currencies Enabled On A Shop",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-10/currencies.json"
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/store-properties/currency#index-2020-10"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of Currencies Enabled On A Shop",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2021-01/currencies.json"
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/store-properties/currency#index-2021-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of Currencies Enabled On A Shop",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/unstable/currencies.json"
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/store-properties/currency#index-unstable"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

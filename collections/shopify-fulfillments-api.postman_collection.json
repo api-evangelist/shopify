@@ -1,0 +1,412 @@
+{
+  "item": [
+    {
+      "id": "197ae9bc-9492-493b-9854-04d7faad4958",
+      "name": "Fulfillments",
+      "description": {
+        "content": "Manage order fulfillments",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9f7bdcc5-0b9d-4202-a7ad-cf7ef4d6dd19",
+          "name": "Shopify Create a fulfillment",
+          "request": {
+            "name": "Shopify Create a fulfillment",
+            "description": {
+              "content": "Creates a fulfillment for one or more fulfillment orders.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "fulfillments.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Shopify store subdomain",
+                  "type": "any",
+                  "value": "{{store}}",
+                  "key": "store"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fulfillment\": {\n    \"line_items_by_fulfillment_order\": [\n      {\n        \"fulfillment_order_id\": \"<integer>\",\n        \"fulfillment_order_line_items\": [\n          {\n            \"id\": \"<integer>\",\n            \"quantity\": \"<integer>\"\n          },\n          {\n            \"id\": \"<integer>\",\n            \"quantity\": \"<integer>\"\n          }\n        ]\n      },\n      {\n        \"fulfillment_order_id\": \"<integer>\",\n        \"fulfillment_order_line_items\": [\n          {\n            \"id\": \"<integer>\",\n            \"quantity\": \"<integer>\"\n          },\n          {\n            \"id\": \"<integer>\",\n            \"quantity\": \"<integer>\"\n          }\n        ]\n      }\n    ],\n    \"tracking_info\": {\n      \"number\": \"<string>\",\n      \"url\": \"<string>\",\n      \"company\": \"<string>\"\n    },\n    \"notify_customer\": \"<boolean>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9b54048f-c293-41aa-ac16-4d8c0f878d98",
+              "name": "The created fulfillment",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fulfillments.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Shopify store subdomain",
+                      "type": "any",
+                      "value": "{{store}}",
+                      "key": "store"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Shopify-Access-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fulfillment\": {\n    \"line_items_by_fulfillment_order\": [\n      {\n        \"fulfillment_order_id\": 1043,\n        \"fulfillment_order_line_items\": [\n          {\n            \"id\": 5708,\n            \"quantity\": 2272\n          },\n          {\n            \"id\": 3291,\n            \"quantity\": 8317\n          }\n        ]\n      },\n      {\n        \"fulfillment_order_id\": 4317,\n        \"fulfillment_order_line_items\": [\n          {\n            \"id\": 9506,\n            \"quantity\": 55\n          },\n          {\n            \"id\": 5407,\n            \"quantity\": 5107\n          }\n        ]\n      }\n    ],\n    \"tracking_info\": {\n      \"number\": \"string\",\n      \"url\": \"string\",\n      \"company\": \"string\"\n    },\n    \"notify_customer\": false\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"fulfillment\": {\n    \"id\": 3334,\n    \"order_id\": 8323,\n    \"status\": \"open\",\n    \"tracking_company\": \"string\",\n    \"tracking_number\": \"string\",\n    \"tracking_numbers\": [\n      \"string\",\n      \"string\"\n    ],\n    \"tracking_url\": \"string\",\n    \"tracking_urls\": [\n      \"string\",\n      \"string\"\n    ],\n    \"created_at\": \"1972-08-28T01:27:01.759Z\",\n    \"updated_at\": \"1952-02-19T05:50:33.150Z\",\n    \"line_items\": [\n      {\n        \"id\": 4769,\n        \"variant_id\": 7942,\n        \"product_id\": 6224,\n        \"title\": \"string\",\n        \"variant_title\": \"string\",\n        \"name\": \"string\",\n        \"quantity\": 3226,\n        \"price\": \"string\",\n        \"total_discount\": \"string\",\n        \"sku\": \"string\",\n        \"vendor\": \"string\",\n        \"fulfillment_service\": \"string\",\n        \"fulfillment_status\": \"string\",\n        \"taxable\": false,\n        \"requires_shipping\": true,\n        \"gift_card\": true,\n        \"grams\": 6425,\n        \"tax_lines\": [\n          {\n            \"title\": \"string\",\n            \"price\": \"string\",\n            \"rate\": 5934.902606417761\n          },\n          {\n            \"title\": \"string\",\n            \"price\": \"string\",\n            \"rate\": 8558.257467616342\n          }\n        ],\n        \"properties\": [\n          {\n            \"name\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"name\": \"string\",\n            \"value\": \"string\"\n          }\n        ],\n        \"admin_graphql_api_id\": \"string\"\n      },\n      {\n        \"id\": 4616,\n        \"variant_id\": 2534,\n        \"product_id\": 6847,\n        \"title\": \"string\",\n        \"variant_title\": \"string\",\n        \"name\": \"string\",\n        \"quantity\": 6864,\n        \"price\": \"string\",\n        \"total_discount\": \"string\",\n        \"sku\": \"string\",\n        \"vendor\": \"string\",\n        \"fulfillment_service\": \"string\",\n        \"fulfillment_status\": \"string\",\n        \"taxable\": false,\n        \"requires_shipping\": false,\n        \"gift_card\": false,\n        \"grams\": 4120,\n        \"tax_lines\": [\n          {\n            \"title\": \"string\",\n            \"price\": \"string\",\n            \"rate\": 279.5922690299135\n          },\n          {\n            \"title\": \"string\",\n            \"price\": \"string\",\n            \"rate\": 5134.106464123125\n          }\n        ],\n        \"properties\": [\n          {\n            \"name\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"name\": \"string\",\n            \"value\": \"string\"\n          }\n        ],\n        \"admin_graphql_api_id\": \"string\"\n      }\n    ],\n    \"admin_graphql_api_id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6d460b77-73e1-41c0-9dcb-802166b803b0",
+          "name": "Shopify Update tracking information for a fulfillment",
+          "request": {
+            "name": "Shopify Update tracking information for a fulfillment",
+            "description": {
+              "content": "Updates the tracking information for a fulfillment.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "fulfillments",
+                ":fulfillment_id",
+                "update_tracking.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "fulfillment_id",
+                  "description": "(Required) The ID of the fulfillment"
+                },
+                {
+                  "description": "The Shopify store subdomain",
+                  "type": "any",
+                  "value": "{{store}}",
+                  "key": "store"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fulfillment\": {\n    \"tracking_info\": {\n      \"number\": \"<string>\",\n      \"url\": \"<string>\",\n      \"company\": \"<string>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a05d45e5-1f6a-4b32-9301-1e5dfd51ff8a",
+              "name": "The updated fulfillment",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fulfillments",
+                    ":fulfillment_id",
+                    "update_tracking.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "fulfillment_id",
+                      "description": "(Required) The ID of the fulfillment"
+                    },
+                    {
+                      "description": "The Shopify store subdomain",
+                      "type": "any",
+                      "value": "{{store}}",
+                      "key": "store"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Shopify-Access-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fulfillment\": {\n    \"tracking_info\": {\n      \"number\": \"<string>\",\n      \"url\": \"<string>\",\n      \"company\": \"<string>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"fulfillment\": {\n    \"id\": 3334,\n    \"order_id\": 8323,\n    \"status\": \"open\",\n    \"tracking_company\": \"string\",\n    \"tracking_number\": \"string\",\n    \"tracking_numbers\": [\n      \"string\",\n      \"string\"\n    ],\n    \"tracking_url\": \"string\",\n    \"tracking_urls\": [\n      \"string\",\n      \"string\"\n    ],\n    \"created_at\": \"1972-08-28T01:27:01.759Z\",\n    \"updated_at\": \"1952-02-19T05:50:33.150Z\",\n    \"line_items\": [\n      {\n        \"id\": 4769,\n        \"variant_id\": 7942,\n        \"product_id\": 6224,\n        \"title\": \"string\",\n        \"variant_title\": \"string\",\n        \"name\": \"string\",\n        \"quantity\": 3226,\n        \"price\": \"string\",\n        \"total_discount\": \"string\",\n        \"sku\": \"string\",\n        \"vendor\": \"string\",\n        \"fulfillment_service\": \"string\",\n        \"fulfillment_status\": \"string\",\n        \"taxable\": false,\n        \"requires_shipping\": true,\n        \"gift_card\": true,\n        \"grams\": 6425,\n        \"tax_lines\": [\n          {\n            \"title\": \"string\",\n            \"price\": \"string\",\n            \"rate\": 5934.902606417761\n          },\n          {\n            \"title\": \"string\",\n            \"price\": \"string\",\n            \"rate\": 8558.257467616342\n          }\n        ],\n        \"properties\": [\n          {\n            \"name\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"name\": \"string\",\n            \"value\": \"string\"\n          }\n        ],\n        \"admin_graphql_api_id\": \"string\"\n      },\n      {\n        \"id\": 4616,\n        \"variant_id\": 2534,\n        \"product_id\": 6847,\n        \"title\": \"string\",\n        \"variant_title\": \"string\",\n        \"name\": \"string\",\n        \"quantity\": 6864,\n        \"price\": \"string\",\n        \"total_discount\": \"string\",\n        \"sku\": \"string\",\n        \"vendor\": \"string\",\n        \"fulfillment_service\": \"string\",\n        \"fulfillment_status\": \"string\",\n        \"taxable\": false,\n        \"requires_shipping\": false,\n        \"gift_card\": false,\n        \"grams\": 4120,\n        \"tax_lines\": [\n          {\n            \"title\": \"string\",\n            \"price\": \"string\",\n            \"rate\": 279.5922690299135\n          },\n          {\n            \"title\": \"string\",\n            \"price\": \"string\",\n            \"rate\": 5134.106464123125\n          }\n        ],\n        \"properties\": [\n          {\n            \"name\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"name\": \"string\",\n            \"value\": \"string\"\n          }\n        ],\n        \"admin_graphql_api_id\": \"string\"\n      }\n    ],\n    \"admin_graphql_api_id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6f3d9858-42e9-4b21-a73d-46b3f51ee686",
+          "name": "Shopify Cancel a fulfillment",
+          "request": {
+            "name": "Shopify Cancel a fulfillment",
+            "description": {
+              "content": "Cancels a fulfillment.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "fulfillments",
+                ":fulfillment_id",
+                "cancel.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "fulfillment_id",
+                  "description": "(Required) The ID of the fulfillment"
+                },
+                {
+                  "description": "The Shopify store subdomain",
+                  "type": "any",
+                  "value": "{{store}}",
+                  "key": "store"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "109b0d61-75fc-43df-a771-b286880b825d",
+              "name": "The cancelled fulfillment",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fulfillments",
+                    ":fulfillment_id",
+                    "cancel.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "fulfillment_id",
+                      "description": "(Required) The ID of the fulfillment"
+                    },
+                    {
+                      "description": "The Shopify store subdomain",
+                      "type": "any",
+                      "value": "{{store}}",
+                      "key": "store"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Shopify-Access-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"fulfillment\": {\n    \"id\": 3334,\n    \"order_id\": 8323,\n    \"status\": \"open\",\n    \"tracking_company\": \"string\",\n    \"tracking_number\": \"string\",\n    \"tracking_numbers\": [\n      \"string\",\n      \"string\"\n    ],\n    \"tracking_url\": \"string\",\n    \"tracking_urls\": [\n      \"string\",\n      \"string\"\n    ],\n    \"created_at\": \"1972-08-28T01:27:01.759Z\",\n    \"updated_at\": \"1952-02-19T05:50:33.150Z\",\n    \"line_items\": [\n      {\n        \"id\": 4769,\n        \"variant_id\": 7942,\n        \"product_id\": 6224,\n        \"title\": \"string\",\n        \"variant_title\": \"string\",\n        \"name\": \"string\",\n        \"quantity\": 3226,\n        \"price\": \"string\",\n        \"total_discount\": \"string\",\n        \"sku\": \"string\",\n        \"vendor\": \"string\",\n        \"fulfillment_service\": \"string\",\n        \"fulfillment_status\": \"string\",\n        \"taxable\": false,\n        \"requires_shipping\": true,\n        \"gift_card\": true,\n        \"grams\": 6425,\n        \"tax_lines\": [\n          {\n            \"title\": \"string\",\n            \"price\": \"string\",\n            \"rate\": 5934.902606417761\n          },\n          {\n            \"title\": \"string\",\n            \"price\": \"string\",\n            \"rate\": 8558.257467616342\n          }\n        ],\n        \"properties\": [\n          {\n            \"name\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"name\": \"string\",\n            \"value\": \"string\"\n          }\n        ],\n        \"admin_graphql_api_id\": \"string\"\n      },\n      {\n        \"id\": 4616,\n        \"variant_id\": 2534,\n        \"product_id\": 6847,\n        \"title\": \"string\",\n        \"variant_title\": \"string\",\n        \"name\": \"string\",\n        \"quantity\": 6864,\n        \"price\": \"string\",\n        \"total_discount\": \"string\",\n        \"sku\": \"string\",\n        \"vendor\": \"string\",\n        \"fulfillment_service\": \"string\",\n        \"fulfillment_status\": \"string\",\n        \"taxable\": false,\n        \"requires_shipping\": false,\n        \"gift_card\": false,\n        \"grams\": 4120,\n        \"tax_lines\": [\n          {\n            \"title\": \"string\",\n            \"price\": \"string\",\n            \"rate\": 279.5922690299135\n          },\n          {\n            \"title\": \"string\",\n            \"price\": \"string\",\n            \"rate\": 5134.106464123125\n          }\n        ],\n        \"properties\": [\n          {\n            \"name\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"name\": \"string\",\n            \"value\": \"string\"\n          }\n        ],\n        \"admin_graphql_api_id\": \"string\"\n      }\n    ],\n    \"admin_graphql_api_id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The Shopify store subdomain",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "my-store",
+      "key": "store"
+    },
+    {
+      "type": "string",
+      "value": "https://{{store}}.myshopify.com/admin/api/2025-01",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Shopify-Access-Token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c3e798fc-eac9-49ed-963f-bff411b5dd58",
+    "name": "Shopify Admin REST About Fulfillments API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Shopify Admin REST API lets you build apps and integrations that extend and enhance the Shopify admin. Access products, customers, orders, inventory, fulfillment, and more. Endpoints are organized by resource type and versioned by release date.\n\nContact Support:\n Name: Shopify\n Email: api@shopify.com",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,7 +1,7 @@
 {
   "opencollection": "1.0.0",
   "info": {
-    "name": "Shopify Webhooks API",
+    "name": "Shopify Admin REST About Webhooks API",
     "version": "2025-01"
   },
   "request": {
@@ -15,13 +15,13 @@
   "items": [
     {
       "info": {
-        "name": "Webhook Subscriptions",
+        "name": "Webhooks",
         "type": "folder"
       },
       "items": [
         {
           "info": {
-            "name": "Shopify Retrieve a list of webhook subscriptions",
+            "name": "Shopify Retrieve a list of webhooks",
             "type": "http"
           },
           "http": {
@@ -32,37 +32,7 @@
                 "name": "topic",
                 "value": "",
                 "type": "query",
-                "description": "Filter by webhook topic (e.g. orders/create)"
-              },
-              {
-                "name": "address",
-                "value": "",
-                "type": "query",
-                "description": "Filter by callback address"
-              },
-              {
-                "name": "created_at_min",
-                "value": "",
-                "type": "query",
-                "description": "Show webhooks created after this date"
-              },
-              {
-                "name": "created_at_max",
-                "value": "",
-                "type": "query",
-                "description": "Show webhooks created before this date"
-              },
-              {
-                "name": "updated_at_min",
-                "value": "",
-                "type": "query",
-                "description": "Show webhooks updated after this date"
-              },
-              {
-                "name": "updated_at_max",
-                "value": "",
-                "type": "query",
-                "description": "Show webhooks updated before this date"
+                "description": "Filter by webhook topic"
               },
               {
                 "name": "limit",
@@ -84,7 +54,7 @@
               }
             ]
           },
-          "docs": "Retrieves a list of webhooks for the authenticated app. Filter by topic, creation date, or other criteria."
+          "docs": "Retrieves a list of webhook subscriptions for the app."
         },
         {
           "info": {
@@ -99,11 +69,11 @@
               "data": "{}"
             }
           },
-          "docs": "Creates a new webhook subscription. When the specified event occurs Shopify sends an HTTP POST to the provided callback address with the event payload in JSON or XML format."
+          "docs": "Creates a new webhook subscription. When the specified event occurs Shopify sends an HTTP POST to the provided address."
         },
         {
           "info": {
-            "name": "Shopify Retrieve a count of webhook subscriptions",
+            "name": "Shopify Retrieve a count of webhooks",
             "type": "http"
           },
           "http": {
@@ -115,20 +85,14 @@
                 "value": "",
                 "type": "query",
                 "description": "Count webhooks for a specific topic"
-              },
-              {
-                "name": "address",
-                "value": "",
-                "type": "query",
-                "description": "Count webhooks for a specific address"
               }
             ]
           },
-          "docs": "Retrieves a count of webhook subscriptions for the authenticated app."
+          "docs": "Retrieves a count of existing webhook subscriptions."
         },
         {
           "info": {
-            "name": "Shopify Retrieve a single webhook subscription",
+            "name": "Shopify Retrieve a single webhook",
             "type": "http"
           },
           "http": {
@@ -139,17 +103,11 @@
                 "name": "webhook_id",
                 "value": "",
                 "type": "path",
-                "description": "The ID of the webhook subscription"
-              },
-              {
-                "name": "fields",
-                "value": "",
-                "type": "query",
-                "description": "Comma-separated list of fields to include"
+                "description": "The ID of the webhook"
               }
             ]
           },
-          "docs": "Retrieves a webhook subscription by its ID."
+          "docs": "Retrieves a single webhook subscription by ID."
         },
         {
           "info": {
@@ -164,7 +122,7 @@
                 "name": "webhook_id",
                 "value": "",
                 "type": "path",
-                "description": "The ID of the webhook subscription"
+                "description": "The ID of the webhook"
               }
             ],
             "body": {
@@ -172,7 +130,7 @@
               "data": "{}"
             }
           },
-          "docs": "Updates an existing webhook subscription. The address and fields can be modified but the topic cannot be changed."
+          "docs": "Updates an existing webhook subscription."
         },
         {
           "info": {
@@ -187,11 +145,1103 @@
                 "name": "webhook_id",
                 "value": "",
                 "type": "path",
-                "description": "The ID of the webhook subscription"
+                "description": "The ID of the webhook"
               }
             ]
           },
-          "docs": "Deletes a webhook subscription by its ID."
+          "docs": "Deletes a webhook subscription."
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of Webhooks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-01/webhooks.json",
+            "params": [
+              {
+                "name": "address",
+                "value": "",
+                "type": "query",
+                "description": "Retrieve webhook subscriptions that send the POST request to this URI."
+              },
+              {
+                "name": "created_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Retrieve webhook subscriptions that were created before a given date and time (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "created_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Retrieve webhook subscriptions that were created after a given date and time (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of the properties you want returned for each item in the result list. Use this parameter to restrict the returned list of items to only those properties you specify."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of webhook subscriptions that should be returned. Setting this parameter outside the maximum range will return an error.\n                  (default: 50, maximum: 250)"
+              },
+              {
+                "name": "since_id",
+                "value": "",
+                "type": "query",
+                "description": "Restrict the returned list to webhook subscriptions whose id is greater than the specified since_id."
+              },
+              {
+                "name": "topic",
+                "value": "",
+                "type": "query",
+                "description": "Show webhook subscriptions with a given topic.\nFor a list of valid values, refer to the topic property.>"
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Retrieve webhooks that were updated before a given date and time (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Retrieve webhooks that were updated after a given date and time (format: 2014-04-25T16:15:47-04:00)."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/events/webhook#index-2020-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Create A New Webhook Subscription By Specifying Both An Address And A Topic",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-01/webhooks.json",
+            "params": [
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Use this parameter to select the data format for the payload. Valid values are json and xml.\n                  (default: json)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/events/webhook#create-2020-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Count Of Existing Webhook Subscriptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-01/webhooks/count.json",
+            "params": [
+              {
+                "name": "address",
+                "value": "",
+                "type": "query",
+                "description": "Retrieve webhook subscriptions that send the POST request to this URI."
+              },
+              {
+                "name": "topic",
+                "value": "",
+                "type": "query",
+                "description": "Show webhook subscriptions with a given topic.\nFor a list of valid values, refer to the topic property.>"
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/events/webhook#count-2020-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Single Webhook Subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-01/webhooks/:webhook_id.json",
+            "params": [
+              {
+                "name": "webhook_id",
+                "value": "",
+                "type": "path",
+                "description": "webhook_id"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of the properties you want returned for each item in the result list. Use this parameter to restrict the returned list of items to only those properties you specify."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/events/webhook#show-2020-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Update A Webhook Subscription's Topic Or Address Uris",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-01/webhooks/:webhook_id.json",
+            "params": [
+              {
+                "name": "webhook_id",
+                "value": "",
+                "type": "path",
+                "description": "webhook_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/events/webhook#update-2020-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Delete A Webhook Subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-01/webhooks/:webhook_id.json",
+            "params": [
+              {
+                "name": "webhook_id",
+                "value": "",
+                "type": "path",
+                "description": "webhook_id"
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/events/webhook#destroy-2020-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of Webhooks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-04/webhooks.json",
+            "params": [
+              {
+                "name": "address",
+                "value": "",
+                "type": "query",
+                "description": "Retrieve webhook subscriptions that send the POST request to this URI."
+              },
+              {
+                "name": "created_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Retrieve webhook subscriptions that were created before a given date and time (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "created_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Retrieve webhook subscriptions that were created after a given date and time (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of the properties you want returned for each item in the result list. Use this parameter to restrict the returned list of items to only those properties you specify."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of webhook subscriptions that should be returned. Setting this parameter outside the maximum range will return an error.\n                  (default: 50, maximum: 250)"
+              },
+              {
+                "name": "since_id",
+                "value": "",
+                "type": "query",
+                "description": "Restrict the returned list to webhook subscriptions whose id is greater than the specified since_id."
+              },
+              {
+                "name": "topic",
+                "value": "",
+                "type": "query",
+                "description": "Show webhook subscriptions with a given topic.\nFor a list of valid values, refer to the topic property.>"
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Retrieve webhooks that were updated before a given date and time (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Retrieve webhooks that were updated after a given date and time (format: 2014-04-25T16:15:47-04:00)."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/events/webhook#index-2020-04"
+        },
+        {
+          "info": {
+            "name": "Shopify Create A New Webhook Subscription By Specifying Both An Address And A Topic",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-04/webhooks.json",
+            "params": [
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Use this parameter to select the data format for the payload. Valid values are json and xml.\n                  (default: json)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/events/webhook#create-2020-04"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Count Of Existing Webhook Subscriptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-04/webhooks/count.json",
+            "params": [
+              {
+                "name": "address",
+                "value": "",
+                "type": "query",
+                "description": "Retrieve webhook subscriptions that send the POST request to this URI."
+              },
+              {
+                "name": "topic",
+                "value": "",
+                "type": "query",
+                "description": "Show webhook subscriptions with a given topic.\nFor a list of valid values, refer to the topic property.>"
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/events/webhook#count-2020-04"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Single Webhook Subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-04/webhooks/:webhook_id.json",
+            "params": [
+              {
+                "name": "webhook_id",
+                "value": "",
+                "type": "path",
+                "description": "webhook_id"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of the properties you want returned for each item in the result list. Use this parameter to restrict the returned list of items to only those properties you specify."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/events/webhook#show-2020-04"
+        },
+        {
+          "info": {
+            "name": "Shopify Update A Webhook Subscription's Topic Or Address Uris",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-04/webhooks/:webhook_id.json",
+            "params": [
+              {
+                "name": "webhook_id",
+                "value": "",
+                "type": "path",
+                "description": "webhook_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/events/webhook#update-2020-04"
+        },
+        {
+          "info": {
+            "name": "Shopify Delete A Webhook Subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-04/webhooks/:webhook_id.json",
+            "params": [
+              {
+                "name": "webhook_id",
+                "value": "",
+                "type": "path",
+                "description": "webhook_id"
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/events/webhook#destroy-2020-04"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of Webhooks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-07/webhooks.json",
+            "params": [
+              {
+                "name": "address",
+                "value": "",
+                "type": "query",
+                "description": "Retrieve webhook subscriptions that send the POST request to this URI."
+              },
+              {
+                "name": "created_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Retrieve webhook subscriptions that were created before a given date and time (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "created_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Retrieve webhook subscriptions that were created after a given date and time (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of the properties you want returned for each item in the result list. Use this parameter to restrict the returned list of items to only those properties you specify."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of webhook subscriptions that should be returned. Setting this parameter outside the maximum range will return an error.\n                  (default: 50, maximum: 250)"
+              },
+              {
+                "name": "since_id",
+                "value": "",
+                "type": "query",
+                "description": "Restrict the returned list to webhook subscriptions whose id is greater than the specified since_id."
+              },
+              {
+                "name": "topic",
+                "value": "",
+                "type": "query",
+                "description": "Show webhook subscriptions with a given topic.\nFor a list of valid values, refer to the topic property.>"
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Retrieve webhooks that were updated before a given date and time (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Retrieve webhooks that were updated after a given date and time (format: 2014-04-25T16:15:47-04:00)."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/events/webhook#index-2020-07"
+        },
+        {
+          "info": {
+            "name": "Shopify Create A New Webhook Subscription By Specifying Both An Address And A Topic",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-07/webhooks.json",
+            "params": [
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Use this parameter to select the data format for the payload. Valid values are json and xml.\n                  (default: json)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/events/webhook#create-2020-07"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Count Of Existing Webhook Subscriptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-07/webhooks/count.json",
+            "params": [
+              {
+                "name": "address",
+                "value": "",
+                "type": "query",
+                "description": "Retrieve webhook subscriptions that send the POST request to this URI."
+              },
+              {
+                "name": "topic",
+                "value": "",
+                "type": "query",
+                "description": "Show webhook subscriptions with a given topic.\nFor a list of valid values, refer to the topic property.>"
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/events/webhook#count-2020-07"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Single Webhook Subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-07/webhooks/:webhook_id.json",
+            "params": [
+              {
+                "name": "webhook_id",
+                "value": "",
+                "type": "path",
+                "description": "webhook_id"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of the properties you want returned for each item in the result list. Use this parameter to restrict the returned list of items to only those properties you specify."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/events/webhook#show-2020-07"
+        },
+        {
+          "info": {
+            "name": "Shopify Update A Webhook Subscription's Topic Or Address Uris",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-07/webhooks/:webhook_id.json",
+            "params": [
+              {
+                "name": "webhook_id",
+                "value": "",
+                "type": "path",
+                "description": "webhook_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/events/webhook#update-2020-07"
+        },
+        {
+          "info": {
+            "name": "Shopify Delete A Webhook Subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-07/webhooks/:webhook_id.json",
+            "params": [
+              {
+                "name": "webhook_id",
+                "value": "",
+                "type": "path",
+                "description": "webhook_id"
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/events/webhook#destroy-2020-07"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of Webhooks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-10/webhooks.json",
+            "params": [
+              {
+                "name": "address",
+                "value": "",
+                "type": "query",
+                "description": "Retrieve webhook subscriptions that send the POST request to this URI."
+              },
+              {
+                "name": "created_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Retrieve webhook subscriptions that were created before a given date and time (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "created_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Retrieve webhook subscriptions that were created after a given date and time (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of the properties you want returned for each item in the result list. Use this parameter to restrict the returned list of items to only those properties you specify."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of webhook subscriptions that should be returned. Setting this parameter outside the maximum range will return an error.\n                  (default: 50, maximum: 250)"
+              },
+              {
+                "name": "since_id",
+                "value": "",
+                "type": "query",
+                "description": "Restrict the returned list to webhook subscriptions whose id is greater than the specified since_id."
+              },
+              {
+                "name": "topic",
+                "value": "",
+                "type": "query",
+                "description": "Show webhook subscriptions with a given topic.\nFor a list of valid values, refer to the topic property.>"
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Retrieve webhooks that were updated before a given date and time (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Retrieve webhooks that were updated after a given date and time (format: 2014-04-25T16:15:47-04:00)."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/events/webhook#index-2020-10"
+        },
+        {
+          "info": {
+            "name": "Shopify Create A New Webhook Subscription By Specifying Both An Address And A Topic",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-10/webhooks.json",
+            "params": [
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Use this parameter to select the data format for the payload. Valid values are json and xml.\n                  (default: json)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/events/webhook#create-2020-10"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Count Of Existing Webhook Subscriptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-10/webhooks/count.json",
+            "params": [
+              {
+                "name": "address",
+                "value": "",
+                "type": "query",
+                "description": "Retrieve webhook subscriptions that send the POST request to this URI."
+              },
+              {
+                "name": "topic",
+                "value": "",
+                "type": "query",
+                "description": "Show webhook subscriptions with a given topic.\nFor a list of valid values, refer to the topic property.>"
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/events/webhook#count-2020-10"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Single Webhook Subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-10/webhooks/:webhook_id.json",
+            "params": [
+              {
+                "name": "webhook_id",
+                "value": "",
+                "type": "path",
+                "description": "webhook_id"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of the properties you want returned for each item in the result list. Use this parameter to restrict the returned list of items to only those properties you specify."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/events/webhook#show-2020-10"
+        },
+        {
+          "info": {
+            "name": "Shopify Update A Webhook Subscription's Topic Or Address Uris",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-10/webhooks/:webhook_id.json",
+            "params": [
+              {
+                "name": "webhook_id",
+                "value": "",
+                "type": "path",
+                "description": "webhook_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/events/webhook#update-2020-10"
+        },
+        {
+          "info": {
+            "name": "Shopify Delete A Webhook Subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-10/webhooks/:webhook_id.json",
+            "params": [
+              {
+                "name": "webhook_id",
+                "value": "",
+                "type": "path",
+                "description": "webhook_id"
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/events/webhook#destroy-2020-10"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of Webhooks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2021-01/webhooks.json",
+            "params": [
+              {
+                "name": "address",
+                "value": "",
+                "type": "query",
+                "description": "Retrieve webhook subscriptions that send the POST request to this URI."
+              },
+              {
+                "name": "created_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Retrieve webhook subscriptions that were created before a given date and time (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "created_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Retrieve webhook subscriptions that were created after a given date and time (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of the properties you want returned for each item in the result list. Use this parameter to restrict the returned list of items to only those properties you specify."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of webhook subscriptions that should be returned. Setting this parameter outside the maximum range will return an error.\n                  (default: 50, maximum: 250)"
+              },
+              {
+                "name": "since_id",
+                "value": "",
+                "type": "query",
+                "description": "Restrict the returned list to webhook subscriptions whose id is greater than the specified since_id."
+              },
+              {
+                "name": "topic",
+                "value": "",
+                "type": "query",
+                "description": "Show webhook subscriptions with a given topic.\nFor a list of valid values, refer to the topic property.>"
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Retrieve webhooks that were updated before a given date and time (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Retrieve webhooks that were updated after a given date and time (format: 2014-04-25T16:15:47-04:00)."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/events/webhook#index-2021-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Create A New Webhook Subscription By Specifying Both An Address And A Topic",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2021-01/webhooks.json",
+            "params": [
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Use this parameter to select the data format for the payload. Valid values are json and xml.\n                  (default: json)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/events/webhook#create-2021-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Count Of Existing Webhook Subscriptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2021-01/webhooks/count.json",
+            "params": [
+              {
+                "name": "address",
+                "value": "",
+                "type": "query",
+                "description": "Retrieve webhook subscriptions that send the POST request to this URI."
+              },
+              {
+                "name": "topic",
+                "value": "",
+                "type": "query",
+                "description": "Show webhook subscriptions with a given topic.\nFor a list of valid values, refer to the topic property.>"
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/events/webhook#count-2021-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Single Webhook Subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2021-01/webhooks/:webhook_id.json",
+            "params": [
+              {
+                "name": "webhook_id",
+                "value": "",
+                "type": "path",
+                "description": "webhook_id"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of the properties you want returned for each item in the result list. Use this parameter to restrict the returned list of items to only those properties you specify."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/events/webhook#show-2021-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Update A Webhook Subscription's Topic Or Address Uris",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2021-01/webhooks/:webhook_id.json",
+            "params": [
+              {
+                "name": "webhook_id",
+                "value": "",
+                "type": "path",
+                "description": "webhook_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/events/webhook#update-2021-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Delete A Webhook Subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2021-01/webhooks/:webhook_id.json",
+            "params": [
+              {
+                "name": "webhook_id",
+                "value": "",
+                "type": "path",
+                "description": "webhook_id"
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/events/webhook#destroy-2021-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of Webhooks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/unstable/webhooks.json",
+            "params": [
+              {
+                "name": "address",
+                "value": "",
+                "type": "query",
+                "description": "Retrieve webhook subscriptions that send the POST request to this URI."
+              },
+              {
+                "name": "created_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Retrieve webhook subscriptions that were created before a given date and time (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "created_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Retrieve webhook subscriptions that were created after a given date and time (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of the properties you want returned for each item in the result list. Use this parameter to restrict the returned list of items to only those properties you specify."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of webhook subscriptions that should be returned. Setting this parameter outside the maximum range will return an error.\n                  (default: 50, maximum: 250)"
+              },
+              {
+                "name": "since_id",
+                "value": "",
+                "type": "query",
+                "description": "Restrict the returned list to webhook subscriptions whose id is greater than the specified since_id."
+              },
+              {
+                "name": "topic",
+                "value": "",
+                "type": "query",
+                "description": "Show webhook subscriptions with a given topic.\nFor a list of valid values, refer to the topic property.>"
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Retrieve webhooks that were updated before a given date and time (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Retrieve webhooks that were updated after a given date and time (format: 2014-04-25T16:15:47-04:00)."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/events/webhook#index-unstable"
+        },
+        {
+          "info": {
+            "name": "Shopify Create A New Webhook Subscription By Specifying Both An Address And A Topic",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/unstable/webhooks.json",
+            "params": [
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Use this parameter to select the data format for the payload. Valid values are json and xml.\n                  (default: json)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/events/webhook#create-unstable"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Count Of Existing Webhook Subscriptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/unstable/webhooks/count.json",
+            "params": [
+              {
+                "name": "address",
+                "value": "",
+                "type": "query",
+                "description": "Retrieve webhook subscriptions that send the POST request to this URI."
+              },
+              {
+                "name": "topic",
+                "value": "",
+                "type": "query",
+                "description": "Show webhook subscriptions with a given topic.\nFor a list of valid values, refer to the topic property.>"
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/events/webhook#count-unstable"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Single Webhook Subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/unstable/webhooks/:webhook_id.json",
+            "params": [
+              {
+                "name": "webhook_id",
+                "value": "",
+                "type": "path",
+                "description": "webhook_id"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of the properties you want returned for each item in the result list. Use this parameter to restrict the returned list of items to only those properties you specify."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/events/webhook#show-unstable"
+        },
+        {
+          "info": {
+            "name": "Shopify Update A Webhook Subscription's Topic Or Address Uris",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/unstable/webhooks/:webhook_id.json",
+            "params": [
+              {
+                "name": "webhook_id",
+                "value": "",
+                "type": "path",
+                "description": "webhook_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/events/webhook#update-unstable"
+        },
+        {
+          "info": {
+            "name": "Shopify Delete A Webhook Subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/unstable/webhooks/:webhook_id.json",
+            "params": [
+              {
+                "name": "webhook_id",
+                "value": "",
+                "type": "path",
+                "description": "webhook_id"
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/events/webhook#destroy-unstable"
         }
       ]
     }

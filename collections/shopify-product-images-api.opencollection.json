@@ -1,0 +1,178 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Shopify Admin REST About Product Images API",
+    "version": "2025-01"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Shopify-Access-Token",
+      "value": "{{X-Shopify-Access-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Product Images",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Shopify Retrieve a list of product images",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/products/:product_id/images.json",
+            "params": [
+              {
+                "name": "product_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the product"
+              },
+              {
+                "name": "since_id",
+                "value": "",
+                "type": "query",
+                "description": "Return images after the specified ID"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to include"
+              }
+            ]
+          },
+          "docs": "Retrieves all images for a given product."
+        },
+        {
+          "info": {
+            "name": "Shopify Create a product image",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/products/:product_id/images.json",
+            "params": [
+              {
+                "name": "product_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the product"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new image for a product. Images can be provided as a URL or a base64-encoded attachment."
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieve a count of product images",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/products/:product_id/images/count.json",
+            "params": [
+              {
+                "name": "product_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the product"
+              }
+            ]
+          },
+          "docs": "Retrieves a count of images for a given product."
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieve a single product image",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/products/:product_id/images/:image_id.json",
+            "params": [
+              {
+                "name": "product_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the product"
+              },
+              {
+                "name": "image_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the image"
+              }
+            ]
+          },
+          "docs": "Retrieves a single image for a product by its ID."
+        },
+        {
+          "info": {
+            "name": "Shopify Update a product image",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/products/:product_id/images/:image_id.json",
+            "params": [
+              {
+                "name": "product_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the product"
+              },
+              {
+                "name": "image_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the image"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing product image. Can update position, alt text, and variant associations."
+        },
+        {
+          "info": {
+            "name": "Shopify Delete a product image",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/products/:product_id/images/:image_id.json",
+            "params": [
+              {
+                "name": "product_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the product"
+              },
+              {
+                "name": "image_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the image"
+              }
+            ]
+          },
+          "docs": "Deletes an image from a product."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

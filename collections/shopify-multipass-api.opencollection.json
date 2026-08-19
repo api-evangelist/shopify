@@ -1,8 +1,16 @@
 {
   "opencollection": "1.0.0",
   "info": {
-    "name": "Shopify Multipass API",
+    "name": "Shopify Admin REST About Multipass API",
     "version": "2025-01"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Shopify-Access-Token",
+      "value": "{{X-Shopify-Access-Token}}",
+      "placement": "header"
+    }
   },
   "items": [
     {
@@ -18,7 +26,7 @@
           },
           "http": {
             "method": "GET",
-            "url": "https://{store}.myshopify.com/account/login/multipass/:token",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/account/login/multipass/:token",
             "params": [
               {
                 "name": "token",

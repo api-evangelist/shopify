@@ -1,0 +1,83 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Shopify Admin REST About Fulfillments API",
+    "version": "2025-01"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Shopify-Access-Token",
+      "value": "{{X-Shopify-Access-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Fulfillments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Shopify Create a fulfillment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/fulfillments.json",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a fulfillment for one or more fulfillment orders."
+        },
+        {
+          "info": {
+            "name": "Shopify Update tracking information for a fulfillment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/fulfillments/:fulfillment_id/update_tracking.json",
+            "params": [
+              {
+                "name": "fulfillment_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the fulfillment"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the tracking information for a fulfillment."
+        },
+        {
+          "info": {
+            "name": "Shopify Cancel a fulfillment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/fulfillments/:fulfillment_id/cancel.json",
+            "params": [
+              {
+                "name": "fulfillment_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the fulfillment"
+              }
+            ]
+          },
+          "docs": "Cancels a fulfillment."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

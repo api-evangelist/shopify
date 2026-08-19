@@ -1,0 +1,331 @@
+{
+  "item": [
+    {
+      "id": "80fffe20-6483-4edf-a243-f6e800531095",
+      "name": "Product Variants",
+      "description": {
+        "content": "Manage product variants",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "abc77428-99af-45a1-865b-65dd5ea49d7d",
+          "name": "Shopify Retrieve a list of product variants",
+          "request": {
+            "name": "Shopify Retrieve a list of product variants",
+            "description": {
+              "content": "Retrieves all variants for a given product.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "products",
+                ":product_id",
+                "variants.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "50",
+                  "description": "Maximum number of results (max 250, default 50)"
+                },
+                {
+                  "disabled": false,
+                  "key": "since_id",
+                  "value": "<integer>",
+                  "description": "Return variants after the specified ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "Comma-separated list of fields to include"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "product_id",
+                  "description": "(Required) The ID of the product"
+                },
+                {
+                  "description": "The Shopify store subdomain",
+                  "type": "any",
+                  "value": "{{store}}",
+                  "key": "store"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "706f273e-7ffe-48c8-aaa3-471eafecff98",
+              "name": "A list of product variants",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "products",
+                    ":product_id",
+                    "variants.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "since_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "product_id",
+                      "description": "(Required) The ID of the product"
+                    },
+                    {
+                      "description": "The Shopify store subdomain",
+                      "type": "any",
+                      "value": "{{store}}",
+                      "key": "store"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Shopify-Access-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"variants\": [\n    {\n      \"id\": 3775,\n      \"product_id\": 3564,\n      \"title\": \"string\",\n      \"price\": \"string\",\n      \"sku\": \"string\",\n      \"position\": 934,\n      \"inventory_policy\": \"continue\",\n      \"compare_at_price\": \"string\",\n      \"fulfillment_service\": \"string\",\n      \"inventory_management\": \"string\",\n      \"option1\": \"string\",\n      \"option2\": \"string\",\n      \"option3\": \"string\",\n      \"taxable\": false,\n      \"barcode\": \"string\",\n      \"grams\": 8968,\n      \"weight\": 7182.574756526435,\n      \"weight_unit\": \"kg\",\n      \"inventory_item_id\": 2459,\n      \"inventory_quantity\": 7625,\n      \"requires_shipping\": true,\n      \"created_at\": \"2010-04-12T04:16:05.727Z\",\n      \"updated_at\": \"1979-01-28T05:27:13.783Z\",\n      \"image_id\": 2504,\n      \"admin_graphql_api_id\": \"string\"\n    },\n    {\n      \"id\": 495,\n      \"product_id\": 7538,\n      \"title\": \"string\",\n      \"price\": \"string\",\n      \"sku\": \"string\",\n      \"position\": 611,\n      \"inventory_policy\": \"deny\",\n      \"compare_at_price\": \"string\",\n      \"fulfillment_service\": \"string\",\n      \"inventory_management\": \"string\",\n      \"option1\": \"string\",\n      \"option2\": \"string\",\n      \"option3\": \"string\",\n      \"taxable\": false,\n      \"barcode\": \"string\",\n      \"grams\": 4559,\n      \"weight\": 4463.60674187786,\n      \"weight_unit\": \"lb\",\n      \"inventory_item_id\": 4755,\n      \"inventory_quantity\": 5854,\n      \"requires_shipping\": true,\n      \"created_at\": \"1961-01-04T06:06:21.595Z\",\n      \"updated_at\": \"2002-01-18T03:57:39.278Z\",\n      \"image_id\": 5344,\n      \"admin_graphql_api_id\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "94d45fc2-5371-4a0c-b81c-a7d15df303db",
+          "name": "Shopify Create a product variant",
+          "request": {
+            "name": "Shopify Create a product variant",
+            "description": {
+              "content": "Creates a new variant for a product.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "products",
+                ":product_id",
+                "variants.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "product_id",
+                  "description": "(Required) The ID of the product"
+                },
+                {
+                  "description": "The Shopify store subdomain",
+                  "type": "any",
+                  "value": "{{store}}",
+                  "key": "store"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"variant\": {\n    \"title\": \"<string>\",\n    \"price\": \"<string>\",\n    \"sku\": \"<string>\",\n    \"position\": \"<integer>\",\n    \"inventory_policy\": \"<string>\",\n    \"compare_at_price\": \"<string>\",\n    \"option1\": \"<string>\",\n    \"option2\": \"<string>\",\n    \"option3\": \"<string>\",\n    \"taxable\": \"<boolean>\",\n    \"barcode\": \"<string>\",\n    \"grams\": \"<integer>\",\n    \"weight\": \"<number>\",\n    \"weight_unit\": \"<string>\",\n    \"inventory_quantity\": \"<integer>\",\n    \"requires_shipping\": \"<boolean>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f5e61c9a-f5c4-47c0-a98a-6443cf5f99c3",
+              "name": "The created variant",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "products",
+                    ":product_id",
+                    "variants.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "product_id",
+                      "description": "(Required) The ID of the product"
+                    },
+                    {
+                      "description": "The Shopify store subdomain",
+                      "type": "any",
+                      "value": "{{store}}",
+                      "key": "store"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Shopify-Access-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"variant\": {\n    \"title\": \"string\",\n    \"price\": \"string\",\n    \"sku\": \"string\",\n    \"position\": 1351,\n    \"inventory_policy\": \"continue\",\n    \"compare_at_price\": \"string\",\n    \"option1\": \"string\",\n    \"option2\": \"string\",\n    \"option3\": \"string\",\n    \"taxable\": true,\n    \"barcode\": \"string\",\n    \"grams\": 3450,\n    \"weight\": 5815.3565880170145,\n    \"weight_unit\": \"kg\",\n    \"inventory_quantity\": 6775,\n    \"requires_shipping\": true\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"variant\": {\n    \"id\": 4864,\n    \"product_id\": 2156,\n    \"title\": \"string\",\n    \"price\": \"string\",\n    \"sku\": \"string\",\n    \"position\": 8539,\n    \"inventory_policy\": \"continue\",\n    \"compare_at_price\": \"string\",\n    \"fulfillment_service\": \"string\",\n    \"inventory_management\": \"string\",\n    \"option1\": \"string\",\n    \"option2\": \"string\",\n    \"option3\": \"string\",\n    \"taxable\": true,\n    \"barcode\": \"string\",\n    \"grams\": 2175,\n    \"weight\": 6897.475069790611,\n    \"weight_unit\": \"lb\",\n    \"inventory_item_id\": 3685,\n    \"inventory_quantity\": 74,\n    \"requires_shipping\": true,\n    \"created_at\": \"1979-08-22T07:53:43.884Z\",\n    \"updated_at\": \"2019-04-20T10:50:31.109Z\",\n    \"image_id\": 1740,\n    \"admin_graphql_api_id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The Shopify store subdomain",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "my-store",
+      "key": "store"
+    },
+    {
+      "type": "string",
+      "value": "https://{{store}}.myshopify.com/admin/api/2025-01",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Shopify-Access-Token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "deb625d5-d240-4146-98ed-6333886e4005",
+    "name": "Shopify Admin REST About Product Variants API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Shopify Admin REST API lets you build apps and integrations that extend and enhance the Shopify admin. Access products, customers, orders, inventory, fulfillment, and more. Endpoints are organized by resource type and versioned by release date.\n\nContact Support:\n Name: Shopify\n Email: api@shopify.com",
+      "type": "text/plain"
+    }
+  }
+}

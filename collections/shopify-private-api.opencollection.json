@@ -1,0 +1,48 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Shopify Admin REST About Private API",
+    "version": "2025-01"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Shopify-Access-Token",
+      "value": "{{X-Shopify-Access-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Private",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of Deprecated Api Calls Made By The Authenticated Private App In The Past 30 Days",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2021-01/deprecated_api_calls.json"
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/deprecated_api_calls#index-2021-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of Deprecated Api Calls Made By The Authenticated Private App In The Past 30 Days",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/unstable/deprecated_api_calls.json"
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/deprecated_api_calls#index-unstable"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

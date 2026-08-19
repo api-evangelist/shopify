@@ -1,0 +1,368 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Shopify Admin REST About Comments API",
+    "version": "2025-01"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Shopify-Access-Token",
+      "value": "{{X-Shopify-Access-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Comments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of Comments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-01/comments.json",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of results to retrieve.\n                  (default: 50, maximum: 250)"
+              },
+              {
+                "name": "since_id",
+                "value": "",
+                "type": "query",
+                "description": "Restrict results to after the specified ID."
+              },
+              {
+                "name": "created_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show comments created after date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "created_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show comments created before date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show comments last updated after date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show comments last updated before date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "published_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show comments published after date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "published_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show comments published before date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Show only certain fields, specified by a comma-separated list of field names."
+              },
+              {
+                "name": "published_status",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by their published status.\n                  (default: any)\n                    \n                        published: Show only published comments.\n                        unpublished: Show only unpublished comments.\n                        any: Show comments of any published status."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by their status.\n                    \n                        pending: Show only pending comments.\n                        published: Show only published comments.\n                        unapproved: Show only unapproved comments."
+              },
+              {
+                "name": "article_id",
+                "value": "",
+                "type": "query",
+                "description": "article_id"
+              },
+              {
+                "name": "blog_id",
+                "value": "",
+                "type": "query",
+                "description": "blog_id"
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/online-store/comment#index-2020-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Creates A Comment For An Article",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-01/comments.json",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/online-store/comment#create-2020-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Count Of Comments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-01/comments/count.json",
+            "params": [
+              {
+                "name": "created_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Count comments created after date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "created_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Count comments created before date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Count comments last updated after date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Count comments last updated before date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "published_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Count comments published after date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "published_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Count comments published before date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "published_status",
+                "value": "",
+                "type": "query",
+                "description": "Retrieve a count of comments with a given published status.\n                  (default: any)\n                    \n                        published: Count only published comments.\n                        unpublished: Count only unpublished comments.\n                        any: Count comments of any published status."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Retrieve a count of comments with a given status.\n                    \n                        pending: Count pending comments.\n                        published: Count published comments.\n                        unapproved: Count unapproved comments."
+              },
+              {
+                "name": "article_id",
+                "value": "",
+                "type": "query",
+                "description": "article_id"
+              },
+              {
+                "name": "blog_id",
+                "value": "",
+                "type": "query",
+                "description": "blog_id"
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/online-store/comment#count-2020-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Single Comment By Its Id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-01/comments/:comment_id.json",
+            "params": [
+              {
+                "name": "comment_id",
+                "value": "",
+                "type": "path",
+                "description": "comment_id"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Show only certain fields, specified by a comma-separated list of field names."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/online-store/comment#show-2020-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Updates A Comment Of An Article",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-01/comments/:comment_id.json",
+            "params": [
+              {
+                "name": "comment_id",
+                "value": "",
+                "type": "path",
+                "description": "comment_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/online-store/comment#update-2020-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Marks A Comment As Spam",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-01/comments/:comment_id/spam.json",
+            "params": [
+              {
+                "name": "comment_id",
+                "value": "",
+                "type": "path",
+                "description": "comment_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/online-store/comment#spam-2020-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Marks A Comment As Not Spam",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-01/comments/:comment_id/not_spam.json",
+            "params": [
+              {
+                "name": "comment_id",
+                "value": "",
+                "type": "path",
+                "description": "comment_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/online-store/comment#not_spam-2020-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Approves A Comment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-01/comments/:comment_id/approve.json",
+            "params": [
+              {
+                "name": "comment_id",
+                "value": "",
+                "type": "path",
+                "description": "comment_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/online-store/comment#approve-2020-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Removes A Comment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-01/comments/:comment_id/remove.json",
+            "params": [
+              {
+                "name": "comment_id",
+                "value": "",
+                "type": "path",
+                "description": "comment_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/online-store/comment#remove-2020-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Restores A Previously Removed Comment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-01/comments/:comment_id/restore.json",
+            "params": [
+              {
+                "name": "comment_id",
+                "value": "",
+                "type": "path",
+                "description": "comment_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/online-store/comment#restore-2020-01"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,1854 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Shopify Admin REST About Products API",
+    "version": "2025-01"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Shopify-Access-Token",
+      "value": "{{X-Shopify-Access-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Products",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Shopify Retrieve a list of products",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/products.json",
+            "params": [
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of product IDs to retrieve"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return (max 250, default 50)"
+              },
+              {
+                "name": "since_id",
+                "value": "",
+                "type": "query",
+                "description": "Return products after the specified ID"
+              },
+              {
+                "name": "title",
+                "value": "",
+                "type": "query",
+                "description": "Filter by product title"
+              },
+              {
+                "name": "vendor",
+                "value": "",
+                "type": "query",
+                "description": "Filter by product vendor"
+              },
+              {
+                "name": "product_type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by product type"
+              },
+              {
+                "name": "collection_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by collection ID"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by product status"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to include in the response"
+              },
+              {
+                "name": "created_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show products created after this date (ISO 8601)"
+              },
+              {
+                "name": "created_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show products created before this date (ISO 8601)"
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show products updated after this date (ISO 8601)"
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show products updated before this date (ISO 8601)"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of products. Results can be filtered by collection, product type, vendor, creation date, update date, publication status, and other criteria. Returns up to 250 products per page."
+        },
+        {
+          "info": {
+            "name": "Shopify Create a new product",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/products.json",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new product. You can include product variants and images in the same request. If no variants are specified a default variant is created automatically."
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieve a count of products",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/products/count.json",
+            "params": [
+              {
+                "name": "vendor",
+                "value": "",
+                "type": "query",
+                "description": "Filter by product vendor"
+              },
+              {
+                "name": "product_type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by product type"
+              },
+              {
+                "name": "collection_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by collection ID"
+              },
+              {
+                "name": "created_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Count products created after this date"
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Count products updated after this date"
+              }
+            ]
+          },
+          "docs": "Retrieves a count of products matching the specified criteria."
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieve a single product",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/products/:product_id.json",
+            "params": [
+              {
+                "name": "product_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the product"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to include"
+              }
+            ]
+          },
+          "docs": "Retrieves a single product by its ID, including variants, images, and options."
+        },
+        {
+          "info": {
+            "name": "Shopify Update a product",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/products/:product_id.json",
+            "params": [
+              {
+                "name": "product_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the product"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing product and any of its variants and images."
+        },
+        {
+          "info": {
+            "name": "Shopify Delete a product",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/products/:product_id.json",
+            "params": [
+              {
+                "name": "product_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the product"
+              }
+            ]
+          },
+          "docs": "Deletes a product and all associated variants and images."
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieve a product by its handle",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/products/:handle.js",
+            "params": [
+              {
+                "name": "handle",
+                "value": "",
+                "type": "path",
+                "description": "The URL-friendly product handle"
+              }
+            ]
+          },
+          "docs": "Retrieves product information in JSON format using the product handle. Returns product metadata, pricing, variants (up to 250), images, options, and availability. Monetary values reflect the customer presentment currency."
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieve A List Of Products Belonging To A Collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-01/collections/:collection_id/products.json",
+            "params": [
+              {
+                "name": "collection_id",
+                "value": "",
+                "type": "path",
+                "description": "collection_id"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number of products to retrieve.\n                  (default: 50, maximum: 250)"
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/products/collection#products-2020-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieve A List Of Products Belonging To A Collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-04/collections/:collection_id/products.json",
+            "params": [
+              {
+                "name": "collection_id",
+                "value": "",
+                "type": "path",
+                "description": "collection_id"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number of products to retrieve.\n                  (default: 50, maximum: 250)"
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/products/collection#products-2020-04"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieve A List Of Products Belonging To A Collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-07/collections/:collection_id/products.json",
+            "params": [
+              {
+                "name": "collection_id",
+                "value": "",
+                "type": "path",
+                "description": "collection_id"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number of products to retrieve.\n                  (default: 50, maximum: 250)"
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/products/collection#products-2020-07"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieve A List Of Products Belonging To A Collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-10/collections/:collection_id/products.json",
+            "params": [
+              {
+                "name": "collection_id",
+                "value": "",
+                "type": "path",
+                "description": "collection_id"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number of products to retrieve.\n                  (default: 50, maximum: 250)"
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/products/collection#products-2020-10"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieve A List Of Products Belonging To A Collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2021-01/collections/:collection_id/products.json",
+            "params": [
+              {
+                "name": "collection_id",
+                "value": "",
+                "type": "path",
+                "description": "collection_id"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number of products to retrieve.\n                  (default: 50, maximum: 250)"
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/products/collection#products-2021-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieve A List Of Products Belonging To A Collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/unstable/collections/:collection_id/products.json",
+            "params": [
+              {
+                "name": "collection_id",
+                "value": "",
+                "type": "path",
+                "description": "collection_id"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number of products to retrieve.\n                  (default: 50, maximum: 250)"
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/products/collection#products-unstable"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of Products",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-01/products.json",
+            "params": [
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "Return only products specified by a comma-separated list of product IDs."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Return up to this many results per page.\n                  (default: 50, maximum: 250)"
+              },
+              {
+                "name": "since_id",
+                "value": "",
+                "type": "query",
+                "description": "Restrict results to after the specified ID."
+              },
+              {
+                "name": "title",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by product title."
+              },
+              {
+                "name": "vendor",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by product vendor."
+              },
+              {
+                "name": "handle",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by product handle."
+              },
+              {
+                "name": "product_type",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by product type."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Return products by their status.\n                  (default: active)\n                    \n                        active: Show only active products.\n                        archived: Show only archived products.\n                        draft: Show only draft products."
+              },
+              {
+                "name": "collection_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by product collection ID."
+              },
+              {
+                "name": "created_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show products created after date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "created_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show products created before date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show products last updated after date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show products last updated before date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show products published after date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show products published before date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_status",
+                "value": "",
+                "type": "query",
+                "description": "Return products by their published status\n                  (default: any)\n                    \n                        published: Show only published products.\n                        unpublished: Show only unpublished products.\n                        any: Show all products."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Show only certain fields, specified by a comma-separated list of field names."
+              },
+              {
+                "name": "presentment_currencies",
+                "value": "",
+                "type": "query",
+                "description": "Return presentment prices in only certain currencies, specified by a comma-separated list of ISO 4217 currency codes."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/products/product#index-2020-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Count Of Products",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-01/products/count.json",
+            "params": [
+              {
+                "name": "vendor",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by product vendor."
+              },
+              {
+                "name": "product_type",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by product type."
+              },
+              {
+                "name": "collection_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by collection ID."
+              },
+              {
+                "name": "created_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show products created after date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "created_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show products created before date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show products last updated after date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show products last updated before date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show products published after date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show products published before date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_status",
+                "value": "",
+                "type": "query",
+                "description": "Return products by their published status\n                  (default: any)\n                    \n                        published: Show only published products.\n                        unpublished: Show only unpublished products.\n                        any: Show all products."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/products/product#count-2020-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of Products",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-04/products.json",
+            "params": [
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "Return only products specified by a comma-separated list of product IDs."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Return up to this many results per page.\n                  (default: 50, maximum: 250)"
+              },
+              {
+                "name": "since_id",
+                "value": "",
+                "type": "query",
+                "description": "Restrict results to after the specified ID."
+              },
+              {
+                "name": "title",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by product title."
+              },
+              {
+                "name": "vendor",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by product vendor."
+              },
+              {
+                "name": "handle",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by product handle."
+              },
+              {
+                "name": "product_type",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by product type."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Return products by their status.\n                  (default: active)\n                    \n                        active: Show only active products.\n                        archived: Show only archived products.\n                        draft: Show only draft products."
+              },
+              {
+                "name": "collection_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by product collection ID."
+              },
+              {
+                "name": "created_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show products created after date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "created_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show products created before date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show products last updated after date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show products last updated before date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show products published after date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show products published before date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_status",
+                "value": "",
+                "type": "query",
+                "description": "Return products by their published status\n                  (default: any)\n                    \n                        published: Show only published products.\n                        unpublished: Show only unpublished products.\n                        any: Show all products."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Show only certain fields, specified by a comma-separated list of field names."
+              },
+              {
+                "name": "presentment_currencies",
+                "value": "",
+                "type": "query",
+                "description": "Return presentment prices in only certain currencies, specified by a comma-separated list of ISO 4217 currency codes."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/products/product#index-2020-04"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Count Of Products",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-04/products/count.json",
+            "params": [
+              {
+                "name": "vendor",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by product vendor."
+              },
+              {
+                "name": "product_type",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by product type."
+              },
+              {
+                "name": "collection_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by collection ID."
+              },
+              {
+                "name": "created_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show products created after date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "created_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show products created before date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show products last updated after date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show products last updated before date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show products published after date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show products published before date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_status",
+                "value": "",
+                "type": "query",
+                "description": "Return products by their published status\n                  (default: any)\n                    \n                        published: Show only published products.\n                        unpublished: Show only unpublished products.\n                        any: Show all products."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/products/product#count-2020-04"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of Products",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-07/products.json",
+            "params": [
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "Return only products specified by a comma-separated list of product IDs."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Return up to this many results per page.\n                  (default: 50, maximum: 250)"
+              },
+              {
+                "name": "since_id",
+                "value": "",
+                "type": "query",
+                "description": "Restrict results to after the specified ID."
+              },
+              {
+                "name": "title",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by product title."
+              },
+              {
+                "name": "vendor",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by product vendor."
+              },
+              {
+                "name": "handle",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by product handle."
+              },
+              {
+                "name": "product_type",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by product type."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Return products by their status.\n                  (default: active)\n                    \n                        active: Show only active products.\n                        archived: Show only archived products.\n                        draft: Show only draft products."
+              },
+              {
+                "name": "collection_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by product collection ID."
+              },
+              {
+                "name": "created_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show products created after date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "created_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show products created before date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show products last updated after date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show products last updated before date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show products published after date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show products published before date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_status",
+                "value": "",
+                "type": "query",
+                "description": "Return products by their published status\n                  (default: any)\n                    \n                        published: Show only published products.\n                        unpublished: Show only unpublished products.\n                        any: Show all products."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Show only certain fields, specified by a comma-separated list of field names."
+              },
+              {
+                "name": "presentment_currencies",
+                "value": "",
+                "type": "query",
+                "description": "Return presentment prices in only certain currencies, specified by a comma-separated list of ISO 4217 currency codes."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/products/product#index-2020-07"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Count Of Products",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-07/products/count.json",
+            "params": [
+              {
+                "name": "vendor",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by product vendor."
+              },
+              {
+                "name": "product_type",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by product type."
+              },
+              {
+                "name": "collection_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by collection ID."
+              },
+              {
+                "name": "created_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show products created after date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "created_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show products created before date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show products last updated after date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show products last updated before date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show products published after date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show products published before date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_status",
+                "value": "",
+                "type": "query",
+                "description": "Return products by their published status\n                  (default: any)\n                    \n                        published: Show only published products.\n                        unpublished: Show only unpublished products.\n                        any: Show all products."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/products/product#count-2020-07"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of Products",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-10/products.json",
+            "params": [
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "Return only products specified by a comma-separated list of product IDs."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Return up to this many results per page.\n                  (default: 50, maximum: 250)"
+              },
+              {
+                "name": "since_id",
+                "value": "",
+                "type": "query",
+                "description": "Restrict results to after the specified ID."
+              },
+              {
+                "name": "title",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by product title."
+              },
+              {
+                "name": "vendor",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by product vendor."
+              },
+              {
+                "name": "handle",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by product handle."
+              },
+              {
+                "name": "product_type",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by product type."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Return products by their status.\n                  (default: active)\n                    \n                        active: Show only active products.\n                        archived: Show only archived products.\n                        draft: Show only draft products."
+              },
+              {
+                "name": "collection_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by product collection ID."
+              },
+              {
+                "name": "created_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show products created after date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "created_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show products created before date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show products last updated after date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show products last updated before date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show products published after date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show products published before date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_status",
+                "value": "",
+                "type": "query",
+                "description": "Return products by their published status\n                  (default: any)\n                    \n                        published: Show only published products.\n                        unpublished: Show only unpublished products.\n                        any: Show all products."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Show only certain fields, specified by a comma-separated list of field names."
+              },
+              {
+                "name": "presentment_currencies",
+                "value": "",
+                "type": "query",
+                "description": "Return presentment prices in only certain currencies, specified by a comma-separated list of ISO 4217 currency codes."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/products/product#index-2020-10"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Count Of Products",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-10/products/count.json",
+            "params": [
+              {
+                "name": "vendor",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by product vendor."
+              },
+              {
+                "name": "product_type",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by product type."
+              },
+              {
+                "name": "collection_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by collection ID."
+              },
+              {
+                "name": "created_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show products created after date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "created_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show products created before date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show products last updated after date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show products last updated before date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show products published after date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show products published before date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_status",
+                "value": "",
+                "type": "query",
+                "description": "Return products by their published status\n                  (default: any)\n                    \n                        published: Show only published products.\n                        unpublished: Show only unpublished products.\n                        any: Show all products."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/products/product#count-2020-10"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of Products",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2021-01/products.json",
+            "params": [
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "Return only products specified by a comma-separated list of product IDs."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Return up to this many results per page.\n                  (default: 50, maximum: 250)"
+              },
+              {
+                "name": "since_id",
+                "value": "",
+                "type": "query",
+                "description": "Restrict results to after the specified ID."
+              },
+              {
+                "name": "title",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by product title."
+              },
+              {
+                "name": "vendor",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by product vendor."
+              },
+              {
+                "name": "handle",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by product handle."
+              },
+              {
+                "name": "product_type",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by product type."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Return products by their status.\n                  (default: active)\n                    \n                        active: Show only active products.\n                        archived: Show only archived products.\n                        draft: Show only draft products."
+              },
+              {
+                "name": "collection_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by product collection ID."
+              },
+              {
+                "name": "created_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show products created after date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "created_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show products created before date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show products last updated after date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show products last updated before date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show products published after date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show products published before date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_status",
+                "value": "",
+                "type": "query",
+                "description": "Return products by their published status\n                  (default: any)\n                    \n                        published: Show only published products.\n                        unpublished: Show only unpublished products.\n                        any: Show all products."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Show only certain fields, specified by a comma-separated list of field names."
+              },
+              {
+                "name": "presentment_currencies",
+                "value": "",
+                "type": "query",
+                "description": "Return presentment prices in only certain currencies, specified by a comma-separated list of ISO 4217 currency codes."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/products/product#index-2021-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Count Of Products",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2021-01/products/count.json",
+            "params": [
+              {
+                "name": "vendor",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by product vendor."
+              },
+              {
+                "name": "product_type",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by product type."
+              },
+              {
+                "name": "collection_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by collection ID."
+              },
+              {
+                "name": "created_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show products created after date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "created_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show products created before date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show products last updated after date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show products last updated before date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show products published after date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show products published before date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_status",
+                "value": "",
+                "type": "query",
+                "description": "Return products by their published status\n                  (default: any)\n                    \n                        published: Show only published products.\n                        unpublished: Show only unpublished products.\n                        any: Show all products."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/products/product#count-2021-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of Products",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/unstable/products.json",
+            "params": [
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "Return only products specified by a comma-separated list of product IDs."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Return up to this many results per page.\n                  (default: 50, maximum: 250)"
+              },
+              {
+                "name": "since_id",
+                "value": "",
+                "type": "query",
+                "description": "Restrict results to after the specified ID."
+              },
+              {
+                "name": "title",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by product title."
+              },
+              {
+                "name": "vendor",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by product vendor."
+              },
+              {
+                "name": "handle",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by product handle."
+              },
+              {
+                "name": "product_type",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by product type."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Return products by their status.\n                  (default: active)\n                    \n                        active: Show only active products.\n                        archived: Show only archived products.\n                        draft: Show only draft products."
+              },
+              {
+                "name": "collection_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by product collection ID."
+              },
+              {
+                "name": "created_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show products created after date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "created_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show products created before date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show products last updated after date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show products last updated before date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show products published after date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show products published before date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_status",
+                "value": "",
+                "type": "query",
+                "description": "Return products by their published status\n                  (default: any)\n                    \n                        published: Show only published products.\n                        unpublished: Show only unpublished products.\n                        any: Show all products."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Show only certain fields, specified by a comma-separated list of field names."
+              },
+              {
+                "name": "presentment_currencies",
+                "value": "",
+                "type": "query",
+                "description": "Return presentment prices in only certain currencies, specified by a comma-separated list of ISO 4217 currency codes."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/products/product#index-unstable"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Count Of Products",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/unstable/products/count.json",
+            "params": [
+              {
+                "name": "vendor",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by product vendor."
+              },
+              {
+                "name": "product_type",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by product type."
+              },
+              {
+                "name": "collection_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by collection ID."
+              },
+              {
+                "name": "created_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show products created after date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "created_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show products created before date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show products last updated after date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show products last updated before date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show products published after date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show products published before date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "published_status",
+                "value": "",
+                "type": "query",
+                "description": "Return products by their published status\n                  (default: any)\n                    \n                        published: Show only published products.\n                        unpublished: Show only unpublished products.\n                        any: Show all products."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/products/product#count-unstable"
+        },
+        {
+          "info": {
+            "name": "Shopify Updates The Ordering Type Of Products In A Smart Collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-01/smart_collections/:smart_collection_id/order.json",
+            "params": [
+              {
+                "name": "smart_collection_id",
+                "value": "",
+                "type": "path",
+                "description": "smart_collection_id"
+              },
+              {
+                "name": "products",
+                "value": "",
+                "type": "query",
+                "description": "An array of product IDs, in the order that you want them to appear at the top of the collection. When products is specified but empty, any previously sorted products are cleared."
+              },
+              {
+                "name": "sort_order",
+                "value": "",
+                "type": "query",
+                "description": "The type of sorting to apply. Valid values are listed in the Properties section above.\n                  (default: (current value))"
+              },
+              {
+                "name": "products[]",
+                "value": "",
+                "type": "query",
+                "description": "products[]"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/products/smartcollection#order-2020-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Updates The Ordering Type Of Products In A Smart Collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-04/smart_collections/:smart_collection_id/order.json",
+            "params": [
+              {
+                "name": "smart_collection_id",
+                "value": "",
+                "type": "path",
+                "description": "smart_collection_id"
+              },
+              {
+                "name": "products",
+                "value": "",
+                "type": "query",
+                "description": "An array of product IDs, in the order that you want them to appear at the top of the collection. When products is specified but empty, any previously sorted products are cleared."
+              },
+              {
+                "name": "sort_order",
+                "value": "",
+                "type": "query",
+                "description": "The type of sorting to apply. Valid values are listed in the Properties section above.\n                  (default: (current value))"
+              },
+              {
+                "name": "products[]",
+                "value": "",
+                "type": "query",
+                "description": "products[]"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/products/smartcollection#order-2020-04"
+        },
+        {
+          "info": {
+            "name": "Shopify Updates The Ordering Type Of Products In A Smart Collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-07/smart_collections/:smart_collection_id/order.json",
+            "params": [
+              {
+                "name": "smart_collection_id",
+                "value": "",
+                "type": "path",
+                "description": "smart_collection_id"
+              },
+              {
+                "name": "products",
+                "value": "",
+                "type": "query",
+                "description": "An array of product IDs, in the order that you want them to appear at the top of the collection. When products is specified but empty, any previously sorted products are cleared."
+              },
+              {
+                "name": "sort_order",
+                "value": "",
+                "type": "query",
+                "description": "The type of sorting to apply. Valid values are listed in the Properties section above.\n                  (default: (current value))"
+              },
+              {
+                "name": "products[]",
+                "value": "",
+                "type": "query",
+                "description": "products[]"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/products/smartcollection#order-2020-07"
+        },
+        {
+          "info": {
+            "name": "Shopify Updates The Ordering Type Of Products In A Smart Collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-10/smart_collections/:smart_collection_id/order.json",
+            "params": [
+              {
+                "name": "smart_collection_id",
+                "value": "",
+                "type": "path",
+                "description": "smart_collection_id"
+              },
+              {
+                "name": "products",
+                "value": "",
+                "type": "query",
+                "description": "An array of product IDs, in the order that you want them to appear at the top of the collection. When products is specified but empty, any previously sorted products are cleared."
+              },
+              {
+                "name": "sort_order",
+                "value": "",
+                "type": "query",
+                "description": "The type of sorting to apply. Valid values are listed in the Properties section above.\n                  (default: (current value))"
+              },
+              {
+                "name": "products[]",
+                "value": "",
+                "type": "query",
+                "description": "products[]"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/products/smartcollection#order-2020-10"
+        },
+        {
+          "info": {
+            "name": "Shopify Updates The Ordering Type Of Products In A Smart Collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2021-01/smart_collections/:smart_collection_id/order.json",
+            "params": [
+              {
+                "name": "smart_collection_id",
+                "value": "",
+                "type": "path",
+                "description": "smart_collection_id"
+              },
+              {
+                "name": "products",
+                "value": "",
+                "type": "query",
+                "description": "An array of product IDs, in the order that you want them to appear at the top of the collection. When products is specified but empty, any previously sorted products are cleared."
+              },
+              {
+                "name": "sort_order",
+                "value": "",
+                "type": "query",
+                "description": "The type of sorting to apply. Valid values are listed in the Properties section above.\n                  (default: (current value))"
+              },
+              {
+                "name": "products[]",
+                "value": "",
+                "type": "query",
+                "description": "products[]"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/products/smartcollection#order-2021-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Updates The Ordering Type Of Products In A Smart Collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/unstable/smart_collections/:smart_collection_id/order.json",
+            "params": [
+              {
+                "name": "smart_collection_id",
+                "value": "",
+                "type": "path",
+                "description": "smart_collection_id"
+              },
+              {
+                "name": "products",
+                "value": "",
+                "type": "query",
+                "description": "An array of product IDs, in the order that you want them to appear at the top of the collection. When products is specified but empty, any previously sorted products are cleared."
+              },
+              {
+                "name": "sort_order",
+                "value": "",
+                "type": "query",
+                "description": "The type of sorting to apply. Valid values are listed in the Properties section above.\n                  (default: (current value))"
+              },
+              {
+                "name": "products[]",
+                "value": "",
+                "type": "query",
+                "description": "products[]"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/products/smartcollection#order-unstable"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieve A Count Of Products That Are Published To Your App",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-01/product_listings/count.json"
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/sales-channels/productlisting#count-2020-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieve A Count Of Products That Are Published To Your App",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-04/product_listings/count.json"
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/sales-channels/productlisting#count-2020-04"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieve A Count Of Products That Are Published To Your App",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-07/product_listings/count.json"
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/sales-channels/productlisting#count-2020-07"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

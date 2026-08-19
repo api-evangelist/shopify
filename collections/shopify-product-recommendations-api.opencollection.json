@@ -1,0 +1,57 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Shopify Admin REST About Product Recommendations API",
+    "version": "2025-01"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Shopify-Access-Token",
+      "value": "{{X-Shopify-Access-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Product Recommendations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Shopify Get product recommendations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/recommendations/products.json",
+            "params": [
+              {
+                "name": "product_id",
+                "value": "",
+                "type": "query",
+                "description": "The product ID to get recommendations for"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of recommendations (1-10, default 10)"
+              },
+              {
+                "name": "intent",
+                "value": "",
+                "type": "query",
+                "description": "The recommendation intent"
+              }
+            ]
+          },
+          "docs": "Retrieves product recommendations for a given product. Returns related or complementary products based on purchase history, product descriptions, and related collections."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

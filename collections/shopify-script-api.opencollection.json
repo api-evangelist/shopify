@@ -1,0 +1,998 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Shopify Admin REST About Script API",
+    "version": "2025-01"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Shopify-Access-Token",
+      "value": "{{X-Shopify-Access-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Script",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of All Script Tags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-01/script_tags.json",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to return.\n                  (default: 50, maximum: 250)"
+              },
+              {
+                "name": "since_id",
+                "value": "",
+                "type": "query",
+                "description": "Restrict results to after the specified ID."
+              },
+              {
+                "name": "created_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show script tags created after this date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "created_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show script tags created before this date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show script tags last updated after this date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show script tags last updated before this date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "src",
+                "value": "",
+                "type": "query",
+                "description": "Show script tags with this URL."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "A comma-separated list of fields to include in the response."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/online-store/scripttag#index-2020-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Creates A New Script Tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-01/script_tags.json",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/online-store/scripttag#create-2020-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Count Of All Script Tags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-01/script_tags/count.json",
+            "params": [
+              {
+                "name": "src",
+                "value": "",
+                "type": "query",
+                "description": "Count only script tags with a given URL."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/online-store/scripttag#count-2020-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Single Script Tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-01/script_tags/:script_tag_id.json",
+            "params": [
+              {
+                "name": "script_tag_id",
+                "value": "",
+                "type": "path",
+                "description": "script_tag_id"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "A comma-separated list of fields to include in the response."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/online-store/scripttag#show-2020-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Updates A Script Tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-01/script_tags/:script_tag_id.json",
+            "params": [
+              {
+                "name": "script_tag_id",
+                "value": "",
+                "type": "path",
+                "description": "script_tag_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/online-store/scripttag#update-2020-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Deletes A Script Tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-01/script_tags/:script_tag_id.json",
+            "params": [
+              {
+                "name": "script_tag_id",
+                "value": "",
+                "type": "path",
+                "description": "script_tag_id"
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/online-store/scripttag#destroy-2020-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of All Script Tags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-04/script_tags.json",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to return.\n                  (default: 50, maximum: 250)"
+              },
+              {
+                "name": "since_id",
+                "value": "",
+                "type": "query",
+                "description": "Restrict results to after the specified ID."
+              },
+              {
+                "name": "created_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show script tags created after this date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "created_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show script tags created before this date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show script tags last updated after this date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show script tags last updated before this date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "src",
+                "value": "",
+                "type": "query",
+                "description": "Show script tags with this URL."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "A comma-separated list of fields to include in the response."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/online-store/scripttag#index-2020-04"
+        },
+        {
+          "info": {
+            "name": "Shopify Creates A New Script Tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-04/script_tags.json",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/online-store/scripttag#create-2020-04"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Count Of All Script Tags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-04/script_tags/count.json",
+            "params": [
+              {
+                "name": "src",
+                "value": "",
+                "type": "query",
+                "description": "Count only script tags with a given URL."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/online-store/scripttag#count-2020-04"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Single Script Tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-04/script_tags/:script_tag_id.json",
+            "params": [
+              {
+                "name": "script_tag_id",
+                "value": "",
+                "type": "path",
+                "description": "script_tag_id"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "A comma-separated list of fields to include in the response."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/online-store/scripttag#show-2020-04"
+        },
+        {
+          "info": {
+            "name": "Shopify Updates A Script Tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-04/script_tags/:script_tag_id.json",
+            "params": [
+              {
+                "name": "script_tag_id",
+                "value": "",
+                "type": "path",
+                "description": "script_tag_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/online-store/scripttag#update-2020-04"
+        },
+        {
+          "info": {
+            "name": "Shopify Deletes A Script Tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-04/script_tags/:script_tag_id.json",
+            "params": [
+              {
+                "name": "script_tag_id",
+                "value": "",
+                "type": "path",
+                "description": "script_tag_id"
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/online-store/scripttag#destroy-2020-04"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of All Script Tags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-07/script_tags.json",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to return.\n                  (default: 50, maximum: 250)"
+              },
+              {
+                "name": "since_id",
+                "value": "",
+                "type": "query",
+                "description": "Restrict results to after the specified ID."
+              },
+              {
+                "name": "created_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show script tags created after this date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "created_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show script tags created before this date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show script tags last updated after this date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show script tags last updated before this date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "src",
+                "value": "",
+                "type": "query",
+                "description": "Show script tags with this URL."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "A comma-separated list of fields to include in the response."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/online-store/scripttag#index-2020-07"
+        },
+        {
+          "info": {
+            "name": "Shopify Creates A New Script Tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-07/script_tags.json",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/online-store/scripttag#create-2020-07"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Count Of All Script Tags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-07/script_tags/count.json",
+            "params": [
+              {
+                "name": "src",
+                "value": "",
+                "type": "query",
+                "description": "Count only script tags with a given URL."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/online-store/scripttag#count-2020-07"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Single Script Tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-07/script_tags/:script_tag_id.json",
+            "params": [
+              {
+                "name": "script_tag_id",
+                "value": "",
+                "type": "path",
+                "description": "script_tag_id"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "A comma-separated list of fields to include in the response."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/online-store/scripttag#show-2020-07"
+        },
+        {
+          "info": {
+            "name": "Shopify Updates A Script Tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-07/script_tags/:script_tag_id.json",
+            "params": [
+              {
+                "name": "script_tag_id",
+                "value": "",
+                "type": "path",
+                "description": "script_tag_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/online-store/scripttag#update-2020-07"
+        },
+        {
+          "info": {
+            "name": "Shopify Deletes A Script Tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-07/script_tags/:script_tag_id.json",
+            "params": [
+              {
+                "name": "script_tag_id",
+                "value": "",
+                "type": "path",
+                "description": "script_tag_id"
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/online-store/scripttag#destroy-2020-07"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of All Script Tags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-10/script_tags.json",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to return.\n                  (default: 50, maximum: 250)"
+              },
+              {
+                "name": "since_id",
+                "value": "",
+                "type": "query",
+                "description": "Restrict results to after the specified ID."
+              },
+              {
+                "name": "created_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show script tags created after this date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "created_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show script tags created before this date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show script tags last updated after this date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show script tags last updated before this date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "src",
+                "value": "",
+                "type": "query",
+                "description": "Show script tags with this URL."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "A comma-separated list of fields to include in the response."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/online-store/scripttag#index-2020-10"
+        },
+        {
+          "info": {
+            "name": "Shopify Creates A New Script Tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-10/script_tags.json",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/online-store/scripttag#create-2020-10"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Count Of All Script Tags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-10/script_tags/count.json",
+            "params": [
+              {
+                "name": "src",
+                "value": "",
+                "type": "query",
+                "description": "Count only script tags with a given URL."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/online-store/scripttag#count-2020-10"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Single Script Tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-10/script_tags/:script_tag_id.json",
+            "params": [
+              {
+                "name": "script_tag_id",
+                "value": "",
+                "type": "path",
+                "description": "script_tag_id"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "A comma-separated list of fields to include in the response."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/online-store/scripttag#show-2020-10"
+        },
+        {
+          "info": {
+            "name": "Shopify Updates A Script Tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-10/script_tags/:script_tag_id.json",
+            "params": [
+              {
+                "name": "script_tag_id",
+                "value": "",
+                "type": "path",
+                "description": "script_tag_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/online-store/scripttag#update-2020-10"
+        },
+        {
+          "info": {
+            "name": "Shopify Deletes A Script Tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-10/script_tags/:script_tag_id.json",
+            "params": [
+              {
+                "name": "script_tag_id",
+                "value": "",
+                "type": "path",
+                "description": "script_tag_id"
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/online-store/scripttag#destroy-2020-10"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of All Script Tags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2021-01/script_tags.json",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to return.\n                  (default: 50, maximum: 250)"
+              },
+              {
+                "name": "since_id",
+                "value": "",
+                "type": "query",
+                "description": "Restrict results to after the specified ID."
+              },
+              {
+                "name": "created_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show script tags created after this date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "created_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show script tags created before this date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show script tags last updated after this date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show script tags last updated before this date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "src",
+                "value": "",
+                "type": "query",
+                "description": "Show script tags with this URL."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "A comma-separated list of fields to include in the response."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/online-store/scripttag#index-2021-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Creates A New Script Tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2021-01/script_tags.json",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/online-store/scripttag#create-2021-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Count Of All Script Tags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2021-01/script_tags/count.json",
+            "params": [
+              {
+                "name": "src",
+                "value": "",
+                "type": "query",
+                "description": "Count only script tags with a given URL."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/online-store/scripttag#count-2021-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Single Script Tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2021-01/script_tags/:script_tag_id.json",
+            "params": [
+              {
+                "name": "script_tag_id",
+                "value": "",
+                "type": "path",
+                "description": "script_tag_id"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "A comma-separated list of fields to include in the response."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/online-store/scripttag#show-2021-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Updates A Script Tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2021-01/script_tags/:script_tag_id.json",
+            "params": [
+              {
+                "name": "script_tag_id",
+                "value": "",
+                "type": "path",
+                "description": "script_tag_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/online-store/scripttag#update-2021-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Deletes A Script Tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2021-01/script_tags/:script_tag_id.json",
+            "params": [
+              {
+                "name": "script_tag_id",
+                "value": "",
+                "type": "path",
+                "description": "script_tag_id"
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/online-store/scripttag#destroy-2021-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of All Script Tags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/unstable/script_tags.json",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to return.\n                  (default: 50, maximum: 250)"
+              },
+              {
+                "name": "since_id",
+                "value": "",
+                "type": "query",
+                "description": "Restrict results to after the specified ID."
+              },
+              {
+                "name": "created_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show script tags created after this date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "created_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show script tags created before this date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show script tags last updated after this date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show script tags last updated before this date. (format: 2014-04-25T16:15:47-04:00)"
+              },
+              {
+                "name": "src",
+                "value": "",
+                "type": "query",
+                "description": "Show script tags with this URL."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "A comma-separated list of fields to include in the response."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/online-store/scripttag#index-unstable"
+        },
+        {
+          "info": {
+            "name": "Shopify Creates A New Script Tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/unstable/script_tags.json",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/online-store/scripttag#create-unstable"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Count Of All Script Tags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/unstable/script_tags/count.json",
+            "params": [
+              {
+                "name": "src",
+                "value": "",
+                "type": "query",
+                "description": "Count only script tags with a given URL."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/online-store/scripttag#count-unstable"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Single Script Tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/unstable/script_tags/:script_tag_id.json",
+            "params": [
+              {
+                "name": "script_tag_id",
+                "value": "",
+                "type": "path",
+                "description": "script_tag_id"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "A comma-separated list of fields to include in the response."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/online-store/scripttag#show-unstable"
+        },
+        {
+          "info": {
+            "name": "Shopify Updates A Script Tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/unstable/script_tags/:script_tag_id.json",
+            "params": [
+              {
+                "name": "script_tag_id",
+                "value": "",
+                "type": "path",
+                "description": "script_tag_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/online-store/scripttag#update-unstable"
+        },
+        {
+          "info": {
+            "name": "Shopify Deletes A Script Tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/unstable/script_tags/:script_tag_id.json",
+            "params": [
+              {
+                "name": "script_tag_id",
+                "value": "",
+                "type": "path",
+                "description": "script_tag_id"
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/online-store/scripttag#destroy-unstable"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

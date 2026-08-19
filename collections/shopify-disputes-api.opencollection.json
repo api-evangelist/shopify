@@ -1,0 +1,100 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Shopify Admin REST About Disputes API",
+    "version": "2025-01"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Shopify-Access-Token",
+      "value": "{{X-Shopify-Access-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Disputes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Shopify Retrieve All Disputes Ordered By Initiated_at Date And Time (iso 8601 Format)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-01/shopify_payments/disputes.json",
+            "params": [
+              {
+                "name": "since_id",
+                "value": "",
+                "type": "query",
+                "description": "Return only disputes after the specified ID."
+              },
+              {
+                "name": "last_id",
+                "value": "",
+                "type": "query",
+                "description": "Return only disputes before the specified ID."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Return only disputes with the specified status."
+              },
+              {
+                "name": "initiated_at",
+                "value": "",
+                "type": "query",
+                "description": "Return only disputes with the specified initiated_at date (ISO 8601 format)."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shopify_payments/dispute#index-2020-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieve All Disputes Ordered By Initiated_at Date And Time (iso 8601 Format)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-04/shopify_payments/disputes.json",
+            "params": [
+              {
+                "name": "since_id",
+                "value": "",
+                "type": "query",
+                "description": "Return only disputes after the specified ID."
+              },
+              {
+                "name": "last_id",
+                "value": "",
+                "type": "query",
+                "description": "Return only disputes before the specified ID."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Return only disputes with the specified status."
+              },
+              {
+                "name": "initiated_at",
+                "value": "",
+                "type": "query",
+                "description": "Return only disputes with the specified initiated_at date (ISO 8601 format)."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shopify_payments/dispute#index-2020-04"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,202 @@
+{
+  "item": [
+    {
+      "id": "39b7e563-b445-4348-ad89-d0a49d1db7a2",
+      "name": "Smart Collections",
+      "description": {
+        "content": "Manage automated collections",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "845f58a5-764d-40e3-a19a-8a95e45c382e",
+          "name": "Shopify Retrieve a list of smart collections",
+          "request": {
+            "name": "Shopify Retrieve a list of smart collections",
+            "description": {
+              "content": "Retrieves a list of smart (automated) collections.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "smart_collections.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "50",
+                  "description": "Maximum number of results (max 250, default 50)"
+                },
+                {
+                  "disabled": false,
+                  "key": "since_id",
+                  "value": "<integer>",
+                  "description": "Return collections after the specified ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "title",
+                  "value": "<string>",
+                  "description": "Filter by collection title"
+                },
+                {
+                  "disabled": false,
+                  "key": "product_id",
+                  "value": "<integer>",
+                  "description": "Show collections containing this product"
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "Comma-separated list of fields to include"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The Shopify store subdomain",
+                  "type": "any",
+                  "value": "{{store}}",
+                  "key": "store"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "efbb6c24-041a-4fbb-b8dc-6f256b9663a2",
+              "name": "A list of smart collections",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "smart_collections.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "since_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "title",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "product_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Shopify store subdomain",
+                      "type": "any",
+                      "value": "{{store}}",
+                      "key": "store"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Shopify-Access-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"smart_collections\": [\n    {\n      \"id\": 3444,\n      \"title\": \"string\",\n      \"handle\": \"string\",\n      \"body_html\": \"string\",\n      \"published_at\": \"2012-01-19T07:40:18.292Z\",\n      \"sort_order\": \"string\",\n      \"template_suffix\": \"string\",\n      \"published_scope\": \"string\",\n      \"updated_at\": \"2012-12-21T03:48:20.262Z\",\n      \"image\": {\n        \"id\": 8560,\n        \"product_id\": 4970,\n        \"position\": 3542,\n        \"alt\": \"string\",\n        \"width\": 8766,\n        \"height\": 6041,\n        \"src\": \"http://qezKXJApNBmVFLUBxfjbkKAYOeEe.oytumB6h7.LO4dHCci+4SH1RvTKFtDOXczTnrP,BD\",\n        \"variant_ids\": [\n          910,\n          3535\n        ],\n        \"created_at\": \"2018-12-17T00:47:27.075Z\",\n        \"updated_at\": \"2011-01-10T01:50:34.643Z\",\n        \"admin_graphql_api_id\": \"string\"\n      },\n      \"admin_graphql_api_id\": \"string\"\n    },\n    {\n      \"id\": 2868,\n      \"title\": \"string\",\n      \"handle\": \"string\",\n      \"body_html\": \"string\",\n      \"published_at\": \"1990-01-30T05:52:53.412Z\",\n      \"sort_order\": \"string\",\n      \"template_suffix\": \"string\",\n      \"published_scope\": \"string\",\n      \"updated_at\": \"1981-01-17T20:42:24.808Z\",\n      \"image\": {\n        \"id\": 7149,\n        \"product_id\": 8244,\n        \"position\": 5433,\n        \"alt\": \"string\",\n        \"width\": 1096,\n        \"height\": 3551,\n        \"src\": \"http://OfobIoMOczMNGLfEJmb.imaiKjf21IT9,4Gvn+F-cnqPpOC3ijuvuFPhi34JyyTkTa.qDBqJWVwbip,OHlRlmRwPg+wGGFlzxUq\",\n        \"variant_ids\": [\n          724,\n          5967\n        ],\n        \"created_at\": \"2015-07-27T23:02:36.578Z\",\n        \"updated_at\": \"2003-08-22T10:39:34.865Z\",\n        \"admin_graphql_api_id\": \"string\"\n      },\n      \"admin_graphql_api_id\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The Shopify store subdomain",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "my-store",
+      "key": "store"
+    },
+    {
+      "type": "string",
+      "value": "https://{{store}}.myshopify.com/admin/api/2025-01",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Shopify-Access-Token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "54089c85-3129-4abc-9c5e-859b7dd23e60",
+    "name": "Shopify Admin REST About Smart Collections API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Shopify Admin REST API lets you build apps and integrations that extend and enhance the Shopify admin. Access products, customers, orders, inventory, fulfillment, and more. Endpoints are organized by resource type and versioned by release date.\n\nContact Support:\n Name: Shopify\n Email: api@shopify.com",
+      "type": "text/plain"
+    }
+  }
+}

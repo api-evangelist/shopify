@@ -1,0 +1,1194 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Shopify Admin REST About Blog API",
+    "version": "2025-01"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Shopify-Access-Token",
+      "value": "{{X-Shopify-Access-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Blog",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of All Articles From A Blog",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-01/blogs/:blog_id/articles.json",
+            "params": [
+              {
+                "name": "blog_id",
+                "value": "",
+                "type": "path",
+                "description": "blog_id"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of results to retrieve.\n                  (default: 50, maximum: 250)"
+              },
+              {
+                "name": "since_id",
+                "value": "",
+                "type": "query",
+                "description": "Restrict results to after the specified ID."
+              },
+              {
+                "name": "created_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show articles created after date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "created_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show articles created before date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show articles last updated after date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show articles last updated before date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "published_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show articles published after date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "published_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show articles published before date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "published_status",
+                "value": "",
+                "type": "query",
+                "description": "Retrieve results based on their published status.\n                  (default: any)\n                    \n                        published: Show only published articles.\n                        unpublished: Show only unpublished articles.\n                        any: Show articles of any published status."
+              },
+              {
+                "name": "handle",
+                "value": "",
+                "type": "query",
+                "description": "Retrieve an article with a specific handle."
+              },
+              {
+                "name": "tag",
+                "value": "",
+                "type": "query",
+                "description": "Filter articles with a specific tag."
+              },
+              {
+                "name": "author",
+                "value": "",
+                "type": "query",
+                "description": "Filter articles by article author."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Show only certain fields, specified by a comma-separated list of field names."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/online-store/article#index-2020-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Creates An Article For A Blog",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-01/blogs/:blog_id/articles.json",
+            "params": [
+              {
+                "name": "blog_id",
+                "value": "",
+                "type": "path",
+                "description": "blog_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/online-store/article#create-2020-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Count Of All Articles From A Blog",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-01/blogs/:blog_id/articles/count.json",
+            "params": [
+              {
+                "name": "blog_id",
+                "value": "",
+                "type": "path",
+                "description": "blog_id"
+              },
+              {
+                "name": "created_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Count articles created after date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "created_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Count articles created before date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Count articles last updated after date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Count articles last updated before date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "published_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Count articles published after date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "published_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Count articles published before date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "published_status",
+                "value": "",
+                "type": "query",
+                "description": "Count articles with a given published status.\n                  (default: any)\n                    \n                        published: Count only published articles.\n                        unpublished: Count only unpublished articles.\n                        any: Count all articles."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/online-store/article#count-2020-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of All Articles From A Blog",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-04/blogs/:blog_id/articles.json",
+            "params": [
+              {
+                "name": "blog_id",
+                "value": "",
+                "type": "path",
+                "description": "blog_id"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of results to retrieve.\n                  (default: 50, maximum: 250)"
+              },
+              {
+                "name": "since_id",
+                "value": "",
+                "type": "query",
+                "description": "Restrict results to after the specified ID."
+              },
+              {
+                "name": "created_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show articles created after date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "created_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show articles created before date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show articles last updated after date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show articles last updated before date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "published_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show articles published after date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "published_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show articles published before date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "published_status",
+                "value": "",
+                "type": "query",
+                "description": "Retrieve results based on their published status.\n                  (default: any)\n                    \n                        published: Show only published articles.\n                        unpublished: Show only unpublished articles.\n                        any: Show articles of any published status."
+              },
+              {
+                "name": "handle",
+                "value": "",
+                "type": "query",
+                "description": "Retrieve an article with a specific handle."
+              },
+              {
+                "name": "tag",
+                "value": "",
+                "type": "query",
+                "description": "Filter articles with a specific tag."
+              },
+              {
+                "name": "author",
+                "value": "",
+                "type": "query",
+                "description": "Filter articles by article author."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Show only certain fields, specified by a comma-separated list of field names."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/online-store/article#index-2020-04"
+        },
+        {
+          "info": {
+            "name": "Shopify Creates An Article For A Blog",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-04/blogs/:blog_id/articles.json",
+            "params": [
+              {
+                "name": "blog_id",
+                "value": "",
+                "type": "path",
+                "description": "blog_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/online-store/article#create-2020-04"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Count Of All Articles From A Blog",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-04/blogs/:blog_id/articles/count.json",
+            "params": [
+              {
+                "name": "blog_id",
+                "value": "",
+                "type": "path",
+                "description": "blog_id"
+              },
+              {
+                "name": "created_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Count articles created after date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "created_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Count articles created before date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Count articles last updated after date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Count articles last updated before date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "published_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Count articles published after date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "published_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Count articles published before date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "published_status",
+                "value": "",
+                "type": "query",
+                "description": "Count articles with a given published status.\n                  (default: any)\n                    \n                        published: Count only published articles.\n                        unpublished: Count only unpublished articles.\n                        any: Count all articles."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/online-store/article#count-2020-04"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of All Articles From A Blog",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-07/blogs/:blog_id/articles.json",
+            "params": [
+              {
+                "name": "blog_id",
+                "value": "",
+                "type": "path",
+                "description": "blog_id"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of results to retrieve.\n                  (default: 50, maximum: 250)"
+              },
+              {
+                "name": "since_id",
+                "value": "",
+                "type": "query",
+                "description": "Restrict results to after the specified ID."
+              },
+              {
+                "name": "created_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show articles created after date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "created_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show articles created before date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show articles last updated after date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show articles last updated before date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "published_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show articles published after date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "published_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show articles published before date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "published_status",
+                "value": "",
+                "type": "query",
+                "description": "Retrieve results based on their published status.\n                  (default: any)\n                    \n                        published: Show only published articles.\n                        unpublished: Show only unpublished articles.\n                        any: Show articles of any published status."
+              },
+              {
+                "name": "handle",
+                "value": "",
+                "type": "query",
+                "description": "Retrieve an article with a specific handle."
+              },
+              {
+                "name": "tag",
+                "value": "",
+                "type": "query",
+                "description": "Filter articles with a specific tag."
+              },
+              {
+                "name": "author",
+                "value": "",
+                "type": "query",
+                "description": "Filter articles by article author."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Show only certain fields, specified by a comma-separated list of field names."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/online-store/article#index-2020-07"
+        },
+        {
+          "info": {
+            "name": "Shopify Creates An Article For A Blog",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-07/blogs/:blog_id/articles.json",
+            "params": [
+              {
+                "name": "blog_id",
+                "value": "",
+                "type": "path",
+                "description": "blog_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/online-store/article#create-2020-07"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Count Of All Articles From A Blog",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-07/blogs/:blog_id/articles/count.json",
+            "params": [
+              {
+                "name": "blog_id",
+                "value": "",
+                "type": "path",
+                "description": "blog_id"
+              },
+              {
+                "name": "created_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Count articles created after date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "created_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Count articles created before date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Count articles last updated after date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Count articles last updated before date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "published_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Count articles published after date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "published_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Count articles published before date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "published_status",
+                "value": "",
+                "type": "query",
+                "description": "Count articles with a given published status.\n                  (default: any)\n                    \n                        published: Count only published articles.\n                        unpublished: Count only unpublished articles.\n                        any: Count all articles."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/online-store/article#count-2020-07"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of All Articles From A Blog",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-10/blogs/:blog_id/articles.json",
+            "params": [
+              {
+                "name": "blog_id",
+                "value": "",
+                "type": "path",
+                "description": "blog_id"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of results to retrieve.\n                  (default: 50, maximum: 250)"
+              },
+              {
+                "name": "since_id",
+                "value": "",
+                "type": "query",
+                "description": "Restrict results to after the specified ID."
+              },
+              {
+                "name": "created_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show articles created after date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "created_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show articles created before date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show articles last updated after date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show articles last updated before date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "published_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show articles published after date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "published_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show articles published before date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "published_status",
+                "value": "",
+                "type": "query",
+                "description": "Retrieve results based on their published status.\n                  (default: any)\n                    \n                        published: Show only published articles.\n                        unpublished: Show only unpublished articles.\n                        any: Show articles of any published status."
+              },
+              {
+                "name": "handle",
+                "value": "",
+                "type": "query",
+                "description": "Retrieve an article with a specific handle."
+              },
+              {
+                "name": "tag",
+                "value": "",
+                "type": "query",
+                "description": "Filter articles with a specific tag."
+              },
+              {
+                "name": "author",
+                "value": "",
+                "type": "query",
+                "description": "Filter articles by article author."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Show only certain fields, specified by a comma-separated list of field names."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/online-store/article#index-2020-10"
+        },
+        {
+          "info": {
+            "name": "Shopify Creates An Article For A Blog",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-10/blogs/:blog_id/articles.json",
+            "params": [
+              {
+                "name": "blog_id",
+                "value": "",
+                "type": "path",
+                "description": "blog_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/online-store/article#create-2020-10"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Count Of All Articles From A Blog",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-10/blogs/:blog_id/articles/count.json",
+            "params": [
+              {
+                "name": "blog_id",
+                "value": "",
+                "type": "path",
+                "description": "blog_id"
+              },
+              {
+                "name": "created_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Count articles created after date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "created_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Count articles created before date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Count articles last updated after date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Count articles last updated before date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "published_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Count articles published after date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "published_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Count articles published before date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "published_status",
+                "value": "",
+                "type": "query",
+                "description": "Count articles with a given published status.\n                  (default: any)\n                    \n                        published: Count only published articles.\n                        unpublished: Count only unpublished articles.\n                        any: Count all articles."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/online-store/article#count-2020-10"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of All Articles From A Blog",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2021-01/blogs/:blog_id/articles.json",
+            "params": [
+              {
+                "name": "blog_id",
+                "value": "",
+                "type": "path",
+                "description": "blog_id"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of results to retrieve.\n                  (default: 50, maximum: 250)"
+              },
+              {
+                "name": "since_id",
+                "value": "",
+                "type": "query",
+                "description": "Restrict results to after the specified ID."
+              },
+              {
+                "name": "created_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show articles created after date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "created_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show articles created before date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show articles last updated after date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show articles last updated before date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "published_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show articles published after date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "published_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show articles published before date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "published_status",
+                "value": "",
+                "type": "query",
+                "description": "Retrieve results based on their published status.\n                  (default: any)\n                    \n                        published: Show only published articles.\n                        unpublished: Show only unpublished articles.\n                        any: Show articles of any published status."
+              },
+              {
+                "name": "handle",
+                "value": "",
+                "type": "query",
+                "description": "Retrieve an article with a specific handle."
+              },
+              {
+                "name": "tag",
+                "value": "",
+                "type": "query",
+                "description": "Filter articles with a specific tag."
+              },
+              {
+                "name": "author",
+                "value": "",
+                "type": "query",
+                "description": "Filter articles by article author."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Show only certain fields, specified by a comma-separated list of field names."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/online-store/article#index-2021-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Creates An Article For A Blog",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2021-01/blogs/:blog_id/articles.json",
+            "params": [
+              {
+                "name": "blog_id",
+                "value": "",
+                "type": "path",
+                "description": "blog_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/online-store/article#create-2021-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Count Of All Articles From A Blog",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2021-01/blogs/:blog_id/articles/count.json",
+            "params": [
+              {
+                "name": "blog_id",
+                "value": "",
+                "type": "path",
+                "description": "blog_id"
+              },
+              {
+                "name": "created_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Count articles created after date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "created_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Count articles created before date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Count articles last updated after date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Count articles last updated before date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "published_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Count articles published after date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "published_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Count articles published before date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "published_status",
+                "value": "",
+                "type": "query",
+                "description": "Count articles with a given published status.\n                  (default: any)\n                    \n                        published: Count only published articles.\n                        unpublished: Count only unpublished articles.\n                        any: Count all articles."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/online-store/article#count-2021-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of All Articles From A Blog",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/unstable/blogs/:blog_id/articles.json",
+            "params": [
+              {
+                "name": "blog_id",
+                "value": "",
+                "type": "path",
+                "description": "blog_id"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of results to retrieve.\n                  (default: 50, maximum: 250)"
+              },
+              {
+                "name": "since_id",
+                "value": "",
+                "type": "query",
+                "description": "Restrict results to after the specified ID."
+              },
+              {
+                "name": "created_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show articles created after date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "created_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show articles created before date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show articles last updated after date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show articles last updated before date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "published_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show articles published after date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "published_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show articles published before date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "published_status",
+                "value": "",
+                "type": "query",
+                "description": "Retrieve results based on their published status.\n                  (default: any)\n                    \n                        published: Show only published articles.\n                        unpublished: Show only unpublished articles.\n                        any: Show articles of any published status."
+              },
+              {
+                "name": "handle",
+                "value": "",
+                "type": "query",
+                "description": "Retrieve an article with a specific handle."
+              },
+              {
+                "name": "tag",
+                "value": "",
+                "type": "query",
+                "description": "Filter articles with a specific tag."
+              },
+              {
+                "name": "author",
+                "value": "",
+                "type": "query",
+                "description": "Filter articles by article author."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Show only certain fields, specified by a comma-separated list of field names."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/online-store/article#index-unstable"
+        },
+        {
+          "info": {
+            "name": "Shopify Creates An Article For A Blog",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/unstable/blogs/:blog_id/articles.json",
+            "params": [
+              {
+                "name": "blog_id",
+                "value": "",
+                "type": "path",
+                "description": "blog_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/online-store/article#create-unstable"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Count Of All Articles From A Blog",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/unstable/blogs/:blog_id/articles/count.json",
+            "params": [
+              {
+                "name": "blog_id",
+                "value": "",
+                "type": "path",
+                "description": "blog_id"
+              },
+              {
+                "name": "created_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Count articles created after date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "created_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Count articles created before date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Count articles last updated after date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Count articles last updated before date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "published_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Count articles published after date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "published_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Count articles published before date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "published_status",
+                "value": "",
+                "type": "query",
+                "description": "Count articles with a given published status.\n                  (default: any)\n                    \n                        published: Count only published articles.\n                        unpublished: Count only unpublished articles.\n                        any: Count all articles."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/online-store/article#count-unstable"
+        },
+        {
+          "info": {
+            "name": "Shopify Create A New Blog",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-01/blogs.json",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/online-store/blog#create-2020-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Get A Single Blog By Its Id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-01/blogs/:blog_id.json",
+            "params": [
+              {
+                "name": "blog_id",
+                "value": "",
+                "type": "path",
+                "description": "blog_id"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "comma-separated list of fields to include in the response"
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/online-store/blog#show-2020-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Update A Blog",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-01/blogs/:blog_id.json",
+            "params": [
+              {
+                "name": "blog_id",
+                "value": "",
+                "type": "path",
+                "description": "blog_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/online-store/blog#update-2020-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Delete A Blog",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-01/blogs/:blog_id.json",
+            "params": [
+              {
+                "name": "blog_id",
+                "value": "",
+                "type": "path",
+                "description": "blog_id"
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/online-store/blog#destroy-2020-01"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,4521 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Shopify Admin REST About Order API",
+    "version": "2025-01"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Shopify-Access-Token",
+      "value": "{{X-Shopify-Access-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Order",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Shopify Creates An Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-01/orders.json",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/orders/order#create-2020-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Specific Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-01/orders/:order_id.json",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "order_id"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Retrieve only certain fields, specified by a comma-separated list of fields names."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/orders/order#show-2020-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Updates An Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-01/orders/:order_id.json",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "order_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/orders/order#update-2020-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Deletes An Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-01/orders/:order_id.json",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "order_id"
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/orders/order#destroy-2020-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves An Order Count",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-01/orders/count.json",
+            "params": [
+              {
+                "name": "created_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Count orders created after date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "created_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Count orders created before date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Count orders last updated after date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Count orders last updated before date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Count orders of a given status.\n                  (default: open)\n                    \n                        open: Count open orders.\n                        closed: Count closed orders.\n                        any: Count orders of any status."
+              },
+              {
+                "name": "financial_status",
+                "value": "",
+                "type": "query",
+                "description": "Count orders of a given financial status.\n                  (default: any)\n                    \n                        authorized: Count authorized orders.\n                        pending: Count pending orders.\n                        paid: Count paid orders.\n                        refunded: Count refunded orders.\n                        voided: Count voided orders.\n                        any: Count orders of any financial status."
+              },
+              {
+                "name": "fulfillment_status",
+                "value": "",
+                "type": "query",
+                "description": "Filter orders by their fulfillment status.\n                  (default: any)\n                    \n                        shipped: Show orders that have been shipped. Returns orders with fulfillment_status of fulfilled.\n                        partial: Show partially shipped orders.\n                        unshipped: Show orders that have not yet been shipped. Returns orders with fulfillment_status of null.\n                        any: Show orders of any fulfillment status.\n                        unfulfilled: Returns orders with fulfillment_status of null or partial."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/orders/order#count-2020-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Closes An Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-01/orders/:order_id/close.json",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "order_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/orders/order#close-2020-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Re-opens A Closed Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-01/orders/:order_id/open.json",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "order_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/orders/order#open-2020-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Creates An Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-04/orders.json",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/orders/order#create-2020-04"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Specific Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-04/orders/:order_id.json",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "order_id"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Retrieve only certain fields, specified by a comma-separated list of fields names."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/orders/order#show-2020-04"
+        },
+        {
+          "info": {
+            "name": "Shopify Updates An Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-04/orders/:order_id.json",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "order_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/orders/order#update-2020-04"
+        },
+        {
+          "info": {
+            "name": "Shopify Deletes An Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-04/orders/:order_id.json",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "order_id"
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/orders/order#destroy-2020-04"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves An Order Count",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-04/orders/count.json",
+            "params": [
+              {
+                "name": "created_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Count orders created after date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "created_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Count orders created before date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Count orders last updated after date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Count orders last updated before date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Count orders of a given status.\n                  (default: open)\n                    \n                        open: Count open orders.\n                        closed: Count closed orders.\n                        any: Count orders of any status."
+              },
+              {
+                "name": "financial_status",
+                "value": "",
+                "type": "query",
+                "description": "Count orders of a given financial status.\n                  (default: any)\n                    \n                        authorized: Count authorized orders.\n                        pending: Count pending orders.\n                        paid: Count paid orders.\n                        refunded: Count refunded orders.\n                        voided: Count voided orders.\n                        any: Count orders of any financial status."
+              },
+              {
+                "name": "fulfillment_status",
+                "value": "",
+                "type": "query",
+                "description": "Filter orders by their fulfillment status.\n                  (default: any)\n                    \n                        shipped: Show orders that have been shipped. Returns orders with fulfillment_status of fulfilled.\n                        partial: Show partially shipped orders.\n                        unshipped: Show orders that have not yet been shipped. Returns orders with fulfillment_status of null.\n                        any: Show orders of any fulfillment status.\n                        unfulfilled: Returns orders with fulfillment_status of null or partial."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/orders/order#count-2020-04"
+        },
+        {
+          "info": {
+            "name": "Shopify Closes An Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-04/orders/:order_id/close.json",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "order_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/orders/order#close-2020-04"
+        },
+        {
+          "info": {
+            "name": "Shopify Re-opens A Closed Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-04/orders/:order_id/open.json",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "order_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/orders/order#open-2020-04"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of All Order Risks For An Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-01/orders/:order_id/risks.json",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "order_id"
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/orders/order-risk#index-2020-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Creates An Order Risk For An Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-01/orders/:order_id/risks.json",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "order_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/orders/order-risk#create-2020-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Single Order Risk By Its Id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-01/orders/:order_id/risks/:risk_id.json",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "order_id"
+              },
+              {
+                "name": "risk_id",
+                "value": "",
+                "type": "path",
+                "description": "risk_id"
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/orders/order-risk#show-2020-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Updates An Order Risk                                            You Cannot Modify An Order Risk That Was Created By Another Application",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-01/orders/:order_id/risks/:risk_id.json",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "order_id"
+              },
+              {
+                "name": "risk_id",
+                "value": "",
+                "type": "path",
+                "description": "risk_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/orders/order-risk#update-2020-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Deletes An Order Risk For An Order                                            You Cannot Delete An Order Risk That Was Created By Another Application",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-01/orders/:order_id/risks/:risk_id.json",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "order_id"
+              },
+              {
+                "name": "risk_id",
+                "value": "",
+                "type": "path",
+                "description": "risk_id"
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/orders/order-risk#destroy-2020-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of All Order Risks For An Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-04/orders/:order_id/risks.json",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "order_id"
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/orders/order-risk#index-2020-04"
+        },
+        {
+          "info": {
+            "name": "Shopify Creates An Order Risk For An Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-04/orders/:order_id/risks.json",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "order_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/orders/order-risk#create-2020-04"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Single Order Risk By Its Id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-04/orders/:order_id/risks/:risk_id.json",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "order_id"
+              },
+              {
+                "name": "risk_id",
+                "value": "",
+                "type": "path",
+                "description": "risk_id"
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/orders/order-risk#show-2020-04"
+        },
+        {
+          "info": {
+            "name": "Shopify Updates An Order Risk                                            You Cannot Modify An Order Risk That Was Created By Another Application",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-04/orders/:order_id/risks/:risk_id.json",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "order_id"
+              },
+              {
+                "name": "risk_id",
+                "value": "",
+                "type": "path",
+                "description": "risk_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/orders/order-risk#update-2020-04"
+        },
+        {
+          "info": {
+            "name": "Shopify Deletes An Order Risk For An Order                                            You Cannot Delete An Order Risk That Was Created By Another Application",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-04/orders/:order_id/risks/:risk_id.json",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "order_id"
+              },
+              {
+                "name": "risk_id",
+                "value": "",
+                "type": "path",
+                "description": "risk_id"
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/orders/order-risk#destroy-2020-04"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of All Order Risks For An Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-07/orders/:order_id/risks.json",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "order_id"
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/orders/order-risk#index-2020-07"
+        },
+        {
+          "info": {
+            "name": "Shopify Creates An Order Risk For An Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-07/orders/:order_id/risks.json",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "order_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/orders/order-risk#create-2020-07"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Single Order Risk By Its Id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-07/orders/:order_id/risks/:risk_id.json",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "order_id"
+              },
+              {
+                "name": "risk_id",
+                "value": "",
+                "type": "path",
+                "description": "risk_id"
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/orders/order-risk#show-2020-07"
+        },
+        {
+          "info": {
+            "name": "Shopify Updates An Order Risk                                            You Cannot Modify An Order Risk That Was Created By Another Application",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-07/orders/:order_id/risks/:risk_id.json",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "order_id"
+              },
+              {
+                "name": "risk_id",
+                "value": "",
+                "type": "path",
+                "description": "risk_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/orders/order-risk#update-2020-07"
+        },
+        {
+          "info": {
+            "name": "Shopify Deletes An Order Risk For An Order                                            You Cannot Delete An Order Risk That Was Created By Another Application",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-07/orders/:order_id/risks/:risk_id.json",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "order_id"
+              },
+              {
+                "name": "risk_id",
+                "value": "",
+                "type": "path",
+                "description": "risk_id"
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/orders/order-risk#destroy-2020-07"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of All Order Risks For An Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-10/orders/:order_id/risks.json",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "order_id"
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/orders/order-risk#index-2020-10"
+        },
+        {
+          "info": {
+            "name": "Shopify Creates An Order Risk For An Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-10/orders/:order_id/risks.json",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "order_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/orders/order-risk#create-2020-10"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Single Order Risk By Its Id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-10/orders/:order_id/risks/:risk_id.json",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "order_id"
+              },
+              {
+                "name": "risk_id",
+                "value": "",
+                "type": "path",
+                "description": "risk_id"
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/orders/order-risk#show-2020-10"
+        },
+        {
+          "info": {
+            "name": "Shopify Updates An Order Risk                                            You Cannot Modify An Order Risk That Was Created By Another Application",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-10/orders/:order_id/risks/:risk_id.json",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "order_id"
+              },
+              {
+                "name": "risk_id",
+                "value": "",
+                "type": "path",
+                "description": "risk_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/orders/order-risk#update-2020-10"
+        },
+        {
+          "info": {
+            "name": "Shopify Deletes An Order Risk For An Order                                            You Cannot Delete An Order Risk That Was Created By Another Application",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-10/orders/:order_id/risks/:risk_id.json",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "order_id"
+              },
+              {
+                "name": "risk_id",
+                "value": "",
+                "type": "path",
+                "description": "risk_id"
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/orders/order-risk#destroy-2020-10"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of All Order Risks For An Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2021-01/orders/:order_id/risks.json",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "order_id"
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/orders/order-risk#index-2021-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Creates An Order Risk For An Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2021-01/orders/:order_id/risks.json",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "order_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/orders/order-risk#create-2021-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Single Order Risk By Its Id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2021-01/orders/:order_id/risks/:risk_id.json",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "order_id"
+              },
+              {
+                "name": "risk_id",
+                "value": "",
+                "type": "path",
+                "description": "risk_id"
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/orders/order-risk#show-2021-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Updates An Order Risk                                            You Cannot Modify An Order Risk That Was Created By Another Application",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2021-01/orders/:order_id/risks/:risk_id.json",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "order_id"
+              },
+              {
+                "name": "risk_id",
+                "value": "",
+                "type": "path",
+                "description": "risk_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/orders/order-risk#update-2021-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Deletes An Order Risk For An Order                                            You Cannot Delete An Order Risk That Was Created By Another Application",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2021-01/orders/:order_id/risks/:risk_id.json",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "order_id"
+              },
+              {
+                "name": "risk_id",
+                "value": "",
+                "type": "path",
+                "description": "risk_id"
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/orders/order-risk#destroy-2021-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of All Order Risks For An Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/unstable/orders/:order_id/risks.json",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "order_id"
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/orders/order-risk#index-unstable"
+        },
+        {
+          "info": {
+            "name": "Shopify Creates An Order Risk For An Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/unstable/orders/:order_id/risks.json",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "order_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/orders/order-risk#create-unstable"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Single Order Risk By Its Id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/unstable/orders/:order_id/risks/:risk_id.json",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "order_id"
+              },
+              {
+                "name": "risk_id",
+                "value": "",
+                "type": "path",
+                "description": "risk_id"
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/orders/order-risk#show-unstable"
+        },
+        {
+          "info": {
+            "name": "Shopify Updates An Order Risk                                            You Cannot Modify An Order Risk That Was Created By Another Application",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/unstable/orders/:order_id/risks/:risk_id.json",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "order_id"
+              },
+              {
+                "name": "risk_id",
+                "value": "",
+                "type": "path",
+                "description": "risk_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/orders/order-risk#update-unstable"
+        },
+        {
+          "info": {
+            "name": "Shopify Deletes An Order Risk For An Order                                            You Cannot Delete An Order Risk That Was Created By Another Application",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/unstable/orders/:order_id/risks/:risk_id.json",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "order_id"
+              },
+              {
+                "name": "risk_id",
+                "value": "",
+                "type": "path",
+                "description": "risk_id"
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/orders/order-risk#destroy-unstable"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of Refunds For An Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-01/orders/:order_id/refunds.json",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "order_id"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of results to retrieve.\n                  (default: 50, maximum: 250)"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Show only certain fields, specified by a comma-separated list of field names."
+              },
+              {
+                "name": "in_shop_currency",
+                "value": "",
+                "type": "query",
+                "description": "Show amounts in the shop currency for the underlying transaction.\n                  (default: false)"
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/orders/refund#index-2020-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of Refunds For An Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-04/orders/:order_id/refunds.json",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "order_id"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of results to retrieve.\n                  (default: 50, maximum: 250)"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Show only certain fields, specified by a comma-separated list of field names."
+              },
+              {
+                "name": "in_shop_currency",
+                "value": "",
+                "type": "query",
+                "description": "Show amounts in the shop currency for the underlying transaction.\n                  (default: false)"
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/orders/refund#index-2020-04"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of Refunds For An Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-07/orders/:order_id/refunds.json",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "order_id"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of results to retrieve.\n                  (default: 50, maximum: 250)"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Show only certain fields, specified by a comma-separated list of field names."
+              },
+              {
+                "name": "in_shop_currency",
+                "value": "",
+                "type": "query",
+                "description": "Show amounts in the shop currency for the underlying transaction.\n                  (default: false)"
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/orders/refund#index-2020-07"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of Refunds For An Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-10/orders/:order_id/refunds.json",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "order_id"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of results to retrieve.\n                  (default: 50, maximum: 250)"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Show only certain fields, specified by a comma-separated list of field names."
+              },
+              {
+                "name": "in_shop_currency",
+                "value": "",
+                "type": "query",
+                "description": "Show amounts in the shop currency for the underlying transaction.\n                  (default: false)"
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/orders/refund#index-2020-10"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of Refunds For An Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2021-01/orders/:order_id/refunds.json",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "order_id"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of results to retrieve.\n                  (default: 50, maximum: 250)"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Show only certain fields, specified by a comma-separated list of field names."
+              },
+              {
+                "name": "in_shop_currency",
+                "value": "",
+                "type": "query",
+                "description": "Show amounts in the shop currency for the underlying transaction.\n                  (default: false)"
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/orders/refund#index-2021-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of Refunds For An Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/unstable/orders/:order_id/refunds.json",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "order_id"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of results to retrieve.\n                  (default: 50, maximum: 250)"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Show only certain fields, specified by a comma-separated list of field names."
+              },
+              {
+                "name": "in_shop_currency",
+                "value": "",
+                "type": "query",
+                "description": "Show amounts in the shop currency for the underlying transaction.\n                  (default: false)"
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/orders/refund#index-unstable"
+        },
+        {
+          "info": {
+            "name": "Shopify Sends A Cancellation Request To The Fulfillment Service Of A Fulfillment Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-01/fulfillment_orders/:fulfillment_order_id/cancellation_request.json",
+            "params": [
+              {
+                "name": "fulfillment_order_id",
+                "value": "",
+                "type": "path",
+                "description": "fulfillment_order_id"
+              },
+              {
+                "name": "message",
+                "value": "",
+                "type": "query",
+                "description": "An optional reason for the cancellation request."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/cancellationrequest#create-2020-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Accepts A Cancellation Request Sent To A Fulfillment Service For A Fulfillment Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-01/fulfillment_orders/:fulfillment_order_id/cancellation_request/accept.json",
+            "params": [
+              {
+                "name": "fulfillment_order_id",
+                "value": "",
+                "type": "path",
+                "description": "fulfillment_order_id"
+              },
+              {
+                "name": "message",
+                "value": "",
+                "type": "query",
+                "description": "An optional reason for accepting the cancellation request."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/cancellationrequest#accept-2020-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Rejects A Cancellation Request Sent To A Fulfillment Service For A Fulfillment Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-01/fulfillment_orders/:fulfillment_order_id/cancellation_request/reject.json",
+            "params": [
+              {
+                "name": "fulfillment_order_id",
+                "value": "",
+                "type": "path",
+                "description": "fulfillment_order_id"
+              },
+              {
+                "name": "message",
+                "value": "",
+                "type": "query",
+                "description": "An optional reason for rejecting the cancellation request."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/cancellationrequest#reject-2020-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Sends A Cancellation Request To The Fulfillment Service Of A Fulfillment Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-04/fulfillment_orders/:fulfillment_order_id/cancellation_request.json",
+            "params": [
+              {
+                "name": "fulfillment_order_id",
+                "value": "",
+                "type": "path",
+                "description": "fulfillment_order_id"
+              },
+              {
+                "name": "message",
+                "value": "",
+                "type": "query",
+                "description": "An optional reason for the cancellation request."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/cancellationrequest#create-2020-04"
+        },
+        {
+          "info": {
+            "name": "Shopify Accepts A Cancellation Request Sent To A Fulfillment Service For A Fulfillment Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-04/fulfillment_orders/:fulfillment_order_id/cancellation_request/accept.json",
+            "params": [
+              {
+                "name": "fulfillment_order_id",
+                "value": "",
+                "type": "path",
+                "description": "fulfillment_order_id"
+              },
+              {
+                "name": "message",
+                "value": "",
+                "type": "query",
+                "description": "An optional reason for accepting the cancellation request."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/cancellationrequest#accept-2020-04"
+        },
+        {
+          "info": {
+            "name": "Shopify Rejects A Cancellation Request Sent To A Fulfillment Service For A Fulfillment Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-04/fulfillment_orders/:fulfillment_order_id/cancellation_request/reject.json",
+            "params": [
+              {
+                "name": "fulfillment_order_id",
+                "value": "",
+                "type": "path",
+                "description": "fulfillment_order_id"
+              },
+              {
+                "name": "message",
+                "value": "",
+                "type": "query",
+                "description": "An optional reason for rejecting the cancellation request."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/cancellationrequest#reject-2020-04"
+        },
+        {
+          "info": {
+            "name": "Shopify Sends A Cancellation Request To The Fulfillment Service Of A Fulfillment Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-07/fulfillment_orders/:fulfillment_order_id/cancellation_request.json",
+            "params": [
+              {
+                "name": "fulfillment_order_id",
+                "value": "",
+                "type": "path",
+                "description": "fulfillment_order_id"
+              },
+              {
+                "name": "message",
+                "value": "",
+                "type": "query",
+                "description": "An optional reason for the cancellation request."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/cancellationrequest#create-2020-07"
+        },
+        {
+          "info": {
+            "name": "Shopify Accepts A Cancellation Request Sent To A Fulfillment Service For A Fulfillment Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-07/fulfillment_orders/:fulfillment_order_id/cancellation_request/accept.json",
+            "params": [
+              {
+                "name": "fulfillment_order_id",
+                "value": "",
+                "type": "path",
+                "description": "fulfillment_order_id"
+              },
+              {
+                "name": "message",
+                "value": "",
+                "type": "query",
+                "description": "An optional reason for accepting the cancellation request."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/cancellationrequest#accept-2020-07"
+        },
+        {
+          "info": {
+            "name": "Shopify Rejects A Cancellation Request Sent To A Fulfillment Service For A Fulfillment Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-07/fulfillment_orders/:fulfillment_order_id/cancellation_request/reject.json",
+            "params": [
+              {
+                "name": "fulfillment_order_id",
+                "value": "",
+                "type": "path",
+                "description": "fulfillment_order_id"
+              },
+              {
+                "name": "message",
+                "value": "",
+                "type": "query",
+                "description": "An optional reason for rejecting the cancellation request."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/cancellationrequest#reject-2020-07"
+        },
+        {
+          "info": {
+            "name": "Shopify Sends A Cancellation Request To The Fulfillment Service Of A Fulfillment Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-10/fulfillment_orders/:fulfillment_order_id/cancellation_request.json",
+            "params": [
+              {
+                "name": "fulfillment_order_id",
+                "value": "",
+                "type": "path",
+                "description": "fulfillment_order_id"
+              },
+              {
+                "name": "message",
+                "value": "",
+                "type": "query",
+                "description": "An optional reason for the cancellation request."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/cancellationrequest#create-2020-10"
+        },
+        {
+          "info": {
+            "name": "Shopify Accepts A Cancellation Request Sent To A Fulfillment Service For A Fulfillment Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-10/fulfillment_orders/:fulfillment_order_id/cancellation_request/accept.json",
+            "params": [
+              {
+                "name": "fulfillment_order_id",
+                "value": "",
+                "type": "path",
+                "description": "fulfillment_order_id"
+              },
+              {
+                "name": "message",
+                "value": "",
+                "type": "query",
+                "description": "An optional reason for accepting the cancellation request."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/cancellationrequest#accept-2020-10"
+        },
+        {
+          "info": {
+            "name": "Shopify Rejects A Cancellation Request Sent To A Fulfillment Service For A Fulfillment Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-10/fulfillment_orders/:fulfillment_order_id/cancellation_request/reject.json",
+            "params": [
+              {
+                "name": "fulfillment_order_id",
+                "value": "",
+                "type": "path",
+                "description": "fulfillment_order_id"
+              },
+              {
+                "name": "message",
+                "value": "",
+                "type": "query",
+                "description": "An optional reason for rejecting the cancellation request."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/cancellationrequest#reject-2020-10"
+        },
+        {
+          "info": {
+            "name": "Shopify Sends A Cancellation Request To The Fulfillment Service Of A Fulfillment Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2021-01/fulfillment_orders/:fulfillment_order_id/cancellation_request.json",
+            "params": [
+              {
+                "name": "fulfillment_order_id",
+                "value": "",
+                "type": "path",
+                "description": "fulfillment_order_id"
+              },
+              {
+                "name": "message",
+                "value": "",
+                "type": "query",
+                "description": "An optional reason for the cancellation request."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/cancellationrequest#create-2021-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Accepts A Cancellation Request Sent To A Fulfillment Service For A Fulfillment Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2021-01/fulfillment_orders/:fulfillment_order_id/cancellation_request/accept.json",
+            "params": [
+              {
+                "name": "fulfillment_order_id",
+                "value": "",
+                "type": "path",
+                "description": "fulfillment_order_id"
+              },
+              {
+                "name": "message",
+                "value": "",
+                "type": "query",
+                "description": "An optional reason for accepting the cancellation request."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/cancellationrequest#accept-2021-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Rejects A Cancellation Request Sent To A Fulfillment Service For A Fulfillment Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2021-01/fulfillment_orders/:fulfillment_order_id/cancellation_request/reject.json",
+            "params": [
+              {
+                "name": "fulfillment_order_id",
+                "value": "",
+                "type": "path",
+                "description": "fulfillment_order_id"
+              },
+              {
+                "name": "message",
+                "value": "",
+                "type": "query",
+                "description": "An optional reason for rejecting the cancellation request."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/cancellationrequest#reject-2021-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Sends A Cancellation Request To The Fulfillment Service Of A Fulfillment Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/unstable/fulfillment_orders/:fulfillment_order_id/cancellation_request.json",
+            "params": [
+              {
+                "name": "fulfillment_order_id",
+                "value": "",
+                "type": "path",
+                "description": "fulfillment_order_id"
+              },
+              {
+                "name": "message",
+                "value": "",
+                "type": "query",
+                "description": "An optional reason for the cancellation request."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/cancellationrequest#create-unstable"
+        },
+        {
+          "info": {
+            "name": "Shopify Accepts A Cancellation Request Sent To A Fulfillment Service For A Fulfillment Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/unstable/fulfillment_orders/:fulfillment_order_id/cancellation_request/accept.json",
+            "params": [
+              {
+                "name": "fulfillment_order_id",
+                "value": "",
+                "type": "path",
+                "description": "fulfillment_order_id"
+              },
+              {
+                "name": "message",
+                "value": "",
+                "type": "query",
+                "description": "An optional reason for accepting the cancellation request."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/cancellationrequest#accept-unstable"
+        },
+        {
+          "info": {
+            "name": "Shopify Rejects A Cancellation Request Sent To A Fulfillment Service For A Fulfillment Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/unstable/fulfillment_orders/:fulfillment_order_id/cancellation_request/reject.json",
+            "params": [
+              {
+                "name": "fulfillment_order_id",
+                "value": "",
+                "type": "path",
+                "description": "fulfillment_order_id"
+              },
+              {
+                "name": "message",
+                "value": "",
+                "type": "query",
+                "description": "An optional reason for rejecting the cancellation request."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/cancellationrequest#reject-unstable"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves Fulfillments Associated With An Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-01/orders/:order_id/fulfillments.json",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "order_id"
+              },
+              {
+                "name": "created_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show fulfillments created before date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "created_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show fulfillments created after date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "A comma-separated list of fields to include in the response."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Limit the amount of results.\n                  (default: 50, maximum: 250)"
+              },
+              {
+                "name": "since_id",
+                "value": "",
+                "type": "query",
+                "description": "Restrict results to after the specified ID."
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show fulfillments last updated before date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show fulfillments last updated after date (format: 2014-04-25T16:15:47-04:00)."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillment#index-2020-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Create A Fulfillment For The Specified Order And Line Items",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-01/orders/:order_id/fulfillments.json",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "order_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillment#create-2020-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves Fulfillments Associated With A Fulfillment Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-01/fulfillment_orders/:fulfillment_order_id/fulfillments.json",
+            "params": [
+              {
+                "name": "fulfillment_order_id",
+                "value": "",
+                "type": "path",
+                "description": "fulfillment_order_id"
+              },
+              {
+                "name": "fulfillment_order_id",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the fulfillment order that is associated with the fulfillments."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillment#indexV2-2020-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Count Of Fulfillments Associated With A Specific Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-01/orders/:order_id/fulfillments/count.json",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "order_id"
+              },
+              {
+                "name": "created_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Count fulfillments created after date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "created_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Count fulfillments created before date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Count fulfillments last updated after date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Count fulfillments last updated before date (format: 2014-04-25T16:15:47-04:00)."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillment#count-2020-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Cancel A Fulfillment For A Specific Order Id",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-01/orders/:order_id/fulfillments/:fulfillment_id/cancel.json",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "order_id"
+              },
+              {
+                "name": "fulfillment_id",
+                "value": "",
+                "type": "path",
+                "description": "fulfillment_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillment#cancel-2020-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves Fulfillments Associated With An Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-04/orders/:order_id/fulfillments.json",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "order_id"
+              },
+              {
+                "name": "created_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show fulfillments created before date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "created_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show fulfillments created after date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "A comma-separated list of fields to include in the response."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Limit the amount of results.\n                  (default: 50, maximum: 250)"
+              },
+              {
+                "name": "since_id",
+                "value": "",
+                "type": "query",
+                "description": "Restrict results to after the specified ID."
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show fulfillments last updated before date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show fulfillments last updated after date (format: 2014-04-25T16:15:47-04:00)."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillment#index-2020-04"
+        },
+        {
+          "info": {
+            "name": "Shopify Create A Fulfillment For The Specified Order And Line Items",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-04/orders/:order_id/fulfillments.json",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "order_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillment#create-2020-04"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves Fulfillments Associated With A Fulfillment Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-04/fulfillment_orders/:fulfillment_order_id/fulfillments.json",
+            "params": [
+              {
+                "name": "fulfillment_order_id",
+                "value": "",
+                "type": "path",
+                "description": "fulfillment_order_id"
+              },
+              {
+                "name": "fulfillment_order_id",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the fulfillment order that is associated with the fulfillments."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillment#indexV2-2020-04"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Count Of Fulfillments Associated With A Specific Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-04/orders/:order_id/fulfillments/count.json",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "order_id"
+              },
+              {
+                "name": "created_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Count fulfillments created after date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "created_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Count fulfillments created before date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Count fulfillments last updated after date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Count fulfillments last updated before date (format: 2014-04-25T16:15:47-04:00)."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillment#count-2020-04"
+        },
+        {
+          "info": {
+            "name": "Shopify Cancel A Fulfillment For A Specific Order Id",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-04/orders/:order_id/fulfillments/:fulfillment_id/cancel.json",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "order_id"
+              },
+              {
+                "name": "fulfillment_id",
+                "value": "",
+                "type": "path",
+                "description": "fulfillment_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillment#cancel-2020-04"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves Fulfillments Associated With An Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-07/orders/:order_id/fulfillments.json",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "order_id"
+              },
+              {
+                "name": "created_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show fulfillments created before date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "created_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show fulfillments created after date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "A comma-separated list of fields to include in the response."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Limit the amount of results.\n                  (default: 50, maximum: 250)"
+              },
+              {
+                "name": "since_id",
+                "value": "",
+                "type": "query",
+                "description": "Restrict results to after the specified ID."
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show fulfillments last updated before date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show fulfillments last updated after date (format: 2014-04-25T16:15:47-04:00)."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillment#index-2020-07"
+        },
+        {
+          "info": {
+            "name": "Shopify Create A Fulfillment For The Specified Order And Line Items",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-07/orders/:order_id/fulfillments.json",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "order_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillment#create-2020-07"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves Fulfillments Associated With A Fulfillment Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-07/fulfillment_orders/:fulfillment_order_id/fulfillments.json",
+            "params": [
+              {
+                "name": "fulfillment_order_id",
+                "value": "",
+                "type": "path",
+                "description": "fulfillment_order_id"
+              },
+              {
+                "name": "fulfillment_order_id",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the fulfillment order that is associated with the fulfillments."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillment#indexV2-2020-07"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Count Of Fulfillments Associated With A Specific Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-07/orders/:order_id/fulfillments/count.json",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "order_id"
+              },
+              {
+                "name": "created_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Count fulfillments created after date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "created_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Count fulfillments created before date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Count fulfillments last updated after date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Count fulfillments last updated before date (format: 2014-04-25T16:15:47-04:00)."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillment#count-2020-07"
+        },
+        {
+          "info": {
+            "name": "Shopify Cancel A Fulfillment For A Specific Order Id",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-07/orders/:order_id/fulfillments/:fulfillment_id/cancel.json",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "order_id"
+              },
+              {
+                "name": "fulfillment_id",
+                "value": "",
+                "type": "path",
+                "description": "fulfillment_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillment#cancel-2020-07"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves Fulfillments Associated With An Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-10/orders/:order_id/fulfillments.json",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "order_id"
+              },
+              {
+                "name": "created_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show fulfillments created before date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "created_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show fulfillments created after date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "A comma-separated list of fields to include in the response."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Limit the amount of results.\n                  (default: 50, maximum: 250)"
+              },
+              {
+                "name": "since_id",
+                "value": "",
+                "type": "query",
+                "description": "Restrict results to after the specified ID."
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show fulfillments last updated before date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show fulfillments last updated after date (format: 2014-04-25T16:15:47-04:00)."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillment#index-2020-10"
+        },
+        {
+          "info": {
+            "name": "Shopify Create A Fulfillment For The Specified Order And Line Items",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-10/orders/:order_id/fulfillments.json",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "order_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillment#create-2020-10"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves Fulfillments Associated With A Fulfillment Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-10/fulfillment_orders/:fulfillment_order_id/fulfillments.json",
+            "params": [
+              {
+                "name": "fulfillment_order_id",
+                "value": "",
+                "type": "path",
+                "description": "fulfillment_order_id"
+              },
+              {
+                "name": "fulfillment_order_id",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the fulfillment order that is associated with the fulfillments."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillment#indexV2-2020-10"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Count Of Fulfillments Associated With A Specific Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-10/orders/:order_id/fulfillments/count.json",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "order_id"
+              },
+              {
+                "name": "created_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Count fulfillments created after date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "created_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Count fulfillments created before date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Count fulfillments last updated after date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Count fulfillments last updated before date (format: 2014-04-25T16:15:47-04:00)."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillment#count-2020-10"
+        },
+        {
+          "info": {
+            "name": "Shopify Cancel A Fulfillment For A Specific Order Id",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-10/orders/:order_id/fulfillments/:fulfillment_id/cancel.json",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "order_id"
+              },
+              {
+                "name": "fulfillment_id",
+                "value": "",
+                "type": "path",
+                "description": "fulfillment_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillment#cancel-2020-10"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves Fulfillments Associated With An Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2021-01/orders/:order_id/fulfillments.json",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "order_id"
+              },
+              {
+                "name": "created_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show fulfillments created before date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "created_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show fulfillments created after date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "A comma-separated list of fields to include in the response."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Limit the amount of results.\n                  (default: 50, maximum: 250)"
+              },
+              {
+                "name": "since_id",
+                "value": "",
+                "type": "query",
+                "description": "Restrict results to after the specified ID."
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show fulfillments last updated before date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show fulfillments last updated after date (format: 2014-04-25T16:15:47-04:00)."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillment#index-2021-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Create A Fulfillment For The Specified Order And Line Items",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2021-01/orders/:order_id/fulfillments.json",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "order_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillment#create-2021-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves Fulfillments Associated With A Fulfillment Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2021-01/fulfillment_orders/:fulfillment_order_id/fulfillments.json",
+            "params": [
+              {
+                "name": "fulfillment_order_id",
+                "value": "",
+                "type": "path",
+                "description": "fulfillment_order_id"
+              },
+              {
+                "name": "fulfillment_order_id",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the fulfillment order that is associated with the fulfillments."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillment#indexV2-2021-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Count Of Fulfillments Associated With A Specific Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2021-01/orders/:order_id/fulfillments/count.json",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "order_id"
+              },
+              {
+                "name": "created_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Count fulfillments created after date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "created_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Count fulfillments created before date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Count fulfillments last updated after date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Count fulfillments last updated before date (format: 2014-04-25T16:15:47-04:00)."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillment#count-2021-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Cancel A Fulfillment For A Specific Order Id",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2021-01/orders/:order_id/fulfillments/:fulfillment_id/cancel.json",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "order_id"
+              },
+              {
+                "name": "fulfillment_id",
+                "value": "",
+                "type": "path",
+                "description": "fulfillment_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillment#cancel-2021-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves Fulfillments Associated With An Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/unstable/orders/:order_id/fulfillments.json",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "order_id"
+              },
+              {
+                "name": "created_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show fulfillments created before date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "created_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show fulfillments created after date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "A comma-separated list of fields to include in the response."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Limit the amount of results.\n                  (default: 50, maximum: 250)"
+              },
+              {
+                "name": "since_id",
+                "value": "",
+                "type": "query",
+                "description": "Restrict results to after the specified ID."
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Show fulfillments last updated before date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Show fulfillments last updated after date (format: 2014-04-25T16:15:47-04:00)."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillment#index-unstable"
+        },
+        {
+          "info": {
+            "name": "Shopify Create A Fulfillment For The Specified Order And Line Items",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/unstable/orders/:order_id/fulfillments.json",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "order_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillment#create-unstable"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves Fulfillments Associated With A Fulfillment Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/unstable/fulfillment_orders/:fulfillment_order_id/fulfillments.json",
+            "params": [
+              {
+                "name": "fulfillment_order_id",
+                "value": "",
+                "type": "path",
+                "description": "fulfillment_order_id"
+              },
+              {
+                "name": "fulfillment_order_id",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the fulfillment order that is associated with the fulfillments."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillment#indexV2-unstable"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Count Of Fulfillments Associated With A Specific Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/unstable/orders/:order_id/fulfillments/count.json",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "order_id"
+              },
+              {
+                "name": "created_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Count fulfillments created after date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "created_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Count fulfillments created before date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "updated_at_min",
+                "value": "",
+                "type": "query",
+                "description": "Count fulfillments last updated after date (format: 2014-04-25T16:15:47-04:00)."
+              },
+              {
+                "name": "updated_at_max",
+                "value": "",
+                "type": "query",
+                "description": "Count fulfillments last updated before date (format: 2014-04-25T16:15:47-04:00)."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillment#count-unstable"
+        },
+        {
+          "info": {
+            "name": "Shopify Cancel A Fulfillment For A Specific Order Id",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/unstable/orders/:order_id/fulfillments/:fulfillment_id/cancel.json",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "order_id"
+              },
+              {
+                "name": "fulfillment_id",
+                "value": "",
+                "type": "path",
+                "description": "fulfillment_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillment#cancel-unstable"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of Fulfillment Orders For A Specific Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-01/orders/:order_id/fulfillment_orders.json",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "order_id"
+              },
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the order that is associated with the fulfillment orders."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentorder#index-2020-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Specific Fulfillment Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-01/fulfillment_orders/:fulfillment_order_id.json",
+            "params": [
+              {
+                "name": "fulfillment_order_id",
+                "value": "",
+                "type": "path",
+                "description": "fulfillment_order_id"
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentorder#show-2020-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Marks A Fulfillment Order As Cancelled",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-01/fulfillment_orders/:fulfillment_order_id/cancel.json",
+            "params": [
+              {
+                "name": "fulfillment_order_id",
+                "value": "",
+                "type": "path",
+                "description": "fulfillment_order_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentorder#cancel-2020-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Marks An In Progress Fulfillment Order As Incomplete",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-01/fulfillment_orders/:fulfillment_order_id/close.json",
+            "params": [
+              {
+                "name": "fulfillment_order_id",
+                "value": "",
+                "type": "path",
+                "description": "fulfillment_order_id"
+              },
+              {
+                "name": "message",
+                "value": "",
+                "type": "query",
+                "description": "An optional reason for marking the fulfillment order as incomplete."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentorder#close-2020-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Moves A Fulfillment Order From One Merchant Managed Location To Another Merchant Managed Location",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-01/fulfillment_orders/:fulfillment_order_id/move.json",
+            "params": [
+              {
+                "name": "fulfillment_order_id",
+                "value": "",
+                "type": "path",
+                "description": "fulfillment_order_id"
+              },
+              {
+                "name": "new_location_id",
+                "value": "",
+                "type": "query",
+                "description": "The id of the location to which the fulfillment order will be moved."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentorder#move-2020-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of Fulfillment Orders For A Specific Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-04/orders/:order_id/fulfillment_orders.json",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "order_id"
+              },
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the order that is associated with the fulfillment orders."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentorder#index-2020-04"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Specific Fulfillment Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-04/fulfillment_orders/:fulfillment_order_id.json",
+            "params": [
+              {
+                "name": "fulfillment_order_id",
+                "value": "",
+                "type": "path",
+                "description": "fulfillment_order_id"
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentorder#show-2020-04"
+        },
+        {
+          "info": {
+            "name": "Shopify Marks A Fulfillment Order As Cancelled",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-04/fulfillment_orders/:fulfillment_order_id/cancel.json",
+            "params": [
+              {
+                "name": "fulfillment_order_id",
+                "value": "",
+                "type": "path",
+                "description": "fulfillment_order_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentorder#cancel-2020-04"
+        },
+        {
+          "info": {
+            "name": "Shopify Marks An In Progress Fulfillment Order As Incomplete",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-04/fulfillment_orders/:fulfillment_order_id/close.json",
+            "params": [
+              {
+                "name": "fulfillment_order_id",
+                "value": "",
+                "type": "path",
+                "description": "fulfillment_order_id"
+              },
+              {
+                "name": "message",
+                "value": "",
+                "type": "query",
+                "description": "An optional reason for marking the fulfillment order as incomplete."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentorder#close-2020-04"
+        },
+        {
+          "info": {
+            "name": "Shopify Moves A Fulfillment Order From One Merchant Managed Location To Another Merchant Managed Location",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-04/fulfillment_orders/:fulfillment_order_id/move.json",
+            "params": [
+              {
+                "name": "fulfillment_order_id",
+                "value": "",
+                "type": "path",
+                "description": "fulfillment_order_id"
+              },
+              {
+                "name": "new_location_id",
+                "value": "",
+                "type": "query",
+                "description": "The id of the location to which the fulfillment order will be moved."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentorder#move-2020-04"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of Fulfillment Orders For A Specific Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-07/orders/:order_id/fulfillment_orders.json",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "order_id"
+              },
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the order that is associated with the fulfillment orders."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentorder#index-2020-07"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Specific Fulfillment Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-07/fulfillment_orders/:fulfillment_order_id.json",
+            "params": [
+              {
+                "name": "fulfillment_order_id",
+                "value": "",
+                "type": "path",
+                "description": "fulfillment_order_id"
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentorder#show-2020-07"
+        },
+        {
+          "info": {
+            "name": "Shopify Marks A Fulfillment Order As Cancelled",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-07/fulfillment_orders/:fulfillment_order_id/cancel.json",
+            "params": [
+              {
+                "name": "fulfillment_order_id",
+                "value": "",
+                "type": "path",
+                "description": "fulfillment_order_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentorder#cancel-2020-07"
+        },
+        {
+          "info": {
+            "name": "Shopify Marks An In Progress Fulfillment Order As Incomplete",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-07/fulfillment_orders/:fulfillment_order_id/close.json",
+            "params": [
+              {
+                "name": "fulfillment_order_id",
+                "value": "",
+                "type": "path",
+                "description": "fulfillment_order_id"
+              },
+              {
+                "name": "message",
+                "value": "",
+                "type": "query",
+                "description": "An optional reason for marking the fulfillment order as incomplete."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentorder#close-2020-07"
+        },
+        {
+          "info": {
+            "name": "Shopify Moves A Fulfillment Order From One Merchant Managed Location To Another Merchant Managed Location",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-07/fulfillment_orders/:fulfillment_order_id/move.json",
+            "params": [
+              {
+                "name": "fulfillment_order_id",
+                "value": "",
+                "type": "path",
+                "description": "fulfillment_order_id"
+              },
+              {
+                "name": "new_location_id",
+                "value": "",
+                "type": "query",
+                "description": "The id of the location to which the fulfillment order will be moved."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentorder#move-2020-07"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of Fulfillment Orders For A Specific Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-10/orders/:order_id/fulfillment_orders.json",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "order_id"
+              },
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the order that is associated with the fulfillment orders."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentorder#index-2020-10"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Specific Fulfillment Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-10/fulfillment_orders/:fulfillment_order_id.json",
+            "params": [
+              {
+                "name": "fulfillment_order_id",
+                "value": "",
+                "type": "path",
+                "description": "fulfillment_order_id"
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentorder#show-2020-10"
+        },
+        {
+          "info": {
+            "name": "Shopify Marks A Fulfillment Order As Cancelled",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-10/fulfillment_orders/:fulfillment_order_id/cancel.json",
+            "params": [
+              {
+                "name": "fulfillment_order_id",
+                "value": "",
+                "type": "path",
+                "description": "fulfillment_order_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentorder#cancel-2020-10"
+        },
+        {
+          "info": {
+            "name": "Shopify Marks An In Progress Fulfillment Order As Incomplete",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-10/fulfillment_orders/:fulfillment_order_id/close.json",
+            "params": [
+              {
+                "name": "fulfillment_order_id",
+                "value": "",
+                "type": "path",
+                "description": "fulfillment_order_id"
+              },
+              {
+                "name": "message",
+                "value": "",
+                "type": "query",
+                "description": "An optional reason for marking the fulfillment order as incomplete."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentorder#close-2020-10"
+        },
+        {
+          "info": {
+            "name": "Shopify Moves A Fulfillment Order From One Merchant Managed Location To Another Merchant Managed Location",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-10/fulfillment_orders/:fulfillment_order_id/move.json",
+            "params": [
+              {
+                "name": "fulfillment_order_id",
+                "value": "",
+                "type": "path",
+                "description": "fulfillment_order_id"
+              },
+              {
+                "name": "new_location_id",
+                "value": "",
+                "type": "query",
+                "description": "The id of the location to which the fulfillment order will be moved."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentorder#move-2020-10"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of Fulfillment Orders For A Specific Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2021-01/orders/:order_id/fulfillment_orders.json",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "order_id"
+              },
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the order that is associated with the fulfillment orders."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentorder#index-2021-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Specific Fulfillment Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2021-01/fulfillment_orders/:fulfillment_order_id.json",
+            "params": [
+              {
+                "name": "fulfillment_order_id",
+                "value": "",
+                "type": "path",
+                "description": "fulfillment_order_id"
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentorder#show-2021-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Marks A Fulfillment Order As Cancelled",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2021-01/fulfillment_orders/:fulfillment_order_id/cancel.json",
+            "params": [
+              {
+                "name": "fulfillment_order_id",
+                "value": "",
+                "type": "path",
+                "description": "fulfillment_order_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentorder#cancel-2021-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Marks An In Progress Fulfillment Order As Incomplete",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2021-01/fulfillment_orders/:fulfillment_order_id/close.json",
+            "params": [
+              {
+                "name": "fulfillment_order_id",
+                "value": "",
+                "type": "path",
+                "description": "fulfillment_order_id"
+              },
+              {
+                "name": "message",
+                "value": "",
+                "type": "query",
+                "description": "An optional reason for marking the fulfillment order as incomplete."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentorder#close-2021-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Moves A Fulfillment Order From One Merchant Managed Location To Another Merchant Managed Location",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2021-01/fulfillment_orders/:fulfillment_order_id/move.json",
+            "params": [
+              {
+                "name": "fulfillment_order_id",
+                "value": "",
+                "type": "path",
+                "description": "fulfillment_order_id"
+              },
+              {
+                "name": "new_location_id",
+                "value": "",
+                "type": "query",
+                "description": "The id of the location to which the fulfillment order will be moved."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentorder#move-2021-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Marks A Scheduled Fulfillment Order As Ready For Fulfillment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2021-01/fulfillment_orders/:fulfillment_order_id/open.json",
+            "params": [
+              {
+                "name": "fulfillment_order_id",
+                "value": "",
+                "type": "path",
+                "description": "fulfillment_order_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentorder#open-2021-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Updates The Fulfill_at Time Of A Scheduled Fulfillment Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2021-01/fulfillment_orders/:fulfillment_order_id/reschedule.json",
+            "params": [
+              {
+                "name": "fulfillment_order_id",
+                "value": "",
+                "type": "path",
+                "description": "fulfillment_order_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentorder#reschedule-2021-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of Fulfillment Orders For A Specific Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/unstable/orders/:order_id/fulfillment_orders.json",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "order_id"
+              },
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the order that is associated with the fulfillment orders."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentorder#index-unstable"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A Specific Fulfillment Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/unstable/fulfillment_orders/:fulfillment_order_id.json",
+            "params": [
+              {
+                "name": "fulfillment_order_id",
+                "value": "",
+                "type": "path",
+                "description": "fulfillment_order_id"
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentorder#show-unstable"
+        },
+        {
+          "info": {
+            "name": "Shopify Marks A Fulfillment Order As Cancelled",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/unstable/fulfillment_orders/:fulfillment_order_id/cancel.json",
+            "params": [
+              {
+                "name": "fulfillment_order_id",
+                "value": "",
+                "type": "path",
+                "description": "fulfillment_order_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentorder#cancel-unstable"
+        },
+        {
+          "info": {
+            "name": "Shopify Releases The Fulfillment Order Holds For A Specific Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/unstable/fulfillment_orders/release_hold.json",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the order that is associated to the fulfillment orders."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentorder#release_hold-unstable"
+        },
+        {
+          "info": {
+            "name": "Shopify Marks An In Progress Fulfillment Order As Incomplete",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/unstable/fulfillment_orders/:fulfillment_order_id/close.json",
+            "params": [
+              {
+                "name": "fulfillment_order_id",
+                "value": "",
+                "type": "path",
+                "description": "fulfillment_order_id"
+              },
+              {
+                "name": "message",
+                "value": "",
+                "type": "query",
+                "description": "An optional reason for marking the fulfillment order as incomplete."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentorder#close-unstable"
+        },
+        {
+          "info": {
+            "name": "Shopify Moves A Fulfillment Order From One Merchant Managed Location To Another Merchant Managed Location",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/unstable/fulfillment_orders/:fulfillment_order_id/move.json",
+            "params": [
+              {
+                "name": "fulfillment_order_id",
+                "value": "",
+                "type": "path",
+                "description": "fulfillment_order_id"
+              },
+              {
+                "name": "new_location_id",
+                "value": "",
+                "type": "query",
+                "description": "The id of the location to which the fulfillment order will be moved."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentorder#move-unstable"
+        },
+        {
+          "info": {
+            "name": "Shopify Marks A Scheduled Fulfillment Order As Ready For Fulfillment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/unstable/fulfillment_orders/:fulfillment_order_id/open.json",
+            "params": [
+              {
+                "name": "fulfillment_order_id",
+                "value": "",
+                "type": "path",
+                "description": "fulfillment_order_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentorder#open-unstable"
+        },
+        {
+          "info": {
+            "name": "Shopify Updates The Fulfill_at Time Of A Scheduled Fulfillment Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/unstable/fulfillment_orders/:fulfillment_order_id/reschedule.json",
+            "params": [
+              {
+                "name": "fulfillment_order_id",
+                "value": "",
+                "type": "path",
+                "description": "fulfillment_order_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentorder#reschedule-unstable"
+        },
+        {
+          "info": {
+            "name": "Shopify Sends A Fulfillment Request To The Fulfillment Service Of A Fulfillment Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-01/fulfillment_orders/:fulfillment_order_id/fulfillment_request.json",
+            "params": [
+              {
+                "name": "fulfillment_order_id",
+                "value": "",
+                "type": "path",
+                "description": "fulfillment_order_id"
+              },
+              {
+                "name": "message",
+                "value": "",
+                "type": "query",
+                "description": "An optional message for the fulfillment request."
+              },
+              {
+                "name": "fulfillment_order_line_items",
+                "value": "",
+                "type": "query",
+                "description": "The fulfillment order line items to be requested for fulfillment. If left blank, all line items of the fulfillment order are requested for fulfillment."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentrequest#create-2020-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Accepts A Fulfillment Request Sent To A Fulfillment Service For A Fulfillment Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-01/fulfillment_orders/:fulfillment_order_id/fulfillment_request/accept.json",
+            "params": [
+              {
+                "name": "fulfillment_order_id",
+                "value": "",
+                "type": "path",
+                "description": "fulfillment_order_id"
+              },
+              {
+                "name": "message",
+                "value": "",
+                "type": "query",
+                "description": "An optional reason for accepting the fulfillment request."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentrequest#accept-2020-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Rejects A Fulfillment Request Sent To A Fulfillment Service For A Fulfillment Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-01/fulfillment_orders/:fulfillment_order_id/fulfillment_request/reject.json",
+            "params": [
+              {
+                "name": "fulfillment_order_id",
+                "value": "",
+                "type": "path",
+                "description": "fulfillment_order_id"
+              },
+              {
+                "name": "message",
+                "value": "",
+                "type": "query",
+                "description": "An optional reason for rejecting the fulfillment request."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentrequest#reject-2020-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Sends A Fulfillment Request To The Fulfillment Service Of A Fulfillment Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-04/fulfillment_orders/:fulfillment_order_id/fulfillment_request.json",
+            "params": [
+              {
+                "name": "fulfillment_order_id",
+                "value": "",
+                "type": "path",
+                "description": "fulfillment_order_id"
+              },
+              {
+                "name": "message",
+                "value": "",
+                "type": "query",
+                "description": "An optional message for the fulfillment request."
+              },
+              {
+                "name": "fulfillment_order_line_items",
+                "value": "",
+                "type": "query",
+                "description": "The fulfillment order line items to be requested for fulfillment. If left blank, all line items of the fulfillment order are requested for fulfillment."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentrequest#create-2020-04"
+        },
+        {
+          "info": {
+            "name": "Shopify Accepts A Fulfillment Request Sent To A Fulfillment Service For A Fulfillment Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-04/fulfillment_orders/:fulfillment_order_id/fulfillment_request/accept.json",
+            "params": [
+              {
+                "name": "fulfillment_order_id",
+                "value": "",
+                "type": "path",
+                "description": "fulfillment_order_id"
+              },
+              {
+                "name": "message",
+                "value": "",
+                "type": "query",
+                "description": "An optional reason for accepting the fulfillment request."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentrequest#accept-2020-04"
+        },
+        {
+          "info": {
+            "name": "Shopify Rejects A Fulfillment Request Sent To A Fulfillment Service For A Fulfillment Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-04/fulfillment_orders/:fulfillment_order_id/fulfillment_request/reject.json",
+            "params": [
+              {
+                "name": "fulfillment_order_id",
+                "value": "",
+                "type": "path",
+                "description": "fulfillment_order_id"
+              },
+              {
+                "name": "message",
+                "value": "",
+                "type": "query",
+                "description": "An optional reason for rejecting the fulfillment request."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentrequest#reject-2020-04"
+        },
+        {
+          "info": {
+            "name": "Shopify Sends A Fulfillment Request To The Fulfillment Service Of A Fulfillment Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-07/fulfillment_orders/:fulfillment_order_id/fulfillment_request.json",
+            "params": [
+              {
+                "name": "fulfillment_order_id",
+                "value": "",
+                "type": "path",
+                "description": "fulfillment_order_id"
+              },
+              {
+                "name": "message",
+                "value": "",
+                "type": "query",
+                "description": "An optional message for the fulfillment request."
+              },
+              {
+                "name": "fulfillment_order_line_items",
+                "value": "",
+                "type": "query",
+                "description": "The fulfillment order line items to be requested for fulfillment. If left blank, all line items of the fulfillment order are requested for fulfillment."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentrequest#create-2020-07"
+        },
+        {
+          "info": {
+            "name": "Shopify Accepts A Fulfillment Request Sent To A Fulfillment Service For A Fulfillment Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-07/fulfillment_orders/:fulfillment_order_id/fulfillment_request/accept.json",
+            "params": [
+              {
+                "name": "fulfillment_order_id",
+                "value": "",
+                "type": "path",
+                "description": "fulfillment_order_id"
+              },
+              {
+                "name": "message",
+                "value": "",
+                "type": "query",
+                "description": "An optional reason for accepting the fulfillment request."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentrequest#accept-2020-07"
+        },
+        {
+          "info": {
+            "name": "Shopify Rejects A Fulfillment Request Sent To A Fulfillment Service For A Fulfillment Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-07/fulfillment_orders/:fulfillment_order_id/fulfillment_request/reject.json",
+            "params": [
+              {
+                "name": "fulfillment_order_id",
+                "value": "",
+                "type": "path",
+                "description": "fulfillment_order_id"
+              },
+              {
+                "name": "message",
+                "value": "",
+                "type": "query",
+                "description": "An optional reason for rejecting the fulfillment request."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentrequest#reject-2020-07"
+        },
+        {
+          "info": {
+            "name": "Shopify Sends A Fulfillment Request To The Fulfillment Service Of A Fulfillment Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-10/fulfillment_orders/:fulfillment_order_id/fulfillment_request.json",
+            "params": [
+              {
+                "name": "fulfillment_order_id",
+                "value": "",
+                "type": "path",
+                "description": "fulfillment_order_id"
+              },
+              {
+                "name": "message",
+                "value": "",
+                "type": "query",
+                "description": "An optional message for the fulfillment request."
+              },
+              {
+                "name": "fulfillment_order_line_items",
+                "value": "",
+                "type": "query",
+                "description": "The fulfillment order line items to be requested for fulfillment. If left blank, all line items of the fulfillment order are requested for fulfillment."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentrequest#create-2020-10"
+        },
+        {
+          "info": {
+            "name": "Shopify Accepts A Fulfillment Request Sent To A Fulfillment Service For A Fulfillment Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-10/fulfillment_orders/:fulfillment_order_id/fulfillment_request/accept.json",
+            "params": [
+              {
+                "name": "fulfillment_order_id",
+                "value": "",
+                "type": "path",
+                "description": "fulfillment_order_id"
+              },
+              {
+                "name": "message",
+                "value": "",
+                "type": "query",
+                "description": "An optional reason for accepting the fulfillment request."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentrequest#accept-2020-10"
+        },
+        {
+          "info": {
+            "name": "Shopify Rejects A Fulfillment Request Sent To A Fulfillment Service For A Fulfillment Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-10/fulfillment_orders/:fulfillment_order_id/fulfillment_request/reject.json",
+            "params": [
+              {
+                "name": "fulfillment_order_id",
+                "value": "",
+                "type": "path",
+                "description": "fulfillment_order_id"
+              },
+              {
+                "name": "message",
+                "value": "",
+                "type": "query",
+                "description": "An optional reason for rejecting the fulfillment request."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentrequest#reject-2020-10"
+        },
+        {
+          "info": {
+            "name": "Shopify Sends A Fulfillment Request To The Fulfillment Service Of A Fulfillment Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2021-01/fulfillment_orders/:fulfillment_order_id/fulfillment_request.json",
+            "params": [
+              {
+                "name": "fulfillment_order_id",
+                "value": "",
+                "type": "path",
+                "description": "fulfillment_order_id"
+              },
+              {
+                "name": "message",
+                "value": "",
+                "type": "query",
+                "description": "An optional message for the fulfillment request."
+              },
+              {
+                "name": "fulfillment_order_line_items",
+                "value": "",
+                "type": "query",
+                "description": "The fulfillment order line items to be requested for fulfillment. If left blank, all line items of the fulfillment order are requested for fulfillment."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentrequest#create-2021-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Accepts A Fulfillment Request Sent To A Fulfillment Service For A Fulfillment Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2021-01/fulfillment_orders/:fulfillment_order_id/fulfillment_request/accept.json",
+            "params": [
+              {
+                "name": "fulfillment_order_id",
+                "value": "",
+                "type": "path",
+                "description": "fulfillment_order_id"
+              },
+              {
+                "name": "message",
+                "value": "",
+                "type": "query",
+                "description": "An optional reason for accepting the fulfillment request."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentrequest#accept-2021-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Rejects A Fulfillment Request Sent To A Fulfillment Service For A Fulfillment Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2021-01/fulfillment_orders/:fulfillment_order_id/fulfillment_request/reject.json",
+            "params": [
+              {
+                "name": "fulfillment_order_id",
+                "value": "",
+                "type": "path",
+                "description": "fulfillment_order_id"
+              },
+              {
+                "name": "message",
+                "value": "",
+                "type": "query",
+                "description": "An optional reason for rejecting the fulfillment request."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentrequest#reject-2021-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Sends A Fulfillment Request To The Fulfillment Service Of A Fulfillment Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/unstable/fulfillment_orders/:fulfillment_order_id/fulfillment_request.json",
+            "params": [
+              {
+                "name": "fulfillment_order_id",
+                "value": "",
+                "type": "path",
+                "description": "fulfillment_order_id"
+              },
+              {
+                "name": "message",
+                "value": "",
+                "type": "query",
+                "description": "An optional message for the fulfillment request."
+              },
+              {
+                "name": "fulfillment_order_line_items",
+                "value": "",
+                "type": "query",
+                "description": "The fulfillment order line items to be requested for fulfillment. If left blank, all line items of the fulfillment order are requested for fulfillment."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentrequest#create-unstable"
+        },
+        {
+          "info": {
+            "name": "Shopify Accepts A Fulfillment Request Sent To A Fulfillment Service For A Fulfillment Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/unstable/fulfillment_orders/:fulfillment_order_id/fulfillment_request/accept.json",
+            "params": [
+              {
+                "name": "fulfillment_order_id",
+                "value": "",
+                "type": "path",
+                "description": "fulfillment_order_id"
+              },
+              {
+                "name": "message",
+                "value": "",
+                "type": "query",
+                "description": "An optional reason for accepting the fulfillment request."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentrequest#accept-unstable"
+        },
+        {
+          "info": {
+            "name": "Shopify Rejects A Fulfillment Request Sent To A Fulfillment Service For A Fulfillment Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/unstable/fulfillment_orders/:fulfillment_order_id/fulfillment_request/reject.json",
+            "params": [
+              {
+                "name": "fulfillment_order_id",
+                "value": "",
+                "type": "path",
+                "description": "fulfillment_order_id"
+              },
+              {
+                "name": "message",
+                "value": "",
+                "type": "query",
+                "description": "An optional reason for rejecting the fulfillment request."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentrequest#reject-unstable"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of Locations That A Fulfillment Order Can Potentially Move To",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-01/fulfillment_orders/:fulfillment_order_id/locations_for_move.json",
+            "params": [
+              {
+                "name": "fulfillment_order_id",
+                "value": "",
+                "type": "path",
+                "description": "fulfillment_order_id"
+              },
+              {
+                "name": "fulfillment_order_id",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the fulfillment order."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/locationsformove#index-2020-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of Locations That A Fulfillment Order Can Potentially Move To",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-04/fulfillment_orders/:fulfillment_order_id/locations_for_move.json",
+            "params": [
+              {
+                "name": "fulfillment_order_id",
+                "value": "",
+                "type": "path",
+                "description": "fulfillment_order_id"
+              },
+              {
+                "name": "fulfillment_order_id",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the fulfillment order."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/locationsformove#index-2020-04"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of Locations That A Fulfillment Order Can Potentially Move To",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-07/fulfillment_orders/:fulfillment_order_id/locations_for_move.json",
+            "params": [
+              {
+                "name": "fulfillment_order_id",
+                "value": "",
+                "type": "path",
+                "description": "fulfillment_order_id"
+              },
+              {
+                "name": "fulfillment_order_id",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the fulfillment order."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/locationsformove#index-2020-07"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of Locations That A Fulfillment Order Can Potentially Move To",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2020-10/fulfillment_orders/:fulfillment_order_id/locations_for_move.json",
+            "params": [
+              {
+                "name": "fulfillment_order_id",
+                "value": "",
+                "type": "path",
+                "description": "fulfillment_order_id"
+              },
+              {
+                "name": "fulfillment_order_id",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the fulfillment order."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/locationsformove#index-2020-10"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of Locations That A Fulfillment Order Can Potentially Move To",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/2021-01/fulfillment_orders/:fulfillment_order_id/locations_for_move.json",
+            "params": [
+              {
+                "name": "fulfillment_order_id",
+                "value": "",
+                "type": "path",
+                "description": "fulfillment_order_id"
+              },
+              {
+                "name": "fulfillment_order_id",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the fulfillment order."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/locationsformove#index-2021-01"
+        },
+        {
+          "info": {
+            "name": "Shopify Retrieves A List Of Locations That A Fulfillment Order Can Potentially Move To",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{store}.myshopify.com/admin/api/2025-01/admin/api/unstable/fulfillment_orders/:fulfillment_order_id/locations_for_move.json",
+            "params": [
+              {
+                "name": "fulfillment_order_id",
+                "value": "",
+                "type": "path",
+                "description": "fulfillment_order_id"
+              },
+              {
+                "name": "fulfillment_order_id",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the fulfillment order."
+              }
+            ]
+          },
+          "docs": "https://shopify.dev/docs/admin-api/rest/reference/shipping-and-fulfillment/locationsformove#index-unstable"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
