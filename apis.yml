@@ -2,6 +2,7 @@ aid: shopify
 url: https://raw.githubusercontent.com/api-search/commerce/main/_apis/shopify/apis.md
 apis:
 - aid: shopify:graphql-admin-api
+  baseURL: https://{store}.myshopify.com/admin/api/2026-07/graphql.json
   name: Shopify GraphQL Admin API
   tags:
   - Admin
@@ -22,6 +23,7 @@ apis:
     It provides access to products, customers, orders, inventory, fulfillment, and more. GraphQL is the
     recommended API for all new Shopify app development.
 - aid: shopify:storefront-api
+  baseURL: https://{store}.myshopify.com/api/2026-07/graphql.json
   name: Shopify Storefront API
   tags:
   - Commerce
@@ -36,11 +38,15 @@ apis:
     type: GettingStarted
   - url: https://shopify.dev/docs/api/storefront/latest
     type: Reference
+  - url: graphql/shopify-storefront-api.graphql
+    type: GraphQL
+    name: Storefront API GraphQL SDL — 414 types, recovered by introspection of mock.shop/api
   description: >-
     The Storefront API is a GraphQL API that provides commerce primitives to build custom, scalable, and
     performant shopping experiences on any platform, including the web, apps, and games. It enables customers
     to view products and collections, add products to a cart, and check out.
 - aid: shopify:customer-account-api
+  baseURL: https://shopify.com/authentication/{shopId}
   name: Shopify Customer Account API
   tags:
   - Account
@@ -64,6 +70,7 @@ apis:
     to build personalized, customer-authenticated experiences in your custom storefronts or apps. Customers
     can view their orders, manage their profile, and more.
 - aid: shopify:partner-api
+  baseURL: https://partners.shopify.com/{organization_id}/api/2026-07/graphql.json
   name: Shopify Partner API
   tags:
   - Commerce
@@ -78,6 +85,7 @@ apis:
     your earnings, app events, and for participating partners, Experts Marketplace opportunities. It is
     a GraphQL API that enables Shopify Partners to automate operations.
 - aid: shopify:payments-apps-api
+  baseURL: https://{store}.myshopify.com/payments_apps/api/2026-07/graphql.json
   name: Shopify Payments Apps API
   tags:
   - Commerce
@@ -8369,6 +8377,8 @@ tags_raw:
 kind: contract
 access: 3rd-Party
 common:
+- type: VulnerabilityDisclosure
+  url: security/shopify-vulnerability-disclosure.yml
 - type: AgenticAccess
   url: agentic-access/shopify-agentic-access.yml
 - type: DomainSecurity
@@ -8467,7 +8477,7 @@ common:
   description: 'null'
 - url: https://shopify.dev
   type: Portal
-- url: https://shopify.dev/docs/api/admin-rest/resources/sdk
+- url: https://shopify.dev/docs/api/libraries-and-templates
   type: SDKs
 - url: https://shopify.dev/docs/api/usage/rate-limits
   type: RateLimits
@@ -8477,7 +8487,7 @@ common:
   type: Versioning
 - url: https://www.shopifystatus.com
   type: StatusPage
-- url: https://shopify.dev/docs/api/usage/support
+- url: https://community.shopify.dev/c/dev-platform/32
   type: Support
 - url: https://www.shopify.com/legal/api-terms
   type: TermsOfService
@@ -8487,8 +8497,10 @@ common:
   type: Signup
 - url: https://shopify.dev/docs/apps/build/webhooks
   type: Webhooks
-- url: https://shopify.dev/docs/apps/build/authentication-authorization
+- url: security/shopify-vulnerability-disclosure.yml
   type: Security
+- url: https://shopify.dev/docs/apps/build/authentication-authorization
+  type: AuthenticationDocs
 - url: https://shopify.dev/docs/api/usage/access-scopes
   type: Access Scopes
 - url: https://community.shopify.dev/
@@ -8550,7 +8562,70 @@ common:
   - https://www.shopify.com/pricing
   updated: '2026-05-04'
 - type: LlmsText
-  url: https://shopify.dev/llms.txt
+  url: llms/shopify-llms.txt
+- type: Packages
+  url: packages/shopify-packages.yml
+- type: SDKs
+  url: packages/shopify-packages.yml
+- type: WellKnown
+  url: well-known/shopify-well-known.yml
+- type: SecurityTxt
+  url: well-known/shopify-security.txt
+- type: MCPServer
+  url: mcp/shopify-mcp.yml
+  name: Shopify Global Catalog MCP (remote) + Storefront/Cart/Checkout MCP + Dev MCP (stdio)
+- type: ToolCrosswalk
+  url: mcp/shopify-tool-crosswalk.yml
+- type: AgentSkill
+  url: skills/_index.yml
+  name: Shopify AI Toolkit — 21 provider-published Agent Skills
+- type: Overlay
+  url: overlays/shopify-admin-rest-overlay.yaml
+- type: Overlay
+  url: overlays/shopify-ajax-api-overlay.yaml
+- type: Conformance
+  url: conformance/shopify-conformance.yml
+- type: Compliance
+  url: security/shopify-trust-center.yml
+- type: TrustCenter
+  url: security/shopify-trust-center.yml
+- type: ErrorCatalog
+  url: errors/shopify-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/shopify-lifecycle.yml
+- type: Deprecation
+  url: https://shopify.dev/docs/api/usage/versioning#deprecation-practices
+- type: OAuthScopes
+  url: scopes/shopify-scopes.yml
+- type: Conventions
+  url: conventions/shopify-conventions.yml
+- type: Idempotency
+  url: conventions/shopify-conventions.yml
+  name: UCP idempotency-key, required on cancel_cart / complete_checkout / cancel_checkout
+- type: Sandbox
+  url: sandbox/shopify-sandbox.yml
+- type: ChangeLog
+  url: changelog/shopify-changelog.yml
+- type: CLI
+  url: cli/shopify-cli.yml
+- type: Components
+  url: components/shopify-components.yml
+- type: DataModel
+  url: data-model/shopify-data-model.yml
+- type: Webhooks
+  url: asyncapi/shopify-webhooks.yml
+  name: Shopify webhook catalog — 206 topics across 65 resource groups
+- type: Plans
+  url: plans/shopify-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/shopify-rate-limits.yml
+- type: GraphQL
+  url: graphql/shopify-storefront-api.graphql
+  name: Shopify Storefront API GraphQL SDL (414 types)
+- type: Pricing
+  url: https://www.shopify.com/pricing
+- type: APIReference
+  url: https://shopify.dev/docs/api
 accessModel:
   pricing: paid
   onboarding: self-serve
@@ -8565,11 +8640,15 @@ accessModel:
   generated: '2026-07-22'
   method: derived
 created: '2024-04-14'
-modified: '2026-05-19'
+modified: '2026-08-27'
 position: Consuming
 description: >-
-  Shopify is a complete commerce platform that lets you start, grow, and manage a business. The Shopify API lets you
-  build apps and integrations that extend Shopify functionality for merchants.
+  Shopify is a complete commerce platform that lets you start, grow, and manage a business, selling online, in person,
+  on marketplaces, through social channels, and now inside AI chats. Its developer platform exposes GraphQL Admin,
+  Storefront and Customer Account APIs, a legacy Admin REST surface, 206 webhook topics, Shopify Functions, Hydrogen
+  and the Shopify CLI, so apps and integrations can extend Shopify for merchants and buyers alike. Shopify also runs
+  four MCP servers bound to the Universal Commerce Protocol, letting AI agents search a cross-merchant catalog, build
+  carts, complete checkouts and track orders.
 maintainers:
 - FN: Kin Lane
   url: http://apievangelist.com
@@ -8579,3 +8658,8 @@ maintainers:
   url: https://www.shopify.com
 specificationVersion: '0.23'
 image: https://cdn.shopify.com/shopifycloud/brochure/assets/brand-assets/shopify-logo.png
+x-enrichment:
+  date: '2026-08-27'
+  status: enriched
+  artifacts_added: 48
+  pass: local-v1
