@@ -1,0 +1,190 @@
+generated: '2026-08-27'
+method: probed
+source: >-
+  https://catalog.shopify.com/api/ucp/mcp (live tools/list, HTTP 200, anonymous) +
+  https://catalog.shopify.com/.well-known/ucp +
+  https://shopify.dev/docs/agents + https://shopify.dev/docs/apps/build/ai-toolkit +
+  https://shopify.dev/docs/apps/build/storefront-mcp — all fetched 2026-08-27
+provider: Shopify
+providerId: shopify
+name: Shopify MCP servers
+description: >-
+  Shopify ships more MCP surface than any other commerce platform in this catalog, across four
+  distinct servers. One is a hosted, anonymous, cross-merchant server on Shopify's own domain
+  (Global Catalog); two are per-merchant servers served from each store's domain; one is a local
+  stdio developer-tools server distributed on npm. Everything buyer-facing is bound to the
+  Universal Commerce Protocol (UCP), an open standard Shopify publishes at ucp.dev — the tools are
+  not a bespoke Shopify vocabulary but a conformant binding.
+deployment:
+  mode: both
+  endpoint: https://catalog.shopify.com/api/ucp/mcp
+  install: npx -y @shopify/dev-mcp@latest
+  package: https://www.npmjs.com/package/@shopify/dev-mcp
+  auth: none
+  verified: probed
+  note: >-
+    mode is `both` and both halves were verified independently. The remote endpoint answered a real
+    JSON-RPC tools/list anonymously (HTTP 200, three tools with full JSON Schema inputSchemas) and is
+    self-declared at https://catalog.shopify.com/.well-known/ucp. The stdio install string is
+    verbatim from Shopify's AI Toolkit documentation. Higher trust tiers (Bearer token via
+    https://api.shopify.com/auth/access_token) unlock broader access and higher rate limits, but the
+    catalog tools are callable with no credential at all.
+servers:
+- id: global-catalog-mcp
+  name: Global Catalog MCP
+  mode: remote
+  endpoint: https://catalog.shopify.com/api/ucp/mcp
+  transport: streamable-http (JSON-RPC 2.0)
+  auth: none
+  auth_tiers:
+  - tier: anonymous
+    detail: Lowest rate limits. Catalog tools callable; Checkout MCP not available.
+  - tier: signed
+    detail: Signed request. Higher limits.
+  - tier: token
+    detail: Bearer token from https://api.shopify.com/auth/access_token. Highest limits.
+  verified: probed
+  probe:
+    fetched: '2026-08-27'
+    method: 'POST tools/list'
+    http_status: 200
+    tools_returned: 3
+    file: mcp/shopify-catalog-mcp-tools.json
+  scope: Cross-merchant. Searches products across every Shopify merchant from one endpoint.
+  requires: >-
+    Every request must carry meta["ucp-agent"].profile — a URI pointing at the calling agent's own
+    hosted UCP profile. Returned tools depend on the capabilities that profile advertises.
+  docs: https://shopify.dev/docs/agents/catalog/global-catalog
+  tools:
+  - name: search_catalog
+    description: Search for products across multiple Shopify stores in the global catalog.
+    ucp_capability: dev.ucp.shopping.catalog.search
+    input_schema: present (JSON Schema draft 2020-12) — see mcp/shopify-catalog-mcp-tools.json
+  - name: lookup_catalog
+    description: Retrieve products or variants by identifier (up to 10 ids).
+    ucp_capability: dev.ucp.shopping.catalog.lookup
+    input_schema: present
+  - name: get_product
+    description: Full detail for one product, with interactive variant selection.
+    ucp_capability: dev.shopify.catalog
+    input_schema: present
+- id: storefront-mcp
+  name: Storefront MCP
+  mode: remote
+  endpoint: https://{shop}.myshopify.com/api/mcp
+  ucp_endpoint: https://{shop}.myshopify.com/api/ucp/mcp
+  transport: streamable-http (JSON-RPC 2.0)
+  auth: none
+  verified: searched
+  scope: One merchant. Catalog, cart and store policies for the store the shopper is on.
+  docs: https://shopify.dev/docs/apps/build/storefront-mcp/servers/storefront
+  note: >-
+    Templated per store — the host is the merchant's, not Shopify's, so it cannot be probed against a
+    corporate domain. Shopify states plainly that these endpoints require no authentication. The UCP
+    catalog tools live on /api/ucp/mcp; the standard cart and policy tools live on /api/mcp.
+  tools:
+  - name: search_catalog
+    ucp_capability: dev.ucp.shopping.catalog.search
+    endpoint: /api/ucp/mcp
+  - name: lookup_catalog
+    ucp_capability: dev.ucp.shopping.catalog.lookup
+    endpoint: /api/ucp/mcp
+  - name: get_product
+    ucp_capability: dev.shopify.catalog
+    endpoint: /api/ucp/mcp
+  - name: search_shop_policies_and_faqs
+    description: Answers questions about the store's policies, shipping, returns and FAQs.
+    endpoint: /api/mcp
+  - name: get_cart
+    description: Retrieve current cart contents including checkout URL.
+    endpoint: /api/mcp
+  - name: update_cart
+    description: Update quantities or add items; creates a cart when no cart_id is given; quantity 0 removes.
+    endpoint: /api/mcp
+  - name: create_cart
+    ucp_capability: dev.ucp.shopping.cart
+    endpoint: /api/ucp/mcp
+  - name: cancel_cart
+    ucp_capability: dev.ucp.shopping.cart
+    endpoint: /api/ucp/mcp
+    idempotency: 'requires meta["idempotency-key"] (UUID)'
+  - name: create_checkout
+    ucp_capability: dev.ucp.shopping.checkout
+    endpoint: /api/ucp/mcp
+  - name: get_checkout
+    ucp_capability: dev.ucp.shopping.checkout
+    endpoint: /api/ucp/mcp
+  - name: update_checkout
+    ucp_capability: dev.ucp.shopping.checkout
+    endpoint: /api/ucp/mcp
+  - name: complete_checkout
+    ucp_capability: dev.ucp.shopping.checkout
+    endpoint: /api/ucp/mcp
+    idempotency: 'requires meta["idempotency-key"] (UUID)'
+    auth: Bearer token required; not available to anonymous agents.
+  - name: cancel_checkout
+    ucp_capability: dev.ucp.shopping.checkout
+    endpoint: /api/ucp/mcp
+    idempotency: 'requires meta["idempotency-key"] (UUID)'
+- id: customer-account-mcp
+  name: Customer Accounts MCP
+  mode: remote
+  endpoint: https://{shop-domain}/customer/api/mcp
+  discovery: https://{shop-domain}/.well-known/customer-account-api
+  transport: streamable-http (JSON-RPC 2.0)
+  auth: oauth
+  verified: searched
+  scope: One authenticated customer. Order tracking, returns, account details.
+  docs: https://shopify.dev/docs/apps/build/storefront-mcp/servers/customer-account
+  note: >-
+    Requires an OAuth 2.0 access token obtained via authorization code + PKCE, discovered from
+    https://{shop-domain}/.well-known/openid-configuration. Requires a custom domain on the store and
+    Level 2 protected customer data approval. Returns 401 to unauthenticated callers, which is the
+    documented signal to start the OAuth flow.
+  tools_note: >-
+    Tool schemas are auth-gated; they were NOT introspected. Shopify documents the capability set
+    (order status, order detail, returns, account preferences) but the live tools/list requires a
+    customer access token. Listing tool names here without schemas would be a guess, so none are
+    recorded.
+- id: dev-mcp
+  name: Shopify Dev MCP
+  mode: local-stdio
+  install: npx -y @shopify/dev-mcp@latest
+  package: https://www.npmjs.com/package/@shopify/dev-mcp
+  package_version: 1.14.6
+  package_published: '2026-08-27'
+  auth: none
+  verified: searched
+  scope: Developer tooling. Docs search, API schema lookup, GraphQL/Liquid/extension validation.
+  docs: https://shopify.dev/docs/apps/build/ai-toolkit
+  note: >-
+    Runs locally, requires no authentication, and is NOT an agent-reachable surface — a human installs
+    and runs it first. Shopify's own recommendation has moved past it: the AI Toolkit plugin (agent
+    skills) is documented as the preferred install, with the MCP server offered as the "if you prefer
+    MCP" alternative.
+standard:
+  name: Universal Commerce Protocol (UCP)
+  version: '2026-04-08'
+  spec: https://ucp.dev
+  shopify_docs: https://shopify.dev/docs/agents
+  discovery_document: well-known/shopify-catalog-ucp.json
+  capabilities_declared:
+  - dev.ucp.shopping.catalog.search
+  - dev.ucp.shopping.catalog.lookup
+  - dev.shopify.catalog.global
+  - dev.ucp.common.identity_linking
+  note: >-
+    Shopify's buyer-facing MCP tools are a binding of an open standard, not a private tool
+    vocabulary. An agent that already speaks UCP integrates with no Shopify-specific connector.
+negative_probes:
+- url: https://mcp.shopify.com/mcp
+  status: 404
+  note: Host is a Shopify "Store unavailable" page; not an MCP endpoint.
+- url: https://mcp.shopify.dev/mcp
+  status: 0
+  note: DNS does not resolve.
+- url: https://mock.shop/api/mcp
+  status: 404
+  note: mock.shop serves the Storefront GraphQL API only; no MCP binding.
+- url: https://shopify.dev/mcp
+  status: 404

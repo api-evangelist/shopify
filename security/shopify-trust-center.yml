@@ -1,0 +1,56 @@
+generated: '2026-08-27'
+method: searched
+source: https://www.shopify.com/security (HTTP 200, fetched 2026-08-27)
+provider: Shopify
+providerId: shopify
+trust_center:
+  url: https://www.shopify.com/security
+  http_status: 200
+  verified: '2026-08-27'
+  name: Shopify Security
+certifications:
+- name: PCI DSS
+  level: Level 1
+  status: certified
+  evidence: >-
+    "Shopify is certified Level 1 PCI DSS compliant." — https://www.shopify.com/security.
+    Level 1 is the highest of the four PCI merchant tiers.
+- name: SOC 2 Type II
+  status: issued
+  evidence: '"Shopify has been issued SOC 2 Type II and SOC 3 reports for the service we provide to our customers."'
+- name: SOC 3
+  status: issued
+  evidence: Same statement; SOC 3 is the publicly distributable form of the SOC 2 report.
+compliance_programs:
+- name: GDPR
+  detail: >-
+    Enforced in the platform, not just claimed on a page: every app distributed through the Shopify
+    App Store is REQUIRED to subscribe to the mandatory compliance webhook topics
+    (customers/data_request, customers/redact, shop/redact).
+  docs: https://shopify.dev/docs/apps/build/privacy-law-compliance
+- name: CCPA
+  detail: Handled through the same mandatory compliance webhook mechanism.
+- name: Protected customer data requirements
+  detail: >-
+    A tiered approval regime for apps that touch customer PII. Level 2 (PII) access must be requested
+    from the Partner Dashboard and is gated on meeting Shopify's protected customer data requirements.
+  docs: https://shopify.dev/docs/apps/launch/protected-customer-data
+reports:
+  detail: Compliance reports are available on request through the Shopify security page.
+transparency_report:
+  published: true
+  detail: Linked from https://www.shopify.com/security
+bug_bounty:
+  platform: HackerOne
+  url: https://hackerone.com/shopify
+  acknowledgments: https://hackerone.com/shopify/thanks
+  declared_in: well-known/shopify-security.txt
+  cross_reference: security/shopify-vulnerability-disclosure.yml
+evidence:
+- url: https://www.shopify.com/security
+  status: 200
+- url: https://www.shopify.com/.well-known/security.txt
+  status: 200
+- url: https://trust.shopify.com
+  status: 404
+  note: No separate trust.shopify.com subdomain; the trust surface is www.shopify.com/security.

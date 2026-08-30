@@ -1,0 +1,181 @@
+generated: '2026-08-27'
+method: searched
+source: https://shopify.dev/docs/api/usage/access-scopes.md
+docs: https://shopify.dev/docs/api/usage/access-scopes
+provider: Shopify
+providerId: shopify
+note: Shopify OAuth 2.0 access scopes, read verbatim from the published access-scopes reference (markdown twin of
+  the HTML page, fetched 2026-08-27, HTTP 200). Three disjoint scope families, one per API surface. The OAuth endpoints
+  themselves are UNVERSIONED per https://shopify.dev/docs/api/usage/versioning.
+flows:
+- authorization_code
+- token_exchange
+authorization_url: https://{store}.myshopify.com/admin/oauth/authorize
+token_url: https://{store}.myshopify.com/admin/oauth/access_token
+families:
+- name: Authenticated access scopes
+  api: GraphQL Admin API / Admin REST API
+  granularity: read_/write_ per resource
+  note: Requested during app authorization. Some scopes (read_all_orders, read_customer_payment_methods, write_own_subscription_contracts,
+    and the protected-customer-data tiers) require Shopify approval before they can be granted.
+  count: 110
+  scopes:
+  - scope: read_all_orders
+  - scope: read_analytics_annotations
+  - scope: read_assigned_fulfillment_orders
+  - scope: read_cart_transforms
+  - scope: read_checkout_and_accounts_configurations
+  - scope: read_checkout_branding_settings
+  - scope: read_content
+  - scope: read_customer_events
+  - scope: read_customer_merge
+  - scope: read_customer_payment_methods
+  - scope: read_customers
+  - scope: read_delivery_customizations
+  - scope: read_discounts
+  - scope: read_draft_orders
+  - scope: read_files
+  - scope: read_fulfillments
+  - scope: read_gift_cards
+  - scope: read_inventory
+  - scope: read_inventory_shipments
+  - scope: read_inventory_shipments_received_items
+  - scope: read_inventory_transfers
+  - scope: read_legal_policies
+  - scope: read_locales
+  - scope: read_locations
+  - scope: read_marketing_events
+  - scope: read_marketplace_fulfillment_orders
+  - scope: read_markets
+  - scope: read_merchant_approval_signals
+  - scope: read_merchant_managed_fulfillment_orders
+  - scope: read_metaobject_definitions
+  - scope: read_metaobjects
+  - scope: read_online_store_navigation
+  - scope: read_online_store_pages
+  - scope: read_order_edits
+  - scope: read_orders
+  - scope: read_own_subscription_contracts
+  - scope: read_payment_customizations
+  - scope: read_payment_gateways
+  - scope: read_payment_mandate
+  - scope: read_payment_terms
+  - scope: read_price_rules
+  - scope: read_privacy_settings
+  - scope: read_products
+  - scope: read_purchase_options
+  - scope: read_reports
+  - scope: read_returns
+  - scope: read_script_tags
+  - scope: read_shipping
+  - scope: read_shopify_payments_dispute_evidences
+  - scope: read_shopify_payments_dispute_file_uploads
+  - scope: read_shopify_payments_disputes
+  - scope: read_shopify_payments_payouts
+  - scope: read_store_credit_account_transactions
+  - scope: read_store_credit_accounts
+  - scope: read_themes
+  - scope: read_third_party_fulfillment_orders
+  - scope: read_translations
+  - scope: read_users
+  - scope: read_validations
+  - scope: write_analytics_annotations
+  - scope: write_app_proxy
+  - scope: write_assigned_fulfillment_orders
+  - scope: write_cart_transforms
+  - scope: write_checkout_and_accounts_configurations
+  - scope: write_checkout_branding_settings
+  - scope: write_content
+  - scope: write_customer_merge
+  - scope: write_customers
+  - scope: write_delivery_customizations
+  - scope: write_discounts
+  - scope: write_draft_orders
+  - scope: write_files
+  - scope: write_fulfillments
+  - scope: write_gift_cards
+  - scope: write_inventory
+  - scope: write_inventory_shipments
+  - scope: write_inventory_shipments_received_items
+  - scope: write_inventory_transfers
+  - scope: write_locales
+  - scope: write_locations
+  - scope: write_marketing_events
+  - scope: write_markets
+  - scope: write_merchant_managed_fulfillment_orders
+  - scope: write_metaobject_definitions
+  - scope: write_metaobjects
+  - scope: write_online_store_navigation
+  - scope: write_order_edits
+  - scope: write_orders
+  - scope: write_own_subscription_contracts
+  - scope: write_payment_customizations
+  - scope: write_payment_gateways
+  - scope: write_payment_mandate
+  - scope: write_payment_sessions
+  - scope: write_payment_terms
+  - scope: write_pixels
+  - scope: write_price_rules
+  - scope: write_privacy_settings
+  - scope: write_products
+  - scope: write_purchase_options
+  - scope: write_reports
+  - scope: write_returns
+  - scope: write_script_tags
+  - scope: write_shipping
+  - scope: write_shopify_payments_dispute_evidences
+  - scope: write_shopify_payments_dispute_file_uploads
+  - scope: write_store_credit_account_transactions
+  - scope: write_themes
+  - scope: write_third_party_fulfillment_orders
+  - scope: write_translations
+  - scope: write_validations
+- name: Unauthenticated access scopes
+  api: Storefront API
+  granularity: unauthenticated_read_/unauthenticated_write_ per object
+  note: Buyer-facing scopes for a public Storefront API access token. They grant access on behalf of a shopper,
+    not a merchant.
+  count: 12
+  scopes:
+  - scope: unauthenticated_read_checkouts
+  - scope: unauthenticated_read_content
+  - scope: unauthenticated_read_customer_tags
+  - scope: unauthenticated_read_customers
+  - scope: unauthenticated_read_metaobjects
+  - scope: unauthenticated_read_product_inventory
+  - scope: unauthenticated_read_product_listings
+  - scope: unauthenticated_read_product_pickup_locations
+  - scope: unauthenticated_read_product_tags
+  - scope: unauthenticated_read_selling_plans
+  - scope: unauthenticated_write_checkouts
+  - scope: unauthenticated_write_customers
+- name: Customer access scopes
+  api: Customer Account API
+  granularity: customer_read_/customer_write_ per object
+  note: Scopes for data that belongs to an individual customer, obtained via the authorization code flow with PKCE.
+    Level 2 protected customer data (PII) access must be requested from the Partner Dashboard.
+  count: 15
+  scopes:
+  - scope: customer_read_companies
+  - scope: customer_read_customers
+  - scope: customer_read_draft_orders
+  - scope: customer_read_locations
+  - scope: customer_read_markets
+  - scope: customer_read_metaobjects
+  - scope: customer_read_orders
+  - scope: customer_read_own_subscription_contracts
+  - scope: customer_read_store_credit_accounts
+  - scope: customer_write_companies
+  - scope: customer_write_customers
+  - scope: customer_write_locations
+  - scope: customer_write_orders
+  - scope: customer_write_own_subscription_contracts
+  - scope: customer_write_subscription_contracts
+scope_count: 137
+checking_granted_scopes:
+  method: appInstallation query on the GraphQL Admin API
+  docs: https://shopify.dev/docs/api/admin-graphql/latest/queries/appInstallation
+evidence:
+- url: https://shopify.dev/docs/api/usage/access-scopes.md
+  status: 200
+  fetched: '2026-08-27'

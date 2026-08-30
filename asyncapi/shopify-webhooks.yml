@@ -1,0 +1,452 @@
+generated: '2026-08-27'
+method: searched
+source: https://shopify.dev/docs/api/webhooks/latest.md (HTTP 200, api_version 2026-07, fetched 2026-08-27)
+docs: https://shopify.dev/docs/api/webhooks
+provider: Shopify
+providerId: shopify
+type: Webhooks
+asyncapi_published: false
+note: Shopify documents 206 webhook topics across 65 resource groups with a sample payload for every one, but publishes
+  NO AsyncAPI document — the whole event surface exists only as an HTML/markdown reference. Topic names and grouping
+  below are extracted verbatim from that reference; nothing here is inferred. Webhook payloads are versioned on
+  the same quarterly train as API responses and carry X-Shopify-Api-Version.
+transport:
+  delivery_methods:
+  - https
+  - pubsub
+  - eventbridge
+  protocol: HTTP POST (JSON) or Google Pub/Sub or Amazon EventBridge
+  version_header: X-Shopify-Api-Version
+  api_version: 2026-07
+subscription:
+  declarative:
+    mechanism: shopify.app.toml [[webhooks.subscriptions]]
+    scope: app-wide, applied across every shop the app is installed on
+    requires: Shopify CLI 3.63.0 or greater
+  programmatic:
+    mechanism: webhookSubscriptionCreate mutation on the GraphQL Admin API
+    scope: shop-specific
+  rest:
+    operations:
+    - listWebhooks
+    - createWebhook
+    - getWebhook
+    - updateWebhook
+    - deleteWebhook
+    - getWebhookCount
+    spec: openapi/_original/shopify-admin-rest-api-openapi.yml
+mandatory_compliance_topics:
+  note: Every app distributed through the Shopify App Store MUST subscribe to these.
+  docs: https://shopify.dev/docs/apps/build/privacy-law-compliance
+  topics:
+  - customers/data_request
+  - customers/redact
+  - shop/redact
+topic_count: 206
+group_count: 65
+groups:
+- group: fulfillment_orders
+  count: 20
+  topics:
+  - fulfillment_orders/cancellation_request_accepted
+  - fulfillment_orders/cancellation_request_rejected
+  - fulfillment_orders/cancellation_request_submitted
+  - fulfillment_orders/cancelled
+  - fulfillment_orders/fulfillment_request_accepted
+  - fulfillment_orders/fulfillment_request_rejected
+  - fulfillment_orders/fulfillment_request_submitted
+  - fulfillment_orders/fulfillment_service_failed_to_complete
+  - fulfillment_orders/hold_released
+  - fulfillment_orders/line_items_prepared_for_local_delivery
+  - fulfillment_orders/line_items_prepared_for_pickup
+  - fulfillment_orders/manually_reported_progress_stopped
+  - fulfillment_orders/merged
+  - fulfillment_orders/moved
+  - fulfillment_orders/order_routing_complete
+  - fulfillment_orders/placed_on_hold
+  - fulfillment_orders/progress_reported
+  - fulfillment_orders/rescheduled
+  - fulfillment_orders/scheduled_fulfillment_order_ready
+  - fulfillment_orders/split
+- group: orders
+  count: 11
+  topics:
+  - orders/cancelled
+  - orders/create
+  - orders/delete
+  - orders/edited
+  - orders/fulfilled
+  - orders/link_requested
+  - orders/paid
+  - orders/partially_fulfilled
+  - orders/risk_assessment_changed
+  - orders/shopify_protect_eligibility_changed
+  - orders/updated
+- group: customers
+  count: 9
+  topics:
+  - customers/create
+  - customers/data_request
+  - customers/delete
+  - customers/disable
+  - customers/enable
+  - customers/merge
+  - customers/purchasing_summary
+  - customers/redact
+  - customers/update
+- group: inventory_shipments
+  count: 8
+  topics:
+  - inventory_shipments/add_items
+  - inventory_shipments/create
+  - inventory_shipments/delete
+  - inventory_shipments/mark_in_transit
+  - inventory_shipments/receive_items
+  - inventory_shipments/remove_items
+  - inventory_shipments/update_item_quantities
+  - inventory_shipments/update_tracking
+- group: inventory_transfers
+  count: 7
+  topics:
+  - inventory_transfers/add_items
+  - inventory_transfers/cancel
+  - inventory_transfers/complete
+  - inventory_transfers/ready_to_ship
+  - inventory_transfers/remove_items
+  - inventory_transfers/update_item_quantities
+  - inventory_transfers/updated
+- group: returns
+  count: 7
+  topics:
+  - returns/approve
+  - returns/cancel
+  - returns/close
+  - returns/decline
+  - returns/reopen
+  - returns/request
+  - returns/update
+- group: subscription_contracts
+  count: 7
+  topics:
+  - subscription_contracts/activate
+  - subscription_contracts/cancel
+  - subscription_contracts/create
+  - subscription_contracts/expire
+  - subscription_contracts/fail
+  - subscription_contracts/pause
+  - subscription_contracts/update
+- group: discounts
+  count: 5
+  topics:
+  - discounts/create
+  - discounts/delete
+  - discounts/redeemcode_added
+  - discounts/redeemcode_removed
+  - discounts/update
+- group: locations
+  count: 5
+  topics:
+  - locations/activate
+  - locations/create
+  - locations/deactivate
+  - locations/delete
+  - locations/update
+- group: product_feeds
+  count: 5
+  topics:
+  - product_feeds/create
+  - product_feeds/full_sync
+  - product_feeds/full_sync_finish
+  - product_feeds/incremental_sync
+  - product_feeds/update
+- group: themes
+  count: 4
+  topics:
+  - themes/create
+  - themes/delete
+  - themes/publish
+  - themes/update
+- group: checkouts
+  count: 3
+  topics:
+  - checkouts/create
+  - checkouts/delete
+  - checkouts/update
+- group: collection_listings
+  count: 3
+  topics:
+  - collection_listings/add
+  - collection_listings/remove
+  - collection_listings/update
+- group: collection_publications
+  count: 3
+  topics:
+  - collection_publications/create
+  - collection_publications/delete
+  - collection_publications/update
+- group: collections
+  count: 3
+  topics:
+  - collections/create
+  - collections/delete
+  - collections/update
+- group: companies
+  count: 3
+  topics:
+  - companies/create
+  - companies/delete
+  - companies/update
+- group: company_contacts
+  count: 3
+  topics:
+  - company_contacts/create
+  - company_contacts/delete
+  - company_contacts/update
+- group: company_locations
+  count: 3
+  topics:
+  - company_locations/create
+  - company_locations/delete
+  - company_locations/update
+- group: customer_groups
+  count: 3
+  topics:
+  - customer_groups/create
+  - customer_groups/delete
+  - customer_groups/update
+- group: customer_payment_methods
+  count: 3
+  topics:
+  - customer_payment_methods/create
+  - customer_payment_methods/revoke
+  - customer_payment_methods/update
+- group: domains
+  count: 3
+  topics:
+  - domains/create
+  - domains/destroy
+  - domains/update
+- group: draft_orders
+  count: 3
+  topics:
+  - draft_orders/create
+  - draft_orders/delete
+  - draft_orders/update
+- group: inventory_items
+  count: 3
+  topics:
+  - inventory_items/create
+  - inventory_items/delete
+  - inventory_items/update
+- group: inventory_levels
+  count: 3
+  topics:
+  - inventory_levels/connect
+  - inventory_levels/disconnect
+  - inventory_levels/update
+- group: locales
+  count: 3
+  topics:
+  - locales/create
+  - locales/destroy
+  - locales/update
+- group: markets
+  count: 3
+  topics:
+  - markets/create
+  - markets/delete
+  - markets/update
+- group: metafield_definitions
+  count: 3
+  topics:
+  - metafield_definitions/create
+  - metafield_definitions/delete
+  - metafield_definitions/update
+- group: metaobjects
+  count: 3
+  topics:
+  - metaobjects/create
+  - metaobjects/delete
+  - metaobjects/update
+- group: payment_terms
+  count: 3
+  topics:
+  - payment_terms/create
+  - payment_terms/delete
+  - payment_terms/update
+- group: product_listings
+  count: 3
+  topics:
+  - product_listings/add
+  - product_listings/remove
+  - product_listings/update
+- group: product_publications
+  count: 3
+  topics:
+  - product_publications/create
+  - product_publications/delete
+  - product_publications/update
+- group: products
+  count: 3
+  topics:
+  - products/create
+  - products/delete
+  - products/update
+- group: profiles
+  count: 3
+  topics:
+  - profiles/create
+  - profiles/delete
+  - profiles/update
+- group: scheduled_product_listings
+  count: 3
+  topics:
+  - scheduled_product_listings/add
+  - scheduled_product_listings/remove
+  - scheduled_product_listings/update
+- group: segments
+  count: 3
+  topics:
+  - segments/create
+  - segments/delete
+  - segments/update
+- group: selling_plan_groups
+  count: 3
+  topics:
+  - selling_plan_groups/create
+  - selling_plan_groups/delete
+  - selling_plan_groups/update
+- group: subscription_billing_cycle_edits
+  count: 3
+  topics:
+  - subscription_billing_cycle_edits/create
+  - subscription_billing_cycle_edits/delete
+  - subscription_billing_cycle_edits/update
+- group: app
+  count: 2
+  topics:
+  - app/scopes_update
+  - app/uninstalled
+- group: app_subscriptions
+  count: 2
+  topics:
+  - app_subscriptions/approaching_capped_amount
+  - app_subscriptions/update
+- group: carts
+  count: 2
+  topics:
+  - carts/create
+  - carts/update
+- group: company_contact_roles
+  count: 2
+  topics:
+  - company_contact_roles/assign
+  - company_contact_roles/revoke
+- group: disputes
+  count: 2
+  topics:
+  - disputes/create
+  - disputes/update
+- group: fulfillment_events
+  count: 2
+  topics:
+  - fulfillment_events/create
+  - fulfillment_events/delete
+- group: fulfillment_holds
+  count: 2
+  topics:
+  - fulfillment_holds/added
+  - fulfillment_holds/released
+- group: fulfillments
+  count: 2
+  topics:
+  - fulfillments/create
+  - fulfillments/update
+- group: shop
+  count: 2
+  topics:
+  - shop/redact
+  - shop/update
+- group: subscription_billing_cycles
+  count: 2
+  topics:
+  - subscription_billing_cycles/skip
+  - subscription_billing_cycles/unskip
+- group: tax_services
+  count: 2
+  topics:
+  - tax_services/create
+  - tax_services/update
+- group: variants
+  count: 2
+  topics:
+  - variants/in_stock
+  - variants/out_of_stock
+- group: app_purchases_one_time
+  count: 1
+  topics:
+  - app_purchases_one_time/update
+- group: audit_events
+  count: 1
+  topics:
+  - audit_events/admin_api_activity
+- group: bulk_operations
+  count: 1
+  topics:
+  - bulk_operations/finish
+- group: channels
+  count: 1
+  topics:
+  - channels/delete
+- group: customer_account_settings
+  count: 1
+  topics:
+  - customer_account_settings/update
+- group: customers_email_marketing_consent
+  count: 1
+  topics:
+  - customers_email_marketing_consent/update
+- group: customers_marketing_consent
+  count: 1
+  topics:
+  - customers_marketing_consent/update
+- group: customers_whats_app_marketing_consent
+  count: 1
+  topics:
+  - customers_whats_app_marketing_consent/update
+- group: delivery_promise_settings
+  count: 1
+  topics:
+  - delivery_promise_settings/update
+- group: markets_backup_region
+  count: 1
+  topics:
+  - markets_backup_region/update
+- group: order_transactions
+  count: 1
+  topics:
+  - order_transactions/create
+- group: payment_schedules
+  count: 1
+  topics:
+  - payment_schedules/due
+- group: refunds
+  count: 1
+  topics:
+  - refunds/create
+- group: reverse_deliveries
+  count: 1
+  topics:
+  - reverse_deliveries/attach_deliverable
+- group: reverse_fulfillment_orders
+  count: 1
+  topics:
+  - reverse_fulfillment_orders/dispose
+- group: tender_transactions
+  count: 1
+  topics:
+  - tender_transactions/create
+evidence:
+- url: https://shopify.dev/docs/api/webhooks/latest.md
+  status: 200
+  fetched: '2026-08-27'
