@@ -1,0 +1,400 @@
+slug: shopify
+provider: Shopify
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Retail & Consumer Goods
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 39
+edges:
+- tag: Code
+  spec_file: shopify-code-api-openapi.yml
+  capability_id: BC-440.30
+  capability_id_l1: BC-440
+  capability_name: Discount & Promotion Management
+  confidence: 0.9
+  evidence: POST /price_rules/{price_rule_id}/discount_codes.json — "Shopify Creates A Discount Code"
+  reason: Operations create, update, look up and batch-generate discount codes attached to price rules
+    — plainly discount and promotion management.
+- tag: Subscriptions
+  spec_file: shopify-subscriptions-api-openapi.yml
+  capability_id: BC-4270.80
+  capability_id_l1: BC-4270
+  capability_name: Webhook & Event Subscription Management
+  confidence: 0.9
+  evidence: Shopify Create A New Webhook Subscription By Specifying Both An Address And A Topic; Shopify
+    Delete A Webhook Subscription
+  reason: Despite the commercial-sounding tag, all operations manage outbound webhook subscriptions (address
+    + topic) — event subscription lifecycle on the developer platform, not customer subscriptions.
+- tag: Customer
+  spec_file: shopify-customer-api-openapi.yml
+  capability_id: BC-420.10
+  capability_id_l1: BC-420
+  capability_name: Customer Data Management
+  confidence: 0.85
+  evidence: '"Creates A Customer", "Retrieves A Single Customer", "Updates A Customer", "Sends An Account
+    Invite To A Customer"'
+  reason: Operations are lifecycle CRUD over the shopper customer record plus account activation/invite
+    — customer master data management within CRM.
+- tag: Customers
+  spec_file: shopify-customers-api-openapi.yml
+  capability_id: BC-420.10
+  capability_id_l1: BC-420
+  capability_name: Customer Data Management
+  confidence: 0.85
+  evidence: '"Retrieve a list of customers", "Create a customer", "Search for customers", schemas CustomerInput,
+    Customer'
+  reason: Full CRUD, count and search over the customer master record — customer data management. Order
+    retrieval for a customer is incidental to the customer record.
+- tag: Discount
+  spec_file: shopify-discount-api-openapi.yml
+  capability_id: BC-440.30
+  capability_id_l1: BC-440
+  capability_name: Discount & Promotion Management
+  confidence: 0.85
+  evidence: '"Creates A Discount Code", "Retrieve A List Of Discount Codes", "Creates A Discount Code
+    Creation Job" under /price_rules/{price_rule_id}/discount_codes'
+  reason: Operations create, update and look up discount codes attached to price rules — promotional discount
+    administration.
+- tag: Levels
+  spec_file: shopify-levels-api-openapi.yml
+  capability_id: BC-530.10
+  capability_id_l1: BC-530
+  capability_name: Stock Level Management
+  confidence: 0.85
+  evidence: '"Shopify Sets The Inventory Level For An Inventory Item At A Location"; "Adjusts The Inventory
+    Level Of An Inventory Item At A Single Location"'
+  reason: Operations get, set, adjust, connect and delete inventory levels per item per location — direct
+    stock level management within Inventory Management. Sub-capability choice (stock level vs allocation)
+    carries slight ambiguity.
+- tag: Webhook Subscriptions
+  spec_file: shopify-webhook-subscriptions-api-openapi.yml
+  capability_id: BC-4270.80
+  capability_id_l1: BC-4270
+  capability_name: Webhook & Event Subscription Management
+  confidence: 0.85
+  evidence: '"Create a webhook subscription"; schemas WebhookSubscription, WebhookSubscriptionInput'
+  reason: Full CRUD lifecycle over outbound webhook subscriptions for platform events, which is precisely
+    Webhook & Event Subscription Management in the developer/API ecosystem capability.
+- tag: Webhooks
+  spec_file: shopify-webhooks-api-openapi.yml
+  capability_id: BC-4270.80
+  capability_id_l1: BC-4270
+  capability_name: Webhook & Event Subscription Management
+  confidence: 0.85
+  evidence: '"Create A New Webhook Subscription By Specifying Both An Address And A Topic"; "Update A
+    Webhook Subscription''s Topic Or Address Uris"'
+  reason: Operations manage the lifecycle of outbound event webhook subscriptions (topic + address), matching
+    Webhook & Event Subscription Management.
+- tag: Products
+  spec_file: shopify-products-api-openapi.yml
+  capability_id: BC-2370.10
+  capability_id_l1: BC-2370
+  capability_name: Item Master Data Management
+  confidence: 0.82
+  evidence: createProduct  Shopify Create a new product / updateProduct / Retrieve A List Of Products
+    Belonging To A Collection
+  reason: Full lifecycle CRUD over the canonical product record plus its hierarchy/collection membership
+    — the authoritative item master for the commerce catalogue.
+- tag: Cart
+  spec_file: shopify-cart-api-openapi.yml
+  capability_id: BC-2320.10
+  capability_id_l1: BC-2320
+  capability_name: Sales Transaction Management
+  confidence: 0.8
+  evidence: 'Add items to the cart / Change a cart line item / Get estimated shipping rates, schemas:
+    Cart, CartItem, ShippingRate'
+  reason: Storefront cart endpoints perform consumer basket build and line-item change ahead of checkout
+    — sales transaction capture in the consumer-facing selling layer.
+- tag: Fulfillments
+  spec_file: shopify-fulfillments-api-openapi.yml
+  capability_id: BC-2330
+  capability_id_l1: BC-2330
+  capability_name: Omnichannel Order & Fulfilment Management
+  confidence: 0.8
+  evidence: '"Create a fulfillment", "Update tracking information for a fulfillment", "Cancel a fulfillment"'
+  reason: Creating, tracking and cancelling fulfilments of consumer orders is order fulfilment execution/orchestration;
+    sub-capability (store vs DC vs drop-ship) is not distinguished by the surface.
+- tag: Inventory
+  spec_file: shopify-inventory-api-openapi.yml
+  capability_id: BC-530
+  capability_id_l1: BC-530
+  capability_name: Inventory Management
+  confidence: 0.8
+  evidence: '"Shopify Retrieves A List Of Inventory Items", "Shopify Updates An Existing Inventory Item"'
+  reason: Operations read and maintain inventory items (and levels) for the merchant's stock — inventory
+    management; evidence spans several sub-areas so only the L1 is asserted.
+- tag: Product Images
+  spec_file: shopify-product-images-api-openapi.yml
+  capability_id: BC-2370.20
+  capability_id_l1: BC-2370
+  capability_name: Product Content Authoring Management
+  confidence: 0.8
+  evidence: 'createProductImage  Shopify Create a product image ... schemas: ImageInput, Image'
+  reason: CRUD over product imagery is authoring/managing rich media that turns an item record into sellable
+    consumer content — Product Content Authoring Management.
+- tag: Customer Addresses
+  spec_file: shopify-customer-addresses-api-openapi.yml
+  capability_id: BC-420.10
+  capability_id_l1: BC-420
+  capability_name: Customer Data Management
+  confidence: 0.78
+  evidence: GET /customers/{customer_id}/addresses.json "Retrieve addresses for a customer"; schema Address
+  reason: Maintains address attributes on the customer master record; a sub-slice of customer data management
+    rather than a distinct business capability.
+- tag: Inventory Levels
+  spec_file: shopify-inventory-levels-api-openapi.yml
+  capability_id: BC-530.10
+  capability_id_l1: BC-530
+  capability_name: Stock Level Management
+  confidence: 0.78
+  evidence: '"Shopify Set inventory level for an item at a location", "Shopify Retrieve inventory levels
+    for a location", schema InventoryLevel'
+  reason: Reading and setting on-hand stock quantities per item per location is stock level management
+    within inventory management.
+- tag: Article
+  spec_file: shopify-article-api-openapi.yml
+  capability_id: BC-400.70
+  capability_id_l1: BC-400
+  capability_name: Content Marketing Management
+  confidence: 0.75
+  evidence: Creates An Article For A Blog
+  reason: CRUD over blog articles and article authors is editorial content production and publication
+    for the merchant's online store — content marketing, not product or order data.
+- tag: Blog
+  spec_file: shopify-blog-api-openapi.yml
+  capability_id: BC-400.70
+  capability_id_l1: BC-400
+  capability_name: Content Marketing Management
+  confidence: 0.75
+  evidence: Shopify Creates An Article For A Blog / Retrieves A List Of All Articles From A Blog
+  reason: Operations author and list blog articles for the online store, which is content production and
+    distribution — content marketing management.
+- tag: Carrier
+  spec_file: shopify-carrier-api-openapi.yml
+  capability_id: BC-520.50
+  capability_id_l1: BC-520
+  capability_name: Logistics Operations Management
+  confidence: 0.75
+  evidence: Shopify Creates A Carrier Service / Retrieves A List Of Carrier Services
+  reason: Carrier services register shipping-rate providers used for delivery of orders, i.e. transport/carrier
+    setup within logistics operations.
+- tag: Creation
+  spec_file: shopify-creation-api-openapi.yml
+  capability_id: BC-440.30
+  capability_id_l1: BC-440
+  capability_name: Discount & Promotion Management
+  confidence: 0.75
+  evidence: Shopify Creates A Discount Code Creation Job ... Retrieves A List Of Discount Codes For A
+    Discount Code Creation Job
+  reason: Despite the generic tag string, every operation is batch creation and retrieval of discount
+    codes under price rules, which is discount and promotional offer administration.
+- tag: Fulfillment
+  spec_file: shopify-fulfillment-api-openapi.yml
+  capability_id: BC-2330
+  capability_id_l1: BC-2330
+  capability_name: Omnichannel Order & Fulfilment Management
+  confidence: 0.75
+  evidence: '"Retrieves A List Of Fulfillment Orders On A Shop For A Specific App"; "Sends A Cancellation
+    Request To The Fulfillment Service Of A Fulfillment Order"'
+  reason: Operations manage fulfillment orders and their assignment/cancellation with fulfillment services
+    across locations — consumer order fulfilment orchestration. L1 only, as evidence spans routing, assignment
+    and service coordination rather than one sub-capability.
+- tag: Many
+  spec_file: shopify-many-api-openapi.yml
+  capability_id: BC-520.40
+  capability_id_l1: BC-520
+  capability_name: Order Fulfilment Management
+  confidence: 0.75
+  evidence: '"Shopify Creates A Fulfillment For One Or Many Fulfillment Orders"'
+  reason: Tag is an artefact of the phrase 'one or many', but the operation creates fulfillments against
+    fulfillment orders — order fulfilment execution. Confidence held below 0.8 because the tag itself
+    is meaningless and only one operation type is present.
+- tag: Address
+  spec_file: shopify-address-api-openapi.yml
+  capability_id: BC-420.10
+  capability_id_l1: BC-420
+  capability_name: Customer Data Management
+  confidence: 0.72
+  evidence: '"Creates A New Address For A Customer"; "Updates An Existing Customer Address"; "Sets The
+    Default Address For A Customer"'
+  reason: Full CRUD plus default-selection over customer address records, which is maintenance of the
+    customer master record rather than shipping or fulfilment logic. Customer Data Management fits; residual
+    doubt because addresses also feed order fulfilment.
+- tag: Addresses
+  spec_file: shopify-addresses-api-openapi.yml
+  capability_id: BC-420.10
+  capability_id_l1: BC-420
+  capability_name: Customer Data Management
+  confidence: 0.72
+  evidence: '"Retrieves A List Of Addresses For A Customer"; "Performs Bulk Operations For Multiple Customer
+    Addresses"'
+  reason: List and bulk-maintenance operations on a customer's address book — customer master data upkeep.
+    Same reasoning and same residual ambiguity as the Address tag.
+- tag: Image
+  spec_file: shopify-image-api-openapi.yml
+  capability_id: BC-2370.20
+  capability_id_l1: BC-2370
+  capability_name: Product Content Authoring Management
+  confidence: 0.72
+  evidence: '"Shopify Create A New Product Image", "Shopify Modify An Existing Product Image", "Retrieves
+    A List Of Metafields That Belong To A Product Image Resource"'
+  reason: Operations create, read and update product images and their metafields — management of rich
+    media that makes an item sellable, i.e. product content authoring within product information management.
+- tag: Images
+  spec_file: shopify-images-api-openapi.yml
+  capability_id: BC-2370.20
+  capability_id_l1: BC-2370
+  capability_name: Product Content Authoring Management
+  confidence: 0.72
+  evidence: '"Shopify Get All Product Images", "Shopify Get A Count Of All Product Images", "Updates A
+    Product And Its Variants And Images"'
+  reason: Surface manages the product image collection attached to products — marketing/rich-media content
+    on the item record, i.e. product content authoring.
+- tag: Inventory Items
+  spec_file: shopify-inventory-items-api-openapi.yml
+  capability_id: BC-530
+  capability_id_l1: BC-530
+  capability_name: Inventory Management
+  confidence: 0.72
+  evidence: '"Shopify Retrieve a list of inventory items", "Shopify Update an inventory item", schema
+    InventoryItem'
+  reason: CRUD over the InventoryItem resource (stock-tracked SKU records) belongs to inventory management;
+    too thin to pick a sub-capability.
+- tag: Line
+  spec_file: shopify-line-api-openapi.yml
+  capability_id: BC-520.40
+  capability_id_l1: BC-520
+  capability_name: Order Fulfilment Management
+  confidence: 0.72
+  evidence: '"Shopify Create A Fulfillment For The Specified Order And Line Items"'
+  reason: The tag is an artefact of the summary phrase 'line items', but the single underlying operation
+    creates order fulfillments, which is order fulfilment orchestration. Confidence moderate because the
+    tag is incidental wording rather than a real resource.
+- tag: Product
+  spec_file: shopify-product-api-openapi.yml
+  capability_id: BC-2370.10
+  capability_id_l1: BC-2370
+  capability_name: Item Master Data Management
+  confidence: 0.72
+  evidence: Shopify Adds A Product To A Custom Collection / Retrieves A List Of Metafields That Belong
+    To A Product Image Resource
+  reason: Operations maintain product records, their attributes (metafields) and their membership in merchandising
+    collections — canonical item/product data maintenance. Mapped to Item Master Data Management, though
+    the collection-membership operations also brush against assortment grouping, hence moderate confidence.
+- tag: Calls
+  spec_file: shopify-calls-api-openapi.yml
+  capability_id: BC-4270.10
+  capability_id_l1: BC-4270
+  capability_name: Public API Lifecycle Management
+  confidence: 0.7
+  evidence: Retrieves A List Of Deprecated Api Calls Made By The Authenticated Private App In The Past
+    30 Days
+  reason: Surface reports deprecated API usage by apps, supporting API versioning/deprecation communication
+    to developers — public API lifecycle management.
+- tag: Card
+  spec_file: shopify-card-api-openapi.yml
+  capability_id: BC-2320.20
+  capability_id_l1: BC-2320
+  capability_name: Tender and Payment Acceptance Management
+  confidence: 0.7
+  evidence: Shopify Creates A Gift Card / Shopify Disables A Gift Card
+  reason: Gift card issuance, update and disablement is management of a stored-value tender instrument,
+    closest to tender and payment acceptance management in retail.
+- tag: Complete
+  spec_file: shopify-complete-api-openapi.yml
+  capability_id: BC-520.40
+  capability_id_l1: BC-520
+  capability_name: Order Fulfilment Management
+  confidence: 0.7
+  evidence: '"Shopify Mark A Fulfillment As Complete"'
+  reason: Despite the generic tag string, the single operation transitions an order fulfilment to complete,
+    which is order fulfilment execution.
+- tag: Fulfillment Orders
+  spec_file: shopify-fulfillment-orders-api-openapi.yml
+  capability_id: BC-2330
+  capability_id_l1: BC-2330
+  capability_name: Omnichannel Order & Fulfilment Management
+  confidence: 0.7
+  evidence: '"Retrieve fulfillment orders for an order"; schema "FulfillmentOrder"'
+  reason: Reads the fulfilment work items derived from a consumer order — order fulfilment orchestration.
+    Single read operation, so L1 only and moderate confidence.
+- tag: Holds
+  spec_file: shopify-holds-api-openapi.yml
+  capability_id: BC-520.40
+  capability_id_l1: BC-520
+  capability_name: Order Fulfilment Management
+  confidence: 0.7
+  evidence: POST /admin/api/unstable/fulfillment_orders/release_hold.json — "Shopify Releases The Fulfillment
+    Order Holds For A Specific Order"
+  reason: The single operation releases a hold on a fulfillment order, i.e. unblocking an order for fulfilment
+    — order fulfilment orchestration rather than any retail-specific channel capability.
+- tag: Item
+  spec_file: shopify-item-api-openapi.yml
+  capability_id: BC-530
+  capability_id_l1: BC-530
+  capability_name: Inventory Management
+  confidence: 0.7
+  evidence: '"Shopify Retrieves A Single Inventory Item By Id", "Shopify Updates An Existing Inventory
+    Item"'
+  reason: Despite the generic tag, all operations act on the inventory_item resource, placing it in inventory
+    management; no sub-capability is clearly named.
+- tag: Mark
+  spec_file: shopify-mark-api-openapi.yml
+  capability_id: BC-520.40
+  capability_id_l1: BC-520
+  capability_name: Order Fulfilment Management
+  confidence: 0.7
+  evidence: POST /orders/{order_id}/fulfillments/{fulfillment_id}/complete.json — "Shopify Mark A Fulfillment
+    As Complete"
+  reason: The tag is a verb fragment, but all operations change the state of order fulfillments (complete/open),
+    which is fulfilment execution against consumer orders — order fulfilment management. Not a POS or
+    merchandising function.
+- tag: Recurring
+  spec_file: shopify-recurring-api-openapi.yml
+  capability_id: BC-4250
+  capability_id_l1: BC-4250
+  capability_name: Subscription Billing & Revenue Management
+  confidence: 0.7
+  evidence: '"Shopify Creates A Recurring Application Charge" ... "Shopify Updates The Capped Amount Of
+    An Active Recurring Application Charge"'
+  reason: These operations create, cap, and cancel recurring charges billed to merchants for an app —
+    recurring subscription billing for a software product. Left at L1 because the surface mixes charge
+    creation (rating/charging) with cancellation, and does not clearly isolate one sub-capability.
+- tag: Reports
+  spec_file: shopify-reports-api-openapi.yml
+  capability_id: BC-610.50
+  capability_id_l1: BC-610
+  capability_name: Analytics & BI Management
+  confidence: 0.7
+  evidence: '"Shopify Creates A New Report" ... "Shopify Retrieves A Single Report Created By Your App"'
+  reason: Full CRUD over report definitions surfaced in the merchant admin's analytics area — reporting/BI
+    delivery. Moderate confidence because the payload semantics of a report are not shown in schemas.
+- tag: Storefront
+  spec_file: shopify-storefront-api-openapi.yml
+  capability_id: BC-4270.40
+  capability_id_l1: BC-4270
+  capability_name: Developer Identity & Credential Management
+  confidence: 0.7
+  evidence: Shopify Creates A New Storefront Access Token; Shopify Retrieves A List Of Storefront Access
+    Tokens That Have Been Issued
+  reason: The surface is issuance, listing and revocation of API access tokens used by developers/apps
+    to call the Storefront API — developer credential stewardship, not a retail selling capability. Some
+    chance a reviewer prefers generic IAM, hence 0.7.
+- tag: Usage
+  spec_file: shopify-usage-api-openapi.yml
+  capability_id: BC-4250
+  capability_id_l1: BC-4250
+  capability_name: Subscription Billing & Revenue Management
+  confidence: 0.7
+  evidence: POST /admin/api/2020-10/recurring_application_charges/{recurring_application_charge_id}/usage_charges.json
+    — "Shopify Creates A Usage Charge"
+  reason: Operations create and list usage charges against recurring application charges — usage-based
+    billing for app subscriptions. Clearly subscription billing; ambiguous whether metering or rating,
+    so no L2.
