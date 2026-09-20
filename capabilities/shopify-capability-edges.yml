@@ -11,7 +11,7 @@ capability_model:
   attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
     CC BY 4.0
   notice: NOTICE
-edge_count: 39
+edge_count: 42
 edges:
 - tag: Code
   spec_file: shopify-code-api-openapi.yml
@@ -158,6 +158,18 @@ edges:
     for a location", schema InventoryLevel'
   reason: Reading and setting on-hand stock quantities per item per location is stock level management
     within inventory management.
+- tag: Orders
+  spec_file: shopify-orders-api-openapi.yml
+  capability_id: BC-520.40
+  capability_id_l1: BC-520
+  capability_name: Order Fulfilment Management
+  confidence: 0.78
+  evidence: '"Retrieve a list of orders", "Create an order", "Cancel an order", "Close an order"; schemas
+    Order, OrderInput, Fulfillment, LineItem, Refund'
+  reason: Coherent order lifecycle surface with Order/Fulfillment/LineItem schemas — sales order capture,
+    cancellation and fulfilment. Mapped to Order Fulfilment Management as the nearest candidate; residual
+    ambiguity about the exact sub-capability for commerce order capture.
+  recovered_from: sweep-20260828T235257Z-edges.json
 - tag: Article
   spec_file: shopify-article-api-openapi.yml
   capability_id: BC-400.70
@@ -216,6 +228,18 @@ edges:
   reason: Tag is an artefact of the phrase 'one or many', but the operation creates fulfillments against
     fulfillment orders — order fulfilment execution. Confidence held below 0.8 because the tag itself
     is meaningless and only one operation type is present.
+- tag: Order
+  spec_file: shopify-order-api-openapi.yml
+  capability_id: BC-520.40
+  capability_id_l1: BC-520
+  capability_name: Order Fulfilment Management
+  confidence: 0.75
+  evidence: '"Creates An Order", "Updates An Order", "Closes An Order", "Re-opens A Closed Order", "Retrieves
+    An Order Count"'
+  reason: Full CRUD and lifecycle state transitions over sales orders — order capture and fulfilment orchestration.
+    Order Fulfilment Management is the closest available capability; some ambiguity remains as commerce
+    sales-order capture is not perfectly represented in the candidate list.
+  recovered_from: sweep-20260828T235257Z-edges.json
 - tag: Address
   spec_file: shopify-address-api-openapi.yml
   capability_id: BC-420.10
@@ -298,6 +322,18 @@ edges:
     30 Days
   reason: Surface reports deprecated API usage by apps, supporting API versioning/deprecation communication
     to developers — public API lifecycle management.
+- tag: Cancel
+  spec_file: shopify-cancel-api-openapi.yml
+  capability_id: BC-520.40
+  capability_id_l1: BC-520
+  capability_name: Order Fulfilment Management
+  confidence: 0.7
+  evidence: POST /admin/api/2020-10/orders/{order_id}/fulfillments/{fulfillment_id}/cancel.json — "Cancel
+    A Fulfillment For A Specific Order Id"
+  reason: All operations cancel a fulfilment against an order, i.e. execution control within order fulfilment
+    orchestration. Tag is a verb fragment, so confidence is moderate but the operations are unambiguous
+    about the domain.
+  recovered_from: sweep-20260828T235257Z-edges.json
 - tag: Card
   spec_file: shopify-card-api-openapi.yml
   capability_id: BC-2320.20
