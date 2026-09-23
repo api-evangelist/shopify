@@ -1,25 +1,8 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Shopify Admin REST About Redirect API
-  description: The Shopify Admin REST API lets you build apps and integrations that extend and enhance the Shopify admin. Access products, customers, orders, inventory, fulfillment, and more. Endpoints are organized by resource type and versioned by release date.
-  version: 2025-01
-  contact:
-    name: Shopify
-    url: https://shopify.dev/docs/api/admin-rest
-    email: api@shopify.com
-  license:
-    name: Shopify API Terms
-    url: https://www.shopify.com/legal/api-terms
-  x-date: '2026-03-04'
-servers:
-- url: https://{store}.myshopify.com/admin/api/2025-01
-  description: Shopify Admin REST API
-  variables:
-    store:
-      default: my-store
-      description: The Shopify store subdomain
-security:
-- AccessToken: []
+  title: Shopify Redirect API
+  description: Explore Shopify's API reference and templating documentation. Shopify provides a range of software tools, app templates, example apps, and libraries to accelerate your development process. The Admin API lets you build apps and integrations that extend and enhance the Shopify admin.
+  version: 2020-10
 tags:
 - name: Redirect
 paths:
@@ -84,62 +67,6 @@ paths:
       x-api-evangelist-processing:
         PascalCaseOperationSummaries: true
         ChooseTags: true
-    put:
-      requestBody:
-        content:
-          application/json:
-            schema: {}
-            examples:
-              example1:
-                value:
-                  redirect:
-                    id: 668809255
-                    path: /tiger
-                summary: Update the path URI of a redirect
-              example2:
-                value:
-                  redirect:
-                    id: 950115854
-                    path: /powermac
-                    target: /pages/macpro
-                summary: Update both the path and target URIs of a redirect
-      summary: Shopify Updates An Existing Redirect
-      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/redirect#update-2020-01
-      parameters:
-      - in: path
-        name: redirect_id
-        required: true
-        schema:
-          type: string
-        description: redirect_id
-      tags:
-      - Redirect
-      responses:
-        '200':
-          description: ''
-      operationId: deprecated_202001_update_redirects_param_redirect_id
-      x-api-evangelist-processing:
-        PascalCaseOperationSummaries: true
-        ChooseTags: true
-    delete:
-      summary: Shopify Deletes A Redirect
-      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/redirect#destroy-2020-01
-      parameters:
-      - in: path
-        name: redirect_id
-        required: true
-        schema:
-          type: string
-        description: redirect_id
-      tags:
-      - Redirect
-      responses:
-        '200':
-          description: ''
-      operationId: deprecated_202001_delete_redirects_param_redirect_id
-      x-api-evangelist-processing:
-        PascalCaseOperationSummaries: true
-        ChooseTags: true
   /admin/api/2020-04/redirects.json:
     post:
       requestBody:
@@ -198,62 +125,6 @@ paths:
         '200':
           description: ''
       operationId: deprecated_202004_get_redirects_param_redirect_id
-      x-api-evangelist-processing:
-        PascalCaseOperationSummaries: true
-        ChooseTags: true
-    put:
-      requestBody:
-        content:
-          application/json:
-            schema: {}
-            examples:
-              example1:
-                value:
-                  redirect:
-                    id: 668809255
-                    path: /tiger
-                summary: Update the path URI of a redirect
-              example2:
-                value:
-                  redirect:
-                    id: 950115854
-                    path: /powermac
-                    target: /pages/macpro
-                summary: Update both the path and target URIs of a redirect
-      summary: Shopify Updates An Existing Redirect
-      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/redirect#update-2020-04
-      parameters:
-      - in: path
-        name: redirect_id
-        required: true
-        schema:
-          type: string
-        description: redirect_id
-      tags:
-      - Redirect
-      responses:
-        '200':
-          description: ''
-      operationId: deprecated_202004_update_redirects_param_redirect_id
-      x-api-evangelist-processing:
-        PascalCaseOperationSummaries: true
-        ChooseTags: true
-    delete:
-      summary: Shopify Deletes A Redirect
-      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/redirect#destroy-2020-04
-      parameters:
-      - in: path
-        name: redirect_id
-        required: true
-        schema:
-          type: string
-        description: redirect_id
-      tags:
-      - Redirect
-      responses:
-        '200':
-          description: ''
-      operationId: deprecated_202004_delete_redirects_param_redirect_id
       x-api-evangelist-processing:
         PascalCaseOperationSummaries: true
         ChooseTags: true
@@ -318,62 +189,6 @@ paths:
       x-api-evangelist-processing:
         PascalCaseOperationSummaries: true
         ChooseTags: true
-    put:
-      requestBody:
-        content:
-          application/json:
-            schema: {}
-            examples:
-              example1:
-                value:
-                  redirect:
-                    id: 668809255
-                    path: /tiger
-                summary: Update the path URI of a redirect
-              example2:
-                value:
-                  redirect:
-                    id: 950115854
-                    path: /powermac
-                    target: /pages/macpro
-                summary: Update both the path and target URIs of a redirect
-      summary: Shopify Updates An Existing Redirect
-      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/redirect#update-2020-07
-      parameters:
-      - in: path
-        name: redirect_id
-        required: true
-        schema:
-          type: string
-        description: redirect_id
-      tags:
-      - Redirect
-      responses:
-        '200':
-          description: ''
-      operationId: deprecated_202007_update_redirects_param_redirect_id
-      x-api-evangelist-processing:
-        PascalCaseOperationSummaries: true
-        ChooseTags: true
-    delete:
-      summary: Shopify Deletes A Redirect
-      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/redirect#destroy-2020-07
-      parameters:
-      - in: path
-        name: redirect_id
-        required: true
-        schema:
-          type: string
-        description: redirect_id
-      tags:
-      - Redirect
-      responses:
-        '200':
-          description: ''
-      operationId: deprecated_202007_delete_redirects_param_redirect_id
-      x-api-evangelist-processing:
-        PascalCaseOperationSummaries: true
-        ChooseTags: true
   /admin/api/2020-10/redirects.json:
     post:
       requestBody:
@@ -432,62 +247,6 @@ paths:
         '200':
           description: ''
       operationId: get_redirects_param_redirect_id
-      x-api-evangelist-processing:
-        PascalCaseOperationSummaries: true
-        ChooseTags: true
-    put:
-      requestBody:
-        content:
-          application/json:
-            schema: {}
-            examples:
-              example1:
-                value:
-                  redirect:
-                    id: 668809255
-                    path: /tiger
-                summary: Update the path URI of a redirect
-              example2:
-                value:
-                  redirect:
-                    id: 950115854
-                    path: /powermac
-                    target: /pages/macpro
-                summary: Update both the path and target URIs of a redirect
-      summary: Shopify Updates An Existing Redirect
-      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/redirect#update-2020-10
-      parameters:
-      - in: path
-        name: redirect_id
-        required: true
-        schema:
-          type: string
-        description: redirect_id
-      tags:
-      - Redirect
-      responses:
-        '200':
-          description: ''
-      operationId: update_redirects_param_redirect_id
-      x-api-evangelist-processing:
-        PascalCaseOperationSummaries: true
-        ChooseTags: true
-    delete:
-      summary: Shopify Deletes A Redirect
-      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/redirect#destroy-2020-10
-      parameters:
-      - in: path
-        name: redirect_id
-        required: true
-        schema:
-          type: string
-        description: redirect_id
-      tags:
-      - Redirect
-      responses:
-        '200':
-          description: ''
-      operationId: delete_redirects_param_redirect_id
       x-api-evangelist-processing:
         PascalCaseOperationSummaries: true
         ChooseTags: true
@@ -552,62 +311,6 @@ paths:
       x-api-evangelist-processing:
         PascalCaseOperationSummaries: true
         ChooseTags: true
-    put:
-      requestBody:
-        content:
-          application/json:
-            schema: {}
-            examples:
-              example1:
-                value:
-                  redirect:
-                    id: 668809255
-                    path: /tiger
-                summary: Update the path URI of a redirect
-              example2:
-                value:
-                  redirect:
-                    id: 950115854
-                    path: /powermac
-                    target: /pages/macpro
-                summary: Update both the path and target URIs of a redirect
-      summary: Shopify Updates An Existing Redirect
-      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/redirect#update-2021-01
-      parameters:
-      - in: path
-        name: redirect_id
-        required: true
-        schema:
-          type: string
-        description: redirect_id
-      tags:
-      - Redirect
-      responses:
-        '200':
-          description: ''
-      operationId: deprecated_202101_update_redirects_param_redirect_id
-      x-api-evangelist-processing:
-        PascalCaseOperationSummaries: true
-        ChooseTags: true
-    delete:
-      summary: Shopify Deletes A Redirect
-      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/redirect#destroy-2021-01
-      parameters:
-      - in: path
-        name: redirect_id
-        required: true
-        schema:
-          type: string
-        description: redirect_id
-      tags:
-      - Redirect
-      responses:
-        '200':
-          description: ''
-      operationId: deprecated_202101_delete_redirects_param_redirect_id
-      x-api-evangelist-processing:
-        PascalCaseOperationSummaries: true
-        ChooseTags: true
   /admin/api/unstable/redirects.json:
     post:
       requestBody:
@@ -669,66 +372,3 @@ paths:
       x-api-evangelist-processing:
         PascalCaseOperationSummaries: true
         ChooseTags: true
-    put:
-      requestBody:
-        content:
-          application/json:
-            schema: {}
-            examples:
-              example1:
-                value:
-                  redirect:
-                    id: 668809255
-                    path: /tiger
-                summary: Update the path URI of a redirect
-              example2:
-                value:
-                  redirect:
-                    id: 950115854
-                    path: /powermac
-                    target: /pages/macpro
-                summary: Update both the path and target URIs of a redirect
-      summary: Shopify Updates An Existing Redirect
-      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/redirect#update-unstable
-      parameters:
-      - in: path
-        name: redirect_id
-        required: true
-        schema:
-          type: string
-        description: redirect_id
-      tags:
-      - Redirect
-      responses:
-        '200':
-          description: ''
-      operationId: deprecated_unstable_update_redirects_param_redirect_id
-      x-api-evangelist-processing:
-        PascalCaseOperationSummaries: true
-        ChooseTags: true
-    delete:
-      summary: Shopify Deletes A Redirect
-      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/redirect#destroy-unstable
-      parameters:
-      - in: path
-        name: redirect_id
-        required: true
-        schema:
-          type: string
-        description: redirect_id
-      tags:
-      - Redirect
-      responses:
-        '200':
-          description: ''
-      operationId: deprecated_unstable_delete_redirects_param_redirect_id
-      x-api-evangelist-processing:
-        PascalCaseOperationSummaries: true
-        ChooseTags: true
-components:
-  securitySchemes:
-    AccessToken:
-      type: apiKey
-      name: X-Shopify-Access-Token
-      in: header
-      description: Access token obtained via OAuth

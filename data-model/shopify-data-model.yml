@@ -1,0 +1,154 @@
+generated: '2026-08-27'
+method: derived
+source: >-
+  openapi/_original/shopify-admin-rest-api-openapi.yml ($ref graph + *_id reference fields) and
+  graphql/shopify-storefront-api.graphql (414 types, recovered by introspection of mock.shop/api),
+  cross-checked against https://shopify.dev/docs/api/admin-graphql
+provider: Shopify
+providerId: shopify
+render: subway/shopify-subway-map.svg
+note: >-
+  Two identifier systems coexist and confusing them is the most common integration mistake on this
+  platform. Admin REST returns numeric ids AND an admin_graphql_api_id on nearly every object; the
+  GraphQL APIs and every MCP tool use only the GID form. The admin_graphql_api_id field is the
+  documented bridge between them, which is why it is recorded on every entity below rather than
+  dismissed as noise.
+identifiers:
+- scheme: numeric id
+  surfaces: [Admin REST API, Ajax API]
+  example: 11235813213455
+- scheme: 'GID (Shopify Global ID)'
+  format: 'gid://shopify/{Type}/{numeric-id}'
+  surfaces: [GraphQL Admin API, Storefront API, Customer Account API, all UCP MCP tools]
+  examples:
+  - gid://shopify/Product/123
+  - gid://shopify/ProductVariant/456
+  - gid://shopify/Cart/abc123def456
+  - gid://shopify/CartLine/line2
+  - gid://shopify/Checkout/abc123
+  - gid://shopify/AppSubscription/1029266968
+  - gid://shopify/Shop/548380009
+- scheme: handle
+  surfaces: [Ajax API, Storefront API, Liquid]
+  detail: URL-safe slug used to address products, collections, blogs and pages by name.
+  example: '/products/{handle}.js'
+bridge_field:
+  name: admin_graphql_api_id
+  present_on: [Product, Variant, Image, Customer, Order, LineItem, Fulfillment, InventoryItem, InventoryLevel, Location, Collection, Webhook, Shop, Refund]
+  detail: The GID for a REST object, returned alongside its numeric id. The only in-band way to cross surfaces.
+entities:
+- name: Product
+  relationships:
+  - {type: has_many, target: Variant, via: variants}
+  - {type: has_many, target: ProductOption, via: options}
+  - {type: has_many, target: Image, via: images}
+  - {type: has_one, target: Image, via: image}
+- name: Variant
+  relationships:
+  - {type: belongs_to, target: Product, via: product_id}
+  - {type: belongs_to, target: InventoryItem, via: inventory_item_id}
+  - {type: belongs_to, target: Image, via: image_id}
+- name: ProductOption
+  relationships:
+  - {type: belongs_to, target: Product, via: product_id}
+- name: Image
+  relationships:
+  - {type: belongs_to, target: Product, via: product_id}
+  - {type: has_many, target: Variant, via: variant_ids}
+- name: Collection
+  relationships:
+  - {type: has_one, target: Image, via: image}
+  - {type: has_many, target: Product, via: "/collections/{collection_id}/products.json"}
+  note: Split into CustomCollection (manual) and SmartCollection (rule-based) at the operation level.
+- name: Customer
+  relationships:
+  - {type: has_many, target: Address, via: addresses}
+  - {type: has_one, target: Address, via: default_address}
+  - {type: has_many, target: Order, via: "/customers/{customer_id}/orders.json"}
+- name: Address
+  relationships:
+  - {type: belongs_to, target: Customer, via: customer_id}
+- name: Order
+  relationships:
+  - {type: has_one, target: Customer, via: customer}
+  - {type: has_one, target: Address, via: billing_address}
+  - {type: has_one, target: Address, via: shipping_address}
+  - {type: has_many, target: LineItem, via: line_items}
+  - {type: has_many, target: ShippingLine, via: shipping_lines}
+  - {type: has_many, target: Fulfillment, via: fulfillments}
+  - {type: has_many, target: Refund, via: refunds}
+  - {type: has_many, target: FulfillmentOrder, via: "/orders/{order_id}/fulfillment_orders.json"}
+  - {type: has_one, target: Money, via: shop_money}
+  - {type: has_one, target: Money, via: presentment_money}
+  note: >-
+    shop_money and presentment_money are the dual-currency pair — the amount in the shop's currency
+    and the amount in the buyer's. An agent quoting a price must know which one it is holding.
+- name: LineItem
+  relationships:
+  - {type: belongs_to, target: Variant, via: variant_id}
+  - {type: belongs_to, target: Product, via: product_id}
+  - {type: has_many, target: TaxLine, via: tax_lines}
+- name: ShippingLine
+  relationships:
+  - {type: has_many, target: TaxLine, via: tax_lines}
+- name: Fulfillment
+  relationships:
+  - {type: belongs_to, target: Order, via: order_id}
+  - {type: has_many, target: LineItem, via: line_items}
+- name: FulfillmentOrder
+  relationships:
+  - {type: belongs_to, target: Order, via: order_id}
+  - {type: belongs_to, target: Location, via: assigned_location_id}
+  note: >-
+    The largest webhook group on the platform (20 of 206 topics) — fulfillment orders carry the
+    routing state machine that sits between an order and a shipment.
+- name: Refund
+  relationships:
+  - {type: belongs_to, target: Order, via: order_id}
+- name: InventoryItem
+  relationships:
+  - {type: has_many, target: InventoryLevel, via: "/inventory_levels.json?inventory_item_ids="}
+- name: InventoryLevel
+  relationships:
+  - {type: belongs_to, target: InventoryItem, via: inventory_item_id}
+  - {type: belongs_to, target: Location, via: location_id}
+  note: The join entity. Stock is a fact about an (item, location) pair, never about an item alone.
+- name: Location
+  relationships:
+  - {type: has_many, target: InventoryLevel, via: "/locations/{location_id}/inventory_levels.json"}
+- name: Webhook
+  relationships: []
+- name: Shop
+  relationships: []
+  note: Singleton. The root of the tenant.
+- name: Cart
+  surface: Storefront API / UCP Cart MCP
+  relationships:
+  - {type: has_many, target: CartLine, via: lines}
+  - {type: has_one, target: CartBuyerIdentity, via: buyerIdentity}
+  - {type: has_one, target: CartCost, via: cost}
+  - {type: has_one, target: CartDelivery, via: delivery}
+  note: Not present in the REST spec. Recovered from the Storefront SDL.
+- name: Checkout
+  surface: UCP Checkout MCP
+  relationships:
+  - {type: belongs_to, target: Cart, via: cart id}
+  - {type: has_one, target: Order, via: order (on completion)}
+  status_machine: [incomplete, requires_escalation, ready_for_complete, complete_in_progress, completed, canceled]
+custom_data:
+  mechanism: Metafields and Metaobjects
+  docs: https://shopify.dev/docs/apps/build/custom-data
+  detail: >-
+    Metafields attach typed custom values to built-in entities (Product, Customer, Order, Shop and
+    others). Metaobjects define entirely new entity types. Both carry definitions, so the extension
+    surface is schema'd rather than free-form — an important difference from a generic metadata bag.
+counts:
+  rest_schemas: 29
+  rest_entities_modelled: 18
+  graphql_types: 414
+  relationships: 45
+gaps:
+  note: >-
+    The GraphQL Admin API is the platform's real data model and it is far larger than what is
+    recorded here. Its schema is auth-gated, so this graph is derived from the legacy Admin REST
+    spec plus the public Storefront SDL. Treat entity coverage as partial and REST-shaped.

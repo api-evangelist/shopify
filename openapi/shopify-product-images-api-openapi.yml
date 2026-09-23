@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Shopify Admin REST About Product Images API
+  title: Shopify Admin REST Product Images API
   description: The Shopify Admin REST API lets you build apps and integrations that extend and enhance the Shopify admin. Access products, customers, orders, inventory, fulfillment, and more. Endpoints are organized by resource type and versioned by release date.
   version: 2025-01
   contact:
@@ -167,13 +167,6 @@ paths:
           description: Image deleted successfully
 components:
   parameters:
-    ImageId:
-      name: image_id
-      in: path
-      required: true
-      description: The ID of the image
-      schema:
-        type: integer
     ProductId:
       name: product_id
       in: path
@@ -181,27 +174,14 @@ components:
       description: The ID of the product
       schema:
         type: integer
+    ImageId:
+      name: image_id
+      in: path
+      required: true
+      description: The ID of the image
+      schema:
+        type: integer
   schemas:
-    ImageInput:
-      type: object
-      description: Input for creating or updating a product image
-      properties:
-        src:
-          type: string
-          format: uri
-          description: URL of the image
-        attachment:
-          type: string
-          description: Base64-encoded image data
-        alt:
-          type: string
-          description: Alt text
-        position:
-          type: integer
-        variant_ids:
-          type: array
-          items:
-            type: integer
     Image:
       type: object
       description: A product image
@@ -239,6 +219,26 @@ components:
           format: date-time
         admin_graphql_api_id:
           type: string
+    ImageInput:
+      type: object
+      description: Input for creating or updating a product image
+      properties:
+        src:
+          type: string
+          format: uri
+          description: URL of the image
+        attachment:
+          type: string
+          description: Base64-encoded image data
+        alt:
+          type: string
+          description: Alt text
+        position:
+          type: integer
+        variant_ids:
+          type: array
+          items:
+            type: integer
   securitySchemes:
     AccessToken:
       type: apiKey

@@ -4,10 +4,15 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Shopify
 providerId: shopify
 created: '2026-05-04'
-# Provenance stamped 2026-08-11: this artifact was written by the API Evangelist
-# bulk sweep dated 2026-05-04, not harvested from the provider. See roadmap#35.
-method: generated
-modified: '2026-05-04'
+# Provenance history: written by the API Evangelist bulk sweep dated 2026-05-04 (roadmap#35),
+# then VERIFIED against the live pricing page on 2026-08-27 during the enrichment pass.
+# Every tier name, headline price and card rate below was re-read from
+# https://www.shopify.com/pricing (HTTP 200) on that date and matched what was already recorded.
+method: searched
+source: https://www.shopify.com/pricing
+verified: '2026-08-27'
+modified: '2026-08-27'
+plan_count: 4
 reconciled: true
 tags:
   - Commerce
@@ -17,6 +22,32 @@ description: Shopify plans for online store and POS. All include the Admin API; 
   limits and B2B.
 sources:
   - https://www.shopify.com/pricing
+  - https://www.shopify.com/enterprise
+evidence:
+  - url: https://www.shopify.com/pricing
+    status: 200
+    fetched: '2026-08-27'
+    verbatim:
+      - 'Basic $29 /mo For solo entrepreneurs ... Card rates from 2.9% + 30¢ USD'
+      - 'Grow $79 /mo For small teams ... Card rates from 2.7% + 30¢ USD ... Up to 5 staff accounts'
+      - 'Advanced $299 /mo For global reach ... Card rates from 2.5% + 30¢ USD ... Up to 15 staff accounts'
+      - 'Plus from $2,300 /mo For complex businesses ... Card rates from 2.25% + 30¢ USD ... Unlimited staff accounts'
+trial:
+  detail: 'Try 3 days free, then $1/month for 3 months.'
+  source: https://www.shopify.com/pricing
+api_access:
+  note: >-
+    Every paid tier includes the full API surface — there is no API-gated plan and no per-call
+    pricing. What the tier buys is HEADROOM: the GraphQL Admin API rate limit scales from 100
+    points/second on Standard to 200 on Advanced, 1,000 on Plus and 2,000 on Commerce Components
+    (enterprise). Plus additionally unlocks B2B and a customizable checkout, both of which are API
+    surfaces. See rate-limits/shopify-rate-limits.yml.
+  source: https://shopify.dev/docs/api/usage/limits
+enterprise_tier:
+  name: Shopify for enterprise (Commerce Components)
+  pricing: contact sales
+  url: https://www.shopify.com/enterprise
+  api_note: Highest published GraphQL Admin API limit at 2,000 points/second.
 plans:
   - id: shopify-basic
     name: Basic

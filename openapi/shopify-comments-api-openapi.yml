@@ -1,25 +1,8 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Shopify Admin REST About Comments API
-  description: The Shopify Admin REST API lets you build apps and integrations that extend and enhance the Shopify admin. Access products, customers, orders, inventory, fulfillment, and more. Endpoints are organized by resource type and versioned by release date.
-  version: 2025-01
-  contact:
-    name: Shopify
-    url: https://shopify.dev/docs/api/admin-rest
-    email: api@shopify.com
-  license:
-    name: Shopify API Terms
-    url: https://www.shopify.com/legal/api-terms
-  x-date: '2026-03-04'
-servers:
-- url: https://{store}.myshopify.com/admin/api/2025-01
-  description: Shopify Admin REST API
-  variables:
-    store:
-      default: my-store
-      description: The Shopify store subdomain
-security:
-- AccessToken: []
+  title: Shopify Comments API
+  description: Explore Shopify's API reference and templating documentation. Shopify provides a range of software tools, app templates, example apps, and libraries to accelerate your development process. The Admin API lets you build apps and integrations that extend and enhance the Shopify admin.
+  version: 2020-10
 tags:
 - name: Comments
 paths:
@@ -101,41 +84,6 @@ paths:
         '200':
           description: ''
       operationId: deprecated_202001_get_comments
-      x-api-evangelist-processing:
-        PascalCaseOperationSummaries: true
-        ChooseTags: true
-    post:
-      requestBody:
-        content:
-          application/json:
-            schema: {}
-            examples:
-              example1:
-                value:
-                  comment:
-                    body: 'I like comments
-
-                      And I like posting them *RESTfully*.'
-                    author: Your name
-                    email: your@email.com
-                    ip: 107.20.160.121
-                    blog_id: 241253187
-                    article_id: 134645308
-                summary: Create a comment for an article of a blog using basic Textile markup
-              example2:
-                value:
-                  comment:
-                    article_id: 134645308
-                summary: Creating a comment without a body, author, and email fails and returns an error
-      summary: Shopify Creates A Comment For An Article
-      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/comment#create-2020-01
-      parameters: []
-      tags:
-      - Comments
-      responses:
-        '200':
-          description: ''
-      operationId: deprecated_202001_create_comments
       x-api-evangelist-processing:
         PascalCaseOperationSummaries: true
         ChooseTags: true
@@ -230,39 +178,6 @@ paths:
       x-api-evangelist-processing:
         PascalCaseOperationSummaries: true
         ChooseTags: true
-    put:
-      requestBody:
-        content:
-          application/json:
-            schema: {}
-            examples:
-              example1:
-                value:
-                  comment:
-                    id: 118373535
-                    body: You can even update through a web service.
-                    author: Your new name
-                    email: your@updated-email.com
-                    published_at: '2020-11-05T00:48:11.132Z'
-                summary: Update the body of an existing comment
-      summary: Shopify Updates A Comment Of An Article
-      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/comment#update-2020-01
-      parameters:
-      - in: path
-        name: comment_id
-        required: true
-        schema:
-          type: string
-        description: comment_id
-      tags:
-      - Comments
-      responses:
-        '200':
-          description: ''
-      operationId: deprecated_202001_update_comments_param_comment_id
-      x-api-evangelist-processing:
-        PascalCaseOperationSummaries: true
-        ChooseTags: true
   /admin/api/2020-01/comments/{comment_id}/spam.json:
     post:
       requestBody:
@@ -316,34 +231,6 @@ paths:
         '200':
           description: ''
       operationId: deprecated_202001_create_comments_param_comment_id_not_spam
-      x-api-evangelist-processing:
-        PascalCaseOperationSummaries: true
-        ChooseTags: true
-  /admin/api/2020-01/comments/{comment_id}/approve.json:
-    post:
-      requestBody:
-        content:
-          application/json:
-            schema: {}
-            examples:
-              example1:
-                value: {}
-                summary: Approve a comment and publish it to the blog
-      summary: Shopify Approves A Comment
-      description: https://shopify.dev/docs/admin-api/rest/reference/online-store/comment#approve-2020-01
-      parameters:
-      - in: path
-        name: comment_id
-        required: true
-        schema:
-          type: string
-        description: comment_id
-      tags:
-      - Comments
-      responses:
-        '200':
-          description: ''
-      operationId: deprecated_202001_create_comments_param_comment_id_approve
       x-api-evangelist-processing:
         PascalCaseOperationSummaries: true
         ChooseTags: true
@@ -403,10 +290,3 @@ paths:
       x-api-evangelist-processing:
         PascalCaseOperationSummaries: true
         ChooseTags: true
-components:
-  securitySchemes:
-    AccessToken:
-      type: apiKey
-      name: X-Shopify-Access-Token
-      in: header
-      description: Access token obtained via OAuth

@@ -1,0 +1,188 @@
+generated: '2026-08-27'
+method: searched
+source: https://raw.githubusercontent.com/Shopify/Shopify-AI-Toolkit/main/skills/<skill>/SKILL.md — 21 files, all
+  HTTP 200, fetched 2026-08-27
+provider: Shopify
+providerId: shopify
+authored_by: Shopify
+repo: https://github.com/Shopify/Shopify-AI-Toolkit
+repo_description: Agent plugins/extensions for CLIs and IDEs
+docs: https://shopify.dev/docs/apps/build/ai-toolkit
+note: These skills are PROVIDER-PUBLISHED and saved verbatim. Nothing here was generated on Shopify's behalf. Shopify
+  ships 21 Agent Skills as its primary agent integration and documents the plugin install as RECOMMENDED over its
+  own MCP server — a notable position from a company that also runs four MCP servers. The skills are how a coding
+  agent is meant to learn Shopify; the MCP servers are how a shopping agent is meant to transact.
+install:
+- target: Claude Code
+  command: claude plugin install shopify-ai-toolkit@claude-plugins-official
+- target: Codex
+  command: codex plugin add shopify@openai-curated
+- target: Antigravity CLI
+  command: agy plugin install https://github.com/Shopify/shopify-ai-toolkit
+- target: Cursor
+  command: /add-plugin shopify
+- target: OpenClaw
+  command: openclaw plugins install npm:@shopify/ai-toolkit
+- target: Pi
+  command: pi install npm:@shopify/ai-toolkit
+- target: any (all skills)
+  command: npx skills add Shopify/shopify-ai-toolkit
+- target: any (one skill)
+  command: npx skills add Shopify/shopify-ai-toolkit --skill shopify-admin
+requirements:
+  node: 18 or higher
+package:
+  name: '@shopify/ai-toolkit'
+  registry: npm
+  version: 1.7.1
+  published: '2026-08-27'
+skill_count: 21
+skills:
+- name: shopify-admin
+  file: skills/shopify-admin.md
+  source: https://github.com/Shopify/Shopify-AI-Toolkit/blob/main/skills/shopify-admin/SKILL.md
+  bytes: 9191
+  description: Write or explain **Admin GraphQL** queries and mutations for apps and integrations that extend the
+    Shopify admin. Use when the user wants to **understand, design, or generate** the operation itself—even before
+    deciding how to run it. Do **not** choose `admin` first for **app or extension config validation** —use **`use-shopify-cli`**.
+    Do **not** choose `admin` first to **execute** Admin GraphQL **
+- name: shopify-app-store-review
+  file: skills/shopify-app-store-review.md
+  source: https://github.com/Shopify/Shopify-AI-Toolkit/blob/main/skills/shopify-app-store-review/SKILL.md
+  bytes: 9360
+  description: Run a pre-submission compliance check against your Shopify app's codebase. Reviews App Store requirements
+    and surfaces likely issues before you submit for official review.
+- name: shopify-custom-data
+  file: skills/shopify-custom-data.md
+  source: https://github.com/Shopify/Shopify-AI-Toolkit/blob/main/skills/shopify-custom-data/SKILL.md
+  bytes: 7895
+  description: MUST be used first when prompts mention Metafields or Metaobjects. Use Metafields and Metaobjects
+    to model and store custom data for your app. Metafields extend built-in Shopify data types like products or
+    customers, Metaobjects are custom data types that can be used to store bespoke data structures. Metafield and
+    Metaobject definitions provide a schema and configuration for values to follow.
+- name: shopify-customer
+  file: skills/shopify-customer.md
+  source: https://github.com/Shopify/Shopify-AI-Toolkit/blob/main/skills/shopify-customer/SKILL.md
+  bytes: 8267
+  description: The Customer Account API allows customers to access their own data including orders, payment methods,
+    and addresses.
+- name: shopify-dev
+  file: skills/shopify-dev.md
+  source: https://github.com/Shopify/Shopify-AI-Toolkit/blob/main/skills/shopify-dev/SKILL.md
+  bytes: 3226
+  description: Search Shopify developer documentation across all APIs. Use only when no API-specific skill applies.
+- name: shopify-functions
+  file: skills/shopify-functions.md
+  source: https://github.com/Shopify/Shopify-AI-Toolkit/blob/main/skills/shopify-functions/SKILL.md
+  bytes: 28852
+  description: 'Shopify Functions allow developers to customize the backend logic that powers parts of Shopify.
+    Available APIs: Discount, Cart and Checkout Validation, Cart Transform, Pickup Point Delivery Option Generator,
+    Delivery Customization, Fulfillment Constraints, Local Pickup Delivery Option Generator, Order Routing Location
+    Rule, Payment Customization'
+- name: shopify-hydrogen
+  file: skills/shopify-hydrogen.md
+  source: https://github.com/Shopify/Shopify-AI-Toolkit/blob/main/skills/shopify-hydrogen/SKILL.md
+  bytes: 145240
+  description: 'Hydrogen storefront implementation cookbooks. Some of the available recipes are: B2B Commerce, Bundles,
+    Combined Listings, Custom Cart Method, Dynamic Content with Metaobjects, Express Server, Google Tag Manager
+    Integration, Infinite Scroll, Legacy Customer Account Flow, Markets, Partytown + Google Tag Manager, Subscriptions,
+    Third-party API Queries and Caching. MANDATORY: Use this API for ANY Hyd'
+- name: shopify-liquid
+  file: skills/shopify-liquid.md
+  source: https://github.com/Shopify/Shopify-AI-Toolkit/blob/main/skills/shopify-liquid/SKILL.md
+  bytes: 17254
+  description: 'Liquid is an open-source templating language created by Shopify. It is the backbone of Shopify themes
+    and is used to load dynamic content on storefronts. Keywords: liquid, theme, shopify-theme, liquid-component,
+    liquid-block, liquid-section, liquid-snippet, liquid-schemas, shopify-theme-schemas'
+- name: shopify-onboarding-dev
+  file: skills/shopify-onboarding-dev.md
+  source: https://github.com/Shopify/Shopify-AI-Toolkit/blob/main/skills/shopify-onboarding-dev/SKILL.md
+  bytes: 5423
+  description: Get started building on Shopify. Use when a developer asks to build an app, build a theme, create
+    a dev store, set up a partner account, scaffold a project, or get started developing for Shopify. NOT for merchants
+    managing stores.
+- name: shopify-onboarding-merchant
+  file: skills/shopify-onboarding-merchant.md
+  source: https://github.com/Shopify/Shopify-AI-Toolkit/blob/main/skills/shopify-onboarding-merchant/SKILL.md
+  bytes: 14330
+  description: 'Set up and connect a Shopify store from your AI assistant. Use when the user wants to start selling
+    online, open a first Shopify store, try Shopify before they have an account, or get merchant-facing next steps
+    after a preview store is created, including how to keep it, save it, or make it real. This is for store owners
+    — not developers. Preview-store creation for brand-new merchants belongs here '
+- name: shopify-partner
+  file: skills/shopify-partner.md
+  source: https://github.com/Shopify/Shopify-AI-Toolkit/blob/main/skills/shopify-partner/SKILL.md
+  bytes: 8260
+  description: The Partner API lets you programmatically access data about your Partner Dashboard, including your
+    apps, themes, and affiliate referrals.
+- name: shopify-payments-apps
+  file: skills/shopify-payments-apps.md
+  source: https://github.com/Shopify/Shopify-AI-Toolkit/blob/main/skills/shopify-payments-apps/SKILL.md
+  bytes: 8098
+  description: The Payments Apps API enables payment providers to integrate their payment solutions with Shopify's
+    checkout.
+- name: shopify-polaris-admin-extensions
+  file: skills/shopify-polaris-admin-extensions.md
+  source: https://github.com/Shopify/Shopify-AI-Toolkit/blob/main/skills/shopify-polaris-admin-extensions/SKILL.md
+  bytes: 33282
+  description: Add custom actions and blocks from your app at contextually relevant spots throughout the Shopify
+    Admin. Admin UI Extensions also supports scaffolding new adminextensions using Shopify CLI commands.
+- name: shopify-polaris-app-home
+  file: skills/shopify-polaris-app-home.md
+  source: https://github.com/Shopify/Shopify-AI-Toolkit/blob/main/skills/shopify-polaris-app-home/SKILL.md
+  bytes: 14954
+  description: Build your app's primary user interface embedded in the Shopify admin. If the prompt just mentions
+    `Polaris` and you can't tell based off of the context what API they meant, assume they meant this API.
+- name: shopify-polaris-checkout-extensions
+  file: skills/shopify-polaris-checkout-extensions.md
+  source: https://github.com/Shopify/Shopify-AI-Toolkit/blob/main/skills/shopify-polaris-checkout-extensions/SKILL.md
+  bytes: 16310
+  description: Build custom functionality that merchants can install at defined points in the checkout flow, including
+    product information, shipping, payment, order summary, and Shop Pay. Checkout UI Extensions also supports scaffolding
+    new checkout extensions using Shopify CLI commands.
+- name: shopify-polaris-customer-account-extensions
+  file: skills/shopify-polaris-customer-account-extensions.md
+  source: https://github.com/Shopify/Shopify-AI-Toolkit/blob/main/skills/shopify-polaris-customer-account-extensions/SKILL.md
+  bytes: 18053
+  description: Build custom functionality that merchants can install at defined points on the Order index, Order
+    status, and Profile pages in customer accounts. Customer Account UI Extensions also supports scaffolding new
+    customer account extensions using Shopify CLI commands.
+- name: shopify-pos-ui
+  file: skills/shopify-pos-ui.md
+  source: https://github.com/Shopify/Shopify-AI-Toolkit/blob/main/skills/shopify-pos-ui/SKILL.md
+  bytes: 27194
+  description: 'Build retail point-of-sale applications using Shopify''s POS UI components. These components provide
+    a consistent and familiar interface for POS applications. POS UI Extensions also supports scaffolding new POS
+    extensions using Shopify CLI commands. Keywords: POS, Retail, smart grid'
+- name: shopify-shopifyql
+  file: skills/shopify-shopifyql.md
+  source: https://github.com/Shopify/Shopify-AI-Toolkit/blob/main/skills/shopify-shopifyql/SKILL.md
+  bytes: 9461
+  description: 'Answer a merchant''s **analytics and reporting** questions with **ShopifyQL** — Shopify''s query
+    language for aggregated store metrics that the Admin GraphQL API cannot compute. Choose this (not `admin`) whenever
+    the ask is for **numbers, totals, trends, or breakdowns** rather than fetching or mutating individual records:
+    including but not limited to total/gross/net sales and revenue, order counts, '
+- name: shopify-storefront-graphql
+  file: skills/shopify-storefront-graphql.md
+  source: https://github.com/Shopify/Shopify-AI-Toolkit/blob/main/skills/shopify-storefront-graphql/SKILL.md
+  bytes: 7828
+  description: Use for custom storefronts requiring direct GraphQL queries/mutations for data fetching and cart
+    operations. Choose this when you need full control over data fetching and rendering your own UI. NOT for Web
+    Components - if the prompt mentions HTML tags like <shopify-store>, <shopify-cart>, use storefront-web-components
+    instead.
+- name: shopify-use-shopify-cli
+  file: skills/shopify-use-shopify-cli.md
+  source: https://github.com/Shopify/Shopify-AI-Toolkit/blob/main/skills/shopify-use-shopify-cli/SKILL.md
+  bytes: 15279
+  description: 'Choose when the user needs **Shopify CLI** to run or fix something now: validate app or extension
+    config on disk (`shopify.app.toml`, `shopify.app.<name>.toml`, `shopify.extension.toml`); run or troubleshoot
+    store workflows (`shopify store auth`, `shopify store execute`); or perform explicit store-scoped reads/writes
+    on a named store domain (for example, show/list/find the first 10 products on my '
+- name: ucp
+  file: skills/ucp.md
+  source: https://github.com/Shopify/Shopify-AI-Toolkit/blob/main/skills/ucp/SKILL.md
+  bytes: 21279
+  description: Use when the user wants to use the UCP CLI to find, compare, buy, or track products from online merchants,
+    or to set up and troubleshoot the local UCP profile required for merchant-scoped operations. Covers global catalog
+    search ("find me X under $Y"), named-merchant transactions ("buy this from Z.com"), order tracking, `ucp profile
+    init`, `ucp doctor`, carts, checkout, orders, and UCP setup/help.

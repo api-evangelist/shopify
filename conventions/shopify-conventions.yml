@@ -1,0 +1,219 @@
+generated: '2026-08-27'
+method: searched
+source: >-
+  https://shopify.dev/docs/api/usage/limits.md, https://shopify.dev/docs/api/usage/versioning.md,
+  https://shopify.dev/docs/api/usage/response-codes.md, https://shopify.dev/docs/api/usage/access-scopes.md,
+  https://shopify.dev/docs/agents/carts-and-checkout/cart-mcp.md,
+  https://shopify.dev/docs/agents/carts-and-checkout/checkout-mcp.md,
+  https://shopify.dev/docs/api/admin-graphql/latest/mutations/orderCancel.md,
+  https://shopify.dev/docs/api/admin-graphql/latest/mutations/refundCreate.md — all fetched 2026-08-27
+provider: Shopify
+providerId: shopify
+authentication:
+  style: oauth2 + access token header
+  header: X-Shopify-Access-Token
+  storefront_header: X-Shopify-Storefront-Access-Token
+  flows: [authorization_code, token_exchange, client_credentials]
+  agent_token_endpoint: https://api.shopify.com/auth/access_token
+  versioned: false
+  note: >-
+    OAuth endpoints (including AccessScope) are explicitly UNVERSIONED and may change at any time,
+    while every API they authorize is versioned quarterly.
+  cross_reference: authentication/shopify-authentication.yml
+idempotency:
+  supported: true
+  mechanism: 'meta["idempotency-key"] (UUID), inside the MCP tool call arguments'
+  scope: UCP Cart MCP and Checkout MCP
+  required_on:
+  - cancel_cart
+  - complete_checkout
+  - cancel_checkout
+  spec: https://ucp.dev/2026-04-08/specification/overview/#idempotency
+  docs: https://shopify.dev/docs/agents/carts-and-checkout/checkout-mcp
+  note: >-
+    This is the honest shape of Shopify idempotency and it is narrower than a blanket
+    Idempotency-Key header. It is REQUIRED — not merely accepted — on exactly the three destructive
+    or money-moving UCP tools, and Shopify's guidance is explicit: do not retry inside the same
+    checkout or payment lifecycle without one. The Admin REST and GraphQL Admin APIs do NOT document
+    an idempotency key; safety there comes from GraphQL mutation semantics and from the order-edit
+    begin/commit session, not from a replay token.
+  gaps:
+  - surface: Admin REST API
+    supported: false
+  - surface: GraphQL Admin API
+    supported: false
+    note: Order editing uses a staged session (orderEditBegin -> orderEditCommit) instead of a replay key.
+pagination:
+  admin_graphql:
+    style: cursor (Relay connections)
+    params: [first, last, after, before]
+    response_fields: [pageInfo.hasNextPage, pageInfo.hasPreviousPage, pageInfo.startCursor, pageInfo.endCursor]
+  admin_rest:
+    style: link-header cursor
+    params: [limit, page_info]
+    response_fields: [Link]
+  ceiling:
+    max_objects: 25000
+    note: >-
+      Pagination is capped at 25,000 objects across all APIs. Count queries share the ceiling and
+      return 25001 as a sentinel meaning "more than 25,000" — an agent that treats 25001 as a real
+      count will be wrong.
+  max_input_array: 250
+  bulk_escape_hatch:
+    name: Bulk operations
+    docs: https://shopify.dev/docs/api/usage/bulk-operations
+    note: Bulk operations carry neither the single-query max cost nor the standard rate limits.
+field_selection:
+  graphql: native field selection
+  admin_rest:
+    param: fields
+    example: '/admin/api/{version}/products/{id}.json?fields=id,title'
+metadata:
+  mechanism: Metafields and Metaobjects
+  docs: https://shopify.dev/docs/apps/build/custom-data
+  note: >-
+    Metafields extend built-in types; Metaobjects are user-defined types. Both carry definitions that
+    act as a schema, so custom data on Shopify is typed rather than free-form key/value.
+request_tracing:
+  request_id_header: X-Request-Id
+  cost_debug_header: Shopify-GraphQL-Cost-Debug
+  version_echo_header: X-Shopify-API-Version
+  note: >-
+    Every response echoes X-Shopify-API-Version. If it differs from the version requested, the app is
+    targeting an inaccessible version and Shopify has fallen forward — this is the runtime signal an
+    agent should check, not the docs.
+versioning:
+  scheme: date-based quarterly (YYYY-MM)
+  current: '2026-07'
+  in_url: true
+  channels: [stable, release-candidate, unstable]
+  support_window: minimum 12 months per stable version, minimum 9 months overlap
+  fall_forward: true
+  cross_reference: lifecycle/shopify-lifecycle.yml
+error_envelope:
+  rfc9457: false
+  admin_rest:
+    shape: '{ "errors": ... }  or  { "error": ... }'
+  graphql:
+    shape: '{ "errors": [ { "message", "extensions": { "code" } } ], "data": ... }'
+    note: GraphQL user errors are returned in the mutation payload's userErrors field, not as transport errors.
+  ucp_mcp:
+    protocol_errors: 'JSON-RPC error, code -32000 (transport) / -32001 (discovery)'
+    business_outcomes: 'JSON-RPC result with structuredContent.messages[] carrying type, code, severity, path'
+    note: >-
+      UCP draws a hard line between a request that failed and a request that succeeded with a bad
+      outcome. A declined payment, an expired session or an unavailable item all arrive as a
+      SUCCESSFUL JSON-RPC result. An agent that only checks for a JSON-RPC error will silently miss
+      every business failure.
+  cross_reference: errors/shopify-problem-types.yml
+rate_limit_signaling:
+  admin_graphql:
+    in_body: true
+    path: extensions.cost.throttleStatus
+    fields: [maximumAvailable, currentlyAvailable, restoreRate, requestedQueryCost, actualQueryCost]
+    note: >-
+      Shopify's primary rate-limit signal is in the response BODY on every successful GraphQL call,
+      not in a header on the 429. An agent can pace itself without ever being throttled.
+  headers:
+  - Retry-After
+  - X-Shopify-Shop-Api-Call-Limit
+  exhaustion_status: 429
+  storefront_checkout_throttle: '200 with a Throttled error body (not 429)'
+  cross_reference: rate-limits/shopify-rate-limits.yml
+dry_run_mode:
+  supported: partial
+  mechanisms:
+  - name: Order editing session
+    detail: >-
+      orderEditBegin returns a CalculatedOrder showing the order as it WOULD look with staged changes
+      applied. Nothing is written until orderEditCommit. This is a genuine rehearsal surface.
+    docs: https://shopify.dev/docs/api/admin-graphql/latest/mutations/orderEditBegin
+  - name: Checkout status lifecycle
+    detail: >-
+      get_checkout returns status (incomplete / requires_escalation / ready_for_complete) so an agent
+      can confirm a checkout would succeed before calling complete_checkout.
+  - name: Development stores and mock.shop
+    detail: Full non-production environments. See sandbox/shopify-sandbox.yml.
+  note: No generic dry-run flag exists on Admin REST or GraphQL mutations.
+reversibility:
+  grade: verified
+  applicable: true
+  note: >-
+    Shopify has an unusually complete reversal surface and, unusually, documents where reversal STOPS
+    working — the orderCancel reference states in a caution block that cancellation is irreversible.
+    Windows below are recorded ONLY where Shopify states them; where no window is published the
+    entry says so rather than guessing, because an invented refund window here would cost a merchant
+    real money.
+  operations:
+  - write: create order / place order
+    reversal: cancel
+    operationId: cancelOrder
+    graphql: orderCancel
+    window: >-
+      No time limit is published for cancelling an order. Shopify states the boundary as a STATE
+      rather than a clock: an order that has fulfillments cannot be cancelled (422), and cancellation
+      itself cannot be undone.
+    window_stated: false
+    reversible_again: false
+    docs: https://shopify.dev/docs/api/admin-graphql/latest/mutations/orderCancel
+    note: >-
+      If a payment was only authorized and not captured, the hold is released automatically on
+      cancel, even when no refund is requested.
+  - write: capture payment
+    reversal: refund
+    operationId: null
+    graphql: refundCreate
+    window: >-
+      No refund window is stated in the API reference. Shopify supports full and partial refunds,
+      refunds to original payment method or store credit, and over-refunding in specific cases.
+    window_stated: false
+    docs: https://shopify.dev/docs/api/admin-graphql/latest/mutations/refundCreate
+  - write: create fulfillment
+    reversal: cancel fulfillment
+    operationId: cancelFulfillment
+    window: Not stated.
+    window_stated: false
+  - write: close order
+    reversal: reopen order
+    operationId: reopenOrder
+    window: Not stated; reopen is available on a closed (not cancelled) order.
+    window_stated: false
+  - write: edit an order
+    reversal: abandon the edit session
+    graphql: orderEditBegin / orderEditCommit
+    window: >-
+      Fully reversible until orderEditCommit is called — the session holds staged changes and nothing
+      is written before commit. After commit, reversal is via a further edit or a refund.
+    window_stated: true
+  - write: create_checkout (UCP)
+    reversal: cancel_checkout
+    window: >-
+      Reversible while the checkout is in a non-terminal status. Cancellation expires the checkout
+      immediately and sets expires_at to the cancellation timestamp; a cancelled checkout cannot be
+      resumed and a new session must be started.
+    window_stated: true
+    idempotency_required: true
+    docs: https://shopify.dev/docs/agents/carts-and-checkout/checkout-mcp
+  - write: create_cart (UCP)
+    reversal: cancel_cart
+    window: >-
+      Reversible until the cart expires; an expired cart returns the cart_not_found business outcome.
+      The expiry duration itself is not published.
+    window_stated: false
+    idempotency_required: true
+  - write: complete_checkout (UCP) — places the order
+    reversal: refund / orderCancel on the resulting order
+    window: >-
+      No agent-side reversal exists. Once complete_checkout returns a completed order, reversal moves
+      to the merchant Admin surface (orderCancel / refundCreate) with the caveats above. This is the
+      single highest-consequence irreversible step in the Shopify agent flow.
+    window_stated: false
+  - write: delete product / delete order / delete webhook
+    reversal: none
+    operationId: [deleteProduct, deleteOrder, deleteWebhook]
+    window: No undelete or restore operation is published for these resources.
+    window_stated: false
+webhooks:
+  cross_reference: asyncapi/shopify-webhooks.yml
+  version_header: X-Shopify-Api-Version
+  note: Webhook payloads are versioned on the same quarterly train as API responses, and fall forward the same way.

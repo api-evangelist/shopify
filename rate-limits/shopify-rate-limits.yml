@@ -4,53 +4,166 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Shopify
 providerId: shopify
 created: '2026-05-04'
-# Provenance stamped 2026-08-11: this artifact was written by the API Evangelist
-# bulk sweep dated 2026-05-04, not harvested from the provider. See roadmap#35.
-method: generated
-modified: '2026-05-04'
+# CORRECTED 2026-08-27. The prior revision of this file was written by the 2026-05-04 bulk sweep
+# (method: generated) and recorded the GraphQL Admin Standard tier as 1,000 points/second with a
+# 50/sec restore, and a REST Admin leaky bucket of 40 requests. Both were re-read from
+# https://shopify.dev/docs/api/usage/limits.md on 2026-08-27 and are now wrong:
+#   - GraphQL Admin Standard is 100 points/second, not 1,000. 1,000 is the PLUS tier.
+#   - The published comparison table no longer lists the REST Admin API at all.
+# The whole file has been replaced with figures read from the current published reference.
+method: searched
+source: https://shopify.dev/docs/api/usage/limits.md
+docs: https://shopify.dev/docs/api/usage/limits
+verified: '2026-08-27'
+modified: '2026-08-27'
 reconciled: true
 tags:
   - Rate Limiting
   - Commerce
-description: Shopify uses leaky-bucket throttling on REST (40 req/app/store) and calculated query cost
-  on GraphQL (1000 points/store, 50/sec restore).
+description: >-
+  Shopify rate-limits by CALCULATED QUERY COST, not by request count. Every field in the GraphQL
+  schema carries an integer cost; an app's bucket must hold the requested cost before a query runs
+  and is refunded the difference between requested and actual cost afterwards. The Storefront API
+  has no fixed request-per-minute limit at all — it throttles automated traffic instead, and grants
+  higher limits to bots that identify themselves with Web Bot Auth.
 sources:
-  - https://www.shopify.com/pricing
-  - https://shopify.dev/docs/api/usage/rate-limits
+  - https://shopify.dev/docs/api/usage/limits
+  - https://shopify.dev/docs/api/usage/response-codes
+limit_count: 7
 headers:
+  retryAfter: Retry-After
   callLimit: X-Shopify-Shop-Api-Call-Limit
+  costDebug: Shopify-GraphQL-Cost-Debug
+  note: >-
+    The primary signal is NOT a header. Every successful GraphQL response carries
+    extensions.cost.throttleStatus with maximumAvailable, currentlyAvailable and restoreRate, plus
+    requestedQueryCost and actualQueryCost. An agent can pace itself perfectly without ever being
+    throttled. Setting Shopify-GraphQL-Cost-Debug=1 returns a per-field cost breakdown.
 responseCodes:
   throttled: 429
-  graphqlThrottled: 200
-  graphqlBudget: 200
+  storefrontCheckoutThrottled: 200
+  shopLocked: 423
+  securityRejection: 430
+  note: >-
+    The Storefront API checkout throttle returns HTTP 200 with a Throttled error body, not a 429. A
+    client that only watches status codes will not see it. Repeatedly exceeding limits escalates to
+    423 Locked on the whole shop, which requires contacting support.
+algorithm:
+  name: leaky bucket
+  detail: >-
+    Each app+store pair has a bucket. Each request adds marbles; capacity restores continuously at
+    the tier's restore rate. Bursting above the average rate is allowed while the bucket has room.
+  scope: >-
+    Limits are per (app, store) pair. One app's calls do not affect another app's limits on the same
+    store, and calls to one store do not affect another store from the same app.
 limits:
-  - name: REST Admin (Standard)
+  - name: GraphQL Admin API (Standard)
     scope: app/store
-    metric: requests
-    limit: 40
-    timeFrame: leaky bucket; 2/sec restore
-  - name: REST Admin (Plus)
+    metric: cost_points
+    limit: 100
+    timeFrame: second
+    detail: 100 points/second restore rate.
+  - name: GraphQL Admin API (Advanced Shopify)
     scope: app/store
-    metric: requests
-    limit: 80
-    timeFrame: leaky bucket; 4/sec restore
-  - name: GraphQL Admin (Standard)
+    metric: cost_points
+    limit: 200
+    timeFrame: second
+  - name: GraphQL Admin API (Shopify Plus)
     scope: app/store
     metric: cost_points
     limit: 1000
-    timeFrame: 50/sec restore
-  - name: GraphQL Admin (Plus)
+    timeFrame: second
+  - name: GraphQL Admin API (Commerce Components / enterprise)
     scope: app/store
     metric: cost_points
     limit: 2000
-    timeFrame: 100/sec restore
-  - name: Storefront API (Public)
-    scope: ip
-    metric: requests_per_minute
-    limit: 60
-    timeFrame: minute
+    timeFrame: second
+  - name: Customer Account API
+    scope: app/store
+    metric: cost_points
+    limit: 100
+    timeFrame: second
+    detail: 100 Standard, 200 Advanced, 200 Plus, 400 enterprise.
+  - name: Payments Apps API
+    scope: app/store
+    metric: cost_points
+    limit: 27300
+    timeFrame: second
+    detail: 27,300 Standard and Advanced, 54,600 Plus, 109,200 enterprise.
+  - name: Storefront API
+    scope: none
+    metric: requests
+    limit: null
+    timeFrame: null
+    detail: >-
+      No fixed request-per-minute limit. Requests from real buyers are not rate-limited; Shopify
+      scales for flash sales. Automated traffic (bots, crawlers) IS limited, with unsigned anonymous
+      bots receiving the strictest tier.
+cost_model:
+  applies_to: all GraphQL APIs
+  default_field_costs:
+    scalar: 0
+    enum: 0
+    object: 1
+    interface: maximum of possible selections
+    union: maximum of possible selections
+    connection: sized by the first/last arguments
+    mutation: 10
+  requested_vs_actual: >-
+    Cost is calculated twice — before execution from the requested fields, and after from the actual
+    results. The bucket is charged the requested cost up front and refunded the difference.
+  single_query_max_cost: 1000
+  note: Applies regardless of plan tier. A single query costing more than 1,000 points is rejected before it runs.
+input_limits:
+  max_input_array: 250
+  max_pagination_objects: 25000
+  count_sentinel: 25001
+  count_sentinel_note: >-
+    Counts are accurate only to 25,000. Above that the API returns 25001, which is a flag meaning
+    "more than 25,000" and NOT a count. Treating it as a number is a real and easy mistake.
+resource_limits:
+  - name: Product variant creation
+    trigger: store has 500,000 or more product variants
+    limit: 10000 new variants per day
+    operations: [productCreate, productUpdate, productVariantCreate]
+    exempt: Shopify Plus
+    response: 429 with a message that a throttle has been applied
+agent_traffic:
+  web_bot_auth:
+    supported: true
+    spec: https://datatracker.ietf.org/doc/draft-meunier-web-bot-auth-architecture/
+    detail: >-
+      Bots and crawlers that sign their requests with Web Bot Auth receive higher Storefront API and
+      online-store rate limits than anonymous traffic. Merchants can find ready-to-use signatures in
+      the Shopify admin for crawling their own stores. Operators needing more than the signed tier
+      can apply through a published form.
+    note: >-
+      Shopify has an explicit, published price for agent identity: identify yourself and get a better
+      tier. Very few providers in this catalog have built that into the rate limiter.
+  ucp_tiers:
+    detail: >-
+      Cart MCP and Checkout MCP carry separate limits, with Checkout MCP throttled more strictly at
+      every tier. Anonymous is lowest and cannot reach Checkout MCP at all; signed request is middle;
+      Bearer token is highest.
+    source: https://shopify.dev/docs/agents/profiles/auth-and-rate-limiting
 policies:
   - name: Per-app per-shop
     description: Limits scope to the (app_id, shop_id) tuple, not your account.
   - name: Bulk operations
-    description: Use bulk operations for large queries to avoid throttling.
+    description: >-
+      Bulk operations carry neither the single-query max cost nor the standard rate limits. This is
+      the documented escape hatch for large exports.
+    docs: https://shopify.dev/docs/api/usage/bulk-operations
+  - name: Backoff
+    description: Recommended backoff after a throttle is one second; honor Retry-After where present.
+  - name: Temporary reductions
+    description: >-
+      Shopify reserves the right to temporarily reduce API rate limits to protect platform stability.
+      Apps are expected to handle limits gracefully rather than assume the published number.
+evidence:
+  - url: https://shopify.dev/docs/api/usage/limits.md
+    status: 200
+    fetched: '2026-08-27'
+  - url: https://shopify.dev/docs/api/usage/response-codes.md
+    status: 200
+    fetched: '2026-08-27'

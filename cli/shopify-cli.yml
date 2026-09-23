@@ -1,0 +1,93 @@
+generated: '2026-08-27'
+method: searched
+source: >-
+  https://shopify.dev/docs/api/shopify-cli.md (HTTP 200) +
+  https://shopify.dev/docs/apps/build/ai-toolkit.md + https://shopify.dev/docs/agents.md — fetched 2026-08-27
+provider: Shopify
+providerId: shopify
+docs: https://shopify.dev/docs/api/shopify-cli
+clis:
+- name: Shopify CLI
+  binary: shopify
+  official: true
+  open_source: true
+  repo: https://github.com/Shopify/cli
+  package: '@shopify/cli'
+  version: 4.7.0
+  published: '2026-08-19'
+  requirements:
+    node: '22.12 or higher'
+    git: '2.28.0 or higher'
+    package_manager: [npm, yarn 1.x, pnpm]
+  install:
+  - method: npm
+    command: npm install -g @shopify/cli@latest
+  - method: yarn
+    command: yarn global add @shopify/cli@latest
+  - method: pnpm
+    command: pnpm install -g @shopify/cli@latest
+  - method: homebrew
+    platform: macOS
+    command: brew tap shopify/shopify && brew install shopify-cli
+  syntax: 'shopify [topic] [command]'
+  discovery: shopify help
+  topics:
+  - topic: app
+    docs: https://shopify.dev/docs/api/shopify-cli/app
+    detail: Scaffold, run, deploy and configure apps and extensions.
+  - topic: theme
+    docs: https://shopify.dev/docs/api/shopify-cli/theme
+    detail: Develop, preview, pull, push and lint themes.
+  - topic: hydrogen
+    docs: https://shopify.dev/docs/api/shopify-cli/hydrogen
+    detail: Scaffold and deploy headless Hydrogen storefronts on Oxygen.
+  - topic: store
+    detail: >-
+      Store-scoped auth and execution — shopify store auth, shopify store execute, shopify store
+      create preview. This is the topic that makes the CLI an agent surface: it lets an agent run
+      GraphQL against a named store through the human's authenticated context.
+  - topic: config
+    detail: 'shopify config autoupgrade on|off|status'
+  key_flows:
+  - Scaffold an app or theme and run it locally against a development store.
+  - Validate shopify.app.toml / shopify.extension.toml configuration before deploy.
+  - Execute Admin GraphQL against a named store via `shopify store execute`.
+  - Create a preview store for a brand-new merchant via `shopify store create preview`.
+  self_upgrade:
+    enabled_by_default: true
+    since: '4.0'
+    command: shopify upgrade
+    disable: shopify config autoupgrade off
+    skipped_in: [CI environments, project-local installs, major version bumps]
+  proxy_support:
+    since: '3.78'
+    env: [SHOPIFY_HTTP_PROXY, SHOPIFY_HTTPS_PROXY]
+  telemetry:
+    default: on
+    opt_out: [SHOPIFY_CLI_NO_ANALYTICS=1, OPT_OUT_INSTRUMENTATION=true]
+  support:
+  - https://community.shopify.dev/c/shopify-cli-libraries/14
+  - https://community.shopify.dev/c/dev-platform/32
+- name: UCP CLI
+  binary: ucp
+  official: true
+  package: '@shopify/ucp-cli'
+  version: 0.7.0
+  published: '2026-08-24'
+  repo: https://github.com/Shopify/ucp-cli
+  install:
+  - method: npm
+    command: npm install -g @shopify/ucp-cli
+  docs: https://shopify.dev/docs/agents
+  detail: >-
+    Agent-shaped CLI over the Universal Commerce Protocol. Structured commands to search the global
+    catalog, build carts, create checkouts, hand off buyers and track orders — the same operations
+    the UCP MCP servers expose, as a terminal surface.
+  key_flows:
+  - ucp profile init  — create the local UCP agent profile every merchant-scoped call requires.
+  - ucp doctor  — diagnose profile and connectivity problems.
+  - 'catalog search / cart / checkout / order  — the four-stage buyer journey.'
+  - ucp checkout cancel <checkout-gid>
+  note: >-
+    Note the version number. 0.7.0 on a surface Shopify is actively marketing means the agent CLI is
+    pre-1.0 while the platform CLI is at 4.7.0.

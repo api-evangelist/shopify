@@ -1,0 +1,139 @@
+generated: '2026-08-27'
+method: searched
+source: >-
+  https://shopify.dev/docs/api/usage/versioning.md (HTTP 200) +
+  https://shopify.dev/changelog/feed.xml (HTTP 200) — fetched 2026-08-27
+provider: Shopify
+providerId: shopify
+docs: https://shopify.dev/docs/api/usage/versioning
+versioning:
+  scheme: date-based quarterly
+  format: YYYY-MM
+  current_stable: '2026-07'
+  release_cadence: every three months, at the start of the quarter, 17:00 UTC
+  location: in the request URL
+  channels:
+  - name: stable
+    detail: Production. Guaranteed not to change for its supported lifetime.
+  - name: release candidate
+    detail: Published on the same date as the stable release. May contain backwards-incompatible changes.
+  - name: unstable
+    detail: Continuously updated with in-progress changes; no release guarantee.
+  support_window:
+    minimum_months: 12
+    overlap_months: 9
+  fall_forward:
+    enabled: true
+    detail: >-
+      A request targeting an inaccessible version is served by the oldest accessible stable version
+      rather than failing. The X-Shopify-API-Version response header reports which version actually
+      answered — that mismatch is the runtime signal that an app is out of date.
+  unversioned_surfaces:
+  - Ajax API
+  - App Home
+  - Catalog API
+  - Customer Privacy API
+  - Liquid
+  - OAuth endpoints (including AccessScope)
+  - Shop Minis
+  - Shop Pay Wallet
+  - Storefront Web Components
+  - Web Pixels API
+  unversioned_note: >-
+    These may change at any time with no deprecation window. Notably that includes the OAuth
+    endpoints every other API depends on, and the Storefront Web Components an agent might embed.
+release_schedule:
+- version: '2025-07'
+  released: '2025-07-01'
+  accessible_until: '2026-07-16T15:00:00Z'
+- version: '2025-10'
+  released: '2025-10-01'
+  accessible_until: '2026-10-16T15:00:00Z'
+- version: '2026-01'
+  released: '2026-01-01'
+  accessible_until: '2027-01-16T15:00:00Z'
+- version: '2026-04'
+  released: '2026-04-01'
+  accessible_until: '2027-04-16T15:00:00Z'
+- version: '2026-07'
+  released: '2026-07-01'
+  accessible_until: '2027-07-16T15:00:00Z'
+- version: '2026-10'
+  released: '2026-10-01'
+  accessible_until: '2027-10-16T15:00:00Z'
+- version: '2027-01'
+  released: '2027-01-01'
+  accessible_until: '2028-01-16T15:00:00Z'
+deprecation:
+  policy_published: true
+  policy_url: https://shopify.dev/docs/api/usage/versioning#deprecation-practices
+  process: >-
+    A deprecated field or type is deprecated across ALL supported stable versions at once and removed
+    in a subsequent release — deprecate in 2026-10, remove in 2027-01. The nine-month version overlap
+    is the guaranteed migration runway.
+  sunset_header: false
+  deprecation_header: false
+  rfc8594: false
+  note: >-
+    Shopify does NOT emit RFC 8594 Sunset/Deprecation response headers. Deprecation is signalled
+    out-of-band instead, through five channels listed below. For an agent this matters: there is no
+    runtime header to read, so deprecation awareness has to come from the API health report or the
+    changelog, not from the response.
+  channels:
+  - name: API health report
+    url: https://shopify.dev/docs/api/usage/versioning/api-health
+    detail: Lists the resources an app uses that require changes.
+  - name: GraphiQL Explorer warnings
+    url: https://shopify.dev/docs/api/usage/api-exploration/admin-graphiql-explorer
+  - name: Developer changelog
+    url: https://shopify.dev/changelog
+  - name: API reference annotations
+    detail: Deprecated fields are marked with their replacement in the reference.
+  - name: Emergency developer contact
+    detail: Direct notification for imminent backwards-incompatible changes.
+  enforcement: >-
+    An app still calling unsupported resources after the upgrade deadline is DELISTED from the
+    Shopify App Store, installs are blocked for at least seven days, and merchants see warnings in
+    the admin until seven days after the last detected use. Shopify enforces its deprecation policy
+    commercially, not just editorially.
+  active_deprecations:
+  - item: Online store script tags
+    announced: '2026-08-24'
+    stops_working: '2027-03-01'
+    surfaces: [Admin GraphQL API, Admin REST API]
+    url: https://shopify.dev/changelog/online-store-script-tags-deprecation
+    severity: action-required
+  - item: Non-expiring offline access tokens for the Admin API
+    effective: '2027-01-01'
+    detail: >-
+      From 2027-01-01 an Admin API request presenting a public app's non-expiring offline access
+      token returns 403 with "Non-expiring access tokens are no longer accepted for the Admin API".
+    url: https://shopify.dev/docs/apps/build/authentication-authorization/migrate-to-expiring-offline-access-tokens
+    severity: action-required
+  surface_level:
+  - surface: Admin REST API
+    status: legacy
+    evidence: >-
+      Not listed among versioned APIs in the current versioning reference, while the GraphQL Admin,
+      Storefront, Customer Account, Function, Partner, Payments Apps and Webhooks APIs all are.
+      Shopify's own guidance in apis.yml says GraphQL is the recommended API for all new development.
+status_page:
+  url: https://www.shopifystatus.com
+  verified: '2026-08-27'
+  http_status: 200
+sla:
+  published: false
+  note: >-
+    No public numeric SLA is published for the platform APIs. Enterprise (Commerce Components)
+    agreements are negotiated and not documented publicly.
+changelog:
+  url: https://shopify.dev/changelog
+  feed: https://shopify.dev/changelog/feed.xml
+  format: RSS 2.0 with per-entry categories
+  cross_reference: changelog/shopify-changelog.yml
+deprecated_operations_in_spec:
+  count: 0
+  note: >-
+    The captured Admin REST OpenAPI carries no `deprecated: true` operations. That is a property of
+    the capture, not evidence of absence — Shopify tracks deprecation in the GraphQL schema and the
+    API health report, neither of which is represented in this repo's REST spec.

@@ -1,0 +1,111 @@
+generated: '2026-08-27'
+method: probed
+source: >-
+  https://mock.shop/api (live GraphQL introspection, HTTP 200, no auth),
+  https://agents.mock.shop/ (HTTP 200),
+  https://shopify.dev/docs/storefronts/themes/tools/development-stores.md (HTTP 200),
+  https://shopify.dev/docs/api/usage/versioning.md (HTTP 200) — all 2026-08-27
+provider: Shopify
+providerId: shopify
+note: >-
+  Shopify's testing story is unusually strong for agent work specifically, because one of its four
+  environments needs no account at all. mock.shop answers a full Storefront API introspection
+  anonymously — an agent can be writing working GraphQL against real Shopify schema before anyone
+  signs up for anything. Test PAYMENT values are deliberately omitted below: Shopify documents its
+  Bogus Gateway test card numbers on help.shopify.com, which returned 403 to this probe, and
+  inventing a test card is not something this pipeline will do.
+environments:
+- name: mock.shop
+  type: hosted mock API
+  auth_required: false
+  account_required: false
+  endpoint: https://mock.shop/api
+  landing: https://agents.mock.shop/
+  api: Storefront API (GraphQL)
+  verified: probed
+  probe:
+    fetched: '2026-08-27'
+    method: 'POST full introspection query'
+    http_status: 200
+    types_returned: 414
+    saved_to: graphql/shopify-storefront-api.graphql
+  detail: >-
+    "A store's worth of data" — a real Storefront API surface stocked with sample products, backed by
+    a growing set of reference stores (apparel, skincare, candles, jewellery). No auth, no keys, no
+    store. Shopify positions it explicitly at agents: "Point your agent at a real Shopify Storefront
+    API."
+  limits: Read-only sample catalog; no real orders, no merchant admin surface.
+- name: Dev store
+  type: full free environment
+  auth_required: true
+  account_required: 'Shopify Partner / Dev Dashboard account (free)'
+  console: https://dev.shopify.com/dashboard/
+  docs: https://shopify.dev/docs/storefronts/themes/tools/development-stores
+  detail: >-
+    A free, fully functional Shopify store for building and testing apps, themes and custom
+    storefronts. Created from the Dev Dashboard by choosing store type "Dev" and a plan to emulate.
+  test_data:
+    available: true
+    opt_in: 'Generate test data for store, at creation time'
+    docs: https://shopify.dev/docs/storefronts/themes/tools/development-stores/generated-data
+    detail: >-
+      Shopify populates the store with the common commerce primitives and configurations needed to
+      test an app, theme or custom storefront — including some Plus-specific features. Stores are
+      empty by default; this is opt-in at creation.
+  feature_previews:
+    available: true
+    docs: https://shopify.dev/docs/apps/build/stores/feature-previews
+    detail: Test capabilities not yet available to all stores.
+  protection: >-
+    Dev stores are always password protected and the password page cannot be customized. The password
+    can only be removed after transfer to a merchant or a switch to a paid plan.
+  oxygen: 'Oxygen (Hydrogen hosting) became available on dev stores 2026-08-03 — see changelog/shopify-changelog.yml.'
+- name: Preview store
+  type: instant merchant-facing trial
+  auth_required: false
+  account_required: false
+  command: shopify store create preview
+  docs: https://shopify.dev/docs/apps/build/ai-toolkit
+  detail: >-
+    Created from the CLI (or from a conversation with an agent) for a merchant who does not yet have
+    a Shopify account. Can later be claimed and made real. This is the surface behind Shopify's
+    "turn an idea into a store you can claim by having a conversation with ChatGPT, Claude, Lovable,
+    Replit, Vercel (v0), Perplexity, Manus" positioning.
+- name: unstable / release-candidate API versions
+  type: version channel
+  auth_required: true
+  docs: https://shopify.dev/docs/api/usage/versioning
+  detail: >-
+    `unstable` is continuously updated with in-progress changes and is the early-testing channel; the
+    release candidate for the next quarter publishes on the same day the current stable ships. Both
+    are addressed by putting the version in the request URL — no separate host or key.
+key_modes:
+  note: >-
+    Shopify does not use a test/live key prefix convention. The environment is the STORE, not the
+    key: a dev store issues ordinary access tokens against ordinary endpoints, and its
+    {store}.myshopify.com host is what marks it as non-production.
+  test_key_prefix: null
+  live_key_prefix: null
+time_simulation:
+  supported: false
+  note: No test clock or time-travel facility is published, unlike a subscriptions-first payments API.
+payment_testing:
+  documented: true
+  mechanism: Bogus Gateway (a test payment provider enabled on dev stores)
+  values_recorded: false
+  reason: >-
+    The test card values live on help.shopify.com, which returned HTTP 403 to this probe. Values are
+    not recorded rather than guessed.
+  evidence:
+  - url: https://help.shopify.com/en/manual/checkout-settings/pci-compliance
+    status: 403
+fixtures_and_triggers:
+  webhook_testing:
+    mechanism: Shopify CLI + sample payloads published per topic
+    detail: >-
+      Every one of the 206 webhook topics has a published sample payload in the webhook reference —
+      an unusually complete fixture set. See asyncapi/shopify-webhooks.yml.
+  graphiql:
+    name: Admin GraphiQL Explorer
+    docs: https://shopify.dev/docs/api/usage/api-exploration/admin-graphiql-explorer
+    detail: Interactive explorer that also surfaces deprecation warnings against a live store.

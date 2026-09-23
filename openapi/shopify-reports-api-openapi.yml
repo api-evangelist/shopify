@@ -1,72 +1,12 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Shopify Admin REST About Reports API
-  description: The Shopify Admin REST API lets you build apps and integrations that extend and enhance the Shopify admin. Access products, customers, orders, inventory, fulfillment, and more. Endpoints are organized by resource type and versioned by release date.
-  version: 2025-01
-  contact:
-    name: Shopify
-    url: https://shopify.dev/docs/api/admin-rest
-    email: api@shopify.com
-  license:
-    name: Shopify API Terms
-    url: https://www.shopify.com/legal/api-terms
-  x-date: '2026-03-04'
-servers:
-- url: https://{store}.myshopify.com/admin/api/2025-01
-  description: Shopify Admin REST API
-  variables:
-    store:
-      default: my-store
-      description: The Shopify store subdomain
-security:
-- AccessToken: []
+  title: Shopify Reports API
+  description: Explore Shopify's API reference and templating documentation. Shopify provides a range of software tools, app templates, example apps, and libraries to accelerate your development process. The Admin API lets you build apps and integrations that extend and enhance the Shopify admin.
+  version: 2020-10
 tags:
 - name: Reports
 paths:
   /admin/api/2020-01/reports.json:
-    get:
-      summary: Shopify Retrieves A List Of Reports
-      description: https://shopify.dev/docs/admin-api/rest/reference/analytics/report#index-2020-01
-      parameters:
-      - in: query
-        name: ids
-        description: A comma-separated list of report IDs.
-        schema: {}
-        required: false
-      - in: query
-        name: limit
-        description: "The amount of results to return.\n                  (default: 50, maximum: 250)"
-        schema: {}
-        required: false
-      - in: query
-        name: since_id
-        description: Restrict results to after the specified ID.
-        schema: {}
-        required: false
-      - in: query
-        name: updated_at_min
-        description: 'Show reports last updated after date. (format: 2014-04-25T16:15:47-04:00)'
-        schema: {}
-        required: false
-      - in: query
-        name: updated_at_max
-        description: 'Show reports last updated before date. (format: 2014-04-25T16:15:47-04:00)'
-        schema: {}
-        required: false
-      - in: query
-        name: fields
-        description: A comma-separated list of fields to include in the response.
-        schema: {}
-        required: false
-      tags:
-      - Reports
-      responses:
-        '200':
-          description: ''
-      operationId: deprecated_202001_get_reports
-      x-api-evangelist-processing:
-        PascalCaseOperationSummaries: true
-        ChooseTags: true
     post:
       requestBody:
         content:
@@ -102,30 +42,6 @@ paths:
         PascalCaseOperationSummaries: true
         ChooseTags: true
   /admin/api/2020-01/reports/{report_id}.json:
-    get:
-      summary: Shopify Retrieves A Single Report Created By Your App
-      description: https://shopify.dev/docs/admin-api/rest/reference/analytics/report#show-2020-01
-      parameters:
-      - in: path
-        name: report_id
-        required: true
-        schema:
-          type: string
-        description: report_id
-      - in: query
-        name: fields
-        description: A comma-separated list of fields to include in the response.
-        schema: {}
-        required: false
-      tags:
-      - Reports
-      responses:
-        '200':
-          description: ''
-      operationId: deprecated_202001_get_reports_param_report_id
-      x-api-evangelist-processing:
-        PascalCaseOperationSummaries: true
-        ChooseTags: true
     put:
       requestBody:
         content:
@@ -177,49 +93,6 @@ paths:
         PascalCaseOperationSummaries: true
         ChooseTags: true
   /admin/api/2020-04/reports.json:
-    get:
-      summary: Shopify Retrieves A List Of Reports
-      description: https://shopify.dev/docs/admin-api/rest/reference/analytics/report#index-2020-04
-      parameters:
-      - in: query
-        name: ids
-        description: A comma-separated list of report IDs.
-        schema: {}
-        required: false
-      - in: query
-        name: limit
-        description: "The amount of results to return.\n                  (default: 50, maximum: 250)"
-        schema: {}
-        required: false
-      - in: query
-        name: since_id
-        description: Restrict results to after the specified ID.
-        schema: {}
-        required: false
-      - in: query
-        name: updated_at_min
-        description: 'Show reports last updated after date. (format: 2014-04-25T16:15:47-04:00)'
-        schema: {}
-        required: false
-      - in: query
-        name: updated_at_max
-        description: 'Show reports last updated before date. (format: 2014-04-25T16:15:47-04:00)'
-        schema: {}
-        required: false
-      - in: query
-        name: fields
-        description: A comma-separated list of fields to include in the response.
-        schema: {}
-        required: false
-      tags:
-      - Reports
-      responses:
-        '200':
-          description: ''
-      operationId: deprecated_202004_get_reports
-      x-api-evangelist-processing:
-        PascalCaseOperationSummaries: true
-        ChooseTags: true
     post:
       requestBody:
         content:
@@ -255,30 +128,6 @@ paths:
         PascalCaseOperationSummaries: true
         ChooseTags: true
   /admin/api/2020-04/reports/{report_id}.json:
-    get:
-      summary: Shopify Retrieves A Single Report Created By Your App
-      description: https://shopify.dev/docs/admin-api/rest/reference/analytics/report#show-2020-04
-      parameters:
-      - in: path
-        name: report_id
-        required: true
-        schema:
-          type: string
-        description: report_id
-      - in: query
-        name: fields
-        description: A comma-separated list of fields to include in the response.
-        schema: {}
-        required: false
-      tags:
-      - Reports
-      responses:
-        '200':
-          description: ''
-      operationId: deprecated_202004_get_reports_param_report_id
-      x-api-evangelist-processing:
-        PascalCaseOperationSummaries: true
-        ChooseTags: true
     put:
       requestBody:
         content:
@@ -330,49 +179,6 @@ paths:
         PascalCaseOperationSummaries: true
         ChooseTags: true
   /admin/api/2020-07/reports.json:
-    get:
-      summary: Shopify Retrieves A List Of Reports
-      description: https://shopify.dev/docs/admin-api/rest/reference/analytics/report#index-2020-07
-      parameters:
-      - in: query
-        name: ids
-        description: A comma-separated list of report IDs.
-        schema: {}
-        required: false
-      - in: query
-        name: limit
-        description: "The amount of results to return.\n                  (default: 50, maximum: 250)"
-        schema: {}
-        required: false
-      - in: query
-        name: since_id
-        description: Restrict results to after the specified ID.
-        schema: {}
-        required: false
-      - in: query
-        name: updated_at_min
-        description: 'Show reports last updated after date. (format: 2014-04-25T16:15:47-04:00)'
-        schema: {}
-        required: false
-      - in: query
-        name: updated_at_max
-        description: 'Show reports last updated before date. (format: 2014-04-25T16:15:47-04:00)'
-        schema: {}
-        required: false
-      - in: query
-        name: fields
-        description: A comma-separated list of fields to include in the response.
-        schema: {}
-        required: false
-      tags:
-      - Reports
-      responses:
-        '200':
-          description: ''
-      operationId: deprecated_202007_get_reports
-      x-api-evangelist-processing:
-        PascalCaseOperationSummaries: true
-        ChooseTags: true
     post:
       requestBody:
         content:
@@ -408,30 +214,6 @@ paths:
         PascalCaseOperationSummaries: true
         ChooseTags: true
   /admin/api/2020-07/reports/{report_id}.json:
-    get:
-      summary: Shopify Retrieves A Single Report Created By Your App
-      description: https://shopify.dev/docs/admin-api/rest/reference/analytics/report#show-2020-07
-      parameters:
-      - in: path
-        name: report_id
-        required: true
-        schema:
-          type: string
-        description: report_id
-      - in: query
-        name: fields
-        description: A comma-separated list of fields to include in the response.
-        schema: {}
-        required: false
-      tags:
-      - Reports
-      responses:
-        '200':
-          description: ''
-      operationId: deprecated_202007_get_reports_param_report_id
-      x-api-evangelist-processing:
-        PascalCaseOperationSummaries: true
-        ChooseTags: true
     put:
       requestBody:
         content:
@@ -483,49 +265,6 @@ paths:
         PascalCaseOperationSummaries: true
         ChooseTags: true
   /admin/api/2020-10/reports.json:
-    get:
-      summary: Shopify Retrieves A List Of Reports
-      description: https://shopify.dev/docs/admin-api/rest/reference/analytics/report#index-2020-10
-      parameters:
-      - in: query
-        name: ids
-        description: A comma-separated list of report IDs.
-        schema: {}
-        required: false
-      - in: query
-        name: limit
-        description: "The amount of results to return.\n                  (default: 50, maximum: 250)"
-        schema: {}
-        required: false
-      - in: query
-        name: since_id
-        description: Restrict results to after the specified ID.
-        schema: {}
-        required: false
-      - in: query
-        name: updated_at_min
-        description: 'Show reports last updated after date. (format: 2014-04-25T16:15:47-04:00)'
-        schema: {}
-        required: false
-      - in: query
-        name: updated_at_max
-        description: 'Show reports last updated before date. (format: 2014-04-25T16:15:47-04:00)'
-        schema: {}
-        required: false
-      - in: query
-        name: fields
-        description: A comma-separated list of fields to include in the response.
-        schema: {}
-        required: false
-      tags:
-      - Reports
-      responses:
-        '200':
-          description: ''
-      operationId: get_reports
-      x-api-evangelist-processing:
-        PascalCaseOperationSummaries: true
-        ChooseTags: true
     post:
       requestBody:
         content:
@@ -561,30 +300,6 @@ paths:
         PascalCaseOperationSummaries: true
         ChooseTags: true
   /admin/api/2020-10/reports/{report_id}.json:
-    get:
-      summary: Shopify Retrieves A Single Report Created By Your App
-      description: https://shopify.dev/docs/admin-api/rest/reference/analytics/report#show-2020-10
-      parameters:
-      - in: path
-        name: report_id
-        required: true
-        schema:
-          type: string
-        description: report_id
-      - in: query
-        name: fields
-        description: A comma-separated list of fields to include in the response.
-        schema: {}
-        required: false
-      tags:
-      - Reports
-      responses:
-        '200':
-          description: ''
-      operationId: get_reports_param_report_id
-      x-api-evangelist-processing:
-        PascalCaseOperationSummaries: true
-        ChooseTags: true
     put:
       requestBody:
         content:
@@ -636,49 +351,6 @@ paths:
         PascalCaseOperationSummaries: true
         ChooseTags: true
   /admin/api/2021-01/reports.json:
-    get:
-      summary: Shopify Retrieves A List Of Reports
-      description: https://shopify.dev/docs/admin-api/rest/reference/analytics/report#index-2021-01
-      parameters:
-      - in: query
-        name: ids
-        description: A comma-separated list of report IDs.
-        schema: {}
-        required: false
-      - in: query
-        name: limit
-        description: "The amount of results to return.\n                  (default: 50, maximum: 250)"
-        schema: {}
-        required: false
-      - in: query
-        name: since_id
-        description: Restrict results to after the specified ID.
-        schema: {}
-        required: false
-      - in: query
-        name: updated_at_min
-        description: 'Show reports last updated after date. (format: 2014-04-25T16:15:47-04:00)'
-        schema: {}
-        required: false
-      - in: query
-        name: updated_at_max
-        description: 'Show reports last updated before date. (format: 2014-04-25T16:15:47-04:00)'
-        schema: {}
-        required: false
-      - in: query
-        name: fields
-        description: A comma-separated list of fields to include in the response.
-        schema: {}
-        required: false
-      tags:
-      - Reports
-      responses:
-        '200':
-          description: ''
-      operationId: deprecated_202101_get_reports
-      x-api-evangelist-processing:
-        PascalCaseOperationSummaries: true
-        ChooseTags: true
     post:
       requestBody:
         content:
@@ -714,30 +386,6 @@ paths:
         PascalCaseOperationSummaries: true
         ChooseTags: true
   /admin/api/2021-01/reports/{report_id}.json:
-    get:
-      summary: Shopify Retrieves A Single Report Created By Your App
-      description: https://shopify.dev/docs/admin-api/rest/reference/analytics/report#show-2021-01
-      parameters:
-      - in: path
-        name: report_id
-        required: true
-        schema:
-          type: string
-        description: report_id
-      - in: query
-        name: fields
-        description: A comma-separated list of fields to include in the response.
-        schema: {}
-        required: false
-      tags:
-      - Reports
-      responses:
-        '200':
-          description: ''
-      operationId: deprecated_202101_get_reports_param_report_id
-      x-api-evangelist-processing:
-        PascalCaseOperationSummaries: true
-        ChooseTags: true
     put:
       requestBody:
         content:
@@ -789,49 +437,6 @@ paths:
         PascalCaseOperationSummaries: true
         ChooseTags: true
   /admin/api/unstable/reports.json:
-    get:
-      summary: Shopify Retrieves A List Of Reports
-      description: https://shopify.dev/docs/admin-api/rest/reference/analytics/report#index-unstable
-      parameters:
-      - in: query
-        name: ids
-        description: A comma-separated list of report IDs.
-        schema: {}
-        required: false
-      - in: query
-        name: limit
-        description: "The amount of results to return.\n                  (default: 50, maximum: 250)"
-        schema: {}
-        required: false
-      - in: query
-        name: since_id
-        description: Restrict results to after the specified ID.
-        schema: {}
-        required: false
-      - in: query
-        name: updated_at_min
-        description: 'Show reports last updated after date. (format: 2014-04-25T16:15:47-04:00)'
-        schema: {}
-        required: false
-      - in: query
-        name: updated_at_max
-        description: 'Show reports last updated before date. (format: 2014-04-25T16:15:47-04:00)'
-        schema: {}
-        required: false
-      - in: query
-        name: fields
-        description: A comma-separated list of fields to include in the response.
-        schema: {}
-        required: false
-      tags:
-      - Reports
-      responses:
-        '200':
-          description: ''
-      operationId: deprecated_unstable_get_reports
-      x-api-evangelist-processing:
-        PascalCaseOperationSummaries: true
-        ChooseTags: true
     post:
       requestBody:
         content:
@@ -867,30 +472,6 @@ paths:
         PascalCaseOperationSummaries: true
         ChooseTags: true
   /admin/api/unstable/reports/{report_id}.json:
-    get:
-      summary: Shopify Retrieves A Single Report Created By Your App
-      description: https://shopify.dev/docs/admin-api/rest/reference/analytics/report#show-unstable
-      parameters:
-      - in: path
-        name: report_id
-        required: true
-        schema:
-          type: string
-        description: report_id
-      - in: query
-        name: fields
-        description: A comma-separated list of fields to include in the response.
-        schema: {}
-        required: false
-      tags:
-      - Reports
-      responses:
-        '200':
-          description: ''
-      operationId: deprecated_unstable_get_reports_param_report_id
-      x-api-evangelist-processing:
-        PascalCaseOperationSummaries: true
-        ChooseTags: true
     put:
       requestBody:
         content:
@@ -941,10 +522,3 @@ paths:
       x-api-evangelist-processing:
         PascalCaseOperationSummaries: true
         ChooseTags: true
-components:
-  securitySchemes:
-    AccessToken:
-      type: apiKey
-      name: X-Shopify-Access-Token
-      in: header
-      description: Access token obtained via OAuth

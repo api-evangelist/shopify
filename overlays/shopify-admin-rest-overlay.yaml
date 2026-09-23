@@ -1,0 +1,118 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for the Shopify Admin REST API
+  version: 1.1.0
+extends: ../openapi/_original/shopify-admin-rest-api-openapi.yml
+x-provenance:
+  generated: '2026-08-27'
+  method: generated
+  source: >-
+    Facts asserted here are drawn from https://shopify.dev/docs/api/usage/versioning.md,
+    /limits.md, /response-codes.md and /access-scopes.md (all HTTP 200, fetched 2026-08-27).
+    The overlay adds our annotations; the original spec is never mutated.
+actions:
+- target: $.info
+  description: Record the current API version, the legacy status of this surface, and the contract's provenance.
+  update:
+    x-api-evangelist:
+      captured_version: '2025-01'
+      current_stable_version: '2026-07'
+      surface_status: legacy
+      surface_status_note: >-
+        The Admin REST API is no longer listed among versioned APIs in Shopify's current versioning
+        reference, while the GraphQL Admin, Storefront, Customer Account, Function, Partner, Payments
+        Apps and Webhooks APIs all are. Shopify's own guidance is that GraphQL is the recommended API
+        for all new development. This spec describes a surface in maintenance.
+      recommended_alternative: https://shopify.dev/docs/api/admin-graphql
+      version_policy: date-based quarterly, minimum 12-month support, minimum 9-month overlap
+      version_header: X-Shopify-API-Version
+      fall_forward: true
+- target: $.info
+  description: Attach the artifacts derived from this contract so a consumer can find them.
+  update:
+    x-artifacts:
+      authentication: ../authentication/shopify-authentication.yml
+      scopes: ../scopes/shopify-scopes.yml
+      errors: ../errors/shopify-problem-types.yml
+      conventions: ../conventions/shopify-conventions.yml
+      lifecycle: ../lifecycle/shopify-lifecycle.yml
+      rate_limits: ../rate-limits/shopify-rate-limits.yml
+      webhooks: ../asyncapi/shopify-webhooks.yml
+      data_model: ../data-model/shopify-data-model.yml
+      conformance: ../conformance/shopify-conformance.yml
+      mcp: ../mcp/shopify-mcp.yml
+      tool_crosswalk: ../mcp/shopify-tool-crosswalk.yml
+- target: $.servers[0]
+  description: Confirm the templated host is correct and name the variable a consumer must bind.
+  update:
+    x-api-evangelist:
+      templated: true
+      variable: store
+      note: >-
+        Correct as published. The host is per-merchant — {store}.myshopify.com — so there is no single
+        production base URL to substitute. Replacing this with a fixed host would be a repair into a
+        wrong contract.
+- target: $.info
+  description: Record the runtime rate-limit signal, which is in the body rather than in a header.
+  update:
+    x-rate-limits:
+      method: leaky bucket
+      graphql_admin_points_per_second:
+        standard: 100
+        advanced: 200
+        plus: 1000
+        enterprise: 2000
+      single_query_max_cost: 1000
+      max_input_array: 250
+      max_pagination_objects: 25000
+      count_sentinel: 25001
+      exhaustion_status: 429
+      body_signal: extensions.cost.throttleStatus
+      headers: [Retry-After, X-Shopify-Shop-Api-Call-Limit]
+      source: https://shopify.dev/docs/api/usage/limits
+- target: $.info
+  description: Record the non-standard status codes this API returns that a generic client will mishandle.
+  update:
+    x-non-standard-status-codes:
+    - code: 402
+      meaning: The shop is frozen for non-payment. Not an auth or quota problem.
+    - code: 423
+      meaning: The shop is locked, after repeated rate-limit violations or a fraud/compromise signal. Requires support contact.
+    - code: 430
+      meaning: Shopify Security Rejection. The request was judged possibly malicious.
+    - code: 501
+      meaning: Endpoint not available on this shop (for example a Plus-only API on a non-Plus shop).
+    - code: 540
+      meaning: Endpoint temporarily disabled by Shopify.
+    source: https://shopify.dev/docs/api/usage/response-codes
+- target: $.info
+  description: Record reversibility, since no operation in the spec declares whether it can be taken back.
+  update:
+    x-reversibility:
+      grade: verified
+      cancelOrder:
+        reversible: false
+        note: Shopify states plainly that order cancellation is irreversible; a cancelled order cannot be restored.
+        blocked_when: The order has fulfillments (returns 422).
+      closeOrder:
+        reversible: true
+        reversal: reopenOrder
+      createFulfillment:
+        reversible: true
+        reversal: cancelFulfillment
+      deleteProduct:
+        reversible: false
+      deleteOrder:
+        reversible: false
+      deleteWebhook:
+        reversible: false
+      detail: ../conventions/shopify-conventions.yml
+- target: $.paths['/orders/{order_id}/cancel.json'].post
+  description: Mark the single most consequential irreversible operation in this contract.
+  update:
+    x-reversible: false
+    x-irreversible-warning: >-
+      Order cancellation cannot be undone. An order that has been cancelled can't be restored to its
+      original state. If the payment was authorized but not captured, the hold is released
+      automatically even when no refund is requested.
+    x-source: https://shopify.dev/docs/api/admin-graphql/latest/mutations/orderCancel

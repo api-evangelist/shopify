@@ -1,0 +1,80 @@
+generated: '2026-08-27'
+method: searched
+source: >-
+  https://shopify.dev/docs/api/polaris.md, https://shopify.dev/docs/api/storefront-web-components.md,
+  https://shopify.dev/docs/api/app-bridge — fetched 2026-08-27
+provider: Shopify
+providerId: shopify
+note: >-
+  Shopify's client-side component story is deliberately split in two. Polaris covers the MERCHANT
+  side — everything rendered inside the Shopify admin, checkout, customer accounts and POS — and has
+  converged on web components as the single framework across all six surfaces. Storefront Web
+  Components cover the BUYER side and are aimed at sites that are not Shopify storefronts at all.
+  These are distinct from the SDKs in packages/.
+families:
+- family: Polaris
+  audience: merchant-facing (inside Shopify surfaces)
+  framework: web components
+  docs: https://shopify.dev/docs/api/polaris
+  loader: https://shopify.dev/docs/api/polaris/using-polaris-web-components
+  note: >-
+    Unified UI framework across every app surface. The legacy React package (@shopify/polaris,
+    13.9.5, last published 2025-03-26) is the older delivery of the same design system.
+  surfaces:
+  - name: App Home (iframe)
+    docs: https://shopify.dev/docs/api/app-home
+    detail: App's main page as an iframe in the admin, using App Bridge and Polaris.
+  - name: App Home (UI extension)
+    docs: https://shopify.dev/docs/api/app-home-ui-extension
+    detail: Preact-based UI extension alternative to the iframe.
+  - name: Admin UI extensions
+    docs: https://shopify.dev/docs/api/admin-extensions
+    detail: Custom actions and blocks on product, order and customer pages.
+  - name: Checkout UI extensions
+    docs: https://shopify.dev/docs/api/checkout-ui-extensions
+    detail: Defined extension points in the checkout flow, including Shop Pay.
+  - name: Customer account UI extensions
+    docs: https://shopify.dev/docs/api/customer-account-ui-extensions
+    detail: Order index, order status and profile pages.
+  - name: POS UI extensions
+    docs: https://shopify.dev/docs/api/pos-ui-extensions
+    detail: Smart grid, cart and post-purchase screens in Shopify POS.
+  versioning: >-
+    Versioned by extension API version. Only the last four stable versions have published reference
+    docs, and Shopify CLI refuses to deploy extensions targeting a version older than 12 months.
+- family: Storefront Web Components
+  audience: buyer-facing (on any website)
+  framework: native HTML custom elements
+  docs: https://shopify.dev/docs/api/storefront-web-components
+  getting_started: https://shopify.dev/docs/api/storefront-web-components/getting-started/
+  playground: https://webcomponents.shopify.dev/playground
+  versioned: false
+  note: >-
+    UNVERSIONED per the versioning reference — these may change at any time with no deprecation
+    window, which is a real risk for anyone embedding them in a third-party site.
+  components:
+  - element: shopify-store
+    role: root — binds the page to a store and its Storefront API credentials
+  - element: shopify-context
+    role: scopes a subtree to a product, collection or cart
+  - element: shopify-cart
+    role: cart display and checkout handoff
+  detail: >-
+    Products, collections and a working checkout embedded in any site with a few lines of HTML, with
+    the Storefront API querying handled for you.
+- family: App Bridge
+  audience: merchant-facing
+  docs: https://shopify.dev/docs/api/app-bridge
+  package: '@shopify/app-bridge-react'
+  version: 4.2.13
+  published: '2026-08-24'
+  detail: Bridges an embedded app iframe to the admin shell — navigation, modals, toasts, resource pickers.
+- family: Checkout Kit
+  audience: buyer-facing (mobile)
+  docs: https://www.shopify.com/checkout-kit
+  package: '@shopify/checkout-sheet-kit'
+  version: 3.9.0
+  published: '2026-08-26'
+  detail: >-
+    Embeds Shopify Checkout into a native mobile app or platform, carrying over Shop Pay and the
+    merchant's checkout customizations. Ships for iOS, Android and React Native.

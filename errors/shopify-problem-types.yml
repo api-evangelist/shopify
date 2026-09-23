@@ -1,0 +1,179 @@
+generated: '2026-08-27'
+method: searched
+source: https://shopify.dev/docs/api/usage/response-codes.md (HTTP 200, fetched 2026-08-27)
+docs: https://shopify.dev/docs/api/usage/response-codes
+provider: Shopify
+providerId: shopify
+format: shopify-errors-envelope
+rfc9457: false
+note: 'Shopify publishes a single cross-API status-code reference rather than a typed problem registry, so there
+  are no RFC 9457 problem types to catalogue. What it does publish is unusually specific: three NON-STANDARD status
+  codes (423 Locked, 430 Shopify Security Rejection, 540 Temporarily Disabled) plus 402 Payment Required used for
+  a frozen shop, each with a distinct remediation. An agent that treats these as generic 4xx/5xx will retry into
+  a wall. Envelope shape and the UCP business-outcome split are recorded in conventions/shopify-conventions.yml.'
+envelopes:
+- surface: Admin REST API
+  shape: '{ "errors": ... } or { "error": ... }'
+- surface: GraphQL Admin / Storefront / Customer Account
+  shape: '{ "errors": [ { "message", "extensions": { "code" } } ] } plus per-mutation userErrors[]'
+- surface: UCP Cart/Checkout MCP
+  shape: JSON-RPC error -32000/-32001 for protocol failures; JSON-RPC result with structuredContent.messages[] for
+    business outcomes
+error_count: 20
+errors:
+- status: 400
+  title: Bad Request
+  description: The request wasn't understood by the server, generally due to bad syntax or because the `Content-Type`
+    header wasn't correctly set to `application/json`.This status is also returned when a token exchange request
+    includes an expired or otherwise invalid ID token.This status is also returned when the request provides an
+    invalid `code` parameter during the authorization code grant.
+- status: 401
+  title: Unauthorized
+  description: The necessary authentication credentials aren't present in the request or are incorrect.An expired
+    access token also returns this status, so re-authenticate to obtain a new one. For how long each token lasts,
+    see token lifetimes.A refresh token that can no longer be used returns this status with the error code `invalid_request`
+    and the description `This request requires an active refresh_token`. Treat it as final rather than retrying.
+    See refreshing an expiring offline access token.
+- status: 402
+  title: Payment Required
+  description: The requested shop is currently frozen. The shop owner needs to log in to the shop's admin and pay
+    the outstanding balance to unfreeze the shop.
+- status: 403
+  title: Forbidden
+  description: The server is refusing to respond to the request. This status is generally returned if you haven't
+    requested the appropriate scope for this action.Starting January 1, 2027, an Admin API request that presents
+    a public app's non-expiring offline access token also returns this status. The response's `errors` value contains
+    `Non-expiring access tokens are no longer accepted for the Admin API`, so you can tell it apart from a missing-scope
+    `403`. To stop hitting it, see Migrate to expiring offline access tokens.
+- status: 404
+  title: Not Found
+  description: The requested resource was not found but could be available again in the future.
+- status: 405
+  title: Method Not Allowed
+  description: The server recognizes the request but rejects the specific HTTP method. This status is generally
+    returned when a client-side error occurs.
+- status: 406
+  title: Not Acceptable
+  description: The request's `Accept` header doesn't specify any content formats that the server is able to fulfill.
+- status: 409
+  title: Resource Conflict
+  description: The requested resource couldn't be processed because of conflict in the request. For example, the
+    requested resource might not be in an expected state, or processing the request would create a conflict within
+    the resource.
+- status: 414
+  title: URI Too Long
+  description: The server is refusing to accept the request because the Uniform Resource Identifier (URI) provided
+    was too long.
+- status: 415
+  title: Unsupported Media Type
+  description: The request's `Content-Type` header specifies a payload format that the server doesn't support.
+- status: 423
+  title: Locked
+  description: The requested shop is currently locked. Shops are locked if they repeatedly exceed their API request
+    limit, or if there is an issue with the account, such as a detected compromise or fraud risk.Contact support
+    if your shop is locked.
+- status: 429
+  title: Too Many Requests
+  description: The request was not accepted because the application has exceeded the rate limit. Learn more about
+    Shopify's API rate limits.
+- status: 430
+  title: Shopify Security Rejection
+  description: The request was not accepted because the request might be malicious, and Shopify has responded by
+    rejecting it to protect the app from any possible attacks.
+- status: 500
+  title: Internal Server Error
+  description: An internal error occurred in Shopify. Simplify or retry your request. If the issue persists, then
+    please record any error codes, timestamps and contact Partner Support so that Shopify staff can investigate.
+- status: 501
+  title: Not Implemented
+  description: The requested endpoint is not available on that particular shop, e.g. requesting access to a Shopify
+    Plus-only API on a non-Plus shop. This response may also indicate that this endpoint is reserved for future
+    use.
+- status: 502
+  title: Bad Gateway
+  description: The server, while acting as a gateway or proxy, received an invalid response from the upstream server.
+    A 502 error isn't typically something you can fix. It usually requires a fix on the web server or the proxies
+    that you're trying to get access through.
+- status: 503
+  title: Service Unavailable
+  description: The server is currently unavailable. Check the Shopify status page for reported service outages.
+- status: 504
+  title: Gateway Timeout
+  description: The request couldn't complete in time. Shopify waits up to 10 seconds for a response. Try breaking
+    it down in multiple smaller requests.
+- status: 530
+  title: Origin DNS Error
+  description: Cloudflare can't resolve the requested DNS record. Check the Shopify status page for reported service
+    outages.
+- status: 540
+  title: Temporarily Disabled
+  description: The requested endpoint isn't currently available. It has been temporarily disabled, and will be back
+    online shortly.
+non_standard_codes:
+- 423
+- 430
+- 540
+retry_guidance:
+  retryable:
+  - 429
+  - 500
+  - 502
+  - 503
+  - 504
+  - 540
+  not_retryable:
+  - 400
+  - 401
+  - 402
+  - 403
+  - 404
+  - 405
+  - 406
+  - 409
+  - 414
+  - 415
+  - 422
+  - 423
+  - 430
+  - 501
+  backoff: Recommended backoff after a 429 is one second; honor Retry-After where present, with exponential backoff
+    and jitter on the UCP surfaces.
+  note: A 401 carrying error code invalid_request with "This request requires an active refresh_token" is FINAL
+    — Shopify states it should not be retried.
+ucp_business_outcomes:
+  note: 'Returned as successful JSON-RPC results, not errors. Observed codes in the published examples:'
+  codes:
+  - code: cart_not_found
+    meaning: The cart doesn't exist or has expired.
+  severities:
+  - recoverable
+  - requires_buyer_input
+  - requires_buyer_review
+  source: https://shopify.dev/docs/agents/carts-and-checkout/checkout-mcp
+informational_codes:
+- status: 200
+  title: OK
+  description: The request was successfully processed by Shopify.
+- status: 201
+  title: Created
+  description: The request has been fulfilled and a new resource has been created.
+- status: 202
+  title: Accepted
+  description: The request has been accepted, but not yet processed.
+- status: 204
+  title: No Content
+  description: The request has been accepted, but no content will be returned. For example, a client might use an
+    update operation to save a document temporarily, and not refresh to a new page.
+- status: 205
+  title: Reset Content
+  description: The request has been accepted, but no content will be returned. The client must reset the document
+    from which the original request was sent. For example, if a user fills out a form and submits it, then the 205
+    code means that the server is making a request to the browser to clear the form.
+- status: 303
+  title: See Other
+  description: The response to the request can be found under a different URL in the `Location` header and can be
+    retrieved using a GET method on that resource.
+evidence:
+- url: https://shopify.dev/docs/api/usage/response-codes.md
+  status: 200
+  fetched: '2026-08-27'

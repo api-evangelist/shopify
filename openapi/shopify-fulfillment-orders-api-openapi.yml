@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Shopify Admin REST About Fulfillment Orders API
+  title: Shopify Admin REST Fulfillment Orders API
   description: The Shopify Admin REST API lets you build apps and integrations that extend and enhance the Shopify admin. Access products, customers, orders, inventory, fulfillment, and more. Endpoints are organized by resource type and versioned by release date.
   version: 2025-01
   contact:
@@ -46,6 +46,14 @@ paths:
                     items:
                       $ref: '#/components/schemas/FulfillmentOrder'
 components:
+  parameters:
+    OrderId:
+      name: order_id
+      in: path
+      required: true
+      description: The ID of the order
+      schema:
+        type: integer
   schemas:
     FulfillmentOrder:
       type: object
@@ -96,14 +104,6 @@ components:
         updated_at:
           type: string
           format: date-time
-  parameters:
-    OrderId:
-      name: order_id
-      in: path
-      required: true
-      description: The ID of the order
-      schema:
-        type: integer
   securitySchemes:
     AccessToken:
       type: apiKey

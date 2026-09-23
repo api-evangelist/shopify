@@ -1,0 +1,192 @@
+generated: '2026-08-27'
+method: searched
+source: >-
+  https://catalog.shopify.com/.well-known/ucp (HTTP 200),
+  https://catalog.shopify.com/api/ucp/mcp tools/list (HTTP 200),
+  https://api.shopify.com/.well-known/oauth-authorization-server (HTTP 200),
+  https://catalog.shopify.com/.well-known/oauth-protected-resource (HTTP 200),
+  https://www.shopify.com/.well-known/security.txt (HTTP 200),
+  https://www.shopify.com/security, https://shopify.dev/docs/api/usage/* — all fetched 2026-08-27
+provider: Shopify
+providerId: shopify
+standards:
+- id: oauth2
+  name: OAuth 2.0
+  conforms: true
+  evidence: >-
+    Authorization code grant (with PKCE for the Customer Account API) plus token exchange for app
+    authorization; client_credentials, JWT bearer and a Shopify-specific ECP grant for agent
+    authorization. Authorization server metadata served at
+    https://api.shopify.com/.well-known/oauth-authorization-server.
+  source: https://shopify.dev/docs/apps/build/authentication-authorization
+- id: rfc8414
+  name: OAuth 2.0 Authorization Server Metadata
+  conforms: true
+  evidence: >-
+    https://api.shopify.com/.well-known/oauth-authorization-server returns 200 with issuer,
+    token_endpoint, grant_types_supported and token_endpoint_auth_methods_supported.
+  artifact: well-known/shopify-api-oauth-authorization-server.json
+- id: rfc9728
+  name: OAuth 2.0 Protected Resource Metadata
+  conforms: true
+  evidence: >-
+    https://catalog.shopify.com/.well-known/oauth-protected-resource returns 200 naming
+    https://api.shopify.com as the authorization server and header as the bearer method.
+  artifact: well-known/shopify-catalog-oauth-protected-resource.json
+- id: oidc
+  name: OpenID Connect
+  conforms: partial
+  evidence: >-
+    OIDC discovery is served per-merchant at https://{shop-domain}/.well-known/openid-configuration
+    for the Customer Account API. No OIDC configuration is served from a Shopify-owned corporate
+    host — www.shopify.com/.well-known/openid-configuration returns 404.
+  source: https://shopify.dev/docs/apps/build/storefront-mcp/servers/customer-account
+- id: rfc9116
+  name: 'security.txt'
+  conforms: true
+  evidence: >-
+    https://www.shopify.com/.well-known/security.txt returns 200 with Contact, Encryption, Policy
+    (hackerone.com/shopify), Acknowledgments and Hiring fields.
+  artifact: well-known/shopify-security.txt
+- id: mcp
+  name: Model Context Protocol
+  conforms: true
+  evidence: >-
+    Four MCP servers. https://catalog.shopify.com/api/ucp/mcp answered an anonymous JSON-RPC 2.0
+    tools/list with HTTP 200 and three tools carrying JSON Schema draft-2020-12 inputSchemas.
+  artifact: mcp/shopify-catalog-mcp-tools.json
+- id: graphql
+  name: GraphQL
+  conforms: true
+  evidence: >-
+    Admin, Storefront, Customer Account, Partner and Payments Apps APIs are all GraphQL. Full
+    introspection succeeded against Shopify's own public mock (mock.shop/api), yielding 414 types.
+  artifact: graphql/shopify-storefront-api.graphql
+- id: json-schema
+  name: JSON Schema 2020-12
+  conforms: true
+  evidence: MCP tool inputSchemas declare $schema https://json-schema.org/draft/2020-12/schema.
+- id: jsonrpc2
+  name: JSON-RPC 2.0
+  conforms: true
+  evidence: Transport for every UCP MCP surface; protocol errors use -32000/-32001.
+- id: rfc9457
+  name: 'RFC 9457 Problem Details'
+  conforms: false
+  evidence: >-
+    No application/problem+json responses. Errors use a Shopify-specific { errors } / { error }
+    envelope on REST, GraphQL errors + userErrors on GraphQL, and the UCP messages[] envelope on MCP.
+- id: rfc8594
+  name: 'RFC 8594 Sunset header'
+  conforms: false
+  evidence: >-
+    A full deprecation policy is published, but no Sunset or Deprecation response header is emitted.
+    Deprecation is communicated through the API health report, changelog and reference annotations.
+- id: idempotency
+  name: Idempotent request keys
+  conforms: partial
+  evidence: >-
+    Required (not merely accepted) on cancel_cart, complete_checkout and cancel_checkout via
+    meta["idempotency-key"] on the UCP MCP surfaces. Not available on Admin REST or GraphQL Admin.
+  source: https://shopify.dev/docs/agents/carts-and-checkout/checkout-mcp
+- id: pagination
+  name: Cursor pagination
+  conforms: true
+  evidence: >-
+    Relay-style connections (first/last/after/before, pageInfo) on GraphQL; Link-header page_info
+    cursors on Admin REST. Hard ceiling of 25,000 objects across all APIs.
+- id: webhooks
+  name: HTTP webhooks
+  conforms: true
+  evidence: 206 published topics across 65 resource groups, versioned on the same quarterly train.
+  artifact: asyncapi/shopify-webhooks.yml
+- id: asyncapi
+  name: AsyncAPI
+  conforms: false
+  evidence: >-
+    No AsyncAPI document is published for the webhook surface. The topic catalogue and sample
+    payloads exist in HTML/markdown reference form only.
+- id: a2a
+  name: 'A2A Agent Card'
+  conforms: false
+  evidence: >-
+    /.well-known/agent-card.json and /.well-known/agent.json probed on www.shopify.com, shopify.dev,
+    catalog.shopify.com and mcp.shopify.com — 404 on every host.
+- id: pci-dss
+  name: PCI DSS
+  conforms: true
+  level: Level 1
+  evidence: 'Shopify is certified Level 1 PCI DSS compliant. Stated at https://www.shopify.com/security.'
+- id: soc2
+  name: SOC 2 Type II
+  conforms: true
+  evidence: 'SOC 2 Type II and SOC 3 reports issued. Stated at https://www.shopify.com/security.'
+- id: gdpr
+  name: GDPR
+  conforms: true
+  evidence: >-
+    GDPR and CCPA handled through mandatory compliance webhook topics that every App Store app must
+    subscribe to (customers/data_request, customers/redact, shop/redact).
+  source: https://shopify.dev/docs/apps/build/privacy-law-compliance
+- id: web-bot-auth
+  name: 'Web Bot Auth (draft-meunier-web-bot-auth-architecture)'
+  conforms: true
+  evidence: >-
+    Shopify grants higher Storefront API and online-store rate limits to bots that sign their
+    requests with Web Bot Auth, and surfaces ready-to-use signatures to merchants in the admin.
+    Unsigned anonymous bots get the strictest limits.
+  source: https://shopify.dev/docs/api/usage/limits#identifying-bots-with-web-bot-auth
+  note: >-
+    This is a rare thing to find in this catalog — a provider that has priced agent traffic into its
+    rate limiter and published the identity mechanism that buys a better tier.
+domain_standard:
+  id: ucp
+  name: Universal Commerce Protocol (UCP)
+  version: '2026-04-08'
+  conforms: true
+  spec: https://ucp.dev
+  declared_in_contract: true
+  evidence: >-
+    Declared by the contract itself, not by a marketing page. https://catalog.shopify.com/.well-known/ucp
+    returns HTTP 200 with a UCP service descriptor naming service dev.ucp.shopping over transport mcp
+    at endpoint https://catalog.shopify.com/api/ucp/mcp, and enumerating the capabilities
+    dev.ucp.shopping.catalog.search, dev.ucp.shopping.catalog.lookup, dev.shopify.catalog.global and
+    dev.ucp.common.identity_linking, each with its spec URL and JSON Schema. The live tools/list on
+    that endpoint returns tool descriptions that name their UCP capability inline
+    ("Input and response conform to the UCP catalog search capability (dev.ucp.shopping.catalog.search)").
+  capabilities:
+  - dev.ucp.shopping.catalog.search
+  - dev.ucp.shopping.catalog.lookup
+  - dev.shopify.catalog.global
+  - dev.ucp.common.identity_linking
+  merchant_surface_capabilities:
+  - dev.ucp.shopping.cart
+  - dev.ucp.shopping.checkout
+  - dev.ucp.shopping.order
+  - dev.ucp.shopping.fulfillment
+  - dev.ucp.shopping.discount
+  - dev.ucp.shopping.buyer_consent
+  buyer_impact: >-
+    An agent that already speaks UCP can search Shopify's global catalog, build a cart, create a
+    checkout and track an order with no Shopify-specific connector. An agent that does not needs a
+    bilateral integration per platform. Shopify also publishes the spec at ucp.dev rather than
+    keeping it proprietary, so the standard is portable off Shopify.
+  artifacts:
+  - well-known/shopify-catalog-ucp.json
+  - mcp/shopify-catalog-mcp-tools.json
+  - mcp/shopify-mcp.yml
+not_applicable:
+- id: fhir
+  reason: Not a healthcare provider.
+- id: fapi
+  reason: Not an open-banking provider.
+- id: psd2
+  reason: 'Not a regulated payment services provider under PSD2; Shopify Payments operates through acquirers.'
+- id: scim
+  reason: No published SCIM user-provisioning endpoint.
+- id: odata
+  reason: No OData surface.
+- id: 'json:api'
+  reason: REST surface predates and does not follow JSON:API.
+- id: openrtb
+  reason: Not an ad exchange.

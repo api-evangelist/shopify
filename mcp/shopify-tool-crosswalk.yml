@@ -1,0 +1,222 @@
+generated: '2026-08-27'
+method: derived
+source: >-
+  mcp/shopify-mcp.yml (live tools/list from https://catalog.shopify.com/api/ucp/mcp plus the
+  documented Storefront/Cart/Checkout MCP tool set) bound against
+  openapi/_original/shopify-admin-rest-api-openapi.yml and
+  openapi/_original/shopify-ajax-api-openapi.yml, and against
+  graphql/shopify-storefront-api.graphql
+provider: Shopify
+providerId: shopify
+note: >-
+  Shopify's MCP tools are buyer-facing and coarse; the REST/GraphQL surface is merchant-facing and
+  fine-grained. The two are NOT two skins on one backend, which is the central finding here — most
+  MCP tools are composites with no single backing operation, and almost the entire Admin surface has
+  no tool at all. Confidence is set by whether the tool's documented arguments map cleanly onto a
+  named operation, not by name similarity.
+surfaces:
+  openapi:
+  - file: openapi/_original/shopify-admin-rest-api-openapi.yml
+    title: Shopify Admin REST API
+    operations: 58
+    gated: false
+    note: Legacy surface. The versioning reference no longer lists Admin REST among versioned APIs.
+  - file: openapi/_original/shopify-ajax-api-openapi.yml
+    title: Shopify Ajax API
+    operations: 9
+    gated: false
+    note: Unversioned, storefront-only, same-origin theme API.
+  graphql:
+  - endpoint: https://{store}.myshopify.com/api/{version}/graphql.json
+    name: Storefront API
+    sdl: graphql/shopify-storefront-api.graphql
+    gated: false
+    note: SDL recovered by full introspection of Shopify's own public mock at https://mock.shop/api.
+  - endpoint: https://{store}.myshopify.com/admin/api/{version}/graphql.json
+    name: GraphQL Admin API
+    gated: true
+    note: Introspection requires an access token; not introspected. Not mapped from here.
+  mcp:
+  - url: https://catalog.shopify.com/api/ucp/mcp
+    name: Global Catalog MCP
+    gated: false
+    probed: true
+  - url: https://{shop}.myshopify.com/api/ucp/mcp
+    name: Storefront / Cart / Checkout MCP (UCP)
+    gated: false
+    probed: false
+    note: Templated per merchant; documented, not probed.
+  - url: https://{shop}.myshopify.com/api/mcp
+    name: Storefront MCP (standard tools)
+    gated: false
+    probed: false
+  - url: https://{shop-domain}/customer/api/mcp
+    name: Customer Accounts MCP
+    gated: true
+    note: OAuth-gated. Tools not introspected, so nothing from it is mapped.
+crosswalk:
+- tool: search_catalog
+  category: discovery
+  rest: []
+  graphql: [QueryRoot.search, QueryRoot.products]
+  binding: composite
+  confidence: medium
+  note: >-
+    Free-text search with buyer context, filters and cursor pagination. The Storefront GraphQL
+    `search` and `products` connections cover the query and pagination halves; the buyer `context`
+    (country, language, currency, intent) and cross-merchant fan-out have no REST or single-store
+    GraphQL equivalent. No Admin REST operation backs this.
+- tool: lookup_catalog
+  category: discovery
+  rest: [getProduct]
+  graphql: [QueryRoot.nodes]
+  binding: partial
+  confidence: medium
+  note: >-
+    Batch id resolution (up to 10 gids). getProduct resolves one product by numeric id on Admin REST;
+    the tool takes global ids across products AND variants and applies post-resolution filters, so it
+    is a fan-out over that operation rather than a rename of it.
+- tool: get_product
+  category: discovery
+  rest: [getProduct, listProductVariants, listProductImages]
+  graphql: [QueryRoot.product]
+  binding: composite
+  confidence: high
+  note: >-
+    Full product detail with interactive variant narrowing. The `selected` / `preferences` option-
+    relaxation behaviour is server-side logic that no REST operation exposes; the underlying data is
+    the union of the three listed operations.
+- tool: search_shop_policies_and_faqs
+  category: content
+  rest: []
+  graphql: [QueryRoot.shop]
+  binding: none
+  confidence: low
+  note: >-
+    Retrieval over indexed policy and FAQ content. Shop.shippingPolicy / refundPolicy / privacyPolicy
+    are the closest published fields, but the tool answers a natural-language question against an
+    index rather than returning a policy document. Treated as mcp-only in the coverage count.
+- tool: get_cart
+  category: cart
+  rest: [getCart]
+  graphql: [QueryRoot.cart]
+  binding: direct
+  confidence: high
+  note: >-
+    The Ajax API getCart (GET /cart.js) is the same read on the theme surface. The MCP tool is
+    addressed by cart_id rather than by session cookie, which is the substantive difference.
+- tool: update_cart
+  category: cart
+  rest: [addToCart, updateCart, changeCartItem, clearCart]
+  graphql: [Mutation.cartLinesAdd, Mutation.cartLinesUpdate, Mutation.cartLinesRemove]
+  binding: composite
+  confidence: high
+  note: >-
+    One tool absorbs four Ajax operations and three GraphQL mutations. quantity 0 means remove, which
+    is how clearCart and cartLinesRemove are reached; a missing cart_id means create, which is how
+    cartCreate is reached.
+- tool: create_cart
+  category: cart
+  rest: []
+  graphql: [Mutation.cartCreate]
+  binding: direct
+  confidence: high
+- tool: cancel_cart
+  category: cart
+  rest: [clearCart]
+  graphql: []
+  binding: partial
+  confidence: low
+  note: >-
+    UCP cart cancellation. clearCart empties a theme cart; it does not cancel a UCP cart resource.
+    Requires meta["idempotency-key"]. Mapped at low confidence deliberately.
+- tool: create_checkout
+  category: checkout
+  rest: []
+  graphql: []
+  binding: none
+  confidence: high
+  note: UCP checkout session creation. No public REST or Storefront GraphQL equivalent.
+- tool: get_checkout
+  category: checkout
+  rest: []
+  graphql: []
+  binding: none
+  confidence: high
+- tool: update_checkout
+  category: checkout
+  rest: []
+  graphql: []
+  binding: none
+  confidence: high
+- tool: complete_checkout
+  category: checkout
+  rest: []
+  graphql: []
+  binding: none
+  confidence: high
+  note: >-
+    Places the order inside the agent application. Bearer-token tier only; requires
+    meta["idempotency-key"]. Nothing in the public REST or Storefront GraphQL surface does this.
+- tool: cancel_checkout
+  category: checkout
+  rest: []
+  graphql: []
+  binding: none
+  confidence: high
+  note: Requires meta["idempotency-key"]. Cancellation expires the checkout immediately and is not resumable.
+mcp_only:
+- tool: search_shop_policies_and_faqs
+  reason: Natural-language retrieval over an index; no operation returns this shape.
+- tool: create_checkout
+  reason: UCP checkout resource has no public REST/Storefront-GraphQL representation.
+- tool: get_checkout
+  reason: same
+- tool: update_checkout
+  reason: same
+- tool: complete_checkout
+  reason: Agent-side order placement is exclusive to the UCP checkout binding.
+- tool: cancel_checkout
+  reason: same
+- tool: cancel_cart
+  reason: UCP cart lifecycle operation with no REST counterpart.
+rest_only:
+  note: >-
+    The Admin surface is almost entirely untooled. Every merchant-side operation below exists in the
+    OpenAPI and has no MCP tool on any Shopify server — which is the correct design (these are
+    merchant actions, not buyer actions) but it means an agent acting FOR a merchant, rather than for
+    a shopper, still has to speak REST or GraphQL Admin.
+  count: 56
+  sample:
+  - createProduct
+  - updateProduct
+  - deleteProduct
+  - createOrder
+  - updateOrder
+  - cancelOrder
+  - closeOrder
+  - reopenOrder
+  - createFulfillment
+  - cancelFulfillment
+  - updateFulfillmentTracking
+  - setInventoryLevel
+  - updateInventoryItem
+  - createCustomer
+  - updateCustomer
+  - createWebhook
+  - updateWebhook
+  - deleteWebhook
+  - listAccessScopes
+  - getShop
+coverage:
+  mcp_tools_total: 13
+  mcp_tools_probed: 3
+  mcp_tools_documented_only: 10
+  bound_to_rest: 4
+  bound_to_graphql_only: 2
+  mcp_only: 7
+  rest_operations_total: 67
+  rest_operations_with_a_tool: 11
+  rest_operations_untooled: 56
+  admin_graphql: not-introspected (auth-gated)
+  customer_account_mcp: not-introspected (OAuth-gated)

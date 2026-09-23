@@ -1,0 +1,40 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for the Shopify Ajax API
+  version: 1.1.0
+extends: ../openapi/_original/shopify-ajax-api-openapi.yml
+x-provenance:
+  generated: '2026-08-27'
+  method: generated
+  source: https://shopify.dev/docs/api/usage/versioning.md and https://shopify.dev/docs/api/ajax (fetched 2026-08-27)
+actions:
+- target: $.info
+  description: Record that this surface is unversioned and carries no deprecation window.
+  update:
+    x-api-evangelist:
+      versioned: false
+      versioning_note: >-
+        The Ajax API is explicitly listed as UNVERSIONED in Shopify's versioning reference. It may
+        change at any time with no deprecation window and no support commitment. The 2025-01 stamped
+        on the captured spec is the capture date, not an API version.
+      scope: storefront, same-origin, theme-only
+      auth: none (session cookie); not callable cross-origin from a server
+      source: https://shopify.dev/docs/api/usage/versioning
+- target: $.info
+  description: Point at the modern equivalents of this surface.
+  update:
+    x-superseded-by:
+    - name: Storefront API (GraphQL)
+      url: https://shopify.dev/docs/api/storefront
+      sdl: ../graphql/shopify-storefront-api.graphql
+    - name: Storefront MCP / UCP cart tools
+      url: https://shopify.dev/docs/apps/build/storefront-mcp
+      note: >-
+        get_cart and update_cart on the Storefront MCP server subsume getCart, addToCart, updateCart,
+        changeCartItem and clearCart from this spec. See ../mcp/shopify-tool-crosswalk.yml.
+- target: $.info
+  description: Attach the derived artifacts.
+  update:
+    x-artifacts:
+      conventions: ../conventions/shopify-conventions.yml
+      tool_crosswalk: ../mcp/shopify-tool-crosswalk.yml

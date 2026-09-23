@@ -1,0 +1,99 @@
+generated: '2026-08-27'
+method: probed
+source: live HTTP probes of every apis.yml + OpenAPI + MCP host, 2026-08-27
+provider: Shopify
+providerId: shopify
+note: >-
+  Four hosts probed. www.shopify.com serves a real security.txt. The agentic-commerce hosts —
+  catalog.shopify.com and api.shopify.com — serve genuine machine-readable discovery documents:
+  a UCP service descriptor and the RFC 8414 / RFC 9728 OAuth pair that gates the Global Catalog
+  MCP server. shopify.dev, the docs host, serves an SPA shell with a 404 status on every
+  /.well-known/ path, so nothing there is a document.
+hosts:
+- host: www.shopify.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    file: shopify-security.txt
+    content_type: text/plain
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+  - path: /.well-known/ucp
+    status: 404
+- host: catalog.shopify.com
+  documents:
+  - path: /.well-known/ucp
+    status: 200
+    file: shopify-catalog-ucp.json
+    content_type: application/json
+    note: >-
+      Universal Commerce Protocol service descriptor. Declares dev.ucp.shopping over MCP at
+      https://catalog.shopify.com/api/ucp/mcp, plus the catalog.search / catalog.lookup /
+      dev.shopify.catalog.global / identity_linking capabilities and their JSON Schemas.
+  - path: /.well-known/oauth-protected-resource
+    status: 200
+    file: shopify-catalog-oauth-protected-resource.json
+    content_type: application/json
+    note: RFC 9728. Names https://api.shopify.com as the authorization server for this resource.
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+- host: api.shopify.com
+  documents:
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    file: shopify-api-oauth-authorization-server.json
+    content_type: application/json
+    note: >-
+      RFC 8414 metadata. token_endpoint https://api.shopify.com/auth/access_token; grants
+      client_credentials, urn:shopify:params:oauth:grant-type:ecp-credentials and
+      urn:ietf:params:oauth:grant-type:jwt-bearer.
+- host: shopify.dev
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+    note: SPA shell body returned with a 404 status — not a document.
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+  - path: /.well-known/ucp
+    status: 404
+- host: mcp.shopify.com
+  documents:
+  - path: /.well-known/agent-card.json
+    status: 404
+    note: Host resolves to a Shopify "Store unavailable" 404 page; it is not an MCP host.
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+templated_per_store:
+  note: >-
+    Shopify additionally documents two per-merchant well-known paths served from each store's own
+    domain, not from a Shopify-owned host. They are real and documented, but they cannot be probed
+    against a corporate host, so they are recorded here rather than as hits above.
+  documents:
+  - path: https://{shop-domain}/.well-known/customer-account-api
+    purpose: Discovery document returning mcp_api — the Customer Accounts MCP endpoint for that store.
+    source: https://shopify.dev/docs/apps/build/storefront-mcp/servers/customer-account
+  - path: https://{shop-domain}/.well-known/openid-configuration
+    purpose: OAuth 2.0 / OIDC discovery for the Customer Account API authorization code + PKCE flow.
+    source: https://shopify.dev/docs/apps/build/storefront-mcp/servers/customer-account
