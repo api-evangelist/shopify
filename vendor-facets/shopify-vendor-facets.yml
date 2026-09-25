@@ -1,0 +1,179 @@
+# Vendor facets — Shopify. A commerce platform that GENERATES agent surfaces on every store:
+# UCP MCP at /api/ucp/mcp (successor to Storefront MCP at /api/mcp), a /.well-known/ucp profile,
+# an auto-generated /llms.txt mirroring /agents.md, and Catalog syndication to AI channels. They
+# are one shape across millions of stores, so the rubric grades them `platform` and `derived`,
+# not as the merchant's own work. 0.23.0 reverses #188/#123's crediting of these as the brand's own.
+vendor: shopify
+name: Shopify
+website: https://www.shopify.com
+areas:
+- hosting
+registry_keys:
+- shopify
+rubric_schema_version: 0.22.0
+generated: '2026-09-25'
+features_refreshed: '2026-09-25'
+basis: capability
+summary: >-
+  Every Shopify store gets an MCP endpoint, a UCP commerce profile and an llms.txt without doing anything
+  — which is exactly why they earn little: the tools, profile and file are Shopify's, identical across
+  stores, so mcp_server and agentic_commerce grade `platform` (0.25) and a generated llms.txt counts as
+  derived (0.25). A merchant who hand-writes llms.txt.liquid earns that check as its own work. Catalog
+  syndication to ChatGPT, Gemini and Copilot is real distribution that no Kin Score check reads.
+features:
+- id: ucp-mcp
+  name: UCP MCP per store (successor to Storefront MCP)
+  description: >-
+    Every store answers MCP at https://{shop}/api/ucp/mcp with Shopify-defined catalog, cart and checkout
+    tools; the older Storefront MCP at /api/mcp is deprecated for catalog and cart.
+  source: https://shopify.dev/docs/apps/build/storefront-mcp/servers/storefront
+  tier: all
+- id: ucp-profile
+  name: UCP business profile at /.well-known/ucp
+  description: >-
+    The store's UCP profile (version, services, capabilities, payment handlers, signing keys) served at
+    {shop}.myshopify.com/.well-known/ucp, published by the platform operating the commerce API.
+  source: https://shopify.dev/docs/agents/profiles
+  tier: all
+- id: llms-txt-auto
+  name: Auto-generated /llms.txt and /agents.md
+  description: >-
+    Shopify serves /llms.txt by mirroring its generated /agents.md; a merchant can override it with an
+    llms.txt.liquid or agents.md.liquid theme template it writes.
+  source: https://shopify.dev/docs/storefronts/themes/architecture/templates/llms-txt-liquid
+  tier: all
+- id: catalog
+  name: Shopify Catalog for agentic storefronts
+  description: >-
+    Eligible products are syndicated automatically to AI channels (ChatGPT, Microsoft Copilot, Google
+    AI Mode / Gemini, Meta) with per-channel opt-out.
+  source: https://help.shopify.com/en/manual/online-sales-channels/agentic-storefronts/products
+  tier: all
+- id: ucp-platform
+  name: UCP (Universal Commerce Protocol) and Global Catalog
+  description: >-
+    Shopify's agent-commerce stack — UCP negotiation, a Global Catalog across all merchants, checkout
+    for trusted agents.
+  source: https://shopify.dev/docs/agents
+  tier: all
+maps:
+- feature: ucp-mcp
+  check: mcp_server
+  layer: agent_readiness
+  grade: platform
+  note: >-
+    One Shopify-defined tool set on every store; 0.22.0 grades that `platform` (0.25), and 0.23.0's platform-generated
+    class (#676/#680) marks it explicitly. A merchant earns more only by operating its own server.
+  points: 12
+  baseline_pass_rate: 0.22
+- feature: ucp-profile
+  check: agentic_commerce
+  layer: agent_readiness
+  grade: platform
+  note: >-
+    The profile is on the store's domain, so a literal read of the grade rule says `self`; its services
+    and endpoints are Shopify's, identical across stores, so `platform` (0.25) is the honest grade and
+    the one 0.23.0 applies.
+  points: 5
+  baseline_pass_rate: 0.002
+- feature: llms-txt-auto
+  check: llms_txt_published
+  layer: composite
+  credit: 0.25
+  note: >-
+    The default file is Shopify-generated, not written by the merchant — derived (0.25). A hand-written
+    llms.txt.liquid / agents.md.liquid is the merchant's own at 1.0, and that credit is the merchant's
+    work, not Shopify's.
+  provider_must: Nothing for the derived default; write the Liquid template to earn full credit.
+  catalog_pass_rate: 0.351
+  facet: discoverability
+  points: 4
+  baseline_pass_rate: 0.65
+earns_nothing:
+- feature: catalog
+  why: Syndicating products into AI channels is distribution; no check reads where a catalog is listed.
+- feature: ucp-profile
+  check: well_known_published
+  why: >-
+    The check wants an api-catalog, security.txt, protected-resource or AAuth document; /.well-known/ucp
+    is none of them (it is read by agentic_commerce instead).
+out_of_reach:
+  checks:
+  - well_known_published
+  - protected_resource_metadata
+  - contract_present
+  - sdk_count_1
+  - agent_card
+  note: >-
+    We found no documented way for a store to serve its own api-catalog, security.txt or protected-resource
+    document; Storefront GraphQL and UCP are Shopify's contracts, not the merchant's.
+unscored_practice:
+- feature: llms-txt-auto
+  why: >-
+    /agents.md as the canonical agent-discovery file (llms.txt falls back to it) is deployed on every
+    store and no check reads it.
+surface:
+  discoverability:
+    reachable: 1.0
+    total: 54
+  agent_readiness:
+    reachable: 4.2
+    total: 139
+hard_rule: >-
+  A model, not a score. Adopting this vendor changes a provider's Kin Score only when the provider publishes
+  the resulting artifacts on its own surface; nothing here writes a score, and no sponsorship or partnership
+  can.
+method: searched
+source:
+- https://help.shopify.com/en/manual/online-sales-channels/agentic-storefronts/products
+- https://shopify.dev/docs/agents
+- https://shopify.dev/docs/agents/profiles
+- https://shopify.dev/docs/apps/build/storefront-mcp/servers/storefront
+- https://shopify.dev/docs/storefronts/themes/architecture/templates/llms-txt-liquid
+measured:
+  cohort:
+    method: vendors-catalog.json detections (CNAME / header / URL shape / markup), never a name match
+    detected: 17
+    in_baseline: 2
+  control:
+    basis: providers earning contract_present + documentation_present + api_reference_present, minus the
+      cohort
+    n: 5214
+  metric: >-
+    cohort_pct / control_pct = mean share of the check's points earned (derived and platform credit weighted),
+    x100
+  measured_on: '2026-09-25'
+  status: 'not measurable: 2 detected customers clear the baseline (need 20)'
+simulation:
+  simulated_on: '2026-09-25'
+  rubric: 0.23.0
+  population: providers publishing a contract (contract_present earned), replayable exactly
+  providers: 8977
+  providers_unreplayable: 987
+  providers_moved: 8927
+  conditional_rows: excluded (they depend on what the API already does)
+  composite_lift:
+    median: 0.0
+    p75: 0.2
+    p90: 0.2
+    max: 0.2
+    mean_among_movers: 0.2
+  agent_readiness_lift:
+    median: 3.0
+    p75: 3.1
+    p90: 3.1
+    max: 3.6
+    mean_among_movers: 2.6
+  facet_lift_median_among_movers:
+    discoverability: 1.9
+  composite_band_moves:
+    thin -> developing: 40
+    developing -> strong: 13
+    emerging -> thin: 13
+    strong -> exemplar: 3
+  agent_readiness_band_moves:
+    agent-aware -> agent-ready: 1098
+    agent-ready -> agent-native: 114
+  method: >-
+    each provider's own kin/checks file, the vendor's maps at their stated credit, the scorer's composite
+    formula; from -> to, nothing written
