@@ -167,13 +167,6 @@ paths:
           description: Image deleted successfully
 components:
   parameters:
-    ProductId:
-      name: product_id
-      in: path
-      required: true
-      description: The ID of the product
-      schema:
-        type: integer
     ImageId:
       name: image_id
       in: path
@@ -181,7 +174,34 @@ components:
       description: The ID of the image
       schema:
         type: integer
+    ProductId:
+      name: product_id
+      in: path
+      required: true
+      description: The ID of the product
+      schema:
+        type: integer
   schemas:
+    ImageInput:
+      type: object
+      description: Input for creating or updating a product image
+      properties:
+        src:
+          type: string
+          format: uri
+          description: URL of the image
+        attachment:
+          type: string
+          description: Base64-encoded image data
+        alt:
+          type: string
+          description: Alt text
+        position:
+          type: integer
+        variant_ids:
+          type: array
+          items:
+            type: integer
     Image:
       type: object
       description: A product image
@@ -219,26 +239,6 @@ components:
           format: date-time
         admin_graphql_api_id:
           type: string
-    ImageInput:
-      type: object
-      description: Input for creating or updating a product image
-      properties:
-        src:
-          type: string
-          format: uri
-          description: URL of the image
-        attachment:
-          type: string
-          description: Base64-encoded image data
-        alt:
-          type: string
-          description: Alt text
-        position:
-          type: integer
-        variant_ids:
-          type: array
-          items:
-            type: integer
   securitySchemes:
     AccessToken:
       type: apiKey

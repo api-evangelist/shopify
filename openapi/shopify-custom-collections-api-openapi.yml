@@ -100,6 +100,26 @@ paths:
                     $ref: '#/components/schemas/Collection'
 components:
   schemas:
+    ImageInput:
+      type: object
+      description: Input for creating or updating a product image
+      properties:
+        src:
+          type: string
+          format: uri
+          description: URL of the image
+        attachment:
+          type: string
+          description: Base64-encoded image data
+        alt:
+          type: string
+          description: Alt text
+        position:
+          type: integer
+        variant_ids:
+          type: array
+          items:
+            type: integer
     Collection:
       type: object
       description: A product collection
@@ -191,26 +211,6 @@ components:
           format: date-time
         admin_graphql_api_id:
           type: string
-    ImageInput:
-      type: object
-      description: Input for creating or updating a product image
-      properties:
-        src:
-          type: string
-          format: uri
-          description: URL of the image
-        attachment:
-          type: string
-          description: Base64-encoded image data
-        alt:
-          type: string
-          description: Alt text
-        position:
-          type: integer
-        variant_ids:
-          type: array
-          items:
-            type: integer
   securitySchemes:
     AccessToken:
       type: apiKey

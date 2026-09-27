@@ -82,14 +82,6 @@ paths:
                   customer_address:
                     $ref: '#/components/schemas/Address'
 components:
-  parameters:
-    CustomerId:
-      name: customer_id
-      in: path
-      required: true
-      description: The ID of the customer
-      schema:
-        type: integer
   schemas:
     Address:
       type: object
@@ -138,6 +130,14 @@ components:
         default:
           type: boolean
           description: Whether this is the default address
+  parameters:
+    CustomerId:
+      name: customer_id
+      in: path
+      required: true
+      description: The ID of the customer
+      schema:
+        type: integer
   securitySchemes:
     AccessToken:
       type: apiKey

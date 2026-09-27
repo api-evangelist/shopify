@@ -126,37 +126,6 @@ paths:
                     $ref: '#/components/schemas/Fulfillment'
 components:
   schemas:
-    FulfillmentInput:
-      type: object
-      description: Input for creating a fulfillment
-      properties:
-        line_items_by_fulfillment_order:
-          type: array
-          items:
-            type: object
-            properties:
-              fulfillment_order_id:
-                type: integer
-              fulfillment_order_line_items:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    id:
-                      type: integer
-                    quantity:
-                      type: integer
-        tracking_info:
-          type: object
-          properties:
-            number:
-              type: string
-            url:
-              type: string
-            company:
-              type: string
-        notify_customer:
-          type: boolean
     TaxLine:
       type: object
       description: A tax line applied to an item
@@ -233,6 +202,37 @@ components:
                 type: string
         admin_graphql_api_id:
           type: string
+    FulfillmentInput:
+      type: object
+      description: Input for creating a fulfillment
+      properties:
+        line_items_by_fulfillment_order:
+          type: array
+          items:
+            type: object
+            properties:
+              fulfillment_order_id:
+                type: integer
+              fulfillment_order_line_items:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    quantity:
+                      type: integer
+        tracking_info:
+          type: object
+          properties:
+            number:
+              type: string
+            url:
+              type: string
+            company:
+              type: string
+        notify_customer:
+          type: boolean
     Fulfillment:
       type: object
       description: A fulfillment of an order

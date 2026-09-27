@@ -411,6 +411,172 @@ components:
         image:
           description: The primary product image
           $ref: '#/components/schemas/Image'
+    ImageInput:
+      type: object
+      description: Input for creating or updating a product image
+      properties:
+        src:
+          type: string
+          format: uri
+          description: URL of the image
+        attachment:
+          type: string
+          description: Base64-encoded image data
+        alt:
+          type: string
+          description: Alt text
+        position:
+          type: integer
+        variant_ids:
+          type: array
+          items:
+            type: integer
+    Error:
+      type: object
+      description: Error response
+      properties:
+        errors:
+          description: Error details
+          oneOf:
+          - type: string
+          - type: object
+            additionalProperties:
+              type: array
+              items:
+                type: string
+    ProductOption:
+      type: object
+      description: A product option (e.g. Size, Color)
+      properties:
+        id:
+          type: integer
+        product_id:
+          type: integer
+        name:
+          type: string
+          description: The option name
+        position:
+          type: integer
+          description: Position in the options list
+        values:
+          type: array
+          description: Available values for this option
+          items:
+            type: string
+    Image:
+      type: object
+      description: A product image
+      properties:
+        id:
+          type: integer
+        product_id:
+          type: integer
+        position:
+          type: integer
+          description: Position in the image list
+        alt:
+          type:
+          - string
+          - 'null'
+          description: Alt text for the image
+        width:
+          type: integer
+        height:
+          type: integer
+        src:
+          type: string
+          format: uri
+          description: The image URL
+        variant_ids:
+          type: array
+          description: Variant IDs associated with this image
+          items:
+            type: integer
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        admin_graphql_api_id:
+          type: string
+    ProductInput:
+      type: object
+      description: Input for creating or updating a product
+      properties:
+        title:
+          type: string
+          description: The name of the product
+        body_html:
+          type: string
+          description: Product description in HTML
+        vendor:
+          type: string
+          description: The product vendor
+        product_type:
+          type: string
+          description: A categorization for the product
+        tags:
+          type: string
+          description: Comma-separated list of tags
+        status:
+          type: string
+          enum:
+          - active
+          - archived
+          - draft
+        variants:
+          type: array
+          items:
+            $ref: '#/components/schemas/VariantInput'
+        images:
+          type: array
+          items:
+            $ref: '#/components/schemas/ImageInput'
+    VariantInput:
+      type: object
+      description: Input for creating or updating a variant
+      properties:
+        title:
+          type: string
+        price:
+          type: string
+        sku:
+          type: string
+        position:
+          type: integer
+        inventory_policy:
+          type: string
+          enum:
+          - deny
+          - continue
+        compare_at_price:
+          type: string
+        option1:
+          type: string
+        option2:
+          type: string
+        option3:
+          type: string
+        taxable:
+          type: boolean
+        barcode:
+          type: string
+        grams:
+          type: integer
+        weight:
+          type: number
+        weight_unit:
+          type: string
+          enum:
+          - g
+          - kg
+          - oz
+          - lb
+        inventory_quantity:
+          type: integer
+        requires_shipping:
+          type: boolean
     Variant:
       type: object
       description: A product variant
@@ -513,172 +679,6 @@ components:
           description: The ID of the associated image
         admin_graphql_api_id:
           type: string
-    Image:
-      type: object
-      description: A product image
-      properties:
-        id:
-          type: integer
-        product_id:
-          type: integer
-        position:
-          type: integer
-          description: Position in the image list
-        alt:
-          type:
-          - string
-          - 'null'
-          description: Alt text for the image
-        width:
-          type: integer
-        height:
-          type: integer
-        src:
-          type: string
-          format: uri
-          description: The image URL
-        variant_ids:
-          type: array
-          description: Variant IDs associated with this image
-          items:
-            type: integer
-        created_at:
-          type: string
-          format: date-time
-        updated_at:
-          type: string
-          format: date-time
-        admin_graphql_api_id:
-          type: string
-    ProductOption:
-      type: object
-      description: A product option (e.g. Size, Color)
-      properties:
-        id:
-          type: integer
-        product_id:
-          type: integer
-        name:
-          type: string
-          description: The option name
-        position:
-          type: integer
-          description: Position in the options list
-        values:
-          type: array
-          description: Available values for this option
-          items:
-            type: string
-    VariantInput:
-      type: object
-      description: Input for creating or updating a variant
-      properties:
-        title:
-          type: string
-        price:
-          type: string
-        sku:
-          type: string
-        position:
-          type: integer
-        inventory_policy:
-          type: string
-          enum:
-          - deny
-          - continue
-        compare_at_price:
-          type: string
-        option1:
-          type: string
-        option2:
-          type: string
-        option3:
-          type: string
-        taxable:
-          type: boolean
-        barcode:
-          type: string
-        grams:
-          type: integer
-        weight:
-          type: number
-        weight_unit:
-          type: string
-          enum:
-          - g
-          - kg
-          - oz
-          - lb
-        inventory_quantity:
-          type: integer
-        requires_shipping:
-          type: boolean
-    ProductInput:
-      type: object
-      description: Input for creating or updating a product
-      properties:
-        title:
-          type: string
-          description: The name of the product
-        body_html:
-          type: string
-          description: Product description in HTML
-        vendor:
-          type: string
-          description: The product vendor
-        product_type:
-          type: string
-          description: A categorization for the product
-        tags:
-          type: string
-          description: Comma-separated list of tags
-        status:
-          type: string
-          enum:
-          - active
-          - archived
-          - draft
-        variants:
-          type: array
-          items:
-            $ref: '#/components/schemas/VariantInput'
-        images:
-          type: array
-          items:
-            $ref: '#/components/schemas/ImageInput'
-    Error:
-      type: object
-      description: Error response
-      properties:
-        errors:
-          description: Error details
-          oneOf:
-          - type: string
-          - type: object
-            additionalProperties:
-              type: array
-              items:
-                type: string
-    ImageInput:
-      type: object
-      description: Input for creating or updating a product image
-      properties:
-        src:
-          type: string
-          format: uri
-          description: URL of the image
-        attachment:
-          type: string
-          description: Base64-encoded image data
-        alt:
-          type: string
-          description: Alt text
-        position:
-          type: integer
-        variant_ids:
-          type: array
-          items:
-            type: integer
     StorefrontProduct:
       type: object
       description: A product as returned by the storefront Ajax API

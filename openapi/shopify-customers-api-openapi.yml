@@ -1669,44 +1669,75 @@ paths:
         ChooseTags: true
 components:
   schemas:
-    TaxLine:
+    Address:
       type: object
-      description: A tax line applied to an item
+      description: A customer mailing address
       properties:
-        title:
-          type: string
-        price:
-          type: string
-        rate:
-          type: number
-    CustomerInput:
-      type: object
-      description: Input for creating or updating a customer
-      properties:
+        id:
+          type: integer
+        customer_id:
+          type: integer
         first_name:
           type: string
         last_name:
           type: string
-        email:
+        company:
+          type:
+          - string
+          - 'null'
+        address1:
           type: string
-          format: email
+        address2:
+          type:
+          - string
+          - 'null'
+        city:
+          type: string
+        province:
+          type:
+          - string
+          - 'null'
+        country:
+          type: string
+        zip:
+          type: string
         phone:
+          type:
+          - string
+          - 'null'
+        province_code:
+          type:
+          - string
+          - 'null'
+        country_code:
           type: string
-        note:
+        country_name:
           type: string
-        tags:
+        default:
+          type: boolean
+          description: Whether this is the default address
+    ShippingLine:
+      type: object
+      description: A shipping method applied to an order
+      properties:
+        id:
+          type: integer
+        title:
           type: string
-        tax_exempt:
-          type: boolean
-        accepts_marketing:
-          type: boolean
-        send_email_welcome:
-          type: boolean
-          description: Whether to send a welcome email
-        addresses:
+        price:
+          type: string
+        code:
+          type:
+          - string
+          - 'null'
+        source:
+          type: string
+        discounted_price:
+          type: string
+        tax_lines:
           type: array
           items:
-            $ref: '#/components/schemas/Address'
+            $ref: '#/components/schemas/TaxLine'
     LineItem:
       type: object
       description: An individual line item in an order
@@ -1926,89 +1957,6 @@ components:
                 type: string
         admin_graphql_api_id:
           type: string
-    Refund:
-      type: object
-      description: A refund on an order
-      properties:
-        id:
-          type: integer
-        order_id:
-          type: integer
-        created_at:
-          type: string
-          format: date-time
-        note:
-          type:
-          - string
-          - 'null'
-        restock:
-          type: boolean
-        refund_line_items:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: integer
-              quantity:
-                type: integer
-              line_item_id:
-                type: integer
-              subtotal:
-                type: number
-              total_tax:
-                type: number
-              line_item:
-                $ref: '#/components/schemas/LineItem'
-        admin_graphql_api_id:
-          type: string
-    Address:
-      type: object
-      description: A customer mailing address
-      properties:
-        id:
-          type: integer
-        customer_id:
-          type: integer
-        first_name:
-          type: string
-        last_name:
-          type: string
-        company:
-          type:
-          - string
-          - 'null'
-        address1:
-          type: string
-        address2:
-          type:
-          - string
-          - 'null'
-        city:
-          type: string
-        province:
-          type:
-          - string
-          - 'null'
-        country:
-          type: string
-        zip:
-          type: string
-        phone:
-          type:
-          - string
-          - 'null'
-        province_code:
-          type:
-          - string
-          - 'null'
-        country_code:
-          type: string
-        country_name:
-          type: string
-        default:
-          type: boolean
-          description: Whether this is the default address
     Fulfillment:
       type: object
       description: A fulfillment of an order
@@ -2058,6 +2006,34 @@ components:
             $ref: '#/components/schemas/LineItem'
         admin_graphql_api_id:
           type: string
+    CustomerInput:
+      type: object
+      description: Input for creating or updating a customer
+      properties:
+        first_name:
+          type: string
+        last_name:
+          type: string
+        email:
+          type: string
+          format: email
+        phone:
+          type: string
+        note:
+          type: string
+        tags:
+          type: string
+        tax_exempt:
+          type: boolean
+        accepts_marketing:
+          type: boolean
+        send_email_welcome:
+          type: boolean
+          description: Whether to send a welcome email
+        addresses:
+          type: array
+          items:
+            $ref: '#/components/schemas/Address'
     Error:
       type: object
       description: Error response
@@ -2071,28 +2047,52 @@ components:
               type: array
               items:
                 type: string
-    ShippingLine:
+    TaxLine:
       type: object
-      description: A shipping method applied to an order
+      description: A tax line applied to an item
       properties:
-        id:
-          type: integer
         title:
           type: string
         price:
           type: string
-        code:
+        rate:
+          type: number
+    Refund:
+      type: object
+      description: A refund on an order
+      properties:
+        id:
+          type: integer
+        order_id:
+          type: integer
+        created_at:
+          type: string
+          format: date-time
+        note:
           type:
           - string
           - 'null'
-        source:
-          type: string
-        discounted_price:
-          type: string
-        tax_lines:
+        restock:
+          type: boolean
+        refund_line_items:
           type: array
           items:
-            $ref: '#/components/schemas/TaxLine'
+            type: object
+            properties:
+              id:
+                type: integer
+              quantity:
+                type: integer
+              line_item_id:
+                type: integer
+              subtotal:
+                type: number
+              total_tax:
+                type: number
+              line_item:
+                $ref: '#/components/schemas/LineItem'
+        admin_graphql_api_id:
+          type: string
     Customer:
       type: object
       description: A Shopify customer
