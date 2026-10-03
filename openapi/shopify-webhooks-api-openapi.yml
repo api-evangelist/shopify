@@ -198,41 +198,6 @@ paths:
           description: Webhook deleted successfully
 components:
   schemas:
-    Webhook:
-      type: object
-      description: A webhook subscription
-      properties:
-        id:
-          type: integer
-        address:
-          type: string
-          format: uri
-          description: The URL where the webhook delivers data
-        topic:
-          type: string
-          description: The event that triggers the webhook
-        format:
-          type: string
-          description: The data format
-          enum:
-          - json
-          - xml
-        fields:
-          type: array
-          description: Optional list of fields to include in the payload
-          items:
-            type: string
-        created_at:
-          type: string
-          format: date-time
-        updated_at:
-          type: string
-          format: date-time
-        api_version:
-          type: string
-          description: The API version for the webhook payload
-        admin_graphql_api_id:
-          type: string
     WebhookInput:
       type: object
       description: Input for creating or updating a webhook
@@ -269,6 +234,41 @@ components:
               type: array
               items:
                 type: string
+    Webhook:
+      type: object
+      description: A webhook subscription
+      properties:
+        id:
+          type: integer
+        address:
+          type: string
+          format: uri
+          description: The URL where the webhook delivers data
+        topic:
+          type: string
+          description: The event that triggers the webhook
+        format:
+          type: string
+          description: The data format
+          enum:
+          - json
+          - xml
+        fields:
+          type: array
+          description: Optional list of fields to include in the payload
+          items:
+            type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        api_version:
+          type: string
+          description: The API version for the webhook payload
+        admin_graphql_api_id:
+          type: string
   securitySchemes:
     AccessToken:
       type: apiKey

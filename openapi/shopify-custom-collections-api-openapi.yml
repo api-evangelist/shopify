@@ -100,6 +100,43 @@ paths:
                     $ref: '#/components/schemas/Collection'
 components:
   schemas:
+    Image:
+      type: object
+      description: A product image
+      properties:
+        id:
+          type: integer
+        product_id:
+          type: integer
+        position:
+          type: integer
+          description: Position in the image list
+        alt:
+          type:
+          - string
+          - 'null'
+          description: Alt text for the image
+        width:
+          type: integer
+        height:
+          type: integer
+        src:
+          type: string
+          format: uri
+          description: The image URL
+        variant_ids:
+          type: array
+          description: Variant IDs associated with this image
+          items:
+            type: integer
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        admin_graphql_api_id:
+          type: string
     ImageInput:
       type: object
       description: Input for creating or updating a product image
@@ -174,43 +211,6 @@ components:
           type: boolean
         image:
           $ref: '#/components/schemas/ImageInput'
-    Image:
-      type: object
-      description: A product image
-      properties:
-        id:
-          type: integer
-        product_id:
-          type: integer
-        position:
-          type: integer
-          description: Position in the image list
-        alt:
-          type:
-          - string
-          - 'null'
-          description: Alt text for the image
-        width:
-          type: integer
-        height:
-          type: integer
-        src:
-          type: string
-          format: uri
-          description: The image URL
-        variant_ids:
-          type: array
-          description: Variant IDs associated with this image
-          items:
-            type: integer
-        created_at:
-          type: string
-          format: date-time
-        updated_at:
-          type: string
-          format: date-time
-        admin_graphql_api_id:
-          type: string
   securitySchemes:
     AccessToken:
       type: apiKey

@@ -1578,75 +1578,6 @@ paths:
         ChooseTags: true
 components:
   schemas:
-    Address:
-      type: object
-      description: A customer mailing address
-      properties:
-        id:
-          type: integer
-        customer_id:
-          type: integer
-        first_name:
-          type: string
-        last_name:
-          type: string
-        company:
-          type:
-          - string
-          - 'null'
-        address1:
-          type: string
-        address2:
-          type:
-          - string
-          - 'null'
-        city:
-          type: string
-        province:
-          type:
-          - string
-          - 'null'
-        country:
-          type: string
-        zip:
-          type: string
-        phone:
-          type:
-          - string
-          - 'null'
-        province_code:
-          type:
-          - string
-          - 'null'
-        country_code:
-          type: string
-        country_name:
-          type: string
-        default:
-          type: boolean
-          description: Whether this is the default address
-    ShippingLine:
-      type: object
-      description: A shipping method applied to an order
-      properties:
-        id:
-          type: integer
-        title:
-          type: string
-        price:
-          type: string
-        code:
-          type:
-          - string
-          - 'null'
-        source:
-          type: string
-        discounted_price:
-          type: string
-        tax_lines:
-          type: array
-          items:
-            $ref: '#/components/schemas/TaxLine'
     LineItem:
       type: object
       description: An individual line item in an order
@@ -1713,6 +1644,53 @@ components:
                 type: string
         admin_graphql_api_id:
           type: string
+    OrderInput:
+      type: object
+      description: Input for creating or updating an order
+      properties:
+        email:
+          type: string
+          format: email
+        phone:
+          type: string
+        note:
+          type: string
+        tags:
+          type: string
+        line_items:
+          type: array
+          items:
+            type: object
+            properties:
+              variant_id:
+                type: integer
+              quantity:
+                type: integer
+              price:
+                type: string
+              title:
+                type: string
+        billing_address:
+          $ref: '#/components/schemas/Address'
+        shipping_address:
+          $ref: '#/components/schemas/Address'
+        financial_status:
+          type: string
+        send_receipt:
+          type: boolean
+        send_fulfillment_receipt:
+          type: boolean
+        transactions:
+          type: array
+          items:
+            type: object
+            properties:
+              kind:
+                type: string
+              status:
+                type: string
+              amount:
+                type: string
     Money:
       type: object
       description: A monetary amount with currency
@@ -1721,6 +1699,19 @@ components:
           type: string
         currency_code:
           type: string
+    Error:
+      type: object
+      description: Error response
+      properties:
+        errors:
+          description: Error details
+          oneOf:
+          - type: string
+          - type: object
+            additionalProperties:
+              type: array
+              items:
+                type: string
     Order:
       type: object
       description: A Shopify order
@@ -1942,76 +1933,6 @@ components:
             $ref: '#/components/schemas/Address'
         admin_graphql_api_id:
           type: string
-    Error:
-      type: object
-      description: Error response
-      properties:
-        errors:
-          description: Error details
-          oneOf:
-          - type: string
-          - type: object
-            additionalProperties:
-              type: array
-              items:
-                type: string
-    OrderInput:
-      type: object
-      description: Input for creating or updating an order
-      properties:
-        email:
-          type: string
-          format: email
-        phone:
-          type: string
-        note:
-          type: string
-        tags:
-          type: string
-        line_items:
-          type: array
-          items:
-            type: object
-            properties:
-              variant_id:
-                type: integer
-              quantity:
-                type: integer
-              price:
-                type: string
-              title:
-                type: string
-        billing_address:
-          $ref: '#/components/schemas/Address'
-        shipping_address:
-          $ref: '#/components/schemas/Address'
-        financial_status:
-          type: string
-        send_receipt:
-          type: boolean
-        send_fulfillment_receipt:
-          type: boolean
-        transactions:
-          type: array
-          items:
-            type: object
-            properties:
-              kind:
-                type: string
-              status:
-                type: string
-              amount:
-                type: string
-    TaxLine:
-      type: object
-      description: A tax line applied to an item
-      properties:
-        title:
-          type: string
-        price:
-          type: string
-        rate:
-          type: number
     Refund:
       type: object
       description: A refund on an order
@@ -2097,6 +2018,85 @@ components:
             $ref: '#/components/schemas/LineItem'
         admin_graphql_api_id:
           type: string
+    ShippingLine:
+      type: object
+      description: A shipping method applied to an order
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        price:
+          type: string
+        code:
+          type:
+          - string
+          - 'null'
+        source:
+          type: string
+        discounted_price:
+          type: string
+        tax_lines:
+          type: array
+          items:
+            $ref: '#/components/schemas/TaxLine'
+    Address:
+      type: object
+      description: A customer mailing address
+      properties:
+        id:
+          type: integer
+        customer_id:
+          type: integer
+        first_name:
+          type: string
+        last_name:
+          type: string
+        company:
+          type:
+          - string
+          - 'null'
+        address1:
+          type: string
+        address2:
+          type:
+          - string
+          - 'null'
+        city:
+          type: string
+        province:
+          type:
+          - string
+          - 'null'
+        country:
+          type: string
+        zip:
+          type: string
+        phone:
+          type:
+          - string
+          - 'null'
+        province_code:
+          type:
+          - string
+          - 'null'
+        country_code:
+          type: string
+        country_name:
+          type: string
+        default:
+          type: boolean
+          description: Whether this is the default address
+    TaxLine:
+      type: object
+      description: A tax line applied to an item
+      properties:
+        title:
+          type: string
+        price:
+          type: string
+        rate:
+          type: number
   parameters:
     OrderId:
       name: order_id

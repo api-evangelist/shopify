@@ -126,16 +126,6 @@ paths:
                     $ref: '#/components/schemas/Fulfillment'
 components:
   schemas:
-    TaxLine:
-      type: object
-      description: A tax line applied to an item
-      properties:
-        title:
-          type: string
-        price:
-          type: string
-        rate:
-          type: number
     LineItem:
       type: object
       description: An individual line item in an order
@@ -282,6 +272,16 @@ components:
             $ref: '#/components/schemas/LineItem'
         admin_graphql_api_id:
           type: string
+    TaxLine:
+      type: object
+      description: A tax line applied to an item
+      properties:
+        title:
+          type: string
+        price:
+          type: string
+        rate:
+          type: number
   securitySchemes:
     AccessToken:
       type: apiKey

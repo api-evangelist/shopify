@@ -1574,6 +1574,25 @@ paths:
         ChooseTags: true
 components:
   schemas:
+    ProductOption:
+      type: object
+      description: A product option (e.g. Size, Color)
+      properties:
+        id:
+          type: integer
+        product_id:
+          type: integer
+        name:
+          type: string
+          description: The option name
+        position:
+          type: integer
+          description: Position in the options list
+        values:
+          type: array
+          description: Available values for this option
+          items:
+            type: string
     Product:
       type: object
       description: A Shopify product
@@ -1649,100 +1668,6 @@ components:
         image:
           description: The primary product image
           $ref: '#/components/schemas/Image'
-    ProductOption:
-      type: object
-      description: A product option (e.g. Size, Color)
-      properties:
-        id:
-          type: integer
-        product_id:
-          type: integer
-        name:
-          type: string
-          description: The option name
-        position:
-          type: integer
-          description: Position in the options list
-        values:
-          type: array
-          description: Available values for this option
-          items:
-            type: string
-    Collection:
-      type: object
-      description: A product collection
-      properties:
-        id:
-          type: integer
-        title:
-          type: string
-          description: The collection title
-        handle:
-          type: string
-          description: URL-friendly title
-        body_html:
-          type:
-          - string
-          - 'null'
-          description: Description in HTML
-        published_at:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        sort_order:
-          type: string
-          description: Sort order for products
-        template_suffix:
-          type:
-          - string
-          - 'null'
-        published_scope:
-          type: string
-        updated_at:
-          type: string
-          format: date-time
-        image:
-          $ref: '#/components/schemas/Image'
-        admin_graphql_api_id:
-          type: string
-    Image:
-      type: object
-      description: A product image
-      properties:
-        id:
-          type: integer
-        product_id:
-          type: integer
-        position:
-          type: integer
-          description: Position in the image list
-        alt:
-          type:
-          - string
-          - 'null'
-          description: Alt text for the image
-        width:
-          type: integer
-        height:
-          type: integer
-        src:
-          type: string
-          format: uri
-          description: The image URL
-        variant_ids:
-          type: array
-          description: Variant IDs associated with this image
-          items:
-            type: integer
-        created_at:
-          type: string
-          format: date-time
-        updated_at:
-          type: string
-          format: date-time
-        admin_graphql_api_id:
-          type: string
     Variant:
       type: object
       description: A product variant
@@ -1843,6 +1768,81 @@ components:
           - integer
           - 'null'
           description: The ID of the associated image
+        admin_graphql_api_id:
+          type: string
+    Image:
+      type: object
+      description: A product image
+      properties:
+        id:
+          type: integer
+        product_id:
+          type: integer
+        position:
+          type: integer
+          description: Position in the image list
+        alt:
+          type:
+          - string
+          - 'null'
+          description: Alt text for the image
+        width:
+          type: integer
+        height:
+          type: integer
+        src:
+          type: string
+          format: uri
+          description: The image URL
+        variant_ids:
+          type: array
+          description: Variant IDs associated with this image
+          items:
+            type: integer
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        admin_graphql_api_id:
+          type: string
+    Collection:
+      type: object
+      description: A product collection
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+          description: The collection title
+        handle:
+          type: string
+          description: URL-friendly title
+        body_html:
+          type:
+          - string
+          - 'null'
+          description: Description in HTML
+        published_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        sort_order:
+          type: string
+          description: Sort order for products
+        template_suffix:
+          type:
+          - string
+          - 'null'
+        published_scope:
+          type: string
+        updated_at:
+          type: string
+          format: date-time
+        image:
+          $ref: '#/components/schemas/Image'
         admin_graphql_api_id:
           type: string
   securitySchemes:

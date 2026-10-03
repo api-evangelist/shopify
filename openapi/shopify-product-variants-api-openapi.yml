@@ -92,6 +92,14 @@ paths:
                   variant:
                     $ref: '#/components/schemas/Variant'
 components:
+  parameters:
+    ProductId:
+      name: product_id
+      in: path
+      required: true
+      description: The ID of the product
+      schema:
+        type: integer
   schemas:
     VariantInput:
       type: object
@@ -239,14 +247,6 @@ components:
           description: The ID of the associated image
         admin_graphql_api_id:
           type: string
-  parameters:
-    ProductId:
-      name: product_id
-      in: path
-      required: true
-      description: The ID of the product
-      schema:
-        type: integer
   securitySchemes:
     AccessToken:
       type: apiKey
