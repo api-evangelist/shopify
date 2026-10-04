@@ -220,23 +220,60 @@ paths:
                       $ref: '#/components/schemas/ShippingRate'
 components:
   schemas:
-    ShippingRate:
+    Cart:
       type: object
-      description: An estimated shipping rate
+      description: The shopping cart
       properties:
-        name:
+        token:
           type: string
-          description: Rate name
-        price:
+          description: Unique cart token
+        note:
+          type:
+          - string
+          - 'null'
+          description: Cart note
+        attributes:
+          type: object
+          description: Custom cart attributes
+          additionalProperties:
+            type: string
+        total_price:
+          type: integer
+          description: Total price in cents
+        total_weight:
+          type: number
+          description: Total weight in grams
+        item_count:
+          type: integer
+          description: Total number of items
+        items:
+          type: array
+          description: Cart line items
+          items:
+            $ref: '#/components/schemas/CartItem'
+        requires_shipping:
+          type: boolean
+        currency:
           type: string
-          description: Rate price
-        delivery_days:
+          description: Three-letter ISO 4217 currency code
+        total_discount:
+          type: integer
+          description: Total discount in cents
+        cart_level_discount_applications:
           type: array
           items:
-            type: integer
-        source:
-          type: string
-          description: The rate provider
+            type: object
+            properties:
+              type:
+                type: string
+              title:
+                type: string
+              total_allocated_amount:
+                type: integer
+              value:
+                type: string
+              value_type:
+                type: string
     CartItem:
       type: object
       description: A line item in the cart
@@ -342,57 +379,20 @@ components:
                     type: string
         line_level_total_discount:
           type: integer
-    Cart:
+    ShippingRate:
       type: object
-      description: The shopping cart
+      description: An estimated shipping rate
       properties:
-        token:
+        name:
           type: string
-          description: Unique cart token
-        note:
-          type:
-          - string
-          - 'null'
-          description: Cart note
-        attributes:
-          type: object
-          description: Custom cart attributes
-          additionalProperties:
-            type: string
-        total_price:
-          type: integer
-          description: Total price in cents
-        total_weight:
-          type: number
-          description: Total weight in grams
-        item_count:
-          type: integer
-          description: Total number of items
-        items:
-          type: array
-          description: Cart line items
-          items:
-            $ref: '#/components/schemas/CartItem'
-        requires_shipping:
-          type: boolean
-        currency:
+          description: Rate name
+        price:
           type: string
-          description: Three-letter ISO 4217 currency code
-        total_discount:
-          type: integer
-          description: Total discount in cents
-        cart_level_discount_applications:
+          description: Rate price
+        delivery_days:
           type: array
           items:
-            type: object
-            properties:
-              type:
-                type: string
-              title:
-                type: string
-              total_allocated_amount:
-                type: integer
-              value:
-                type: string
-              value_type:
-                type: string
+            type: integer
+        source:
+          type: string
+          description: The rate provider

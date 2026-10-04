@@ -198,42 +198,6 @@ paths:
           description: Webhook deleted successfully
 components:
   schemas:
-    WebhookInput:
-      type: object
-      description: Input for creating or updating a webhook
-      required:
-      - topic
-      - address
-      properties:
-        topic:
-          type: string
-          description: The event topic (e.g. orders/create)
-        address:
-          type: string
-          format: uri
-          description: The callback URL
-        format:
-          type: string
-          enum:
-          - json
-          - xml
-        fields:
-          type: array
-          items:
-            type: string
-    Error:
-      type: object
-      description: Error response
-      properties:
-        errors:
-          description: Error details
-          oneOf:
-          - type: string
-          - type: object
-            additionalProperties:
-              type: array
-              items:
-                type: string
     Webhook:
       type: object
       description: A webhook subscription
@@ -269,6 +233,42 @@ components:
           description: The API version for the webhook payload
         admin_graphql_api_id:
           type: string
+    Error:
+      type: object
+      description: Error response
+      properties:
+        errors:
+          description: Error details
+          oneOf:
+          - type: string
+          - type: object
+            additionalProperties:
+              type: array
+              items:
+                type: string
+    WebhookInput:
+      type: object
+      description: Input for creating or updating a webhook
+      required:
+      - topic
+      - address
+      properties:
+        topic:
+          type: string
+          description: The event topic (e.g. orders/create)
+        address:
+          type: string
+          format: uri
+          description: The callback URL
+        format:
+          type: string
+          enum:
+          - json
+          - xml
+        fields:
+          type: array
+          items:
+            type: string
   securitySchemes:
     AccessToken:
       type: apiKey

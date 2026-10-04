@@ -126,6 +126,96 @@ paths:
                     $ref: '#/components/schemas/Fulfillment'
 components:
   schemas:
+    FulfillmentInput:
+      type: object
+      description: Input for creating a fulfillment
+      properties:
+        line_items_by_fulfillment_order:
+          type: array
+          items:
+            type: object
+            properties:
+              fulfillment_order_id:
+                type: integer
+              fulfillment_order_line_items:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    quantity:
+                      type: integer
+        tracking_info:
+          type: object
+          properties:
+            number:
+              type: string
+            url:
+              type: string
+            company:
+              type: string
+        notify_customer:
+          type: boolean
+    TaxLine:
+      type: object
+      description: A tax line applied to an item
+      properties:
+        title:
+          type: string
+        price:
+          type: string
+        rate:
+          type: number
+    Fulfillment:
+      type: object
+      description: A fulfillment of an order
+      properties:
+        id:
+          type: integer
+        order_id:
+          type: integer
+        status:
+          type: string
+          enum:
+          - pending
+          - open
+          - success
+          - cancelled
+          - error
+          - failure
+        tracking_company:
+          type:
+          - string
+          - 'null'
+        tracking_number:
+          type:
+          - string
+          - 'null'
+        tracking_numbers:
+          type: array
+          items:
+            type: string
+        tracking_url:
+          type:
+          - string
+          - 'null'
+        tracking_urls:
+          type: array
+          items:
+            type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        line_items:
+          type: array
+          items:
+            $ref: '#/components/schemas/LineItem'
+        admin_graphql_api_id:
+          type: string
     LineItem:
       type: object
       description: An individual line item in an order
@@ -192,96 +282,6 @@ components:
                 type: string
         admin_graphql_api_id:
           type: string
-    FulfillmentInput:
-      type: object
-      description: Input for creating a fulfillment
-      properties:
-        line_items_by_fulfillment_order:
-          type: array
-          items:
-            type: object
-            properties:
-              fulfillment_order_id:
-                type: integer
-              fulfillment_order_line_items:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    id:
-                      type: integer
-                    quantity:
-                      type: integer
-        tracking_info:
-          type: object
-          properties:
-            number:
-              type: string
-            url:
-              type: string
-            company:
-              type: string
-        notify_customer:
-          type: boolean
-    Fulfillment:
-      type: object
-      description: A fulfillment of an order
-      properties:
-        id:
-          type: integer
-        order_id:
-          type: integer
-        status:
-          type: string
-          enum:
-          - pending
-          - open
-          - success
-          - cancelled
-          - error
-          - failure
-        tracking_company:
-          type:
-          - string
-          - 'null'
-        tracking_number:
-          type:
-          - string
-          - 'null'
-        tracking_numbers:
-          type: array
-          items:
-            type: string
-        tracking_url:
-          type:
-          - string
-          - 'null'
-        tracking_urls:
-          type: array
-          items:
-            type: string
-        created_at:
-          type: string
-          format: date-time
-        updated_at:
-          type: string
-          format: date-time
-        line_items:
-          type: array
-          items:
-            $ref: '#/components/schemas/LineItem'
-        admin_graphql_api_id:
-          type: string
-    TaxLine:
-      type: object
-      description: A tax line applied to an item
-      properties:
-        title:
-          type: string
-        price:
-          type: string
-        rate:
-          type: number
   securitySchemes:
     AccessToken:
       type: apiKey
