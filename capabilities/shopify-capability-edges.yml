@@ -4,6 +4,7 @@ generated_by: planning/capability-mapping/scripts/classify_capabilities.py
 model: claude-opus-5
 frame:
 - Retail & Consumer Goods
+- Software & Technology
 min_confidence: 0.7
 capability_model:
   source: https://github.com/vincentmakes/turbo-ea-capabilities
@@ -11,7 +12,7 @@ capability_model:
   attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
     CC BY 4.0
   notice: NOTICE
-edge_count: 42
+edge_count: 43
 edges:
 - tag: Code
   spec_file: shopify-code-api-openapi.yml
@@ -352,6 +353,17 @@ edges:
   evidence: '"Shopify Mark A Fulfillment As Complete"'
   reason: Despite the generic tag string, the single operation transitions an order fulfilment to complete,
     which is order fulfilment execution.
+- tag: Connects
+  spec_file: shopify-connects-api-openapi.yml
+  capability_id: BC-530
+  capability_id_l1: BC-530
+  capability_name: Inventory Management
+  confidence: 0.7
+  evidence: POST /admin/api/2020-10/inventory_levels/connect.json "Shopify Connects An Inventory Item
+    To A Location By Creating An Inventory Level…"
+  reason: Despite the generic tag name, every operation connects an inventory item to a location by creating
+    an inventory level — stock tracking across locations. Maps to Inventory Management at L1; evidence
+    does not pin a specific sub-capability (stock levels vs allocation).
 - tag: Fulfillment Orders
   spec_file: shopify-fulfillment-orders-api-openapi.yml
   capability_id: BC-2330
