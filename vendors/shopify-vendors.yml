@@ -1,0 +1,70 @@
+generated: '2026-10-12'
+method: probed
+source: pre-flight dossier (docs platform, portal detections) + CNAME chains and response headers of the hosts apis.yml names
+registry: all/0-working/vendors.yml
+areas_vocabulary:
+- documentation
+- developer-portal
+- api-gateway
+- cdn
+- hosting
+- sdk-generation
+- api-collections
+- status-page
+- support
+- community
+- identity
+- mcp-hosting
+vendors:
+- vendor: cloudflare
+  name: Cloudflare
+  area: cdn
+  host: www.shopify.com
+  evidence: header:cf-ray
+  signal: header
+  confidence: high
+  kin_score:
+  - https_enforced
+  - hsts
+- vendor: discourse
+  name: Discourse
+  area: community
+  host: community.shopify.dev
+  evidence: https://community.shopify.dev/c/dev-platform/32
+  signal: url:/c/
+  confidence: high
+  kin_score:
+  - community_present
+- vendor: shopify
+  name: Shopify
+  area: hosting
+  host: '{store}.myshopify.com'
+  evidence: cname:myshopify.com
+  signal: cname
+  confidence: high
+  kin_score: []
+reliance:
+  areas_vendor_served:
+  - cdn
+  - community
+  - hosting
+  vendor_count: 3
+  areas_observed: 12
+  share_of_observable_areas: 0.25
+  note: areas where a third party was DETECTED serving this provider; an area absent here was either self-run or not observed, and this script
+    cannot tell those apart
+checked:
+- 'docs-platform: not probed'
+- shopify.dev (Documentation)
+- shopify.dev (Portal)
+- www.shopifystatus.com (StatusPage)
+- community.shopify.dev (Support)
+- shopify.dev (GettingStarted)
+- www.shopify.com (Website)
+- accounts.shopify.com (Login)
+- community.shopify.dev (Community)
+- shopify.dev (APIReference)
+- '{store}.myshopify.com (baseURL)'
+- shopify.com (baseURL)
+- partners.shopify.com (baseURL)
+- catalog.shopify.com (mcp)

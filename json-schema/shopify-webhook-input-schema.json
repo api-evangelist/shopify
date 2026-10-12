@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/shopify/main/json-schema/shopify-webhook-input-schema.json",
+  "title": "WebhookInput",
+  "description": "Input for creating or updating a webhook",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/shopify-webhooks-api-openapi.yml#/components/schemas/WebhookInput",
+  "type": "object",
+  "required": [
+    "topic",
+    "address"
+  ],
+  "properties": {
+    "topic": {
+      "type": "string",
+      "description": "The event topic (e.g. orders/create)"
+    },
+    "address": {
+      "type": "string",
+      "format": "uri",
+      "description": "The callback URL"
+    },
+    "format": {
+      "type": "string",
+      "enum": [
+        "json",
+        "xml"
+      ]
+    },
+    "fields": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

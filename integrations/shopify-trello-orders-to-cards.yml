@@ -1,0 +1,77 @@
+arazzo: 1.0.1
+info:
+  title: Create Trello cards from new Shopify orders
+  summary: Create Trello cards from new Shopify orders, recreated from the Zapier
+    template as Arazzo.
+  description: Recreates the Zapier template "Create Trello cards from new Shopify
+    orders" as a forkable Arazzo workflow over the Shopify Admin REST contract and
+    the trello contract held in the API Evangelist catalog.
+  version: 1.0.0
+sourceDescriptions:
+- name: shopifyOrders
+  url: https://raw.githubusercontent.com/api-evangelist/shopify/refs/heads/main/openapi/shopify-orders-api-openapi.yml
+  type: openapi
+- name: trelloCards
+  url: https://raw.githubusercontent.com/api-evangelist/trello/refs/heads/main/openapi/trello-cards-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: orders-to-cards
+  summary: Create Trello cards from new Shopify orders
+  inputs:
+    type: object
+    properties:
+      since:
+        type: string
+        format: date-time
+        description: Only consider records created at or after this time.
+      idList:
+        type: string
+  steps:
+  - stepId: list-paid-orders
+    description: List recent Shopify orders filtered to financial_status=any.
+    operationId: $sourceDescriptions.shopifyOrders.listOrders
+    parameters:
+    - name: financial_status
+      in: query
+      value: any
+    - name: created_at_min
+      in: query
+      value: $inputs.since
+    - name: limit
+      in: query
+      value: 50
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      orders: $response.body#/orders
+      firstOrderName: $response.body#/orders/0/name
+      firstOrderTotal: $response.body#/orders/0/total_price
+      firstOrderEmail: $response.body#/orders/0/email
+  - stepId: create-order-card
+    description: Create a card on the fulfilment list for the order.
+    operationId: $sourceDescriptions.trelloCards.createCard
+    parameters:
+    - name: idList
+      in: query
+      value: $inputs.idList
+    - name: name
+      in: query
+      value: $steps.list-paid-orders.outputs.firstOrderName
+    - name: desc
+      in: query
+      value: $steps.list-paid-orders.outputs.firstOrderEmail
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      cardId: $response.body#/id
+  outputs:
+    cardId: $steps.create-order-card.outputs.cardId
+x-integration:
+  partner: trello
+  template: https://zapier.com/apps/shopify/integrations/trello/3342/create-trello-cards-from-new-shopify-orders
+  edge_evidence: https://zapier.com/apps/shopify/integrations/trello/3342/create-trello-cards-from-new-shopify-orders
+  edge_type: marketplace
+  method: generated
+  generated: '2026-10-12'
+  generator: enrich local-v5 (provider-integrations-arazzo)
+  guessed_steps: []

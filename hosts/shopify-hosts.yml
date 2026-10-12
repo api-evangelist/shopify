@@ -1,0 +1,193 @@
+generated: '2026-10-12'
+method: derived
+source: the pre-flight dossier, apis.yml pointers, spec servers, well-known, vendors -- nothing fetched here
+generator: derive-hosts.py
+summary:
+  hosts: 15
+  own: 0
+  other_domain: 4
+  platform: 11
+  roles:
+  - docs
+  - identity
+  - marketing
+  - other
+  - partner
+  - source
+  - status
+  - support
+  - website
+hosts:
+- host: accounts.shopify.com
+  found_by:
+  - pointer
+  types:
+  - Login
+  serves: []
+  registrable_domain: shopify.com
+  role: identity
+  relation: platform
+- host: apps.shopify.com
+  found_by:
+  - pointer
+  types:
+  - Application Marketplace
+  serves: []
+  registrable_domain: shopify.com
+  role: other
+  relation: platform
+- host: community.shopify.dev
+  found_by:
+  - pointer
+  - vendor-detect
+  types:
+  - Support
+  - Forums
+  - Community
+  serves:
+  - community
+  vendor: discourse
+  registrable_domain: shopify.dev
+  role: support
+  relation: other-domain
+- host: github.com
+  found_by:
+  - pointer
+  types:
+  - GitHubOrganization
+  - SDKs
+  serves: []
+  registrable_domain: github.com
+  role: source
+  relation: platform
+- host: partners.shopify.com
+  found_by:
+  - pointer
+  - apis[]
+  types:
+  - Signup
+  serves:
+  - api
+  registrable_domain: shopify.com
+  role: partner
+  relation: platform
+- host: shopify.com
+  found_by:
+  - apis[]
+  types: []
+  serves:
+  - api
+  registrable_domain: shopify.com
+  role: other
+  relation: platform
+- host: shopify.dev
+  found_by:
+  - pointer
+  - apis[]
+  types:
+  - Documentation
+  - Versioning
+  - Authentication
+  - CLI
+  - Portal
+  - SDKs
+  - RateLimits
+  - ChangeLog
+  - Webhooks
+  - AuthenticationDocs
+  - Access Scopes
+  - Headless
+  - Design System
+  - App Bridge
+  - GettingStarted
+  - Extensions
+  - Themes
+  - Deprecation
+  - APIReference
+  serves:
+  - docs
+  registrable_domain: shopify.dev
+  role: docs
+  relation: other-domain
+- host: shopify.engineering
+  found_by:
+  - pointer
+  types:
+  - Blog
+  serves: []
+  registrable_domain: shopify.engineering
+  role: marketing
+  relation: other-domain
+- host: stackoverflow.com
+  found_by:
+  - pointer
+  types:
+  - StackOverflow
+  serves: []
+  registrable_domain: stackoverflow.com
+  role: other
+  relation: platform
+- host: www.linkedin.com
+  found_by:
+  - pointer
+  types:
+  - LinkedIn
+  serves: []
+  registrable_domain: linkedin.com
+  role: other
+  relation: platform
+- host: www.postman.com
+  found_by:
+  - pointer
+  types:
+  - PostmanWorkspace
+  serves: []
+  registrable_domain: postman.com
+  role: other
+  relation: platform
+- host: www.shopify.com
+  found_by:
+  - pointer
+  - vendor-detect
+  types:
+  - TermsOfService
+  - PrivacyPolicy
+  - Partner Program
+  - Website
+  - Pricing
+  serves:
+  - cdn
+  vendor: cloudflare
+  registrable_domain: shopify.com
+  role: website
+  relation: platform
+- host: www.shopifystatus.com
+  found_by:
+  - pointer
+  types:
+  - StatusPage
+  serves: []
+  registrable_domain: shopifystatus.com
+  role: status
+  relation: other-domain
+- host: www.youtube.com
+  found_by:
+  - pointer
+  types:
+  - YouTube
+  serves: []
+  registrable_domain: youtube.com
+  role: other
+  relation: platform
+- host: '{store}.myshopify.com'
+  found_by:
+  - apis[]
+  - vendor-detect
+  types: []
+  serves:
+  - api
+  - hosting
+  vendor: shopify
+  registrable_domain: myshopify.com
+  role: other
+  relation: platform

@@ -1,0 +1,71 @@
+arazzo: 1.0.1
+info:
+  title: Add new Shopify customers to ActiveCampaign
+  summary: Add new Shopify customers to ActiveCampaign, recreated from the Zapier
+    template as Arazzo.
+  description: Recreates the Zapier template "Add new Shopify customers to ActiveCampaign"
+    as a forkable Arazzo workflow over the Shopify Admin REST contract and the activecampaign
+    contract held in the API Evangelist catalog.
+  version: 1.0.0
+sourceDescriptions:
+- name: shopifyCustomers
+  url: https://raw.githubusercontent.com/api-evangelist/shopify/refs/heads/main/openapi/shopify-customers-api-openapi.yml
+  type: openapi
+- name: activecampaignContacts
+  url: https://raw.githubusercontent.com/api-evangelist/activecampaign/refs/heads/main/openapi/activecampaign-contacts-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: customers-to-contacts
+  summary: Add new Shopify customers to ActiveCampaign
+  inputs:
+    type: object
+    properties:
+      since:
+        type: string
+        format: date-time
+        description: Only consider records created at or after this time.
+  steps:
+  - stepId: list-new-customers
+    description: List Shopify customers created since the given time.
+    operationId: $sourceDescriptions.shopifyCustomers.listCustomers
+    parameters:
+    - name: created_at_min
+      in: query
+      value: $inputs.since
+    - name: limit
+      in: query
+      value: 50
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      customers: $response.body#/customers
+      email: $response.body#/customers/0/email
+      firstName: $response.body#/customers/0/first_name
+      lastName: $response.body#/customers/0/last_name
+      phone: $response.body#/customers/0/phone
+  - stepId: create-contact
+    description: Create the customer as an ActiveCampaign contact.
+    operationId: $sourceDescriptions.activecampaignContacts.create-a-new-contact
+    requestBody:
+      contentType: application/json
+      payload:
+        contact:
+          email: $steps.list-new-customers.outputs.email
+          firstName: $steps.list-new-customers.outputs.firstName
+          lastName: $steps.list-new-customers.outputs.lastName
+          phone: $steps.list-new-customers.outputs.phone
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      contactId: $response.body#/contact/id
+  outputs:
+    contactId: $steps.create-contact.outputs.contactId
+x-integration:
+  partner: activecampaign
+  template: https://zapier.com/apps/activecampaign/integrations/shopify/706/add-new-shopify-customers-to-activecampaign
+  edge_evidence: https://zapier.com/apps/activecampaign/integrations/shopify/706/add-new-shopify-customers-to-activecampaign
+  edge_type: marketplace
+  method: generated
+  generated: '2026-10-12'
+  generator: enrich local-v5 (provider-integrations-arazzo)
+  guessed_steps: []

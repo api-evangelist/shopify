@@ -4,9 +4,7 @@ source: https://shopify.dev/docs/api/usage/access-scopes.md
 docs: https://shopify.dev/docs/api/usage/access-scopes
 provider: Shopify
 providerId: shopify
-note: Shopify OAuth 2.0 access scopes, read verbatim from the published access-scopes reference (markdown twin of
-  the HTML page, fetched 2026-08-27, HTTP 200). Three disjoint scope families, one per API surface. The OAuth endpoints
-  themselves are UNVERSIONED per https://shopify.dev/docs/api/usage/versioning.
+note: Shopify OAuth 2.0 access scopes, read verbatim from the published access-scopes reference (markdown twin of the HTML page, fetched 2026-08-27, HTTP 200). Three disjoint scope families, one per API surface. The OAuth endpoints themselves are UNVERSIONED per https://shopify.dev/docs/api/usage/versioning.
 flows:
 - authorization_code
 - token_exchange
@@ -16,8 +14,7 @@ families:
 - name: Authenticated access scopes
   api: GraphQL Admin API / Admin REST API
   granularity: read_/write_ per resource
-  note: Requested during app authorization. Some scopes (read_all_orders, read_customer_payment_methods, write_own_subscription_contracts,
-    and the protected-customer-data tiers) require Shopify approval before they can be granted.
+  note: Requested during app authorization. Some scopes (read_all_orders, read_customer_payment_methods, write_own_subscription_contracts, and the protected-customer-data tiers) require Shopify approval before they can be granted.
   count: 110
   scopes:
   - scope: read_all_orders
@@ -133,8 +130,7 @@ families:
 - name: Unauthenticated access scopes
   api: Storefront API
   granularity: unauthenticated_read_/unauthenticated_write_ per object
-  note: Buyer-facing scopes for a public Storefront API access token. They grant access on behalf of a shopper,
-    not a merchant.
+  note: Buyer-facing scopes for a public Storefront API access token. They grant access on behalf of a shopper, not a merchant.
   count: 12
   scopes:
   - scope: unauthenticated_read_checkouts
@@ -152,8 +148,7 @@ families:
 - name: Customer access scopes
   api: Customer Account API
   granularity: customer_read_/customer_write_ per object
-  note: Scopes for data that belongs to an individual customer, obtained via the authorization code flow with PKCE.
-    Level 2 protected customer data (PII) access must be requested from the Partner Dashboard.
+  note: Scopes for data that belongs to an individual customer, obtained via the authorization code flow with PKCE. Level 2 protected customer data (PII) access must be requested from the Partner Dashboard.
   count: 15
   scopes:
   - scope: customer_read_companies
@@ -179,3 +174,278 @@ evidence:
 - url: https://shopify.dev/docs/api/usage/access-scopes.md
   status: 200
   fetched: '2026-08-27'
+scopes:
+- scope: read_all_orders
+  family: Authenticated access scopes
+- scope: read_analytics_annotations
+  family: Authenticated access scopes
+- scope: read_assigned_fulfillment_orders
+  family: Authenticated access scopes
+- scope: read_cart_transforms
+  family: Authenticated access scopes
+- scope: read_checkout_and_accounts_configurations
+  family: Authenticated access scopes
+- scope: read_checkout_branding_settings
+  family: Authenticated access scopes
+- scope: read_content
+  family: Authenticated access scopes
+- scope: read_customer_events
+  family: Authenticated access scopes
+- scope: read_customer_merge
+  family: Authenticated access scopes
+- scope: read_customer_payment_methods
+  family: Authenticated access scopes
+- scope: read_customers
+  family: Authenticated access scopes
+- scope: read_delivery_customizations
+  family: Authenticated access scopes
+- scope: read_discounts
+  family: Authenticated access scopes
+- scope: read_draft_orders
+  family: Authenticated access scopes
+- scope: read_files
+  family: Authenticated access scopes
+- scope: read_fulfillments
+  family: Authenticated access scopes
+- scope: read_gift_cards
+  family: Authenticated access scopes
+- scope: read_inventory
+  family: Authenticated access scopes
+- scope: read_inventory_shipments
+  family: Authenticated access scopes
+- scope: read_inventory_shipments_received_items
+  family: Authenticated access scopes
+- scope: read_inventory_transfers
+  family: Authenticated access scopes
+- scope: read_legal_policies
+  family: Authenticated access scopes
+- scope: read_locales
+  family: Authenticated access scopes
+- scope: read_locations
+  family: Authenticated access scopes
+- scope: read_marketing_events
+  family: Authenticated access scopes
+- scope: read_marketplace_fulfillment_orders
+  family: Authenticated access scopes
+- scope: read_markets
+  family: Authenticated access scopes
+- scope: read_merchant_approval_signals
+  family: Authenticated access scopes
+- scope: read_merchant_managed_fulfillment_orders
+  family: Authenticated access scopes
+- scope: read_metaobject_definitions
+  family: Authenticated access scopes
+- scope: read_metaobjects
+  family: Authenticated access scopes
+- scope: read_online_store_navigation
+  family: Authenticated access scopes
+- scope: read_online_store_pages
+  family: Authenticated access scopes
+- scope: read_order_edits
+  family: Authenticated access scopes
+- scope: read_orders
+  family: Authenticated access scopes
+- scope: read_own_subscription_contracts
+  family: Authenticated access scopes
+- scope: read_payment_customizations
+  family: Authenticated access scopes
+- scope: read_payment_gateways
+  family: Authenticated access scopes
+- scope: read_payment_mandate
+  family: Authenticated access scopes
+- scope: read_payment_terms
+  family: Authenticated access scopes
+- scope: read_price_rules
+  family: Authenticated access scopes
+- scope: read_privacy_settings
+  family: Authenticated access scopes
+- scope: read_products
+  family: Authenticated access scopes
+- scope: read_purchase_options
+  family: Authenticated access scopes
+- scope: read_reports
+  family: Authenticated access scopes
+- scope: read_returns
+  family: Authenticated access scopes
+- scope: read_script_tags
+  family: Authenticated access scopes
+- scope: read_shipping
+  family: Authenticated access scopes
+- scope: read_shopify_payments_dispute_evidences
+  family: Authenticated access scopes
+- scope: read_shopify_payments_dispute_file_uploads
+  family: Authenticated access scopes
+- scope: read_shopify_payments_disputes
+  family: Authenticated access scopes
+- scope: read_shopify_payments_payouts
+  family: Authenticated access scopes
+- scope: read_store_credit_account_transactions
+  family: Authenticated access scopes
+- scope: read_store_credit_accounts
+  family: Authenticated access scopes
+- scope: read_themes
+  family: Authenticated access scopes
+- scope: read_third_party_fulfillment_orders
+  family: Authenticated access scopes
+- scope: read_translations
+  family: Authenticated access scopes
+- scope: read_users
+  family: Authenticated access scopes
+- scope: read_validations
+  family: Authenticated access scopes
+- scope: write_analytics_annotations
+  family: Authenticated access scopes
+- scope: write_app_proxy
+  family: Authenticated access scopes
+- scope: write_assigned_fulfillment_orders
+  family: Authenticated access scopes
+- scope: write_cart_transforms
+  family: Authenticated access scopes
+- scope: write_checkout_and_accounts_configurations
+  family: Authenticated access scopes
+- scope: write_checkout_branding_settings
+  family: Authenticated access scopes
+- scope: write_content
+  family: Authenticated access scopes
+- scope: write_customer_merge
+  family: Authenticated access scopes
+- scope: write_customers
+  family: Authenticated access scopes
+- scope: write_delivery_customizations
+  family: Authenticated access scopes
+- scope: write_discounts
+  family: Authenticated access scopes
+- scope: write_draft_orders
+  family: Authenticated access scopes
+- scope: write_files
+  family: Authenticated access scopes
+- scope: write_fulfillments
+  family: Authenticated access scopes
+- scope: write_gift_cards
+  family: Authenticated access scopes
+- scope: write_inventory
+  family: Authenticated access scopes
+- scope: write_inventory_shipments
+  family: Authenticated access scopes
+- scope: write_inventory_shipments_received_items
+  family: Authenticated access scopes
+- scope: write_inventory_transfers
+  family: Authenticated access scopes
+- scope: write_locales
+  family: Authenticated access scopes
+- scope: write_locations
+  family: Authenticated access scopes
+- scope: write_marketing_events
+  family: Authenticated access scopes
+- scope: write_markets
+  family: Authenticated access scopes
+- scope: write_merchant_managed_fulfillment_orders
+  family: Authenticated access scopes
+- scope: write_metaobject_definitions
+  family: Authenticated access scopes
+- scope: write_metaobjects
+  family: Authenticated access scopes
+- scope: write_online_store_navigation
+  family: Authenticated access scopes
+- scope: write_order_edits
+  family: Authenticated access scopes
+- scope: write_orders
+  family: Authenticated access scopes
+- scope: write_own_subscription_contracts
+  family: Authenticated access scopes
+- scope: write_payment_customizations
+  family: Authenticated access scopes
+- scope: write_payment_gateways
+  family: Authenticated access scopes
+- scope: write_payment_mandate
+  family: Authenticated access scopes
+- scope: write_payment_sessions
+  family: Authenticated access scopes
+- scope: write_payment_terms
+  family: Authenticated access scopes
+- scope: write_pixels
+  family: Authenticated access scopes
+- scope: write_price_rules
+  family: Authenticated access scopes
+- scope: write_privacy_settings
+  family: Authenticated access scopes
+- scope: write_products
+  family: Authenticated access scopes
+- scope: write_purchase_options
+  family: Authenticated access scopes
+- scope: write_reports
+  family: Authenticated access scopes
+- scope: write_returns
+  family: Authenticated access scopes
+- scope: write_script_tags
+  family: Authenticated access scopes
+- scope: write_shipping
+  family: Authenticated access scopes
+- scope: write_shopify_payments_dispute_evidences
+  family: Authenticated access scopes
+- scope: write_shopify_payments_dispute_file_uploads
+  family: Authenticated access scopes
+- scope: write_store_credit_account_transactions
+  family: Authenticated access scopes
+- scope: write_themes
+  family: Authenticated access scopes
+- scope: write_third_party_fulfillment_orders
+  family: Authenticated access scopes
+- scope: write_translations
+  family: Authenticated access scopes
+- scope: write_validations
+  family: Authenticated access scopes
+- scope: unauthenticated_read_checkouts
+  family: Unauthenticated access scopes
+- scope: unauthenticated_read_content
+  family: Unauthenticated access scopes
+- scope: unauthenticated_read_customer_tags
+  family: Unauthenticated access scopes
+- scope: unauthenticated_read_customers
+  family: Unauthenticated access scopes
+- scope: unauthenticated_read_metaobjects
+  family: Unauthenticated access scopes
+- scope: unauthenticated_read_product_inventory
+  family: Unauthenticated access scopes
+- scope: unauthenticated_read_product_listings
+  family: Unauthenticated access scopes
+- scope: unauthenticated_read_product_pickup_locations
+  family: Unauthenticated access scopes
+- scope: unauthenticated_read_product_tags
+  family: Unauthenticated access scopes
+- scope: unauthenticated_read_selling_plans
+  family: Unauthenticated access scopes
+- scope: unauthenticated_write_checkouts
+  family: Unauthenticated access scopes
+- scope: unauthenticated_write_customers
+  family: Unauthenticated access scopes
+- scope: customer_read_companies
+  family: Customer access scopes
+- scope: customer_read_customers
+  family: Customer access scopes
+- scope: customer_read_draft_orders
+  family: Customer access scopes
+- scope: customer_read_locations
+  family: Customer access scopes
+- scope: customer_read_markets
+  family: Customer access scopes
+- scope: customer_read_metaobjects
+  family: Customer access scopes
+- scope: customer_read_orders
+  family: Customer access scopes
+- scope: customer_read_own_subscription_contracts
+  family: Customer access scopes
+- scope: customer_read_store_credit_accounts
+  family: Customer access scopes
+- scope: customer_write_companies
+  family: Customer access scopes
+- scope: customer_write_customers
+  family: Customer access scopes
+- scope: customer_write_locations
+  family: Customer access scopes
+- scope: customer_write_orders
+  family: Customer access scopes
+- scope: customer_write_own_subscription_contracts
+  family: Customer access scopes
+- scope: customer_write_subscription_contracts
+  family: Customer access scopes

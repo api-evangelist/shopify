@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/shopify/main/json-schema/shopify-webhook-schema.json",
+  "title": "Webhook",
+  "description": "A webhook subscription",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/shopify-webhooks-api-openapi.yml#/components/schemas/Webhook",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "address": {
+      "type": "string",
+      "format": "uri",
+      "description": "The URL where the webhook delivers data"
+    },
+    "topic": {
+      "type": "string",
+      "description": "The event that triggers the webhook"
+    },
+    "format": {
+      "type": "string",
+      "description": "The data format",
+      "enum": [
+        "json",
+        "xml"
+      ]
+    },
+    "fields": {
+      "type": "array",
+      "description": "Optional list of fields to include in the payload",
+      "items": {
+        "type": "string"
+      }
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "api_version": {
+      "type": "string",
+      "description": "The API version for the webhook payload"
+    },
+    "admin_graphql_api_id": {
+      "type": "string"
+    }
+  }
+}

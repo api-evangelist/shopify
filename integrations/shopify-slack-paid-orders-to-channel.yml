@@ -1,0 +1,73 @@
+arazzo: 1.0.1
+info:
+  title: Share new paid Shopify orders to Slack
+  summary: Share new paid Shopify orders to Slack, recreated from the Zapier template
+    as Arazzo.
+  description: Recreates the Zapier template "Share new paid Shopify orders to Slack"
+    as a forkable Arazzo workflow over the Shopify Admin REST contract and the slack
+    contract held in the API Evangelist catalog.
+  version: 1.0.0
+sourceDescriptions:
+- name: shopifyOrders
+  url: https://raw.githubusercontent.com/api-evangelist/shopify/refs/heads/main/openapi/shopify-orders-api-openapi.yml
+  type: openapi
+- name: slackChat
+  url: https://raw.githubusercontent.com/api-evangelist/slack/refs/heads/main/openapi/slack-chat-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: paid-orders-to-channel
+  summary: Share new paid Shopify orders to Slack
+  inputs:
+    type: object
+    properties:
+      since:
+        type: string
+        format: date-time
+        description: Only consider records created at or after this time.
+      channel:
+        type: string
+  steps:
+  - stepId: list-paid-orders
+    description: List recent Shopify orders filtered to financial_status=paid.
+    operationId: $sourceDescriptions.shopifyOrders.listOrders
+    parameters:
+    - name: financial_status
+      in: query
+      value: paid
+    - name: created_at_min
+      in: query
+      value: $inputs.since
+    - name: limit
+      in: query
+      value: 50
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      orders: $response.body#/orders
+      firstOrderName: $response.body#/orders/0/name
+      firstOrderTotal: $response.body#/orders/0/total_price
+      firstOrderEmail: $response.body#/orders/0/email
+  - stepId: post-order-message
+    description: Post the order to a Slack channel.
+    operationId: $sourceDescriptions.slackChat.postChatPostmessage
+    requestBody:
+      contentType: application/x-www-form-urlencoded
+      payload:
+        channel: $inputs.channel
+        text: New paid order $steps.list-paid-orders.outputs.firstOrderName for $steps.list-paid-orders.outputs.firstOrderTotal
+    successCriteria:
+    - condition: $statusCode == 200
+    - condition: $response.body#/ok == true
+    outputs:
+      ts: $response.body#/ts
+  outputs:
+    ts: $steps.post-order-message.outputs.ts
+x-integration:
+  partner: slack
+  template: https://zapier.com/apps/shopify/integrations/slack/1489/share-new-paid-orders-from-shopify-to-slack
+  edge_evidence: https://zapier.com/apps/shopify/integrations/slack/1489/share-new-paid-orders-from-shopify-to-slack
+  edge_type: marketplace
+  method: generated
+  generated: '2026-10-12'
+  generator: enrich local-v5 (provider-integrations-arazzo)
+  guessed_steps: []

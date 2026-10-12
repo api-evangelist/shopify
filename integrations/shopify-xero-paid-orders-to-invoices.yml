@@ -1,0 +1,87 @@
+arazzo: 1.0.1
+info:
+  title: Create Xero invoices for new Shopify paid orders
+  summary: Create Xero invoices for new Shopify paid orders, recreated from the Zapier
+    template as Arazzo.
+  description: Recreates the Zapier template "Create Xero invoices for new Shopify
+    paid orders" as a forkable Arazzo workflow over the Shopify Admin REST contract
+    and the xero contract held in the API Evangelist catalog.
+  version: 1.0.0
+sourceDescriptions:
+- name: shopifyOrders
+  url: https://raw.githubusercontent.com/api-evangelist/shopify/refs/heads/main/openapi/shopify-orders-api-openapi.yml
+  type: openapi
+- name: xeroAccounting
+  url: https://raw.githubusercontent.com/api-evangelist/xero/refs/heads/main/openapi/xero-accounting-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: paid-orders-to-invoices
+  summary: Create Xero invoices for new Shopify paid orders
+  inputs:
+    type: object
+    properties:
+      since:
+        type: string
+        format: date-time
+        description: Only consider records created at or after this time.
+      tenantId:
+        type: string
+  steps:
+  - stepId: list-paid-orders
+    description: List recent Shopify orders filtered to financial_status=paid.
+    operationId: $sourceDescriptions.shopifyOrders.listOrders
+    parameters:
+    - name: financial_status
+      in: query
+      value: paid
+    - name: created_at_min
+      in: query
+      value: $inputs.since
+    - name: limit
+      in: query
+      value: 50
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      orders: $response.body#/orders
+      firstOrderName: $response.body#/orders/0/name
+      firstOrderTotal: $response.body#/orders/0/total_price
+      firstOrderEmail: $response.body#/orders/0/email
+  - stepId: create-invoice
+    description: Create an ACCREC invoice in Xero for the order.
+    operationId: $sourceDescriptions.xeroAccounting.createInvoices
+    parameters:
+    - name: xero-tenant-id
+      in: header
+      value: $inputs.tenantId
+    requestBody:
+      contentType: application/json
+      payload:
+        Invoices:
+        - Type: ACCREC
+          Contact:
+            EmailAddress: $steps.list-paid-orders.outputs.firstOrderEmail
+          Reference: $steps.list-paid-orders.outputs.firstOrderName
+          LineItems:
+          - Description: $steps.list-paid-orders.outputs.firstOrderName
+            Quantity: 1
+            UnitAmount: $steps.list-paid-orders.outputs.firstOrderTotal
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      invoiceId: $response.body#/Invoices/0/InvoiceID
+  outputs:
+    invoiceId: $steps.create-invoice.outputs.invoiceId
+x-integration:
+  partner: xero
+  template: https://zapier.com/apps/shopify/integrations/xero/2774/create-xero-invoices-for-new-shopify-paid-orders
+  edge_evidence: https://zapier.com/apps/shopify/integrations/xero/2774/create-xero-invoices-for-new-shopify-paid-orders
+  edge_type: marketplace
+  method: generated
+  generated: '2026-10-12'
+  generator: enrich local-v5 (provider-integrations-arazzo)
+  guessed_steps:
+  - step: create-invoice
+    cause: provider-contract
+    why: Order line items are collapsed to one line at total_price; mapping each Shopify
+      line_item to a Xero LineItem needs iteration Arazzo 1.0.1 does not express.
