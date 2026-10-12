@@ -1,0 +1,30 @@
+# DERIVED by build-integration-preconfigs.py (roadmap#949). Overlay on the PARTNER's contract:
+# where algolia's enum names shopify, and what that value is.
+overlay: 1.0.0
+info:
+  title: shopify as a processor-connection in algolia's contract
+  version: 1.0.0
+extends: https://raw.githubusercontent.com/api-evangelist/algolia/refs/heads/main/openapi/algolia-ingestion-api-openapi.yml
+actions:
+- target: $.components.schemas.SourceType
+  update:
+    x-apievangelist-integration:
+      values:
+        shopify:
+          provider: shopify
+          relationship: processor-connection
+          evidence: https://github.com/api-evangelist/algolia/blob/main/openapi/algolia-ingestion-api-openapi.yml
+      method: derived
+      generated: '2026-10-12'
+      generator: build-integration-preconfigs.py
+- target: $.components.schemas.Platform.oneOf[0]
+  update:
+    x-apievangelist-integration:
+      values:
+        shopify:
+          provider: shopify
+          relationship: processor-connection
+          evidence: https://github.com/api-evangelist/algolia/blob/main/openapi/algolia-ingestion-api-openapi.yml
+      method: derived
+      generated: '2026-10-12'
+      generator: build-integration-preconfigs.py

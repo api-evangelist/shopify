@@ -1,0 +1,30 @@
+# DERIVED by build-integration-preconfigs.py (roadmap#949). Overlay on the PARTNER's contract:
+# where aftership's enum names shopify, and what that value is.
+overlay: 1.0.0
+info:
+  title: shopify as a processor-connection in aftership's contract
+  version: 1.0.0
+extends: https://raw.githubusercontent.com/api-evangelist/aftership/refs/heads/main/openapi/aftership-returns-api-openapi.yml
+actions:
+- target: $.components.schemas.Order.properties.store.properties.platform
+  update:
+    x-apievangelist-integration:
+      values:
+        shopify:
+          provider: shopify
+          relationship: processor-connection
+          evidence: https://github.com/api-evangelist/aftership/blob/main/openapi/aftership-returns-api-openapi.yml
+      method: derived
+      generated: '2026-10-12'
+      generator: build-integration-preconfigs.py
+- target: $.components.requestBodies.CreateReturn.content['application/json'].schema.properties.order.properties.store.properties.platform
+  update:
+    x-apievangelist-integration:
+      values:
+        shopify:
+          provider: shopify
+          relationship: processor-connection
+          evidence: https://github.com/api-evangelist/aftership/blob/main/openapi/aftership-returns-api-openapi.yml
+      method: derived
+      generated: '2026-10-12'
+      generator: build-integration-preconfigs.py
