@@ -1,0 +1,220 @@
+# DERIVED by derive-integration-map.py (roadmap#949): each integration workflow, step by step,
+# resolved to spec file -> tag -> business capability (Turbo EA, CC BY 4.0) and the operation's
+# phrasing intent. Read from our own files; an unmapped link says why.
+slug: shopify
+workflows:
+- file: shopify-activecampaign-customers-to-contacts.yml
+  title: Add new Shopify customers to ActiveCampaign
+  partner: activecampaign
+  template: https://zapier.com/apps/activecampaign/integrations/shopify/706/add-new-shopify-customers-to-activecampaign
+  repos:
+  - shopify
+  - activecampaign
+  steps:
+  - step: list-new-customers
+    repo: shopify
+    spec_file: shopify-customers-api-openapi.yml
+    operationId: listCustomers
+    tag: Customers
+    capability_id: BC-420.10
+    capability: Customer Data Management
+    capability_l1: BC-420
+    intent: List customers
+    effect: read
+    unmapped: null
+  - step: create-contact
+    repo: activecampaign
+    spec_file: activecampaign-contacts-api-openapi.yml
+    operationId: create-a-new-contact
+    tag: Contacts
+    capability_id: null
+    capability: null
+    capability_l1: null
+    intent: Create a new contact
+    effect: write
+    unmapped: no capability edge for this spec file
+  connects:
+    shopify:
+      capabilities:
+      - BC-420.10
+      tags:
+      - Customers
+    activecampaign:
+      capabilities: []
+      tags:
+      - Contacts
+  intents:
+  - List customers
+  - Create a new contact
+- file: shopify-google-sheets-paid-orders-to-rows.yml
+  title: Shopify paid orders to Google Sheets rows
+  partner: google-sheets
+  template: https://zapier.com/apps/google-sheets/integrations/shopify/2758/add-new-paid-shopify-orders-to-google-sheets-rows
+  repos:
+  - shopify
+  - google-sheets
+  steps:
+  - step: list-paid-orders
+    repo: shopify
+    spec_file: shopify-orders-api-openapi.yml
+    operationId: listOrders
+    tag: Orders
+    capability_id: BC-520.40
+    capability: Order Fulfilment Management
+    capability_l1: BC-520
+    intent: List recent orders with filters
+    effect: read
+    unmapped: null
+  - step: append-order-row
+    repo: google-sheets
+    spec_file: google-sheets-values-api-openapi.yml
+    operationId: appendValues
+    tag: Values
+    capability_id: null
+    capability: null
+    capability_l1: null
+    intent: null
+    effect: null
+    unmapped: no capability edge for this spec file
+  connects:
+    shopify:
+      capabilities:
+      - BC-520.40
+      tags:
+      - Orders
+    google-sheets:
+      capabilities: []
+      tags:
+      - Values
+  intents:
+  - List recent orders with filters
+- file: shopify-slack-paid-orders-to-channel.yml
+  title: Share new paid Shopify orders to Slack
+  partner: slack
+  template: https://zapier.com/apps/shopify/integrations/slack/1489/share-new-paid-orders-from-shopify-to-slack
+  repos:
+  - shopify
+  - slack
+  steps:
+  - step: list-paid-orders
+    repo: shopify
+    spec_file: shopify-orders-api-openapi.yml
+    operationId: listOrders
+    tag: Orders
+    capability_id: BC-520.40
+    capability: Order Fulfilment Management
+    capability_l1: BC-520
+    intent: List recent orders with filters
+    effect: read
+    unmapped: null
+  - step: post-order-message
+    repo: slack
+    spec_file: slack-chat-api-openapi.yml
+    operationId: postChatPostmessage
+    tag: Chat
+    capability_id: null
+    capability: null
+    capability_l1: null
+    intent: Send a message to a channel
+    effect: write
+    unmapped: no capability edge for this spec file
+  connects:
+    shopify:
+      capabilities:
+      - BC-520.40
+      tags:
+      - Orders
+    slack:
+      capabilities: []
+      tags:
+      - Chat
+  intents:
+  - List recent orders with filters
+  - Send a message to a channel
+- file: shopify-trello-orders-to-cards.yml
+  title: Create Trello cards from new Shopify orders
+  partner: trello
+  template: https://zapier.com/apps/shopify/integrations/trello/3342/create-trello-cards-from-new-shopify-orders
+  repos:
+  - shopify
+  - trello
+  steps:
+  - step: list-paid-orders
+    repo: shopify
+    spec_file: shopify-orders-api-openapi.yml
+    operationId: listOrders
+    tag: Orders
+    capability_id: BC-520.40
+    capability: Order Fulfilment Management
+    capability_l1: BC-520
+    intent: List recent orders with filters
+    effect: read
+    unmapped: null
+  - step: create-order-card
+    repo: trello
+    spec_file: trello-cards-api-openapi.yml
+    operationId: createCard
+    tag: Cards
+    capability_id: BC-900.30
+    capability: Project Management
+    capability_l1: BC-900
+    intent: Create a card on a list
+    effect: write
+    unmapped: null
+  connects:
+    shopify:
+      capabilities:
+      - BC-520.40
+      tags:
+      - Orders
+    trello:
+      capabilities:
+      - BC-900.30
+      tags:
+      - Cards
+  intents:
+  - List recent orders with filters
+  - Create a card on a list
+- file: shopify-xero-paid-orders-to-invoices.yml
+  title: Create Xero invoices for new Shopify paid orders
+  partner: xero
+  template: https://zapier.com/apps/shopify/integrations/xero/2774/create-xero-invoices-for-new-shopify-paid-orders
+  repos:
+  - shopify
+  - xero
+  steps:
+  - step: list-paid-orders
+    repo: shopify
+    spec_file: shopify-orders-api-openapi.yml
+    operationId: listOrders
+    tag: Orders
+    capability_id: BC-520.40
+    capability: Order Fulfilment Management
+    capability_l1: BC-520
+    intent: List recent orders with filters
+    effect: read
+    unmapped: null
+  - step: create-invoice
+    repo: xero
+    spec_file: xero-accounting-api-openapi.yml
+    operationId: createInvoices
+    tag: Accounting
+    capability_id: BC-200
+    capability: Financial Management
+    capability_l1: BC-200
+    intent: null
+    effect: null
+    unmapped: null
+  connects:
+    shopify:
+      capabilities:
+      - BC-520.40
+      tags:
+      - Orders
+    xero:
+      capabilities:
+      - BC-200
+      tags:
+      - Accounting
+  intents:
+  - List recent orders with filters
