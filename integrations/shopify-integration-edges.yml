@@ -1458,6 +1458,45 @@ edges:
     property: components.schemas.SourcePlatform
     detected_by: detect-payment-method-edges.py
     detected: '2026-10-12'
+- partner_name: GitHub Marketplace (apps)
+  partner: github
+  partner_match: aggregator
+  type: marketplace
+  marketplace: github-apps
+  channel: partner-built
+  relationship: platform-app
+  direction: third-party
+  evidence: https://github.com/marketplace/shopify-online-store
+  listing_count: 1
+  apps:
+  - Shopify
+  publisher_name: Shopify
+  badges:
+  - Verified domain
+  detected_by: sweep-devtools.py
+  detected: '2026-10-14'
+- partner_name: Visual Studio Code Marketplace
+  partner: vs-code-marketplace
+  partner_match: aggregator
+  type: marketplace
+  marketplace: vscode
+  channel: partner-built
+  relationship: platform-app
+  direction: third-party
+  evidence: https://marketplace.visualstudio.com/publishers/Shopify
+  listing_count: 6
+  apps:
+  - Ruby LSP
+  - Ruby
+  - Polaris for VS Code
+  - Shopify Liquid
+  - RuboCop LSP
+  publisher_name: Shopify
+  badges:
+  - Verified publisher
+  - Verified domain
+  detected_by: sweep-devtools.py
+  detected: '2026-10-14'
 - partner_name: mParticle
   partner: mparticle
   partner_match: aggregator
@@ -1508,45 +1547,6 @@ edges:
       - varies depending on object
   detected_by: sweep-cdp.py
   first_seen: '2026-10-14'
-- partner_name: GitHub Marketplace (apps)
-  partner: github
-  partner_match: aggregator
-  type: marketplace
-  marketplace: github-apps
-  channel: partner-built
-  relationship: platform-app
-  direction: third-party
-  evidence: https://github.com/marketplace/shopify-online-store
-  listing_count: 1
-  apps:
-  - Shopify
-  publisher_name: Shopify
-  badges:
-  - Verified domain
-  detected_by: sweep-devtools.py
-  detected: '2026-10-14'
-- partner_name: Visual Studio Code Marketplace
-  partner: vs-code-marketplace
-  partner_match: aggregator
-  type: marketplace
-  marketplace: vscode
-  channel: partner-built
-  relationship: platform-app
-  direction: third-party
-  evidence: https://marketplace.visualstudio.com/publishers/Shopify
-  listing_count: 6
-  apps:
-  - Ruby LSP
-  - Ruby
-  - Polaris for VS Code
-  - Shopify Liquid
-  - RuboCop LSP
-  publisher_name: Shopify
-  badges:
-  - Verified publisher
-  - Verified domain
-  detected_by: sweep-devtools.py
-  detected: '2026-10-14'
 templates:
 - title: Add new paid Shopify orders to Google Sheets rows
   url: https://zapier.com/apps/google-sheets/integrations/shopify/2758/add-new-paid-shopify-orders-to-google-sheets-rows
