@@ -13,6 +13,7 @@ checked:
 - https://marketplace.visualstudio.com/vscode
 - https://monid.ai/tools/shopify
 - https://n8n.io/integrations/shopify/
+- https://registry.financialdataexchange.org/
 - https://zapier.com/apps/shopify/integrations
 summary: null
 marketplace_apps:
@@ -1546,6 +1547,30 @@ edges:
       - insert
       - varies depending on object
   detected_by: sweep-cdp.py
+  first_seen: '2026-10-14'
+- partner_name: FDX (Financial Data Exchange)
+  partner: fdx
+  type: contract
+  channel: standard-directory
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://registry.financialdataexchange.org/
+  contract_reference:
+    register: FDX Registry
+    standard: FDX API
+    spec_file: null
+    register_api: https://registry.financialdataexchange.org/fdxregistryapi/organizations/search/listingTags
+    role: data-provider
+    member_type: MEMBER
+    registered_name: Shopify Inc.
+    register_id: 360
+    registered_website: https://www.shopify.com/
+    country: Canada
+    fdx_version: null
+    matched_by: domain:shopify.com
+    detected_by: sweep-fdx.py
+    detected: '2026-10-14'
+  detected_by: sweep-fdx.py
   first_seen: '2026-10-14'
 templates:
 - title: Add new paid Shopify orders to Google Sheets rows
