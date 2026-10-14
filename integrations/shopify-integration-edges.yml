@@ -5,11 +5,13 @@ source:
 - https://n8n.io/integrations/shopify/
 - https://composio.dev/toolkits/shopify
 checked:
+- https://apps.shopify.com/
 - https://composio.dev/toolkits/shopify
+- https://docs.mparticle.com/integrations/shopify/custom-pixel/
+- https://hightouch.com/docs/destinations/shopify
 - https://monid.ai/tools/shopify
 - https://n8n.io/integrations/shopify/
 - https://zapier.com/apps/shopify/integrations
-- https://apps.shopify.com/
 summary: null
 marketplace_apps:
 - marketplace: zapier
@@ -1454,6 +1456,56 @@ edges:
     property: components.schemas.SourcePlatform
     detected_by: detect-payment-method-edges.py
     detected: '2026-10-12'
+- partner_name: mParticle
+  partner: mparticle
+  partner_match: aggregator
+  marketplace: coverage
+  channel: partner-built
+  direction: partner-built
+  type: coverage
+  relationship: connector-coverage
+  evidence: https://docs.mparticle.com/integrations/shopify/custom-pixel/
+  coverage_role:
+  - destination
+  - source
+  cdp_signals:
+    destination:
+      catalog_entries:
+      - shopify
+      integration_types:
+      - custom-pixel
+    source:
+      catalog_entries:
+      - shopify
+      integration_types:
+      - feed
+  detected_by: sweep-cdp.py
+  first_seen: '2026-10-14'
+- partner_name: Hightouch
+  partner: hightouch
+  partner_match: aggregator
+  marketplace: coverage
+  channel: partner-built
+  direction: partner-built
+  type: coverage
+  relationship: connector-coverage
+  evidence: https://hightouch.com/docs/destinations/shopify
+  coverage_role:
+  - destination
+  cdp_signals:
+    destination:
+      catalog_entries:
+      - shopify
+      status: released
+      sync_types:
+      - Actions
+      - Events
+      - Objects
+      sync_modes:
+      - insert
+      - varies depending on object
+  detected_by: sweep-cdp.py
+  first_seen: '2026-10-14'
 templates:
 - title: Add new paid Shopify orders to Google Sheets rows
   url: https://zapier.com/apps/google-sheets/integrations/shopify/2758/add-new-paid-shopify-orders-to-google-sheets-rows
