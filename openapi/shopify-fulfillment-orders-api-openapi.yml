@@ -46,14 +46,6 @@ paths:
                     items:
                       $ref: '#/components/schemas/FulfillmentOrder'
 components:
-  parameters:
-    OrderId:
-      name: order_id
-      in: path
-      required: true
-      description: The ID of the order
-      schema:
-        type: integer
   schemas:
     FulfillmentOrder:
       type: object
@@ -104,6 +96,14 @@ components:
         updated_at:
           type: string
           format: date-time
+  parameters:
+    OrderId:
+      name: order_id
+      in: path
+      required: true
+      description: The ID of the order
+      schema:
+        type: integer
   securitySchemes:
     AccessToken:
       type: apiKey

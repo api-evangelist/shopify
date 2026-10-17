@@ -166,21 +166,6 @@ paths:
         '200':
           description: Image deleted successfully
 components:
-  parameters:
-    ProductId:
-      name: product_id
-      in: path
-      required: true
-      description: The ID of the product
-      schema:
-        type: integer
-    ImageId:
-      name: image_id
-      in: path
-      required: true
-      description: The ID of the image
-      schema:
-        type: integer
   schemas:
     ImageInput:
       type: object
@@ -239,6 +224,21 @@ components:
           format: date-time
         admin_graphql_api_id:
           type: string
+  parameters:
+    ImageId:
+      name: image_id
+      in: path
+      required: true
+      description: The ID of the image
+      schema:
+        type: integer
+    ProductId:
+      name: product_id
+      in: path
+      required: true
+      description: The ID of the product
+      schema:
+        type: integer
   securitySchemes:
     AccessToken:
       type: apiKey

@@ -335,109 +335,27 @@ paths:
           default: my-store
           description: The Shopify store subdomain
 components:
-  parameters:
-    ProductId:
-      name: product_id
-      in: path
-      required: true
-      description: The ID of the product
-      schema:
-        type: integer
   schemas:
-    Product:
+    ImageInput:
       type: object
-      description: A Shopify product
+      description: Input for creating or updating a product image
       properties:
-        id:
-          type: integer
-          description: Unique numeric identifier for the product
-        title:
+        src:
           type: string
-          description: The name of the product
-        body_html:
+          format: uri
+          description: URL of the image
+        attachment:
           type: string
-          description: Product description in HTML
-        vendor:
+          description: Base64-encoded image data
+        alt:
           type: string
-          description: The name of the product vendor
-        product_type:
-          type: string
-          description: A categorization for the product
-        handle:
-          type: string
-          description: URL-friendly version of the product title
-        created_at:
-          type: string
-          format: date-time
-          description: When the product was created
-        updated_at:
-          type: string
-          format: date-time
-          description: When the product was last updated
-        published_at:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          description: When the product was published (null if unpublished)
-        template_suffix:
-          type:
-          - string
-          - 'null'
-          description: Liquid template suffix for the product page
-        published_scope:
-          type: string
-          description: Whether the product is published to the POS channel and online store
-        tags:
-          type: string
-          description: Comma-separated list of tags
-        status:
-          type: string
-          description: Product status
-          enum:
-          - active
-          - archived
-          - draft
-        admin_graphql_api_id:
-          type: string
-          description: The GraphQL Admin API ID
-        variants:
-          type: array
-          description: Product variants
-          items:
-            $ref: '#/components/schemas/Variant'
-        options:
-          type: array
-          description: Product options (e.g. Size, Color)
-          items:
-            $ref: '#/components/schemas/ProductOption'
-        images:
-          type: array
-          description: Product images
-          items:
-            $ref: '#/components/schemas/Image'
-        image:
-          description: The primary product image
-          $ref: '#/components/schemas/Image'
-    ProductOption:
-      type: object
-      description: A product option (e.g. Size, Color)
-      properties:
-        id:
-          type: integer
-        product_id:
-          type: integer
-        name:
-          type: string
-          description: The option name
+          description: Alt text
         position:
           type: integer
-          description: Position in the options list
-        values:
+        variant_ids:
           type: array
-          description: Available values for this option
           items:
-            type: string
+            type: integer
     VariantInput:
       type: object
       description: Input for creating or updating a variant
@@ -482,109 +400,6 @@ components:
           type: integer
         requires_shipping:
           type: boolean
-    Image:
-      type: object
-      description: A product image
-      properties:
-        id:
-          type: integer
-        product_id:
-          type: integer
-        position:
-          type: integer
-          description: Position in the image list
-        alt:
-          type:
-          - string
-          - 'null'
-          description: Alt text for the image
-        width:
-          type: integer
-        height:
-          type: integer
-        src:
-          type: string
-          format: uri
-          description: The image URL
-        variant_ids:
-          type: array
-          description: Variant IDs associated with this image
-          items:
-            type: integer
-        created_at:
-          type: string
-          format: date-time
-        updated_at:
-          type: string
-          format: date-time
-        admin_graphql_api_id:
-          type: string
-    ProductInput:
-      type: object
-      description: Input for creating or updating a product
-      properties:
-        title:
-          type: string
-          description: The name of the product
-        body_html:
-          type: string
-          description: Product description in HTML
-        vendor:
-          type: string
-          description: The product vendor
-        product_type:
-          type: string
-          description: A categorization for the product
-        tags:
-          type: string
-          description: Comma-separated list of tags
-        status:
-          type: string
-          enum:
-          - active
-          - archived
-          - draft
-        variants:
-          type: array
-          items:
-            $ref: '#/components/schemas/VariantInput'
-        images:
-          type: array
-          items:
-            $ref: '#/components/schemas/ImageInput'
-    Error:
-      type: object
-      description: Error response
-      properties:
-        errors:
-          description: Error details
-          oneOf:
-          - type: string
-          - type: object
-            additionalProperties:
-              type: array
-              items:
-                type: string
-    ImageInput:
-      type: object
-      description: Input for creating or updating a product image
-      properties:
-        src:
-          type: string
-          format: uri
-          description: URL of the image
-        attachment:
-          type: string
-          description: Base64-encoded image data
-        alt:
-          type: string
-          description: Alt text
-        position:
-          type: integer
-        variant_ids:
-          type: array
-          items:
-            type: integer
     Variant:
       type: object
       description: A product variant
@@ -687,6 +502,183 @@ components:
           description: The ID of the associated image
         admin_graphql_api_id:
           type: string
+    ProductOption:
+      type: object
+      description: A product option (e.g. Size, Color)
+      properties:
+        id:
+          type: integer
+        product_id:
+          type: integer
+        name:
+          type: string
+          description: The option name
+        position:
+          type: integer
+          description: Position in the options list
+        values:
+          type: array
+          description: Available values for this option
+          items:
+            type: string
+    Product:
+      type: object
+      description: A Shopify product
+      properties:
+        id:
+          type: integer
+          description: Unique numeric identifier for the product
+        title:
+          type: string
+          description: The name of the product
+        body_html:
+          type: string
+          description: Product description in HTML
+        vendor:
+          type: string
+          description: The name of the product vendor
+        product_type:
+          type: string
+          description: A categorization for the product
+        handle:
+          type: string
+          description: URL-friendly version of the product title
+        created_at:
+          type: string
+          format: date-time
+          description: When the product was created
+        updated_at:
+          type: string
+          format: date-time
+          description: When the product was last updated
+        published_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: When the product was published (null if unpublished)
+        template_suffix:
+          type:
+          - string
+          - 'null'
+          description: Liquid template suffix for the product page
+        published_scope:
+          type: string
+          description: Whether the product is published to the POS channel and online store
+        tags:
+          type: string
+          description: Comma-separated list of tags
+        status:
+          type: string
+          description: Product status
+          enum:
+          - active
+          - archived
+          - draft
+        admin_graphql_api_id:
+          type: string
+          description: The GraphQL Admin API ID
+        variants:
+          type: array
+          description: Product variants
+          items:
+            $ref: '#/components/schemas/Variant'
+        options:
+          type: array
+          description: Product options (e.g. Size, Color)
+          items:
+            $ref: '#/components/schemas/ProductOption'
+        images:
+          type: array
+          description: Product images
+          items:
+            $ref: '#/components/schemas/Image'
+        image:
+          description: The primary product image
+          $ref: '#/components/schemas/Image'
+    ProductInput:
+      type: object
+      description: Input for creating or updating a product
+      properties:
+        title:
+          type: string
+          description: The name of the product
+        body_html:
+          type: string
+          description: Product description in HTML
+        vendor:
+          type: string
+          description: The product vendor
+        product_type:
+          type: string
+          description: A categorization for the product
+        tags:
+          type: string
+          description: Comma-separated list of tags
+        status:
+          type: string
+          enum:
+          - active
+          - archived
+          - draft
+        variants:
+          type: array
+          items:
+            $ref: '#/components/schemas/VariantInput'
+        images:
+          type: array
+          items:
+            $ref: '#/components/schemas/ImageInput'
+    Image:
+      type: object
+      description: A product image
+      properties:
+        id:
+          type: integer
+        product_id:
+          type: integer
+        position:
+          type: integer
+          description: Position in the image list
+        alt:
+          type:
+          - string
+          - 'null'
+          description: Alt text for the image
+        width:
+          type: integer
+        height:
+          type: integer
+        src:
+          type: string
+          format: uri
+          description: The image URL
+        variant_ids:
+          type: array
+          description: Variant IDs associated with this image
+          items:
+            type: integer
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        admin_graphql_api_id:
+          type: string
+    Error:
+      type: object
+      description: Error response
+      properties:
+        errors:
+          description: Error details
+          oneOf:
+          - type: string
+          - type: object
+            additionalProperties:
+              type: array
+              items:
+                type: string
     StorefrontProduct:
       type: object
       description: A product as returned by the storefront Ajax API
@@ -832,6 +824,14 @@ components:
                 type: integer
               height:
                 type: integer
+  parameters:
+    ProductId:
+      name: product_id
+      in: path
+      required: true
+      description: The ID of the product
+      schema:
+        type: integer
   securitySchemes:
     AccessToken:
       type: apiKey

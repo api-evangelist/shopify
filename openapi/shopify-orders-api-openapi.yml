@@ -1578,178 +1578,16 @@ paths:
         ChooseTags: true
 components:
   schemas:
-    OrderInput:
+    TaxLine:
       type: object
-      description: Input for creating or updating an order
+      description: A tax line applied to an item
       properties:
-        email:
+        title:
           type: string
-          format: email
-        phone:
+        price:
           type: string
-        note:
-          type: string
-        tags:
-          type: string
-        line_items:
-          type: array
-          items:
-            type: object
-            properties:
-              variant_id:
-                type: integer
-              quantity:
-                type: integer
-              price:
-                type: string
-              title:
-                type: string
-        billing_address:
-          $ref: '#/components/schemas/Address'
-        shipping_address:
-          $ref: '#/components/schemas/Address'
-        financial_status:
-          type: string
-        send_receipt:
-          type: boolean
-        send_fulfillment_receipt:
-          type: boolean
-        transactions:
-          type: array
-          items:
-            type: object
-            properties:
-              kind:
-                type: string
-              status:
-                type: string
-              amount:
-                type: string
-    Fulfillment:
-      type: object
-      description: A fulfillment of an order
-      properties:
-        id:
-          type: integer
-        order_id:
-          type: integer
-        status:
-          type: string
-          enum:
-          - pending
-          - open
-          - success
-          - cancelled
-          - error
-          - failure
-        tracking_company:
-          type:
-          - string
-          - 'null'
-        tracking_number:
-          type:
-          - string
-          - 'null'
-        tracking_numbers:
-          type: array
-          items:
-            type: string
-        tracking_url:
-          type:
-          - string
-          - 'null'
-        tracking_urls:
-          type: array
-          items:
-            type: string
-        created_at:
-          type: string
-          format: date-time
-        updated_at:
-          type: string
-          format: date-time
-        line_items:
-          type: array
-          items:
-            $ref: '#/components/schemas/LineItem'
-        admin_graphql_api_id:
-          type: string
-    Customer:
-      type: object
-      description: A Shopify customer
-      properties:
-        id:
-          type: integer
-          description: Unique numeric identifier
-        email:
-          type:
-          - string
-          - 'null'
-          format: email
-          description: Customer email address
-        first_name:
-          type:
-          - string
-          - 'null'
-          description: First name
-        last_name:
-          type:
-          - string
-          - 'null'
-          description: Last name
-        phone:
-          type:
-          - string
-          - 'null'
-          description: Phone number in E.164 format
-        orders_count:
-          type: integer
-          description: Number of orders placed
-        total_spent:
-          type: string
-          description: Total amount spent
-        state:
-          type: string
-          description: Account state
-          enum:
-          - disabled
-          - invited
-          - enabled
-          - declined
-        note:
-          type:
-          - string
-          - 'null'
-          description: A note about the customer
-        verified_email:
-          type: boolean
-          description: Whether the email has been verified
-        tax_exempt:
-          type: boolean
-          description: Whether the customer is tax exempt
-        tags:
-          type: string
-          description: Comma-separated list of tags
-        currency:
-          type: string
-          description: Three-letter ISO 4217 currency code
-        accepts_marketing:
-          type: boolean
-          description: Whether the customer has consented to marketing
-        created_at:
-          type: string
-          format: date-time
-        updated_at:
-          type: string
-          format: date-time
-        default_address:
-          $ref: '#/components/schemas/Address'
-        addresses:
-          type: array
-          items:
-            $ref: '#/components/schemas/Address'
-        admin_graphql_api_id:
-          type: string
+        rate:
+          type: number
     Order:
       type: object
       description: A Shopify order
@@ -1961,6 +1799,257 @@ components:
                 type: string
         admin_graphql_api_id:
           type: string
+    Customer:
+      type: object
+      description: A Shopify customer
+      properties:
+        id:
+          type: integer
+          description: Unique numeric identifier
+        email:
+          type:
+          - string
+          - 'null'
+          format: email
+          description: Customer email address
+        first_name:
+          type:
+          - string
+          - 'null'
+          description: First name
+        last_name:
+          type:
+          - string
+          - 'null'
+          description: Last name
+        phone:
+          type:
+          - string
+          - 'null'
+          description: Phone number in E.164 format
+        orders_count:
+          type: integer
+          description: Number of orders placed
+        total_spent:
+          type: string
+          description: Total amount spent
+        state:
+          type: string
+          description: Account state
+          enum:
+          - disabled
+          - invited
+          - enabled
+          - declined
+        note:
+          type:
+          - string
+          - 'null'
+          description: A note about the customer
+        verified_email:
+          type: boolean
+          description: Whether the email has been verified
+        tax_exempt:
+          type: boolean
+          description: Whether the customer is tax exempt
+        tags:
+          type: string
+          description: Comma-separated list of tags
+        currency:
+          type: string
+          description: Three-letter ISO 4217 currency code
+        accepts_marketing:
+          type: boolean
+          description: Whether the customer has consented to marketing
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        default_address:
+          $ref: '#/components/schemas/Address'
+        addresses:
+          type: array
+          items:
+            $ref: '#/components/schemas/Address'
+        admin_graphql_api_id:
+          type: string
+    ShippingLine:
+      type: object
+      description: A shipping method applied to an order
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        price:
+          type: string
+        code:
+          type:
+          - string
+          - 'null'
+        source:
+          type: string
+        discounted_price:
+          type: string
+        tax_lines:
+          type: array
+          items:
+            $ref: '#/components/schemas/TaxLine'
+    OrderInput:
+      type: object
+      description: Input for creating or updating an order
+      properties:
+        email:
+          type: string
+          format: email
+        phone:
+          type: string
+        note:
+          type: string
+        tags:
+          type: string
+        line_items:
+          type: array
+          items:
+            type: object
+            properties:
+              variant_id:
+                type: integer
+              quantity:
+                type: integer
+              price:
+                type: string
+              title:
+                type: string
+        billing_address:
+          $ref: '#/components/schemas/Address'
+        shipping_address:
+          $ref: '#/components/schemas/Address'
+        financial_status:
+          type: string
+        send_receipt:
+          type: boolean
+        send_fulfillment_receipt:
+          type: boolean
+        transactions:
+          type: array
+          items:
+            type: object
+            properties:
+              kind:
+                type: string
+              status:
+                type: string
+              amount:
+                type: string
+    Money:
+      type: object
+      description: A monetary amount with currency
+      properties:
+        amount:
+          type: string
+        currency_code:
+          type: string
+    Fulfillment:
+      type: object
+      description: A fulfillment of an order
+      properties:
+        id:
+          type: integer
+        order_id:
+          type: integer
+        status:
+          type: string
+          enum:
+          - pending
+          - open
+          - success
+          - cancelled
+          - error
+          - failure
+        tracking_company:
+          type:
+          - string
+          - 'null'
+        tracking_number:
+          type:
+          - string
+          - 'null'
+        tracking_numbers:
+          type: array
+          items:
+            type: string
+        tracking_url:
+          type:
+          - string
+          - 'null'
+        tracking_urls:
+          type: array
+          items:
+            type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        line_items:
+          type: array
+          items:
+            $ref: '#/components/schemas/LineItem'
+        admin_graphql_api_id:
+          type: string
+    Refund:
+      type: object
+      description: A refund on an order
+      properties:
+        id:
+          type: integer
+        order_id:
+          type: integer
+        created_at:
+          type: string
+          format: date-time
+        note:
+          type:
+          - string
+          - 'null'
+        restock:
+          type: boolean
+        refund_line_items:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+              quantity:
+                type: integer
+              line_item_id:
+                type: integer
+              subtotal:
+                type: number
+              total_tax:
+                type: number
+              line_item:
+                $ref: '#/components/schemas/LineItem'
+        admin_graphql_api_id:
+          type: string
+    Error:
+      type: object
+      description: Error response
+      properties:
+        errors:
+          description: Error details
+          oneOf:
+          - type: string
+          - type: object
+            additionalProperties:
+              type: array
+              items:
+                type: string
     Address:
       type: object
       description: A customer mailing address
@@ -2008,95 +2097,6 @@ components:
         default:
           type: boolean
           description: Whether this is the default address
-    TaxLine:
-      type: object
-      description: A tax line applied to an item
-      properties:
-        title:
-          type: string
-        price:
-          type: string
-        rate:
-          type: number
-    Money:
-      type: object
-      description: A monetary amount with currency
-      properties:
-        amount:
-          type: string
-        currency_code:
-          type: string
-    Error:
-      type: object
-      description: Error response
-      properties:
-        errors:
-          description: Error details
-          oneOf:
-          - type: string
-          - type: object
-            additionalProperties:
-              type: array
-              items:
-                type: string
-    Refund:
-      type: object
-      description: A refund on an order
-      properties:
-        id:
-          type: integer
-        order_id:
-          type: integer
-        created_at:
-          type: string
-          format: date-time
-        note:
-          type:
-          - string
-          - 'null'
-        restock:
-          type: boolean
-        refund_line_items:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: integer
-              quantity:
-                type: integer
-              line_item_id:
-                type: integer
-              subtotal:
-                type: number
-              total_tax:
-                type: number
-              line_item:
-                $ref: '#/components/schemas/LineItem'
-        admin_graphql_api_id:
-          type: string
-    ShippingLine:
-      type: object
-      description: A shipping method applied to an order
-      properties:
-        id:
-          type: integer
-        title:
-          type: string
-        price:
-          type: string
-        code:
-          type:
-          - string
-          - 'null'
-        source:
-          type: string
-        discounted_price:
-          type: string
-        tax_lines:
-          type: array
-          items:
-            $ref: '#/components/schemas/TaxLine'
   parameters:
     OrderId:
       name: order_id
